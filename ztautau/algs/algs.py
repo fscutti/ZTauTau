@@ -139,8 +139,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
                region_name = region_name.replace('!', 'N')
                region = os.path.join('/regions/', region_name)
                
-               if passed:             
-                 self.plot(region, passed, list_cuts, cut, list_weights=list_weights, weight=weight)
+               self.plot(region, passed, list_cuts, cut, list_weights=list_weights, weight=weight)
 
         return True
 
@@ -158,20 +157,36 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         MET   = os.path.join(region, 'met')
         MUONS = os.path.join(region, 'muons')
         TAUS  = os.path.join(region, 'taus')
-        
+       
+
+        # -----------------
+        # create histograms 
+        # if there are none
+        # -----------------
+
         ## event plots
-        self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT).Fill(self.chain.n_muons, weight)
+        self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
         ## met plots
-        self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET).Fill(self.chain.met_reco_et, weight)
-        
+        self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET)
         
         ## muons plots
-        self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(#mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS).Fill(self.chain.lep_0_pt, weight)
+        self.h_mu_pt = self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(#mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS)
         
         
         ## taus plots
-        self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS).Fill(self.chain.tau_0_pt, weight)
+        self.h_tau_pt = self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS)
+
+        # -----------------
+        # fill histograms 
+        # if passed == True 
+        # -----------------
+
+        if passed:
+          self.h_nmuons.Fill(self.chain.n_muons, weight)
+          self.h_met_reco_et.Fill(self.chain.met_reco_et, weight)
+          self.h_tau_pt.Fill(self.chain.tau_0_pt, weight)
+          self.h_mu_pt.Fill(self.chain.lep_0_pt, weight)
 
         
     #__________________________________________________________________________
