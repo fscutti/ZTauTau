@@ -13,13 +13,11 @@ def make_tag(cat,var):
 #---------------------
 # Environment variables defined in batchsetup.sh
 
-ana      = 'ssdilep'
+ana      = 'ztautau'
 
 indir    = 'HistMonVRTwoMu'
 outdir   = 'PlotsMonVRTwoMu'
 
-#indir    = 'HistVROneMu'
-#outdir   = 'PlotsVROneMu'
 
 USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
@@ -55,30 +53,10 @@ regions = {}
 # use it as such:
 #regions["FOLDERNAME"]     = [icut, "plot label"]
 
-#regions["FAKESVR1_NUM"]   = [5,  "numerator"]
-#regions["FAKESVR1_LTDEN"] = [5,"loose+tight"]
-#regions["FAKESVR1_TLDEN"] = [5,"tight+loose"]
-#regions["FAKESVR1_LLDEN"] = [5,"loose+loose"]
-
-#regions["FAKESVR2_NUM"]   = [6,  "numerator"]
-#regions["FAKESVR2_LTDEN"] = [6,"loose+tight"]
-#regions["FAKESVR2_TLDEN"] = [6,"tight+loose"]
-#regions["FAKESVR2_LLDEN"] = [6,"loose+loose"]
-
-#regions["FAKESVR3_NUM"]   = [6,  "numerator"]
-#regions["FAKESVR3_LTDEN"] = [6,"loose+tight"]
-#regions["FAKESVR3_TLDEN"] = [6,"tight+loose"]
-#regions["FAKESVR3_LLDEN"] = [6,"loose+loose"]
-
 regions["FAKESVR4_NUM"]   = [6,  "numerator"]
 regions["FAKESVR4_LTDEN"] = [6,"loose+tight"]
 regions["FAKESVR4_TLDEN"] = [6,"tight+loose"]
 regions["FAKESVR4_LLDEN"] = [6,"loose+loose"]
-
-#regions["FAKESVR5_NUM"]   = [6,  "numerator"]
-#regions["FAKESVR5_LTDEN"] = [6,"loose+tight"]
-#regions["FAKESVR5_TLDEN"] = [6,"tight+loose"]
-#regions["FAKESVR5_LLDEN"] = [6,"loose+loose"]
 
 
 #---------------------
