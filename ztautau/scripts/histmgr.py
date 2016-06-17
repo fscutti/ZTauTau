@@ -386,7 +386,7 @@ class AddOnEstimator(BaseEstimator):
         
         addon_regions = self.addon_regions
 
-        h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=icut) 
+        h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"]) 
         h_fakes.Scale(rqcd) 
         
         h_addon = {} 
