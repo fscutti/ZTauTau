@@ -182,7 +182,8 @@ plot_backgrounds.append(addon_Zlljets)
 
 ## signals
 plot_signals = []
-plot_signals.append(addon_Zttjets)
+#plot_signals.append(addon_Zttjets)
+plot_signals.append(samples.Zttjets)
 
 
 if options.makeplot == "True":
