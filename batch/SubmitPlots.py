@@ -3,7 +3,7 @@
 import os
 import subprocess
 import time
-from ssdilep import plots
+from ztautau import plots
 
 def make_tag(cat,var):
   return '_'.join([cat,var])
@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HistMonVRTwoMu'
-outdir   = 'PlotsMonVRTwoMu'
+indir    = 'Hist_allregions'
+outdir   = 'Plots_allregions'
 
 
 USER    = os.getenv('USER')
@@ -53,10 +53,7 @@ regions = {}
 # use it as such:
 #regions["FOLDERNAME"]     = [icut, "plot label"]
 
-regions["FAKESVR4_NUM"]   = [6,  "numerator"]
-regions["FAKESVR4_LTDEN"] = [6,"loose+tight"]
-regions["FAKESVR4_TLDEN"] = [6,"tight+loose"]
-regions["FAKESVR4_LLDEN"] = [6,"loose+loose"]
+regions["SR"] = [4,"loose+loose"]
 
 
 #---------------------
@@ -75,7 +72,7 @@ m.communicate()[0]
 
 
 for REG,OPT in regions.iteritems():
-  vars_list = plots.vars_mumu.vars_list
+  vars_list = plots.vars.vars_list
   #vars_list = plots.vars_fakes.vars_list
 
   for var in vars_list:
