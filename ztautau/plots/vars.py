@@ -86,6 +86,13 @@ tau_n_tracks = Var(name = 'tau_n_tracks',
               log     = False,
               )
 
+jet_bdt_score = Var(name  = 'jet_bdt_score',
+	     path = 'taus',
+	     xmin = 0.6,
+	     xmax = 1,
+	     log = False,
+	     )
+
 ## MET variables
 ## ---------------------------------------
 vis_mass = Var(name = 'vis_mass',
@@ -143,6 +150,7 @@ vars_list.append(tau_eta)
 vars_list.append(mu_eta)
 vars_list.append(met_reco_phi)
 vars_list.append(tau_n_tracks)
+vars_list.append(jet_bdt_score) 
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
