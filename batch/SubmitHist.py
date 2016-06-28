@@ -49,7 +49,7 @@ USER   = os.getenv('USER')
 
 ## global config
 # input NTUP path
-NTUP='/data/fscutti/test/merged' 
+NTUP='/data/fscutti/shared/v03/merged' 
 
 # The Melb cloud is twisted and does not recognize home dirs...
 JOBDIR = "/data/%s/jobdir" % USER 
@@ -60,7 +60,8 @@ INTARBALL = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%
 AUTOBUILD = True                
 
 # outputs
-RUN = 'HistTEST'
+
+RUN = 'HistEMU'
 
 OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTFILE="ntuple.root"         # file output by pyframe job 

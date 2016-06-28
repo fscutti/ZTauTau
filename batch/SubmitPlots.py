@@ -3,7 +3,7 @@
 import os
 import subprocess
 import time
-from ssdilep import plots
+from ztautau import plots
 
 def make_tag(cat,var):
   return '_'.join([cat,var])
@@ -15,14 +15,15 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HistMonVRTwoMu'
-outdir   = 'PlotsMonVRTwoMu'
+indir    = 'HistKOALA'
+outdir   = 'PlotsKOALA_SR'
 
 
 USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
 
-inpath = os.path.join("/imports/rcs5_data",USER,ana)
+#inpath = os.path.join("/imports/rcs5_data",USER,ana)
+inpath  = os.path.join("/data/laram1/ztautau")
 INDIR   = os.path.join(inpath,indir)  
 OUTDIR  = os.path.join(inpath,outdir)
 
@@ -53,11 +54,102 @@ regions = {}
 # use it as such:
 #regions["FOLDERNAME"]     = [icut, "plot label"]
 
-regions["FAKESVR4_NUM"]   = [6,  "numerator"]
-regions["FAKESVR4_LTDEN"] = [6,"loose+tight"]
-regions["FAKESVR4_TLDEN"] = [6,"tight+loose"]
-regions["FAKESVR4_LLDEN"] = [6,"loose+loose"]
+# SIGNAL REGION ---------------------------------
+"""
+regions["SR"] 		= [4,"SR"]
+"""
+regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
+regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
+"""
+regions["SR_25med"] 	= [5,"SR_25med"]
 
+regions['SR_25med_Tau1Track'] = [6,'SR_25med_Tau1Track']
+regions["SR_25med_Tau3Track"] = [6,"SR_25med_Tau3Track"]
+
+regions['SR_25med_lowPT_Tau1Track'] = [7,'SR_25med_lowPT_Tau1Track']
+regions['SR_25med_highPT_Tau1Track'] = [7,'SR_25med_highPT_Tau1Track']
+regions['SR_25med_lowPT_Tau3Track'] = [7,'SR_25med_lowPT_Tau3Track']
+regions['SR_25med_highPT_Tau3Track'] = [7,'SR_25med_highPT_Tau3Track']
+
+regions["SR_highPT"] 	= [5,"SR_highPT"]
+regions["SR_lowPT"] 	= [5,"SR_lowPT"]
+regions['SR_highPT_Tau1Track'] = [6,'SR_highPT_Tau1Track']
+regions['SR_lowPT_Tau1Track'] = [6,'SR_lowPT_Tau1Track']
+regions['SR_highPT_Tau3Track'] = [6,'SR_highPT_Tau3Track']
+regions['SR_lowPT_Tau3Track'] = [6,'SR_lowPT_Tau3Track']
+
+"""
+# SS SIGNAL REGION ------------------------------
+"""
+regions["SR_SS"]	= [4, "SR_SS"]
+regions['SR_SS_Tau3Track'] = [5,'SR_SS_Tau3Track']
+regions['SR_SS_Tau1Track'] = [5,'SR_SS_Tau1Track']
+
+regions["SR_SS_25med"]  = [5, "SR_25med"]
+
+regions['SR_SS_25med_Tau1Track'] = [6,'SR_SS_25med_Tau1Track']
+regions['SR_SS_25med_Tau3Track'] = [6,'SR_SS_25med_Tau3Track']
+
+regions['SR_SS_25med_lowPT_Tau1Track'] = [7,'SR_SS_25med_lowPT_Tau1Track']
+regions['SR_SS_25med_highPT_Tau1Track'] = [7,'SR_SS_25med_highPT_Tau1Track']
+regions['SR_SS_25med_lowPT_Tau3Track'] = [7,'SR_SS_25med_lowPT_Tau3Track']
+regions['SR_SS_25med_highPT_Tau3Track'] = [7,'SR_SS_25med_highPT_Tau3Track']
+
+regions["SR_SS_highPT"] = [5, "SR_SS_highPT"]
+regions["SR_SS_lowPT"] 	= [5, "SR_SS_lowPT"]
+regions['SR_SS_highPT_Tau1Track'] = [6,'SR_SS_highPT_Tau1Track']
+regions['SR_SS_lowPT_Tau1Track'] = [6,'SR_SS_lowPT_Tau1Track']
+regions['SR_SS_highPT_Tau3Track'] = [6,'SR_SS_highPT_Tau3Track']
+regions['SR_SS_lowPT_Tau3Track'] = [6,'SR_SS_lowPT_Tau3Track']
+"""
+# WJETS SS --------------------------------------
+"""
+regions["Wjets_SS"] 	   = [3, "Wjets_SS"]
+regions["Wjets_SS_Tau1Track"] = [4,"Wjets_SS_Tau1Track"]
+regions["Wjets_SS_Tau3Track"] = [4,"Wjets_SS_Tau3Track"]
+
+
+regions["Wjets_SS_25med"]  = [4, "Wjets_SS_25med"]
+
+regions["Wjets_SS_highPT"] = [4, "Wjets_SS_highPT"]
+regions["Wjets_SS_lowPT"]  = [4, "Wjets_SS_lowPT"]
+"""
+
+# WJETS OS --------------------------------------
+"""
+regions["Wjets_OS"]	   = [3, "Wjets_OS"]
+regions["Wjets_OS_Tau1Track"] = [4,"Wjets_OS_Tau1Track"]
+regions["Wjets_OS_Tau3Track"] = [4,"Wjets_OS_Tau3Track"]
+
+
+regions["Wjets_OS_25med"]  = [4, "Wjets_OS_25med"]
+
+regions["Wjets_OS_highPT"] = [4, "Wjets_OS_highPT"]
+regions["Wjets_OS_lowPT"]  = [4, "Wjets_OS_lowPT"]
+"""
+
+# ANTI ISO SS -----------------------------------
+"""
+regions["AntiIsoCR_SS"]	       = [2, "AntiIso_SS"]
+regions["AntiIsoCR_SS_Tau1Track"] = [3,"AntiIso_SS_Tau1Track"]
+regions["AntiIsoCR_SS_Tau3Track"] = [3,"AntiIso_SS_Tau3Track"]
+
+regions["AntiIsoCR_SS_25med"]  = [3, "AntiIso_SS_25med"]
+
+regions["AntiIsoCR_SS_highPT"] = [3, "AntiIso_SS_highPT"]
+regions["AntiIsoCR_SS_lowPT"]  = [3, "AntiIso_SS_lowPT"]
+"""
+# ANTI ISO OS -----------------------------------
+"""
+regions["AntiIsoCR_OS"]	       = [2, "AntiIso_OS"]
+regions["AntiIsoCR_OS_Tau1Track"] = [3,"AntiIso_OS_Tau1Track"]
+regions["AntiIsoCR_OS_Tau3Track"] = [3,"AntiIso_OS_Tau3Track"]
+
+regions["AntiIsoCR_OS_25med"]  = [3, "AntiIso_OS_25med"]
+
+regions["AntiIsoCR_OS_highPT"] = [3, "AntiIso_OS_highPT"]
+regions["AntiIsoCR_OS_lowPT"]  = [3, "AntiIso_OS_lowPT"]
+"""
 
 #---------------------
 # Make input tarball
@@ -75,14 +167,14 @@ m.communicate()[0]
 
 
 for REG,OPT in regions.iteritems():
-  vars_list = plots.vars_mumu.vars_list
+  vars_list = plots.vars.vars_list
   #vars_list = plots.vars_fakes.vars_list
 
   for var in vars_list:
 
     job_vars['VAR']      = var.name
     job_vars['REG']      = REG
-    job_vars['ICUT']     = OPT[0]
+    job_vars['ICUT']     = str(OPT[0])
     job_vars['LAB']      = OPT[1]
     job_vars['MAKEPLOT'] = True
     
