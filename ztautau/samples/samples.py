@@ -184,9 +184,9 @@ Wtaujets = Sample( name =   'Wtaujets',
 # merge all W+jets samples
 Wjets = Sample( name =   'Wjets',
                   tlatex = 'W #rightarrow l#nu+jets',
-                  fill_color = ROOT.kBlue+1,
-                  line_color =  ROOT.kBlue+2,
-                  marker_color =  ROOT.kBlue+2,
+                  fill_color = ROOT.kYellow-3,
+                  line_color =  ROOT.kBlack,
+                  marker_color =  ROOT.kYellow-3,
                   daughters = [Wenujets,
                                Wmunujets,
                                Wtaujets,
@@ -207,9 +207,9 @@ PoPy8_Ztt   = Sample( name =  "PoPy8_Ztt",    xsec = 1950.63210001)
 
 Zmumujets = Sample( name =   'Zmumujets',
                   tlatex = 'Z #rightarrow #mu#mu+jets',
-                  fill_color = ROOT.kSpring+1,
-                  line_color =  ROOT.kSpring+2,
-                  marker_color =  ROOT.kSpring+2,
+                  fill_color = ROOT.kSpring-2,
+                  line_color =  ROOT.kSpring-3,
+                  marker_color =  ROOT.kSpring-3,
                   daughters = [
 			       PoPy8_Zmumu,
                               ],
@@ -228,9 +228,9 @@ Zeejets = Sample( name =   'Zeejets',
 
 Zttjets = Sample( name =   'Zttjets',
                   tlatex = 'Z #rightarrow #tau#tau+jets',
-                  fill_color = ROOT.kYellow-4,
-                  line_color =  ROOT.kYellow-3,
-                  marker_color =  ROOT.kYellow-3,
+                  fill_color = ROOT.kAzure+7,
+                  line_color =  ROOT.kBlack,
+                  marker_color =  ROOT.kAzure+7,
                   daughters = [
                                PoPy8_Ztt,
                               ],
@@ -239,9 +239,9 @@ Zttjets = Sample( name =   'Zttjets',
 # merge light leptons ones
 Zlljets = Sample( name =   'Zlljets',
                   tlatex = 'Z #rightarrow ll+jets',
-                  fill_color = ROOT.kOrange+7,
-                  line_color =  ROOT.kOrange+4,
-                  marker_color =  ROOT.kGreen+4,
+                  fill_color = ROOT.kCyan+2,
+                  line_color =  ROOT.kBlack,
+                  marker_color =  ROOT.kCyan+2,
                   daughters = [
                                Zmumujets,
                                Zeejets,
@@ -628,23 +628,23 @@ Ztautau = Sample( name =   'Ztautau',
 #-----------
 # single-top
 #-----------
-PoPy_P2012_STSchan_noAllHad_atop = Sample( name =  "PoPy_P2012_STSchan_noAllHad_atop",   xsec = 1.288662)
-PoPy_P2012_STSchan_noAllHad_top  = Sample( name =  "PoPy_P2012_STSchan_noAllHad_top",    xsec = 2.06121)
-PoPy_P2012_st_tchan_lept_atop    = Sample( name =  "PoPy_P2012_st_tchan_lept_atop",      xsec = 26.27637)
-PoPy_P2012_st_tchan_lept_top     = Sample( name =  "PoPy_P2012_st_tchan_lept_top",       xsec = 44.152092)
-PoPy_P2012_Wt_incl_atop          = Sample( name =  "PoPy_P2012_Wt_incl_atop",            xsec = 35.824406)
-PoPy_P2012_Wt_incl_top           = Sample( name =  "PoPy_P2012_Wt_incl_top",             xsec = 35.845486)
+PoPy_P2012_STSchan_noAllHad_atop = Sample( name =  "PoPy_P2012_STSchan_noAllHad_atop",   xsec = 1.2615) #susy
+PoPy_P2012_STSchan_noAllHad_top  = Sample( name =  "PoPy_P2012_STSchan_noAllHad_top",    xsec = 2.0517) #susy
+PoPy_P2012_st_tchan_lept_atop    = Sample( name =  "PoPy_P2012_st_tchan_lept_atop",      xsec = 25.778) #susy
+PoPy_P2012_st_tchan_lept_top     = Sample( name =  "PoPy_P2012_st_tchan_lept_top",       xsec = 43.739) #susy
+PoPy_P2012_Wt_incl_atop          = Sample( name =  "PoPy_P2012_Wt_incl_atop",            xsec = 33.989) #susy
+PoPy_P2012_Wt_incl_top           = Sample( name =  "PoPy_P2012_Wt_incl_top",             xsec = 34.009) #susy
 
 #-----------
 # ttbar
 #-----------
-PoPy_P2012_ttb_nonallh           = Sample( name =  "PoPy_P2012_ttb_nonallh",             xsec = 831.76)
+PoPy_P2012_ttb_nonallh           = Sample( name =  "PoPy_P2012_ttb_nonallh",             xsec = 696.11) #susy
 
 top = Sample( name =   'top',
               tlatex = 'Top',
-              fill_color = ROOT.kGray+1,
-              line_color =  ROOT.kGray+2,
-              marker_color =  ROOT.kGray+2,
+              fill_color = ROOT.kOrange+6,
+              line_color =  ROOT.kBlack,
+              marker_color =  ROOT.kOrange+6,
               daughters = [
                            PoPy_P2012_STSchan_noAllHad_atop,
                            PoPy_P2012_STSchan_noAllHad_top, 
@@ -652,7 +652,7 @@ top = Sample( name =   'top',
                            PoPy_P2012_st_tchan_lept_top,    
                            PoPy_P2012_Wt_incl_atop,         
                            PoPy_P2012_Wt_incl_top,          
-                           PoPy_P2012_ttb_nonallh,                              
+                          # PoPy_P2012_ttb_nonallh,                              
                           ],
             ) 
 
@@ -668,11 +668,84 @@ fakes  = Sample( name         = "fakes",
                  type         = "datadriven",
                  )
 
+sub_ztt = Sample( name 	      = "sub_ztt",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_1Track = Sample( name = "sub_ztt_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_3Track = Sample( name = "sub_ztt_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_25med = Sample( name 	      = "sub_ztt_25med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_25med_1Track = Sample( name 	      = "sub_ztt_25med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_25med_3Track = Sample( name 	      = "sub_ztt_25med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_35med = Sample( name 	      = "sub_ztt_35med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_35med_1Track = Sample( name 	      = "sub_ztt_35med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_35med_3Track = Sample( name 	      = "sub_ztt_35med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
 addon_data  = Sample( name   = "data",
                  tlatex       = "Same Sign",
-                 fill_color   = ROOT.kGreen+1,
-                 line_color   = ROOT.kGreen+2,
-                 marker_color = ROOT.kGreen+2,
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
                  type         = "datadriven",
                  )
 
@@ -708,6 +781,1066 @@ addon_top = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
+addon_data_25med  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_lowPT  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_lowPT = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_lowPT = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_lowPT = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_lowPT = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_highPT  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_highPT = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_highPT = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_highPT = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_highPT = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+########
+
+addon_data_35med  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_35med_lowPT  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_lowPT = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_lowPT = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_lowPT = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_lowPT = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_35med_highPT  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_highPT = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_highPT = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_highPT = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_highPT = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+##########
+
+addon_data_lowPT  = Sample( name   = "data",
+                 tlatex       = "Same Sign_lowPT",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_lowPT = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_lowPT = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_lowPT = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_lowPT = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_highPT  = Sample( name   = data.name,
+                 tlatex       = "Same Sign_highPT",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_highPT = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_highPT = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_highPT = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_highPT = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)_highPT",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+
+#------------------------
+# 	one track
+#------------------------
+
+addon_data_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+#############
+
+addon_data_25med_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_lowPT_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_lowPT_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_lowPT_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_lowPT_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_lowPT_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_highPT_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_highPT_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_highPT_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_highPT_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_highPT_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+#############
+
+addon_data_35med_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_35med_lowPT_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_lowPT_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_lowPT_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_lowPT_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_lowPT_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_35med_highPT_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_highPT_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_highPT_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_highPT_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_highPT_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+#############
+
+addon_data_lowPT_1Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign_lowPT",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_lowPT_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_lowPT_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_lowPT_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_lowPT_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_highPT_1Track  = Sample( name   = data.name,
+                 tlatex       = "Same Sign_highPT",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_highPT_1Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_highPT_1Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_highPT_1Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_highPT_1Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)_highPT",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+#------------------------
+# 	three tracks
+#------------------------
+
+addon_data_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_lowPT_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_lowPT_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_lowPT_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_lowPT_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_lowPT_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_25med_highPT_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_25med_highPT_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_25med_highPT_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_25med_highPT_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_25med_highPT_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+##############
+
+addon_data_35med_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_35med_lowPT_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_lowPT_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_lowPT_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_lowPT_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_lowPT_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_35med_highPT_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_35med_highPT_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_35med_highPT_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_35med_highPT_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_35med_highPT_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+#############
+
+addon_data_lowPT_3Track  = Sample( name   = "data",
+                 tlatex       = "Same Sign_lowPT",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_lowPT_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_lowPT_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_lowPT_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_lowPT_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)_lowPT",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_data_highPT_3Track  = Sample( name   = data.name,
+                 tlatex       = "Same Sign_highPT",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_highPT_3Track = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_highPT_3Track = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_highPT_3Track = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)_highPT",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_highPT_3Track = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)_highPT",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
 #-------------------------------------------------------------------------------
 # Collections 
 #-------------------------------------------------------------------------------
@@ -725,6 +1858,7 @@ all_mc += Wtaujets.daughters
 all_mc += top.daughters
 all_mc += Wenujets.daughters
 all_mc += Wmunujets.daughters
+#all_mc += Wjets.daughters
 all_mc += Zeejets.daughters
 all_mc += Zmumujets.daughters
 all_mc += Zttjets.daughters
