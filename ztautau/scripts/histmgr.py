@@ -322,15 +322,20 @@ class AddOnEstimator(BaseEstimator):
         self.data_minus_mc_den = DataBkgSubEstimator(self.data_sample,self.mc_samples,None,**kw)
         self.rqcd_regions      = rqcd_regions 
         self.kf_regions        = kf_regions 
+#        self.rregions          = rregions 
+#        self.kregions          = kregions 
         self.addon_regions     = addon_regions 
         self.print_info        = print_info
         
         assert self.rqcd_regions,  "ERROR: must provide rqcd regions"
         assert self.kf_regions,    "ERROR: must provide kf regions"
+        #assert self.rregions,  "ERROR: must provide rqcd regions"
+        #assert self.kregions,    "ERROR: must provide kf regions"
         assert self.addon_regions, "ERROR: must provide addon regions"
 
     #____________________________________________________________
     def __hist__(self,region=None,histname=None,icut=None,sys=None,mode=None):
+        
         """
         implementation of nominal hist getter
         """
@@ -344,7 +349,7 @@ class AddOnEstimator(BaseEstimator):
            kf_SS[s] = 1.0 
         
         kf_regions = self.kf_regions 
-        
+       
         # compute k-factors 
         for s in self.kf_regions.keys():
            tmp_samples = list(self.mc_samples)
@@ -355,8 +360,13 @@ class AddOnEstimator(BaseEstimator):
            kf_OS[s]  = histutils.full_integral(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            kf_OS[s] /= histutils.full_integral(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            kf_SS[s]  = histutils.full_integral(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           kf_SS[s] /= histutils.full_integral(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-         
+
+           x = histutils.full_integral(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           if x == 0:
+	   	kf_SS[s] == 1.0
+           else:
+           	kf_SS[s] /= histutils.full_integral(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           
 
         # compute rqcd transfer factor
         # adding k_factors to the estimators
@@ -370,7 +380,7 @@ class AddOnEstimator(BaseEstimator):
         
         if self.print_info:
           print 
-          print 
+          print  
           print "++++++++++++++++++++++++++++++++++++++++"
           print "Iteration for %s" % self.sample.name
           print "++++++++++++++++++++++++++++++++++++++++"
@@ -386,7 +396,7 @@ class AddOnEstimator(BaseEstimator):
         
         addon_regions = self.addon_regions
 
-        h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=icut) 
+        h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"]) 
         h_fakes.Scale(rqcd) 
         
         h_addon = {} 
@@ -402,7 +412,7 @@ class AddOnEstimator(BaseEstimator):
         ToDo: implement sys uncertainty for the scales!!!
         """
         if sys and "scale" in sys.name: pass
-    
+        
         if not self.sample.name == "fakes":
           for s in h_addon.keys():
             if self.sample.name == s.name:
