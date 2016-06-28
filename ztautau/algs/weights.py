@@ -62,7 +62,7 @@ class Pileup(pyframe.core.Algorithm):
     #_________________________________________________________________________
     def execute(self, weight):
         if "mc" in self.sampletype: 
-            wpileup = self.chain.weight_pileup
+            wpileup = self.chain.weight_mc*self.chain.NOMINAL_pileup_combined_weight
             if self.key: self.store[self.key] = wpileup
             self.set_weight(wpileup*weight)
         return True

@@ -68,6 +68,122 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_MuonPt24(self):
         return self.chain.lep_0_pt > 24.
     
+   #__________________________________________________________________________
+    # BASE CUT
+    #__________________________________________________________________________
+
+    def cut_OneMuon(self):
+        return self.chain.n_muons == 1
+
+    def cut_NoElectrons(self):
+        return self.chain.n_electrons == 0
+
+    def cut_AtLeastOneTau(self):
+        return self.chain.n_taus >= 1
+
+    def cut_NoBJets(self):
+        return self.chain.n_bjets == 0
+
+    def cut_AtLeastOnePvx(self):
+        return self.chain.n_pvx >= 1
+
+    def cut_MuonHLTmu20ilooseL1MU15ORmu50(self):
+        return self.chain.HLT_mu20_iloose_L1MU15 == 1 or self.chain.HLT_mu50
+
+    def cut_MuonMuTrigMatch0HLTmu20ilooseL1MU15(self):
+        return self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1
+    #__________________________________________________________________________
+    # MUON CUT
+    #__________________________________________________________________________
+
+    def cut_MuonIdMedium(self):
+        return self.chain.lep_0_id_medium == 1
+
+    def cut_MuonPt22(self):
+        return self.chain.lep_0_pt > 22.
+
+    def cut_MuonGradIso(self):
+        return self.chain.lep_0_iso_wp>=10000
+
+    def cut_InvMuonGradIso(self):
+        return self.chain.lep_0_iso_wp<10000
+
+    def cut_MuonEta25(self):
+        return abs(self.chain.lep_0_eta) < 2.5
+
+    #__________________________________________________________________________
+    # TAU CUT
+    #__________________________________________________________________________
+
+    def cut_TauPt25(self):
+        return self.chain.tau_0_pt > 25.0
+
+    def cut_TauEta247(self):
+        return abs(self.chain.tau_0_eta) < 1.37 or 1.52 < abs(self.chain.tau_0_eta) < 2.47
+
+    def cut_TauCharge1(self):
+        return abs(self.chain.tau_0_q) == 1
+
+    def cut_TauTrack(self):
+        return self.chain.tau_0_n_tracks == 1 or self.chain.tau_0_n_tracks == 3
+
+    def cut_Tau1Track(self):
+        return self.chain.tau_0_n_tracks == 1
+
+    def cut_Tau3Track(self):
+        return self.chain.tau_0_n_tracks == 3
+
+    def cut_BDTtauMed(self):
+        return self.chain.tau_0_jet_bdt_medium == 1
+   
+    def cut_TauLowPt(self):
+	return self.chain.tau_0_pt < 40.0
+
+    def cut_TauHighPt(self):
+	return self.chain.tau_0_pt > 40.0
+
+   #__________________________________________________________________________
+    # REGIONS
+    #__________________________________________________________________________
+
+    #---- Wjets ----#
+
+    def cut_MTrans60(self):
+        return self.chain.lephad_mt_lep0_met > 60
+
+    def cut_MET30(self):
+        return self.chain.met_reco_et > 30
+
+    #---- Control Region ----#
+
+    def cut_MTrans50(self):
+        return self.chain.lephad_mt_lep0_met < 50
+
+    def cut_SumCosDPhi05(self):
+        return self.chain.lephad_met_sum_cos_dphi > -0.5
+
+    #---- Ztau ----#
+
+    def cut_VisMass4580(self):
+        return abs(self.chain.lephad_vis_mass) > 45 and abs(self.chain.lephad_vis_mass) < 80
+
+    #---- GENERAL ----#
+
+    def cut_OS(self):
+        return self.chain.lephad_qxq==-1
+
+    def cut_SS(self):
+        return self.chain.lephad_qxq==1
+
+    #-----TRIGGER-----#
+
+    def cut_HLTTau25Med1TrackTwo(self):
+	return self.chain.HLT_tau25_medium1_tracktwo_resurrected == 1    
+ 
+    def cut_HLTTau35Med1TrackTwo(self):
+	return self.chain.HLT_tau35_medium1_tracktwo_resurrected == 1    
+ 
+
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
     """
@@ -139,8 +255,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
                region_name = region_name.replace('!', 'N')
                region = os.path.join('/regions/', region_name)
                
-               if passed:             
-                 self.plot(region, passed, list_cuts, cut, list_weights=list_weights, weight=weight)
+               self.plot(region, passed, list_cuts, cut, list_weights=list_weights, weight=weight)
 
         return True
 
@@ -159,21 +274,71 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         MUONS = os.path.join(region, 'muons')
         TAUS  = os.path.join(region, 'taus')
         
-        ## event plots
-        self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT).Fill(self.chain.n_muons, weight)
+        self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
-        ## met plots
-        self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET).Fill(self.chain.met_reco_et, weight)
-        
-        
-        ## muons plots
-        self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(#mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS).Fill(self.chain.lep_0_pt, weight)
-        
-        
-        ## taus plots
-        self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS).Fill(self.chain.tau_0_pt, weight)
+        self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET)
 
+        self.h_mu_pt = self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(\mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS)
+
+        self.h_tau_pt = self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS)
+
+        self.h_n_vx = self.hist('h_n_vx', "ROOT.TH1F('$', ';N_{vx} ;Events', 14, 0.0, 14.0)", dir=EVT)
+
+        self.h_vis_mass = self.hist('h_vis_mass', "ROOT.TH1F('$', ';Visible Mass (#tau,#mu) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
+
+        self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\Sum\cos(\Delta \phi) ;Events', 20, -2.0, 2.0)", dir=EVT)
+
+        self.h_m_trans = self.hist('h_m_trans', "ROOT.TH1F('$', ';m_T (\mu,E^{miss}_{T}) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
+
+        self.h_tau_eta = self.hist('h_tau_eta', "ROOT.TH1F('$', '; \eta ;Events', 12, -3.0, 3.0)", dir=TAUS)
+
+        self.h_tau_phi = self.hist('h_tau_phi', "ROOT.TH1F('$', '; \phi ;Events', 16, -4.0, 4.0)", dir=TAUS)
+
+        self.h_mu_eta = self.hist('h_mu_eta', "ROOT.TH1F('$', '; \eta ;Events', 12, -3.0, 3.0)", dir=MUONS)
+
+        self.h_mu_phi = self.hist('h_mu_phi', "ROOT.TH1F('$', '; \phi ;Events', 16, -4.0, 4.0)", dir=MUONS)
+
+        self.h_met_reco_phi = self.hist('h_met_reco_phi', "ROOT.TH1F('$', '; \phi ;Events', 16, -4.0, 4.0)", dir=MET)
+
+        self.h_tau_n_tracks = self.hist('h_tau_n_tracks', "ROOT.TH1F('$', '; N_{tracks} ;Events', 5, 0.0, 5.0)", dir=TAUS)
         
+	self.h_jet_bdt_score = self.hist('h_jet_bdt_score', "ROOT.TH1F('$', '; BDT score ;Events', 8, 0.6, 1.0)", dir=TAUS)
+
+
+
+        if passed:
+
+             self.h_nmuons.Fill(self.chain.n_muons, weight)
+ 
+             self.h_met_reco_et.Fill(self.chain.met_reco_et, weight)
+ 
+             self.h_mu_pt.Fill(self.chain.lep_0_pt, weight)
+ 
+             self.h_tau_pt.Fill(self.chain.tau_0_pt, weight)
+ 
+             self.h_n_vx.Fill(self.chain.n_vx, weight)
+ 
+             self.h_vis_mass.Fill(self.chain.lephad_vis_mass, weight)
+ 
+             self.h_sumcosdphi.Fill(self.chain.lephad_met_sum_cos_dphi, weight)
+ 
+             self.h_m_trans.Fill(self.chain.lephad_mt_lep0_met, weight)
+ 
+             self.h_tau_eta.Fill(self.chain.tau_0_eta, weight)
+ 
+             self.h_tau_phi.Fill(self.chain.tau_0_phi, weight)
+ 
+             self.h_mu_eta.Fill(self.chain.lep_0_eta, weight)
+ 
+             self.h_mu_phi.Fill(self.chain.lep_0_phi, weight)
+ 
+             self.h_met_reco_phi.Fill(self.chain.met_reco_phi, weight)
+ 
+             self.h_tau_n_tracks.Fill(self.chain.tau_0_n_tracks, weight)
+             
+ 	     self.h_jet_bdt_score.Fill(self.chain.tau_0_jet_bdt_score, weight)
+
+
     #__________________________________________________________________________
     def check_region(self,cutnames):
         cut_passed = True
