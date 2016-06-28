@@ -273,6 +273,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         MET   = os.path.join(region, 'met')
         MUONS = os.path.join(region, 'muons')
         TAUS  = os.path.join(region, 'taus')
+<<<<<<< HEAD
         
         self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
@@ -289,6 +290,38 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\Sum\cos(\Delta \phi) ;Events', 20, -2.0, 2.0)", dir=EVT)
 
         self.h_m_trans = self.hist('h_m_trans', "ROOT.TH1F('$', ';m_T (\mu,E^{miss}_{T}) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
+=======
+       
+
+        # -----------------
+        # create histograms 
+        # if there are none
+        # -----------------
+
+        ## event plots
+        self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
+
+        ## met plots
+        self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET)
+        
+        ## muons plots
+        self.h_mu_pt = self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(#mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS)
+        
+        
+        ## taus plots
+        self.h_tau_pt = self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS)
+
+        # -----------------
+        # fill histograms 
+        # if passed == True 
+        # -----------------
+
+        if passed:
+          self.h_nmuons.Fill(self.chain.n_muons, weight)
+          self.h_met_reco_et.Fill(self.chain.met_reco_et, weight)
+          self.h_tau_pt.Fill(self.chain.tau_0_pt, weight)
+          self.h_mu_pt.Fill(self.chain.lep_0_pt, weight)
+>>>>>>> 2065d524ff182c29c1ff4af30511c7734dca1618
 
         self.h_tau_eta = self.hist('h_tau_eta', "ROOT.TH1F('$', '; \eta ;Events', 12, -3.0, 3.0)", dir=TAUS)
 

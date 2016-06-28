@@ -11,12 +11,18 @@ import subprocess
 
 from pyutils.utils import recreplace, mcstrings
 
+from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option('-s', '--samp', dest='sample',
+                  help='sample name',metavar='SAMP',default="")
+(options, args) = parser.parse_args()
 
 # ---------------------------
 # details of grid sample name
 # ---------------------------
 user  = "lixia"
-samp  = "00284285"
+samp  = options.sample
 jtag  = "*15_13TeV.*%s*ntup-v03" % samp
 #jtype = "lptnp"
 jtype = "lhtnp"

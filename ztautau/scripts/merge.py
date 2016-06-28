@@ -1301,6 +1301,7 @@ plot_signals = []
 
 if "SR" == options.region: #add-ons only make sense in the signal region
 
+<<<<<<< HEAD
 	print "signal region"
 
 	plot_backgrounds.append(addon_data)
@@ -1412,6 +1413,12 @@ else: #MC as background
         plot_backgrounds.append(samples.Wjets)
         plot_backgrounds.append(samples.Zlljets)
         plot_backgrounds.append(samples.top)
+=======
+## signals
+plot_signals = []
+#plot_signals.append(addon_Zttjets)
+plot_signals.append(samples.Zttjets)
+>>>>>>> 2065d524ff182c29c1ff4af30511c7734dca1618
 
 
 if options.makeplot == "True":

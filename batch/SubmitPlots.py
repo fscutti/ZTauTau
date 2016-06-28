@@ -15,8 +15,13 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
+<<<<<<< HEAD
 indir    = 'HistKOALA'
 outdir   = 'PlotsKOALA_SR'
+=======
+indir    = 'Hist_allregions'
+outdir   = 'Plots_allregions'
+>>>>>>> 2065d524ff182c29c1ff4af30511c7734dca1618
 
 
 USER    = os.getenv('USER')
@@ -54,6 +59,7 @@ regions = {}
 # use it as such:
 #regions["FOLDERNAME"]     = [icut, "plot label"]
 
+<<<<<<< HEAD
 # SIGNAL REGION ---------------------------------
 """
 regions["SR"] 		= [4,"SR"]
@@ -150,6 +156,10 @@ regions["AntiIsoCR_OS_25med"]  = [3, "AntiIso_OS_25med"]
 regions["AntiIsoCR_OS_highPT"] = [3, "AntiIso_OS_highPT"]
 regions["AntiIsoCR_OS_lowPT"]  = [3, "AntiIso_OS_lowPT"]
 """
+=======
+regions["SR"] = [4,"loose+loose"]
+
+>>>>>>> 2065d524ff182c29c1ff4af30511c7734dca1618
 
 #---------------------
 # Make input tarball
