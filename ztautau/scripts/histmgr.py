@@ -8,6 +8,7 @@ description:
 
 ## modules
 from pyplot import histutils, fileio
+from funcs import ratiounc
 import os 
 import random
 import ROOT
@@ -342,11 +343,17 @@ class AddOnEstimator(BaseEstimator):
         # compute k-factors for OS and SS regions 
         kf_OS = {}  
         kf_SS = {}  
+        
+        kf_OS_unc = {}  
+        kf_SS_unc = {}  
          
         # initialise k-factors
         for s in self.mc_samples:
            kf_OS[s] = 1.0
            kf_SS[s] = 1.0 
+           
+           kf_OS_unc[s] = 0.0
+           kf_SS_unc[s] = 0.0 
         
         kf_regions = self.kf_regions 
        
@@ -357,15 +364,15 @@ class AddOnEstimator(BaseEstimator):
            data_sub = copy(self.data_minus_mc)
            data_sub.mc_samples = tmp_samples
            
-           kf_OS[s]  = histutils.full_integral(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           kf_OS[s] /= histutils.full_integral(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           kf_SS[s]  = histutils.full_integral(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           kf_OS[s]  = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           kf_OS[s] /= histutils.full_integral_and_error(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           kf_SS[s]  = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
 
-           x = histutils.full_integral(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           x = histutils.full_integral_and_error(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            if x == 0:
 	   	kf_SS[s] == 1.0
            else:
-           	kf_SS[s] /= histutils.full_integral(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           	kf_SS[s] /= histutils.full_integral_and_error(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            
 
         # compute rqcd transfer factor
@@ -375,8 +382,8 @@ class AddOnEstimator(BaseEstimator):
         
         rqcd_regions = self.rqcd_regions
 
-        rqcd  = histutils.full_integral(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-        rqcd /= histutils.full_integral(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
+        rqcd  = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
+        rqcd /= histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         
         if self.print_info:
           print 
