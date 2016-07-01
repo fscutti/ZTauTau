@@ -55,7 +55,7 @@ def integral_and_error( hist, xmin = None, xmax = None ):
 #____________________________________________________________
 def integral( hist, xmin = None, xmax = None ):
     int, err = integral_and_error( hist, xmin, xmax )
-    return int
+    return int, err
 
 
 #____________________________________________________________
