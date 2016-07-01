@@ -79,7 +79,7 @@ def full_integral_and_error( hist ):
 #____________________________________________________________
 def full_integral( hist ):
     int, err = full_integral_and_error( hist )
-    return int, err
+    return int
 
 #____________________________________________________________
 def normalise( hist ):
