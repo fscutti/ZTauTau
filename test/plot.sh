@@ -2,7 +2,8 @@
 
 # Strings are passed to the script but this is redundant!
 
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="TEST REGION" --icut="4" --input="/data/laram1/ztautau/HistPLATYPUS" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="TEST REGION" --icut="4" --input="/data/laram1/ztautau/HistEMU" --output="./" --makeplot=True
+python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="TEST REGION" --icut="4" --input="/data/laram1/ztautau/HistEMU" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med" --lab="TEST REGION" --icut="5" --input="/data/laram1/ztautau/HistPLATYPUS" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med" --lab="TEST REGION" --icut="5" --input="/data/laram1/ztautau/HistEMU" --output="./35med" --makeplot=False
 
@@ -16,7 +17,7 @@
 
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/data/laram1/ztautau/HistKOALA" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/data/laram1/ztautau/HistKOALA" --output="./" --makeplot=False
-python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/data/laram1/ztautau/HistEMU" --output="./35med" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/data/laram1/ztautau/HistEMU" --output="./35med" --makeplot=False
 
 
 
