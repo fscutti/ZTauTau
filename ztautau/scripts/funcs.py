@@ -533,7 +533,6 @@ def list_open_files():
         print obj.GetName()
         obj = itr.Next()
 
-
 def ratiounc(a,b,sigmaa,sigmab):
   unc = 0 
   unc += (1 / b*b) * sigmaa * sigmaa
