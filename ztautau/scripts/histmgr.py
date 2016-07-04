@@ -363,17 +363,33 @@ class AddOnEstimator(BaseEstimator):
            tmp_samples.remove(s)
            data_sub = copy(self.data_minus_mc)
            data_sub.mc_samples = tmp_samples
-           
+          
+           """
            kf_OS[s]  = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            kf_OS[s] /= histutils.full_integral_and_error(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            kf_SS[s]  = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           """
 
-           x = histutils.full_integral_and_error(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           if x == 0:
+           kf_os_top, kf_os_top_err = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           kf_os_bot, kf_os_bot_err = histutils.full_integral_and_error(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           kf_OS[s] = kf_os_top/kf_os_bot
+
+           kf_ss_top,kf_ss_top_err = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+
+           kf_ss_bot,kf_ss_bot_err = histutils.full_integral_and_error(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
+           if kf_ss_bot == 0:
+                print s.name
 	   	kf_SS[s] == 1.0
+                #kf_OS_unc[s] = 0.0
+                #kf_SS_unc[s] = 0.0
            else:
-           	kf_SS[s] /= histutils.full_integral_and_error(s.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           
+                kf_SS[s] = kf_ss_top/kf_ss_bot
+                #kf_OS_unc[s] = abs(kf_OS[s])*math.sqrt( (kf_os_top_err/kf_os_top)**2 + (kf_os_bot_err/kf_os_bot)**2 )
+                #kf_SS_unc[s] = abs(kf_SS[s])*math.sqrt( (kf_ss_top_err/kf_ss_top)**2 + (kf_ss_bot_err/kf_ss_bot)**2 )
+
+
+                kf_OS_unc[s] = ratiounc(a = kf_os_top, b = kf_os_bot, sigmaa = kf_os_top_err, sigmab = kf_os_bot_err)
+                kf_SS_unc[s] = ratiounc(a = kf_ss_top, b = kf_ss_bot, sigmaa = kf_ss_top_err, sigmab = kf_ss_bot_err)
 
         # compute rqcd transfer factor
         # adding k_factors to the estimators
@@ -382,9 +398,17 @@ class AddOnEstimator(BaseEstimator):
         
         rqcd_regions = self.rqcd_regions
 
+        """
         rqcd  = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd /= histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-        
+        """
+        rqcd_top, rqcd_top_err = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
+        rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
+        rqcd = rqcd_top/rqcd_bot
+
+        #rqcd_unc = abs(rqcd)*math.sqrt( (rqcd_top_err/rqcd_top)**2 + (rqcd_bot_err/rqcd_bot)**2 )
+        rqcd_unc = ratiounc(a = rqcd_top, b = rqcd_bot, sigmaa = rqcd_top_err, sigmab = rqcd_bot_err)
+
         if self.print_info:
           print 
           print  
@@ -394,11 +418,11 @@ class AddOnEstimator(BaseEstimator):
           print 
           print "k-factors for %s, sys %s, sys_mode %s" % (histname,sys,mode)
           print "----------------------------------------"
-          print "Sample | Region | k-factor | Rqcd"
+          print "Sample | Region | k-factor | k-factor unc | Rqcd | Rqcd unc"
           print "----------------------------------------"
           for s in self.kf_regions.keys():
-            print "%s | %s | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],rqcd)
-            print "%s | %s | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],rqcd)
+            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],kf_OS_unc[s],rqcd,rqcd_unc)
+            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],kf_SS_unc[s],rqcd,rqcd_unc)
             print 
         
         addon_regions = self.addon_regions
