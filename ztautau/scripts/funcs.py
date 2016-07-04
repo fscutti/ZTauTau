@@ -535,8 +535,8 @@ def list_open_files():
 
 def ratiounc(a,b,sigmaa,sigmab):
   unc = 0 
-  unc += (1 / b*b) * sigmaa * sigmaa
-  unc += (a*a / b*b*b*b) * sigmab * sigmab
+  unc += pow(1./b,2) * sigmaa * sigmaa
+  unc += (pow(a,2) / pow(b,4)) * sigmab * sigmab
   return sqrt(unc)
 
 ## EOF
