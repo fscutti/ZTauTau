@@ -222,12 +222,65 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Topoetcone20pt019(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.19
 
-
     def cut_Topoetcone20pt02(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.2
 
+    def cut_Topoetcone20pt021(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.21
+
+    def cut_Topoetcone20pt022(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.22
+
+    def cut_Topoetcone20pt023(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.23
+
+    def cut_Topoetcone20pt024(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.24
+
+    def cut_Topoetcone20pt025(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.25
+
+    def cut_Topoetcone20pt026(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.26
+
+    def cut_Topoetcone20pt027(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.27
+
+    def cut_Topoetcone20pt028(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.28
+
+    def cut_Topoetcone20pt029(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.29
+
     def cut_Topoetcone20pt03(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.3
+
+    def cut_Topoetcone20pt031(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.31
+
+    def cut_Topoetcone20pt032(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.32
+
+    def cut_Topoetcone20pt033(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.33
+
+    def cut_Topoetcone20pt034(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.34
+
+    def cut_Topoetcone20pt035(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.35
+
+    def cut_Topoetcone20pt036(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.36
+
+    def cut_Topoetcone20pt037(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.37
+
+    def cut_Topoetcone20pt038(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.38
+
+    def cut_Topoetcone20pt039(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.39
 
     def cut_Topoetcone20pt04(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.4
