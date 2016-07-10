@@ -50,7 +50,8 @@ USER   = os.getenv('USER')
 ## global config
 # input NTUP path
 #NTUP='/coepp/cephfs/mel/fscutti/ztautau/v03/merged' 
-NTUP='/coepp/cephfs/mel/laram1/data'
+#NTUP='/coepp/cephfs/mel/laram1/data'
+NTUP='/coepp/cephfs/mel/laram1/data15'
 
 # The Melb cloud is twisted and does not recognize home dirs...
 JOBDIR = "/data/%s/jobdir" % USER 
@@ -62,7 +63,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HistPOSSUM'
+RUN = 'HistPOSSUM_2015'
 
 OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTFILE="ntuple.root"         # file output by pyframe job 

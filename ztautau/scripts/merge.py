@@ -37,7 +37,9 @@ parser.add_option('-o', '--output', dest='outdir',
 #-----------------
 # Configuration
 #-----------------
-lumi =  3194
+#lumi =  3193.68 #2015
+lumi = 6302.24 #2016
+
 
 # Control regions
 plotsfile = []
@@ -1310,7 +1312,8 @@ if "SR" == options.region: #add-ons only make sense in the signal region
 
         #plot_signals.append(samples.Zttjets)
         plot_signals.append(sub_ztt) 
-	
+
+
 elif "SR_25med" == options.region:
  
 	print "signal region _25med"
