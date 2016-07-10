@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HistKOALA'
-outdir   = 'PlotsKOALA_SR'
+indir    = 'HistPOSSUM'
+outdir   = 'PlotsPOSSUM_16_withnonall'
 
 
 USER    = os.getenv('USER')
@@ -60,12 +60,12 @@ regions["SR"] 		= [4,"SR"]
 """
 regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
 regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
+
+regions["SR_35med"] 	= [5,"SR_35med"]
+
+regions['SR_35med_Tau1Track'] = [6,'SR_35med_Tau1Track']
+regions["SR_35med_Tau3Track"] = [6,"SR_35med_Tau3Track"]
 """
-regions["SR_25med"] 	= [5,"SR_25med"]
-
-regions['SR_25med_Tau1Track'] = [6,'SR_25med_Tau1Track']
-regions["SR_25med_Tau3Track"] = [6,"SR_25med_Tau3Track"]
-
 regions['SR_25med_lowPT_Tau1Track'] = [7,'SR_25med_lowPT_Tau1Track']
 regions['SR_25med_highPT_Tau1Track'] = [7,'SR_25med_highPT_Tau1Track']
 regions['SR_25med_lowPT_Tau3Track'] = [7,'SR_25med_lowPT_Tau3Track']
@@ -103,27 +103,33 @@ regions['SR_SS_highPT_Tau3Track'] = [6,'SR_SS_highPT_Tau3Track']
 regions['SR_SS_lowPT_Tau3Track'] = [6,'SR_SS_lowPT_Tau3Track']
 """
 # WJETS SS --------------------------------------
-"""
+
 regions["Wjets_SS"] 	   = [3, "Wjets_SS"]
 regions["Wjets_SS_Tau1Track"] = [4,"Wjets_SS_Tau1Track"]
 regions["Wjets_SS_Tau3Track"] = [4,"Wjets_SS_Tau3Track"]
 
 
-regions["Wjets_SS_25med"]  = [4, "Wjets_SS_25med"]
+regions["Wjets_SS_35med"]  = [4, "Wjets_SS_35med"]
+regions["Wjets_SS_35med_Tau1Track"]  = [5, "Wjets_SS_35med_Tau1Track"]
+regions["Wjets_SS_35med_Tau3Track"]  = [5, "Wjets_SS_35med_Tau3Track"]
 
+"""
 regions["Wjets_SS_highPT"] = [4, "Wjets_SS_highPT"]
 regions["Wjets_SS_lowPT"]  = [4, "Wjets_SS_lowPT"]
 """
 
 # WJETS OS --------------------------------------
-"""
+
 regions["Wjets_OS"]	   = [3, "Wjets_OS"]
 regions["Wjets_OS_Tau1Track"] = [4,"Wjets_OS_Tau1Track"]
 regions["Wjets_OS_Tau3Track"] = [4,"Wjets_OS_Tau3Track"]
 
 
-regions["Wjets_OS_25med"]  = [4, "Wjets_OS_25med"]
+regions["Wjets_OS_35med"]  = [4, "Wjets_3S_25med"]
+regions["Wjets_OS_35med_Tau1Track"]  = [5, "Wjets_3S_35med_Tau1Track"]
+regions["Wjets_OS_35med_Tau3Track"]  = [5, "Wjets_3S_35med_Tau3Track"]
 
+"""
 regions["Wjets_OS_highPT"] = [4, "Wjets_OS_highPT"]
 regions["Wjets_OS_lowPT"]  = [4, "Wjets_OS_lowPT"]
 """
@@ -134,19 +140,24 @@ regions["AntiIsoCR_SS"]	       = [2, "AntiIso_SS"]
 regions["AntiIsoCR_SS_Tau1Track"] = [3,"AntiIso_SS_Tau1Track"]
 regions["AntiIsoCR_SS_Tau3Track"] = [3,"AntiIso_SS_Tau3Track"]
 
-regions["AntiIsoCR_SS_25med"]  = [3, "AntiIso_SS_25med"]
+regions["AntiIsoCR_SS_35med"]  = [3, "AntiIso_SS_35med"]
+regions["AntiIsoCR_SS_35med_Tau1Track"]  = [4, "AntiIso_SS_35med_Tau1Track"]
+regions["AntiIsoCR_SS_35med_Tau3Track"]  = [4, "AntiIso_SS_25med_Tau3Track"]
 
 regions["AntiIsoCR_SS_highPT"] = [3, "AntiIso_SS_highPT"]
 regions["AntiIsoCR_SS_lowPT"]  = [3, "AntiIso_SS_lowPT"]
 """
 # ANTI ISO OS -----------------------------------
-"""
+
 regions["AntiIsoCR_OS"]	       = [2, "AntiIso_OS"]
 regions["AntiIsoCR_OS_Tau1Track"] = [3,"AntiIso_OS_Tau1Track"]
 regions["AntiIsoCR_OS_Tau3Track"] = [3,"AntiIso_OS_Tau3Track"]
 
-regions["AntiIsoCR_OS_25med"]  = [3, "AntiIso_OS_25med"]
+regions["AntiIsoCR_OS_35med"]  = [3, "AntiIso_OS_35med"]
+regions["AntiIsoCR_OS_35med_Tau1Track"]  = [4, "AntiIso_OS_35med_Tau1Track"]
+regions["AntiIsoCR_OS_35med_Tau3Track"]  = [4, "AntiIso_OS_25med_Tau3Track"]
 
+"""
 regions["AntiIsoCR_OS_highPT"] = [3, "AntiIso_OS_highPT"]
 regions["AntiIsoCR_OS_lowPT"]  = [3, "AntiIso_OS_lowPT"]
 """
