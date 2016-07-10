@@ -141,16 +141,11 @@ def analyze(config):
     ## ---------------------------------------
     ## event
     ## +++++++++++++++++++++++++++++++++++++++
-    """ 
-    loop += ztautau.algs.EvWeights.MuTrigSF(
-            is_single_mu = True,
-            mu_trig_level="Loose_Loose",
-            mu_trig_chain="HLT_mu20_iloose_L1MU15_OR_HLT_mu50",
-            key='SingleMuonTrigSF',
+    loop += ztautau.algs.weights.MuonSF(
+            key='MuonTotalWeight',
             scale=None,
             )
     
-    """
     """
     loop += ztautau.algs.EvWeights.MuTrigSF(
             is_di_mu = True,
@@ -191,7 +186,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
        	      ['Tau3Track',None],
               ],
