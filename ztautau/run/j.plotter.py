@@ -117,13 +117,15 @@ def analyze(config):
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneTau')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='NoBJets')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOnePvx')
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu20ilooseL1MU15ORmu50')
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonMuTrigMatch0HLTmu20ilooseL1MU15')
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu20ilooseL1MU15ORmu50') #2015
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu24imediumORHLTmu50') #2016
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonMuTrigMatch0HLTmu20ilooseL1MU15')
 
     #---- MUONS ----#
 
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonIdMedium')
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonPt22')
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonPt22') #2015
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonPt26') #2016
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonEta25')
 
     #---- TAUS ----#
