@@ -87,8 +87,11 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_AtLeastOnePvx(self):
         return self.chain.n_pvx >= 1
 
-    def cut_MuonHLTmu20ilooseL1MU15ORmu50(self):
-        return self.chain.HLT_mu20_iloose_L1MU15 == 1 or self.chain.HLT_mu50
+    def cut_MuonHLTmu20ilooseL1MU15ORmu50(self): #2015
+        return self.chain.HLT_mu20_iloose_L1MU15 == 1 or self.chain.HLT_mu50 == 1
+
+    def cut_MuonHLTmu24imediumORHLTmu50(self): #2016
+        return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
 
     def cut_MuonMuTrigMatch0HLTmu20ilooseL1MU15(self):
         return self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1
@@ -101,6 +104,9 @@ class CutAlg(pyframe.core.Algorithm):
 
     def cut_MuonPt22(self):
         return self.chain.lep_0_pt > 22.
+
+    def cut_MuonPt26(self):
+        return self.chain.lep_0_pt > 26.
 
     def cut_MuonGradIso(self):
         return self.chain.lep_0_iso_wp>=10000
@@ -184,6 +190,47 @@ class CutAlg(pyframe.core.Algorithm):
 	return self.chain.HLT_tau35_medium1_tracktwo_resurrected == 1    
  
 
+    #----- SYSTEMATICS----#
+
+    def cut_Topoetcone20pt010(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.1
+
+    def cut_Topoetcone20pt011(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.11
+
+    def cut_Topoetcone20pt012(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.12
+
+    def cut_Topoetcone20pt013(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.13
+
+    def cut_Topoetcone20pt014(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.14
+
+    def cut_Topoetcone20pt015(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.15
+
+    def cut_Topoetcone20pt016(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.16
+
+    def cut_Topoetcone20pt017(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.17
+
+    def cut_Topoetcone20pt018(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.18
+
+    def cut_Topoetcone20pt019(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.19
+
+
+    def cut_Topoetcone20pt02(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.2
+
+    def cut_Topoetcone20pt03(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.3
+
+    def cut_Topoetcone20pt04(self):
+         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.4
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
     """
