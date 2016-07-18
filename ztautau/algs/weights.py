@@ -110,14 +110,15 @@ class MuonSF(pyframe.core.Algorithm):
     #_________________________________________________________________________
     def initialize(self): pass
    
-    #_________________________________________________________________________
+    #________________________________________________________________________
     def execute(self, weight):
         sf=1.0
         if "mc" in self.sampletype: 
-          sf *= lep_0_NOMINAL_MuEffSF_Reco_QualMedium
-          sf *= lep_0_NOMINAL_lep_0_NOMINAL_MuEffSF_IsoGradient
+          sf *= self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium #lep_0_NOMINAL_effSF_RecoMedium
+          #sf *= lep_0_NOMINAL_HLT_mu20_iloose_OR_HLT_mu40_MU_TRIG_QUAL_MEDIUM_MU_TRIG_ISO_GRADIENT #2015
+          sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoIsoGradient #self.chain.lep_0_NOMINAL_HLT_mu24_imedium_OR_HLT_mu50_MU_TRIG_QUAL_MEDIUM_MU_TRIG_ISO_GRADIENT #2016
           # just add sf *= lep_0_NOMINAL_my_super_fancy_weight
-           if self.scale: 
+          if self.scale: 
                if self.scale=='up': pass
                elif self.scale=='dn': pass
         else: pass
@@ -127,5 +128,42 @@ class MuonSF(pyframe.core.Algorithm):
 
         return True
 
+#------------------------------------------------------------------------------
+class MuonSFIsoGrad(pyframe.core.Algorithm):
+    """
+    Muon scale factor not just the trigger
+    This is not configurable for different working points. Might change that
+    in the future.
+    """
+    #__________________________________________________________________________
+    def __init__(self, name="MuonScaleFactor",
+            key=None,
+            scale=None,
+            ):
+        pyframe.core.Algorithm.__init__(self, name=name)
+        self.key = key
+        self.scale = scale
+
+        assert key, "Must provide key for storing muon sf"
+        assert scale in [None,'up','dn'], "scale must be in [None,'up','dn']"
+
+    #_________________________________________________________________________
+    def initialize(self): pass
+
+    #_________________________________________________________________________
+    def execute(self, weight):
+        sf=1.0
+        if "mc" in self.sampletype:
+          sf *= self.chain.lep_0_NOMINAL_MuEffSF_IsoGradient
+          # just add sf *= lep_0_NOMINAL_my_super_fancy_weight
+          if self.scale:
+               if self.scale=='up': pass
+               elif self.scale=='dn': pass
+        else: pass
+
+        if self.key:
+          self.store[self.key] = sf
+
+        return True
 
 # EOF
