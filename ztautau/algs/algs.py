@@ -284,6 +284,37 @@ class CutAlg(pyframe.core.Algorithm):
 
     def cut_Topoetcone20pt04(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.4
+
+   
+    def cut_MTrans625(self):
+         return self.chain.lephad_mt_lep0_met > 62.5
+
+    def cut_MTrans675(self):
+         return self.chain.lephad_mt_lep0_met > 67.5
+
+    def cut_MTrans725(self):
+         return self.chain.lephad_mt_lep0_met > 72.5
+
+    def cut_MTrans775(self):
+         return self.chain.lephad_mt_lep0_met > 77.5
+
+    def cut_MTrans825(self):
+         return self.chain.lephad_mt_lep0_met > 82.5
+
+    def cut_MTrans875(self):
+         return self.chain.lephad_mt_lep0_met > 87.5
+
+    def cut_MTrans925(self):
+         return self.chain.lephad_mt_lep0_met > 92.5
+
+    def cut_MTrans975(self):
+         return self.chain.lephad_mt_lep0_met > 97.5
+
+    def cut_MTrans1025(self):
+         return self.chain.lephad_mt_lep0_met > 102.5
+
+    def cut_MTrans1075(self):
+         return self.chain.lephad_mt_lep0_met > 107.5
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
     """
