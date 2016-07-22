@@ -15,9 +15,10 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HistPOSSUM'
-outdir   = 'PlotsPOSSUM_16_withnonall'
-
+#indir    = 'HistPOSSUM_2016_rqcdsyst'
+#outdir   = 'PlotsPOSSUM_2106_rqcdsyst'
+indir = 'HistPOSSUM'
+outdir = 'PlotsPossum_newwithSR_samplesnotsub_correctlumihopefully'
 
 USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
@@ -55,9 +56,9 @@ regions = {}
 #regions["FOLDERNAME"]     = [icut, "plot label"]
 
 # SIGNAL REGION ---------------------------------
-"""
+
 regions["SR"] 		= [4,"SR"]
-"""
+
 regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
 regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
 
