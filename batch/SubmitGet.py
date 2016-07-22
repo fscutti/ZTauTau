@@ -21,12 +21,16 @@ parser.add_option('-s', '--samp', dest='sample',
 # ---------------------------
 # details of grid sample name
 # ---------------------------
-user  = "lixia"
-samp  = options.sample
-jtag  = "*15_13TeV.*%s*ntup-v03" % samp
-#jtype = "lptnp"
-jtype = "lhtnp"
-sys   = None
+#rtag    = "r7725"
+#rtag    = "r7772"
+rtag    = ""
+user    = "lixia"
+samp    = options.sample
+version = "v1510"
+jtag    = "*data16_13TeV.*%s*%s*ntup-%s" % (samp,rtag,version)
+#jtype  = "lptnp"
+jtype   = "lhtnp"
+sys     = None
 if not sys: sys = "nominal"
 
 
@@ -34,13 +38,14 @@ if not sys: sys = "nominal"
 # details of this job
 # -------------------
 SCRIPT     = "Get.sh"
-OUTDIR     = "/data/%s/shared/v03" % os.getenv("USER")
+#OUTDIR     = "/coepp/cephfs/mel/%s/ztautau/%s_%s" % (os.getenv("USER"),version,rtag) # for mc
+OUTDIR     = "/coepp/cephfs/mel/%s/ztautau/%s" % (os.getenv("USER"),version) # for data
 OUTMERGED  = os.path.join(OUTDIR,"merged",sys)
 OUTHIST    = os.path.join(OUTDIR,"hist",sys)
 OUTLOGS    = os.path.join(OUTDIR,"log",sys)
 JOB_TAG    = jtag
 QUEUE      = "long"
-JOBDIR    = "/data/%s/jobdir" % os.getenv("USER")
+JOBDIR     = "/coepp/cephfs/mel/%s/jobdir" % os.getenv("USER")
 
 dir_list = []
 dir_list.append(os.path.join(OUTDIR,"hist"))
