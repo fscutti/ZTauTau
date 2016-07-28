@@ -190,8 +190,8 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
-              #['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              #['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
        	      ['Tau3Track',None],
               ],
@@ -204,7 +204,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['Tau3Track',None],
               ],
             )
@@ -217,7 +217,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauLowPt',None],
        	      ['Tau3Track',None],
               ],
@@ -230,7 +230,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau3Track',None],
               ],
@@ -243,7 +243,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau3Track',None],
               ],
@@ -257,7 +257,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauLowPt',None],
@@ -271,7 +271,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauLowPt',None],
@@ -286,7 +286,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauHighPt',None],
@@ -301,7 +301,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauHighPt',None],
@@ -316,7 +316,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
        	      ['Tau3Track',None],
               ],
             )
@@ -328,7 +328,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau3Track',None],
               ],
@@ -341,7 +341,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau3Track',None],
               ],
@@ -355,7 +355,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauLowPt',None],
@@ -369,7 +369,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauLowPt',None],
@@ -384,7 +384,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauHighPt',None],
@@ -398,7 +398,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau3Track',None],
 	      ['TauHighPt',None],
@@ -412,7 +412,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
        	      ['Tau3Track',None],
               ],
@@ -425,7 +425,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauLowPt',None],
        	      ['Tau3Track',None],
               ],
@@ -437,7 +437,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -451,7 +451,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -466,7 +466,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -482,7 +482,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -496,7 +496,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -511,7 +511,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -527,7 +527,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
        	      ['Tau3Track',None],
@@ -540,7 +540,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
        	      ['Tau3Track',None],
@@ -554,7 +554,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['TauLowPt',None],
@@ -568,7 +568,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
        	      ['Tau3Track',None],
@@ -581,7 +581,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -595,7 +595,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -610,7 +610,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -625,7 +625,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -639,7 +639,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -654,7 +654,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -669,7 +669,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
        	      ['Tau3Track',None],
@@ -683,7 +683,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['TauLowPt',None],
@@ -695,7 +695,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
        	      ['Tau3Track',None],
@@ -706,7 +706,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_25med_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -718,7 +718,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_25med_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -731,7 +731,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_25med_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -744,7 +744,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_35med_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -756,7 +756,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_35med_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -769,7 +769,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_35med_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -782,7 +782,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauHighPt',None],
@@ -794,7 +794,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauLowPt',None],
@@ -806,7 +806,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
        	      ['Tau3Track',None],
@@ -817,7 +817,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_25med_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -829,7 +829,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_25med_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -842,7 +842,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_25med_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -855,7 +855,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_35med_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -867,7 +867,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_35med_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -880,7 +880,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_35med_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -893,7 +893,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauHighPt',None],
@@ -905,7 +905,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauLowPt',None],
@@ -924,7 +924,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
        	      ['Tau1Track',None],
               ],
@@ -937,7 +937,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['Tau1Track',None],
               ],
             )
@@ -950,7 +950,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauLowPt',None],
        	      ['Tau1Track',None],
               ],
@@ -963,7 +963,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ],
@@ -976,7 +976,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauLowPt',None],
@@ -990,7 +990,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauHighPt',None],
@@ -1004,7 +1004,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ],
@@ -1017,7 +1017,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauLowPt',None],
@@ -1031,7 +1031,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauHighPt',None],
@@ -1045,7 +1045,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
        	      ['Tau1Track',None],
               ],
             )
@@ -1057,7 +1057,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ],
@@ -1070,7 +1070,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauLowPt',None],
@@ -1084,7 +1084,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauHighPt',None],
@@ -1098,7 +1098,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ],
@@ -1111,7 +1111,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauLowPt',None],
@@ -1125,7 +1125,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
        	      ['Tau1Track',None],
               ['TauHighPt',None],
@@ -1139,7 +1139,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
        	      ['Tau1Track',None],
               ],
@@ -1152,7 +1152,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauLowPt',None],
        	      ['Tau1Track',None],
               ],
@@ -1164,7 +1164,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1178,7 +1178,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1193,7 +1193,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1208,7 +1208,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1222,7 +1222,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1237,7 +1237,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1252,7 +1252,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
        	      ['Tau1Track',None],
@@ -1265,7 +1265,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
        	      ['Tau1Track',None],
@@ -1279,7 +1279,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['TauLowPt',None],
@@ -1293,7 +1293,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
        	      ['Tau1Track',None],
@@ -1306,7 +1306,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1320,7 +1320,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1335,7 +1335,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1350,7 +1350,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1364,7 +1364,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1379,7 +1379,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1394,7 +1394,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
        	      ['Tau1Track',None],
@@ -1408,7 +1408,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['TauLowPt',None],
@@ -1420,7 +1420,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
        	      ['Tau1Track',None],
@@ -1431,7 +1431,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_25med_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1443,7 +1443,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_25med_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1456,7 +1456,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_25med_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1469,7 +1469,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_35med_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1481,7 +1481,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_35med_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1494,7 +1494,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_35med_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1507,7 +1507,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauHighPt',None],
@@ -1519,7 +1519,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauLowPt',None],
@@ -1531,7 +1531,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
        	      ['Tau1Track',None],
@@ -1542,7 +1542,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_25med_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1554,7 +1554,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_25med_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1567,7 +1567,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_25med_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -1580,7 +1580,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_35med_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1592,7 +1592,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_35med_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1605,7 +1605,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_35med_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -1618,7 +1618,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauHighPt',None],
@@ -1630,7 +1630,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauLowPt',None],
@@ -1649,7 +1649,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
               ],
             )
@@ -1661,7 +1661,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1674,7 +1674,7 @@ def analyze(config):
               ['MTrans625',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
     loop += ztautau.algs.algs.PlotAlg(
@@ -1684,7 +1684,7 @@ def analyze(config):
               ['MTrans675',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1695,7 +1695,7 @@ def analyze(config):
               ['MTrans725',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1706,7 +1706,7 @@ def analyze(config):
               ['MTrans775',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1717,7 +1717,7 @@ def analyze(config):
               ['MTrans825',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1728,7 +1728,7 @@ def analyze(config):
               ['MTrans875',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1739,7 +1739,7 @@ def analyze(config):
               ['MTrans925',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1750,7 +1750,7 @@ def analyze(config):
               ['MTrans975',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1761,7 +1761,7 @@ def analyze(config):
               ['MTrans1025',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1772,7 +1772,7 @@ def analyze(config):
               ['MTrans1075',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1784,7 +1784,7 @@ def analyze(config):
               ['MTrans625',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
     loop += ztautau.algs.algs.PlotAlg(
@@ -1794,7 +1794,7 @@ def analyze(config):
               ['MTrans675',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1805,7 +1805,7 @@ def analyze(config):
               ['MTrans725',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1816,7 +1816,7 @@ def analyze(config):
               ['MTrans775',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1827,7 +1827,7 @@ def analyze(config):
               ['MTrans825',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1838,7 +1838,7 @@ def analyze(config):
               ['MTrans875',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1849,7 +1849,7 @@ def analyze(config):
               ['MTrans925',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1860,7 +1860,7 @@ def analyze(config):
               ['MTrans975',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1871,7 +1871,7 @@ def analyze(config):
               ['MTrans1025',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1882,7 +1882,7 @@ def analyze(config):
               ['MTrans1075',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1896,7 +1896,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauLowPt',None],
               ],
             )
@@ -1908,7 +1908,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
               ],
             )
@@ -1920,7 +1920,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
               ['TauLowPt',None],
               ],
@@ -1933,7 +1933,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
               ['TauHighPt',None],
               ],
@@ -1946,7 +1946,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
               ],
             )
@@ -1958,7 +1958,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
               ['TauLowPt',None],
               ],
@@ -1971,7 +1971,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['OS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
               ['TauHighPt',None],
               ],
@@ -1984,7 +1984,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ],
             )
 
@@ -1995,7 +1995,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
               ],
             )
@@ -2007,7 +2007,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
               ['TauLowPt',None],
               ],
@@ -2020,7 +2020,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau25Med1TrackTwo',None],
               ['TauHighPt',None],
               ],
@@ -2033,7 +2033,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
               ],
             )
@@ -2045,7 +2045,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
               ['TauLowPt',None],
               ],
@@ -2058,7 +2058,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['HLTTau35Med1TrackTwo',None],
               ['TauHighPt',None],
               ],
@@ -2071,7 +2071,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauHighPt',None],
               ],
             )
@@ -2083,7 +2083,7 @@ def analyze(config):
               ['MTrans60',None],
               ['MET30',None],
               ['SS',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
 	      ['TauLowPt',None],
               ],
             )
@@ -2094,7 +2094,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -2107,7 +2107,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -2121,7 +2121,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -2135,7 +2135,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -2148,7 +2148,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -2162,7 +2162,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -2176,7 +2176,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
               ],
@@ -2188,7 +2188,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['TauHighPt',None],
@@ -2201,7 +2201,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['OS',None],
 	      ['TauLowPt',None],
@@ -2214,7 +2214,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
               ],
@@ -2226,7 +2226,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -2239,7 +2239,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -2253,7 +2253,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
@@ -2267,7 +2267,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -2280,7 +2280,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -2294,7 +2294,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
@@ -2308,7 +2308,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['TauHighPt',None],
@@ -2321,7 +2321,7 @@ def analyze(config):
             cut_flow  = [
               ['MTrans50',None],
               ['SumCosDPhi05',None],
-              ['MuonGradIso',["MuonTotalWeight","MuonWeightAI"]],
+              ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
 	      ['TauLowPt',None],
@@ -2338,7 +2338,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2350,7 +2350,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt010',None],
               ],
             )
@@ -2360,7 +2360,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt011',None],
               ],
             )
@@ -2371,7 +2371,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt012',None],
               ],
             )
@@ -2384,7 +2384,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
               ['Topoetcone20pt013',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2396,7 +2396,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
               ['Topoetcone20pt014',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2407,7 +2407,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt015',None],
               ],
             )
@@ -2419,7 +2419,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt016',None],
               ],
             )
@@ -2431,7 +2431,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt017',None],
               ],
             )
@@ -2443,7 +2443,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt018',None],
               ],
             )
@@ -2455,7 +2455,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt019',None],
               ],
             )
@@ -2466,7 +2466,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt02',None],
               ],
             )
@@ -2476,7 +2476,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt021',None],
               ],
             )
@@ -2487,7 +2487,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt022',None],
               ],
             )
@@ -2500,7 +2500,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
               ['Topoetcone20pt023',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2512,7 +2512,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
               ['Topoetcone20pt024',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2523,7 +2523,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt025',None],
               ],
             )
@@ -2534,7 +2534,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt026',None],
               ],
             )
@@ -2546,7 +2546,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt027',None],
               ],
             )
@@ -2558,7 +2558,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt028',None],
               ],
             )
@@ -2570,7 +2570,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt029',None],
               ],
             )
@@ -2583,7 +2583,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt03',None],
               ],
             )
@@ -2594,7 +2594,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt031',None],
               ],
             )
@@ -2605,7 +2605,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt032',None],
               ],
             )
@@ -2618,7 +2618,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
               ['Topoetcone20pt033',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2630,7 +2630,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
               ['Topoetcone20pt034',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2641,7 +2641,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt035',None],
               ],
             )
@@ -2652,7 +2652,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt036',None],
               ],
             )
@@ -2664,7 +2664,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt037',None],
               ],
             )
@@ -2676,7 +2676,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt038',None],
               ],
             )
@@ -2688,7 +2688,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt039',None],
               ],
             )
@@ -2699,7 +2699,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['Topoetcone20pt04',None],
               ],
             )
@@ -2714,7 +2714,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2725,7 +2725,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauLowPt',None],
               ],
             )
@@ -2737,7 +2737,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauHighPt',None],
               ],
             )
@@ -2749,7 +2749,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2760,7 +2760,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauLowPt',None],
               ],
             )
@@ -2772,7 +2772,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau35Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauHighPt',None],
               ],
             )
@@ -2784,7 +2784,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauHighPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2795,7 +2795,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauLowPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2805,7 +2805,7 @@ def analyze(config):
             cut_flow  = [
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2816,7 +2816,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2827,7 +2827,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauLowPt',None],
               ],
             )
@@ -2839,7 +2839,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauHighPt',None],
               ],
             )
@@ -2851,7 +2851,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2862,7 +2862,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauLowPt',None],
               ],
             )
@@ -2874,7 +2874,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau35Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ['TauHighPt',None],
               ],
             )
@@ -2886,7 +2886,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauHighPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2897,7 +2897,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauLowPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
     """
@@ -2908,7 +2908,7 @@ def analyze(config):
               ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2920,7 +2920,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2933,7 +2933,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauHighPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2945,7 +2945,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauLowPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2956,7 +2956,7 @@ def analyze(config):
               ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2968,7 +2968,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['HLTTau25Med1TrackTwo',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2981,7 +2981,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauHighPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
@@ -2993,7 +2993,7 @@ def analyze(config):
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauLowPt',None],
-              ['InvMuonGradIso',["MuonTotalWeight"]],
+              ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
 
