@@ -8,74 +8,77 @@ from ztautau.samples import samples
 from ztautau.plots   import vars
 from systematics     import *
 
-"""
-f = ROOT.TFile('../../test/hists_tau_pt_SR.root')
+#--------- one and three prong ------------#
+
+f = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_data.root')
 hist_SR_subztt_pretrig1 = f.Get('h_SR_nominal_sub_ztt')
 
-#g = ROOT.TFile('../../test/hists_tau_pt_SR_25med.root')
-#hist_SR_subztt_posttrig1 = g.Get('h_SR_25med_nominal_sub_ztt_25med')
+g = ROOT.TFile('../../test/2016/efficiency_calculations/25med/hists_tau_pt_SR_25med_data.root')
+hist_SR_subztt_posttrig1 = g.Get('h_SR_25med_nominal_sub_ztt_25med')
 
-g = ROOT.TFile('../../test/35med/hists_tau_pt_SR_35med.root')
-hist_SR_subztt_posttrig1 = g.Get('h_SR_35med_nominal_sub_ztt_35med')
+#g = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med.root')
+#hist_SR_subztt_posttrig1 = g.Get('h_SR_35med_nominal_sub_ztt_35med')
 
-h = ROOT.TFile('../../test/hists_tau_pt_SR_MC.root')
+h = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_MC.root')
 hist_SR_MC_pretrig1 = h.Get('h_SR_nominal_Zttjets')
 
-#i = ROOT.TFile('../../test/hists_tau_pt_SR_25med_MC.root')
-#hist_SR_MC_posttrig1 = i.Get('h_SR_25med_nominal_Zttjets')
+i = ROOT.TFile('../../test/2016/efficiency_calculations/25med/hists_tau_pt_SR_25med_MC.root')
+hist_SR_MC_posttrig1 = i.Get('h_SR_25med_nominal_Zttjets')
 
-i = ROOT.TFile('../../test/35med/hists_tau_pt_SR_35med_MC.root')
-hist_SR_MC_posttrig1 = i.Get('h_SR_35med_nominal_Zttjets')
+#i = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med_MC.root')
+#hist_SR_MC_posttrig1 = i.Get('h_SR_35med_nominal_Zttjets')
 
-
+hist_SR_subztt_pretrig1.Print("all")
+"""
 #    ONE PRONG
 
-f = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_Tau1Track_data.root')
+f = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_Tau1Track_data.root')
 hist_SR_subztt_pretrig1 = f.Get('h_SR_Tau1Track_nominal_sub_ztt_1Track')
 
-#g = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_25med_Tau1Track_data.root')
+#g = ROOT.TFile('../../test/2016/efficiency_calculations/25med/hists_tau_pt_SR_25med_Tau1Track_data.root')
 #hist_SR_subztt_posttrig1 = g.Get('h_SR_25med_Tau1Track_nominal_sub_ztt_25med_1Track')
 
-g = ROOT.TFile('../../test/35med/hists_tau_pt_SR_35med_Tau1Track_data.root')
+g = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med_Tau1Track_data.root')
 hist_SR_subztt_posttrig1 = g.Get('h_SR_35med_Tau1Track_nominal_sub_ztt_35med_1Track')
 
-h = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_Tau1Track_MC.root')
+h = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_Tau1Track_MC.root')
 hist_SR_MC_pretrig1 = h.Get('h_SR_Tau1Track_nominal_Zttjets')
 
-#i = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_25med_Tau1Track_MC.root')
+#i = ROOT.TFile('../../test/2016/efficiency_calculations/25med/hists_tau_pt_SR_25med_Tau1Track_MC.root')
 #hist_SR_MC_posttrig1 = i.Get('h_SR_25med_Tau1Track_nominal_Zttjets')
 
-i = ROOT.TFile('../../test/35med/hists_tau_pt_SR_35med_Tau1Track_MC.root')
+i = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med_Tau1Track_MC.root')
 hist_SR_MC_posttrig1 = i.Get('h_SR_35med_Tau1Track_nominal_Zttjets')
-"""
+
 
 #    THREE PRONG
 
-f = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_Tau3Track_data.root')
+f = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_Tau3Track_data.root')
 hist_SR_subztt_pretrig1 = f.Get('h_SR_Tau3Track_nominal_sub_ztt_3Track')
 
-#g = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_25med_Tau3Track_data.root')
+#g = ROOT.TFile('../../test/2016/efficiency_calculations/25med/hists_tau_pt_SR_25med_Tau3Track_data.root')
 #hist_SR_subztt_posttrig1 = g.Get('h_SR_25med_Tau3Track_nominal_sub_ztt_25med_3Track')
 
-g = ROOT.TFile('../../test/35med/hists_tau_pt_SR_35med_Tau3Track_data.root')
+g = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med_Tau3Track_data.root')
 hist_SR_subztt_posttrig1 = g.Get('h_SR_35med_Tau3Track_nominal_sub_ztt_35med_3Track')
 
-h = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_Tau3Track_MC.root')
+h = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_Tau3Track_MC.root')
 hist_SR_MC_pretrig1 = h.Get('h_SR_Tau3Track_nominal_Zttjets')
 
-#i = ROOT.TFile('../../test/efficiency_1_3prong/hists_tau_pt_SR_25med_Tau3Track_MC.root')
+#i = ROOT.TFile('../../test/2016/efficiency_calculations/25med/hists_tau_pt_SR_25med_Tau3Track_MC.root')
 #hist_SR_MC_posttrig1 = i.Get('h_SR_25med_Tau3Track_nominal_Zttjets')
 
-i = ROOT.TFile('../../test/35med/hists_tau_pt_SR_35med_Tau3Track_MC.root')
+i = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med_Tau3Track_MC.root')
 hist_SR_MC_posttrig1 = i.Get('h_SR_35med_Tau3Track_nominal_Zttjets')
-
+"""
 print hist_SR_subztt_pretrig1, hist_SR_subztt_posttrig1, hist_SR_MC_pretrig1, hist_SR_MC_posttrig1 
 
-xlow = [20.,25.,27.,30.,34.,38.,43.,52.,70.,100.]
-hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(9,"hist_SR_subztt_pretrig",array.array('d',xlow))
-hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(9,"hist_SR_subztt_posttrig",array.array('d',xlow))
-hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(9,"hist_SR_MC_pretrig",array.array('d',xlow))
-hist_SR_MC_posttrig = hist_SR_MC_posttrig1.Rebin(9,"hist_SR_MC_posttrig",array.array('d',xlow))
+#xlow = [20.,25.,27.,30.,34.,38.,43.,52.,70.,100.]
+xlow = [25.,28.,30.,32.,34.,36.,39.,40.,52.,64.,80.,100.,150.,300.]
+hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(13,"hist_SR_subztt_pretrig",array.array('d',xlow))
+hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(13,"hist_SR_subztt_posttrig",array.array('d',xlow))
+hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(13,"hist_SR_MC_pretrig",array.array('d',xlow))
+hist_SR_MC_posttrig = hist_SR_MC_posttrig1.Rebin(13,"hist_SR_MC_posttrig",array.array('d',xlow))
 '''
 h_efficiency_subztt = hist_SR_subztt_posttrig
 h_efficiency_subztt.Divide(hist_SR_subztt_posttrig, hist_SR_subztt_pretrig, 1.0, 1.0, "B")
@@ -86,11 +89,23 @@ h_efficiency_mc.Divide(hist_SR_MC_posttrig,hist_SR_MC_pretrig, 1.0, 1.0, "B")
 h_efficiency_simple_subztt = hist_SR_subztt_posttrig.Clone()
 #h_efficiency_simple_subztt.Divide(hist_SR_subztt_pretrig)
 h_efficiency_simple_subztt.Divide(hist_SR_subztt_posttrig, hist_SR_subztt_pretrig, 1.0, 1.0, "B")
+print "*********** DATA"
+print "numerator"
+hist_SR_subztt_posttrig.Print("all")
+print "denominator"
+hist_SR_subztt_pretrig.Print("all")
+
+print "*********** MC"
+print "numerator"
+hist_SR_MC_posttrig.Print("all")
+print "denominator"
+hist_SR_MC_pretrig.Print("all")
 
 h_efficiency_simple_mc = hist_SR_MC_posttrig.Clone()
 #h_efficiency_simple_mc.Divide(hist_SR_MC_pretrig)
 h_efficiency_simple_mc.Divide(hist_SR_MC_posttrig, hist_SR_MC_pretrig, 1.0, 1.0, "B")
 
+print "**************** RESULT"
 h_efficiency_simple_subztt.Print("all")
 h_efficiency_simple_mc.Print("all")
 outfile = ROOT.TFile('simple_outputnew.root','recreate')
@@ -169,7 +184,6 @@ fr1.GetXaxis().SetLabelSize(0)
 xaxis1 = fr1.GetXaxis()
 yaxis1 = fr1.GetYaxis()
 scale = (1.3+rsplit)
-
 yaxis1.SetTitleSize( yaxis1.GetTitleSize() * scale )
 yaxis1.SetTitleOffset( 2.1 * yaxis1.GetTitleOffset() / scale )
 yaxis1.SetLabelSize( 0.8 * yaxis1.GetLabelSize() * scale )
@@ -198,7 +212,7 @@ latex_y = ty-2.*th
 latex_yb = ty-4.*th
 tlatex.SetTextSize=0.001
 tlatex.DrawLatex(tx,latex_y,'#intL dt = 3.2 fb^{-1}, #sqrt{s} = 13 TeV}' )
-tlatex.DrawLatex(tx,latex_yb,'HLT_tau35_medium1_tracktwo')
+tlatex.DrawLatex(tx,latex_yb,'HLT_tau25_medium1_tracktwo')
 tlatex.SetTextSize=0.001
 pad2.cd()
 
@@ -224,7 +238,7 @@ yaxis2.SetTitle("SF")
 g_stat.Draw("E2")
 h_ratio.Draw("Same")
 pad2.RedrawAxis()
-plotsfile = os.path.join("./","threeprong.root")
+plotsfile = os.path.join("./","eff.root")
 #c.SaveAs("Test")
 fout = ROOT.TFile.Open(plotsfile,'UPDATE')
 fout.WriteTObject(c)
