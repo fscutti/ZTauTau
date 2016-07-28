@@ -23,7 +23,7 @@ parser.add_option('-s', '--samp', dest='sample',
 # ---------------------------
 user  = "lixia"
 samp  = options.sample
-jtag  = "*15_13TeV.*%s*ntup-v03" % samp
+jtag  = "*15_13TeV.*%s*ntup-v12" % samp
 #jtype = "lptnp"
 jtype = "lhtnp"
 sys   = None
@@ -34,7 +34,7 @@ if not sys: sys = "nominal"
 # details of this job
 # -------------------
 SCRIPT     = "Get.sh"
-OUTDIR     = "/data/%s/shared/v03" % os.getenv("USER")
+OUTDIR     = "/data/%s/data15/v12" % os.getenv("USER")
 OUTMERGED  = os.path.join(OUTDIR,"merged",sys)
 OUTHIST    = os.path.join(OUTDIR,"hist",sys)
 OUTLOGS    = os.path.join(OUTDIR,"log",sys)
