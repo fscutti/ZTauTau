@@ -405,9 +405,12 @@ class AddOnEstimator(BaseEstimator):
         rqcd_top, rqcd_top_err = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd = rqcd_top/rqcd_bot
+        print "printing numerator and denominator"
+        print rqcd_top, rqcd_top_err
+        print rqcd_bot, rqcd_bot_err
 
-        #rqcd_unc = abs(rqcd)*math.sqrt( (rqcd_top_err/rqcd_top)**2 + (rqcd_bot_err/rqcd_bot)**2 )
-        rqcd_unc = ratiounc(a = rqcd_top, b = rqcd_bot, sigmaa = rqcd_top_err, sigmab = rqcd_bot_err)
+        rqcd_unc = abs(rqcd)*math.sqrt( (rqcd_top_err/rqcd_top)**2 + (rqcd_bot_err/rqcd_bot)**2 )
+        #rqcd_unc = ratiounc(a = rqcd_top, b = rqcd_bot, sigmaa = rqcd_top_err, sigmab = rqcd_bot_err)
 
         if self.print_info:
           print 
