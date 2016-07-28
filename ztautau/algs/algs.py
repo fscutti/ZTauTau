@@ -88,10 +88,15 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.n_pvx >= 1
 
     def cut_MuonHLTmu20ilooseL1MU15ORmu50(self): #2015
-        return self.chain.HLT_mu20_iloose_L1MU15 == 1 or self.chain.HLT_mu50 == 1
+	mutrig = bool(self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 ==1 )
+	mutrig2 = bool(self.chain.HLT_mu50 == 1 and self.chain.muTrigMatch_0_HLT_mu50 == 1)
+        return mutrig or mutrig2
 
     def cut_MuonHLTmu24imediumORHLTmu50(self): #2016
-        return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
+        mutrig = bool(self.chain.HLT_mu24_imedium==1 and self.chain.muTrigMatch_0_HLT_mu24_imedium==1)
+        mutrig2 = bool(self.chain.HLT_mu50==1 and self.chain.muTrigMatch_0_HLT_mu50==1)
+        #return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
+        return mutrig or mutrig2
 
     def cut_MuonMuTrigMatch0HLTmu20ilooseL1MU15(self):
         return self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1
