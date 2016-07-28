@@ -50,11 +50,12 @@ USER   = os.getenv('USER')
 ## global config
 # input NTUP path
 #NTUP='/coepp/cephfs/mel/fscutti/ztautau/v03/merged' 
-NTUP='/coepp/cephfs/mel/laram1/data16'
+NTUP='/coepp/cephfs/mel/laram1/v15/2016'
 #NTUP='/coepp/cephfs/mel/laram1/data15'
 
 # The Melb cloud is twisted and does not recognize home dirs...
-JOBDIR = "/data/%s/jobdir" % USER 
+#JOBDIR = "/data/%s/jobdir" % USER 
+JOBDIR = "/coepp/cephfs/mel/%s/jobdir" % USER 
 INTARBALL = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
 
 
@@ -63,10 +64,11 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HistROO16sf'
-#RUN = 'Rerunv032015_rqcdsyst'
+#RUN = 'HistKOALA_2016'
+RUN = 'TESTKoala_2016_noscalefactors'
 
-OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
+#OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
+OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 OUTFILE="ntuple.root"         # file output by pyframe job 
 
 # running
@@ -106,7 +108,6 @@ def main():
     all_mc   = samples.all_mc
     all_data = samples.all_data
     nominal  = all_data + all_mc 
-   
 
     
     ntup_sys = [

@@ -38,8 +38,7 @@ parser.add_option('-o', '--output', dest='outdir',
 # Configuration
 #-----------------
 #lumi =  3193.68 #2015
-lumi = 6302.24 #2016
-
+lumi = 7980 #2016
 
 # Control regions
 plotsfile = []
@@ -1323,8 +1322,8 @@ elif "SR_25med" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med)
 	plot_backgrounds.append(addon_top_25med)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med) #remember to comment addon_backgrounds ztt
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_25med) #remember to comment addon_backgrounds ztt
 
 elif "SR_35med" == options.region:
  
@@ -1359,8 +1358,8 @@ elif "SR_25med_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med_1Track)
 	plot_backgrounds.append(addon_top_25med_1Track)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med_1Track) #remember to comment addon_backgrounds ztt
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_25med_1Track) #remember to comment addon_backgrounds ztt
 
 elif "SR_35med_Tau1Track" == options.region:
  
@@ -1395,8 +1394,8 @@ elif "SR_25med_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med_3Track)
 	plot_backgrounds.append(addon_top_25med_3Track)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med_3Track) #remember to comment addon_backgrounds ztt
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_25med_3Track) #remember to comment addon_backgrounds ztt
 		
 elif "SR_35med_Tau3Track" == options.region:
  
@@ -1446,7 +1445,7 @@ else:
         region      = options.region,
         icut        = int(options.icut),
         histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
-        rebin       = vdict[options.vname]['rebin'],
+        #rebin       = vdict[options.vname]['rebin'],
         sys_dict    = None,
         outname     = plotsfile
         )	

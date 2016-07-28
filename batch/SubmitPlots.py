@@ -24,7 +24,8 @@ USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
 
 #inpath = os.path.join("/imports/rcs5_data",USER,ana)
-inpath  = os.path.join("/data/laram1/ztautau")
+#inpath  = os.path.join("/data/laram1/ztautau")
+inpath  = os.path.join("/coepp/cephfs/mel/laram1/ztautau")
 INDIR   = os.path.join(inpath,indir)  
 OUTDIR  = os.path.join(inpath,outdir)
 

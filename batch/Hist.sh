@@ -14,6 +14,7 @@
 #!/bin/bash
 STARTTIME=`date +%s`
 date
+env
 
 #-------------------------------- ENV VARS -------------------------------
 echo 
