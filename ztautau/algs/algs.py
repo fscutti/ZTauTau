@@ -87,9 +87,9 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_AtLeastOnePvx(self):
         return self.chain.n_pvx >= 1
 
-    def cut_MuonHLTmu20ilooseL1MU15ORmu50(self): #2015
+    def cut_MuonHLTmu20ilooseL1MU15ORmu40(self): #2015
 	mutrig = bool(self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 ==1 )
-	mutrig2 = bool(self.chain.HLT_mu50 == 1 and self.chain.muTrigMatch_0_HLT_mu50 == 1)
+	mutrig2 = bool(self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)
         return mutrig or mutrig2
 
     def cut_MuonHLTmu24imediumORHLTmu50(self): #2016
@@ -290,7 +290,102 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Topoetcone20pt04(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.4
 
-   
+    #################################
+
+    def cut_Ptvarcone30pt010(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.1
+
+    def cut_Ptvarcone30pt011(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.11
+
+    def cut_Ptvarcone30pt012(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.12
+
+    def cut_Ptvarcone30pt013(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.13
+
+    def cut_Ptvarcone30pt014(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.14
+
+    def cut_Ptvarcone30pt015(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.15
+
+    def cut_Ptvarcone30pt016(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.16
+
+    def cut_Ptvarcone30pt017(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.17
+
+    def cut_Ptvarcone30pt018(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.18
+
+    def cut_Ptvarcone30pt019(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.19
+
+    def cut_Ptvarcone30pt02(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.2
+
+    def cut_Ptvarcone30pt021(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.21
+
+    def cut_Ptvarcone30pt022(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.22
+
+    def cut_Ptvarcone30pt023(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.23
+
+    def cut_Ptvarcone30pt024(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.24
+
+    def cut_Ptvarcone30pt025(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.25
+
+    def cut_Ptvarcone30pt026(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.26
+
+    def cut_Ptvarcone30pt027(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.27
+
+    def cut_Ptvarcone30pt028(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.28
+
+    def cut_Ptvarcone30pt029(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.29
+
+    def cut_Ptvarcone30pt03(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.3
+
+    def cut_Ptvarcone30pt031(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.31
+
+    def cut_Ptvarcone30pt032(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.32
+
+    def cut_Ptvarcone30pt033(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.33
+
+    def cut_Ptvarcone30pt034(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.34
+
+    def cut_Ptvarcone30pt035(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.35
+
+    def cut_Ptvarcone30pt036(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.36
+
+    def cut_Ptvarcone30pt037(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.37
+
+    def cut_Ptvarcone30pt038(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.38
+
+    def cut_Ptvarcone30pt039(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.39
+
+    def cut_Ptvarcone30pt04(self):
+         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.4
+ 
+    ################################   
     def cut_MTrans625(self):
          return self.chain.lephad_mt_lep0_met > 62.5
 
@@ -420,6 +515,10 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_n_vx = self.hist('h_n_vx', "ROOT.TH1F('$', ';N_{vx} ;Events', 14, 0.0, 14.0)", dir=EVT)
 
+        self.h_n_bjets = self.hist('h_n_bjets', "ROOT.TH1F('$', ';N_{bjets} ;Events', 14, 0.0, 5.0)", dir=EVT)
+
+        self.h_n_jets = self.hist('h_n_jets', "ROOT.TH1F('$', ';N_{jets} ;Events', 14, 0.0, 19.0)", dir=EVT)
+
         self.h_vis_mass = self.hist('h_vis_mass', "ROOT.TH1F('$', ';Visible Mass (#tau,#mu) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
 
         self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\Sum\cos(\Delta \phi) ;Events', 20, -2.0, 2.0)", dir=EVT)
@@ -453,7 +552,8 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
              self.h_tau_pt.Fill(self.chain.tau_0_pt, weight)
  
              self.h_n_vx.Fill(self.chain.n_vx, weight)
- 
+             self.h_n_jets.Fill(self.chain.n_jets, weight)
+             self.h_n_bjets.Fill(self.chain.n_bjets, weight) 
              self.h_vis_mass.Fill(self.chain.lephad_vis_mass, weight)
  
              self.h_sumcosdphi.Fill(self.chain.lephad_met_sum_cos_dphi, weight)
