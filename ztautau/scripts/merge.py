@@ -38,7 +38,7 @@ parser.add_option('-o', '--output', dest='outdir',
 # Configuration
 #-----------------
 #lumi =  3193.68 #2015
-lumi = 7980 #2016
+lumi = 9966.815 #2016 v17
 
 # Control regions
 plotsfile = []
@@ -1309,8 +1309,8 @@ if "SR" == options.region: #add-ons only make sense in the signal region
 	plot_backgrounds.append(addon_Zlljets)
 	plot_backgrounds.append(addon_top)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt) 
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt) 
 
 
 elif "SR_25med" == options.region:
@@ -1322,8 +1322,8 @@ elif "SR_25med" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med)
 	plot_backgrounds.append(addon_top_25med)
 
-        plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_25med) #remember to comment addon_backgrounds ztt
+        #plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_25med) #remember to comment addon_backgrounds ztt
 
 elif "SR_35med" == options.region:
  
@@ -1346,8 +1346,8 @@ elif "SR_Tau1Track" == options.region: #add-ons only make sense in the signal re
 	plot_backgrounds.append(addon_Zlljets_1Track)
 	plot_backgrounds.append(addon_top_1Track)
 
-        plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_1Track) 
+        #plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_1Track) 
 	
 elif "SR_25med_Tau1Track" == options.region:
  
@@ -1394,8 +1394,8 @@ elif "SR_25med_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med_3Track)
 	plot_backgrounds.append(addon_top_25med_3Track)
 
-        plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_25med_3Track) #remember to comment addon_backgrounds ztt
+        #plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_25med_3Track) #remember to comment addon_backgrounds ztt
 		
 elif "SR_35med_Tau3Track" == options.region:
  
