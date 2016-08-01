@@ -29,7 +29,8 @@ hist_SR_MC_posttrig1 = i.Get('h_SR_25med_nominal_Zttjets')
 #hist_SR_MC_posttrig1 = i.Get('h_SR_35med_nominal_Zttjets')
 
 hist_SR_subztt_pretrig1.Print("all")
-
+"""
+"""
 #    ONE PRONG
 
 f = ROOT.TFile('../../test/2016/efficiency_calculations/no_trig/hists_tau_pt_SR_Tau1Track_data.root')
@@ -70,6 +71,7 @@ hist_SR_MC_posttrig1 = i.Get('h_SR_25med_Tau3Track_nominal_Zttjets')
 
 #i = ROOT.TFile('../../test/2016/efficiency_calculations/35med/hists_tau_pt_SR_35med_Tau3Track_MC.root')
 #hist_SR_MC_posttrig1 = i.Get('h_SR_35med_Tau3Track_nominal_Zttjets')
+
 
 print hist_SR_subztt_pretrig1, hist_SR_subztt_posttrig1, hist_SR_MC_pretrig1, hist_SR_MC_posttrig1 
 
