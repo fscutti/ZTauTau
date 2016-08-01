@@ -23,12 +23,12 @@ parser.add_option('-s', '--samp', dest='sample',
 # ---------------------------
 #rtag    = "r7725"
 #rtag    = "r7772"
-rtag    = ""
+rtag    = "r7773"
+#rtag    = ""
 user    = "lixia"
 samp    = options.sample
-version = "v15"
-jtag    = "*data16_13TeV.*%s*%s*ntup-%s" % (samp,rtag,version)
-#jtype  = "lptnp"
+version = "v12"
+jtag    = "*_13TeV.*%s*%s*ntup-%s" % (samp,rtag,version)
 jtype   = "lhtnp"
 sys     = None
 if not sys: sys = "nominal"
@@ -38,8 +38,8 @@ if not sys: sys = "nominal"
 # details of this job
 # -------------------
 SCRIPT     = "Get.sh"
-#OUTDIR     = "/coepp/cephfs/mel/%s/ztautau/%s_%s" % (os.getenv("USER"),version,rtag) # for mc
-OUTDIR     = "/coepp/cephfs/mel/%s/ztautau/%s" % (os.getenv("USER"),version) # for data
+OUTDIR     = "/coepp/cephfs/mel/%s/ztautau/%s_%s" % (os.getenv("USER"),version,rtag) # for mc
+#OUTDIR     = "/coepp/cephfs/mel/%s/ztautau/%s" % (os.getenv("USER"),version) # for data
 OUTMERGED  = os.path.join(OUTDIR,"merged",sys)
 OUTHIST    = os.path.join(OUTDIR,"hist",sys)
 OUTLOGS    = os.path.join(OUTDIR,"log",sys)
