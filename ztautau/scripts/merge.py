@@ -37,8 +37,8 @@ parser.add_option('-o', '--output', dest='outdir',
 #-----------------
 # Configuration
 #-----------------
-#lumi =  3193.68 #2015
-lumi = 9966.815 #2016 v17
+lumi =  3193.68 #2015
+#lumi = 9966.815 #2016 v17
 
 # Control regions
 plotsfile = []
