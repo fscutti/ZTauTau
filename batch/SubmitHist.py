@@ -50,7 +50,7 @@ USER   = os.getenv('USER')
 ## global config
 # input NTUP path
 #NTUP='/coepp/cephfs/mel/fscutti/ztautau/v03/merged' 
-NTUP='/coepp/cephfs/mel/laram1/v15/2016'
+NTUP='/coepp/cephfs/mel/laram1/v19/2016'
 #NTUP='/coepp/cephfs/mel/laram1/data15'
 
 # The Melb cloud is twisted and does not recognize home dirs...
@@ -65,7 +65,7 @@ AUTOBUILD = True
 # outputs
 
 #RUN = 'HistKOALA_2016'
-RUN = 'TESTKoala_2016_noscalefactors'
+RUN = 'HISTROO_2016'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
