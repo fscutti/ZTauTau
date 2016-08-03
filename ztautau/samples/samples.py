@@ -29,7 +29,25 @@ green = ROOT.kGreen+1
 #-------------------------------------------------------------------------------
 GRL = []
 
-#old 2015
+
+# ----- 2015 -----
+# v12 2015
+"""
+GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
+	"276689", "276731",  "276778",  "276790",  "276952",  "276954",
+	"278727", "278748",  "278880",  "278912",  "278968",  "278970",
+	"279169", "279259",  "279279",  "279284",  "279345",  "279515",
+	"279598", "279685",  "279764",  "279813",  "279867",  "279928",
+	"279932", "279984",  "280231",  "280273",  "280319",  "280368",
+	"280423", "280464",  "280500",  "280520",  "280614",  "280673",
+	"280753", "280853",  "280862",  "280950",  "280977",  "281070",
+	"281074", "281075",  "281130",  "281143",  "281317",  "281381",
+	"281385", "281411",  "282625",  "282631",  "282712",  "282784",
+	"282992", "283074",  "283155",  "283270",  "283429",  "283608",
+	"283780", "284006",  "284154",  "284213",  "284285",  "284420",
+	"284427", "284473",  "284484"] 
+"""
+# v15 2015
 """
 GRL += ["276073", "276778",  "279345",  "280423",  "281130",  "283608",
         "276147", "276790",  "279515",  "280464",  "281143",  "283780",
@@ -45,9 +63,8 @@ GRL += ["276073", "276778",  "279345",  "280423",  "281130",  "283608",
         "279259", "280273",  "281070",  "283155",  "276511",  "279279",
         "280319", "281074",  "283270",  "276689",  "279284",  "280368",
         "281075", "283429",  "276731",  "282631"]
-"""
-"""
-#new2015
+
+# v19 2015
 GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
 	"276689", "276731",  "276778",  "276790",  "276952",  "276954",
 	"278727", "278748",  "278880",  "278912",  "278968",  "278970",
@@ -61,8 +78,11 @@ GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
 	"282992", "283074",  "283155",  "283270",  "283429",  "283608",
 	"283780", "284006",  "284154",  "284213",  "284285",  "284420",
 	"284427", "284473",  "284484"] 
-"""
-#2016
+
+
+#---------- 2016 ---------
+
+# v17 2016
 GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "298690", "298771",  "298773",  "298862",  "298967",  "299055",
         "299144", "299147",  "299184",  "299241",  "299243",  "299288",
@@ -74,7 +94,26 @@ GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "302347", "302380",  "302391",  "302393",  "302737",  "302829",
         "302831", "302872",  "302919",  "302925",  "302956",  "303007",
         "303059", "303079",  "303201",  "303208",  "303264",  "303266",
-        "303291"]
+        "303291", "303304",  "303338",  "303421",  "303499",  "303560"]
+"""
+
+# v19 2016
+GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
+        "298690", "298771",  "298773",  "298862",  "298967",  "299055",
+        "299144", "299147",  "299184",  "299241",  "299243",  "299288",
+        "299315", "299340",  "299343",  "299390",  "299584",  "300279",
+        "300287", "300345",  "300415",  "300418",  "300487",  "300540",
+        "300571", "300600",  "300655",  "300687",  "300784",  "300800",
+        "300863", "300908",  "301912",  "301915",  "301918",  "301932",
+        "301973", "302053",  "302137",  "302265",  "302269",  "302300",
+        "302347", "302380",  "302391",  "302393",  "302737",  "302829",
+        "302831", "302872",  "302919",  "302925",  "302956",  "303007",
+        "303059", "303079",  "303201",  "303208",  "303264",  "303266",
+        "303291", "303304",  "303338",  "303421",  "303499",  "303560",
+	"303638", "303726",  "303811",  "303817",  "303819",  "303832",
+	"303846", "303892"]
+
+
 ds_name = 'physics_Main_00%s'
 
 for run in GRL:
@@ -685,7 +724,7 @@ top = Sample( name =   'top',
                            PoPy_P2012_st_tchan_lept_top,    
                            PoPy_P2012_Wt_incl_atop,         
                            PoPy_P2012_Wt_incl_top,          
-                           #PoPy_P2012_ttb_nonallh,                              
+                           PoPy_P2012_ttb_nonallh,                              
                           ],
             ) 
 
@@ -774,7 +813,7 @@ sub_ztt_35med_3Track = Sample( name 	      = "sub_ztt_35med_3Track",
 		 )
 
 
-addon_data  = Sample( name   = "data",
+addon_data  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -814,7 +853,7 @@ addon_top = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med  = Sample( name   = "data",
+addon_data_25med  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -854,7 +893,7 @@ addon_top_25med = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_lowPT  = Sample( name   = "data",
+addon_data_25med_lowPT  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -894,7 +933,7 @@ addon_top_25med_lowPT = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_highPT  = Sample( name   = "data",
+addon_data_25med_highPT  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -935,7 +974,7 @@ addon_top_25med_highPT = Sample( name   = top.name,
                  )
 ########
 
-addon_data_35med  = Sample( name   = "data",
+addon_data_35med  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -975,7 +1014,7 @@ addon_top_35med = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_lowPT  = Sample( name   = "data",
+addon_data_35med_lowPT  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1015,7 +1054,7 @@ addon_top_35med_lowPT = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_highPT  = Sample( name   = "data",
+addon_data_35med_highPT  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1057,7 +1096,7 @@ addon_top_35med_highPT = Sample( name   = top.name,
 
 ##########
 
-addon_data_lowPT  = Sample( name   = "data",
+addon_data_lowPT  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign_lowPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1097,7 +1136,7 @@ addon_top_lowPT = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_highPT  = Sample( name   = data.name,
+addon_data_highPT  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign_highPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1142,7 +1181,7 @@ addon_top_highPT = Sample( name   = top.name,
 # 	one track
 #------------------------
 
-addon_data_1Track  = Sample( name   = "data",
+addon_data_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1184,7 +1223,7 @@ addon_top_1Track = Sample( name   = top.name,
 
 #############
 
-addon_data_25med_1Track  = Sample( name   = "data",
+addon_data_25med_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1224,7 +1263,7 @@ addon_top_25med_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_lowPT_1Track  = Sample( name   = "data",
+addon_data_25med_lowPT_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1264,7 +1303,7 @@ addon_top_25med_lowPT_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_highPT_1Track  = Sample( name   = "data",
+addon_data_25med_highPT_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1305,7 +1344,7 @@ addon_top_25med_highPT_1Track = Sample( name   = top.name,
                  )
 #############
 
-addon_data_35med_1Track  = Sample( name   = "data",
+addon_data_35med_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1345,7 +1384,7 @@ addon_top_35med_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_lowPT_1Track  = Sample( name   = "data",
+addon_data_35med_lowPT_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1385,7 +1424,7 @@ addon_top_35med_lowPT_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_highPT_1Track  = Sample( name   = "data",
+addon_data_35med_highPT_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1427,7 +1466,7 @@ addon_top_35med_highPT_1Track = Sample( name   = top.name,
 
 #############
 
-addon_data_lowPT_1Track  = Sample( name   = "data",
+addon_data_lowPT_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign_lowPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1467,7 +1506,7 @@ addon_top_lowPT_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_highPT_1Track  = Sample( name   = data.name,
+addon_data_highPT_1Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign_highPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1511,7 +1550,7 @@ addon_top_highPT_1Track = Sample( name   = top.name,
 # 	three tracks
 #------------------------
 
-addon_data_3Track  = Sample( name   = "data",
+addon_data_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1551,7 +1590,7 @@ addon_top_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_3Track  = Sample( name   = "data",
+addon_data_25med_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1591,7 +1630,7 @@ addon_top_25med_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_lowPT_3Track  = Sample( name   = "data",
+addon_data_25med_lowPT_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1631,7 +1670,7 @@ addon_top_25med_lowPT_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_highPT_3Track  = Sample( name   = "data",
+addon_data_25med_highPT_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1672,7 +1711,7 @@ addon_top_25med_highPT_3Track = Sample( name   = top.name,
                  )
 ##############
 
-addon_data_35med_3Track  = Sample( name   = "data",
+addon_data_35med_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1712,7 +1751,7 @@ addon_top_35med_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_lowPT_3Track  = Sample( name   = "data",
+addon_data_35med_lowPT_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1752,7 +1791,7 @@ addon_top_35med_lowPT_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_highPT_3Track  = Sample( name   = "data",
+addon_data_35med_highPT_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1794,7 +1833,7 @@ addon_top_35med_highPT_3Track = Sample( name   = top.name,
 
 #############
 
-addon_data_lowPT_3Track  = Sample( name   = "data",
+addon_data_lowPT_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign_lowPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1834,7 +1873,7 @@ addon_top_lowPT_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_highPT_3Track  = Sample( name   = data.name,
+addon_data_highPT_3Track  = Sample( name   = "ssdata",
                  tlatex       = "Same Sign_highPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1881,17 +1920,10 @@ addon_top_highPT_3Track = Sample( name   = top.name,
 all_data = data.daughters
 
 all_mc = []
-#all_mc += Wenu.daughters
-#all_mc += Wmunu.daughters
-#all_mc += Wtaunu.daughters
-#all_mc += Zee.daughters
-#all_mc += Zmumu.daughters
-#all_mc += Ztautau.daughters
 all_mc += Wtaujets.daughters
 all_mc += top.daughters
 all_mc += Wenujets.daughters
 all_mc += Wmunujets.daughters
-#all_mc += Wjets.daughters
 all_mc += Zeejets.daughters
 all_mc += Zmumujets.daughters
 all_mc += Zttjets.daughters
