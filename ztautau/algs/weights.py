@@ -114,13 +114,14 @@ class MuonSF(pyframe.core.Algorithm):
     def execute(self, weight):
         sf=1.0
         if "mc" in self.sampletype: 
+
           sf *= self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium #lep_0_NOMINAL_effSF_RecoMedium
+          sf *= self.chain.lep_0_NOMINAL_MuEffSF_IsoGradient
+
           #sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoGradient#2015
           sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient  #2016
-          sf *= self.chain.lep_0_NOMINAL_MuEffSF_IsoGradient
-          # just add sf *= lep_0_NOMINAL_my_super_fancy_weight
-          print "pt(mu) %lf, trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium) 
-	  #print self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient 
+ 
+	  #print "pt(mu) %lf, trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium) 
           if self.scale: 
                if self.scale=='up': pass
                elif self.scale=='dn': pass
@@ -157,13 +158,14 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
     def execute(self, weight):
         sf=1.0
         if "mc" in self.sampletype:
-          sf *= self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium
-          sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone #2016
-          # WRONG sf *= lep_0_NOMINAL_HLT_mu20_iloose_OR_HLT_mu40_MU_TRIG_QUAL_MEDIUM_MU_TRIG_ISO_NONE #2015
 
-	  #sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoNone
-	  print "pt(mu) %lf, antiIso trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium)          
-          # just add sf *= lep_0_NOMINAL_my_super_fancy_weight
+          sf *= self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium
+
+          #sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoNone #2015
+          sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone #2016
+
+	  #print "pt(mu) %lf, antiIso trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium)          
+
           if self.scale:
                if self.scale=='up': pass
                elif self.scale=='dn': pass
@@ -173,5 +175,45 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
           self.store[self.key] = sf
 
         return True
+
+#------------------------------------------------------------------------------
+class TauSF(pyframe.core.Algorithm):
+    """
+    Tau scale factor not just the trigger
+    This is not configurable for different working points. Might change that
+    in the future.
+    """
+    #__________________________________________________________________________
+    def __init__(self, name="TauScaleFactor",
+            key=None,
+            scale=None,
+            ):
+        pyframe.core.Algorithm.__init__(self, name=name)
+        self.key = key
+        self.scale = scale
+
+        assert key, "Must provide key for storing tau sf"
+        assert scale in [None,'up','dn'], "scale must be in [None,'up','dn']"
+
+    #_________________________________________________________________________
+    def initialize(self): pass
+   
+    #________________________________________________________________________
+    def execute(self, weight):
+        sf=1.0
+        if "mc" in self.sampletype: 
+ 
+          sf *= self.chain.tau_0_NOMINAL_TauEffSF_selection #v19
+	  #sf *= self.chain.tau_0_NOMINAL_TAU_EFF_SELECTION #v12 
+          if self.scale: 
+               if self.scale=='up': pass
+               elif self.scale=='dn': pass
+        else: pass
+
+        if self.key: 
+          self.store[self.key] = sf
+
+        return True
+
 
 # EOF
