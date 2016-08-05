@@ -47,8 +47,9 @@ GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
 	"283780", "284006",  "284154",  "284213",  "284285",  "284420",
 	"284427", "284473",  "284484"] 
 """
-# v15 2015
 """
+# v15 2015
+
 GRL += ["276073", "276778",  "279345",  "280423",  "281130",  "283608",
         "276147", "276790",  "279515",  "280464",  "281143",  "283780",
         "276161", "276952",  "279598",  "280500",  "281317",  "284006",
@@ -63,7 +64,8 @@ GRL += ["276073", "276778",  "279345",  "280423",  "281130",  "283608",
         "279259", "280273",  "281070",  "283155",  "276511",  "279279",
         "280319", "281074",  "283270",  "276689",  "279284",  "280368",
         "281075", "283429",  "276731",  "282631"]
-
+"""
+"""
 # v19 2015
 GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
 	"276689", "276731",  "276778",  "276790",  "276952",  "276954",
@@ -78,10 +80,10 @@ GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
 	"282992", "283074",  "283155",  "283270",  "283429",  "283608",
 	"283780", "284006",  "284154",  "284213",  "284285",  "284420",
 	"284427", "284473",  "284484"] 
-
+"""
 
 #---------- 2016 ---------
-
+"""
 # v17 2016
 GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "298690", "298771",  "298773",  "298862",  "298967",  "299055",
@@ -95,6 +97,7 @@ GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "302831", "302872",  "302919",  "302925",  "302956",  "303007",
         "303059", "303079",  "303201",  "303208",  "303264",  "303266",
         "303291", "303304",  "303338",  "303421",  "303499",  "303560"]
+
 """
 
 # v19 2016
@@ -137,7 +140,7 @@ data = Sample(name         = "data",
               )
 """
 data = Sample(name         = "data",
-              tlatex       = "Data 2016",
+              tlatex       = "Data",
               fill_color   = white,
               fill_style   = 0,
               line_color   = black,
@@ -724,7 +727,7 @@ top = Sample( name =   'top',
                            PoPy_P2012_st_tchan_lept_top,    
                            PoPy_P2012_Wt_incl_atop,         
                            PoPy_P2012_Wt_incl_top,          
-                           PoPy_P2012_ttb_nonallh,                              
+                           #PoPy_P2012_ttb_nonallh,                              
                           ],
             ) 
 
@@ -813,7 +816,7 @@ sub_ztt_35med_3Track = Sample( name 	      = "sub_ztt_35med_3Track",
 		 )
 
 
-addon_data  = Sample( name   = "ssdata",
+addon_data  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -853,7 +856,7 @@ addon_top = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med  = Sample( name   = "ssdata",
+addon_data_25med  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -893,7 +896,7 @@ addon_top_25med = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_lowPT  = Sample( name   = "ssdata",
+addon_data_25med_lowPT  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -933,7 +936,7 @@ addon_top_25med_lowPT = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_highPT  = Sample( name   = "ssdata",
+addon_data_25med_highPT  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -974,7 +977,7 @@ addon_top_25med_highPT = Sample( name   = top.name,
                  )
 ########
 
-addon_data_35med  = Sample( name   = "ssdata",
+addon_data_35med  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1014,7 +1017,7 @@ addon_top_35med = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_lowPT  = Sample( name   = "ssdata",
+addon_data_35med_lowPT  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1054,7 +1057,7 @@ addon_top_35med_lowPT = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_highPT  = Sample( name   = "ssdata",
+addon_data_35med_highPT  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1096,7 +1099,7 @@ addon_top_35med_highPT = Sample( name   = top.name,
 
 ##########
 
-addon_data_lowPT  = Sample( name   = "ssdata",
+addon_data_lowPT  = Sample( name   = "data",
                  tlatex       = "Same Sign_lowPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1136,7 +1139,7 @@ addon_top_lowPT = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_highPT  = Sample( name   = "ssdata",
+addon_data_highPT  = Sample( name   = "data",
                  tlatex       = "Same Sign_highPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1181,7 +1184,7 @@ addon_top_highPT = Sample( name   = top.name,
 # 	one track
 #------------------------
 
-addon_data_1Track  = Sample( name   = "ssdata",
+addon_data_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1223,7 +1226,7 @@ addon_top_1Track = Sample( name   = top.name,
 
 #############
 
-addon_data_25med_1Track  = Sample( name   = "ssdata",
+addon_data_25med_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1263,7 +1266,7 @@ addon_top_25med_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_lowPT_1Track  = Sample( name   = "ssdata",
+addon_data_25med_lowPT_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1303,7 +1306,7 @@ addon_top_25med_lowPT_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_highPT_1Track  = Sample( name   = "ssdata",
+addon_data_25med_highPT_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1344,7 +1347,7 @@ addon_top_25med_highPT_1Track = Sample( name   = top.name,
                  )
 #############
 
-addon_data_35med_1Track  = Sample( name   = "ssdata",
+addon_data_35med_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1384,7 +1387,7 @@ addon_top_35med_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_lowPT_1Track  = Sample( name   = "ssdata",
+addon_data_35med_lowPT_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1424,7 +1427,7 @@ addon_top_35med_lowPT_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_highPT_1Track  = Sample( name   = "ssdata",
+addon_data_35med_highPT_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1466,7 +1469,7 @@ addon_top_35med_highPT_1Track = Sample( name   = top.name,
 
 #############
 
-addon_data_lowPT_1Track  = Sample( name   = "ssdata",
+addon_data_lowPT_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign_lowPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1506,7 +1509,7 @@ addon_top_lowPT_1Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_highPT_1Track  = Sample( name   = "ssdata",
+addon_data_highPT_1Track  = Sample( name   = "data",
                  tlatex       = "Same Sign_highPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1550,7 +1553,7 @@ addon_top_highPT_1Track = Sample( name   = top.name,
 # 	three tracks
 #------------------------
 
-addon_data_3Track  = Sample( name   = "ssdata",
+addon_data_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1590,7 +1593,7 @@ addon_top_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_3Track  = Sample( name   = "ssdata",
+addon_data_25med_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1630,7 +1633,7 @@ addon_top_25med_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_lowPT_3Track  = Sample( name   = "ssdata",
+addon_data_25med_lowPT_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1670,7 +1673,7 @@ addon_top_25med_lowPT_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_25med_highPT_3Track  = Sample( name   = "ssdata",
+addon_data_25med_highPT_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1711,7 +1714,7 @@ addon_top_25med_highPT_3Track = Sample( name   = top.name,
                  )
 ##############
 
-addon_data_35med_3Track  = Sample( name   = "ssdata",
+addon_data_35med_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1751,7 +1754,7 @@ addon_top_35med_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_lowPT_3Track  = Sample( name   = "ssdata",
+addon_data_35med_lowPT_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1791,7 +1794,7 @@ addon_top_35med_lowPT_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_35med_highPT_3Track  = Sample( name   = "ssdata",
+addon_data_35med_highPT_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1833,7 +1836,7 @@ addon_top_35med_highPT_3Track = Sample( name   = top.name,
 
 #############
 
-addon_data_lowPT_3Track  = Sample( name   = "ssdata",
+addon_data_lowPT_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign_lowPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
@@ -1873,7 +1876,7 @@ addon_top_lowPT_3Track = Sample( name   = top.name,
                  type         = "datadriven",
                  )
 
-addon_data_highPT_3Track  = Sample( name   = "ssdata",
+addon_data_highPT_3Track  = Sample( name   = "data",
                  tlatex       = "Same Sign_highPT",
                  fill_color   = ROOT.kRed-6,
                  line_color   = ROOT.kBlack,
