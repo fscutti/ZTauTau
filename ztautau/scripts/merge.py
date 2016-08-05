@@ -37,8 +37,10 @@ parser.add_option('-o', '--output', dest='outdir',
 #-----------------
 # Configuration
 #-----------------
-lumi =  3193.68 #2015
+#lumi =  3193.68 #2015 v12
+#lumi = 3212.72 #2015 v19
 #lumi = 9966.815 #2016 v17
+lumi = 11473.88 #2016 v19
 
 # Control regions
 plotsfile = []
@@ -505,10 +507,6 @@ kf_regions_35med_highPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_35med_highPT_Tau
 
 kf_regions_highPT_3Track[samples.Wjets]  = {"OS":"Wjets_OS_highPT_Tau3Track", "SS":"Wjets_SS_highPT_Tau3Track", "ncuts":5}
 kf_regions_lowPT_3Track[samples.Wjets]   = {"OS":"Wjets_OS_lowPT_Tau3Track", "SS":"Wjets_SS_lowPT_Tau3Track", "ncuts":5}
-
-#kf_regions[samples.Wjets]   = {"OS":"Wjets_OS", "SS":"Wjets_SS", "ncuts":3}
-#kkf_regions[samples.top]     = {"OS":"","SS":"","ncuts"}
-#kf_regions[samples.Zlljets] = {"OS":"","SS":"","ncuts"}
 
 ###############################################
      
