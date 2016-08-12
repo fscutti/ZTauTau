@@ -38,9 +38,9 @@ parser.add_option('-o', '--output', dest='outdir',
 # Configuration
 #-----------------
 #lumi =  3193.68 #2015 v12
-#lumi = 3212.72 #2015 v19
+lumi = 3212.72 #2015 v19
 #lumi = 9966.815 #2016 v17
-lumi = 11473.88 #2016 v19
+#lumi = 11473.88 #2016 v19
 
 # Control regions
 plotsfile = []
@@ -590,55 +590,55 @@ rqcd_regions_35med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Tau3
 # Add-On
 
 addon_regions = {}
-addon_regions[data]            = {"SS":"SR_SS", "ncuts":4} # don't really need OS for data do you?
+addon_regions[data]            = {"SS":"SR_SS", "ncuts":4}  
 addon_regions[samples.Wjets]   = {"OS":"SR", "SS":"SR_SS", "ncuts":4}
 addon_regions[samples.Zlljets] = {"OS":"SR", "SS":"SR_SS", "ncuts":4}
 addon_regions[samples.top]     = {"OS":"SR", "SS":"SR_SS", "ncuts":4}
 
 addon_regions_25med = {}
-addon_regions_25med[data]            = {"SS":"SR_SS_25med", "ncuts":5} # don't really need OS for data do you?
+addon_regions_25med[data]            = {"SS":"SR_SS_25med", "ncuts":5}  
 addon_regions_25med[samples.Wjets]   = {"OS":"SR_25med", "SS":"SR_SS_25med", "ncuts":5}
 addon_regions_25med[samples.Zlljets] = {"OS":"SR_25med", "SS":"SR_SS_25med", "ncuts":5}
 addon_regions_25med[samples.top]     = {"OS":"SR_25med", "SS":"SR_SS_25med", "ncuts":5}
 
 addon_regions_35med = {}
-addon_regions_35med[data]            = {"SS":"SR_SS_35med", "ncuts":5} # don't really need OS for data do you?
+addon_regions_35med[data]            = {"SS":"SR_SS_35med", "ncuts":5}  
 addon_regions_35med[samples.Wjets]   = {"OS":"SR_35med", "SS":"SR_SS_35med", "ncuts":5}
 addon_regions_35med[samples.Zlljets] = {"OS":"SR_35med", "SS":"SR_SS_35med", "ncuts":5}
 addon_regions_35med[samples.top]     = {"OS":"SR_35med", "SS":"SR_SS_35med", "ncuts":5}
 
 addon_regions_highPT = {}
-addon_regions_highPT[data]            = {"SS":"SR_SS_highPT", "ncuts":5} # don't really need OS for data do you?
+addon_regions_highPT[data]            = {"SS":"SR_SS_highPT", "ncuts":5}  
 addon_regions_highPT[samples.Wjets]   = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "ncuts":5}
 addon_regions_highPT[samples.Zlljets] = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "ncuts":5}
 addon_regions_highPT[samples.top]     = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "ncuts":5}
 
 addon_regions_lowPT = {}
-addon_regions_lowPT[data]            = {"SS":"SR_SS_lowPT", "ncuts":5} # don't really need OS for data do you?
+addon_regions_lowPT[data]            = {"SS":"SR_SS_lowPT", "ncuts":5}  
 addon_regions_lowPT[samples.Wjets]   = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "ncuts":5}
 addon_regions_lowPT[samples.Zlljets] = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "ncuts":5}
 addon_regions_lowPT[samples.top]     = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "ncuts":5}
 
 addon_regions_25med_lowPT = {}
-addon_regions_25med_lowPT[data]            = {"SS":"SR_SS_25med_lowPT", "ncuts":6} # don't really need OS for data do you?
+addon_regions_25med_lowPT[data]            = {"SS":"SR_SS_25med_lowPT", "ncuts":6}  
 addon_regions_25med_lowPT[samples.Wjets]   = {"OS":"SR_25med_lowPT", "SS":"SR_SS_25med_lowPT", "ncuts":6}
 addon_regions_25med_lowPT[samples.Zlljets] = {"OS":"SR_25med_lowPT", "SS":"SR_SS_25med_lowPT", "ncuts":6}
 addon_regions_25med_lowPT[samples.top]     = {"OS":"SR_25med_lowPT", "SS":"SR_SS_25med_lowPT", "ncuts":6}
 
 addon_regions_25med_highPT = {}
-addon_regions_25med_highPT[data]            = {"SS":"SR_SS_25med_highPT", "ncuts":6} # don't really need OS for data do you?
+addon_regions_25med_highPT[data]            = {"SS":"SR_SS_25med_highPT", "ncuts":6}  
 addon_regions_25med_highPT[samples.Wjets]   = {"OS":"SR_25med_highPT", "SS":"SR_SS_25med_highPT", "ncuts":6}
 addon_regions_25med_highPT[samples.Zlljets] = {"OS":"SR_25med_highPT", "SS":"SR_SS_25med_highPT", "ncuts":6}
 addon_regions_25med_highPT[samples.top]     = {"OS":"SR_25med_highPT", "SS":"SR_SS_25med_highPT", "ncuts":6}
 
 addon_regions_35med_lowPT = {}
-addon_regions_35med_lowPT[data]            = {"SS":"SR_SS_35med_lowPT", "ncuts":6} # don't really need OS for data do you?
+addon_regions_35med_lowPT[data]            = {"SS":"SR_SS_35med_lowPT", "ncuts":6}  
 addon_regions_35med_lowPT[samples.Wjets]   = {"OS":"SR_35med_lowPT", "SS":"SR_SS_35med_lowPT", "ncuts":6}
 addon_regions_35med_lowPT[samples.Zlljets] = {"OS":"SR_35med_lowPT", "SS":"SR_SS_35med_lowPT", "ncuts":6}
 addon_regions_35med_lowPT[samples.top]     = {"OS":"SR_35med_lowPT", "SS":"SR_SS_35med_lowPT", "ncuts":6}
 
 addon_regions_35med_highPT = {}
-addon_regions_35med_highPT[data]            = {"SS":"SR_SS_35med_highPT", "ncuts":6} # don't really need OS for data do you?
+addon_regions_35med_highPT[data]            = {"SS":"SR_SS_35med_highPT", "ncuts":6}  
 addon_regions_35med_highPT[samples.Wjets]   = {"OS":"SR_35med_highPT", "SS":"SR_SS_35med_highPT", "ncuts":6}
 addon_regions_35med_highPT[samples.Zlljets] = {"OS":"SR_35med_highPT", "SS":"SR_SS_35med_highPT", "ncuts":6}
 addon_regions_35med_highPT[samples.top]     = {"OS":"SR_35med_highPT", "SS":"SR_SS_35med_highPT", "ncuts":6}
@@ -648,55 +648,55 @@ addon_regions_35med_highPT[samples.top]     = {"OS":"SR_35med_highPT", "SS":"SR_
 #--------------------
 
 addon_regions_1Track = {}
-addon_regions_1Track[data]            = {"SS":"SR_SS_Tau1Track", "ncuts":5} # don't really need OS for data do you?
+addon_regions_1Track[data]            = {"SS":"SR_SS_Tau1Track", "ncuts":5}  
 addon_regions_1Track[samples.Wjets]   = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "ncuts":5}
 addon_regions_1Track[samples.Zlljets] = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "ncuts":5}
 addon_regions_1Track[samples.top]     = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "ncuts":5}
 
 addon_regions_25med_1Track = {}
-addon_regions_25med_1Track[data]            = {"SS":"SR_SS_25med_Tau1Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_25med_1Track[data]            = {"SS":"SR_SS_25med_Tau1Track", "ncuts":6}  
 addon_regions_25med_1Track[samples.Wjets]   = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS_25med_Tau1Track", "ncuts":6}
 addon_regions_25med_1Track[samples.Zlljets] = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS_25med_Tau1Track", "ncuts":6}
 addon_regions_25med_1Track[samples.top]     = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS_25med_Tau1Track", "ncuts":6}
 
 addon_regions_35med_1Track = {}
-addon_regions_35med_1Track[data]            = {"SS":"SR_SS_35med_Tau1Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_35med_1Track[data]            = {"SS":"SR_SS_35med_Tau1Track", "ncuts":6}  
 addon_regions_35med_1Track[samples.Wjets]   = {"OS":"SR_35med_Tau1Track", "SS":"SR_SS_35med_Tau1Track", "ncuts":6}
 addon_regions_35med_1Track[samples.Zlljets] = {"OS":"SR_35med_Tau1Track", "SS":"SR_SS_35med_Tau1Track", "ncuts":6}
 addon_regions_35med_1Track[samples.top]     = {"OS":"SR_35med_Tau1Track", "SS":"SR_SS_35med_Tau1Track", "ncuts":6}
 
 addon_regions_highPT_1Track = {}
-addon_regions_highPT_1Track[data]            = {"SS":"SR_SS_highPT_Tau1Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_highPT_1Track[data]            = {"SS":"SR_SS_highPT_Tau1Track", "ncuts":6}  
 addon_regions_highPT_1Track[samples.Wjets]   = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "ncuts":6}
 addon_regions_highPT_1Track[samples.Zlljets] = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "ncuts":6}
 addon_regions_highPT_1Track[samples.top]     = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "ncuts":6}
 
 addon_regions_lowPT_1Track = {}
-addon_regions_lowPT_1Track[data]            = {"SS":"SR_SS_lowPT_Tau1Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_lowPT_1Track[data]            = {"SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}  
 addon_regions_lowPT_1Track[samples.Wjets]   = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}
 addon_regions_lowPT_1Track[samples.Zlljets] = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}
 addon_regions_lowPT_1Track[samples.top]     = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}
 
 addon_regions_25med_lowPT_1Track = {}
-addon_regions_25med_lowPT_1Track[data]            = {"SS":"SR_SS_25med_lowPT_Tau1Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_25med_lowPT_1Track[data]            = {"SS":"SR_SS_25med_lowPT_Tau1Track", "ncuts":7}  
 addon_regions_25med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS_25med_lowPT_Tau1Track", "ncuts":7}
 addon_regions_25med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS_25med_lowPT_Tau1Track", "ncuts":7}
 addon_regions_25med_lowPT_1Track[samples.top]     = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS_25med_lowPT_Tau1Track", "ncuts":7}
 
 addon_regions_25med_highPT_1Track = {}
-addon_regions_25med_highPT_1Track[data]            = {"SS":"SR_SS_25med_highPT_Tau1Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_25med_highPT_1Track[data]            = {"SS":"SR_SS_25med_highPT_Tau1Track", "ncuts":7}  
 addon_regions_25med_highPT_1Track[samples.Wjets]   = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS_25med_highPT_Tau1Track", "ncuts":7}
 addon_regions_25med_highPT_1Track[samples.Zlljets] = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS_25med_highPT_Tau1Track", "ncuts":7}
 addon_regions_25med_highPT_1Track[samples.top]     = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS_25med_highPT_Tau1Track", "ncuts":7}
 
 addon_regions_35med_lowPT_1Track = {}
-addon_regions_35med_lowPT_1Track[data]            = {"SS":"SR_SS_35med_lowPT_Tau1Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_35med_lowPT_1Track[data]            = {"SS":"SR_SS_35med_lowPT_Tau1Track", "ncuts":7}  
 addon_regions_35med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_35med_lowPT_Tau1Track", "SS":"SR_SS_35med_lowPT_Tau1Track", "ncuts":7}
 addon_regions_35med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_35med_lowPT_Tau1Track", "SS":"SR_SS_35med_lowPT_Tau1Track", "ncuts":7}
 addon_regions_35med_lowPT_1Track[samples.top]     = {"OS":"SR_35med_lowPT_Tau1Track", "SS":"SR_SS_35med_lowPT_Tau1Track", "ncuts":7}
 
 addon_regions_35med_highPT_1Track = {}
-addon_regions_35med_highPT_1Track[data]            = {"SS":"SR_SS_35med_highPT_Tau1Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_35med_highPT_1Track[data]            = {"SS":"SR_SS_35med_highPT_Tau1Track", "ncuts":7}  
 addon_regions_35med_highPT_1Track[samples.Wjets]   = {"OS":"SR_35med_highPT_Tau1Track", "SS":"SR_SS_35med_highPT_Tau1Track", "ncuts":7}
 addon_regions_35med_highPT_1Track[samples.Zlljets] = {"OS":"SR_35med_highPT_Tau1Track", "SS":"SR_SS_35med_highPT_Tau1Track", "ncuts":7}
 addon_regions_35med_highPT_1Track[samples.top]     = {"OS":"SR_35med_highPT_Tau1Track", "SS":"SR_SS_35med_highPT_Tau1Track", "ncuts":7}
@@ -706,55 +706,55 @@ addon_regions_35med_highPT_1Track[samples.top]     = {"OS":"SR_35med_highPT_Tau1
 #--------------------
 
 addon_regions_3Track = {}
-addon_regions_3Track[data]            = {"SS":"SR_SS_Tau3Track", "ncuts":5} # don't really need OS for data do you?
+addon_regions_3Track[data]            = {"SS":"SR_SS_Tau3Track", "ncuts":5}  
 addon_regions_3Track[samples.Wjets]   = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "ncuts":5}
 addon_regions_3Track[samples.Zlljets] = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "ncuts":5}
 addon_regions_3Track[samples.top]     = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "ncuts":5}
 
 addon_regions_25med_3Track = {}
-addon_regions_25med_3Track[data]            = {"SS":"SR_SS_25med_Tau3Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_25med_3Track[data]            = {"SS":"SR_SS_25med_Tau3Track", "ncuts":6}  
 addon_regions_25med_3Track[samples.Wjets]   = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS_25med_Tau3Track", "ncuts":6}
 addon_regions_25med_3Track[samples.Zlljets] = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS_25med_Tau3Track", "ncuts":6}
 addon_regions_25med_3Track[samples.top]     = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS_25med_Tau3Track", "ncuts":6}
 
 addon_regions_35med_3Track = {}
-addon_regions_35med_3Track[data]            = {"SS":"SR_SS_35med_Tau3Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_35med_3Track[data]            = {"SS":"SR_SS_35med_Tau3Track", "ncuts":6}  
 addon_regions_35med_3Track[samples.Wjets]   = {"OS":"SR_35med_Tau3Track", "SS":"SR_SS_35med_Tau3Track", "ncuts":6}
 addon_regions_35med_3Track[samples.Zlljets] = {"OS":"SR_35med_Tau3Track", "SS":"SR_SS_35med_Tau3Track", "ncuts":6}
 addon_regions_35med_3Track[samples.top]     = {"OS":"SR_35med_Tau3Track", "SS":"SR_SS_35med_Tau3Track", "ncuts":6}
 
 addon_regions_highPT_3Track = {}
-addon_regions_highPT_3Track[data]            = {"SS":"SR_SS_highPT_Tau3Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_highPT_3Track[data]            = {"SS":"SR_SS_highPT_Tau3Track", "ncuts":6}  
 addon_regions_highPT_3Track[samples.Wjets]   = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "ncuts":6}
 addon_regions_highPT_3Track[samples.Zlljets] = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "ncuts":6}
 addon_regions_highPT_3Track[samples.top]     = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "ncuts":6}
 
 addon_regions_lowPT_3Track = {}
-addon_regions_lowPT_3Track[data]            = {"SS":"SR_SS_lowPT_Tau3Track", "ncuts":6} # don't really need OS for data do you?
+addon_regions_lowPT_3Track[data]            = {"SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}  
 addon_regions_lowPT_3Track[samples.Wjets]   = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}
 addon_regions_lowPT_3Track[samples.Zlljets] = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}
 addon_regions_lowPT_3Track[samples.top]     = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}
 
 addon_regions_25med_lowPT_3Track = {}
-addon_regions_25med_lowPT_3Track[data]            = {"SS":"SR_SS_25med_lowPT_Tau3Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_25med_lowPT_3Track[data]            = {"SS":"SR_SS_25med_lowPT_Tau3Track", "ncuts":7}  
 addon_regions_25med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS_25med_lowPT_Tau3Track", "ncuts":7}
 addon_regions_25med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS_25med_lowPT_Tau3Track", "ncuts":7}
 addon_regions_25med_lowPT_3Track[samples.top]     = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS_25med_lowPT_Tau3Track", "ncuts":7}
 
 addon_regions_25med_highPT_3Track = {}
-addon_regions_25med_highPT_3Track[data]            = {"SS":"SR_SS_25med_highPT_Tau3Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_25med_highPT_3Track[data]            = {"SS":"SR_SS_25med_highPT_Tau3Track", "ncuts":7}  
 addon_regions_25med_highPT_3Track[samples.Wjets]   = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS_25med_highPT_Tau3Track", "ncuts":7}
 addon_regions_25med_highPT_3Track[samples.Zlljets] = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS_25med_highPT_Tau3Track", "ncuts":7}
 addon_regions_25med_highPT_3Track[samples.top]     = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS_25med_highPT_Tau3Track", "ncuts":7}
 
 addon_regions_35med_lowPT_3Track = {}
-addon_regions_35med_lowPT_3Track[data]            = {"SS":"SR_SS_35med_lowPT_Tau3Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_35med_lowPT_3Track[data]            = {"SS":"SR_SS_35med_lowPT_Tau3Track", "ncuts":7}  
 addon_regions_35med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_35med_lowPT_Tau3Track", "SS":"SR_SS_35med_lowPT_Tau3Track", "ncuts":7}
 addon_regions_35med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_35med_lowPT_Tau3Track", "SS":"SR_SS_35med_lowPT_Tau3Track", "ncuts":7}
 addon_regions_35med_lowPT_3Track[samples.top]     = {"OS":"SR_35med_lowPT_Tau3Track", "SS":"SR_SS_35med_lowPT_Tau3Track", "ncuts":7}
 
 addon_regions_35med_highPT_3Track = {}
-addon_regions_35med_highPT_3Track[data]            = {"SS":"SR_SS_35med_highPT_Tau3Track", "ncuts":7} # don't really need OS for data do you?
+addon_regions_35med_highPT_3Track[data]            = {"SS":"SR_SS_35med_highPT_Tau3Track", "ncuts":7}  
 addon_regions_35med_highPT_3Track[samples.Wjets]   = {"OS":"SR_35med_highPT_Tau3Track", "SS":"SR_SS_35med_highPT_Tau3Track", "ncuts":7}
 addon_regions_35med_highPT_3Track[samples.Zlljets] = {"OS":"SR_35med_highPT_Tau3Track", "SS":"SR_SS_35med_highPT_Tau3Track", "ncuts":7}
 addon_regions_35med_highPT_3Track[samples.top]     = {"OS":"SR_35med_highPT_Tau3Track", "SS":"SR_SS_35med_highPT_Tau3Track", "ncuts":7}
@@ -1298,7 +1298,7 @@ plot_backgrounds = []
 #plot_backgrounds.append(fakes)
 plot_signals = []
 
-if "SR" == options.region: #add-ons only make sense in the signal region
+if "SR" == options.region:  
 
 	print "signal region"
 
@@ -1310,6 +1310,54 @@ if "SR" == options.region: #add-ons only make sense in the signal region
         plot_signals.append(samples.Zttjets)
         #plot_signals.append(sub_ztt) 
 
+elif "Wjets_OS" == options.region:  
+
+        print "wjets os region"
+
+        plot_backgrounds.append(addon_data)
+        plot_backgrounds.append(addon_Wjets)
+        plot_backgrounds.append(addon_Zlljets)
+        plot_backgrounds.append(addon_top)
+
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt)
+
+elif "Wjets_SS" == options.region:  
+
+        print "Wjets ss region"
+
+        plot_backgrounds.append(addon_data)
+        plot_backgrounds.append(addon_Wjets)
+        plot_backgrounds.append(addon_Zlljets)
+        plot_backgrounds.append(addon_top)
+
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt)
+
+
+elif "AntiIsoCR_OS" == options.region:  
+
+        print "anti-iso os region"
+
+        plot_backgrounds.append(addon_data)
+        plot_backgrounds.append(addon_Wjets)
+        plot_backgrounds.append(addon_Zlljets)
+        plot_backgrounds.append(addon_top)
+
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt)
+
+elif "AntiIsoCR_SS" == options.region:  
+
+        print "anti-iso ss region"
+        
+        plot_backgrounds.append(addon_data)
+        plot_backgrounds.append(addon_Wjets)
+        plot_backgrounds.append(addon_Zlljets)
+        plot_backgrounds.append(addon_top)
+        
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt)
 
 elif "SR_25med" == options.region:
  
@@ -1320,8 +1368,8 @@ elif "SR_25med" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med)
 	plot_backgrounds.append(addon_top_25med)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med) #remember to comment addon_backgrounds ztt
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_25med)  
 
 elif "SR_35med" == options.region:
  
@@ -1333,9 +1381,9 @@ elif "SR_35med" == options.region:
 	plot_backgrounds.append(addon_top_35med)
 
         plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_35med) #remember to comment addon_backgrounds ztt
+        #plot_signals.append(sub_ztt_35med)  
 
-elif "SR_Tau1Track" == options.region: #add-ons only make sense in the signal region
+elif "SR_Tau1Track" == options.region:  
 
 	print "signal region 1 prong"
 
@@ -1344,8 +1392,8 @@ elif "SR_Tau1Track" == options.region: #add-ons only make sense in the signal re
 	plot_backgrounds.append(addon_Zlljets_1Track)
 	plot_backgrounds.append(addon_top_1Track)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_1Track) 
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_1Track) 
 	
 elif "SR_25med_Tau1Track" == options.region:
  
@@ -1357,7 +1405,7 @@ elif "SR_25med_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_25med_1Track)
 
         plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_25med_1Track) #remember to comment addon_backgrounds ztt
+        #plot_signals.append(sub_ztt_25med_1Track)  
 
 elif "SR_35med_Tau1Track" == options.region:
  
@@ -1369,9 +1417,9 @@ elif "SR_35med_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_35med_1Track)
 
         plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_35med_1Track) #remember to comment addon_backgrounds ztt
+        #plot_signals.append(sub_ztt_35med_1Track)  
 
-elif "SR_Tau3Track" == options.region: #add-ons only make sense in the signal region
+elif "SR_Tau3Track" == options.region:  
 
 	print "signal region 3 prong"
 
@@ -1392,8 +1440,8 @@ elif "SR_25med_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_Zlljets_25med_3Track)
 	plot_backgrounds.append(addon_top_25med_3Track)
 
-        #plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med_3Track) #remember to comment addon_backgrounds ztt
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_25med_3Track)  
 		
 elif "SR_35med_Tau3Track" == options.region:
  
@@ -1405,7 +1453,7 @@ elif "SR_35med_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_top_35med_3Track)
 
         plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt_35med_3Track) #remember to comment addon_backgrounds ztt
+        #plot_signals.append(sub_ztt_35med_3Track)  
 	
 else: #MC as background
 	plot_signals.append(samples.Zttjets)
