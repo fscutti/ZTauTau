@@ -515,9 +515,9 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_n_vx = self.hist('h_n_vx', "ROOT.TH1F('$', ';N_{vx} ;Events', 14, 0.0, 14.0)", dir=EVT)
 
-        self.h_n_bjets = self.hist('h_n_bjets', "ROOT.TH1F('$', ';N_{bjets} ;Events', 14, 0.0, 5.0)", dir=EVT)
+        self.h_n_bjets = self.hist('h_n_bjets', "ROOT.TH1F('$', ';N_{bjets} ;Events', 5, 0.0, 5.0)", dir=EVT)
 
-        self.h_n_jets = self.hist('h_n_jets', "ROOT.TH1F('$', ';N_{jets} ;Events', 14, 0.0, 19.0)", dir=EVT)
+        self.h_n_jets = self.hist('h_n_jets', "ROOT.TH1F('$', ';N_{jets} ;Events', 19, 0.0, 19.0)", dir=EVT)
 
         self.h_vis_mass = self.hist('h_vis_mass', "ROOT.TH1F('$', ';Visible Mass (#tau,#mu) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
 
