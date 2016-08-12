@@ -25,6 +25,19 @@ n_vx = Var(name = 'n_vx',
               log     = False,
               )
 
+n_bjets = Var(name = 'n_bjets',
+	      path = 'event',
+	      xmin = 0,
+	      xmax = 5,
+	      log = False,
+	      )
+
+n_jets = Var(name = 'n_jets',
+              path = 'event',
+              xmin = 0,
+              xmax = 19,
+              log = False,
+              )
 
 ## Muon variables
 ## ---------------------------------------
@@ -151,6 +164,8 @@ vars_list.append(mu_eta)
 vars_list.append(met_reco_phi)
 vars_list.append(tau_n_tracks)
 vars_list.append(jet_bdt_score) 
+vars_list.append(n_bjets)
+vars_list.append(n_jets)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__

@@ -6,7 +6,6 @@
 #PBS -l nodes=1:ppn=1
 
 
-#PBS -l walltime=6:00:00
 #
 #   Request 4 gigabyte of memory per process
 #
@@ -106,13 +105,13 @@ echo
 echo "copying input locally..."
 TMPINPUT="`mktemp ntuple.XXXXXXX`.root"
 echo cp ${INPUT} ${TMPINPUT}
-cp ${INPUT} ${TMPINPUT}
+#cp ${INPUT} ${TMPINPUT}
 
 
 echo ""
 echo "executing job..."
-echo ${SCRIPT} --input ${TMPINPUT} --sampletype ${SAMPLETYPE} --config "${CFG}"
-${SCRIPT} --input ${TMPINPUT} --sampletype ${SAMPLETYPE} --config "${CFG}"
+echo ${SCRIPT} --input ${INPUT} --sampletype ${SAMPLETYPE} --config "${CFG}"
+${SCRIPT} --input ${INPUT} --sampletype ${SAMPLETYPE} --config "${CFG}"
 
 ls -alh
 
