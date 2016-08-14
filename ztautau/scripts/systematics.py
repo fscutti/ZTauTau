@@ -31,8 +31,8 @@ class Systematic(object):
 
 
 sys_dict = {}
-# Specific for categories (acceptance unc)
 
+# just an example
 SYS1 = sys_dict['SYS1'] = Systematic(
         'SYS1',
         var_up='SYS1_UP',
@@ -42,5 +42,153 @@ SYS2 = sys_dict['SYS2'] = Systematic(
         'SYS2','$\\sigma_{\\rm Wtaunu}$',      
         flat_err=0.05,
         )
+
+# -----------------------------------
+# A whole bunch of RQCD uncertainties
+# -----------------------------------
+
+# track inclusive
+
+RQCD_AntiIsoCR = sys_dict['RQCD_AntiIsoCR'] = Systematic(
+        'RQCD_AntiIsoCR','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_lowPT = sys_dict['RQCD_AntiIsoCR_lowPT'] = Systematic(
+        'RQCD_AntiIsoCR_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_highPT = sys_dict['RQCD_AntiIsoCR_highPT'] = Systematic(
+        'RQCD_AntiIsoCR_highPT','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med = sys_dict['RQCD_AntiIsoCR_25med'] = Systematic(
+        'RQCD_AntiIsoCR_25med','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_lowPT = sys_dict['RQCD_AntiIsoCR_25med_lowPT'] = Systematic(
+        'RQCD_AntiIsoCR_25med_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_highPT = sys_dict['RQCD_AntiIsoCR_25med_highPT'] = Systematic(
+        'RQCD_AntiIsoCR_25med_highPT','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med = sys_dict['RQCD_AntiIsoCR_35med'] = Systematic(
+        'RQCD_AntiIsoCR_35med','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_lowPT = sys_dict['RQCD_AntiIsoCR_35med_lowPT'] = Systematic(
+        'RQCD_AntiIsoCR_35med_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_highPT = sys_dict['RQCD_AntiIsoCR_35med_highPT'] = Systematic(
+        'RQCD_AntiIsoCR_35med_highPT','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+# 1-prong
+
+RQCD_AntiIsoCR_1Track = sys_dict['RQCD_AntiIsoCR_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_lowPT_1Track = sys_dict['RQCD_AntiIsoCR_lowPT_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_lowPT_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_highPT_1Track = sys_dict['RQCD_AntiIsoCR_highPT_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_highPT_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_1Track = sys_dict['RQCD_AntiIsoCR_25med_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_25med_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_lowPT_1Track = sys_dict['RQCD_AntiIsoCR_25med_lowPT_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_25med_lowPT_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_highPT_1Track = sys_dict['RQCD_AntiIsoCR_25med_highPT_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_25med_highPT_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_1Track = sys_dict['RQCD_AntiIsoCR_35med_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_35med_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_lowPT_1Track = sys_dict['RQCD_AntiIsoCR_35med_lowPT_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_35med_lowPT_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_highPT_1Track = sys_dict['RQCD_AntiIsoCR_35med_highPT_1Track'] = Systematic(
+        'RQCD_AntiIsoCR_35med_highPT_1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+
+# 3-prong
+
+RQCD_AntiIsoCR_3Track = sys_dict['RQCD_AntiIsoCR_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_lowPT_3Track = sys_dict['RQCD_AntiIsoCR_lowPT_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_lowPT_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_highPT_3Track = sys_dict['RQCD_AntiIsoCR_highPT_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_highPT_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_3Track = sys_dict['RQCD_AntiIsoCR_25med_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_25med_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_lowPT_3Track = sys_dict['RQCD_AntiIsoCR_25med_lowPT_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_25med_lowPT_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_25med_highPT_3Track = sys_dict['RQCD_AntiIsoCR_25med_highPT_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_25med_highPT_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_3Track = sys_dict['RQCD_AntiIsoCR_35med_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_35med_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_lowPT_3Track = sys_dict['RQCD_AntiIsoCR_35med_lowPT_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_35med_lowPT_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+RQCD_AntiIsoCR_35med_highPT_3Track = sys_dict['RQCD_AntiIsoCR_35med_highPT_3Track'] = Systematic(
+        'RQCD_AntiIsoCR_35med_highPT_3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.05, # some 5% unc.
+        )
+
+
 
 ## EOF
