@@ -1278,7 +1278,15 @@ mc_sys = [
 #for s in mc_backgrounds + mumu_signals:
 #    s.estimator.add_systematics(mc_sys)
 
-#fakes.estimator.add_systematics(RQCD)
+# Add systematics for each subsample
+addon_data_lowPT.estimator.add_systematics(RQCD_AntiIsoCR_lowPT)
+#addon_data_highPT.estimator.add_systematics(RQCD_AntiIsoCR_highPT)
+
+#addon_data_25med_lowPT.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT)
+#addon_data_25med_highPT.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
+
+# ... have fun ...
+
 
 vdict  = vars.vars_dict
 
