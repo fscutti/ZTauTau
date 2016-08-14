@@ -64,7 +64,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HISTv19_2015'
+RUN = 'HISTv19_2015_ttb'
 #RUN = 'HISTROO_2016_NO_TAU_SF'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
