@@ -405,12 +405,30 @@ class AddOnEstimator(BaseEstimator):
         rqcd_top, rqcd_top_err = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd = rqcd_top/rqcd_bot
-        print "printing numerator and denominator"
-        print rqcd_top, rqcd_top_err
-        print rqcd_bot, rqcd_bot_err
+        
+        if sys and "RQCD" in sys.name:
+          # assuming numerator is always OS!!!
+          reg_list = rqcd_regions[self.data_sample]["num"].split("_")
+          sys_list = sys.name.split("_")
+          reg_list = [s for s in reg_list if s != "OS"]
+          sys_list = [s for s in sys_list if s != "RQCD"]
+          
+          print reg_list
+          print sys_list
 
-        rqcd_unc = abs(rqcd)*math.sqrt( (rqcd_top_err/rqcd_top)**2 + (rqcd_bot_err/rqcd_bot)**2 )
-        #rqcd_unc = ratiounc(a = rqcd_top, b = rqcd_bot, sigmaa = rqcd_top_err, sigmab = rqcd_bot_err)
+          assert all(True if sys_list.count(item) == reg_list.count(item) else False for item in sys_list), "ERROR: RQCD sys name not matching region name!!!"
+          if mode == "up": rqcd *= (1.+sys.flat_err) 
+          if mode == "dn": rqcd *= (1.-sys.flat_err) 
+        
+        #print "printing numerator and denominator"
+        #print rqcd_top, rqcd_top_err
+        #print rqcd_bot, rqcd_bot_err
+
+        rqcd_stat_unc = abs(rqcd)*math.sqrt( (rqcd_top_err/rqcd_top)**2 + (rqcd_bot_err/rqcd_bot)**2 )
+        #rqcd_stat_unc = ratiounc(a = rqcd_top, b = rqcd_bot, sigmaa = rqcd_top_err, sigmab = rqcd_bot_err)
+ 
+        sys_name = "nominal"
+        if sys: sys_name = sys.name
 
         if self.print_info:
           print 
@@ -419,13 +437,13 @@ class AddOnEstimator(BaseEstimator):
           print "Iteration for %s" % self.sample.name
           print "++++++++++++++++++++++++++++++++++++++++"
           print 
-          print "k-factors for %s, sys %s, sys_mode %s" % (histname,sys,mode)
+          print "k-factors for %s, sys: %s, sys mode: %s" % (histname,sys_name,mode)
           print "----------------------------------------"
-          print "Sample | Region | k-factor | k-factor unc | Rqcd | Rqcd unc"
+          print "Sample | Region | k-factor | k-factor unc | Rqcd | Rqcd stat unc"
           print "----------------------------------------"
           for s in self.kf_regions.keys():
-            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],kf_OS_unc[s],rqcd,rqcd_unc)
-            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],kf_SS_unc[s],rqcd,rqcd_unc)
+            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],kf_OS_unc[s],rqcd,rqcd_stat_unc)
+            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],kf_SS_unc[s],rqcd,rqcd_stat_unc)
             print 
         
         addon_regions = self.addon_regions
@@ -445,7 +463,7 @@ class AddOnEstimator(BaseEstimator):
         """
         ToDo: implement sys uncertainty for the scales!!!
         """
-        if sys and "scale" in sys.name: pass
+        #if sys and "scale" in sys.name: pass
         
         if not self.sample.name == "fakes":
           for s in h_addon.keys():
@@ -459,7 +477,6 @@ class AddOnEstimator(BaseEstimator):
     def add_systematics(self, sys):
         if not isinstance(sys,list): sys = [sys]
         self.allowed_systematics += sys
-        self.sample.estimator.add_systematics(sys)
  
     #__________________________________________________________________________
     def is_affected_by_systematic(self, sys):
