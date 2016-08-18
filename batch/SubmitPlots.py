@@ -17,8 +17,8 @@ ana      = 'ztautau'
 
 #indir    = 'HistPOSSUM_2016_rqcdsyst'
 #outdir   = 'PlotsPOSSUM_2106_rqcdsyst'
-indir = 'HISTv19_2015_ttb'
-outdir = 'PLOTSv19_2015_ttb'
+indir = 'HistROO_2016_incltopoptvar'
+outdir = 'PLOTSv19_2016_topocone'
 
 USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
