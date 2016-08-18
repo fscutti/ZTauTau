@@ -8,6 +8,7 @@ This module contains a set of analysis specific algs
 for calculating variables, applying selection and 
 plotting.
 """
+#from __future__ import division
 
 ## std modules
 import itertools
@@ -198,6 +199,7 @@ class CutAlg(pyframe.core.Algorithm):
     #----- SYSTEMATICS----#
 
     def cut_Topoetcone20pt010(self):
+	 print self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.1
 
     def cut_Topoetcone20pt011(self):
@@ -227,7 +229,7 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Topoetcone20pt019(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.19
 
-    def cut_Topoetcone20pt02(self):
+    def cut_Topoetcone20pt020(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.2
 
     def cut_Topoetcone20pt021(self):
@@ -257,7 +259,7 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Topoetcone20pt029(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.29
 
-    def cut_Topoetcone20pt03(self):
+    def cut_Topoetcone20pt030(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.3
 
     def cut_Topoetcone20pt031(self):
@@ -287,7 +289,7 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Topoetcone20pt039(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.39
 
-    def cut_Topoetcone20pt04(self):
+    def cut_Topoetcone20pt040(self):
          return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.4
 
     #################################
@@ -322,7 +324,7 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Ptvarcone30pt019(self):
          return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.19
 
-    def cut_Ptvarcone30pt02(self):
+    def cut_Ptvarcone30pt020(self):
          return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.2
 
     def cut_Ptvarcone30pt021(self):
@@ -352,7 +354,7 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Ptvarcone30pt029(self):
          return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.29
 
-    def cut_Ptvarcone30pt03(self):
+    def cut_Ptvarcone30pt030(self):
          return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.3
 
     def cut_Ptvarcone30pt031(self):
@@ -382,7 +384,7 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_Ptvarcone30pt039(self):
          return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.39
 
-    def cut_Ptvarcone30pt04(self):
+    def cut_Ptvarcone30pt040(self):
          return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.4
  
     ################################   
@@ -504,6 +506,10 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         MET   = os.path.join(region, 'met')
         MUONS = os.path.join(region, 'muons')
         TAUS  = os.path.join(region, 'taus')
+
+	self.h_topoetcone20pt = self.hist('h_topoetcone20pt', "ROOT.TH1F('$', 'TopoEtCone20/p_{T};Events', 30, -0.1, 0.5)", dir=MUONS)
+
+        self.h_ptvarcone30pt = self.hist('h_ptvarcone30pt', "ROOT.TH1F('$', 'PtVarCone30/p_{T};Events', 30, -0.1, 0.5)", dir=MUONS)
         
         self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
@@ -543,6 +549,10 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         if passed:
 
+	     self.h_topoetcone20pt.Fill(self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt, weight)
+
+	     self.h_ptvarcone30pt.Fill(self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt, weight)	
+
              self.h_nmuons.Fill(self.chain.n_muons, weight)
  
              self.h_met_reco_et.Fill(self.chain.met_reco_et, weight)
@@ -552,8 +562,11 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
              self.h_tau_pt.Fill(self.chain.tau_0_pt, weight)
  
              self.h_n_vx.Fill(self.chain.n_vx, weight)
+
              self.h_n_jets.Fill(self.chain.n_jets, weight)
+
              self.h_n_bjets.Fill(self.chain.n_bjets, weight) 
+
              self.h_vis_mass.Fill(self.chain.lephad_vis_mass, weight)
  
              self.h_sumcosdphi.Fill(self.chain.lephad_met_sum_cos_dphi, weight)
