@@ -64,7 +64,21 @@ mu_eta = Var(name = 'mu_eta',
 #              rebin   = 2,
               log     = False,
               )
-              
+              #
+
+topoetcone20pt = Var(name = 'topoetcone20pt',
+			path = 'muons',
+			xmin = -0.1,
+			xmax = 0.5,
+			log = False,
+			)
+
+ptvarcone30pt = Var(name = 'ptvarcone30pt',
+                        path = 'muons',
+                        xmin = -0.1,
+                        xmax = 0.5,
+                        log = False,
+                        )
 
 ## Tau variables
 ## ---------------------------------------
@@ -166,6 +180,8 @@ vars_list.append(tau_n_tracks)
 vars_list.append(jet_bdt_score) 
 vars_list.append(n_bjets)
 vars_list.append(n_jets)
+vars_list.append(topoetcone20pt)
+vars_list.append(ptvarcone30pt)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
