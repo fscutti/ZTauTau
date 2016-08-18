@@ -50,7 +50,7 @@ USER   = os.getenv('USER')
 ## global config
 # input NTUP path
 #NTUP='/coepp/cephfs/mel/fscutti/ztautau/v03/merged' 
-NTUP='/coepp/cephfs/mel/laram1/v19/2015'
+NTUP='/coepp/cephfs/mel/laram1/v19/2016'
 #NTUP='/coepp/cephfs/mel/laram1/v17'
 
 # The Melb cloud is twisted and does not recognize home dirs...
@@ -64,8 +64,8 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HISTv19_2015_ttb'
-#RUN = 'HISTROO_2016_NO_TAU_SF'
+#RUN = 'HistROO_2016_incltopoptvar'
+RUN = 'TEST'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
