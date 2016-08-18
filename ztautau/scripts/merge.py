@@ -38,9 +38,9 @@ parser.add_option('-o', '--output', dest='outdir',
 # Configuration
 #-----------------
 #lumi =  3193.68 #2015 v12
-lumi = 3212.72 #2015 v19
+#lumi = 3212.72 #2015 v19
 #lumi = 9966.815 #2016 v17
-#lumi = 11473.88 #2016 v19
+lumi = 11473.88 #2016 v19
 
 # Control regions
 plotsfile = []
@@ -532,6 +532,13 @@ rqcd_regions_25med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT", "den":"An
 rqcd_regions_35med[data]  = {"num":"AntiIsoCR_OS_35med", "den":"AntiIsoCR_SS_35med", "ncuts":3}
 rqcd_regions_35med_lowPT[data]  = {"num":"AntiIsoCR_OS_35med_lowPT", "den":"AntiIsoCR_SS_35med_lowPT", "ncuts":4}
 rqcd_regions_35med_highPT[data]  = {"num":"AntiIsoCR_OS_35med_highPT", "den":"AntiIsoCR_SS_35med_highPT", "ncuts":4}
+
+# SYSTEMATICS
+#rqcd_regions_highPT[data]  = {"num":"AntiIsoCR_OS_highPT_Topoetcone20pt040", "den":"AntiIsoCR_SS_highPT_Topoetcone20pt040", "ncuts":4}
+#rqcd_regions_lowPT[data] = {"num":"AntiIsoCR_OS_lowPT_Topoetcone20pt040", "den":"AntiIsoCR_SS_lowPT_Topoetcone20pt040", "ncuts":4}
+
+#rqcd_regions_highPT[data]  = {"num":"AntiIsoCR_OS_highPT_Ptvarcone30pt032", "den":"AntiIsoCR_SS_highPT_Ptvarcone30pt032", "ncuts":4}
+#rqcd_regions_lowPT[data] = {"num":"AntiIsoCR_OS_lowPT_Ptvarcone30pt032", "den":"AntiIsoCR_SS_lowPT_Ptvarcone30pt032", "ncuts":4}
 
 
 #-------------
