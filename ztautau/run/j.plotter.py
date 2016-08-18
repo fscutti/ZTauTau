@@ -360,6 +360,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_Tau3Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
@@ -371,6 +372,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
@@ -383,6 +385,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
@@ -395,6 +398,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_Tau3Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
@@ -406,6 +410,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_highPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
@@ -418,6 +423,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_lowPT_Tau3Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
@@ -594,6 +600,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_Tau1Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
@@ -605,6 +612,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
@@ -617,6 +625,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
@@ -629,6 +638,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_Tau1Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
@@ -640,6 +650,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_highPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
@@ -652,6 +663,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_lowPT_Tau1Track',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
@@ -815,6 +827,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['OS',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
@@ -825,6 +838,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_highPT',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauHighPt',["TauTotalWeight"]],
@@ -836,6 +850,7 @@ def analyze(config):
             region    = 'AntiIsoCR_OS_lowPT',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['OS',None],
 	      ['TauLowPt',["TauTotalWeight"]],
@@ -847,6 +862,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['SS',None],
               ['InvMuonGradIso',["MuonWeightAI"]],
@@ -857,6 +873,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_highPT',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauHighPt',["TauTotalWeight"]],
@@ -868,6 +885,7 @@ def analyze(config):
             region    = 'AntiIsoCR_SS_lowPT',
             plot_all  = False,
             cut_flow  = [
+              ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['SS',None],
 	      ['TauLowPt',["TauTotalWeight"]],
@@ -1042,6 +1060,7 @@ def analyze(config):
 		region    = 'AntiIsoCR_OS_'+str(triggers[i])+'med',
 		plot_all  = False,
 		cut_flow  = [
+              	  ['MTrans50',None],
 		  ['InvMuonGradIso',["MuonWeightAI"]],
 		  ['SumCosDPhi05',None],
 		  ['OS',None],
@@ -1053,6 +1072,7 @@ def analyze(config):
 		region    = 'AntiIsoCR_OS_'+str(triggers[i])+'med_lowPT',
 		plot_all  = False,
 		cut_flow  = [
+                  ['MTrans50',None],
 		  ['InvMuonGradIso',["MuonWeightAI"]],
 		  ['SumCosDPhi05',None],
 		  ['OS',None],
@@ -1065,6 +1085,7 @@ def analyze(config):
 		region    = 'AntiIsoCR_OS_'+str(triggers[i])+'med_highPT',
 		plot_all  = False,
 		cut_flow  = [
+                  ['MTrans50',None],
 		  ['InvMuonGradIso',["MuonWeightAI"]],
 		  ['SumCosDPhi05',None],
 		  ['OS',None],
@@ -1077,6 +1098,7 @@ def analyze(config):
 		region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med',
 		plot_all  = False,
 		cut_flow  = [
+                  ['MTrans50',None],
 		  ['InvMuonGradIso',["MuonWeightAI"]],
 		  ['SumCosDPhi05',None],
 		  ['SS',None],
@@ -1088,6 +1110,7 @@ def analyze(config):
 		region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med_lowPT',
 		plot_all  = False,
 		cut_flow  = [
+                  ['MTrans50',None],
 		  ['InvMuonGradIso',["MuonWeightAI"]],
 		  ['SumCosDPhi05',None],
 		  ['SS',None],
@@ -1100,6 +1123,7 @@ def analyze(config):
 		region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med_highPT',
 		plot_all  = False,
 		cut_flow  = [
+                  ['MTrans50',None],
 		  ['InvMuonGradIso',["MuonWeightAI"]],
 		  ['SumCosDPhi05',None],
 		  ['SS',None],
@@ -1290,6 +1314,7 @@ def analyze(config):
 			region    = 'AntiIsoCR_OS_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
 			plot_all  = False,
 			cut_flow  = [
+                  	  ['MTrans50',None],
 			  ['InvMuonGradIso',["MuonWeightAI"]],
 			  ['SumCosDPhi05',None],
 			  ['OS',None],
@@ -1302,6 +1327,7 @@ def analyze(config):
 			region    = 'AntiIsoCR_OS_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
 			plot_all  = False,
 			cut_flow  = [
+                          ['MTrans50',None],
 			  ['InvMuonGradIso',["MuonWeightAI"]],
 			  ['SumCosDPhi05',None],
 			  ['OS',None],
@@ -1315,6 +1341,7 @@ def analyze(config):
 			region    = 'AntiIsoCR_OS_'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
 			plot_all  = False,
 			cut_flow  = [
+                          ['MTrans50',None],
 			  ['InvMuonGradIso',["MuonWeightAI"]],
 			  ['SumCosDPhi05',None],
 			  ['OS',None],
@@ -1327,6 +1354,7 @@ def analyze(config):
 			region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
 			plot_all  = False,
 			cut_flow  = [
+                          ['MTrans50',None],
 			  ['InvMuonGradIso',["MuonWeightAI"]],
 			  ['SumCosDPhi05',None],
 			  ['SS',None],
@@ -1339,6 +1367,7 @@ def analyze(config):
 			region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
 			plot_all  = False,
 			cut_flow  = [
+                          ['MTrans50',None],
 			  ['InvMuonGradIso',["MuonWeightAI"]],
 			  ['SumCosDPhi05',None],
 			  ['SS',None],
@@ -1352,6 +1381,7 @@ def analyze(config):
 			region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
 			plot_all  = False,
 			cut_flow  = [
+                          ['MTrans50',None],
 			  ['InvMuonGradIso',["MuonWeightAI"]],
 			  ['SumCosDPhi05',None],
 			  ['SS',None],
@@ -1371,6 +1401,7 @@ def analyze(config):
 		region   = 'AntiIsoCR_OS_Topoetcone20pt0'+str(n),
         	plot_all = False,
 		cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['InvMuonGradIso',None],
@@ -1382,6 +1413,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_OS_lowPT_Topoetcone20pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['TauLowPt',["TauTotalWeight"]],
@@ -1394,6 +1426,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_OS_highPT_Topoetcone20pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['TauHighPt',["TauTotalWeight"]],		  
@@ -1406,6 +1439,7 @@ def analyze(config):
 		region   = 'AntiIsoCR_OS_Ptvarcone30pt0'+str(n),
 		plot_all = False,
 		cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['InvMuonGradIso',None],
@@ -1417,6 +1451,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_OS_lowPT_Ptvarcone30pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['TauLowPt',["TauTotalWeight"]],
@@ -1429,6 +1464,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_OS_highPT_Ptvarcone30pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['TauHighPt',["TauTotalWeight"]],
@@ -1441,6 +1477,7 @@ def analyze(config):
 		region   = 'AntiIsoCR_SS_Topoetcone20pt0'+str(n),
         	plot_all = False,
 		cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['InvMuonGradIso',None],
@@ -1452,6 +1489,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_SS_lowPT_Topoetcone20pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['TauLowPt',["TauTotalWeight"]],
@@ -1464,6 +1502,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_SS_highPT_Topoetcone20pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['TauHighPt',["TauTotalWeight"]],		  
@@ -1476,6 +1515,7 @@ def analyze(config):
 		region   = 'AntiIsoCR_SS_Ptvarcone30pt0'+str(n),
 		plot_all = False,
 		cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['InvMuonGradIso',None],
@@ -1487,6 +1527,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_SS_lowPT_Ptvarcone30pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['TauLowPt',["TauTotalWeight"]],
@@ -1499,6 +1540,7 @@ def analyze(config):
                 region   = 'AntiIsoCR_SS_highPT_Ptvarcone30pt0'+str(n),
                 plot_all = False,
                 cut_flow = [
+                  ['MTrans50',None],
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['TauHighPt',["TauTotalWeight"]],
