@@ -51,17 +51,17 @@ SYS2 = sys_dict['SYS2'] = Systematic(
 
 RQCD_AntiIsoCR = sys_dict['RQCD_AntiIsoCR'] = Systematic(
         'RQCD_AntiIsoCR','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05, # some 5% unc.
+        flat_err=0.0384286934244,
         )
 
 RQCD_AntiIsoCR_lowPT = sys_dict['RQCD_AntiIsoCR_lowPT'] = Systematic(
         'RQCD_AntiIsoCR_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05, # some 5% unc.
+        flat_err=0.0521472392638,
         )
 
 RQCD_AntiIsoCR_highPT = sys_dict['RQCD_AntiIsoCR_highPT'] = Systematic(
         'RQCD_AntiIsoCR_highPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05, # some 5% unc.
+        flat_err=0.0424836601307,
         )
 
 RQCD_AntiIsoCR_25med = sys_dict['RQCD_AntiIsoCR_25med'] = Systematic(
