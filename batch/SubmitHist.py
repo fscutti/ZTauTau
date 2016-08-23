@@ -65,7 +65,7 @@ AUTOBUILD = True
 # outputs
 
 #RUN = 'HistROO_2016_incltopoptvar'
-RUN = 'TEST'
+RUN = 'HistEMU_new'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
