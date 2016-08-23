@@ -28,7 +28,7 @@ import pyframe
 
 #import mcutils
 
-#GeV = 1000.0
+GeV = 1000.0
 
 #------------------------------------------------------------------------------
 class CutAlg(pyframe.core.Algorithm):
@@ -199,193 +199,192 @@ class CutAlg(pyframe.core.Algorithm):
     #----- SYSTEMATICS----#
 
     def cut_Topoetcone20pt010(self):
-	 print self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.1
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.1
 
     def cut_Topoetcone20pt011(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.11
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.11
 
     def cut_Topoetcone20pt012(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.12
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.12
 
     def cut_Topoetcone20pt013(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.13
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.13
 
     def cut_Topoetcone20pt014(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.14
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.14
 
     def cut_Topoetcone20pt015(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.15
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.15
 
     def cut_Topoetcone20pt016(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.16
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.16
 
     def cut_Topoetcone20pt017(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.17
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.17
 
     def cut_Topoetcone20pt018(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.18
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.18
 
     def cut_Topoetcone20pt019(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.19
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.19
 
     def cut_Topoetcone20pt020(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.2
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.2
 
     def cut_Topoetcone20pt021(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.21
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.21
 
     def cut_Topoetcone20pt022(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.22
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.22
 
     def cut_Topoetcone20pt023(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.23
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.23
 
     def cut_Topoetcone20pt024(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.24
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.24
 
     def cut_Topoetcone20pt025(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.25
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.25
 
     def cut_Topoetcone20pt026(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.26
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.26
 
     def cut_Topoetcone20pt027(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.27
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.27
 
     def cut_Topoetcone20pt028(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.28
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.28
 
     def cut_Topoetcone20pt029(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.29
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.29
 
     def cut_Topoetcone20pt030(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.3
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.3
 
     def cut_Topoetcone20pt031(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.31
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.31
 
     def cut_Topoetcone20pt032(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.32
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.32
 
     def cut_Topoetcone20pt033(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.33
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.33
 
     def cut_Topoetcone20pt034(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.34
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.34
 
     def cut_Topoetcone20pt035(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.35
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.35
 
     def cut_Topoetcone20pt036(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.36
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.36
 
     def cut_Topoetcone20pt037(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.37
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.37
 
     def cut_Topoetcone20pt038(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.38
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.38
 
     def cut_Topoetcone20pt039(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.39
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.39
 
     def cut_Topoetcone20pt040(self):
-         return self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt > 0.4
+         return (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt > 0.4
 
     #################################
 
     def cut_Ptvarcone30pt010(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.1
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.1
 
     def cut_Ptvarcone30pt011(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.11
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.11
 
     def cut_Ptvarcone30pt012(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.12
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.12
 
     def cut_Ptvarcone30pt013(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.13
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.13
 
     def cut_Ptvarcone30pt014(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.14
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.14
 
     def cut_Ptvarcone30pt015(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.15
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.15
 
     def cut_Ptvarcone30pt016(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.16
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.16
 
     def cut_Ptvarcone30pt017(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.17
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.17
 
     def cut_Ptvarcone30pt018(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.18
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.18
 
     def cut_Ptvarcone30pt019(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.19
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.19
 
     def cut_Ptvarcone30pt020(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.2
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.2
 
     def cut_Ptvarcone30pt021(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.21
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.21
 
     def cut_Ptvarcone30pt022(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.22
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.22
 
     def cut_Ptvarcone30pt023(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.23
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.23
 
     def cut_Ptvarcone30pt024(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.24
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.24
 
     def cut_Ptvarcone30pt025(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.25
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.25
 
     def cut_Ptvarcone30pt026(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.26
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.26
 
     def cut_Ptvarcone30pt027(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.27
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.27
 
     def cut_Ptvarcone30pt028(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.28
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.28
 
     def cut_Ptvarcone30pt029(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.29
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.29
 
     def cut_Ptvarcone30pt030(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.3
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.3
 
     def cut_Ptvarcone30pt031(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.31
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.31
 
     def cut_Ptvarcone30pt032(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.32
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.32
 
     def cut_Ptvarcone30pt033(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.33
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.33
 
     def cut_Ptvarcone30pt034(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.34
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.34
 
     def cut_Ptvarcone30pt035(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.35
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.35
 
     def cut_Ptvarcone30pt036(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.36
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.36
 
     def cut_Ptvarcone30pt037(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.37
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.37
 
     def cut_Ptvarcone30pt038(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.38
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.38
 
     def cut_Ptvarcone30pt039(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.39
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.39
 
     def cut_Ptvarcone30pt040(self):
-         return self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt > 0.4
+         return (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt > 0.4
  
     ################################   
     def cut_MTrans625(self):
@@ -507,10 +506,19 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         MUONS = os.path.join(region, 'muons')
         TAUS  = os.path.join(region, 'taus')
 
-	self.h_topoetcone20pt = self.hist('h_topoetcone20pt', "ROOT.TH1F('$', 'TopoEtCone20/p_{T};Events', 30, -0.1, 0.5)", dir=MUONS)
-
-        self.h_ptvarcone30pt = self.hist('h_ptvarcone30pt', "ROOT.TH1F('$', 'PtVarCone30/p_{T};Events', 30, -0.1, 0.5)", dir=MUONS)
+        self.h_topoetcone20pt = self.hist('h_topoetcone20pt', "ROOT.TH1F('$', ';TopoEtCone20/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
+        self.h_ptvarcone30pt = self.hist('h_ptvarcone30pt', "ROOT.TH1F('$', ';PtVarCone30/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
+ 
+        #self.h_topoetcone20ptmev = self.hist('h_topoetcone20pt', "ROOT.TH1F('$', ';TopoEtCone20/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
+        #self.h_ptvarcone30ptmev = self.hist('h_ptvarcone30pt', "ROOT.TH1F('$', ';PtVarCone30/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
         
+        self.h_topoetcone20 = self.hist('h_topoetcone20', "ROOT.TH1F('$', ';TopoEtCone20(GeV);Events', 220, -20, 200)", dir=MUONS)
+        self.h_ptvarcone30 = self.hist('h_ptvarcone30', "ROOT.TH1F('$', ';PtVarCone30(GeV);Events', 330, -30, 300)", dir=MUONS)
+
+        #self.h_topoetcone20mev = self.hist('h_topoetcone20mev', "ROOT.TH1F('$', ';TopoEtCone20(MeV);Events', 220000, -20000, 200000)", dir=MUONS)
+        #self.h_ptvarcone30mev = self.hist('h_ptvarcone30mev', "ROOT.TH1F('$', ';PtVarCone30(MeV);Events', 330000, -30000, 300000)", dir=MUONS)
+
+
         self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
         self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET)
@@ -549,9 +557,17 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         if passed:
 
-	     self.h_topoetcone20pt.Fill(self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt, weight)
+             self.h_topoetcone20.Fill(self.chain.lep_0_iso_topoetcone20/GeV, weight)
+             self.h_ptvarcone30.Fill(self.chain.lep_0_iso_ptvarcone30/GeV, weight)
+ 
+             #self.h_topoetcone20mev.Fill(self.chain.lep_0_iso_topoetcone20, weight)
+             #self.h_ptvarcone30mev.Fill(self.chain.lep_0_iso_ptvarcone30, weight)
 
-	     self.h_ptvarcone30pt.Fill(self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt, weight)	
+	     #self.h_topoetcone20ptmev.Fill(self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt, weight)
+	     #self.h_ptvarcone30ptmev.Fill(self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt, weight)	
+
+             self.h_topoetcone20pt.Fill( (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt, weight)
+             self.h_ptvarcone30pt.Fill( (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt, weight)
 
              self.h_nmuons.Fill(self.chain.n_muons, weight)
  
