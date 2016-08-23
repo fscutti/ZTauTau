@@ -66,17 +66,59 @@ mu_eta = Var(name = 'mu_eta',
               )
               #
 
+topoetcone20ptmev = Var(name = 'topoetcone20pt',
+			path = 'muons',
+			xmin = -0.5,
+			xmax = 0.5,
+			log = False,
+			)
+
+ptvarcone30ptmev = Var(name = 'ptvarcone30pt',
+                        path = 'muons',
+                        xmin = -0.5,
+                        xmax = 0.5,
+                        log = False,
+                        )
+
+topoetcone20mev = Var(name = 'topoetcone20',
+                        path = 'muons',
+                        xmin = -20000,
+                        xmax = 200000,
+                        log = False,
+                        )
+
+ptvarcone30mev = Var(name = 'ptvarcone30',
+                        path = 'muons',
+                        xmin = -30000,
+                        xmax = 300000,
+                        log = False,
+                        )
+
 topoetcone20pt = Var(name = 'topoetcone20pt',
 			path = 'muons',
-			xmin = -0.1,
+			xmin = -0.5,
 			xmax = 0.5,
 			log = False,
 			)
 
 ptvarcone30pt = Var(name = 'ptvarcone30pt',
                         path = 'muons',
-                        xmin = -0.1,
+                        xmin = -0.5,
                         xmax = 0.5,
+                        log = False,
+                        )
+
+topoetcone20 = Var(name = 'topoetcone20',
+                        path = 'muons',
+                        xmin = -20,
+                        xmax = 200,
+                        log = False,
+                        )
+
+ptvarcone30 = Var(name = 'ptvarcone30',
+                        path = 'muons',
+                        xmin = -30,
+                        xmax = 300,
                         log = False,
                         )
 
@@ -182,6 +224,12 @@ vars_list.append(n_bjets)
 vars_list.append(n_jets)
 vars_list.append(topoetcone20pt)
 vars_list.append(ptvarcone30pt)
+vars_list.append(ptvarcone30)
+vars_list.append(topoetcone20)
+vars_list.append(topoetcone20ptmev)
+vars_list.append(ptvarcone30ptmev)
+vars_list.append(ptvarcone30mev)
+vars_list.append(topoetcone20mev)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
