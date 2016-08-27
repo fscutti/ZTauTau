@@ -46,8 +46,8 @@ def analyze(config):
     sys = config['sys']
     
     """
-    IMPORTANT: if sys is a tree systematic the name of the systematic, 
-    including the variation, has to be the name of the tree !
+    IMPORTANT: no not really. This docstring is useless
+    https://www.youtube.com/watch?v=sjJBpw5WNtU
     """
 
     sys_dict = None
