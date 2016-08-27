@@ -19,6 +19,9 @@ import ztautau
 
 #GeV = 1000.0
 
+#_____________________________________________________________________________
+def get_sys_dict(sys_name=None, sys_tree="NOMINAL", sys_var=None):
+  return {"name":sys_name, "tree":sys_tree, "variation":sys_var}
 
 #_____________________________________________________________________________
 def analyze(config):
@@ -26,32 +29,46 @@ def analyze(config):
     ##-------------------------------------------------------------------------
     ## setup
     ##-------------------------------------------------------------------------
-    config['tree']       = 'NOMINAL'
     config['do_var_log'] = True
     main_path = os.getenv('MAIN')
     
-    ## build chain
-    chain = ROOT.TChain(config['tree'])
-    for fn in config['input']: chain.Add(fn)
 
     ##-------------------------------------------------------------------------
     ## systematics 
     ##-------------------------------------------------------------------------
+    
     """
     pass systematics on the command line like this:
     python j.plotter.py --config="sys:SYS_UP"
     """
     config.setdefault('sys',None)
-    systematic = config['sys']
 
-    sys_somesys    = None
+    sys = config['sys']
+    
+    """
+    IMPORTANT: if sys is a tree systematic the name of the systematic, 
+    including the variation, has to be the name of the tree !
+    """
 
-    if   systematic == None: pass
-    elif systematic == 'SOMESYS_UP':      sys_somesys    = 'up'
-    elif systematic == 'SOMESYS_DN':      sys_somesys    = 'dn'
+    sys_dict = None
+    
+    if   sys == None: sys_dict = get_sys_dict()
+    
+    # this is how you tell the weights 
+    # what is the direction of the variation
+    elif sys == 'SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
+    elif sys == 'SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'TREESYS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "up")
+    elif sys == 'TREESYS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "dn")
+    elif sys == 'MUID_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1down", sys_var = "dn")
     else: 
-        assert False, "Invalid systematic %s!"%(systematic)
-
+        assert False, "Invalid sys %s!"%(sys)
+    
+    ## build chain
+    config['tree'] = sys_dict['tree']
+    
+    chain = ROOT.TChain(config['tree'])
+    for fn in config['input']: chain.Add(fn)
 
     ##-------------------------------------------------------------------------
     ## event loop
