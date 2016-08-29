@@ -64,8 +64,8 @@ AUTOBUILD = True
 
 # outputs
 
-#RUN = 'HistROO_2016_incltopoptvar'
-RUN = 'HistEMU_new'
+RUN = 'TEST_tauSFs_sys_new_new_new'
+#RUN = 'HistECHIDNA_missingdata_onemore'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
@@ -76,8 +76,8 @@ QUEUE="long"                         # length of pbs queue (short, long, extralo
 SCRIPT="./ztautau/run/j.plotter.py"  # pyframe job script
 BEXEC="Hist.sh"                      # exec script (probably dont change) 
 DO_NOM = True                        # submit the nominal job
-DO_NTUP_SYS = False                  # submit the NTUP systematics jobs
-DO_PLOT_SYS = False                  # submit the plot systematics jobs
+DO_NTUP_SYS = True                  # submit the NTUP systematics jobs
+DO_TREE_SYS = False#True                  # submit the NTUP systematics jobs
 TESTMODE = False                     # submit only 1 sub-job (for testing)
 
 
@@ -101,27 +101,27 @@ def main():
     global BEXEC
     global DO_NOM
     global DO_NTUP_SYS
-    global DO_PLOT_SYS
+    global DO_TREE_SYS
     global TESTMODE
 
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_data + all_mc 
+    nominal  = all_mc#all_data + all_mc 
 
     
     ntup_sys = [
         ['SYS1_UP',                  all_mc],
         ['SYS1_DN',                  all_mc],
         ]    
-    
-    plot_sys = [
+    """
+    tree_sys = [
         ['SYS2_UP',                  all_mc],
         ['SYS2_DN',                  all_mc],
         ]    
-
+    """
     
-    all_sys = ntup_sys + plot_sys
+    all_sys = ntup_sys #+ tree_sys
 
     ## ensure output path exists
     prepare_path(OUTPATH)
@@ -137,8 +137,8 @@ def main():
     if DO_NTUP_SYS: 
       for sys,samps in ntup_sys:
             submit(sys,sys,samps)
-    if DO_PLOT_SYS:  
-      for sys,samps in plot_sys:
+    if DO_TREE_SYS:  
+      for sys,samps in tree_sys:
             submit(sys,'nominal',samps,config={'sys':sys})
 
 
@@ -161,7 +161,7 @@ def submit(tag,job_sys,samps,config={}):
     global BEXEC
     global DO_NOM
     global DO_NTUP_SYS
-    global DO_PLOT_SYS
+    global DO_TREE_SYS
     global TESTMODE
 
     ## construct config file
