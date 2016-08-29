@@ -216,15 +216,31 @@ class TauSF(pyframe.core.Algorithm):
 	  #sf *= self.chain.tau_0_NOMINAL_TAU_EFF_SELECTION #v12 
 
 	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium
-	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_reco
+ 	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_reco
 	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad
-	  
-	  #print "tau(mu) %lf, tau id trig SF %lf, tau reco SF %lf, tau olr SF %lf " % (self.chain.tau_0_pt, self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium, self.chain.tau_0_NOMINAL_TauEffSF_reco, self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad)
+       	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_VeryLooseLlhEleOLR_electron
+ 	  #print "tau(mu) %lf, tau id trig SF %lf, tau reco SF %lf, tau olr SF %lf " % (self.chain.tau_0_pt, self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium, self.chain.tau_0_NOMINAL_TauEffSF_reco, self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad)
+        
+	  if self.scale:
+	       sf = 1.0
+               if self.scale=='up':
+                sf *= self.chain.tau_0_TRUEHADTAU_EFF_JETID_HIGHPT_1up_TauEFF_JetBDTmedium
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1up_TauEffSF_JetBDTmedium
+                sf *= self.chain.tau_0_TRUEELECTRON_EFF_ELEOLR_TOTAL_1up_TAUEFFSF_selection
+                sf *= self.chain.tau_0_TRUEHADTAU_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_HIGHPT_1up_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1up_TauEffSF_selection
 
-          if self.scale: 
-               if self.scale=='up': pass
-               elif self.scale=='dn': pass
-        else: pass
+               elif self.scale=='dn': 
+                sf *= self.chain.tau_0_TRUEHADTAU_EFF_JETID_HIGHPT_1down_TauEFF_JetBDTmedium
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1down_TauEffSF_JetBDTmedium
+                sf *= self.chain.tau_0_TRUEELECTRON_EFF_ELEOLR_TOTAL_1down_TAUEFFSF_selection
+                sf *= self.chain.tau_0_TRUEHADTAU_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_HIGHPT_1down_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1down_TauEffSF_selection	  
+
+	  	
+	  else: pass
 
         if self.key: 
           self.store[self.key] = sf
