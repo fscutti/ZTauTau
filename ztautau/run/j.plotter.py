@@ -25,19 +25,18 @@ import ztautau
 
 
 #_____________________________________________________________________________
+def get_sys_dict(sys_name=None, sys_tree="NOMINAL", sys_var=None):
+  return {"name":sys_name, "tree":sys_tree, "variation":sys_var}
+
+#_____________________________________________________________________________
 def analyze(config):
   
     ##-------------------------------------------------------------------------
     ## setup
     ##-------------------------------------------------------------------------
-    config['tree']       = 'NOMINAL'
     config['do_var_log'] = True
     main_path = os.getenv('MAIN')
     
-    ## build chain
-    chain = ROOT.TChain(config['tree'])
-    for fn in config['input']: chain.Add(fn)
-
     ##-------------------------------------------------------------------------
     ## systematics 
     ##-------------------------------------------------------------------------
@@ -46,15 +45,33 @@ def analyze(config):
     python j.plotter.py --config="sys:SYS_UP"
     """
     config.setdefault('sys',None)
-    systematic = config['sys']
 
-    sys_somesys    = None
+    sys = config['sys']
 
-    if   systematic == None: pass
-    elif systematic == 'SOMESYS_UP':      sys_somesys    = 'up'
-    elif systematic == 'SOMESYS_DN':      sys_somesys    = 'dn'
+    """
+    IMPORTANT: no not really. This docstring is useless
+    https://www.youtube.com/watch?v=sjJBpw5WNtU
+    """
+
+    sys_dict = None
+    
+    if   sys == None: sys_dict = get_sys_dict()
+    
+    # this is how you tell the weights 
+    # what is the direction of the variation
+    elif sys == 'SYS1_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
+    elif sys == 'SYS1_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'TREESYS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "up")
+    elif sys == 'TREESYS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "dn")
+    elif sys == 'MUID_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1down", sys_var = "dn")
     else: 
-        assert False, "Invalid systematic %s!"%(systematic)
+        assert False, "Invalid sys %s!"%(sys)
+    
+    ## build chain
+    config['tree'] = sys_dict['tree']
+    
+    chain = ROOT.TChain(config['tree'])
+    for fn in config['input']: chain.Add(fn)
 
 
     ##-------------------------------------------------------------------------
@@ -147,15 +164,16 @@ def analyze(config):
     ## +++++++++++++++++++++++++++++++++++++++
     loop += ztautau.algs.weights.MuonSF(
             key='MuonTotalWeight',
-            scale=None,
+            scale=sys_dict['variation'],
+            #sys_dict=sys_dict, #to pass entire dictionary
             )
     loop += ztautau.algs.weights.MuonSFIsoGrad(
             key='MuonWeightAI',
-            scale=None,
+            scale=sys_dict['variation'],
             )
     loop += ztautau.algs.weights.TauSF(
 	    key='TauTotalWeight',
-	    scale=None,
+	    scale=sys_dict['variation'],
 	    )
  
     """
@@ -219,7 +237,7 @@ def analyze(config):
 #-----------------------------#
 #       THREE TRACK TAU
 #-----------------------------#
-
+    
 
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_highPT_Tau3Track',
@@ -1423,7 +1441,8 @@ def analyze(config):
     
 ############ # RQCD SYSTEMATICS
 
-#test region no iso
+    """
+    #test region no iso
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_no_iso',
             plot_all  = False,
@@ -1759,7 +1778,173 @@ def analyze(config):
 		        )	
 	        	
 		for j in range(len(trax)):
-				
+			
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_OS_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+				  ['OS',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_OS_lowPT_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SumCosDPhi05',None],
+				  ['OS',None],
+				  ['TauLowPt',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_OS_highPT_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+				  ['OS',None],
+				  ['TauHighPt',["TauTotalWeight"]],		  
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_OS_Tau'+str(trax[j])+'Track_Ptvarcone30pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+				  ['OS',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Ptvarcone30pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+		 
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_OS_lowPT_Tau'+str(trax[j])+'Track_Ptvarcone30pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+				  ['OS',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['TauLowPt',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Ptvarcone30pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_OS_highPT_Tau'+str(trax[j])+'Track_Ptvarcone30pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+				  ['OS',None],
+				  ['TauHighPt',["TauTotalWeight"]],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Ptvarcone30pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_SS_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SS',None],
+				  ['InvMuonGradIso',None],
+				  ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_SS_lowPT_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SS',None],
+				  ['TauLowPt',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_SS_highPT_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SS',None],
+				  ['TauHighPt',["TauTotalWeight"]],		  
+				  ['InvMuonGradIso',None],
+				  ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_SS_Tau'+str(trax[j])+'Track_Ptvarcone30pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SS',None],
+				  ['InvMuonGradIso',None],
+				  ['Ptvarcone30pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+		 
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_SS_lowPT_Tau'+str(trax[j])+'Track_Ptvarcone30pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+				  ['SumCosDPhi05',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SS',None],
+				  ['TauLowPt',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Ptvarcone30pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+
+			loop += ztautau.algs.algs.PlotAlg(
+				region   = 'AntiIsoCR_SS_highPT_Tau'+str(trax[j])+'Track_Ptvarcone30pt0'+str(n),
+				plot_all = False,
+				cut_flow = [
+				  ['MTrans50',None],
+                                  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+				  ['SumCosDPhi05',None],
+				  ['SS',None],
+				  ['TauHighPt',["TauTotalWeight"]],
+				  ['InvMuonGradIso',None],
+				  ['Ptvarcone30pt0'+str(n),["MuonWeightAI"]],
+				  ],
+				)
+					
+	
 			loop += ztautau.algs.algs.PlotAlg(
 				region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track_Topoetcone20pt0'+str(n),
 				plot_all = False,
@@ -1965,7 +2150,7 @@ def analyze(config):
               ],
             ) 
 
-
+    """
 ########################
 
 
