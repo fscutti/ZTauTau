@@ -64,7 +64,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'TEST_tauSFs_sys_new_new_new'
+RUN = 'TEST_3108_MET_ttb'
 #RUN = 'HistECHIDNA_missingdata_onemore'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
@@ -76,7 +76,7 @@ QUEUE="long"                         # length of pbs queue (short, long, extralo
 SCRIPT="./ztautau/run/j.plotter.py"  # pyframe job script
 BEXEC="Hist.sh"                      # exec script (probably dont change) 
 DO_NOM = True                        # submit the nominal job
-DO_SYS = False#True                  # submit the NTUP systematics jobs
+DO_SYS = True                  # submit the NTUP systematics jobs
 TESTMODE = False                     # submit only 1 sub-job (for testing)
 
 
@@ -105,11 +105,25 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_mc #all_data + all_mc 
+    nominal  = all_mc#all_data + all_mc 
 
     all_sys = [
-        ['SYS2_UP',                  all_mc],
-        ['SYS2_DN',                  all_mc],
+        #['TAUSF_UP',                  all_mc],
+        #['TAUSF_DN',                  all_mc],
+	       #['MUSF_UP',                  all_mc],
+        #['MUSF_DN',                  all_mc],
+	       #['SYS1_UP',                  all_mc],
+        #['SYS1_DN',                  all_mc],
+	#['MUMS_UP',                  all_mc],
+	#['MUMS_DN',                  all_mc],
+	#['MUSCALE_UP',                  all_mc],
+	#['MUSCALE_DN',                  all_mc],
+	#['MUID_UP',                  all_mc],
+	#['MUID_DN',                  all_mc],
+	['METSCALE_UP',                  all_mc],
+	['METSCALE_DN',                  all_mc],
+	['METResoPara',			 all_mc],
+	['METResoPerp', 		 all_mc],
         ]    
     
     ## ensure output path exists
