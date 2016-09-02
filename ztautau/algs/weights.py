@@ -63,8 +63,11 @@ class Pileup(pyframe.core.Algorithm):
     def execute(self, weight):
         if "mc" in self.sampletype: 
             wpileup = self.chain.weight_mc*self.chain.NOMINAL_pileup_combined_weight
+            #wpileup_syst_up = self.chain.weight_mc*self.chain.PRW_DATASF_1up_pileup_combined_weight
+	    #wpileup_syst_down = self.chain.weight_mc*self.chain.PRW_DATASF_1down_pileup_combined_weight
             if self.key: self.store[self.key] = wpileup
             self.set_weight(wpileup*weight)
+            	
         return True
 
 #------------------------------------------------------------------------------
@@ -99,10 +102,12 @@ class MuonSF(pyframe.core.Algorithm):
     def __init__(self, name="MuonScaleFactor",
             key=None,
             scale=None,
+	    sys_name=None,
             ):
         pyframe.core.Algorithm.__init__(self, name=name)
         self.key = key
         self.scale = scale
+        self.sys_name = sys_name
 
         assert key, "Must provide key for storing muon sf"
         assert scale in [None,'up','dn'], "scale must be in [None,'up','dn']"
@@ -126,11 +131,23 @@ class MuonSF(pyframe.core.Algorithm):
  
 	  #print "pt(mu) %lf, trig SF %lf, reco SF %lf, isoGrad SF %lf" % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium, self.chain.lep_0_NOMINAL_MuEffSF_IsoGradient)
  
-          if self.scale: 
-               if self.scale=='up': pass
-               elif self.scale=='dn': pass
-        else: pass
-
+          if self.scale:
+               sf = 1.0
+               if self.sys_name == 'MUSF_UP':
+                sf *= self.chain.lep_0_MUON_EFF_STAT_1up_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_SYS_1up_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+		sf *= self.chain.lep_0_MUON_ISO_STAT_1up_MuEffSF_IsoGradient
+		sf *= self.chain.lep_0_MUON_ISO_SYS_1up_MuEffSF_IsoGradient
+               elif self.sys_name=='MUSF_DN':
+                sf *= self.chain.lep_0_MUON_EFF_STAT_1down_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_SYS_1down_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                sf *= self.chain.lep_0_MUON_ISO_STAT_1down_MuEffSF_IsoGradient
+                sf *= self.chain.lep_0_MUON_ISO_SYS_1down_MuEffSF_IsoGradient
+          else: pass
         if self.key: 
           self.store[self.key] = sf
 
@@ -147,10 +164,12 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
     def __init__(self, name="MuonScaleFactor",
             key=None,
             scale=None,
+            sys_name=None,
             ):
         pyframe.core.Algorithm.__init__(self, name=name)
         self.key = key
         self.scale = scale
+        self.sys_name = sys_name
 
         assert key, "Must provide key for storing muon sf"
         assert scale in [None,'up','dn'], "scale must be in [None,'up','dn']"
@@ -174,9 +193,22 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 	  #print "pt(mu) %lf, antiIso trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium)          
 
           if self.scale:
-               if self.scale=='up': pass
-               elif self.scale=='dn': pass
-        else: pass
+               sf = 1.0
+               if self.sys_name == 'MUSF_UP':
+                sf *= self.chain.lep_0_MUON_EFF_STAT_1up_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_SYS_1up_MuEffSF_Reco_QualMedium
+		sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
+                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
+
+               elif self.sys_name=='MUSF_DN':
+                sf *= self.chain.lep_0_MUON_EFF_STAT_1down_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_SYS_1down_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
+                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
+
+          else: pass
+          
+
 
         if self.key:
           self.store[self.key] = sf
@@ -194,11 +226,12 @@ class TauSF(pyframe.core.Algorithm):
     def __init__(self, name="TauScaleFactor",
             key=None,
             scale=None,
+            sys_name=None,
             ):
         pyframe.core.Algorithm.__init__(self, name=name)
         self.key = key
         self.scale = scale
-
+	self.sys_name = sys_name
         assert key, "Must provide key for storing tau sf"
         assert scale in [None,'up','dn'], "scale must be in [None,'up','dn']"
 
@@ -217,29 +250,27 @@ class TauSF(pyframe.core.Algorithm):
 
 	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium
  	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_reco
-	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad
+	  #sf *= self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad
        	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_VeryLooseLlhEleOLR_electron
  	  #print "tau(mu) %lf, tau id trig SF %lf, tau reco SF %lf, tau olr SF %lf " % (self.chain.tau_0_pt, self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium, self.chain.tau_0_NOMINAL_TauEffSF_reco, self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad)
         
 	  if self.scale:
 	       sf = 1.0
-               if self.scale=='up':
-                sf *= self.chain.tau_0_TRUEHADTAU_EFF_JETID_HIGHPT_1up_TauEFF_JetBDTmedium
+               if self.sys_name == 'TAUSF_UP':
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_HIGHPT_1up_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1up_TauEffSF_JetBDTmedium
-                sf *= self.chain.tau_0_TRUEELECTRON_EFF_ELEOLR_TOTAL_1up_TAUEFFSF_selection
-                sf *= self.chain.tau_0_TRUEHADTAU_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEELECTRON_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_HIGHPT_1up_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1up_TauEffSF_selection
 
-               elif self.scale=='dn': 
-                sf *= self.chain.tau_0_TRUEHADTAU_EFF_JETID_HIGHPT_1down_TauEFF_JetBDTmedium
+               elif self.sys_name=='TAUSF_DN': 
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_HIGHPT_1down_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1down_TauEffSF_JetBDTmedium
-                sf *= self.chain.tau_0_TRUEELECTRON_EFF_ELEOLR_TOTAL_1down_TAUEFFSF_selection
-                sf *= self.chain.tau_0_TRUEHADTAU_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEELECTRON_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_HIGHPT_1down_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1down_TauEffSF_selection	  
-
-	  	
 	  else: pass
 
         if self.key: 
