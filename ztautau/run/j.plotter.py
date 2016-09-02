@@ -59,11 +59,20 @@ def analyze(config):
     
     # this is how you tell the weights 
     # what is the direction of the variation
-    elif sys == 'SYS1_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
-    elif sys == 'SYS1_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
-    elif sys == 'TREESYS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "up")
-    elif sys == 'TREESYS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "dn")
+    elif sys == 'TAUSF_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
+    elif sys == 'TAUSF_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'MUSF_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
+    elif sys == 'MUSF_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'MUMS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1up", sys_var = "up")
+    elif sys == 'MUMS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1down", sys_var = "dn")
+    elif sys == 'MUSCALE_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_SCALE_1up", sys_var = "up")
+    elif sys == 'MUSCALE_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_SCALE_1down", sys_var = "dn")
+    elif sys == 'MUID_UP':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1up", sys_var = "up")
     elif sys == 'MUID_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1down", sys_var = "dn")
+    elif sys == 'METSCALE_UP':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ScaleUp", sys_var = "up")
+    elif sys == 'METSCALE_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ScaleDown", sys_var = "dn")
+    elif sys == 'METResoPara':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPara", sys_var = "up")
+    elif sys == 'METResoPerp':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPerp", sys_var = "up")
     else: 
         assert False, "Invalid sys %s!"%(sys)
     
@@ -125,8 +134,8 @@ def analyze(config):
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
     #loop += ztautau.algs.weights.MCEventWeight(cutflow='presel',key='weight_mc_event')
-    #loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup')
-    loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
+    loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup')#, sys_name=sys_dict['name'], sys_scale=sys_dict['variation'])
+    #loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
    
     ## cuts
     ## +++++++++++++++++++++++++++++++++++++++
@@ -165,15 +174,17 @@ def analyze(config):
     loop += ztautau.algs.weights.MuonSF(
             key='MuonTotalWeight',
             scale=sys_dict['variation'],
-            #sys_dict=sys_dict, #to pass entire dictionary
+            sys_name=sys_dict['name'], #to pass entire dictionary
             )
     loop += ztautau.algs.weights.MuonSFIsoGrad(
             key='MuonWeightAI',
             scale=sys_dict['variation'],
+	    sys_name=sys_dict['name'],
             )
     loop += ztautau.algs.weights.TauSF(
 	    key='TauTotalWeight',
 	    scale=sys_dict['variation'],
+	    sys_name=sys_dict['name'],
 	    )
  
     """
