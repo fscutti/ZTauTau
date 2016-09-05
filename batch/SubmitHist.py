@@ -64,7 +64,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'TEST_3108_MET_ttb'
+RUN = 'TEST_0209_TAUSF'
 #RUN = 'HistECHIDNA_missingdata_onemore'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
@@ -108,22 +108,26 @@ def main():
     nominal  = all_mc#all_data + all_mc 
 
     all_sys = [
-        #['TAUSF_UP',                  all_mc],
-        #['TAUSF_DN',                  all_mc],
-	       #['MUSF_UP',                  all_mc],
-        #['MUSF_DN',                  all_mc],
-	       #['SYS1_UP',                  all_mc],
-        #['SYS1_DN',                  all_mc],
+	
+        #['TAUSF_STAT_UP',                  all_mc],
+        #['TAUSF_STAT_DN',                  all_mc],
+	#['MUSF_STAT_UP',                  all_mc],
+        #['MUSF_STAT_DN',                  all_mc],
+	#['TAUSF_SYS_UP',                  all_mc],
+        ['TAUSF_SYS_DN',                  all_mc],
+	#['MUSF_SYS_UP',                  all_mc],
+        #['MUSF_SYS_DN',                  all_mc],
 	#['MUMS_UP',                  all_mc],
 	#['MUMS_DN',                  all_mc],
 	#['MUSCALE_UP',                  all_mc],
 	#['MUSCALE_DN',                  all_mc],
 	#['MUID_UP',                  all_mc],
 	#['MUID_DN',                  all_mc],
-	['METSCALE_UP',                  all_mc],
-	['METSCALE_DN',                  all_mc],
-	['METResoPara',			 all_mc],
-	['METResoPerp', 		 all_mc],
+	#['METSCALE_UP',                  all_mc],
+	#['METSCALE_DN',                  all_mc],
+	#['METResoPara',			 all_mc],
+	#['METResoPerp', 		 all_mc],
+	
         ]    
     
     ## ensure output path exists
