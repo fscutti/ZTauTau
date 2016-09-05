@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HistKOALA_new'
-outdir   = 'PlotsKOALA_new'
+indir    = 'TEST_0209'
+outdir   = 'PLOTS_0209_rqcd_sys'
 #indir = 'HistROO_2016_incltopoptvar'
 #outdir = 'PLOTSv19_2016_topocone'
 
@@ -58,7 +58,7 @@ regions = {}
 
 # SIGNAL REGION ---------------------------------
 
-regions["SR_no_iso"] = [3,"SR_no_iso"]
+#regions["SR_no_iso"] = [3,"SR_no_iso"]
 
 #regions["SR_OS_no_cuts"] = [0, "SR_OS_no_cuts"]
 #regions["SR_SS_no_cuts"] = [0, "SR_SS_no_cuts"]
@@ -68,9 +68,9 @@ regions["SR"] 		= [4,"SR"]
 """
 regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
 regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
-
+"""
 regions["SR_25med"] 	= [5,"SR_25med"]
-
+"""
 #regions['SR_25med_Tau1Track'] = [6,'SR_25med_Tau1Track']
 #regions["SR_25med_Tau3Track"] = [6,"SR_25med_Tau3Track"]
 
