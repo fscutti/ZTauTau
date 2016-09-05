@@ -2,7 +2,7 @@
 
 # Strings are passed to the script but this is redundant!
 
-python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/TEST_0209" --output="./" --makeplot=True
+python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/TEST_0209" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HistKOALA_new" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/TEST_0209" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_OS_no_cuts" --lab="TEST REGION" --icut="0" --input="/coepp/cephfs/mel/laram1/ztautau/HistEMU_new" --output="./" --makeplot=True
