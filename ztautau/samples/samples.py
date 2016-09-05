@@ -99,6 +99,7 @@ GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "303291", "303304",  "303338",  "303421",  "303499",  "303560"]
 
 """
+
 # v19 2016
 GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "298690", "298771",  "298773",  "298862",  "298967",  "299055",
@@ -114,6 +115,8 @@ GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "303291", "303304",  "303338",  "303421",  "303499",  "303560",
 	"303638", "303726",  "303811",  "303817",  "303819",  "303832",
 	"303846", "303892"]
+
+#GRL += ["299055"]
 
 ds_name = 'physics_Main_00%s'
 
@@ -813,7 +816,6 @@ sub_ztt_35med_3Track = Sample( name 	      = "sub_ztt_35med_3Track",
 		 type	      = "datadriven",
 		 )
 
-
 addon_data  = Sample( name   = "data",
                  tlatex       = "Same Sign",
                  fill_color   = ROOT.kRed-6,
@@ -847,6 +849,47 @@ addon_Zttjets = Sample( name   = Zttjets.name,
                  )
 
 addon_top = Sample( name   = top.name,
+                 tlatex       = top.tlatex+"(OS-SS)",
+                 fill_color   = top.fill_color,
+                 line_color   = top.line_color,
+                 marker_color = top.marker_color,
+                 type         = "datadriven",
+                 )
+
+
+addon_data_OS_no_cuts  = Sample( name   = "data",
+                 tlatex       = "Same Sign",
+                 fill_color   = ROOT.kRed-6,
+                 line_color   = ROOT.kBlack,
+                 marker_color = ROOT.kRed-6,
+                 type         = "datadriven",
+                 )
+
+addon_Wjets_OS_no_cuts = Sample( name   = Wjets.name,
+                 tlatex       = Wjets.tlatex+"(OS-SS)",
+                 fill_color   = Wjets.fill_color,
+                 line_color   = Wjets.line_color,
+                 marker_color = Wjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zlljets_OS_no_cuts = Sample( name   = Zlljets.name,
+                 tlatex       = Zlljets.tlatex+"(OS-SS)",
+                 fill_color   = Zlljets.fill_color,
+                 line_color   = Zlljets.line_color,
+                 marker_color = Zlljets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_Zttjets_OS_no_cuts = Sample( name   = Zttjets.name,
+                 tlatex       = Zttjets.tlatex+"(OS-SS)",
+                 fill_color   = Zttjets.fill_color,
+                 line_color   = Zttjets.line_color,
+                 marker_color = Zttjets.marker_color,
+                 type         = "datadriven",
+                 )
+
+addon_top_OS_no_cuts = Sample( name   = top.name,
                  tlatex       = top.tlatex+"(OS-SS)",
                  fill_color   = top.fill_color,
                  line_color   = top.line_color,
