@@ -133,19 +133,21 @@ class MuonSF(pyframe.core.Algorithm):
  
           if self.scale:
                sf = 1.0
-               if self.sys_name == 'MUSF_UP':
+               if self.sys_name == 'MUSF_STAT_UP':
                 sf *= self.chain.lep_0_MUON_EFF_STAT_1up_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_SYS_1up_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
                 sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
 		sf *= self.chain.lep_0_MUON_ISO_STAT_1up_MuEffSF_IsoGradient
-		sf *= self.chain.lep_0_MUON_ISO_SYS_1up_MuEffSF_IsoGradient
-               elif self.sys_name=='MUSF_DN':
+               elif self.sys_name=='MUSF_STAT_DN':
                 sf *= self.chain.lep_0_MUON_EFF_STAT_1down_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_SYS_1down_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
                 sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
                 sf *= self.chain.lep_0_MUON_ISO_STAT_1down_MuEffSF_IsoGradient
+               if self.sys_name == 'MUSF_SYS_UP':
+                sf *= self.chain.lep_0_MUON_EFF_SYS_1up_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+		sf *= self.chain.lep_0_MUON_ISO_SYS_1up_MuEffSF_IsoGradient
+               elif self.sys_name=='MUSF_SYS_DN':
+                sf *= self.chain.lep_0_MUON_EFF_SYS_1down_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
                 sf *= self.chain.lep_0_MUON_ISO_SYS_1down_MuEffSF_IsoGradient
           else: pass
         if self.key: 
@@ -194,16 +196,20 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 
           if self.scale:
                sf = 1.0
-               if self.sys_name == 'MUSF_UP':
-                sf *= self.chain.lep_0_MUON_EFF_STAT_1up_MuEffSF_Reco_QualMedium
+               if self.sys_name == 'MUSF_SYS_UP':
                 sf *= self.chain.lep_0_MUON_EFF_SYS_1up_MuEffSF_Reco_QualMedium
 		sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
-                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
 
-               elif self.sys_name=='MUSF_DN':
-                sf *= self.chain.lep_0_MUON_EFF_STAT_1down_MuEffSF_Reco_QualMedium
+               elif self.sys_name=='MUSF_SYS_DN':
                 sf *= self.chain.lep_0_MUON_EFF_SYS_1down_MuEffSF_Reco_QualMedium
                 sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
+
+               if self.sys_name == 'MUSF_STAT_UP':
+                sf *= self.chain.lep_0_MUON_EFF_STAT_1up_MuEffSF_Reco_QualMedium
+                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
+
+               elif self.sys_name=='MUSF_STAT_DN':
+                sf *= self.chain.lep_0_MUON_EFF_STAT_1down_MuEffSF_Reco_QualMedium
                 sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
 
           else: pass
@@ -256,21 +262,17 @@ class TauSF(pyframe.core.Algorithm):
         
 	  if self.scale:
 	       sf = 1.0
+
                if self.sys_name == 'TAUSF_UP':
-                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_HIGHPT_1up_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1up_TauEffSF_JetBDTmedium
-                sf *= self.chain.tau_0_TAUS_TRUEELECTRON_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
-                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_HIGHPT_1up_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1up_TauEffSF_selection
 
                elif self.sys_name=='TAUSF_DN': 
-                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_HIGHPT_1down_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1down_TauEffSF_JetBDTmedium
-                sf *= self.chain.tau_0_TAUS_TRUEELECTRON_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
-                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_HIGHPT_1down_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1down_TauEffSF_selection	  
+               
 	  else: pass
 
         if self.key: 
