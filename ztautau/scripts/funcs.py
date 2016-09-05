@@ -246,14 +246,16 @@ def plot_hist(
         total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
         
         g_stat = make_band_graph_from_hist(total_hists[0])
-        g_stat.SetFillColor(ROOT.kGray+1)
+        g_stat.SetFillColor(ROOT.kMagenta-9)
+	#g_stat.SetFillStyle(3004)
         g_tot  = make_band_graph_from_hist(total_hists[3],total_hists[4])
-        g_tot.SetFillColor(ROOT.kRed)
+        g_tot.SetFillColor(ROOT.kGreen-9)
 
     else:
         h_total_stat = make_stat_hist(h_total)
         g_stat = make_band_graph_from_hist(h_total_stat)
-        g_stat.SetFillColor(ROOT.kGray+1)
+        g_stat.SetFillColor(9)
+        g_stat.SetFillStyle(3004)
         g_tot = None
 
     ## blind data and create ratio 
