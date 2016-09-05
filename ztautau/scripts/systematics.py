@@ -36,7 +36,7 @@ sys_dict = {}
 
 #['METResoPara', 'METResoPerp', 'MUID_DN', 'MUID_UP', 'MUMS_DN', 'MUMS_UP', 'MUSCALE_DN', 'MUSCALE_UP', 'TAUSF_SYS_DN', 'TAUSF_SYS_UP', 'TAUSF_STAT_UP', 'TAUSF_STAT_DN', 'MUSF_SYS_DN', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'MUSF_STAT_DN', 'METSCALE_DN', 'METSCALE_UP']
 
-"""
+
 MUID = sys_dict['MUID'] = Systematic(
         'MUID',
         var_up='MUID_UP', #name of submit hist output
@@ -60,7 +60,7 @@ METSCALE = sys_dict['METSCALE'] = Systematic(
         var_up='METSCALE_UP', #name of submit hist output
         var_dn='METSCALE_DN'
         )
-"""
+
 TAUSF_SYS = sys_dict['TAUSF_SYS'] = Systematic(
         'TAUSF_SYS',
         var_up='TAUSF_SYS_UP', #name of submit hist output
@@ -72,7 +72,7 @@ TAUSF_STAT = sys_dict['TAUSF_STAT'] = Systematic(
         var_up='TAUSF_STAT_UP', #name of submit hist output
         var_dn='TAUSF_STAT_DN'
         )
-"""
+
 MUSF_SYS = sys_dict['MUSF_SYS'] = Systematic(
         'MUSF_SYS',
         var_up='MUSF_SYS_UP', #name of submit hist output
@@ -85,13 +85,11 @@ MUSF_STAT = sys_dict['MUSF_STAT'] = Systematic(
         var_dn='MUSF_STAT_DN'
         )
 
-"""
-"""
 SYS2 = sys_dict['SYS2'] = Systematic(
         'SYS2','$\\sigma_{\\rm Wtaunu}$',      
         flat_err=0.05,
         )
-"""
+
 # -----------------------------------
 # A whole bunch of RQCD uncertainties
 # -----------------------------------
