@@ -900,7 +900,7 @@ fakes.estimator = histmgr.DataBkgSubEstimator(
 # PT BINNING
 #----------------------------------------------
 
-
+"""
 
 for b in addon_backgrounds_lowPT:
  b.estimator = histmgr.AddOnEstimator(
@@ -1334,7 +1334,7 @@ for i in range(len(addon_backgrounds_35med_3Track)):
  	)
 
 #############################
-
+"""
 sub_ztt.estimator = histmgr.DataBkgSubEstimator(
 	hm = hm,
 	sample = sub_ztt,
@@ -1426,38 +1426,35 @@ mc_sys = [
     'METSCALE',                
     ]
 """
-"""
-for s in mc_backgrounds + mc_signals:
+
+for s in mc_signals:
     s.estimator.add_systematics(MUID)
-
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(MUMS)
-
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(MUSCALE)
-"""
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(TAUSF_SYS)
-
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(TAUSF_STAT)
-"""
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(MUSF_SYS)
-
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(MUSF_STAT)
-
-for s in mc_backgrounds + mc_signals:
     s.estimator.add_systematics(METSCALE)
-"""
-#addon_Zttjets.estimator.add_systematics(RQCD_AntiIsoCR)
-#addon_Zttjets_25med.estimator.add_sysatematics(RQCD_AntiIsoCR_25med)
+
 # Add systematics for each subsample
 """
 
 # NO PT BINNING
 
+"""
+for s in addon_backgrounds:
+    s.estimator.add_systematics(RQCD_AntiIsoCR)
+    s.estimator.add_systematics(MUID)
+    s.estimator.add_systematics(MUMS)
+    s.estimator.add_systematics(MUSCALE)
+    s.estimator.add_systematics(TAUSF_SYS)
+    s.estimator.add_systematics(TAUSF_STAT)
+    s.estimator.add_systematics(MUSF_SYS)
+    s.estimator.add_systematics(MUSF_STAT)
+    s.estimator.add_systematics(METSCALE)
+
+"""
 
 addon_data.estimator.add_systematics(RQCD_AntiIsoCR)
 addon_data.estimator.add_systematics(MUID)
@@ -1523,11 +1520,49 @@ addon_data_highPT.estimator.add_systematics(MUSF_SYS)
 addon_data_lowPT.estimator.add_systematics(METSCALE)
 addon_data_highPT.estimator.add_systematics(METSCALE)
 """
-addon_data_lowPT.estimator.add_systematics(RQCD_AntiIsoCR_lowPT)
-addon_data_highPT.estimator.add_systematics(RQCD_AntiIsoCR_highPT)
+"""
+for s in addon_backgrounds_lowPT:
+    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT) 
+    s.estimator.add_systematics(MUID)
+    s.estimator.add_systematics(MUMS)
+    s.estimator.add_systematics(MUSCALE)
+    s.estimator.add_systematics(TAUSF_SYS)
+    s.estimator.add_systematics(TAUSF_STAT)
+    s.estimator.add_systematics(MUSF_SYS)
+    s.estimator.add_systematics(MUSF_STAT)
+    s.estimator.add_systematics(METSCALE)
+
+for s in addon_backgrounds_highPT:
+    s.estimator.add_systematics(RQCD_AntiIsoCR_highPT)
+    s.estimator.add_systematics(MUID)
+    s.estimator.add_systematics(MUMS)
+    s.estimator.add_systematics(MUSCALE)
+    s.estimator.add_systematics(TAUSF_SYS)
+    s.estimator.add_systematics(TAUSF_STAT)
+    s.estimator.add_systematics(MUSF_SYS)
+    s.estimator.add_systematics(MUSF_STAT)
+    s.estimator.add_systematics(METSCALE)
+
+for s in addon_backgrounds:
+    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT)
+    s.estimator.add_systematics(RQCD_AntiIsoCR_highPT)
+    s.estimator.add_systematics(MUID)
+    s.estimator.add_systematics(MUMS)
+    s.estimator.add_systematics(MUSCALE)
+    s.estimator.add_systematics(TAUSF_SYS)
+    s.estimator.add_systematics(TAUSF_STAT)
+    s.estimator.add_systematics(MUSF_SYS)
+    s.estimator.add_systematics(MUSF_STAT)
+    s.estimator.add_systematics(METSCALE)
+
+
+
+#addon_data_lowPT.estimator.add_systematics(RQCD_AntiIsoCR_lowPT)
+#addon_data_highPT.estimator.add_systematics(RQCD_AntiIsoCR_highPT)
 
 #----------#
-"""
+
+
 addon_data_25med_lowPT.estimator.add_systematics(MUID)
 addon_data_25med_highPT.estimator.add_systematics(MUID)
 
@@ -1536,13 +1571,13 @@ addon_data_25med_highPT.estimator.add_systematics(MUMS)
 
 addon_data_25med_lowPT.estimator.add_systematics(MUSCALE)
 addon_data_25med_highPT.estimator.add_systematics(MUSCALE)
-"""
+
 addon_data_25med_lowPT.estimator.add_systematics(TAUSF_SYS)
 addon_data_25med_highPT.estimator.add_systematics(TAUSF_SYS)
 
 addon_data_25med_lowPT.estimator.add_systematics(TAUSF_STAT)
 addon_data_25med_highPT.estimator.add_systematics(TAUSF_STAT)
-"""
+
 addon_data_25med_lowPT.estimator.add_systematics(MUSF_STAT)
 addon_data_25med_highPT.estimator.add_systematics(MUSF_STAT)
 
@@ -1553,7 +1588,7 @@ addon_data_25med_lowPT.estimator.add_systematics(METSCALE)
 addon_data_25med_highPT.estimator.add_systematics(METSCALE)
 
 # ---------#
-"""
+
 addon_data_25med_lowPT.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT)
 addon_data_25med_highPT.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 
@@ -1580,7 +1615,7 @@ addon_data_35med_highPT_3Track.estimator.add_systematics(RQCD_AntiIsoCR_35med_hi
 
 #load non rqcd sys for mc bakg and addon data
 
-
+"""
 
 vdict  = vars.vars_dict
 
@@ -1603,14 +1638,14 @@ plot_signals = []
 if "SR" == options.region:  
 
 	print "signal region"
-
+	
 	plot_backgrounds.append(addon_data)
 	plot_backgrounds.append(addon_Wjets)
 	plot_backgrounds.append(addon_Zlljets)
 	plot_backgrounds.append(addon_top)
-
+	
         plot_signals.append(samples.Zttjets)
-        #plot_signals.append(sub_ztt) 
+        plot_signals.append(sub_ztt) 
 
 #elif "SR_OS_no_cuts" == options.region:  
 
