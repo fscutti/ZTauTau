@@ -59,10 +59,14 @@ def analyze(config):
     
     # this is how you tell the weights 
     # what is the direction of the variation
-    elif sys == 'TAUSF_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
-    elif sys == 'TAUSF_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
-    elif sys == 'MUSF_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
-    elif sys == 'MUSF_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'TAUSF_STAT_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
+    elif sys == 'TAUSF_STAT_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'MUSF_STAT_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
+    elif sys == 'MUSF_STAT_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'TAUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
+    elif sys == 'TAUSF_SYS_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'MUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
+    elif sys == 'MUSF_SYS_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'MUMS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1up", sys_var = "up")
     elif sys == 'MUMS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1down", sys_var = "dn")
     elif sys == 'MUSCALE_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_SCALE_1up", sys_var = "up")
@@ -72,7 +76,7 @@ def analyze(config):
     elif sys == 'METSCALE_UP':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ScaleUp", sys_var = "up")
     elif sys == 'METSCALE_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ScaleDown", sys_var = "dn")
     elif sys == 'METResoPara':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPara", sys_var = "up")
-    elif sys == 'METResoPerp':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPerp", sys_var = "up")
+    elif sys == 'METResoPerp':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPerp", sys_var = "dn")
     else: 
         assert False, "Invalid sys %s!"%(sys)
     
