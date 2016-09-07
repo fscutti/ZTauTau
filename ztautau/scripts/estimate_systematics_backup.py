@@ -121,10 +121,13 @@ hist_SR_MC_posttrig.Print("all")
 print "denominator"
 hist_SR_MC_pretrig.Print("all")
 """
-h_efficiency_simple_mc_nominal = hist_SR_MC_posttrig.Clone()
-#h_efficiency_simple_mc.Divide(hist_SR_MC_pretrig)
+h_efficiency_simple_mc_nominal = hist_SR_MC_posttrig.Clone() 
+
+# TEST WITH TEFFICIENCY
 h_efficiency_simple_mc_nominal.Divide(hist_SR_MC_posttrig, hist_SR_MC_pretrig, 1.0, 1.0, "B")
-test_bin = h_efficiency_simple_mc_nominal.GetBinContent(1)
+#h_efficiency_simple_mc_nominal = ROOT.TEfficiency(hist_SR_MC_posttrig, hist_SR_MC_pretrig)
+
+#test_bin = h_efficiency_simple_mc_nominal.GetBinContent(1)
 
 print "****************************"
 print "nominal hists"
@@ -142,8 +145,8 @@ h_efficiency_simple_subztt_nominal.Write()
 h_efficiency_simple_mc_nominal.Write()
 outfile.Close()
 
-sys_up = ['MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'TAUSF_STAT_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP', 'RQCD_AntiIsoCR_lowPT_UP', 'RQCD_AntiIsoCR_highPT_UP']
-sys_dn = ['MUID_DN', 'MUMS_DN', 'MUSCALE_DN', 'TAUSF_SYS_DN', 'TAUSF_STAT_DN', 'MUSF_SYS_DN', 'MUSF_STAT_DN', 'METSCALE_DN', 'RQCD_AntiIsoCR_lowPT_DN', 'RQCD_AntiIsoCR_highPT_DN']
+sys_up = ['MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'TAUSF_STAT_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP']#, 'RQCD_AntiIsoCR_lowPT_UP', 'RQCD_AntiIsoCR_highPT_UP']
+sys_dn = ['MUID_DN', 'MUMS_DN', 'MUSCALE_DN', 'TAUSF_SYS_DN', 'TAUSF_STAT_DN', 'MUSF_SYS_DN', 'MUSF_STAT_DN', 'METSCALE_DN']#, 'RQCD_AntiIsoCR_lowPT_DN', 'RQCD_AntiIsoCR_highPT_DN']
 
 
 sys_up_dict = {}
@@ -534,41 +537,39 @@ for i in range(len(sys_up)):
 	sys_up_dict[str(sys_up[i])] = nom_sub_up
 	print len(nom_sub_up)
 
-
-
 # Quadratic sum all the entries of the hists
-total_sys_up_data1 = ROOT.TH1F("total_sys_up_data", "total_sys_up_data", 13, 25., 300.)
-total_sys_dn_data1 = ROOT.TH1F("total_sys_dn_data", "total_sys_dn_data", 13, 25., 300.)
+total_sys_up_data1 = ROOT.TH1F("total_sys_up_data", "total_sys_up_data", 100, 0, 1000.)
+total_sys_dn_data1 = ROOT.TH1F("total_sys_dn_data", "total_sys_dn_data", 100, 0, 1000.)
 
 xlow = [25.,28.,30.,32.,34.,36.,39.,40.,52.,64.,80.,100.,150.,300.]
 total_sys_up_data = total_sys_up_data1.Rebin(13,"total_sys_up_data",array.array('d',xlow))
 total_sys_dn_data = total_sys_dn_data1.Rebin(13,"total_sys_dn_data",array.array('d',xlow))
 
 for k in range(len(nom_sub_up)):
-	sys_up_k = 0
-	sys_dn_k = 0
-	print "bin", k
-	for j in range(len(sys_up)):
+        sys_up_k = 0
+        sys_dn_k = 0
+        for j in range(len(sys_up)):
+                print sys_up[j]
+                print sys_dn[j]
+                list_up = sys_up_dict[sys_up[j]]
+                list_dn = sys_dn_dict[sys_dn[j]]
+                print list_up
+                print list_dn
+                x = list_up[k]
+                y = list_dn[k]
 
-		list_up = sys_up_dict[sys_up[j]]	
-		list_dn = sys_dn_dict[sys_dn[j]]
+                val_up_k = max(x,y)
+                val_dn_k = min(x,y)
 
-		x = list_up[k]
-		y = list_dn[k]
+                sys_up_k += val_up_k**2
+                sys_dn_k += val_dn_k**2
 
-		print x, y
+        total_sys_up = math.sqrt(sys_up_k)
+        total_sys_dn = math.sqrt(sys_dn_k)
 
-		val_up_k = max(x,y)
-		val_dn_k = min(x,y)
-		
-		sys_up_k += val_up_k**2
-		sys_dn_k += val_dn_k**2
+        total_sys_up_data.SetBinContent(k, total_sys_up)
+        total_sys_dn_data.SetBinContent(k, total_sys_dn)
 
-	total_sys_up = math.sqrt(sys_up_k)
-	total_sys_dn = math.sqrt(sys_dn_k)
-
-	total_sys_up_data.SetBinContent(k, total_sys_up)
-	total_sys_dn_data.SetBinContent(k, total_sys_dn)
 
 total_sys_up_data.Print("all")
 total_sys_dn_data.Print("all")
@@ -579,6 +580,7 @@ h_efficiency_simple_mc_nominal = nom_hists_file.Get('hist_SR_subztt_posttrig')
 
 h_samp_list_mc = []
 h_samp_list_mc.append(h_efficiency_simple_mc_nominal)
+
 h_total_mc = funcs.histutils.add_hists(h_samp_list_mc)
 h_total_stat_mc = funcs.make_stat_hist(h_total_mc)
 
@@ -588,7 +590,7 @@ h_total_data = funcs.histutils.add_hists(h_samp_list_data)
 h_total_stat_data = funcs.make_stat_hist(h_total_data)
 
 data_sys_band = funcs.make_band_graph_from_hist(total_sys_up_data,total_sys_dn_data)
-data_sys_band.SetFillColor(ROOT.kAzure+1) 
+data_sys_band.SetFillColor(ROOT.kMagenta+1)
 
 mc_stat = funcs.make_band_graph_from_hist(h_total_stat_mc)
 mc_stat.SetFillColor(ROOT.kGray+1)
@@ -606,14 +608,16 @@ total_dn_data = total_dn_data1.Rebin(13,"total_dn_data",array.array('d',xlow))
 for i in range(1,h_total_stat_data.GetNbinsX()+1):
         tot_sys_up = total_sys_up_data.GetBinContent(i)
         tot_sys_dn = total_sys_dn_data.GetBinContent(i)
-        stat = data_stat.GetBinContent(i)
-        tot_UP = sqrt(pow(tot_sys_up,2)+pow(stat,2))
-        tot_DN = sqrt(pow(tot_sys_up,2)+pow(stat,2))
+        stat = h_total_stat_data.GetBinContent(i)
+        tot_UP = math.sqrt(pow(tot_sys_up,2)+pow(stat,2))
+        tot_DN = math.sqrt(pow(tot_sys_up,2)+pow(stat,2))
         total_up_data.SetBinContent(i,tot_UP)
         total_dn_data.SetBinContent(i,tot_DN)
 
-g_tot  = make_band_graph_from_hist(total_up_data,total_dn_data)
+
+g_tot  = funcs.make_band_graph_from_hist(total_up_data,total_dn_data)
 g_tot.SetFillColor(46)
+
 
 h_data = h_efficiency_simple_subztt.Clone()
 h_ratio = h_data.Clone()
@@ -640,7 +644,7 @@ leg.AddEntry(h_efficiency_simple_subztt,"Data",'PL')
 leg.AddEntry(h_efficiency_simple_mc,"Z#rightarrow#tau#tau",'F')
 
 c = ROOT.TCanvas("efficiency","efficiency",750,800)
-xmin = h_total.GetBinLowEdge(1)
+xmin = h_total_stat_data.GetBinLowEdge(1)
 xmax = 300
 ymin = 0
 ymax = 1.1 #h_total.GetMaximum()
@@ -669,8 +673,6 @@ pad1.cd()
 
 ytitle = "Efficiency"
 #ytitle = yaxistitle
-
-
 fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle))
 fr1.GetXaxis().SetTitleSize(0)
 fr1.GetXaxis().SetLabelSize(0)
@@ -727,8 +729,9 @@ yaxis2.SetNdivisions(510)
 xaxis2.SetNdivisions(510)
 yaxis2.SetTitle("SF")
 
-g_stat.Draw("E2")
+#mc_stat.Draw("E2")
 data_sys_band.Draw("E2")
+#g_tot.Draw("E2")
 
 h_ratio.Draw("Same")
 pad2.RedrawAxis()
@@ -742,6 +745,3 @@ fout.Close()
 
 
 
-
-	
-	
