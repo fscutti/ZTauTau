@@ -263,12 +263,12 @@ class TauSF(pyframe.core.Algorithm):
 	  if self.scale:
 	       sf = 1.0
 
-               if self.sys_name == 'TAUSF_UP':
+               if self.sys_name == 'TAUSF_SYS_UP':
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1up_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1up_TauEffSF_selection
 
-               elif self.sys_name=='TAUSF_DN': 
+               elif self.sys_name=='TAUSF_SYS_DN': 
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1down_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1down_TauEffSF_selection	  
