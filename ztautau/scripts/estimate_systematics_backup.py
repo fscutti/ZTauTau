@@ -311,9 +311,9 @@ for i in range(len(sys_dn)):
 	#h_efficiency_simple_mc.Divide(hist_SR_MC_pretrig)
 	h_efficiency_simple_mc.Divide(hist_SR_MC_posttrig, hist_SR_MC_pretrig, 1.0, 1.0, "B")
 	test_bin = h_efficiency_simple_mc.GetBinContent(1)
-	print "**************** RESULT"
-	h_efficiency_simple_subztt.Print("all")
-	h_efficiency_simple_mc.Print("all")
+	#print "**************** RESULT"
+	#h_efficiency_simple_subztt.Print("all")
+	#h_efficiency_simple_mc.Print("all")
 
 	outfile = ROOT.TFile('systematics_'+str(sys_dn[i])+'.root','recreate')
 	'''
@@ -333,7 +333,7 @@ for i in range(len(sys_dn)):
         	e_dn = h_efficiency_simple_subztt.GetBinContent(j)
 		diff = e_nom-e_dn
 		nom_sub_dn.append(diff)
-
+		print diff
 	sys_dn_dict[str(sys_dn[i])] = nom_sub_dn
 
 for i in range(len(sys_up)):
@@ -534,6 +534,7 @@ for i in range(len(sys_up)):
         	e_up = h_efficiency_simple_subztt.GetBinContent(j)
 		diff = e_nom-e_up
 		nom_sub_up.append(diff)
+		print diff
 	sys_up_dict[str(sys_up[i])] = nom_sub_up
 	print len(nom_sub_up)
 
