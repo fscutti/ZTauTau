@@ -259,14 +259,14 @@ print ""
 print "---> total sys no trig incl =", max( ((max_rqcd_i_topo_1track - min_rqcd_i_topo_1track)/2), ((max_rqcd_i_ptvar_1track - min_rqcd_i_ptvar_1track)/2) )
 print "---> total sys no trig incl (percentage) =", max( ((max_rqcd_i_topo_1track - min_rqcd_i_topo_1track)/2)/rqcd_i_val_1track, ((max_rqcd_i_ptvar_1track - min_rqcd_i_ptvar_1track)/2)/rqcd_i_val_1track )
 print ""
-
+"""
 
 # LOW VS HIGH PT
-rqcd_i_low_1track_val = 
-rqcd_i_high_1track_val = 
+rqcd_i_low_1track_val = 1.127 
+rqcd_i_high_1track_val = 1.183
 
-rqcd_i_low_topo_1track = []
-rqcd_i_high_topo_1track = []
+rqcd_i_low_topo_1track = [1.107, 1.103, 1.096, 1.091, 1.088, 1.082, 1.090, 1.081, 1.070, 1.062, 1.060, 1.062, 1.068, 1.064]
+rqcd_i_high_topo_1track = [1.152, 1.158, 1.149, 1.160, 1.166, 1.175, 1.178, 1.175, 1.171, 1.172, 1.185, 1.189, 1.189, 1.178]
 
 diff_rqcd_i_low_val_topo_1track = 0
 diff_rqcd_i_high_val_topo_1track = 0
@@ -329,7 +329,7 @@ print "---> total sys no trig low pt (percentage) =", max( ((max_rqcd_i_high_ptv
 print ""
 print "***********"
 print ""
-"""
+
 # ----------------------------------- #
 #     	   25 med trigger
 # ------------------------------------#
