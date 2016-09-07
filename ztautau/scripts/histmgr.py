@@ -448,13 +448,13 @@ class AddOnEstimator(BaseEstimator):
         
         addon_regions = self.addon_regions
 
-        h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"]) 
+	h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"]).Clone()
 	fakes_int = histutils.full_integral(h_fakes)
-	print "fakes pre rqcd", fakes_int
+	#print "fakes pre rqcd", fakes_int
         h_fakes.Scale(rqcd) 
 	fakes_int_scaled = histutils.full_integral(h_fakes)
-        print "fakes post rqcd", fakes_int_scaled        
-	print "does rqcd =", fakes_int_scaled/fakes_int
+        #print "fakes post rqcd", fakes_int_scaled        
+	#print "does rqcd =", fakes_int_scaled/fakes_int
 
         h_addon = {} 
         h_addon[self.data_sample] = h_fakes.Clone()
