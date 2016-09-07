@@ -128,6 +128,18 @@ def make_band_graph_from_hist(h_UP,h_DN=None):
         graph.SetPointError(i-1,ex,ex,eUP,eDN)
     return graph
 
+
+#____________________________________________________________
+def make_error_scatter_graph(hist,h_UP,h_DN):
+
+    graph = ROOT.TGraphAsymmErrors()
+    for i in range(1,hist.GetNbinsX()+1):
+        eUP = abs(h_UP.GetBinContent(i))
+        eDN = abs(h_DN.GetBinContent(i))
+	ex = h_UP.GetBinWidth(i)/2.
+	graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
+	graph.SetPointError(i-1,ex,ex,eUP,eDN)
+    return graph
 #____________________________________________________________
 def get_total_stat_sys_hists(hists,sys_dict):
     """
