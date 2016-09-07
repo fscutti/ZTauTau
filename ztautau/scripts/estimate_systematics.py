@@ -16,7 +16,7 @@ from systematics     import *
 trig = "25"
 
 #--------- inclusive ------------#
-
+"""
 f = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
 hist_SR_subztt_pretrig1 = f.Get('h_SR_nominal_sub_ztt')
 
@@ -28,7 +28,7 @@ hist_SR_MC_pretrig1 = h.Get('h_SR_nominal_Zttjets')
 
 i = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
 hist_SR_MC_posttrig1 = i.Get('h_SR_'+str(trig)+'med_nominal_Zttjets')
-
+"""
 """
 #--------- 1 vs 3 prong ------------#
 
@@ -43,6 +43,7 @@ hist_SR_MC_pretrig1 = h.Get('h_SR_nominal_Zttjets')
 
 i = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_'+str(trax)'.root')
 hist_SR_MC_posttrig1 = i.Get('h_SR_'+str(trig)+'med_nominal_Zttjets')
+"""
 """
 #    ONE PRONG
 hist_SR_subztt_pretrig1.SetXTitle('')
@@ -69,7 +70,7 @@ h_efficiency_simple_subztt_nominal.Divide(hist_SR_subztt_posttrig, hist_SR_subzt
 
 h_efficiency_simple_mc_nominal = hist_SR_MC_posttrig.Clone()
 h_efficiency_simple_mc_nominal.Divide(hist_SR_MC_posttrig, hist_SR_MC_pretrig, 1.0, 1.0, "B")
-
+"""
 """
 print "****************************"
 print "nominal hists"
@@ -78,12 +79,12 @@ h_efficiency_simple_subztt_nominal.Print("all")
 h_efficiency_simple_mc_nominal.Print("all")
 print "****************************"
 """
-
+"""
 outfile = ROOT.TFile('simple_outputnew.root','recreate')
 h_efficiency_simple_subztt_nominal.Write()
 h_efficiency_simple_mc_nominal.Write()
 outfile.Close()
-
+"""
 sys_up = ['MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'TAUSF_STAT_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP', 'RQCD_AntiIsoCR_lowPT_UP', 'RQCD_AntiIsoCR_highPT_UP']
 sys_dn = ['MUID_DN', 'MUMS_DN', 'MUSCALE_DN', 'TAUSF_SYS_DN', 'TAUSF_STAT_DN', 'MUSF_SYS_DN', 'MUSF_STAT_DN', 'METSCALE_DN', 'RQCD_AntiIsoCR_lowPT_DN', 'RQCD_AntiIsoCR_highPT_DN']
 
@@ -110,7 +111,6 @@ for i in range(len(sys_dn)):
 
         else:
                 sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_'+str(sys_dn[i])+'_sub_ztt_'+str(trig)+'med')
-
 	h0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
 
         if sys_dn[i] == 'RQCD_AntiIsoCR_lowPT_DN':
@@ -187,14 +187,14 @@ for i in range(len(sys_dn)):
 
 
 	xlow = [25.,28.,30.,32.,34.,36.,39.,40.,52.,64.,80.,100.,150.,300.]
-	sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(13,"sys_dn_hist_SR_subztt_pretrig",array.array('d',xlow))
-	sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(13,"sys_dn_hist_SR_subztt_posttrig",array.array('d',xlow))
-	sys_dn_hist_SR_MC_pretrig = sys_dn_hist_SR_MC_pretrig.Rebin(13,"sys_dn_hist_SR_MC_pretrig",array.array('d',xlow))
-	sys_dn_hist_SR_MC_posttrig = sys_dn_hist_SR_MC_posttrig.Rebin(13,"sys_dn_hist_SR_MC_posttrig",array.array('d',xlow))
+	sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(13,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
+	sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(13,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
+	sys_dn_hist_SR_MC_pretrig = sys_dn_hist_SR_MC_pretrig.Rebin(13,"sys_dn_"+str(sys_dn[i])+"_hist_SR_MC_pretrig",array.array('d',xlow))
+	sys_dn_hist_SR_MC_posttrig = sys_dn_hist_SR_MC_posttrig.Rebin(13,"sys_"+str(sys_dn[i])+"_dn_hist_SR_MC_posttrig",array.array('d',xlow))
 	
-	h_efficiency_simple_subztt = sys_dn_hist_SR_subztt_posttrig.Clone()
-        h_efficiency_simple_subztt_divide = sys_dn_hist_SR_subztt_pretrig.Clone()	
-	h_efficiency_simple_subztt.Divide(h_efficiency_simple_subztt, h_efficiency_simple_subztt_divide, 1.0, 1.0, "B")
+	sys_dn_h_efficiency_subztt = sys_dn_hist_SR_subztt_posttrig.Clone()
+        sys_dn_h_efficiency_subztt_divide = sys_dn_hist_SR_subztt_pretrig.Clone()	
+	sys_dn_h_efficiency_subztt.Divide(sys_dn_h_efficiency_subztt, sys_dn_h_efficiency_subztt_divide, 1.0, 1.0, "B")
 
 	h_efficiency_simple_mc = sys_dn_hist_SR_MC_posttrig.Clone()
 	h_efficiency_simple_mc_divide = sys_dn_hist_SR_MC_pretrig.Clone()
@@ -207,7 +207,7 @@ for i in range(len(sys_dn)):
 	"""
 
 	outfile = ROOT.TFile('systematics_'+str(sys_dn[i])+'.root','recreate')
-	h_efficiency_simple_subztt.Write()
+	sys_dn_h_efficiency_subztt.Write()
 	h_efficiency_simple_mc.Write()
 	outfile.Close()
         
@@ -217,7 +217,7 @@ for i in range(len(sys_dn)):
 	for j in range(1,14):
 
         	e_nom = h_efficiency_simple_subztt_nominal.GetBinContent(j)
-        	e_dn = h_efficiency_simple_subztt.GetBinContent(j)
+        	e_dn = sys_dn_h_efficiency_subztt.GetBinContent(j)
 		diff = e_nom-e_dn
 		nom_sub_dn.append(diff)
 		print "difference is", diff
