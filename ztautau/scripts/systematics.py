@@ -1,9 +1,7 @@
 # encoding: utf-8
 '''
 systematics.py
-
 description:
-
 '''
 ## modules
 
