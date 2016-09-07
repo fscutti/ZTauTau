@@ -127,7 +127,7 @@ ptvarcone30 = Var(name = 'ptvarcone30',
 tau_pt = Var(name = 'tau_pt',
               path    = 'taus',
               xmin    = 20,
-              xmax    = 80,
+              xmax    = 300,
               rebin   = 4,
               log     = False,
               )
