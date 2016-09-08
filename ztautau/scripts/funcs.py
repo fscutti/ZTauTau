@@ -104,12 +104,28 @@ def make_stat_hist(h):
     '''
     h_stat = h.Clone('%s_stat'%(h.GetName()))
     for i in range(1,h.GetNbinsX()+1): 
+
         n = h.GetBinContent(i)
         en = h.GetBinError(i)
-        stat = en / n if n else 0.0
+        #stat = en / n if n else 0.0
+	stat = en
         h_stat.SetBinContent(i,stat) 
     return h_stat
 
+
+#____________________________________________________________
+def make_stat_scatter(hist1, hist2):
+    #make s stat error graph from hist 1, centered on hist 2 (for ratio plot)
+    graph = ROOT.TGraphAsymmErrors()
+    if hist1.GetNbinsX() == hist2.GetNbinsX():
+	    for i in range(1,hist1.GetNbinsX()+1):	
+		n = hist1.GetBinContent(i)
+		en = hist1.GetBinError(i)
+		stat = en / n if n else 0.0	
+		ex = hist1.GetBinWidth(i)/2.
+		graph.SetPoint(i-1,hist2.GetBinCenter(i),hist2.GetBinContent(i))
+		graph.SetPointError(i-1,ex,ex,stat,stat)
+	    return graph
 #____________________________________________________________
 def make_band_graph_from_hist(h_UP,h_DN=None):
     '''
