@@ -59,8 +59,6 @@ def analyze(config):
     
     # this is how you tell the weights 
     # what is the direction of the variation
-    elif sys == 'TAUSF_STAT_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
-    elif sys == 'TAUSF_STAT_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'MUSF_STAT_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
     elif sys == 'MUSF_STAT_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'TAUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
@@ -220,7 +218,7 @@ def analyze(config):
     ## make plots
     ##-------------------------------------------------------------------------
 
-    triggers = [25,35]
+    triggers = [25,35, 50_L1TAU12, 80, 80_L1TAU60, 125, 160]
     trax = [1,3]
 
     
