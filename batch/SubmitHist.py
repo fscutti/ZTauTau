@@ -64,7 +64,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'TEST_0209_TAUSF'
+RUN = 'TEST_0709_TAUSF'
 #RUN = 'HistECHIDNA_missingdata_onemore'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
@@ -109,11 +109,9 @@ def main():
 
     all_sys = [
 	
-        #['TAUSF_STAT_UP',                  all_mc],
-        #['TAUSF_STAT_DN',                  all_mc],
 	#['MUSF_STAT_UP',                  all_mc],
         #['MUSF_STAT_DN',                  all_mc],
-	#['TAUSF_SYS_UP',                  all_mc],
+	['TAUSF_SYS_UP',                  all_mc],
         ['TAUSF_SYS_DN',                  all_mc],
 	#['MUSF_SYS_UP',                  all_mc],
         #['MUSF_SYS_DN',                  all_mc],
