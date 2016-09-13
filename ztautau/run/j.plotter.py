@@ -65,6 +65,8 @@ def analyze(config):
     elif sys == 'TAUSF_SYS_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'MUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
     elif sys == 'MUSF_SYS_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'PILEUP_DN':	sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'PILEUP_UP':       sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
     elif sys == 'MUMS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1up", sys_var = "up")
     elif sys == 'MUMS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1down", sys_var = "dn")
     elif sys == 'MUSCALE_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_SCALE_1up", sys_var = "up")
@@ -136,7 +138,7 @@ def analyze(config):
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
     #loop += ztautau.algs.weights.MCEventWeight(cutflow='presel',key='weight_mc_event')
-    loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup')#, sys_name=sys_dict['name'], sys_scale=sys_dict['variation'])
+    loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup', sys_name=sys_dict['name'], scale=sys_dict['variation'])
     #loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
    
     ## cuts
@@ -218,7 +220,7 @@ def analyze(config):
     ## make plots
     ##-------------------------------------------------------------------------
 
-    triggers = [25,35, 50_L1TAU12, 80, 80_L1TAU60, 125, 160]
+    triggers = [25,35]#, 50_L1TAU12, 80, 80_L1TAU60, 125, 160]
     trax = [1,3]
 
     
@@ -1454,7 +1456,7 @@ def analyze(config):
     
 ############ # RQCD SYSTEMATICS
 
-    """
+    
     #test region no iso
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_no_iso',
@@ -1468,7 +1470,7 @@ def analyze(config):
             )
 
     
-
+    """
 
     n = 10
     while n < 41:
@@ -2135,8 +2137,8 @@ def analyze(config):
 				)
 	
 	n  += 1
-
-############ # KW SYSTEMATICS
+    """
+    ############ # KW SYSTEMATICS
 
     namekw = [625,675,725,775,825,875,925,975,1025,1075]
     for i in range(len(namekw)):
@@ -2163,7 +2165,319 @@ def analyze(config):
               ],
             ) 
 
-    """
+        loop += ztautau.algs.algs.PlotAlg(
+            region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['MTrans'+str(namekw[i]),None],
+              ['MET30',None],
+              ['OS',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+
+        loop += ztautau.algs.algs.PlotAlg(
+            region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['MET30',None],
+              ['OS',None],
+              ['MTrans'+str(namekw[i]),None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+
+        loop += ztautau.algs.algs.PlotAlg(
+            region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['MTrans'+str(namekw[i]),None],
+              ['MET30',None],
+              ['SS',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['TauHighPt',None],
+              ],
+            )
+
+        loop += ztautau.algs.algs.PlotAlg(
+            region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['MET30',None],
+              ['MTrans'+str(namekw[i]),None],
+              ['SS',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    #inclusive
+        for k in range(len(triggers)):
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+                  ['MTrans'+str(namekw[i]),None],
+		  ['MET30',None],
+		  ['OS',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ],
+		) 
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+                  ['MTrans'+str(namekw[i]),None],
+		  ['OS',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['OS',None],
+                  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['SS',None],
+                  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ],
+		) 
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['SS',None],
+                  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['SS',None],
+                  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+
+    # 1 vs 3 prong
+        for j in range(len(trax)):
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_Tau'+str(trax[j])+'Track',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['OS',None],
+		  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+		  ],
+		) 
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_lowPT_Tau'+str(trax[j])+'Track',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['OS',None],
+		  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_highPT_Tau'+str(trax[j])+'Track',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['OS',None],
+		  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_Tau'+str(trax[j])+'Track',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['SS',None],
+		  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+		  ],
+		) 
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_lowPT_Tau'+str(trax[j])+'Track',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['SS',None],
+		  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_highPT_Tau'+str(trax[j])+'Track',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['MET30',None],
+		  ['SS',None],
+		  ['MTrans'+str(namekw[i]),None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+	    for i in range(len(triggers)):
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['MET30',None],
+			  ['OS',None],
+                  	  ['MTrans'+str(namekw[i]),None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			) 
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['MET30',None],
+			  ['OS',None],
+                          ['MTrans'+str(namekw[i]),None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['MET30',None],
+			  ['OS',None],
+                          ['MTrans'+str(namekw[i]),None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['MET30',None],
+			  ['SS',None],
+                          ['MTrans'+str(namekw[i]),None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			) 
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['MET30',None],
+			  ['SS',None],
+                          ['MTrans'+str(namekw[i]),None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['MET30',None],
+			  ['SS',None],
+                          ['MTrans'+str(namekw[i]),None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+
+
+
+
+    
 ########################
 
 
