@@ -107,8 +107,8 @@ def make_stat_hist(h):
 
         n = h.GetBinContent(i)
         en = h.GetBinError(i)
-        #stat = en / n if n else 0.0
-	stat = en
+        stat = en / n if n else 0.0
+	#stat = en
         h_stat.SetBinContent(i,stat) 
     return h_stat
 
@@ -274,16 +274,16 @@ def plot_hist(
         total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
         
         g_stat = make_band_graph_from_hist(total_hists[0])
-        g_stat.SetFillColor(ROOT.kMagenta-9)
-	#g_stat.SetFillStyle(3004)
+        g_stat.SetFillColor(ROOT.kRed-4)
+	g_stat.SetFillStyle(3001)
         g_tot  = make_band_graph_from_hist(total_hists[3],total_hists[4])
-        g_tot.SetFillColor(ROOT.kGreen-9)
-
+        g_tot.SetFillColor(ROOT.kAzure+6)
+	g_tot.SetFillStyle(3001)
     else:
         h_total_stat = make_stat_hist(h_total)
         g_stat = make_band_graph_from_hist(h_total_stat)
-        g_stat.SetFillColor(9)
-        g_stat.SetFillStyle(3004)
+        g_stat.SetFillColor(ROOT.kRed-4)
+        g_stat.SetFillStyle(3001)
         g_tot = None
 
     ## blind data and create ratio 
@@ -294,6 +294,7 @@ def plot_hist(
         if blind: apply_blind(h_data,blind)
         h_ratio = h_data.Clone('%s_ratio'%(h_data.GetName()))
         h_ratio.Divide(h_total)
+	h_ratio.SetMarkerStyle(20)
     
     yaxistitle = None
     for b in reversed(backgrounds):
@@ -335,7 +336,8 @@ def plot_hist(
     for b in backgrounds: 
       if not b in hists.keys(): continue
       leg.AddEntry(hists[b],b.tlatex,'F')
-
+    leg.AddEntry(g_tot, "MC Sys.+Stat.", 'F')
+    leg.AddEntry(g_stat, "MC Stat.", 'F')
 
     ## create canvas
     reg = region
@@ -482,7 +484,7 @@ def plot_hist(
 
       if g_tot: 
          g_tot.Draw("E2")
-         g_stat.Draw("SAME,E2")
+         g_stat.Draw("E2 Same")
 
       else: g_stat.Draw("E2")
 
