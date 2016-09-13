@@ -149,10 +149,10 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.tau_0_jet_bdt_medium == 1
    
     def cut_TauLowPt(self):
-	return self.chain.tau_0_pt < 40.0
+	return self.chain.tau_0_pt < 35.0
 
     def cut_TauHighPt(self):
-	return self.chain.tau_0_pt > 40.0
+	return self.chain.tau_0_pt > 35.0
 
    #__________________________________________________________________________
     # REGIONS
@@ -173,6 +173,10 @@ class CutAlg(pyframe.core.Algorithm):
 
     def cut_SumCosDPhi05(self):
         return self.chain.lephad_met_sum_cos_dphi > -0.5
+
+    def cut_SumCosDPhi06(self):
+        return self.chain.lephad_met_sum_cos_dphi < -0.6
+
 
     #---- Ztau ----#
 
@@ -551,7 +555,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_tau_n_tracks = self.hist('h_tau_n_tracks', "ROOT.TH1F('$', '; N_{tracks} ;Events', 5, 0.0, 5.0)", dir=TAUS)
         
-	self.h_jet_bdt_score = self.hist('h_jet_bdt_score', "ROOT.TH1F('$', '; BDT score ;Events', 8, 0.6, 1.0)", dir=TAUS)
+	self.h_jet_bdt_score = self.hist('h_jet_bdt_score', "ROOT.TH1F('$', '; BDT score ;Events', 20, 0.6, 1.0)", dir=TAUS)
 
 
 
