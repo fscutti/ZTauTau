@@ -55,16 +55,22 @@ class Pileup(pyframe.core.Algorithm):
     if 'key' is specified the pileup weight will be put in the store
     """
     #__________________________________________________________________________
-    def __init__(self, cutflow=None,key=None):
+    def __init__(self, cutflow=None,key=None, scale=None, sys_name=None):
         pyframe.core.Algorithm.__init__(self, name="Pileup", isfilter=True)
         self.cutflow = cutflow
         self.key = key
+	self.scale = scale
+	self.sys_name = sys_name
     #_________________________________________________________________________
     def execute(self, weight):
         if "mc" in self.sampletype: 
-            wpileup = self.chain.weight_mc*self.chain.NOMINAL_pileup_combined_weight
-            #wpileup_syst_up = self.chain.weight_mc*self.chain.PRW_DATASF_1up_pileup_combined_weight
-	    #wpileup_syst_down = self.chain.weight_mc*self.chain.PRW_DATASF_1down_pileup_combined_weight
+	    #if self.scale:
+	    if self.sys_name == "PILEUP_UP":
+			wpileup = self.chain.weight_mc*self.chain.PRW_DATASF_1up_pileup_combined_weight
+            elif self.sys_name == "PILEUP_DN":            
+			wpileup = self.chain.weight_mc*self.chain.PRW_DATASF_1down_pileup_combined_weight
+	    else:
+			wpileup = self.chain.weight_mc*self.chain.NOMINAL_pileup_combined_weight
             if self.key: self.store[self.key] = wpileup
             self.set_weight(wpileup*weight)
             	
