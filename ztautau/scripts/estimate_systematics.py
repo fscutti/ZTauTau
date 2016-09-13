@@ -5,18 +5,43 @@ import histmgr
 import funcs
 import os
 import math
-
+from pyplot import histutils
 from ztautau.samples import samples
 from ztautau.plots   import vars
 from systematics     import *
 
-#trax = "1Track"
-trax = "3Track"
+#trax = None
+trax = "1Track"
+#trax = "3Track"
 
 #trig = "25"
 trig = "35"
 
+# YIELDS
+y = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
+wjets = y.Get('h_SR_nominal_Wjets')
+top = y.Get('h_SR_nominal_top')
+zlljets = y.Get('h_SR_nominal_Zlljets')
+zttjets = y.Get('h_SR_nominal_Zttjets')
+data = y.Get('h_SR_nominal_data')
+subztt = y.Get('h_SR_nominal_sub_ztt')
 
+Wjets,wjets_int_err = histutils.full_integral_and_error(wjets)
+print "Wjets integral", Wjets, wjets_int_err
+Top,top_int_err = histutils.full_integral_and_error(top)
+print "top", Top, top_int_err
+Zlljets,zll_int_err = histutils.full_integral_and_error(zlljets)
+print "zlljets", Zlljets, zll_int_err
+Data,data_int_err = histutils.full_integral_and_error(data)
+print "data", Data, data_int_err
+Zttjets,ztt_int_err = histutils.full_integral_and_error(zttjets)
+print "zttjets", Zttjets, ztt_int_err
+Subztt,subztt_int_err = histutils.full_integral_and_error(subztt)
+print "subztt", Subztt, subztt_int_err
+ssdata = Data-Subztt-Wjets-Top-Zlljets
+ssdata_err = math.sqrt( wjets_int_err**2 + top_int_err**2 + zll_int_err**2 + data_int_err**2 + subztt_int_err**2 ) 
+print "ssdata", ssdata, ssdata_err
+print "expected", Wjets+Top+Zlljets+Zttjets+ssdata, math.sqrt( wjets_int_err**2 + top_int_err**2 + zll_int_err**2 + data_int_err**2 + ztt_int_err**2 )
 #--------- inclusive ------------#
 """
 f = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
@@ -59,7 +84,7 @@ hist_SR_MC_posttrig1.SetXTitle('')
 hist_SR_MC_posttrig1.SetYTitle('Efficiency')
 hist_SR_MC_posttrig1.SetTitle('')
 
-xlow = [25.,28.,30.,32.,34.,36.,38.,40.,52.,64.,80.,100.,150.,300.]
+xlow = [25.,28.,30.,32.,34.,36.,39.,43.,52.,64.,80.,100.,150.,300.]
 hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(13,"hist_SR_subztt_pretrig",array.array('d',xlow))
 hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(13,"hist_SR_subztt_posttrig",array.array('d',xlow))
 hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(13,"hist_SR_MC_pretrig",array.array('d',xlow))
@@ -154,7 +179,7 @@ for i in range(len(sys_dn)):
 	        sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_'+str(sys_dn[i])+'_sub_ztt_'+str(trax))
 		g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_'+str(sys_dn[i])+'_sub_ztt_'+str(trig)+'med_'+str(trax))
-	
+        	
         sys_dn_hist_SR_subztt_pretrig =  sys_dn_hist_SR_subztt_pretrig1.Clone()
         sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig1.Clone()
 
@@ -166,7 +191,7 @@ for i in range(len(sys_dn)):
 	sys_dn_hist_SR_subztt_posttrig.SetTitle('')
 
 
-	xlow = [25.,28.,30.,32.,34.,36.,38.,40.,52.,64.,80.,100.,150.,300.]
+	xlow = [25.,28.,30.,32.,34.,36.,39.,43.,52.,64.,80.,100.,150.,300.]
 	sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(13,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
 	sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(13,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
 	
@@ -200,7 +225,7 @@ for i in range(len(sys_up)):
 	nom_sub_up = []
 
 	#--------- one and three prong ------------#
-	"""
+	"""	
         f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
         sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_'+str(sys_up[i])+'_sub_ztt')
 
@@ -253,7 +278,7 @@ for i in range(len(sys_up)):
                 g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_'+str(sys_up[i])+'_sub_ztt_'+str(trig)+'med_'+str(trax))
 
-	
+        	
 	sys_up_hist_SR_subztt_pretrig1.SetXTitle('')
 	sys_up_hist_SR_subztt_pretrig1.SetYTitle('Efficiency')
 	sys_up_hist_SR_subztt_pretrig1.SetTitle('')
@@ -262,7 +287,7 @@ for i in range(len(sys_up)):
 	sys_up_hist_SR_subztt_posttrig1.SetTitle('')
 
 
-	xlow = [25.,28.,30.,32.,34.,36.,38.,40.,52.,64.,80.,100.,150.,300.]
+	xlow = [25.,28.,30.,32.,34.,36.,39.,43.,52.,64.,80.,100.,150.,300.]
 	sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(13,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
 	sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(13,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
 	sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(13,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
@@ -292,7 +317,7 @@ for i in range(len(sys_up)):
 total_sys_up_data1 = ROOT.TH1F("total_sys_up_data", "total_sys_up_data", 100, 0, 1000.)
 total_sys_dn_data1 = ROOT.TH1F("total_sys_dn_data", "total_sys_dn_data", 100, 0, 1000.)
 
-xlow = [25.,28.,30.,32.,34.,36.,38.,40.,52.,64.,80.,100.,150.,300.]
+xlow = [25.,28.,30.,32.,34.,36.,39.,43.,52.,64.,80.,100.,150.,300.]
 total_sys_up_data = total_sys_up_data1.Rebin(13,"total_sys_up_data",array.array('d',xlow))
 total_sys_dn_data = total_sys_dn_data1.Rebin(13,"total_sys_dn_data",array.array('d',xlow))
 
@@ -361,9 +386,16 @@ data_sys_error_plot.SetFillColor(ROOT.kBlue-4)
 total_up_data1 = ROOT.TH1F("total_up_data", "total_sys_up_data", 100, 0, 1000.)
 total_dn_data1 = ROOT.TH1F("total_dn_data", "total_sys_dn_data", 100, 0, 1000.)
 
-xlow = [25.,28.,30.,32.,34.,36.,38.,40.,52.,64.,80.,100.,150.,300.]
+xlow = [25.,28.,30.,32.,34.,36.,39.,43.,52.,64.,80.,100.,150.,300.]
 total_up_data = total_up_data1.Rebin(13,"total_up_data",array.array('d',xlow))
 total_dn_data = total_dn_data1.Rebin(13,"total_dn_data",array.array('d',xlow))
+
+total_err_up_ratio1 = ROOT.TH1F("total_err_up_ratio", "total_err_up_ratio", 100, 0, 1000.)
+total_err_dn_ratio1 = ROOT.TH1F("total_err_dn_ratio", "total_err_dn_ratio", 100, 0, 1000.)
+
+xlow = [25.,28.,30.,32.,34.,36.,39.,43.,52.,64.,80.,100.,150.,300.]
+total_err_up_ratio = total_err_up_ratio1.Rebin(13,"total_err_up_ratio",array.array('d',xlow))
+total_err_dn_ratio = total_err_dn_ratio1.Rebin(13,"total_err_dn_ratio",array.array('d',xlow))
 
 for i in range(1,h_total_stat_data.GetNbinsX()+1):
 
@@ -371,10 +403,12 @@ for i in range(1,h_total_stat_data.GetNbinsX()+1):
 	tot_sys_dn = total_sys_dn_data.GetBinContent(i)
 
 	dat_err = h_efficiency_simple_subztt_nominal.GetBinError(i)
-	dat = h_efficiency_simple_subztt_nominal.GetBinContent(i)
-	#stat = dat_err
+	#dat = h_efficiency_simple_subztt_nominal.GetBinContent(i)
 
-        stat = h_total_stat_data.GetBinContent(i)
+	mc_stat = h_total_stat_mc.GetBinContent(i)
+	stat = dat_err
+
+        #stat = h_total_stat_data.GetBinContent(i)
 
         #tot_UP = math.sqrt(pow(tot_sys_up,2)+pow(stat,2))
         #tot_DN = math.sqrt(pow(tot_sys_up,2)+pow(stat,2))
@@ -382,8 +416,15 @@ for i in range(1,h_total_stat_data.GetNbinsX()+1):
 	tot_UP = math.sqrt(tot_sys_up**2 + stat**2)
 	tot_DN = math.sqrt(tot_sys_dn**2 + stat**2)
 
+	tot_ratio_UP = math.sqrt(tot_sys_up**2 + stat**2 + mc_stat**2)
+	tot_ratio_DN = math.sqrt(tot_sys_dn**2 + stat**2 + mc_stat**2)
+
         total_up_data.SetBinContent(i,tot_UP)
         total_dn_data.SetBinContent(i,tot_DN)
+
+	total_err_up_ratio.SetBinContent(i,tot_ratio_UP)
+        total_err_dn_ratio.SetBinContent(i,tot_ratio_DN)
+
 
 # total uncertainty ratio plot
 g_tot  = funcs.make_band_graph_from_hist(total_up_data,total_dn_data)
@@ -404,8 +445,11 @@ h_ratio.SetMarkerColor(ROOT.kBlack)
 g_tot_ratio_error_plot = funcs.make_error_scatter_graph(h_ratio, total_up_data,total_dn_data)
 mc_stat_ratio_error_plot = funcs.make_stat_scatter(h_efficiency_simple_mc_nominal, h_ratio)
 data_sys_ratio_error_plot = funcs.make_error_scatter_graph(h_ratio, total_sys_up_data,total_sys_dn_data)
+mc_data_tot_err_ratio = funcs.make_error_scatter_graph(h_ratio,total_err_up_ratio, total_err_dn_ratio)
+print mc_data_tot_err_ratio
 
 g_tot_ratio_error_plot.SetFillColor(ROOT.kCyan-9)
+mc_data_tot_err_ratio.SetFillColor(ROOT.kSpring)
 mc_stat_ratio_error_plot.SetFillColor(ROOT.kRed)
 data_sys_ratio_error_plot.SetFillColor(ROOT.kBlue-4) 
 
@@ -436,6 +480,7 @@ leg.AddEntry(h_efficiency_simple_subztt_nominal,"Data 2016",'PL')
 leg.AddEntry(h_efficiency_simple_mc_nominal,"MC Z#rightarrow#tau#tau",'PL')
 leg.AddEntry(g_tot_error_plot, "Data Sys.+Stat.", 'F')
 leg.AddEntry(data_sys_error_plot, "Data Sys.", 'F')
+leg.AddEntry(mc_data_tot_err_ratio, "Total Unc.", 'F')
 
 c = ROOT.TCanvas("efficiency","efficiency",750,800)
 xmin = h_total_stat_data.GetBinLowEdge(1)
@@ -506,11 +551,13 @@ latex_yb = ty-4.*th
 #tlatex.SetTextAlign(10)
 tlatex.SetTextSize(0.035)
 tlatex.DrawLatex(0.5,0.26,'#intL dt = 11.5 fb^{-1}, #sqrt{s} = 13 TeV' ) #(tx,latex_y,'#intL dt = 3.2 fb^{-1}, #sqrt{s} = 13 TeV}' )
-tlatex.DrawLatex(0.5,0.18,'HLT_tau'+str(trig)+'_medium1_tracktwo') #(tx,latex_yb,'HLT_tau35_medium1_tracktwo')
-if str(trax) == '1Track':
-	tlatex.DrawLatex(0.5,0.1,'1-prong')
-elif str(trax) == '3Track':
-        tlatex.DrawLatex(0.5,0.1,'3-prong')
+tlatex.DrawLatex(0.5,0.20,'HLT_tau'+str(trig)+'_medium1_tracktwo') #(tx,latex_yb,'HLT_tau35_medium1_tracktwo')
+if trax:
+	if str(trax) == '1Track':
+		tlatex.DrawLatex(0.5,0.14,'1-prong')
+	elif str(trax) == '3Track':
+		tlatex.DrawLatex(0.5,0.14,'3-prong')
+
 pad2.cd()
 
 fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;SF'%('Offline Tau P_{T} [GeV]'))
@@ -541,13 +588,17 @@ g_tot.Draw("E2")
 mc_stat.Draw("E2 Same")
 data_sys_band.Draw("E2 Same")
 """
-g_tot_ratio_error_plot.Draw("E2")
+#g_tot_ratio_error_plot.Draw("E2")
+mc_data_tot_err_ratio.Draw("E2")
 mc_stat_ratio_error_plot.Draw("E2 Same")
 data_sys_ratio_error_plot.Draw("E2 Same")
 h_ratio.Draw("Same")
 
 pad2.RedrawAxis()
-plotsfile = os.path.join("./","TEST_"+str(trax)+"_"+str(trig)+"med_SYS.root")
+if trax:
+	plotsfile = os.path.join("./","TEST_"+str(trax)+"_"+str(trig)+"med_SYS.root")
+else:
+	plotsfile = os.path.join("./","TEST_inclusive_"+str(trig)+"med_SYS.root")
 #c.SaveAs("Test")
 fout = ROOT.TFile.Open(plotsfile,'UPDATE')
 fout.WriteTObject(c)
