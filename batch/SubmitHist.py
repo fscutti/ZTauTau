@@ -64,7 +64,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'TEST_0709_TAUSF'
+RUN = 'HIST_0909_kw_sys_take4'
 #RUN = 'HistECHIDNA_missingdata_onemore'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
@@ -105,14 +105,14 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_mc#all_data + all_mc 
+    nominal  = all_data + all_mc 
 
     all_sys = [
 	
 	#['MUSF_STAT_UP',                  all_mc],
         #['MUSF_STAT_DN',                  all_mc],
-	['TAUSF_SYS_UP',                  all_mc],
-        ['TAUSF_SYS_DN',                  all_mc],
+	#['TAUSF_SYS_UP',                  all_mc],
+        #['TAUSF_SYS_DN',                  all_mc],
 	#['MUSF_SYS_UP',                  all_mc],
         #['MUSF_SYS_DN',                  all_mc],
 	#['MUMS_UP',                  all_mc],
@@ -125,7 +125,8 @@ def main():
 	#['METSCALE_DN',                  all_mc],
 	#['METResoPara',			 all_mc],
 	#['METResoPerp', 		 all_mc],
-	
+ 	#['PILEUP_UP', 			all_mc],
+        #['PILEUP_DN',                   all_mc],	
         ]    
     
     ## ensure output path exists
