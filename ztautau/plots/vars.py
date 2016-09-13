@@ -43,7 +43,7 @@ n_jets = Var(name = 'n_jets',
 ## ---------------------------------------
 mu_pt = Var(name = 'mu_pt',
               path    = 'muons',
-              xmin    = 0,
+              xmin    = 20,
               xmax    = 150,
               rebin   = 4,
               log     = False,
@@ -51,8 +51,8 @@ mu_pt = Var(name = 'mu_pt',
 
 mu_phi = Var(name = 'mu_phi',
               path    = 'muons',
-              xmin    = -3,
-              xmax    = 3,
+              xmin    = -4,
+              xmax    = 4,
               #rebin   = 2,
               log     = False,
               )
@@ -133,8 +133,8 @@ tau_pt = Var(name = 'tau_pt',
               )
 tau_phi = Var(name = 'tau_phi',
               path    = 'taus',
-              xmin    = -3,
-              xmax    = 3,
+              xmin    = -4,
+              xmax    = 4,
              # rebin   = 2,
               log     = False,
               )
@@ -159,6 +159,7 @@ jet_bdt_score = Var(name  = 'jet_bdt_score',
 	     path = 'taus',
 	     xmin = 0.6,
 	     xmax = 1,
+	     rebin = 1,
 	     log = False,
 	     )
 
@@ -176,7 +177,7 @@ sumcosdphi = Var(name = 'sumcosdphi',
               path    = 'event',
               xmin    = -2,
               xmax    = 2,
-              rebin   = 2,
+              #rebin   = 2,
               log     = False,
               )
 
@@ -192,7 +193,7 @@ met_reco_et = Var(name = 'met_reco_et',
               path    = 'met',
               xmin    = 0,
               xmax    = 140,
-              rebin   = 10,
+              rebin   = 5,
               log     = False,
               )
 
