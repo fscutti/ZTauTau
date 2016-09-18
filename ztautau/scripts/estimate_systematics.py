@@ -14,11 +14,11 @@ from systematics     import *
 trax = "1Track"
 #trax = "3Track"
 
-#trig = "25"
-trig = "35"
+trig = "25"
+#trig = "35"
 
 # YIELDS
-y = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
+y = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR.root')
 wjets = y.Get('h_SR_nominal_Wjets')
 top = y.Get('h_SR_nominal_top')
 zlljets = y.Get('h_SR_nominal_Zlljets')
@@ -44,31 +44,31 @@ print "ssdata", ssdata, ssdata_err
 print "expected", Wjets+Top+Zlljets+Zttjets+ssdata, math.sqrt( wjets_int_err**2 + top_int_err**2 + zll_int_err**2 + data_int_err**2 + ztt_int_err**2 )
 #--------- inclusive ------------#
 """
-f = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
+f = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR.root')
 hist_SR_subztt_pretrig1 = f.Get('h_SR_nominal_sub_ztt')
 
-g = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
+g = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
 hist_SR_subztt_posttrig1 = g.Get('h_SR_'+str(trig)+'med_nominal_sub_ztt_'+str(trig)+'med')
 
-h = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
+h = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR.root')
 hist_SR_MC_pretrig1 = h.Get('h_SR_nominal_Zttjets')
 
-i = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
+i = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
 hist_SR_MC_posttrig1 = i.Get('h_SR_'+str(trig)+'med_nominal_Zttjets')
 """
 
 #--------- 1 vs 3 prong ------------#
 
-f = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+f = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
 hist_SR_subztt_pretrig1 = f.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
 
-g = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+g = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
 hist_SR_subztt_posttrig1 = g.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'med_'+str(trax))
 
-h = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+h = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
 hist_SR_MC_pretrig1 = h.Get('h_SR_Tau'+str(trax)+'_nominal_Zttjets')
 
-i = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+i = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
 hist_SR_MC_posttrig1 = i.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_nominal_Zttjets')
 
 hist_SR_subztt_pretrig1.SetXTitle('')
@@ -129,10 +129,10 @@ for i in range(len(sys_dn)):
          
 	#--------- incl ------------#
         """	
-	f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
+	f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR.root')
 	sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_'+str(sys_dn[i])+'_sub_ztt')
 
-	g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')	
+	g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')	
         if sys_dn[i] == 'RQCD_AntiIsoCR_lowPT_DN':
                 sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_RQCD_AntiIsoCR_'+str(trig)+'med_lowPT_DN_sub_ztt_'+str(trig)+'med')
 	
@@ -146,38 +146,38 @@ for i in range(len(sys_dn)):
 	#--------- 1 vs 3 prong ------------#
 
         if sys_dn[i] == 'pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN':
-		f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
 
-		g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'med_'+str(trax))
 
 	elif sys_dn[i] == 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN':
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
 
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'med_'+str(trax))
 
         elif sys_dn[i] == 'posttrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN':
-	        f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+	        f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
         	sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
 
-		g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_RQCD_AntiIsoCR_'+str(trig)+'med_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'med_'+str(trax))
 
 	elif sys_dn[i] == 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN':
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
                 
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_RQCD_AntiIsoCR_'+str(trig)+'med_highPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'med_'+str(trax))
 
 
 	else:
-	        f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+	        f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
 	        sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_'+str(sys_dn[i])+'_sub_ztt_'+str(trax))
-		g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_'+str(sys_dn[i])+'_sub_ztt_'+str(trig)+'med_'+str(trax))
         	
         sys_dn_hist_SR_subztt_pretrig =  sys_dn_hist_SR_subztt_pretrig1.Clone()
@@ -226,10 +226,10 @@ for i in range(len(sys_up)):
 
 	#--------- one and three prong ------------#
 	"""	
-        f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR.root')
+        f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR.root')
         sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_'+str(sys_up[i])+'_sub_ztt')
 
-        g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
+        g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med.root')
         if sys_up[i] == 'RQCD_AntiIsoCR_lowPT_UP':
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_RQCD_AntiIsoCR_'+str(trig)+'med_lowPT_UP_sub_ztt_'+str(trig)+'med')
         
@@ -244,38 +244,38 @@ for i in range(len(sys_up)):
 
 
         if sys_up[i] == 'pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP':
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trax))
 
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'med_'+str(trax))
 
         elif sys_up[i] == 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP':
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trax))
 
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'med_'+str(trax))
 
         elif sys_up[i] == 'posttrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP':
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
 
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_RQCD_AntiIsoCR_'+str(trig)+'med_lowPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trig)+'med_'+str(trax))
 
         elif sys_up[i] == 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP':
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
 
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_RQCD_AntiIsoCR_'+str(trig)+'med_highPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trig)+'med_'+str(trax))
 
 
         else:
-                f0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
+                f0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_'+str(sys_up[i])+'_sub_ztt_'+str(trax))
-                g0 = ROOT.TFile('../../test/hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
+                g0 = ROOT.TFile('../../test/Hists_systematics/hists_tau_pt_SR_'+str(trig)+'med_Tau'+str(trax)+'.root')
                 sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'med_Tau'+str(trax)+'_'+str(sys_up[i])+'_sub_ztt_'+str(trig)+'med_'+str(trax))
 
         	
