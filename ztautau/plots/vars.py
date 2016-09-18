@@ -175,11 +175,20 @@ vis_mass = Var(name = 'vis_mass',
 
 sumcosdphi = Var(name = 'sumcosdphi',
               path    = 'event',
-              xmin    = -2,
+              xmin    = -0.5,
               xmax    = 2,
+              rebin   = 2,
+              log     = False,
+              )
+
+lowsumcosdphi = Var(name = 'lowsumcosdphi',
+              path    = 'event',
+              xmin    = -2,
+              xmax    = -0.6,
               #rebin   = 2,
               log     = False,
               )
+
 
 m_trans = Var(name = 'm_trans',
               path    = 'event',
@@ -211,6 +220,7 @@ vars_list.append(mu_pt)
 vars_list.append(tau_pt)
 vars_list.append(met_reco_et)
 vars_list.append(m_trans)
+vars_list.append(lowsumcosdphi)
 vars_list.append(sumcosdphi)
 vars_list.append(vis_mass)
 vars_list.append(n_vx)
