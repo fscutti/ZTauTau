@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'TEST_0209'
-outdir   = 'PLOTS_0209_ControlRegions_AntiIso'
+indir    = 'HIST_1309_Wjets_estimation'
+outdir   = 'Plots_Wjets_newmethod_SR'
 #indir = 'HistROO_2016_incltopoptvar'
 #outdir = 'PLOTSv19_2016_topocone'
 
@@ -63,9 +63,9 @@ regions = {}
 #regions["SR_OS_no_cuts"] = [0, "SR_OS_no_cuts"]
 #regions["SR_SS_no_cuts"] = [0, "SR_SS_no_cuts"]
 #regions["SR_no_cuts"] = [0,"SR_no_cuts"]
-"""
-regions["SR"] 		= [4,"SR"]
 
+regions["SR"] 		= [4,"SR"]
+"""
 regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
 regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
 
