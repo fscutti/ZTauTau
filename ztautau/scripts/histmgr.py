@@ -461,10 +461,41 @@ class AddOnEstimator(BaseEstimator):
         
         for s in addon_regions.keys():
            if s==self.data_sample: continue
-           h_addon[s] = s.hist(region=addon_regions[s]["OS"],histname=histname,icut=addon_regions[s]["ncuts"],sys=sys,mode=mode).Clone()
-           h_addon[s].Scale(kf_OS[s])
-           h_addon[s].Add(s.hist(region=addon_regions[s]["SS"],histname=histname,icut=addon_regions[s]["ncuts"],sys=sys,mode=mode).Clone(), -1.0 * rqcd * kf_SS[s])
+	    
+	   if s.name == "Wjets": 
+	   	   h_addon[s] = self.data_sample.hist(region=addon_regions[self.data_sample]["OS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()
+		   h_addon[s].Add(s.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone(), -1.0 * rqcd)
+
+		   kW_num = histutils.full_integral(  self.data_sample.hist(region=addon_regions[self.data_sample]["OS_hmt_hscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
+		   kW_num += -1.0 * rqcd * (histutils.full_integral(  self.data_sample.hist(region=addon_regions[self.data_sample]["SS_hmt_hscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
+
+                   kW_den = histutils.full_integral(  self.data_sample.hist(region=addon_regions[self.data_sample]["OS_hmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
+                   kW_den += -1.0 * rqcd * (histutils.full_integral(  self.data_sample.hist(region=addon_regions[self.data_sample]["SS_hmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
+                   	
+		   for r in addon_regions.keys():
+	                   if r.name == "Wjets": continue	
+			   kW_num_mc = histutils.full_integral(  r.hist(region=addon_regions[r]["OS_hmt_hscdp"],histname=histname,icut=addon_regions[r]["ncuts"],sys=sys,mode=mode).Clone()  )
+			   kW_num_mc += -1.0 * rqcd * (histutils.full_integral(  r.hist(region=addon_regions[r]["SS_hmt_hscdp"],histname=histname,icut=addon_regions[r]["ncuts"],sys=sys,mode=mode).Clone()))
+
+			   kW_num -= kW_num_mc
+	           
+			   kW_den_mc = histutils.full_integral(  r.hist(region=addon_regions[r]["OS_hmt_lscdp"],histname=histname,icut=addon_regions[r]["ncuts"],sys=sys,mode=mode).Clone()  )
+			   kW_den_mc += -1.0 * rqcd * (histutils.full_integral(  r.hist(region=addon_regions[r]["SS_hmt_lscdp"],histname=histname,icut=addon_regions[r]["ncuts"],sys=sys,mode=mode).Clone()))
+
+			   kW_den -= kW_den_mc
+
+		   kW = kW_num/kW_den
+		   print "new wjets kfactor =", kW
+
+		   h_addon[s] *= kW
+	   
+	   else:
+	    
+	   	h_addon[s] = s.hist(region=addon_regions[s]["OS"],histname=histname,icut=addon_regions[s]["ncuts"],sys=sys,mode=mode).Clone()
+	  	h_addon[s].Scale(kf_OS[s])
+	   	h_addon[s].Add(s.hist(region=addon_regions[s]["SS"],histname=histname,icut=addon_regions[s]["ncuts"],sys=sys,mode=mode).Clone(), -1.0 * rqcd * kf_SS[s])
         
+
         """
         ToDo: implement sys uncertainty for the scales!!!
         """
