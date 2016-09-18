@@ -220,7 +220,7 @@ def analyze(config):
     ## make plots
     ##-------------------------------------------------------------------------
 
-    triggers = [25,35]#, 50_L1TAU12, 80, 80_L1TAU60, 125, 160]
+    triggers = [25,35]#,"50L1TAU12", 80, "80L1TAU60", 125, 160]
     trax = [1,3]
 
     
@@ -2137,7 +2137,7 @@ def analyze(config):
 				)
 	
 	n  += 1
-    """
+   
     ############ # KW SYSTEMATICS
 
     namekw = [625,675,725,775,825,875,925,975,1025,1075]
@@ -2472,12 +2472,1298 @@ def analyze(config):
 			  ['TauHighPt',None],
 			  ],
 			  )
+    """
+#################################################################################
 
-
-
-
-
+    # New Wjets estimation
+    # WE NEED:
+    # 	-SR low scdp (0.6),low mt (50)
+    #	-SR low scdp (0.6), high mt (60)
+    #	-SR high scdp (0.5), high mt (60)
     
+    #SR_highSCDP_highMT high scdp (0.5),high mt (60)
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_highPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_lowPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_highPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_lowPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_highPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_lowPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_highPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_lowPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+
+
+ 
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+              ],
+            )
+
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_highSCDP_highMT_SS_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi05',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    for i in range(len(triggers)):
+ 
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_highSCDP_highMT_'+str(triggers[i])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi05',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_highSCDP_highMT_'+str(triggers[i])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi05',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_highSCDP_highMT_'+str(triggers[i])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi05',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_highSCDP_highMT_SS'+str(triggers[i])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi05',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ],
+		  )
+
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_highSCDP_highMT_SS'+str(triggers[i])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi05',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_highSCDP_highMT_SS'+str(triggers[i])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi05',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+ 
+	    for j in range(len(trax)):
+	
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_highSCDP_highMT_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi05',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			  )
+
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_highSCDP_highMT_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi05',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_highSCDP_highMT_'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi05',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_highSCDP_highMT_SS'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi05',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			  )
+
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_highSCDP_highMT_SS'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi05',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_highSCDP_highMT_SS'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi05',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+
+###########################################################################
+
+    #SR_lowSCDP_highMT low scdp (0.6),high mt (50)
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_highPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_lowPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_highPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_lowPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_highPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_lowPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_highPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_lowPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+
+
+ 
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+              ],
+            )
+
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_highMT_SS_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans60',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    for i in range(len(triggers)):
+ 
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_highMT_'+str(triggers[i])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_highMT_'+str(triggers[i])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_highMT_'+str(triggers[i])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_highMT_SS'+str(triggers[i])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ],
+		  )
+
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_highMT_SS'+str(triggers[i])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_highMT_SS'+str(triggers[i])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans60',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+ 
+	    for j in range(len(trax)):
+	
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_highMT_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			  )
+
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_highMT_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_highMT_'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_highMT_SS'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			  )
+
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_highMT_SS'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_highMT_SS'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans60',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+
+
+
+#############################################################
+
+    #SR_lowSCDP_lowMT low scdp (0.6),low mt (50)
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_highPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_lowPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_highPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau1Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_lowPT_Tau1Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+              ['Tau1Track',["TauTotalWeight"]],
+              ['TauLowPt',None],
+              ],
+            )
+
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_highPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_lowPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_highPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+	      ['TauHighPt',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_lowPT_Tau3Track',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',None],
+       	      ['Tau3Track',["TauTotalWeight"]],
+              ],
+            )
+
+
+
+ 
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['OS',None],
+	      ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+              ],
+            )
+
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_highPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauHighPt',["TauTotalWeight"]],
+              ],
+            )
+
+    loop += ztautau.algs.algs.PlotAlg(
+            region    = 'SR_lowSCDP_lowMT_SS_lowPT',
+            plot_all  = False,
+            cut_flow  = [
+              ['MTrans50',None],
+              ['SumCosDPhi06',None],
+              ['MuonGradIso',["MuonTotalWeight"]],
+              ['VisMass4580',None],
+              ['SS',None],
+	      ['TauLowPt',["TauTotalWeight"]],
+              ],
+            )
+
+    for i in range(len(triggers)):
+ 
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_lowMT_'+str(triggers[i])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans50',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans50',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans50',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['OS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans50',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ],
+		  )
+
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_lowPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans50',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauLowPt',None],
+		  ],
+		  )
+
+	    loop += ztautau.algs.algs.PlotAlg(
+		region    = 'SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_highPT',
+		plot_all  = False,
+		cut_flow  = [
+		  ['MTrans50',None],
+		  ['SumCosDPhi06',None],
+		  ['MuonGradIso',["MuonTotalWeight"]],
+		  ['VisMass4580',None],
+		  ['SS',None],
+		  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+		  ['TauHighPt',None],
+		  ],
+		  )
+ 
+	    for j in range(len(trax)):
+	
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans50',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			  )
+
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans50',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans50',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['OS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans50',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ],
+			  )
+
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans50',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauLowPt',None],
+			  ],
+			  )
+
+		    loop += ztautau.algs.algs.PlotAlg(
+			region    = 'SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_highPT_Tau'+str(trax[j])+'Track',
+			plot_all  = False,
+			cut_flow  = [
+			  ['MTrans50',None],
+			  ['SumCosDPhi06',None],
+			  ['MuonGradIso',["MuonTotalWeight"]],
+			  ['VisMass4580',None],
+			  ['SS',None],
+			  ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
+			  ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
+			  ['TauHighPt',None],
+			  ],
+			  )
+
+
+ 
 ########################
 
 
