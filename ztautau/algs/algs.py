@@ -199,6 +199,20 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_HLTTau35Med1TrackTwo(self):
 	return self.chain.HLT_tau35_medium1_tracktwo_resurrected == 1    
  
+    def cut_HLTTau50L1TAU12Med1TrackTwo(self):
+        return self.chain.HLT_tau50_medium1_tracktwo_L1TAU12_resurrected == 1
+
+    def cut_HLTTau80Med1TrackTwo(self):
+        return self.chain.HLT_tau80_medium1_tracktwo_resurrected == 1
+
+    def cut_HLTTau80L1TAU60Med1TrackTwo(self):
+        return self.chain.HLT_tau80_medium1_tracktwo_L1TAU60_resurrected == 1
+
+    def cut_HLTTau125Med1TrackTwo(self):
+        return self.chain.HLT_tau125_medium1_tracktwo_resurrected == 1
+
+    def cut_HLTTau160Med1TrackTwo(self):
+        return self.chain.HLT_tau160_medium1_tracktwo_resurrected == 1
 
     #----- SYSTEMATICS----#
 
@@ -539,7 +553,9 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_vis_mass = self.hist('h_vis_mass', "ROOT.TH1F('$', ';Visible Mass (#tau,#mu) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
 
-        self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\Sum\cos(\Delta \phi) ;Events', 20, -2.0, 2.0)", dir=EVT)
+        self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\sum\cos(\Delta \phi) ;Events', 20, -2.0, 2.0)", dir=EVT)
+
+        self.h_lowsumcosdphi = self.hist('h_lowsumcosdphi', "ROOT.TH1F('$', ';\sum\cos(\Delta \phi) ;Events', 10, -2.0, -0.6)", dir=EVT)
 
         self.h_m_trans = self.hist('h_m_trans', "ROOT.TH1F('$', ';m_T (\mu,E^{miss}_{T}) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
 
@@ -590,6 +606,8 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
              self.h_vis_mass.Fill(self.chain.lephad_vis_mass, weight)
  
              self.h_sumcosdphi.Fill(self.chain.lephad_met_sum_cos_dphi, weight)
+
+             self.h_lowsumcosdphi.Fill(self.chain.lephad_met_sum_cos_dphi, weight)
  
              self.h_m_trans.Fill(self.chain.lephad_mt_lep0_met, weight)
  
