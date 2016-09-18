@@ -245,10 +245,11 @@ def plot_hist(
     '''
     print 'making plot: ', histname, ' in region', region
     
-    assert signal, "ERROR: no signal provided for plot_hist"
+    #assert signal, "ERROR: no signal provided for plot_hist"
     assert backgrounds, "ERROR: no background provided for plot_hist"
-    
-    samples = backgrounds + signal
+ 
+    if signal:samples = backgrounds + signal    
+    else: samples = backgrounds
     
     if data: samples += [data] 
 
@@ -336,7 +337,8 @@ def plot_hist(
     for b in backgrounds: 
       if not b in hists.keys(): continue
       leg.AddEntry(hists[b],b.tlatex,'F')
-    leg.AddEntry(g_tot, "MC Sys.+Stat.", 'F')
+    if sys_dict:
+    	leg.AddEntry(g_tot, "MC Sys.+Stat.", 'F')
     leg.AddEntry(g_stat, "MC Stat.", 'F')
 
     ## create canvas
