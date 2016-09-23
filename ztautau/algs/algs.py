@@ -183,6 +183,31 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_VisMass4580(self):
         return abs(self.chain.lephad_vis_mass) > 45 and abs(self.chain.lephad_vis_mass) < 80
 
+    def cut_VisMass5585(self):
+        return abs(self.chain.lephad_vis_mass) > 55 and abs(self.chain.lephad_vis_mass) < 85
+
+    def cut_VisMass5590(self):
+        return abs(self.chain.lephad_vis_mass) > 55 and abs(self.chain.lephad_vis_mass) < 90
+
+    def cut_VisMass5595(self):
+        return abs(self.chain.lephad_vis_mass) > 55 and abs(self.chain.lephad_vis_mass) < 95
+
+    def cut_VisMass55100(self):
+        return abs(self.chain.lephad_vis_mass) > 55 and abs(self.chain.lephad_vis_mass) < 100
+
+    def cut_VisMass4585(self):
+        return abs(self.chain.lephad_vis_mass) > 45 and abs(self.chain.lephad_vis_mass) < 85
+
+    def cut_VisMass4590(self):
+        return abs(self.chain.lephad_vis_mass) > 45 and abs(self.chain.lephad_vis_mass) < 90
+
+    def cut_VisMass4595(self):
+        return abs(self.chain.lephad_vis_mass) > 45 and abs(self.chain.lephad_vis_mass) < 95
+
+    def cut_VisMass45100(self):
+        return abs(self.chain.lephad_vis_mass) > 45 and abs(self.chain.lephad_vis_mass) < 100
+
+
     #---- GENERAL ----#
 
     def cut_OS(self):
