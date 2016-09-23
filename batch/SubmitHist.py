@@ -64,7 +64,7 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HIST_1809_Wjets_estimation_new_the_broken_ones'
+RUN = 'HIST_2309_VisMass45100'
 #RUN = 'HistECHIDNA_missingdata_onemore'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
@@ -121,12 +121,12 @@ def main():
 	#['MUSCALE_DN',                  all_mc],
 	#['MUID_UP',                  all_mc],
 	#['MUID_DN',                  all_mc],
-	['METSCALE_UP',                  all_mc],
-	['METSCALE_DN',                  all_mc],
-	['METResoPara',			 all_mc],
+	#['METSCALE_UP',                  all_mc],
+	#['METSCALE_DN',                  all_mc],
+	#['METResoPara',			 all_mc],
 	#['METResoPerp', 		 all_mc],
- 	['PILEUP_UP', 			all_mc],
-        ['PILEUP_DN',                   all_mc],	
+ 	#['PILEUP_UP', 			all_mc],
+        #['PILEUP_DN',                   all_mc],	
         ]    
     
     ## ensure output path exists
