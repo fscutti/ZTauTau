@@ -11,8 +11,8 @@ from systematics     import *
 
 from optparse import OptionParser
 
-ptbinning_y_or_n = "y"
-#ptbinning_y_or_n = "n"
+#ptbinning_y_or_n = "y"
+ptbinning_y_or_n = "n"
 
 #-----------------
 # input
@@ -527,9 +527,6 @@ kf_regions_25med_highPT[samples.Wjets]	= {"OS":"Wjets_OS_25med_highPT", "SS":"Wj
 kf_regions_35med_lowPT[samples.Wjets]	= {"OS":"Wjets_OS_35med_lowPT", "SS":"Wjets_SS_35med_lowPT","ncuts":5}
 kf_regions_35med_highPT[samples.Wjets]	= {"OS":"Wjets_OS_35med_highPT", "SS":"Wjets_SS_35med_highPT","ncuts":5}
 
-#kf_regions_highPT[samples.Wjets]  = {"OS":"Wjets_OS_MTrans625_highPT", "SS":"Wjets_SS_MTrans625_highPT", "ncuts":5}
-#kf_regions_lowPT[samples.Wjets]   = {"OS":"Wjets_OS_MTrans625_lowPT", "SS":"Wjets_SS_MTrans625_lowPT", "ncuts":5}
-
 kf_regions_highPT[samples.Wjets]  = {"OS":"Wjets_OS_highPT", "SS":"Wjets_SS_highPT", "ncuts":4}
 kf_regions_lowPT[samples.Wjets]   = {"OS":"Wjets_OS_lowPT", "SS":"Wjets_SS_lowPT", "ncuts":4}
 
@@ -822,11 +819,11 @@ if options.sysptvar:
 # Add-On
 
 addon_regions_OS_no_cuts = {}
-addon_regions_OS_no_cuts[data]            = {"SS":"SR_SS_no_cuts", "OS":"SR_OS_no_cuts", "ncuts":0}
-addon_regions_OS_no_cuts[data]  = {"SS_lmt_lscdp":"SR_SS_no_cuts_lowSCDP_lowMT", "OS_lmt_lscdp":"SR_OS_no_cuts_lowSCDP_lowMT", "SS_hmt_lscdp":"SR_SS_no_cuts_lowSCDP_highMT", "OS_hmt_lscdp":"SR_OS_no_cuts_lowSCDP_highMT", "ncuts":2}  
-addon_regions_OS_no_cuts[samples.Wjets]   = {"OS":"SR_OS_no_cuts", "SS":"SR_SS_no_cuts", "ncuts":0}
-addon_regions_OS_no_cuts[samples.Zlljets] = {"OS":"SR_OS_no_cuts", "SS":"SR_SS_no_cuts", "ncuts":0}
-addon_regions_OS_no_cuts[samples.top]     = {"OS":"SR_OS_no_cuts", "SS":"SR_SS_no_cuts", "ncuts":0}
+#addon_regions_OS_no_cuts[data]            = {"SS":"SR_SS_no_cuts", "OS":"SR_OS_no_cuts", "ncuts":0}
+addon_regions_OS_no_cuts[data]  = {"SS":"SR_SS_no_cuts_forvismass", "OS":"SR_OS_no_cuts_forvismass", "SS_lmt_lscdp":"SR_SS_no_cuts_lowSCDP_lowMT", "OS_lmt_lscdp":"SR_OS_no_cuts_lowSCDP_lowMT", "SS_hmt_lscdp":"SR_SS_no_cuts_lowSCDP_highMT", "OS_hmt_lscdp":"SR_OS_no_cuts_lowSCDP_highMT", "ncuts":3}  
+addon_regions_OS_no_cuts[samples.Wjets]   = {"OS":"SR_OS_no_cuts_forvismass", "SS":"SR_SS_no_cuts_forvismass", "ncuts":3}
+addon_regions_OS_no_cuts[samples.Zlljets] = {"OS":"SR_OS_no_cuts_forvismass", "SS":"SR_SS_no_cuts_forvismass", "ncuts":3}
+addon_regions_OS_no_cuts[samples.top]     = {"OS":"SR_OS_no_cuts_forvismass", "SS":"SR_SS_no_cuts_forvismass", "ncuts":3}
 
 addon_regions_lowSCDP = {}
 addon_regions_lowSCDP[data]            = {"SS":"SR_SS_lowSCDP", "ncuts":3}
@@ -850,6 +847,7 @@ addon_regions_highSCDP_highMT = {}
 addon_regions_highSCDP_highMT[data]            = {"SS":"SR_highSCDP_highMT_SS", "ncuts":4}
 addon_regions_highSCDP_highMT[samples.Wjets]   = {"OS":"SR_highSCDP_highMT", "SS":"SR_highSCDP_highMT_SS", "ncuts":4}
 addon_regions_highSCDP_highMT[samples.Zlljets] = {"OS":"SR_highSCDP_highMT", "SS":"SR_highSCDP_highMT_SS", "ncuts":4}
+
 addon_regions_highSCDP_highMT[samples.top]     = {"OS":"SR_highSCDP_highMT", "SS":"SR_highSCDP_highMT_SS", "ncuts":4}
 
 addon_regions_lowSCDP_lowMT = {}
@@ -1743,6 +1741,7 @@ if ptbinning_y_or_n == "y":
 	    s.estimator.add_systematics(MUSF_STAT)
 	    s.estimator.add_systematics(METSCALE)
 	    s.estimator.add_systematics(PILEUP)
+            s.estimator.add_systematics(fw_incl)
 	    
 	for t in addon_backgrounds_highPT:
 	    t.estimator.add_systematics(RQCD_AntiIsoCR_highPT)  
@@ -1754,6 +1753,7 @@ if ptbinning_y_or_n == "y":
 	    t.estimator.add_systematics(MUSF_STAT)
 	    t.estimator.add_systematics(METSCALE)
 	    t.estimator.add_systematics(PILEUP)
+            t.estimator.add_systematics(fw_incl)
 
 	for u in addon_backgrounds_35med_lowPT:
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT) 
@@ -1787,6 +1787,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
+	    u.estimator.add_systematics(fw_incl)
 
 	for v in addon_backgrounds_25med_highPT:
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
@@ -1798,6 +1799,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
+            v.estimator.add_systematics(fw_incl)
 
 	for s in addon_backgrounds_lowPT_1Track:
 	    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT_Tau1Track) 
@@ -1809,6 +1811,7 @@ if ptbinning_y_or_n == "y":
 	    s.estimator.add_systematics(MUSF_STAT)
 	    s.estimator.add_systematics(METSCALE)
 	    s.estimator.add_systematics(PILEUP)
+	    s.estimator.add_systematics(fw_incl)
 
 	for t in addon_backgrounds_highPT_1Track:
 	    t.estimator.add_systematics(RQCD_AntiIsoCR_highPT_Tau1Track)
@@ -1820,6 +1823,7 @@ if ptbinning_y_or_n == "y":
 	    t.estimator.add_systematics(MUSF_STAT)
 	    t.estimator.add_systematics(METSCALE)
 	    t.estimator.add_systematics(PILEUP)
+	    t.estimator.add_systematics(fw_incl)
 
 	for u in addon_backgrounds_35med_lowPT_1Track:
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT_Tau1Track) 
@@ -1853,6 +1857,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
+	    u.estimator.add_systematics(fw_incl)
 
 	for v in addon_backgrounds_25med_highPT_1Track:
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
@@ -1864,6 +1869,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
+	    v.estimator.add_systematics(fw_incl)
 
 	for s in addon_backgrounds_lowPT_3Track:
 	    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT_Tau3Track) 
@@ -1875,6 +1881,7 @@ if ptbinning_y_or_n == "y":
 	    s.estimator.add_systematics(MUSF_STAT)
 	    s.estimator.add_systematics(METSCALE)
 	    s.estimator.add_systematics(PILEUP)
+	    s.estimator.add_systematics(fw_incl)
 
 	for t in addon_backgrounds_highPT_3Track:
 	    t.estimator.add_systematics(RQCD_AntiIsoCR_highPT_Tau3Track)
@@ -1886,6 +1893,7 @@ if ptbinning_y_or_n == "y":
 	    t.estimator.add_systematics(MUSF_STAT)
 	    t.estimator.add_systematics(METSCALE)
 	    t.estimator.add_systematics(PILEUP)
+	    t.estimator.add_systematics(fw_incl)
 
 	for u in addon_backgrounds_25med_lowPT_3Track:
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
@@ -1897,6 +1905,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
+	    u.estimator.add_systematics(fw_incl)
 
 	for v in addon_backgrounds_25med_highPT_3Track:
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
@@ -1908,7 +1917,8 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-	    
+	    v.estimator.add_systematics(fw_incl)	    
+
 	for u in addon_backgrounds_35med_lowPT_3Track:
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
@@ -1938,6 +1948,7 @@ vdict  = vars.vars_dict
 #-----------------
 
 # NB it does not make sense to plot fakes and addons on the same plot!
+# NB when plotting same sign regions, you can only plot MC scaled by kfactor. ADDON is purely OS background!!
 
 ## backgrounds 
 plot_backgrounds = []
@@ -1956,73 +1967,82 @@ if "SR" == options.region:
         plot_signals.append(samples.Zttjets)
         #plot_signals.append(sub_ztt) 
 
+#------------ HIGH?LOW SCDP REGIONS------------------#
+
 elif "SR_highSCDP_highMT" == options.region:
-        """
-        plot_backgrounds.append(addon_data_highSCDP_highMT)
+        
+        #plot_backgrounds.append(addon_data_highSCDP_highMT)
         plot_backgrounds.append(addon_Wjets_highSCDP_highMT)
         plot_backgrounds.append(addon_Zlljets_highSCDP_highMT)
         plot_backgrounds.append(addon_top_highSCDP_highMT)
-	"""
-        plot_backgrounds.append(samples.Wjets)
+	
+        #plot_backgrounds.append(samples.Wjets)
         #plot_backgrounds.append(samples.Zlljets)
         #plot_backgrounds.append(samples.top)
 
-        #plot_signals.append(samples.Zttjets)
+        plot_signals.append(samples.Zttjets)
 
 elif "SR_lowSCDP_highMT"== options.region:
-	"""
-        plot_backgrounds.append(addon_data_lowSCDP_highMT)
+	
+        #plot_backgrounds.append(addon_data_lowSCDP_highMT)
         plot_backgrounds.append(addon_Wjets_lowSCDP_highMT)
         plot_backgrounds.append(addon_Zlljets_lowSCDP_highMT)
         plot_backgrounds.append(addon_top_lowSCDP_highMT)
-	"""
-        plot_backgrounds.append(samples.Wjets)
+	
+        #plot_backgrounds.append(samples.Wjets)
         #plot_backgrounds.append(samples.Zlljets)
         #plot_backgrounds.append(samples.top)
 
-        #plot_signals.append(samples.Zttjets)
+        plot_signals.append(samples.Zttjets)
 
 elif "SR_highSCDP_highMT_SS" == options.region:
 
-        plot_backgrounds.append(samples.Wjets)
+        #plot_backgrounds.append(addon_data_highSCDP_highMT)
+        plot_backgrounds.append(addon_Wjets_highSCDP_highMT)
+        plot_backgrounds.append(addon_Zlljets_highSCDP_highMT)
+        plot_backgrounds.append(addon_top_highSCDP_highMT)
+
+        #plot_backgrounds.append(samples.Wjets)
         #plot_backgrounds.append(samples.Zlljets)
         #plot_backgrounds.append(samples.top)
 
-        #plot_signals.append(samples.Zttjets)
+        plot_signals.append(samples.Zttjets)
         
 elif "SR_lowSCDP_highMT_SS"== options.region:
 
-        plot_backgrounds.append(samples.Wjets)
-        plot_backgrounds.append(samples.Zlljets)
-        plot_backgrounds.append(samples.top)
+        plot_backgrounds.append(addon_Wjets_lowSCDP_highMT)
+        plot_backgrounds.append(addon_Zlljets_lowSCDP_highMT)
+        plot_backgrounds.append(addon_top_lowSCDP_highMT)
+        
+        #plot_backgrounds.append(samples.Wjets)
+        #plot_backgrounds.append(samples.Zlljets)
+        #plot_backgrounds.append(samples.top)
 
-        #plot_signals.append(samples.Wjets)
         plot_signals.append(samples.Zttjets)
 
 elif "SR_lowSCDP_lowMT" == options.region:
-	"""
-        plot_backgrounds.append(addon_data_lowSCDP_lowMT)
+	
+        #plot_backgrounds.append(addon_data_lowSCDP_lowMT)
         plot_backgrounds.append(addon_Wjets_lowSCDP_lowMT)
         plot_backgrounds.append(addon_Zlljets_lowSCDP_lowMT)
         plot_backgrounds.append(addon_top_lowSCDP_lowMT)
-	"""
-        plot_backgrounds.append(samples.Wjets)
+	
+        #plot_backgrounds.append(samples.Wjets)
         #plot_backgrounds.append(samples.Zlljets)
         #plot_backgrounds.append(samples.top)
        
-	#plot_signals.append(samples.Zttjets)
+	plot_signals.append(samples.Zttjets)
         #plot_signals.append(sub_ztt) 
-
-elif "SR_SS" == options.region:
-
-        print "signal region"
-        plot_signals.append(samples.Wjets)
 
 elif "SR_lowSCDP_lowMT_SS" == options.region:
 
-        plot_backgrounds.append(samples.Wjets)
-        plot_backgrounds.append(samples.Zlljets)
-        plot_backgrounds.append(samples.top)
+        plot_backgrounds.append(addon_Wjets_lowSCDP_lowMT)
+        plot_backgrounds.append(addon_Zlljets_lowSCDP_lowMT)
+        plot_backgrounds.append(addon_top_lowSCDP_lowMT)
+
+        #plot_backgrounds.append(samples.Wjets)
+        #plot_backgrounds.append(samples.Zlljets)
+        #plot_backgrounds.append(samples.top)
 
         #plot_signals.append(samples.Wjets)
         plot_signals.append(samples.Zttjets)
@@ -2035,40 +2055,53 @@ elif "SR_lowSCDP_lowMT_Tau1Track" == options.region:
         plot_backgrounds.append(samples.Zlljets)
         plot_backgrounds.append(samples.top)
 
-elif "SR_SS_Tau1Track" == options.region:
-        plot_signals.append(samples.Wjets)
+elif "SR_highSCDP" == options.region:
 
-elif "SR_lowSCDP_lowMT_SS_Tau1Track" == options.region:
+	plot_signals.append(samples.Zttjets)
+	plot_backgrounds.append(addon_data_highSCDP)
+        plot_backgrounds.append(addon_Wjets_highSCDP)
+        plot_backgrounds.append(addon_Zlljets_highSCDP)
+        plot_backgrounds.append(addon_top_highSCDP)
+
+elif "SR_lowSCDP" == options.region:
+
+	plot_signals.append(samples.Zttjets)
+	plot_backgrounds.append(addon_data_lowSCDP)
+        plot_backgrounds.append(addon_Wjets_lowSCDP)
+        plot_backgrounds.append(addon_Zlljets_lowSCDP)
+        plot_backgrounds.append(addon_top_lowSCDP)
+
+#------------------------------------------------------#
+
+elif "SR_SS" == options.region:
+
+        print "signal region"
+
         #plot_signals.append(samples.Wjets)
         plot_signals.append(samples.Zttjets)
-        plot_backgrounds.append(samples.Zlljets)
-        plot_backgrounds.append(samples.top)
 
-elif "SR_lowSCDP_lowMT_Tau3Track" == options.region:
-        #plot_backgrounds.append(addon_Wjets)
+elif "SR_SS_Tau1Track" == options.region:
         plot_signals.append(samples.Wjets)
 
 elif "SR_SS_Tau3Track" == options.region:
         plot_signals.append(samples.Wjets)
 
-elif "SR_lowSCDP_lowMT_SS_Tau3Track" == options.region:
-        plot_signals.append(samples.Wjets)
 
 elif "Wjets_OS" == options.region:
 	plot_backgrounds.append(addon_Wjets)
 	#plot_signals.append(samples.Wjets)
 
-elif "SR_OS_no_cuts" == options.region:  
+elif "SR_OS_no_cuts_forvismass" == options.region:  
 
 #	print "signal region"
-        plot_backgrounds.append(samples.Wjets)
-        plot_backgrounds.append(samples.Zlljets)
-        plot_backgrounds.append(samples.top)
+        #plot_backgrounds.append(samples.Wjets)
+        #plot_backgrounds.append(samples.Zlljets)
+        #plot_backgrounds.append(samples.top)
 
-	#plot_backgrounds.append(addon_data_OS_no_cuts)
-	#plot_backgrounds.append(addon_Wjets_OS_no_cuts)
-	#plot_backgrounds.append(addon_Zlljets_OS_no_cuts)
-	#plot_backgrounds.append(addon_top_OS_no_cuts)
+	plot_backgrounds.append(addon_data_OS_no_cuts)
+	plot_backgrounds.append(addon_Wjets_OS_no_cuts)
+	plot_backgrounds.append(addon_Zlljets_OS_no_cuts)
+	plot_backgrounds.append(addon_top_OS_no_cuts)
 
         plot_signals.append(samples.Zttjets)
 
@@ -2083,7 +2116,7 @@ elif "SR_25med" == options.region:
 	plot_backgrounds.append(addon_top_25med)
 
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med)  
+        #plot_signals.append(sub_ztt_25med)  
 
 elif "SR_35med" == options.region:
  
@@ -2107,7 +2140,7 @@ elif "SR_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_1Track)
 	
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_1Track) 
+        #plot_signals.append(sub_ztt_1Track) 
 	
 elif "SR_25med_Tau1Track" == options.region:
  
@@ -2119,7 +2152,7 @@ elif "SR_25med_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_25med_1Track)
 
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med_1Track)  
+        #plot_signals.append(sub_ztt_25med_1Track)  
 
 elif "SR_35med_Tau1Track" == options.region:
  
@@ -2144,7 +2177,7 @@ elif "SR_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_top_3Track)
 
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_3Track) 
+        #plot_signals.append(sub_ztt_3Track) 
 	
 elif "SR_25med_Tau3Track" == options.region:
  
@@ -2156,7 +2189,7 @@ elif "SR_25med_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_top_25med_3Track)
 
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_25med_3Track)  
+        #plot_signals.append(sub_ztt_25med_3Track)  
 		
 elif "SR_35med_Tau3Track" == options.region:
  
