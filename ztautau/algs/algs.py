@@ -598,9 +598,17 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         
 	self.h_jet_bdt_score = self.hist('h_jet_bdt_score', "ROOT.TH1F('$', '; BDT score ;Events', 20, 0.6, 1.0)", dir=TAUS)
 
+        self.h_m_trans_vs_sumcosdphi = self.hist('h_m_trans_vs_sumcosdphi', "ROOT.TH2F('$', '; m_T (\mu,E^{miss}_{T}) vs \sum\cos(\Delta \phi)', 200, 0.0, 200.0, 20, -2.0, 2.0)", dir=TAUS)
 
+        self.h_met_reco_et_vs_sumcosdphi = self.hist('h_met_reco_et_vs_sumcosdphi', "ROOT.TH2F('$', '; E^{miss}_{T} [GeV] vs \sum\cos(\Delta \phi)', 1000, 0.0, 1000.0, 20, -2.0, 2.0)", dir=TAUS)
+
+        self.h_met_reco_et_vs_m_trans = self.hist('h_met_reco_et_vs_m_trans', "ROOT.TH2F('$', '; E^{miss}_{T} [GeV] vs m_T (\mu,E^{miss}_{T})', 1000, 0.0, 1000.0, 200, 0.0, 200.0)", dir=TAUS)
 
         if passed:
+
+	     self.h_m_trans_vs_sumcosdphi.Fill(self.chain.lephad_mt_lep0_met, self.chain.lephad_met_sum_cos_dphi, weight)
+	     self.h_met_reco_et_vs_sumcosdphi.Fill(self.chain.met_reco_et, self.chain.lephad_met_sum_cos_dphi, weight)
+	     self.h_met_reco_et_vs_m_trans.Fill(self.chain.met_reco_et, self.chain.lephad_mt_lep0_met, weight)
 
              self.h_topoetcone20.Fill(self.chain.lep_0_iso_topoetcone20/GeV, weight)
              self.h_ptvarcone30.Fill(self.chain.lep_0_iso_ptvarcone30/GeV, weight)
