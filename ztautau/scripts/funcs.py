@@ -11,6 +11,7 @@ import ROOT
 from pyplot import histutils
 from math import sqrt
 from decimal import Decimal
+import array
 #import sys_conv
 
 
@@ -48,7 +49,6 @@ def get_hists(
       hists[s] = h
       assert h, 'failed to gen hist for %s'%s.name
       h.SetName('h_%s_%s'%(region,s.name))
-      
       if sys_dict: 
          h.sys_hists = get_sys_hists(region    = region,
                                      icut      = icut,
@@ -266,8 +266,9 @@ def plot_hist(
     h_samp_list = []
     for s in backgrounds+signal:
       if not s in hists.keys(): continue
+      #print hists[s]
       h_samp_list.append(hists[s])
-    
+      
     h_total = histutils.add_hists(h_samp_list)
 
     ## get stat / sys bands
