@@ -242,5 +242,140 @@ RQCD_AntiIsoCR_35med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_35med_highPT_Ta
         )
 
 
+#INCL
+fw_incl = sys_dict['fw_incl'] = Systematic(
+        'fw_incl','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
 
+fw_lowPT_incl = sys_dict['fw_lowPT_incl'] = Systematic(
+	'fw_lowPT_incl','$\\sigma_{FW}$',
+	flat_err=0.15,
+	)
+
+fw_highPT_incl = sys_dict['fw_highPT_incl'] = Systematic(
+        'fw_highPT_incl','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+fw_lowPT_25med = sys_dict['fw_lowPT_25med'] = Systematic(
+        'fw_lowPT_25med','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+fw_highPT_25med = sys_dict['fw_highPT_25med'] = Systematic(
+        'fw_highPT_25med','$\\sigma_{FW}$',
+        flat_err=0.15,
+	)
+
+# 1 Prong
+
+fw_lowPT_1Track = sys_dict['fw_lowPT_1Track'] = Systematic(
+        'fw_lowPT_1Track','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+fw_highPT_1Track = sys_dict['fw_highPT_1Track'] = Systematic(
+        'fw_highPT_1Track','$\\sigma_{FW}$',
+        flat_err=0.15,
+	)
+
+fw_lowPT_1Track_25med = sys_dict['fw_lowPT_1Track_25med'] = Systematic(
+        'fw_lowPT_1Track_25med','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+fw_highPT_1Track_25med = sys_dict['fw_highPT_1Track_25med'] = Systematic(
+        'fw_highPT_1Track_25med','$\\sigma_{FW}$',
+        flat_err=0.15,
+	)
+
+#3 Prong
+
+fw_lowPT_3Track = sys_dict['fw_lowPT_3Track'] = Systematic(
+        'fw_lowPT_3Track','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+fw_highPT_3Track = sys_dict['fw_highPT_3Track'] = Systematic(
+        'fw_highPT_3Track','$\\sigma_{FW}$',
+        flat_err=0.15,
+	)
+
+fw_lowPT_3Track_25med = sys_dict['fw_lowPT_3Track_25med'] = Systematic(
+        'fw_lowPT_3Track_25med','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+fw_highPT_3Track_25med = sys_dict['fw_highPT_3Track_25med'] = Systematic(
+        'fw_highPT_3Track_25med','$\\sigma_{FW}$',
+        flat_err=0.15,
+        )
+
+"""
+#INCL
+fw_lowPT_incl = sys_dict['fw_lowPT_incl'] = Systematic(
+	'fw_lowPT_incl','$\\sigma_{FW}$',
+	flat_err=0.17,
+	)
+
+fw_highPT_incl = sys_dict['fw_highPT_incl'] = Systematic(
+        'fw_highPT_incl','$\\sigma_{FW}$',
+        flat_err=0.43,
+        )
+
+fw_lowPT_25med = sys_dict['fw_lowPT_25med'] = Systematic(
+        'fw_lowPT_25med','$\\sigma_{FW}$',
+        flat_err=0.17,
+        )
+
+fw_highPT_25med = sys_dict['fw_highPT_25med'] = Systematic(
+        'fw_highPT_25med','$\\sigma_{FW}$',
+        flat_err=0.43,
+	)
+
+# 1 Prong
+
+fw_lowPT_1Track = sys_dict['fw_lowPT_1Track'] = Systematic(
+        'fw_lowPT_1Track','$\\sigma_{FW}$',
+        flat_err=0.19,
+        )
+
+fw_highPT_1Track = sys_dict['fw_highPT_1Track'] = Systematic(
+        'fw_highPT_1Track','$\\sigma_{FW}$',
+        flat_err=0.40,
+	)
+
+fw_lowPT_1Track_25med = sys_dict['fw_lowPT_1Track_25med'] = Systematic(
+        'fw_lowPT_1Track_25med','$\\sigma_{FW}$',
+        flat_err=0.18,
+        )
+
+fw_highPT_1Track_25med = sys_dict['fw_highPT_1Track_25med'] = Systematic(
+        'fw_highPT_1Track_25med','$\\sigma_{FW}$',
+        flat_err=0.53,
+	)
+
+#3 Prong
+
+fw_lowPT_3Track = sys_dict['fw_lowPT_3Track'] = Systematic(
+        'fw_lowPT_3Track','$\\sigma_{FW}$',
+        flat_err=0.69,
+        )
+
+fw_highPT_3Track = sys_dict['fw_highPT_3Track'] = Systematic(
+        'fw_highPT_3Track','$\\sigma_{FW}$',
+        flat_err=3.62,
+	)
+
+fw_lowPT_3Track_25med = sys_dict['fw_lowPT_3Track_25med'] = Systematic(
+        'fw_lowPT_3Track_25med','$\\sigma_{FW}$',
+        flat_err=3.35,
+        )
+
+fw_highPT_3Track_25med = sys_dict['fw_highPT_3Track_25med'] = Systematic(
+        'fw_highPT_3Track_25med','$\\sigma_{FW}$',
+        flat_err=3.64,
+        )
+"""
 ## EOF
