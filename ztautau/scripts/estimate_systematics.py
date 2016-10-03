@@ -122,13 +122,22 @@ data_post = hist_SR_subztt_posttrig.Clone()
 data_pre = hist_SR_subztt_pretrig.Clone()
 h_efficiency_simple_subztt_nominal = hist_SR_subztt_posttrig.Clone()
 h_efficiency_simple_subztt_nominal.Divide(data_post, data_pre, 1.0, 1.0, "B")
-
+"""
+t_efficiency = None
+if ROOT.TEfficiency.CheckConsistency(data_post, data_pre,"-w"):
+	t_efficiency = ROOT.TEfficiency(data_post, data_pre)
+	t_efficiency.SetConfidenceLevel(0.683)
+	t_efficiency.SetStatisticOption(ROOT.TEfficiency.kBUniform)
+t_efficiency.Print("all")
+"""
+g_efficiency = ROOT.TGraphAsymmErrors()
+g_efficiency.Divide(data_post,data_pre,"cl=0.683 b(1,1) mode")
 h_efficiency_simple_subztt_nominal.Print("all")
 #for i in range(1,14):
-x = hist_SR_subztt_posttrig.GetBinContent(10)
-y = hist_SR_subztt_pretrig.GetBinContent(10)
+gy = g_efficiency.GetY()[1]
+print gy
 diffbins = x/y
-print diffbins
+print gy, x
 
 h_efficiency_simple_mc_nominal = hist_SR_MC_posttrig.Clone()
 h_efficiency_simple_mc_nominal.Divide(hist_SR_MC_posttrig, hist_SR_MC_pretrig, 1.0, 1.0, "B")
@@ -145,6 +154,7 @@ print "****************************"
 outfile = ROOT.TFile('simple_outputnew.root','recreate')
 h_efficiency_simple_subztt_nominal.Write()
 h_efficiency_simple_mc_nominal.Write()
+t_efficiency.Write()
 outfile.Close()
 
 
