@@ -373,7 +373,15 @@ class AddOnEstimator(BaseEstimator):
 
            kf_os_top, kf_os_top_err = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            kf_os_bot, kf_os_bot_err = histutils.full_integral_and_error(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           kf_OS[s] = kf_os_top/kf_os_bot
+
+           if kf_os_bot == 0:
+                print s.name
+                kf_OS[s] == 1.0
+                #kf_OS_unc[s] = 0.0
+                #kf_SS_unc[s] = 0.0
+           else:
+           	kf_OS[s] = kf_os_top/kf_os_bot
+		kf_OS_unc[s] = ratiounc(a = kf_os_top, b = kf_os_bot, sigmaa = kf_os_top_err, sigmab = kf_os_bot_err)
 
            kf_ss_top,kf_ss_top_err = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
 
@@ -389,7 +397,6 @@ class AddOnEstimator(BaseEstimator):
                 #kf_SS_unc[s] = abs(kf_SS[s])*math.sqrt( (kf_ss_top_err/kf_ss_top)**2 + (kf_ss_bot_err/kf_ss_bot)**2 )
 
 
-                kf_OS_unc[s] = ratiounc(a = kf_os_top, b = kf_os_bot, sigmaa = kf_os_top_err, sigmab = kf_os_bot_err)
                 kf_SS_unc[s] = ratiounc(a = kf_ss_top, b = kf_ss_bot, sigmaa = kf_ss_top_err, sigmab = kf_ss_bot_err)
 
         # compute rqcd transfer factor
@@ -463,10 +470,10 @@ class AddOnEstimator(BaseEstimator):
 
         h_addon = {} 
         h_addon[self.data_sample] = h_fakes.Clone()
-
+	
 	for t in addon_regions.keys():
 		if t ==self.data_sample: continue
-		#elif t.name == "Wjets": continue
+		elif t.name == "Wjets": continue
 		else:  
 			print "scaling", t.name, "by kfactor"
 			h_addon[t] =t.hist(region=addon_regions[t]["OS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
@@ -476,7 +483,7 @@ class AddOnEstimator(BaseEstimator):
                         #h_addon[t] = t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
 		        #h_addon[t].Scale(kf_SS[t])
 
-              
+           
         for s in addon_regions.keys():
            if s.name == "Wjets": 
                    print "working on wjets"
@@ -488,10 +495,10 @@ class AddOnEstimator(BaseEstimator):
            	   for l in range(len(tmp_samples_wjets)):
                 	print tmp_samples_wjets[l].name
 
-		   h_addon[s] = data_sub_wjets.hist(region=addon_regions[self.data_sample]["OS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() 
-                   h_addon[s].Add(data_sub_wjets.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone(),    -1.0 * rqcd)
+		   h_addon[s] = data_sub_wjets.hist(region=addon_regions[self.data_sample]["OS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() 
+                   h_addon[s].Add(data_sub_wjets.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone(),    -1.0 * rqcd)
 		   
-		   kW_wjets = 2.9404166756
+		   #kW_wjets = 2.9404166756
 
                    #total_wjets_os = histutils.full_integral( data_sub_wjets.hist(region=addon_regions[self.data_sample]["OS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
                    #total_wjets_ss = histutils.full_integral( data_sub_wjets.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
@@ -500,17 +507,63 @@ class AddOnEstimator(BaseEstimator):
 		   #kW_num = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone())
 		   #kW_den = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone())
 
-		   #kW_num = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
+		   kW_num = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
 
-		   #kW_num += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() ))
+		   kW_num += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() ))
 
-		   #kW_den = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["OS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
+		   kW_den = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["OS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
 
-                   #kW_den += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
+                   kW_den += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
 
-                   #kW_wjets = kW_num/kW_den
+		   if kW_den == 0:
+			kW_wjets = 0
+			print "kW_wjets = 0 and numerator was", 0
 
-		   
+		   else:
+
+	                   kW_wjets = kW_num/kW_den
+			   
+			   # ERROR FOR KW == FW
+			   fw_num1, fw_num_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
+			   print fw_num1, fw_num_err1
+
+			   fw_num2, fw_num_err2 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
+			   print fw_num2, fw_num_err2
+
+			   fw_num_err3 = rqcd_stat_unc
+
+			   fw_den1, fw_den_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
+
+			   print fw_den1, fw_den_err1
+
+			   fw_den2, fw_den_err2 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone())
+
+			   print fw_den2, fw_den_err2
+
+			   fw_den_err3 = rqcd_stat_unc
+			   if fw_num2 > 0 and fw_den2 > 0 and kW_num > 0:
+
+				   #rqcd_term_err = rqcd*fw_num2*math.sqrt( (fw_num_err2/fw_num2)**2 + (rqcd_stat_unc/rqcd)**2 )
+				   rqcd_term_err = rqcd*fw_num2**(math.sqrt( (fw_num_err2/fw_num2)**2 + (rqcd_stat_unc/rqcd)**2 ) )
+
+				   #fw_num_err =  math.sqrt(  (fw_num_err1)**2 + ( rqcd_term_err )**2 )
+				   fw_num_err = ( math.sqrt(  (fw_num_err1)**2  + ( rqcd_term_err )**2 ) )		   
+
+				   print fw_num_err, "is the num error on fw. Rep as a %:", fw_num_err/kW_num
+
+				   #den_rqcd_term_err = rqcd*fw_den2*math.sqrt( (fw_den_err2/fw_den2)**2 + (rqcd_stat_unc/rqcd)**2 )
+				   den_rqcd_term_err = rqcd*fw_den2*(math.sqrt( (fw_den_err2/fw_den2)**2 + (rqcd_stat_unc/rqcd)**2 ) )
+
+				   #fw_den_err =  math.sqrt(  (fw_den_err1)**2 + ( den_rqcd_term_err )**2 )
+				   fw_den_err = ( math.sqrt(  (fw_den_err1)**2  + ( den_rqcd_term_err )**2 ) )
+
+				   print fw_den_err, "is the den error on fw. Rep as a %:", fw_den_err/kW_den
+				   
+
+				   fw_tot_err = kW_wjets * math.sqrt ( (fw_num_err2/kW_num)**2 + (fw_den_err2/kW_den)**2 )
+				   print "err on fW is", fw_tot_err, ". Rep as a %:", fw_tot_err/kW_wjets
+
+	   
 		   if sys and "fw" in sys.name:
 	      	   	  """	
 			  wreg_list = addon_regions[self.data_sample]["OS"].split("_")
@@ -533,48 +586,8 @@ class AddOnEstimator(BaseEstimator):
 
 		   
                    print "new wjets kfactor =", kW_wjets
-
+		 
 		   h_addon[s].Scale(kW_wjets)
-		    
-		   # ERROR FOR KW == FW
-		   fw_num1, fw_num_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
-		   print fw_num1, fw_num_err1
-
-	           fw_num2, fw_num_err2 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
-		   print fw_num2, fw_num_err2
-
-		   fw_num_err3 = rqcd_stat_unc
-
-		   fw_den1, fw_den_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
-
-		   print fw_den1, fw_den_err1
-
-		   fw_den2, fw_den_err2 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone())
-
-		   print fw_den2, fw_den_err2
-
-		   fw_den_err3 = rqcd_stat_unc
-
-		   #rqcd_term_err = rqcd*fw_num2*math.sqrt( (fw_num_err2/fw_num2)**2 + (rqcd_stat_unc/rqcd)**2 )
-		   rqcd_term_err = rqcd*fw_num2**(math.sqrt( (fw_num_err2/fw_num2)**2) + math.sqrt((rqcd_stat_unc/rqcd)**2 ) )
-
-		   #fw_num_err =  math.sqrt(  (fw_num_err1)**2 + ( rqcd_term_err )**2 )
-		   #fw_num_err = ( math.sqrt(  (fw_num_err1)**2 ) )# + (( rqcd_term_err )**2 ) )		   
-
-		   #print fw_num_err, "is the num error on fw. Rep as a %:", fw_num_err/kW_num
-
-                   #den_rqcd_term_err = rqcd*fw_den2*math.sqrt( (fw_den_err2/fw_den2)**2 + (rqcd_stat_unc/rqcd)**2 )
-		   den_rqcd_term_err = rqcd*fw_den2**(math.sqrt( (fw_den_err2/fw_den2)**2) + math.sqrt((rqcd_stat_unc/rqcd)**2 ) )
-
-                   #fw_den_err =  math.sqrt(  (fw_den_err1)**2 + ( den_rqcd_term_err )**2 )
-                   #fw_den_err = ( math.sqrt(  (fw_den_err1)**2 ) )#+ (( den_rqcd_term_err )**2 ) )
-
-                   #print fw_den_err, "is the den error on fw. Rep as a %:", fw_den_err/kW_den
-		   
-
-		   fw_tot_err = kW_wjets * math.sqrt ( (fw_num_err2/kW_num)**2 + (fw_den_err2/kW_den)**2 )
-		   print "err on fW is", fw_tot_err, ". Rep as a %:", fw_tot_err/kW_wjets
-
 		   
         
         """
