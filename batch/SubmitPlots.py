@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HIST_2009_new_vis_mass_cut'
-outdir   = 'Plots_Wjets_newmethod_new_vismasscut'
+indir    = 'HIST_0910_v22'
+outdir   = 'Plots_0910_v22_nomusf_sys'
 #indir = 'HistROO_2016_incltopoptvar'
 #outdir = 'PLOTSv19_2016_topocone'
 
@@ -65,15 +65,15 @@ regions = {}
 #regions["SR_no_cuts"] = [0,"SR_no_cuts"]
 
 regions["SR"] 		= [4,"SR"]
-"""
-regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
-regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
-"""
+
+#regions['SR_Tau3Track'] = [5,'SR_Tau3Track']
+#regions['SR_Tau1Track'] = [5,'SR_Tau1Track']
+
 regions["SR_25med"] 	= [5,"SR_25med"]
-"""
+
 #regions['SR_25med_Tau1Track'] = [6,'SR_25med_Tau1Track']
 #regions["SR_25med_Tau3Track"] = [6,"SR_25med_Tau3Track"]
-
+"""
 regions['SR_25med_lowPT_Tau1Track'] = [7,'SR_25med_lowPT_Tau1Track']
 regions['SR_25med_highPT_Tau1Track'] = [7,'SR_25med_highPT_Tau1Track']
 regions['SR_25med_lowPT_Tau3Track'] = [7,'SR_25med_lowPT_Tau3Track']
@@ -143,9 +143,9 @@ regions["Wjets_OS_highPT"] = [4, "Wjets_OS_highPT"]
 regions["Wjets_OS_lowPT"]  = [4, "Wjets_OS_lowPT"]
 
 # ANTI ISO SS -----------------------------------
-"""
+
 regions["AntiIsoCR_SS"]	       = [3, "AntiIso_SS"]
-"""
+
 regions["AntiIsoCR_SS_Tau1Track"] = [3,"AntiIso_SS_Tau1Track"]
 regions["AntiIsoCR_SS_Tau3Track"] = [3,"AntiIso_SS_Tau3Track"]
 
@@ -155,10 +155,10 @@ regions["AntiIsoCR_SS_35med_Tau3Track"]  = [4, "AntiIso_SS_25med_Tau3Track"]
 
 regions["AntiIsoCR_SS_highPT"] = [3, "AntiIso_SS_highPT"]
 regions["AntiIsoCR_SS_lowPT"]  = [3, "AntiIso_SS_lowPT"]
-"""
+
 # ANTI ISO OS -----------------------------------
 regions["AntiIsoCR_OS"]	       = [3, "AntiIso_OS"]
-"""
+
 regions["AntiIsoCR_OS_Tau1Track"] = [3,"AntiIso_OS_Tau1Track"]
 regions["AntiIsoCR_OS_Tau3Track"] = [3,"AntiIso_OS_Tau3Track"]
 
