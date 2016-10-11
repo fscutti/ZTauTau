@@ -15,6 +15,8 @@ nmuons = Var(name = 'nmuons',
               xmin  = 0,
               xmax  = 5,
               log   = False,
+	      xmin2 = None,
+	      xmax2 = None,
               )
 
 n_vx = Var(name = 'n_vx',
@@ -23,18 +25,24 @@ n_vx = Var(name = 'n_vx',
               xmax    = 14,
      #         rebin   = 0,
               log     = False,
+              xmin2 = None,
+              xmax2 = None,
               )
 
 n_bjets = Var(name = 'n_bjets',
 	      path = 'event',
 	      xmin = 0,
 	      xmax = 5,
+              xmin2 = None,
+              xmax2 = None,
 	      log = False,
 	      )
 
 n_jets = Var(name = 'n_jets',
               path = 'event',
               xmin = 0,
+              xmin2 = None,
+              xmax2 = None,
               xmax = 19,
               log = False,
               )
@@ -46,6 +54,8 @@ mu_pt = Var(name = 'mu_pt',
               xmin    = 20,
               xmax    = 150,
               rebin   = 4,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
@@ -53,6 +63,8 @@ mu_phi = Var(name = 'mu_phi',
               path    = 'muons',
               xmin    = -4,
               xmax    = 4,
+              xmin2 = None,
+              xmax2 = None,
               #rebin   = 2,
               log     = False,
               )
@@ -61,6 +73,8 @@ mu_eta = Var(name = 'mu_eta',
               path    = 'muons',
               xmin    = -3,
               xmax    = 3,
+              xmin2 = None,
+              xmax2 = None,
 #              rebin   = 2,
               log     = False,
               )
@@ -70,6 +84,8 @@ topoetcone20ptmev = Var(name = 'topoetcone20pt',
 			path = 'muons',
 			xmin = -0.5,
 			xmax = 0.5,
+              		xmin2 = None,
+              		xmax2 = None,
 			log = False,
 			)
 
@@ -77,6 +93,8 @@ ptvarcone30ptmev = Var(name = 'ptvarcone30pt',
                         path = 'muons',
                         xmin = -0.5,
                         xmax = 0.5,
+                        xmin2 = None,
+                        xmax2 = None,
                         log = False,
                         )
 
@@ -84,6 +102,8 @@ topoetcone20mev = Var(name = 'topoetcone20',
                         path = 'muons',
                         xmin = -20000,
                         xmax = 200000,
+                        xmin2 = None,
+                        xmax2 = None,
                         log = False,
                         )
 
@@ -92,6 +112,8 @@ ptvarcone30mev = Var(name = 'ptvarcone30',
                         xmin = -30000,
                         xmax = 300000,
                         log = False,
+                        xmin2 = None,
+                        xmax2 = None,
                         )
 
 topoetcone20pt = Var(name = 'topoetcone20pt',
@@ -99,6 +121,8 @@ topoetcone20pt = Var(name = 'topoetcone20pt',
 			xmin = -0.5,
 			xmax = 0.5,
 			log = False,
+                        xmin2 = None,
+                        xmax2 = None,
 			)
 
 ptvarcone30pt = Var(name = 'ptvarcone30pt',
@@ -106,6 +130,8 @@ ptvarcone30pt = Var(name = 'ptvarcone30pt',
                         xmin = -0.5,
                         xmax = 0.5,
                         log = False,
+                        xmin2 = None,
+                        xmax2 = None,
                         )
 
 topoetcone20 = Var(name = 'topoetcone20',
@@ -113,6 +139,8 @@ topoetcone20 = Var(name = 'topoetcone20',
                         xmin = -20,
                         xmax = 200,
                         log = False,
+                        xmin2 = None,
+                        xmax2 = None,
                         )
 
 ptvarcone30 = Var(name = 'ptvarcone30',
@@ -120,21 +148,59 @@ ptvarcone30 = Var(name = 'ptvarcone30',
                         xmin = -30,
                         xmax = 300,
                         log = False,
+                        xmin2 = None,
+                        xmax2 = None,
                         )
 
 ## Tau variables
 ## ---------------------------------------
+
 tau_pt = Var(name = 'tau_pt',
               path    = 'taus',
               xmin    = 20,
               xmax    = 300,
               rebin   = 4,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
+
+m_trans_vs_sumcosdphi = Var(name = 'm_trans_vs_sumcosdphi',
+				path = 'taus',
+			        xmin = 0,
+				xmax = 200,
+				#rebin = 2,
+				xmin2 = -2,
+				xmax2 = 2,
+				log = False,
+				)	
+
+met_reco_et_vs_sumcosdphi = Var(name = 'met_reco_et_vs_sumcosdphi',
+                                path = 'taus',
+                                xmin = 0,
+                                xmax = 1000,
+                                #rebin = 2,
+                                xmin2 = -2,
+                                xmax2 = 2,
+                                log = False,
+                                )
+
+met_reco_et_vs_m_trans = Var(name = 'met_reco_et_vs_m_trans',
+                                path = 'taus',
+                                xmin = 0,
+                                xmax = 1000,
+                                #rebin = 4,
+                                xmin2 = 1,
+                                xmax2 = 200,
+                                log = False,
+                                )
+
 tau_phi = Var(name = 'tau_phi',
               path    = 'taus',
               xmin    = -4,
               xmax    = 4,
+              xmin2 = None,
+              xmax2 = None,
              # rebin   = 2,
               log     = False,
               )
@@ -144,6 +210,8 @@ tau_eta = Var(name = 'tau_eta',
               xmin    = -3,
               xmax    = 3,
              # rebin   = 2,
+              xmin2 = None,
+              xmax2 = None,
 	      log     = False,
               )
 
@@ -152,6 +220,8 @@ tau_n_tracks = Var(name = 'tau_n_tracks',
               xmin    = 0,
               xmax    = 5,
              # rebin   = 2,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
@@ -161,6 +231,8 @@ jet_bdt_score = Var(name  = 'jet_bdt_score',
 	     xmax = 1,
 	     rebin = 1,
 	     log = False,
+             xmin2 = None,
+             xmax2 = None,
 	     )
 
 ## MET variables
@@ -170,14 +242,18 @@ vis_mass = Var(name = 'vis_mass',
               xmin    = 0,
               xmax    = 160,
               rebin   = 4,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
 sumcosdphi = Var(name = 'sumcosdphi',
               path    = 'event',
-              xmin    = -0.5,
+              xmin    = -2,
               xmax    = 2,
               rebin   = 2,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
@@ -186,6 +262,8 @@ lowsumcosdphi = Var(name = 'lowsumcosdphi',
               xmin    = -2,
               xmax    = -0.6,
               #rebin   = 2,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
@@ -194,6 +272,8 @@ m_trans = Var(name = 'm_trans',
               path    = 'event',
               xmin    = 0,
               xmax    = 200,
+              xmin2 = None,
+              xmax2 = None,
               rebin   = 4,
               log     = False,
               )
@@ -203,6 +283,8 @@ met_reco_et = Var(name = 'met_reco_et',
               xmin    = 0,
               xmax    = 140,
               rebin   = 5,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
@@ -211,6 +293,8 @@ met_reco_phi = Var(name = 'met_reco_phi',
               xmin    = -3,
               xmax    = 3,
               rebin   = 2,
+              xmin2 = None,
+              xmax2 = None,
               log     = False,
               )
 
@@ -241,6 +325,9 @@ vars_list.append(topoetcone20ptmev)
 vars_list.append(ptvarcone30ptmev)
 vars_list.append(ptvarcone30mev)
 vars_list.append(topoetcone20mev)
+vars_list.append(m_trans_vs_sumcosdphi)
+vars_list.append(met_reco_et_vs_sumcosdphi)
+vars_list.append(met_reco_et_vs_m_trans)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
