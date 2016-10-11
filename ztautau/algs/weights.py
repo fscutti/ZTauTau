@@ -133,27 +133,33 @@ class MuonSF(pyframe.core.Algorithm):
 
 	  #sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoIsoGradient # v12 2015
           #sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoGradient # 2015
-          sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient  # 2016
- 
+
+          #sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient  # 2016
+ 	  sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # v22 2016
+
 	  #print "pt(mu) %lf, trig SF %lf, reco SF %lf, isoGrad SF %lf" % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium, self.chain.lep_0_NOMINAL_MuEffSF_IsoGradient)
  
           if self.scale:
                sf = 1.0
                if self.sys_name == 'MUSF_STAT_UP':
                 sf *= self.chain.lep_0_MUON_EFF_STAT_1up_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+		sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
 		sf *= self.chain.lep_0_MUON_ISO_STAT_1up_MuEffSF_IsoGradient
                elif self.sys_name=='MUSF_STAT_DN':
                 sf *= self.chain.lep_0_MUON_EFF_STAT_1down_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+		sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
                 sf *= self.chain.lep_0_MUON_ISO_STAT_1down_MuEffSF_IsoGradient
                if self.sys_name == 'MUSF_SYS_UP':
                 sf *= self.chain.lep_0_MUON_EFF_SYS_1up_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+		sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone
 		sf *= self.chain.lep_0_MUON_ISO_SYS_1up_MuEffSF_IsoGradient
                elif self.sys_name=='MUSF_SYS_DN':
                 sf *= self.chain.lep_0_MUON_EFF_SYS_1down_MuEffSF_Reco_QualMedium
-                sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+                #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
+		sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone	
                 sf *= self.chain.lep_0_MUON_ISO_SYS_1down_MuEffSF_IsoGradient
           else: pass
         if self.key: 
