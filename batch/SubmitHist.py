@@ -50,8 +50,9 @@ USER   = os.getenv('USER')
 ## global config
 # input NTUP path
 #NTUP='/coepp/cephfs/mel/fscutti/ztautau/v03/merged' 
-NTUP='/coepp/cephfs/mel/laram1/v19/2016'
-#NTUP='/coepp/cephfs/mel/laram1/v17'
+
+#NTUP='/coepp/cephfs/mel/laram1/v19/2016'
+NTUP='/coepp/cephfs/mel/laram1/v22'
 
 # The Melb cloud is twisted and does not recognize home dirs...
 #JOBDIR = "/data/%s/jobdir" % USER 
@@ -64,8 +65,8 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HIST_2309_VisMass45100'
-#RUN = 'HistECHIDNA_missingdata_onemore'
+RUN = 'HIST_1010_v22_musysdn'
+#RUN = 'HIST_0910_v19_alltrigs_rqcd_new'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
@@ -105,7 +106,7 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_data + all_mc 
+    nominal  = all_mc#all_data + all_mc 
 
     all_sys = [
 	
@@ -114,7 +115,7 @@ def main():
 	#['TAUSF_SYS_UP',                  all_mc],
         #['TAUSF_SYS_DN',                  all_mc],
 	#['MUSF_SYS_UP',                  all_mc],
-        #['MUSF_SYS_DN',                  all_mc],
+        ['MUSF_SYS_DN',                  all_mc],
 	#['MUMS_UP',                  all_mc],
 	#['MUMS_DN',                  all_mc],
 	#['MUSCALE_UP',                  all_mc],
