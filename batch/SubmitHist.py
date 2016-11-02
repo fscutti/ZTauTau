@@ -65,8 +65,8 @@ AUTOBUILD = True
 
 # outputs
 
-RUN = 'HIST_1010_v22_musysdn'
-#RUN = 'HIST_0910_v19_alltrigs_rqcd_new'
+#RUN = 'HIST_2810_v22_all_trigs_and_chains'
+RUN = 'HIST_0211_KW'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
@@ -106,23 +106,23 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_mc#all_data + all_mc 
+    nominal  = all_data + all_mc 
 
     all_sys = [
-	
+    	
 	#['MUSF_STAT_UP',                  all_mc],
         #['MUSF_STAT_DN',                  all_mc],
 	#['TAUSF_SYS_UP',                  all_mc],
         #['TAUSF_SYS_DN',                  all_mc],
 	#['MUSF_SYS_UP',                  all_mc],
-        ['MUSF_SYS_DN',                  all_mc],
+        #['MUSF_SYS_DN',                  all_mc],
 	#['MUMS_UP',                  all_mc],
 	#['MUMS_DN',                  all_mc],
 	#['MUSCALE_UP',                  all_mc],
 	#['MUSCALE_DN',                  all_mc],
 	#['MUID_UP',                  all_mc],
 	#['MUID_DN',                  all_mc],
-	#['METSCALE_UP',                  all_mc],
+        #['METSCALE_UP',                  all_mc],
 	#['METSCALE_DN',                  all_mc],
 	#['METResoPara',			 all_mc],
 	#['METResoPerp', 		 all_mc],
@@ -195,6 +195,7 @@ def submit(tag,job_sys,samps,config={}):
     absoutpath = os.path.abspath(os.path.join(OUTPATH,tag))
     abslogpath = os.path.abspath(os.path.join(OUTPATH,'log_%s'%tag))
     nsubjobs   = len(samps)
+    ncores     = 4
     if TESTMODE: nsubjobs = 1
 
     prepare_path(absoutpath)
@@ -206,6 +207,7 @@ def submit(tag,job_sys,samps,config={}):
     vars+=["OUTFILE=%s" % OUTFILE]
     vars+=["OUTPATH=%s" % absoutpath]
     vars+=["SCRIPT=%s" % SCRIPT]
+    vars+=["NCORES=%d" % ncores]
      
     VARS = ','.join(vars)
 
@@ -215,8 +217,9 @@ def submit(tag,job_sys,samps,config={}):
     cmd += ' -N j.hist.%s' % (tag)
     cmd += ' -j oe -o %s/log' % (abslogpath)
     cmd += ' -t1-%d' % (nsubjobs)
+    cmd += ' -l nodes=1:ppn=%d' % (ncores)
     cmd += ' %s' % BEXEC
-    print cmd
+    #print cmd
     m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
     print m.communicate()[0]
 
