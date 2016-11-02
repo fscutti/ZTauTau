@@ -65,8 +65,9 @@ plotsfile = os.path.join(options.outdir,plotsfile)
 ROOT.gROOT.SetBatch(True)
 hm = histmgr.HistMgr(basedir=options.indir,target_lumi=lumi)
 
+
 trax = [1,3]
-triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160]
+triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160]#, "L1TAU12IMmed"]
 
 #-----------------
 # Samples        
@@ -74,6 +75,7 @@ triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160]
 
 ## data
 data = samples.data
+print len(data.daughters)
 
 ## backgrounds 
 mc_backgrounds = []
@@ -113,6 +115,14 @@ sub_ztt_125med = samples.sub_ztt_125med.copy()
 sub_ztt_125med.tlatex = "Ztt_125med (subtraction)"
 sub_ztt_160med = samples.sub_ztt_160med.copy()
 sub_ztt_160med.tlatex = "Ztt_160med (subtraction)"
+sub_ztt_L1TAU12IMmed = samples.sub_ztt_L1TAU12IMmed.copy()
+sub_ztt_L1TAU12IMmed.tlatex = "Ztt_L1TAU12IMmed (subtraction)"
+
+
+sub_ztt_ptonly = samples.sub_ztt_ptonly.copy()
+sub_ztt_ptonly.tlatex = "Ztt_ptonly (subtraction)"
+sub_ztt_tracktwo = samples.sub_ztt_tracktwo.copy()
+sub_ztt_tracktwo.tlatex = "Ztt_tracktwo (subtraction)"
 
 sub_ztt_25med_1Track = samples.sub_ztt_25med_1Track.copy()
 sub_ztt_25med_1Track.tlatex = "Ztt_25med_1Track (subtraction)"
@@ -128,6 +138,13 @@ sub_ztt_125med_1Track = samples.sub_ztt_125med_1Track.copy()
 sub_ztt_125med_1Track.tlatex = "Ztt_125med_1Track (subtraction)"
 sub_ztt_160med_1Track = samples.sub_ztt_160med_1Track.copy()
 sub_ztt_160med_1Track.tlatex = "Ztt_160med_1Track (subtraction)"
+sub_ztt_L1TAU12IMmed_1Track = samples.sub_ztt_L1TAU12IMmed_1Track.copy()
+sub_ztt_L1TAU12IMmed_1Track.tlatex = "Ztt_L1TAU12IMmed_1Track (subtraction)"
+
+sub_ztt_ptonly_1Track = samples.sub_ztt_ptonly_1Track.copy()
+sub_ztt_ptonly_1Track.tlatex = "Ztt_ptonly_1Track (subtraction)"
+sub_ztt_tracktwo_1Track = samples.sub_ztt_tracktwo_1Track.copy()
+sub_ztt_tracktwo_1Track.tlatex = "Ztt_tracktwo_1Track (subtraction)"
 
 sub_ztt_25med_3Track = samples.sub_ztt_25med_3Track.copy()
 sub_ztt_25med_3Track.tlatex = "Ztt_25med_3Track (subtraction)"
@@ -143,6 +160,13 @@ sub_ztt_125med_3Track = samples.sub_ztt_125med_3Track.copy()
 sub_ztt_125med_3Track.tlatex = "Ztt_125med_3Track (subtraction)"
 sub_ztt_160med_3Track = samples.sub_ztt_160med_3Track.copy()
 sub_ztt_160med_3Track.tlatex = "Ztt_160med_3Track (subtraction)"
+sub_ztt_L1TAU12IMmed_3Track = samples.sub_ztt_L1TAU12IMmed_3Track.copy()
+sub_ztt_L1TAU12IMmed_3Track.tlatex = "Ztt_L1TAU12IMmed_3Track (subtraction)"
+
+sub_ztt_ptonly_3Track = samples.sub_ztt_ptonly_3Track.copy()
+sub_ztt_ptonly_3Track.tlatex = "Ztt_ptonly_3Track (subtraction)"
+sub_ztt_tracktwo_3Track = samples.sub_ztt_tracktwo_3Track.copy()
+sub_ztt_tracktwo_3Track.tlatex = "Ztt_track_3Track (subtraction)"
 
 #-----------------------------------
 # BOTH TRACKS
@@ -292,6 +316,11 @@ addon_Wjets_160med   = samples.addon_Wjets_25med.copy()
 addon_Zlljets_160med = samples.addon_Zlljets_25med.copy()
 addon_top_160med     = samples.addon_top_25med.copy()
 
+addon_data_L1TAU12IMmed    = samples.addon_data_25med.copy()
+addon_Wjets_L1TAU12IMmed   = samples.addon_Wjets_25med.copy()
+addon_Zlljets_L1TAU12IMmed = samples.addon_Zlljets_25med.copy()
+addon_top_L1TAU12IMmed     = samples.addon_top_25med.copy()
+
 addon_data_160med_lowPT    = samples.addon_data_35med_lowPT.copy()
 addon_Wjets_160med_lowPT   = samples.addon_Wjets_35med_lowPT.copy()
 addon_Zlljets_160med_lowPT = samples.addon_Zlljets_35med_lowPT.copy()
@@ -301,6 +330,46 @@ addon_data_160med_highPT    = samples.addon_data_35med_highPT.copy()
 addon_Wjets_160med_highPT   = samples.addon_Wjets_35med_highPT.copy()
 addon_Zlljets_160med_highPT = samples.addon_Zlljets_35med_highPT.copy()
 addon_top_160med_highPT     = samples.addon_top_35med_highPT.copy()
+
+addon_data_L1TAU12IMmed_lowPT    = samples.addon_data_35med_lowPT.copy()
+addon_Wjets_L1TAU12IMmed_lowPT   = samples.addon_Wjets_35med_lowPT.copy()
+addon_Zlljets_L1TAU12IMmed_lowPT = samples.addon_Zlljets_35med_lowPT.copy()
+addon_top_L1TAU12IMmed_lowPT     = samples.addon_top_35med_lowPT.copy()
+
+addon_data_L1TAU12IMmed_highPT    = samples.addon_data_35med_highPT.copy()
+addon_Wjets_L1TAU12IMmed_highPT   = samples.addon_Wjets_35med_highPT.copy()
+addon_Zlljets_L1TAU12IMmed_highPT = samples.addon_Zlljets_35med_highPT.copy()
+addon_top_L1TAU12IMmed_highPT     = samples.addon_top_35med_highPT.copy()
+
+addon_data_ptonly    = samples.addon_data_25med.copy()
+addon_Wjets_ptonly   = samples.addon_Wjets_25med.copy()
+addon_Zlljets_ptonly = samples.addon_Zlljets_25med.copy()
+addon_top_ptonly     = samples.addon_top_25med.copy()
+
+addon_data_ptonly_lowPT    = samples.addon_data_35med_lowPT.copy()
+addon_Wjets_ptonly_lowPT   = samples.addon_Wjets_35med_lowPT.copy()
+addon_Zlljets_ptonly_lowPT = samples.addon_Zlljets_35med_lowPT.copy()
+addon_top_ptonly_lowPT     = samples.addon_top_35med_lowPT.copy()
+
+addon_data_ptonly_highPT    = samples.addon_data_35med_highPT.copy()
+addon_Wjets_ptonly_highPT   = samples.addon_Wjets_35med_highPT.copy()
+addon_Zlljets_ptonly_highPT = samples.addon_Zlljets_35med_highPT.copy()
+addon_top_ptonly_highPT     = samples.addon_top_35med_highPT.copy()
+
+addon_data_tracktwo    = samples.addon_data_25med.copy()
+addon_Wjets_tracktwo   = samples.addon_Wjets_25med.copy()
+addon_Zlljets_tracktwo = samples.addon_Zlljets_25med.copy()
+addon_top_tracktwo     = samples.addon_top_25med.copy()
+
+addon_data_tracktwo_lowPT    = samples.addon_data_35med_lowPT.copy()
+addon_Wjets_tracktwo_lowPT   = samples.addon_Wjets_35med_lowPT.copy()
+addon_Zlljets_tracktwo_lowPT = samples.addon_Zlljets_35med_lowPT.copy()
+addon_top_tracktwo_lowPT     = samples.addon_top_35med_lowPT.copy()
+
+addon_data_tracktwo_highPT    = samples.addon_data_35med_highPT.copy()
+addon_Wjets_tracktwo_highPT   = samples.addon_Wjets_35med_highPT.copy()
+addon_Zlljets_tracktwo_highPT = samples.addon_Zlljets_35med_highPT.copy()
+addon_top_tracktwo_highPT     = samples.addon_top_35med_highPT.copy()
 
 #-----------------------------------
 # ONE TRACK
@@ -426,6 +495,51 @@ addon_Wjets_160med_highPT_1Track   = samples.addon_Wjets_35med_highPT_1Track.cop
 addon_Zlljets_160med_highPT_1Track = samples.addon_Zlljets_35med_highPT_1Track.copy()
 addon_top_160med_highPT_1Track     = samples.addon_top_35med_highPT_1Track.copy()
 
+addon_data_L1TAU12IMmed_1Track    = samples.addon_data_25med_1Track.copy()
+addon_Wjets_L1TAU12IMmed_1Track   = samples.addon_Wjets_25med_1Track.copy()
+addon_Zlljets_L1TAU12IMmed_1Track = samples.addon_Zlljets_25med_1Track.copy()
+addon_top_L1TAU12IMmed_1Track     = samples.addon_top_25med_1Track.copy()
+
+addon_data_L1TAU12IMmed_lowPT_1Track    = samples.addon_data_35med_lowPT_1Track.copy()
+addon_Wjets_L1TAU12IMmed_lowPT_1Track   = samples.addon_Wjets_35med_lowPT_1Track.copy()
+addon_Zlljets_L1TAU12IMmed_lowPT_1Track = samples.addon_Zlljets_35med_lowPT_1Track.copy()
+addon_top_L1TAU12IMmed_lowPT_1Track     = samples.addon_top_35med_lowPT_1Track.copy()
+
+addon_data_L1TAU12IMmed_highPT_1Track    = samples.addon_data_35med_highPT_1Track.copy()
+addon_Wjets_L1TAU12IMmed_highPT_1Track   = samples.addon_Wjets_35med_highPT_1Track.copy()
+addon_Zlljets_L1TAU12IMmed_highPT_1Track = samples.addon_Zlljets_35med_highPT_1Track.copy()
+addon_top_L1TAU12IMmed_highPT_1Track     = samples.addon_top_35med_highPT_1Track.copy()
+
+addon_data_ptonly_1Track    = samples.addon_data_25med_1Track.copy()
+addon_Wjets_ptonly_1Track   = samples.addon_Wjets_25med_1Track.copy()
+addon_Zlljets_ptonly_1Track = samples.addon_Zlljets_25med_1Track.copy()
+addon_top_ptonly_1Track     = samples.addon_top_25med_1Track.copy()
+
+addon_data_ptonly_lowPT_1Track    = samples.addon_data_35med_lowPT_1Track.copy()
+addon_Wjets_ptonly_lowPT_1Track   = samples.addon_Wjets_35med_lowPT_1Track.copy()
+addon_Zlljets_ptonly_lowPT_1Track = samples.addon_Zlljets_35med_lowPT_1Track.copy()
+addon_top_ptonly_lowPT_1Track     = samples.addon_top_35med_lowPT_1Track.copy()
+
+addon_data_ptonly_highPT_1Track    = samples.addon_data_35med_highPT_1Track.copy()
+addon_Wjets_ptonly_highPT_1Track   = samples.addon_Wjets_35med_highPT_1Track.copy()
+addon_Zlljets_ptonly_highPT_1Track = samples.addon_Zlljets_35med_highPT_1Track.copy()
+addon_top_ptonly_highPT_1Track     = samples.addon_top_35med_highPT_1Track.copy()
+
+addon_data_tracktwo_1Track    = samples.addon_data_25med_1Track.copy()
+addon_Wjets_tracktwo_1Track   = samples.addon_Wjets_25med_1Track.copy()
+addon_Zlljets_tracktwo_1Track = samples.addon_Zlljets_25med_1Track.copy()
+addon_top_tracktwo_1Track     = samples.addon_top_25med_1Track.copy()
+
+addon_data_tracktwo_lowPT_1Track    = samples.addon_data_35med_lowPT_1Track.copy()
+addon_Wjets_tracktwo_lowPT_1Track   = samples.addon_Wjets_35med_lowPT_1Track.copy()
+addon_Zlljets_tracktwo_lowPT_1Track = samples.addon_Zlljets_35med_lowPT_1Track.copy()
+addon_top_tracktwo_lowPT_1Track     = samples.addon_top_35med_lowPT_1Track.copy()
+
+addon_data_tracktwo_highPT_1Track    = samples.addon_data_35med_highPT_1Track.copy()
+addon_Wjets_tracktwo_highPT_1Track   = samples.addon_Wjets_35med_highPT_1Track.copy()
+addon_Zlljets_tracktwo_highPT_1Track = samples.addon_Zlljets_35med_highPT_1Track.copy()
+addon_top_tracktwo_highPT_1Track     = samples.addon_top_35med_highPT_1Track.copy()
+
 #-----------------------------------
 # THREE TRACKS
 #-----------------------------------
@@ -549,6 +663,57 @@ addon_data_160med_highPT_3Track    = samples.addon_data_35med_highPT_3Track.copy
 addon_Wjets_160med_highPT_3Track   = samples.addon_Wjets_35med_highPT_3Track.copy()
 addon_Zlljets_160med_highPT_3Track = samples.addon_Zlljets_35med_highPT_3Track.copy()
 addon_top_160med_highPT_3Track     = samples.addon_top_35med_highPT_3Track.copy()
+
+addon_data_L1TAU12IMmed_3Track    = samples.addon_data_25med_3Track.copy()
+addon_Wjets_L1TAU12IMmed_3Track   = samples.addon_Wjets_25med_3Track.copy()
+addon_Zlljets_L1TAU12IMmed_3Track = samples.addon_Zlljets_25med_3Track.copy()
+addon_top_L1TAU12IMmed_3Track     = samples.addon_top_25med_3Track.copy()
+
+addon_data_L1TAU12IMmed_3Track    = samples.addon_data_25med_3Track.copy()
+addon_Wjets_L1TAU12IMmed_3Track   = samples.addon_Wjets_25med_3Track.copy()
+addon_Zlljets_L1TAU12IMmed_3Track = samples.addon_Zlljets_25med_3Track.copy()
+addon_top_L1TAU12IMmed_3Track     = samples.addon_top_25med_3Track.copy()
+
+addon_data_L1TAU12IMmed_lowPT_3Track    = samples.addon_data_35med_lowPT_3Track.copy()
+addon_Wjets_L1TAU12IMmed_lowPT_3Track   = samples.addon_Wjets_35med_lowPT_3Track.copy()
+addon_Zlljets_L1TAU12IMmed_lowPT_3Track = samples.addon_Zlljets_35med_lowPT_3Track.copy()
+addon_top_L1TAU12IMmed_lowPT_3Track     = samples.addon_top_35med_lowPT_3Track.copy()
+
+addon_data_L1TAU12IMmed_highPT_3Track    = samples.addon_data_35med_highPT_3Track.copy()
+addon_Wjets_L1TAU12IMmed_highPT_3Track   = samples.addon_Wjets_35med_highPT_3Track.copy()
+addon_Zlljets_L1TAU12IMmed_highPT_3Track = samples.addon_Zlljets_35med_highPT_3Track.copy()
+addon_top_L1TAU12IMmed_highPT_3Track     = samples.addon_top_35med_highPT_3Track.copy()
+
+addon_data_ptonly_3Track    = samples.addon_data_25med_3Track.copy()
+addon_Wjets_ptonly_3Track   = samples.addon_Wjets_25med_3Track.copy()
+addon_Zlljets_ptonly_3Track = samples.addon_Zlljets_25med_3Track.copy()
+addon_top_ptonly_3Track     = samples.addon_top_25med_3Track.copy()
+
+addon_data_ptonly_lowPT_3Track    = samples.addon_data_35med_lowPT_3Track.copy()
+addon_Wjets_ptonly_lowPT_3Track   = samples.addon_Wjets_35med_lowPT_3Track.copy()
+addon_Zlljets_ptonly_lowPT_3Track = samples.addon_Zlljets_35med_lowPT_3Track.copy()
+addon_top_ptonly_lowPT_3Track     = samples.addon_top_35med_lowPT_3Track.copy()
+
+addon_data_ptonly_highPT_3Track    = samples.addon_data_35med_highPT_3Track.copy()
+addon_Wjets_ptonly_highPT_3Track   = samples.addon_Wjets_35med_highPT_3Track.copy()
+addon_Zlljets_ptonly_highPT_3Track = samples.addon_Zlljets_35med_highPT_3Track.copy()
+addon_top_ptonly_highPT_3Track     = samples.addon_top_35med_highPT_3Track.copy()
+
+addon_data_tracktwo_3Track    = samples.addon_data_25med_3Track.copy()
+addon_Wjets_tracktwo_3Track   = samples.addon_Wjets_25med_3Track.copy()
+addon_Zlljets_tracktwo_3Track = samples.addon_Zlljets_25med_3Track.copy()
+addon_top_tracktwo_3Track     = samples.addon_top_25med_3Track.copy()
+
+addon_data_tracktwo_lowPT_3Track    = samples.addon_data_35med_lowPT_3Track.copy()
+addon_Wjets_tracktwo_lowPT_3Track   = samples.addon_Wjets_35med_lowPT_3Track.copy()
+addon_Zlljets_tracktwo_lowPT_3Track = samples.addon_Zlljets_35med_lowPT_3Track.copy()
+addon_top_tracktwo_lowPT_3Track     = samples.addon_top_35med_lowPT_3Track.copy()
+
+addon_data_tracktwo_highPT_3Track    = samples.addon_data_35med_highPT_3Track.copy()
+addon_Wjets_tracktwo_highPT_3Track   = samples.addon_Wjets_35med_highPT_3Track.copy()
+addon_Zlljets_tracktwo_highPT_3Track = samples.addon_Zlljets_35med_highPT_3Track.copy()
+addon_top_tracktwo_highPT_3Track     = samples.addon_top_35med_highPT_3Track.copy()
+
 
 #-----------------------------
 #-----------------------------
@@ -737,6 +902,60 @@ addon_backgrounds_160med_highPT.append(addon_Wjets_160med_highPT)
 addon_backgrounds_160med_highPT.append(addon_Zlljets_160med_highPT)
 addon_backgrounds_160med_highPT.append(addon_top_160med_highPT)
 
+addon_backgrounds_L1TAU12IMmed = []
+addon_backgrounds_L1TAU12IMmed.append(addon_data_L1TAU12IMmed)
+addon_backgrounds_L1TAU12IMmed.append(addon_Wjets_L1TAU12IMmed)
+addon_backgrounds_L1TAU12IMmed.append(addon_Zlljets_L1TAU12IMmed)
+addon_backgrounds_L1TAU12IMmed.append(addon_top_L1TAU12IMmed)
+
+addon_backgrounds_L1TAU12IMmed_lowPT = []
+addon_backgrounds_L1TAU12IMmed_lowPT.append(addon_data_L1TAU12IMmed_lowPT)
+addon_backgrounds_L1TAU12IMmed_lowPT.append(addon_Wjets_L1TAU12IMmed_lowPT)
+addon_backgrounds_L1TAU12IMmed_lowPT.append(addon_Zlljets_L1TAU12IMmed_lowPT)
+addon_backgrounds_L1TAU12IMmed_lowPT.append(addon_top_L1TAU12IMmed_lowPT)
+
+addon_backgrounds_L1TAU12IMmed_highPT = []
+addon_backgrounds_L1TAU12IMmed_highPT.append(addon_data_L1TAU12IMmed_highPT)
+addon_backgrounds_L1TAU12IMmed_highPT.append(addon_Wjets_L1TAU12IMmed_highPT)
+addon_backgrounds_L1TAU12IMmed_highPT.append(addon_Zlljets_L1TAU12IMmed_highPT)
+addon_backgrounds_L1TAU12IMmed_highPT.append(addon_top_L1TAU12IMmed_highPT)
+
+addon_backgrounds_ptonly = []
+addon_backgrounds_ptonly.append(addon_data_ptonly)
+addon_backgrounds_ptonly.append(addon_Wjets_ptonly)
+addon_backgrounds_ptonly.append(addon_Zlljets_ptonly)
+addon_backgrounds_ptonly.append(addon_top_ptonly)
+
+addon_backgrounds_ptonly_lowPT = []
+addon_backgrounds_ptonly_lowPT.append(addon_data_ptonly_lowPT)
+addon_backgrounds_ptonly_lowPT.append(addon_Wjets_ptonly_lowPT)
+addon_backgrounds_ptonly_lowPT.append(addon_Zlljets_ptonly_lowPT)
+addon_backgrounds_ptonly_lowPT.append(addon_top_ptonly_lowPT)
+
+addon_backgrounds_ptonly_highPT = []
+addon_backgrounds_ptonly_highPT.append(addon_data_ptonly_highPT)
+addon_backgrounds_ptonly_highPT.append(addon_Wjets_ptonly_highPT)
+addon_backgrounds_ptonly_highPT.append(addon_Zlljets_ptonly_highPT)
+addon_backgrounds_ptonly_highPT.append(addon_top_ptonly_highPT)
+
+addon_backgrounds_tracktwo = []
+addon_backgrounds_tracktwo.append(addon_data_tracktwo)
+addon_backgrounds_tracktwo.append(addon_Wjets_tracktwo)
+addon_backgrounds_tracktwo.append(addon_Zlljets_tracktwo)
+addon_backgrounds_tracktwo.append(addon_top_tracktwo)
+
+addon_backgrounds_tracktwo_lowPT = []
+addon_backgrounds_tracktwo_lowPT.append(addon_data_tracktwo_lowPT)
+addon_backgrounds_tracktwo_lowPT.append(addon_Wjets_tracktwo_lowPT)
+addon_backgrounds_tracktwo_lowPT.append(addon_Zlljets_tracktwo_lowPT)
+addon_backgrounds_tracktwo_lowPT.append(addon_top_tracktwo_lowPT)
+
+addon_backgrounds_tracktwo_highPT = []
+addon_backgrounds_tracktwo_highPT.append(addon_data_tracktwo_highPT)
+addon_backgrounds_tracktwo_highPT.append(addon_Wjets_tracktwo_highPT)
+addon_backgrounds_tracktwo_highPT.append(addon_Zlljets_tracktwo_highPT)
+addon_backgrounds_tracktwo_highPT.append(addon_top_tracktwo_highPT)
+
 #--------------------------
 # one track
 #--------------------------
@@ -873,6 +1092,12 @@ addon_backgrounds_160med_1Track.append(addon_Wjets_160med_1Track)
 addon_backgrounds_160med_1Track.append(addon_Zlljets_160med_1Track)
 addon_backgrounds_160med_1Track.append(addon_top_160med_1Track)
 
+addon_backgrounds_L1TAU12IMmed_1Track = []
+addon_backgrounds_L1TAU12IMmed_1Track.append(addon_data_L1TAU12IMmed_1Track)
+addon_backgrounds_L1TAU12IMmed_1Track.append(addon_Wjets_L1TAU12IMmed_1Track)
+addon_backgrounds_L1TAU12IMmed_1Track.append(addon_Zlljets_L1TAU12IMmed_1Track)
+addon_backgrounds_L1TAU12IMmed_1Track.append(addon_top_L1TAU12IMmed_1Track)
+
 addon_backgrounds_160med_lowPT_1Track = []
 addon_backgrounds_160med_lowPT_1Track.append(addon_data_160med_lowPT_1Track)
 addon_backgrounds_160med_lowPT_1Track.append(addon_Wjets_160med_lowPT_1Track)
@@ -884,6 +1109,54 @@ addon_backgrounds_160med_highPT_1Track.append(addon_data_160med_highPT_1Track)
 addon_backgrounds_160med_highPT_1Track.append(addon_Wjets_160med_highPT_1Track)
 addon_backgrounds_160med_highPT_1Track.append(addon_Zlljets_160med_highPT_1Track)
 addon_backgrounds_160med_highPT_1Track.append(addon_top_160med_highPT_1Track)
+
+addon_backgrounds_L1TAU12IMmed_lowPT_1Track = []
+addon_backgrounds_L1TAU12IMmed_lowPT_1Track.append(addon_data_L1TAU12IMmed_lowPT_1Track)
+addon_backgrounds_L1TAU12IMmed_lowPT_1Track.append(addon_Wjets_L1TAU12IMmed_lowPT_1Track)
+addon_backgrounds_L1TAU12IMmed_lowPT_1Track.append(addon_Zlljets_L1TAU12IMmed_lowPT_1Track)
+addon_backgrounds_L1TAU12IMmed_lowPT_1Track.append(addon_top_L1TAU12IMmed_lowPT_1Track)
+
+addon_backgrounds_L1TAU12IMmed_highPT_1Track = []
+addon_backgrounds_L1TAU12IMmed_highPT_1Track.append(addon_data_L1TAU12IMmed_highPT_1Track)
+addon_backgrounds_L1TAU12IMmed_highPT_1Track.append(addon_Wjets_L1TAU12IMmed_highPT_1Track)
+addon_backgrounds_L1TAU12IMmed_highPT_1Track.append(addon_Zlljets_L1TAU12IMmed_highPT_1Track)
+addon_backgrounds_L1TAU12IMmed_highPT_1Track.append(addon_top_L1TAU12IMmed_highPT_1Track)
+
+addon_backgrounds_ptonly_1Track = []
+addon_backgrounds_ptonly_1Track.append(addon_data_ptonly_1Track)
+addon_backgrounds_ptonly_1Track.append(addon_Wjets_ptonly_1Track)
+addon_backgrounds_ptonly_1Track.append(addon_Zlljets_ptonly_1Track)
+addon_backgrounds_ptonly_1Track.append(addon_top_ptonly_1Track)
+
+addon_backgrounds_ptonly_lowPT_1Track = []
+addon_backgrounds_ptonly_lowPT_1Track.append(addon_data_ptonly_lowPT_1Track)
+addon_backgrounds_ptonly_lowPT_1Track.append(addon_Wjets_ptonly_lowPT_1Track)
+addon_backgrounds_ptonly_lowPT_1Track.append(addon_Zlljets_ptonly_lowPT_1Track)
+addon_backgrounds_ptonly_lowPT_1Track.append(addon_top_ptonly_lowPT_1Track)
+
+addon_backgrounds_ptonly_highPT_1Track = []
+addon_backgrounds_ptonly_highPT_1Track.append(addon_data_ptonly_highPT_1Track)
+addon_backgrounds_ptonly_highPT_1Track.append(addon_Wjets_ptonly_highPT_1Track)
+addon_backgrounds_ptonly_highPT_1Track.append(addon_Zlljets_ptonly_highPT_1Track)
+addon_backgrounds_ptonly_highPT_1Track.append(addon_top_ptonly_highPT_1Track)
+
+addon_backgrounds_tracktwo_1Track = []
+addon_backgrounds_tracktwo_1Track.append(addon_data_tracktwo_1Track)
+addon_backgrounds_tracktwo_1Track.append(addon_Wjets_tracktwo_1Track)
+addon_backgrounds_tracktwo_1Track.append(addon_Zlljets_tracktwo_1Track)
+addon_backgrounds_tracktwo_1Track.append(addon_top_tracktwo_1Track)
+
+addon_backgrounds_tracktwo_lowPT_1Track = []
+addon_backgrounds_tracktwo_lowPT_1Track.append(addon_data_tracktwo_lowPT_1Track)
+addon_backgrounds_tracktwo_lowPT_1Track.append(addon_Wjets_tracktwo_lowPT_1Track)
+addon_backgrounds_tracktwo_lowPT_1Track.append(addon_Zlljets_tracktwo_lowPT_1Track)
+addon_backgrounds_tracktwo_lowPT_1Track.append(addon_top_tracktwo_lowPT_1Track)
+
+addon_backgrounds_tracktwo_highPT_1Track = []
+addon_backgrounds_tracktwo_highPT_1Track.append(addon_data_tracktwo_highPT_1Track)
+addon_backgrounds_tracktwo_highPT_1Track.append(addon_Wjets_tracktwo_highPT_1Track)
+addon_backgrounds_tracktwo_highPT_1Track.append(addon_Zlljets_tracktwo_highPT_1Track)
+addon_backgrounds_tracktwo_highPT_1Track.append(addon_top_tracktwo_highPT_1Track)
 
 #--------------------------
 # three tracks
@@ -1033,6 +1306,61 @@ addon_backgrounds_160med_highPT_3Track.append(addon_Wjets_160med_highPT_3Track)
 addon_backgrounds_160med_highPT_3Track.append(addon_Zlljets_160med_highPT_3Track)
 addon_backgrounds_160med_highPT_3Track.append(addon_top_160med_highPT_3Track)
 
+addon_backgrounds_L1TAU12IMmed_3Track = []
+addon_backgrounds_L1TAU12IMmed_3Track.append(addon_data_L1TAU12IMmed_3Track)
+addon_backgrounds_L1TAU12IMmed_3Track.append(addon_Wjets_L1TAU12IMmed_3Track)
+addon_backgrounds_L1TAU12IMmed_3Track.append(addon_Zlljets_L1TAU12IMmed_3Track)
+addon_backgrounds_L1TAU12IMmed_3Track.append(addon_top_L1TAU12IMmed_3Track)
+
+addon_backgrounds_L1TAU12IMmed_lowPT_3Track = []
+addon_backgrounds_L1TAU12IMmed_lowPT_3Track.append(addon_data_L1TAU12IMmed_lowPT_3Track)
+addon_backgrounds_L1TAU12IMmed_lowPT_3Track.append(addon_Wjets_L1TAU12IMmed_lowPT_3Track)
+addon_backgrounds_L1TAU12IMmed_lowPT_3Track.append(addon_Zlljets_L1TAU12IMmed_lowPT_3Track)
+addon_backgrounds_L1TAU12IMmed_lowPT_3Track.append(addon_top_L1TAU12IMmed_lowPT_3Track)
+
+addon_backgrounds_L1TAU12IMmed_highPT_3Track = []
+addon_backgrounds_L1TAU12IMmed_highPT_3Track.append(addon_data_L1TAU12IMmed_highPT_3Track)
+addon_backgrounds_L1TAU12IMmed_highPT_3Track.append(addon_Wjets_L1TAU12IMmed_highPT_3Track)
+addon_backgrounds_L1TAU12IMmed_highPT_3Track.append(addon_Zlljets_L1TAU12IMmed_highPT_3Track)
+addon_backgrounds_L1TAU12IMmed_highPT_3Track.append(addon_top_L1TAU12IMmed_highPT_3Track)
+
+addon_backgrounds_ptonly_3Track = []
+addon_backgrounds_ptonly_3Track.append(addon_data_ptonly_3Track)
+addon_backgrounds_ptonly_3Track.append(addon_Wjets_ptonly_3Track)
+addon_backgrounds_ptonly_3Track.append(addon_Zlljets_ptonly_3Track)
+addon_backgrounds_ptonly_3Track.append(addon_top_ptonly_3Track)
+
+addon_backgrounds_ptonly_lowPT_3Track = []
+addon_backgrounds_ptonly_lowPT_3Track.append(addon_data_ptonly_lowPT_3Track)
+addon_backgrounds_ptonly_lowPT_3Track.append(addon_Wjets_ptonly_lowPT_3Track)
+addon_backgrounds_ptonly_lowPT_3Track.append(addon_Zlljets_ptonly_lowPT_3Track)
+addon_backgrounds_ptonly_lowPT_3Track.append(addon_top_ptonly_lowPT_3Track)
+
+addon_backgrounds_ptonly_highPT_3Track = []
+addon_backgrounds_ptonly_highPT_3Track.append(addon_data_ptonly_highPT_3Track)
+addon_backgrounds_ptonly_highPT_3Track.append(addon_Wjets_ptonly_highPT_3Track)
+addon_backgrounds_ptonly_highPT_3Track.append(addon_Zlljets_ptonly_highPT_3Track)
+addon_backgrounds_ptonly_highPT_3Track.append(addon_top_ptonly_highPT_3Track)
+
+addon_backgrounds_tracktwo_3Track = []
+addon_backgrounds_tracktwo_3Track.append(addon_data_tracktwo_3Track)
+addon_backgrounds_tracktwo_3Track.append(addon_Wjets_tracktwo_3Track)
+addon_backgrounds_tracktwo_3Track.append(addon_Zlljets_tracktwo_3Track)
+addon_backgrounds_tracktwo_3Track.append(addon_top_tracktwo_3Track)
+
+addon_backgrounds_tracktwo_lowPT_3Track = []
+addon_backgrounds_tracktwo_lowPT_3Track.append(addon_data_tracktwo_lowPT_3Track)
+addon_backgrounds_tracktwo_lowPT_3Track.append(addon_Wjets_tracktwo_lowPT_3Track)
+addon_backgrounds_tracktwo_lowPT_3Track.append(addon_Zlljets_tracktwo_lowPT_3Track)
+addon_backgrounds_tracktwo_lowPT_3Track.append(addon_top_tracktwo_lowPT_3Track)
+
+addon_backgrounds_tracktwo_highPT_3Track = []
+addon_backgrounds_tracktwo_highPT_3Track.append(addon_data_tracktwo_highPT_3Track)
+addon_backgrounds_tracktwo_highPT_3Track.append(addon_Wjets_tracktwo_highPT_3Track)
+addon_backgrounds_tracktwo_highPT_3Track.append(addon_Zlljets_tracktwo_highPT_3Track)
+addon_backgrounds_tracktwo_highPT_3Track.append(addon_top_tracktwo_highPT_3Track)
+
+
 #---------------------------
 # Regions for bkg estimation
 #---------------------------
@@ -1074,6 +1402,18 @@ kf_regions_160med = {}
 kf_regions_160med_lowPT = {}
 kf_regions_160med_highPT = {}
 
+kf_regions_L1TAU12IMmed = {}
+kf_regions_L1TAU12IMmed_lowPT = {}
+kf_regions_L1TAU12IMmed_highPT = {}
+
+kf_regions_ptonly = {}
+kf_regions_ptonly_lowPT = {}
+kf_regions_ptonly_highPT = {}
+
+kf_regions_tracktwo = {}
+kf_regions_tracktwo_lowPT = {}
+kf_regions_tracktwo_highPT = {}
+
 kf_regions[samples.Wjets]	= {"OS":"Wjets_OS", "SS":"Wjets_SS","ncuts":3}
 kf_regions_highPT[samples.Wjets]  = {"OS":"Wjets_OS_highPT", "SS":"Wjets_SS_highPT", "ncuts":4}
 kf_regions_lowPT[samples.Wjets]   = {"OS":"Wjets_OS_lowPT", "SS":"Wjets_SS_lowPT", "ncuts":4}
@@ -1107,6 +1447,19 @@ kf_regions_125med_highPT[samples.Wjets]	= {"OS":"Wjets_OS_125med_highPT", "SS":"
 kf_regions_160med[samples.Wjets]	= {"OS":"Wjets_OS_160med", "SS":"Wjets_SS_160med","ncuts":4}
 kf_regions_160med_lowPT[samples.Wjets]	= {"OS":"Wjets_OS_160med_lowPT", "SS":"Wjets_SS_160med_lowPT","ncuts":5}
 kf_regions_160med_highPT[samples.Wjets]	= {"OS":"Wjets_OS_160med_highPT", "SS":"Wjets_SS_160med_highPT","ncuts":5}
+
+kf_regions_L1TAU12IMmed[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed", "SS":"Wjets_SS_L1TAU12IMmed","ncuts":4}
+kf_regions_L1TAU12IMmed_lowPT[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_lowPT", "SS":"Wjets_SS_L1TAU12IMmed_lowPT","ncuts":5}
+kf_regions_L1TAU12IMmed_highPT[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_highPT", "SS":"Wjets_SS_L1TAU12IMmed_highPT","ncuts":5}
+
+kf_regions_ptonly[samples.Wjets]	= {"OS":"Wjets_OS_ptonly", "SS":"Wjets_SS_ptonly","ncuts":4}
+kf_regions_ptonly_lowPT[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_lowPT", "SS":"Wjets_SS_ptonly_lowPT","ncuts":5}
+kf_regions_ptonly_highPT[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_highPT", "SS":"Wjets_SS_ptonly_highPT","ncuts":5}
+
+
+kf_regions_tracktwo[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo", "SS":"Wjets_SS_tracktwo","ncuts":4}
+kf_regions_tracktwo_lowPT[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_lowPT", "SS":"Wjets_SS_tracktwo_lowPT","ncuts":5}
+kf_regions_tracktwo_highPT[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_highPT", "SS":"Wjets_SS_tracktwo_highPT","ncuts":5}
 
 #SYSTEMATICS
 
@@ -1163,6 +1516,18 @@ kf_regions_160med_1Track = {}
 kf_regions_160med_lowPT_1Track  = {}
 kf_regions_160med_highPT_1Track  = {}
 
+kf_regions_L1TAU12IMmed_1Track = {}
+kf_regions_L1TAU12IMmed_lowPT_1Track  = {}
+kf_regions_L1TAU12IMmed_highPT_1Track  = {}
+
+kf_regions_ptonly_1Track = {}
+kf_regions_ptonly_lowPT_1Track  = {}
+kf_regions_ptonly_highPT_1Track  = {}
+
+kf_regions_tracktwo_1Track = {}
+kf_regions_tracktwo_lowPT_1Track  = {}
+kf_regions_tracktwo_highPT_1Track  = {}
+
 kf_regions_1Track[samples.Wjets]	= {"OS":"Wjets_OS_Tau1Track", "SS":"Wjets_SS_Tau1Track","ncuts":4}
 kf_regions_highPT_1Track[samples.Wjets]  = {"OS":"Wjets_OS_highPT_Tau1Track", "SS":"Wjets_SS_highPT_Tau1Track", "ncuts":5}
 kf_regions_lowPT_1Track[samples.Wjets]   = {"OS":"Wjets_OS_lowPT_Tau1Track", "SS":"Wjets_SS_lowPT_Tau1Track", "ncuts":5}
@@ -1194,6 +1559,18 @@ kf_regions_125med_highPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_125med_highPT_T
 kf_regions_160med_1Track[samples.Wjets]	= {"OS":"Wjets_OS_160med_Tau1Track", "SS":"Wjets_SS_160med_Tau1Track","ncuts":5}
 kf_regions_160med_lowPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_160med_lowPT_Tau1Track", "SS":"Wjets_SS_160med_lowPT_Tau1Track","ncuts":6}
 kf_regions_160med_highPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_160med_highPT_Tau1Track", "SS":"Wjets_SS_160med_highPT_Tau1Track","ncuts":6}
+
+kf_regions_L1TAU12IMmed_1Track[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_Tau1Track", "SS":"Wjets_SS_L1TAU12IMmed_Tau1Track","ncuts":5}
+kf_regions_L1TAU12IMmed_lowPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_lowPT_Tau1Track", "SS":"Wjets_SS_L1TAU12IMmed_lowPT_Tau1Track","ncuts":6}
+kf_regions_L1TAU12IMmed_highPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_highPT_Tau1Track", "SS":"Wjets_SS_L1TAU12IMmed_highPT_Tau1Track","ncuts":6}
+
+kf_regions_ptonly_1Track[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_Tau1Track", "SS":"Wjets_SS_ptonly_Tau1Track","ncuts":5}
+kf_regions_ptonly_lowPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_lowPT_Tau1Track", "SS":"Wjets_SS_ptonly_lowPT_Tau1Track","ncuts":6}
+kf_regions_ptonly_highPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_highPT_Tau1Track", "SS":"Wjets_SS_ptonly_highPT_Tau1Track","ncuts":6}
+
+kf_regions_tracktwo_1Track[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_Tau1Track", "SS":"Wjets_SS_tracktwo_Tau1Track","ncuts":5}
+kf_regions_tracktwo_lowPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_lowPT_Tau1Track", "SS":"Wjets_SS_tracktwo_lowPT_Tau1Track","ncuts":6}
+kf_regions_tracktwo_highPT_1Track[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_highPT_Tau1Track", "SS":"Wjets_SS_tracktwo_highPT_Tau1Track","ncuts":6}
 
 if options.kwsys:
         print "*****************************************"
@@ -1247,6 +1624,19 @@ kf_regions_160med_3Track = {}
 kf_regions_160med_lowPT_3Track  = {}
 kf_regions_160med_highPT_3Track  = {}
 
+kf_regions_L1TAU12IMmed_3Track = {}
+kf_regions_L1TAU12IMmed_lowPT_3Track  = {}
+kf_regions_L1TAU12IMmed_highPT_3Track  = {}
+
+kf_regions_ptonly_3Track = {}
+kf_regions_ptonly_lowPT_3Track  = {}
+kf_regions_ptonly_highPT_3Track  = {}
+
+kf_regions_tracktwo_3Track = {}
+kf_regions_tracktwo_lowPT_3Track  = {}
+kf_regions_tracktwo_highPT_3Track  = {}
+
+
 kf_regions_3Track[samples.Wjets]	= {"OS":"Wjets_OS_Tau3Track", "SS":"Wjets_SS_Tau3Track","ncuts":4}
 kf_regions_highPT_3Track[samples.Wjets]  = {"OS":"Wjets_OS_highPT_Tau3Track", "SS":"Wjets_SS_highPT_Tau3Track", "ncuts":5}
 kf_regions_lowPT_3Track[samples.Wjets]   = {"OS":"Wjets_OS_lowPT_Tau3Track", "SS":"Wjets_SS_lowPT_Tau3Track", "ncuts":5}
@@ -1278,6 +1668,19 @@ kf_regions_125med_highPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_125med_highPT_T
 kf_regions_160med_3Track[samples.Wjets]	= {"OS":"Wjets_OS_160med_Tau3Track", "SS":"Wjets_SS_160med_Tau3Track","ncuts":5}
 kf_regions_160med_lowPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_160med_lowPT_Tau3Track", "SS":"Wjets_SS_160med_lowPT_Tau3Track","ncuts":6}
 kf_regions_160med_highPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_160med_highPT_Tau3Track", "SS":"Wjets_SS_160med_highPT_Tau3Track","ncuts":6}
+
+kf_regions_L1TAU12IMmed_3Track[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_Tau3Track", "SS":"Wjets_SS_L1TAU12IMmed_Tau3Track","ncuts":5}
+kf_regions_L1TAU12IMmed_lowPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_lowPT_Tau3Track", "SS":"Wjets_SS_L1TAU12IMmed_lowPT_Tau3Track","ncuts":6}
+kf_regions_L1TAU12IMmed_highPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_L1TAU12IMmed_highPT_Tau3Track", "SS":"Wjets_SS_L1TAU12IMmed_highPT_Tau3Track","ncuts":6}
+
+kf_regions_ptonly_3Track[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_Tau3Track", "SS":"Wjets_SS_ptonly_Tau3Track","ncuts":5}
+kf_regions_ptonly_lowPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_lowPT_Tau3Track", "SS":"Wjets_SS_ptonly_lowPT_Tau3Track","ncuts":6}
+kf_regions_ptonly_highPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_ptonly_highPT_Tau3Track", "SS":"Wjets_SS_ptonly_highPT_Tau3Track","ncuts":6}
+
+kf_regions_tracktwo_3Track[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_Tau3Track", "SS":"Wjets_SS_tracktwo_Tau3Track","ncuts":5}
+kf_regions_tracktwo_lowPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_lowPT_Tau3Track", "SS":"Wjets_SS_tracktwo_lowPT_Tau3Track","ncuts":6}
+kf_regions_tracktwo_highPT_3Track[samples.Wjets]	= {"OS":"Wjets_OS_tracktwo_highPT_Tau3Track", "SS":"Wjets_SS_tracktwo_highPT_Tau3Track","ncuts":6}
+
 
 if options.kwsys:
         print "*****************************************"
@@ -1333,6 +1736,18 @@ rqcd_regions_160med = {}
 rqcd_regions_160med_lowPT = {}
 rqcd_regions_160med_highPT = {}
 
+rqcd_regions_L1TAU12IMmed = {}
+rqcd_regions_L1TAU12IMmed_lowPT = {}
+rqcd_regions_L1TAU12IMmed_highPT = {}
+
+rqcd_regions_ptonly = {}
+rqcd_regions_ptonly_lowPT = {}
+rqcd_regions_ptonly_highPT = {}
+
+rqcd_regions_tracktwo = {}
+rqcd_regions_tracktwo_lowPT = {}
+rqcd_regions_tracktwo_highPT = {}
+
 rqcd_regions_OS_no_cuts[data] = {"num":"AntiIsoCR_OS","den":"AntiIsoCR_SS","ncuts":3}
 
 rqcd_regions[data] 	= {"num":"AntiIsoCR_OS","den":"AntiIsoCR_SS","ncuts":3}
@@ -1367,6 +1782,18 @@ rqcd_regions_160med[data]  = {"num":"AntiIsoCR_OS_160med", "den":"AntiIsoCR_SS_1
 rqcd_regions_160med_lowPT[data]  = {"num":"AntiIsoCR_OS_160med_lowPT", "den":"AntiIsoCR_SS_160med_lowPT", "ncuts":5}
 rqcd_regions_160med_highPT[data]  = {"num":"AntiIsoCR_OS_160med_highPT", "den":"AntiIsoCR_SS_160med_highPT", "ncuts":5}
 
+rqcd_regions_L1TAU12IMmed[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed", "den":"AntiIsoCR_SS_L1TAU12IMmed", "ncuts":4}
+rqcd_regions_L1TAU12IMmed_lowPT[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT", "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT", "ncuts":5}
+rqcd_regions_L1TAU12IMmed_highPT[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT", "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT", "ncuts":5}
+
+rqcd_regions_ptonly[data]  = {"num":"AntiIsoCR_OS_ptonly", "den":"AntiIsoCR_SS_ptonly", "ncuts":4}
+rqcd_regions_ptonly_lowPT[data]  = {"num":"AntiIsoCR_OS_ptonly_lowPT", "den":"AntiIsoCR_SS_ptonly_lowPT", "ncuts":5}
+rqcd_regions_ptonly_highPT[data]  = {"num":"AntiIsoCR_OS_ptonly_highPT", "den":"AntiIsoCR_SS_ptonly_highPT", "ncuts":5}
+
+rqcd_regions_tracktwo[data]  = {"num":"AntiIsoCR_OS_tracktwo", "den":"AntiIsoCR_SS_tracktwo", "ncuts":4}
+rqcd_regions_tracktwo_lowPT[data]  = {"num":"AntiIsoCR_OS_tracktwo_lowPT", "den":"AntiIsoCR_SS_tracktwo_lowPT", "ncuts":5}
+rqcd_regions_tracktwo_highPT[data]  = {"num":"AntiIsoCR_OS_tracktwo_highPT", "den":"AntiIsoCR_SS_tracktwo_highPT", "ncuts":5}
+
 if options.toposys:
         print "*****************************************"
         print "*********** incl topo sys", options.toposys
@@ -1374,14 +1801,24 @@ if options.toposys:
 
 	# SYSTEMATICS
 	# DONE #rqcd_regions[data]      = {"num":"AntiIsoCR_OS_Topoetcone20pt0"+str(options.toposys),"den":"AntiIsoCR_SS_Topoetcone20pt0"+str(options.toposys),"ncuts":4}
-	#rqcd_regions_highPT[data]  = {"num":"AntiIsoCR_OS_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
-	#rqcd_regions_lowPT[data] = {"num":"AntiIsoCR_OS_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
+	rqcd_regions_highPT[data]  = {"num":"AntiIsoCR_OS_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
+	rqcd_regions_lowPT[data] = {"num":"AntiIsoCR_OS_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
 	# DONE #rqcd_regions_25med[data]  = {"num":"AntiIsoCR_OS_25med_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
-	#rqcd_regions_25med_lowPT[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
-	#rqcd_regions_25med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_25med_lowPT[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_25med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
 	#rqcd_regions_35med[data]  = {"num":"AntiIsoCR_OS_35med_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
 	rqcd_regions_35med_lowPT[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
 	rqcd_regions_35med_highPT[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+
+	rqcd_regions_L1TAU12IMmed_lowPT[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_L1TAU12IMmed_highPT[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+
+	rqcd_regions_ptonly_lowPT[data]  = {"num":"AntiIsoCR_OS_ptonlymed_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_ptonlymed_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_ptonly_highPT[data]  = {"num":"AntiIsoCR_OS_ptonlymed_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_ptonlymed_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+
+	rqcd_regions_tracktwo_lowPT[data]  = {"num":"AntiIsoCR_OS_tracktwomed_lowPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_tracktwomed_lowPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_tracktwo_highPT[data]  = {"num":"AntiIsoCR_OS_tracktwomed_highPT_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_tracktwomed_highPT_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+
 
 if options.sysptvar:
         print "*****************************************"
@@ -1389,14 +1826,23 @@ if options.sysptvar:
         print "*****************************************"
 
 	# DONE #rqcd_regions[data]      = {"num":"AntiIsoCR_OS_Ptvarcone30pt0"+str(options.sysptvar),"den":"AntiIsoCR_SS_Ptvarcone30pt0"+str(options.sysptvar),"ncuts":4}
-	#rqcd_regions_highPT[data]  = {"num":"AntiIsoCR_OS_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":5}
-	#rqcd_regions_lowPT[data] = {"num":"AntiIsoCR_OS_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":5}
+	rqcd_regions_highPT[data]  = {"num":"AntiIsoCR_OS_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":5}
+	rqcd_regions_lowPT[data] = {"num":"AntiIsoCR_OS_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":5}
 	#rqcd_regions_25med[data]  = {"num":"AntiIsoCR_OS_25med_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":5}
-	#rqcd_regions_25med_lowPT[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	#rqcd_regions_25med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_25med_lowPT[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_25med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
 	#rqcd_regions_35med[data]  = {"num":"AntiIsoCR_OS_35med_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":5}
 	rqcd_regions_35med_lowPT[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
 	rqcd_regions_35med_highPT[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+
+	rqcd_regions_L1TAU12IMmed_lowPT[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_L1TAU12IMmed_highPT[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+
+	rqcd_regions_ptonly_lowPT[data]  = {"num":"AntiIsoCR_OS_ptonlymed_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_ptonlymed_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_ptonly_highPT[data]  = {"num":"AntiIsoCR_OS_ptonlymed_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_ptonlymed_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+
+	rqcd_regions_tracktwo_lowPT[data]  = {"num":"AntiIsoCR_OS_tracktwomed_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_tracktwomed_lowPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_tracktwo_highPT[data]  = {"num":"AntiIsoCR_OS_tracktwomed_highPT_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_tracktwomed_highPT_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
 
 #-------------
 # one track
@@ -1433,6 +1879,18 @@ rqcd_regions_160med_1Track= {}
 rqcd_regions_160med_lowPT_1Track = {}
 rqcd_regions_160med_highPT_1Track = {}
 
+rqcd_regions_L1TAU12IMmed_1Track= {}
+rqcd_regions_L1TAU12IMmed_lowPT_1Track = {}
+rqcd_regions_L1TAU12IMmed_highPT_1Track = {}
+
+rqcd_regions_ptonly_1Track= {}
+rqcd_regions_ptonly_lowPT_1Track = {}
+rqcd_regions_ptonly_highPT_1Track = {}
+
+rqcd_regions_tracktwo_1Track= {}
+rqcd_regions_tracktwo_lowPT_1Track = {}
+rqcd_regions_tracktwo_highPT_1Track = {}
+
 rqcd_regions_1Track[data] 	= {"num":"AntiIsoCR_OS_Tau1Track","den":"AntiIsoCR_SS_Tau1Track","ncuts":4}
 rqcd_regions_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau1Track", "den":"AntiIsoCR_SS_highPT_Tau1Track", "ncuts":5}
 rqcd_regions_lowPT_1Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau1Track", "den":"AntiIsoCR_SS_lowPT_Tau1Track", "ncuts":5}
@@ -1465,37 +1923,106 @@ rqcd_regions_160med_1Track[data]  = {"num":"AntiIsoCR_OS_160med_Tau1Track", "den
 rqcd_regions_160med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_160med_lowPT_Tau1Track", "den":"AntiIsoCR_SS_160med_lowPT_Tau1Track", "ncuts":6}
 rqcd_regions_160med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_160med_highPT_Tau1Track", "den":"AntiIsoCR_SS_160med_highPT_Tau1Track", "ncuts":6}
 
+rqcd_regions_L1TAU12IMmed_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_Tau1Track", "den":"AntiIsoCR_SS_L1TAU12IMmed_Tau1Track", "ncuts":5}
+rqcd_regions_L1TAU12IMmed_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Tau1Track", "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Tau1Track", "ncuts":6}
+rqcd_regions_L1TAU12IMmed_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Tau1Track", "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Tau1Track", "ncuts":6}
+
+rqcd_regions_ptonly_1Track[data]  = {"num":"AntiIsoCR_OS_ptonly_Tau1Track", "den":"AntiIsoCR_SS_ptonly_Tau1Track", "ncuts":5}
+rqcd_regions_ptonly_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_ptonly_lowPT_Tau1Track", "den":"AntiIsoCR_SS_ptonly_lowPT_Tau1Track", "ncuts":6}
+rqcd_regions_ptonly_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_ptonly_highPT_Tau1Track", "den":"AntiIsoCR_SS_ptonly_highPT_Tau1Track", "ncuts":6}
+
+rqcd_regions_tracktwo_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwo_Tau1Track", "den":"AntiIsoCR_SS_tracktwo_Tau1Track", "ncuts":5}
+rqcd_regions_tracktwo_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwo_lowPT_Tau1Track", "den":"AntiIsoCR_SS_tracktwo_lowPT_Tau1Track", "ncuts":6}
+rqcd_regions_tracktwo_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwo_highPT_Tau1Track", "den":"AntiIsoCR_SS_tracktwo_highPT_Tau1Track", "ncuts":6}
+
 
 if options.toposys:
 	print "*****************************************"
 	print "*********** 1 track topo sys", options.toposys
         print "*****************************************"
 
-	#rqcd_regions_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
-	#rqcd_regions_lowPT_1Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_lowPT_1Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
 	#rqcd_regions_1Track[data] 	= {"num":"AntiIsoCR_OS_Tau1Track_Topoetcone20pt0"+str(options.toposys),"den":"AntiIsoCR_SS_Tau1Track_Topoetcone20pt0"+str(options.toposys),"ncuts":5}
 	# DONE #rqcd_regions_25med_1Track[data]  = {"num":"AntiIsoCR_OS_25med_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
-	#rqcd_regions_25med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
-	#rqcd_regions_25med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_25med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_25med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
 #rqcd_regions_35med_1Track[data]  = {"num":"AntiIsoCR_OS_35med_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
 	rqcd_regions_35med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
 	rqcd_regions_35med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+#	rqcd_regions_50L1TAU12med_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_50L1TAU12med_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":5}
+	#rqcd_regions_50L1TAU12med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_lowPT_Tau1Track", "den":"AntiIsoCR_SS_50L1TAU12med_lowPT_Tau1Track", "ncuts":6}
+	#rqcd_regions_50L1TAU12med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_highPT_Tau1Track", "den":"AntiIsoCR_SS_50L1TAU12med_highPT_Tau1Track", "ncuts":6}
+
+	#rqcd_regions_80med_1Track[data]  = {"num":"AntiIsoCR_OS_80med_Tau1Track", "den":"AntiIsoCR_SS_80med_Tau1Track", "ncuts":5}
+	#rqcd_regions_80med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_80med_lowPT_Tau1Track", "den":"AntiIsoCR_SS_80med_lowPT_Tau1Track", "ncuts":6}
+	#rqcd_regions_80med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_80med_highPT_Tau1Track", "den":"AntiIsoCR_SS_80med_highPT_Tau1Track", "ncuts":6}
+
+	#rqcd_regions_80L1TAU60med_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_Tau1Track", "den":"AntiIsoCR_SS_80L1TAU60med_Tau1Track", "ncuts":5}
+	#rqcd_regions_80L1TAU60med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_lowPT_Tau1Track", "den":"AntiIsoCR_SS_80L1TAU60med_lowPT_Tau1Track", "ncuts":6}
+	#rqcd_regions_80L1TAU60med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_highPT_Tau1Track", "den":"AntiIsoCR_SS_80L1TAU60med_highPT_Tau1Track", "ncuts":6}
+
+	#rqcd_regions_125med_1Track[data]  = {"num":"AntiIsoCR_OS_125med_Tau1Track", "den":"AntiIsoCR_SS_125med_Tau1Track", "ncuts":5}
+	#rqcd_regions_125med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_125med_lowPT_Tau1Track", "den":"AntiIsoCR_SS_125med_lowPT_Tau1Track", "ncuts":6}
+	#rqcd_regions_125med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_125med_highPT_Tau1Track", "den":"AntiIsoCR_SS_125med_highPT_Tau1Track", "ncuts":6}
+
+	#rqcd_regions_160med_1Track[data]  = {"num":"AntiIsoCR_OS_160med_Tau1Track", "den":"AntiIsoCR_SS_160med_Tau1Track", "ncuts":5}
+	#rqcd_regions_160med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_160med_lowPT_Tau1Track", "den":"AntiIsoCR_SS_160med_lowPT_Tau1Track", "ncuts":6}
+	#rqcd_regions_160med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_160med_highPT_Tau1Track", "den":"AntiIsoCR_SS_160med_highPT_Tau1Track", "ncuts":6}
+
+	rqcd_regions_L1TAU12IMmed_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_L1TAU12IMmed_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+	rqcd_regions_ptonly_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_ptonlymed_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_ptonly_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_ptonlymed_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+	rqcd_regions_tracktwo_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_tracktwomed_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_tracktwo_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_tracktwomed_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+
+	rqcd_regions_50L1TAU12med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_50L1TAU12med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_50L1TAU12med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_50L1TAU12med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+
+	rqcd_regions_80L1TAU60med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_80L1TAU60med_lowPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_80L1TAU60med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_80L1TAU60med_highPT_Tau1Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
 
 if options.sysptvar:
         print "*****************************************"
         print "*********** ptvar sys", options.sysptvar
         print "*****************************************"
 
-	#rqcd_regions_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	#rqcd_regions_lowPT_1Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_lowPT_1Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
 
 	#rqcd_regions_1Track[data] 	= {"num":"AntiIsoCR_OS_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar),"den":"AntiIsoCR_SS_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar),"ncuts":5}
 	#rqcd_regions_25med_1Track[data]  = {"num":"AntiIsoCR_OS_25med_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	#rqcd_regions_25med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
-	#rqcd_regions_25med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_25med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_25med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
 	#rqcd_regions_35med_1Track[data]  = {"num":"AntiIsoCR_OS_35med_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	rqcd_regions_35med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	rqcd_regions_35med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_35med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_35med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+	rqcd_regions_L1TAU12IMmed_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_L1TAU12IMmed_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+	rqcd_regions_ptonly_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_ptonlymed_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_ptonly_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_ptonlymed_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+	rqcd_regions_tracktwo_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_tracktwomed_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_tracktwo_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_tracktwomed_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+
+	rqcd_regions_50L1TAU12med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_50L1TAU12med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_50L1TAU12med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_50L1TAU12med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+
+	rqcd_regions_80L1TAU60med_lowPT_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_80L1TAU60med_lowPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_80L1TAU60med_highPT_1Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_80L1TAU60med_highPT_Tau1Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+
 
 
 #--------------
@@ -1533,6 +2060,18 @@ rqcd_regions_160med_3Track= {}
 rqcd_regions_160med_lowPT_3Track = {}
 rqcd_regions_160med_highPT_3Track = {}
 
+rqcd_regions_L1TAU12IMmed_3Track= {}
+rqcd_regions_L1TAU12IMmed_lowPT_3Track = {}
+rqcd_regions_L1TAU12IMmed_highPT_3Track = {}
+
+rqcd_regions_ptonly_3Track= {}
+rqcd_regions_ptonly_lowPT_3Track = {}
+rqcd_regions_ptonly_highPT_3Track = {}
+
+rqcd_regions_tracktwo_3Track= {}
+rqcd_regions_tracktwo_lowPT_3Track = {}
+rqcd_regions_tracktwo_highPT_3Track = {}
+
 rqcd_regions_3Track[data] 	= {"num":"AntiIsoCR_OS_Tau3Track","den":"AntiIsoCR_SS_Tau3Track","ncuts":4}
 rqcd_regions_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau3Track", "den":"AntiIsoCR_SS_highPT_Tau3Track", "ncuts":5}
 rqcd_regions_lowPT_3Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau3Track", "den":"AntiIsoCR_SS_lowPT_Tau3Track", "ncuts":5}
@@ -1565,36 +2104,86 @@ rqcd_regions_160med_3Track[data]  = {"num":"AntiIsoCR_OS_160med_Tau3Track", "den
 rqcd_regions_160med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_160med_lowPT_Tau3Track", "den":"AntiIsoCR_SS_160med_lowPT_Tau3Track", "ncuts":6}
 rqcd_regions_160med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_160med_highPT_Tau3Track", "den":"AntiIsoCR_SS_160med_highPT_Tau3Track", "ncuts":6}
 
+rqcd_regions_L1TAU12IMmed_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_Tau3Track", "den":"AntiIsoCR_SS_L1TAU12IMmed_Tau3Track", "ncuts":5}
+rqcd_regions_L1TAU12IMmed_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Tau3Track", "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Tau3Track", "ncuts":6}
+rqcd_regions_L1TAU12IMmed_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Tau3Track", "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Tau3Track", "ncuts":6}
+
+rqcd_regions_ptonly_3Track[data]  = {"num":"AntiIsoCR_OS_ptonly_Tau3Track", "den":"AntiIsoCR_SS_ptonly_Tau3Track", "ncuts":5}
+rqcd_regions_ptonly_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_ptonly_lowPT_Tau3Track", "den":"AntiIsoCR_SS_ptonly_lowPT_Tau3Track", "ncuts":6}
+rqcd_regions_ptonly_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_ptonly_highPT_Tau3Track", "den":"AntiIsoCR_SS_ptonly_highPT_Tau3Track", "ncuts":6}
+
+rqcd_regions_tracktwo_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwo_Tau3Track", "den":"AntiIsoCR_SS_tracktwo_Tau3Track", "ncuts":5}
+rqcd_regions_tracktwo_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwo_lowPT_Tau3Track", "den":"AntiIsoCR_SS_tracktwo_lowPT_Tau3Track", "ncuts":6}
+rqcd_regions_tracktwo_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwo_highPT_Tau3Track", "den":"AntiIsoCR_SS_tracktwo_highPT_Tau3Track", "ncuts":6}
+
+
 if options.toposys:
         print "*****************************************"
         print "*********** 3 track topo sys", options.toposys
         print "*****************************************"
 
-	#rqcd_regions_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
-	##rqcd_regions_lowPT_3Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
+	rqcd_regions_lowPT_3Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
 	#rqcd_regions_3Track[data] 	= {"num":"AntiIsoCR_OS_Tau3Track_Topoetcone20pt0"+str(options.toposys),"den":"AntiIsoCR_SS_Tau3Track_Topoetcone20pt0"+str(options.toposys),"ncuts":5}
 	#rqcd_regions_25med_3Track[data]  = {"num":"AntiIsoCR_OS_25med_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
-	#rqcd_regions_25med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
-	#rqcd_regions_25med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_25med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_25med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_25med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
 	#rqcd_regions_35med_3Track[data]  = {"num":"AntiIsoCR_OS_35med_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":6}
 	rqcd_regions_35med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
 	rqcd_regions_35med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_35med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+	rqcd_regions_L1TAU12IMmed_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_L1TAU12IMmed_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+	rqcd_regions_ptonly_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_ptonlymed_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_ptonly_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_ptonlymed_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+	rqcd_regions_tracktwo_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_tracktwomed_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_tracktwo_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_tracktwomed_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+
+	rqcd_regions_50L1TAU12med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_50L1TAU12med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_50L1TAU12med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_50L1TAU12med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+
+	rqcd_regions_80L1TAU60med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_80L1TAU60med_lowPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+	rqcd_regions_80L1TAU60med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "den":"AntiIsoCR_SS_80L1TAU60med_highPT_Tau3Track_Topoetcone20pt0"+str(options.toposys), "ncuts":7}
+
+
 
 if options.sysptvar:
         print "*****************************************"
         print "*********** ptvar sys", options.sysptvar
         print "*****************************************"
 
-	#rqcd_regions_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	#rqcd_regions_lowPT_3Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_lowPT_3Track[data] = {"num":"AntiIsoCR_OS_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
 	#rqcd_regions_3Track[data] 	= {"num":"AntiIsoCR_OS_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar),"den":"AntiIsoCR_SS_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar),"ncuts":5}
-	#rqcd_regions_25med_3Track[data]  = {"num":"AntiIsoCR_OS_25med_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
-	#rqcd_regions_25med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
-	#rqcd_regions_25med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_25med_3Track[data]  = {"num":"AntiIsoCR_OS_25med_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
+	rqcd_regions_25med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_25med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_25med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_25med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
 	#rqcd_regions_35med_3Track[data]  = {"num":"AntiIsoCR_OS_35med_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":6}
 	rqcd_regions_35med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_35med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
 	rqcd_regions_35med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_35med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_35med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
 	  
+	rqcd_regions_L1TAU12IMmed_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_L1TAU12IMmed_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_L1TAU12IMmed_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_L1TAU12IMmed_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_L1TAU12IMmed_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+	rqcd_regions_ptonly_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_ptonlymed_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_ptonly_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_ptonlymed_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_ptonlymed_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+	rqcd_regions_tracktwo_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_tracktwomed_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_tracktwo_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_tracktwomed_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_tracktwomed_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+
+	rqcd_regions_50L1TAU12med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_50L1TAU12med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_50L1TAU12med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_50L1TAU12med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_50L1TAU12med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+
+	rqcd_regions_80L1TAU60med_lowPT_3Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_80L1TAU60med_lowPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+	rqcd_regions_80L1TAU60med_highPT_3Track[data]  = {"num":"AntiIsoCR_OS_80L1TAU60med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "den":"AntiIsoCR_SS_80L1TAU60med_highPT_Tau3Track_Ptvarcone30pt0"+str(options.sysptvar), "ncuts":7}
+
+
 ################################################### 
 # Add-On
 
@@ -1635,450 +2224,6 @@ addon_regions_lowSCDP_lowMT[data]            = {"SS":"SR_lowSCDP_lowMT_SS", "ncu
 addon_regions_lowSCDP_lowMT[samples.Wjets]   = {"OS":"SR_lowSCDP_lowMT", "SS":"SR_lowSCDP_lowMT_SS", "ncuts":4}
 addon_regions_lowSCDP_lowMT[samples.Zlljets] = {"OS":"SR_lowSCDP_lowMT", "SS":"SR_lowSCDP_lowMT_SS", "ncuts":4}
 addon_regions_lowSCDP_lowMT[samples.top]     = {"OS":"SR_lowSCDP_lowMT", "SS":"SR_lowSCDP_lowMT_SS", "ncuts":4}
-
-# SIGNAL REGIONS
-"""
-addon_regions = {}
-addon_regions[data]            ={"OS":"SR", "SS":"SR_SS", "OS_lmt_lscdp":"SR_lowSCDP_lowMT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS", "OS_hmt_hscdp":"SR_highSCDP_highMT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS", "OS_hmt_lscdp":"SR_lowSCDP_highMT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS", "ncuts":4}# {"SS":"SR_SS", "ncuts":4}  
-addon_regions[samples.Wjets]   = {"OS":"SR", "SS":"SR_SS", "OS_lmt_lscdp":"SR_lowSCDP_lowMT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS", "OS_hmt_hscdp":"SR_highSCDP_highMT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS", "OS_hmt_lscdp":"SR_lowSCDP_highMT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS", "ncuts":4}
-addon_regions[samples.Zlljets] = {"OS":"SR", "SS":"SR_SS", "OS_lmt_lscdp":"SR_lowSCDP_lowMT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS", "OS_hmt_hscdp":"SR_highSCDP_highMT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS", "OS_hmt_lscdp":"SR_lowSCDP_highMT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS", "ncuts":4}
-addon_regions[samples.top]     = {"OS":"SR", "SS":"SR_SS", "OS_lmt_lscdp":"SR_lowSCDP_lowMT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS", "OS_hmt_hscdp":"SR_highSCDP_highMT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS", "OS_hmt_lscdp":"SR_lowSCDP_highMT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS", "ncuts":4}
-
-addon_regions_highPT = {}
-addon_regions_highPT[data]            = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT", "ncuts":5}# {"SS":"SR_SS_highPT", "ncuts":5}  
-addon_regions_highPT[samples.Wjets]   = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT", "ncuts":5}
-addon_regions_highPT[samples.Zlljets] = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT", "ncuts":5}#{"OS":"SR_highPT", "SS":"SR_SS_highPT", "ncuts":5}
-addon_regions_highPT[samples.top]     = {"OS":"SR_highPT", "SS":"SR_SS_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT", "ncuts":5}#{"OS":"SR_highPT", "SS":"SR_SS_highPT", "ncuts":5}
-
-addon_regions_lowPT = {}
-addon_regions_lowPT[data]            = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT", "ncuts":5} # {"SS":"SR_SS_lowPT", "ncuts":5}  
-addon_regions_lowPT[samples.Wjets]   = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT", "ncuts":5}
-addon_regions_lowPT[samples.Zlljets] = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT", "ncuts":5}#{"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "ncuts":5}
-addon_regions_lowPT[samples.top]     = {"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT", "ncuts":5}#{"OS":"SR_lowPT", "SS":"SR_SS_lowPT", "ncuts":5}
-
-addon_regions_25med = {}
-addon_regions_25med[data]            = {"OS":"SR_25med", "SS":"SR_SS25med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med", "ncuts":5}#{"SS":"SR_SS25med", "ncuts":5}  
-addon_regions_25med[samples.Wjets]   = {"OS":"SR_25med", "SS":"SR_SS25med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med", "ncuts":5}#{"OS":"SR_25med", "SS":"SR_SS25med", "ncuts":5}
-addon_regions_25med[samples.Zlljets] = {"OS":"SR_25med", "SS":"SR_SS25med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med", "ncuts":5}#{"OS":"SR_25med", "SS":"SR_SS25med", "ncuts":5}
-addon_regions_25med[samples.top]     = {"OS":"SR_25med", "SS":"SR_SS25med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med", "ncuts":5}#{"OS":"SR_25med", "SS":"SR_SS25med", "ncuts":5}
-
-addon_regions_25med_lowPT = {}
-addon_regions_25med_lowPT[data]            = {"OS":"SR_25med_lowPT", "SS":"SR_SS25med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "ncuts":6}  
-addon_regions_25med_lowPT[samples.Wjets]   = {"OS":"SR_25med_lowPT", "SS":"SR_SS25med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "ncuts":6}
-addon_regions_25med_lowPT[samples.Zlljets] = {"OS":"SR_25med_lowPT", "SS":"SR_SS25med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "ncuts":6}
-addon_regions_25med_lowPT[samples.top]     = {"OS":"SR_25med_lowPT", "SS":"SR_SS25med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "ncuts":6}#{"OS":"SR_25med_lowPT", "SS":"SR_SS25med_lowPT", "ncuts":6}
-
-addon_regions_25med_highPT = {}
-addon_regions_25med_highPT[data]            = {"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "ncuts":6}#{"SS":"SR_SS25med_highPT", "ncuts":6}  
-addon_regions_25med_highPT[samples.Wjets]   = {"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "ncuts":6}#{"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "ncuts":6}
-addon_regions_25med_highPT[samples.Zlljets] = {"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "ncuts":6}#"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "ncuts":6}
-addon_regions_25med_highPT[samples.top]     = {"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "ncuts":6}#{"OS":"SR_25med_highPT", "SS":"SR_SS25med_highPT", "ncuts":6}
-
-addon_regions_35med = {}
-addon_regions_35med[data]            = {"OS":"SR_35med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med", "SS":"SR_SS35med", "ncuts":5}  
-addon_regions_35med[samples.Wjets]   = {"OS":"SR_35med", "SS":"SR_SS35med", "ncuts":5}
-addon_regions_35med[samples.Zlljets] = {"OS":"SR_35med", "SS":"SR_SS_35med", "ncuts":5}
-addon_regions_35med[samples.top]     = {"OS":"SR_35med", "SS":"SR_SS_35med", "ncuts":5}
-
-addon_regions_35med_lowPT = {}
-addon_regions_35med_lowPT[data]            = {"SS":"SR_SS35med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "OS":"SR_35med_lowPT", "ncuts":6}  
-addon_regions_35med_lowPT[samples.Wjets]   = {"OS":"SR_35med_lowPT", "SS":"SR_SS35med_lowPT", "ncuts":6}
-addon_regions_35med_lowPT[samples.Zlljets] = {"OS":"SR_35med_lowPT", "SS":"SR_SS35med_lowPT", "ncuts":6}
-addon_regions_35med_lowPT[samples.top]     = {"OS":"SR_35med_lowPT", "SS":"SR_SS35med_lowPT", "ncuts":6}
-
-addon_regions_35med_highPT = {}
-addon_regions_35med_highPT[data]            = {"SS":"SR_SS35med_highPT",  "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "OS":"SR_35med_highPT", "ncuts":6}  
-addon_regions_35med_highPT[samples.Wjets]   = {"OS":"SR_35med_highPT", "SS":"SR_SS35med_highPT", "ncuts":6}
-addon_regions_35med_highPT[samples.Zlljets] = {"OS":"SR_35med_highPT", "SS":"SR_SS35med_highPT", "ncuts":6}
-addon_regions_35med_highPT[samples.top]     = {"OS":"SR_35med_highPT", "SS":"SR_SS35med_highPT", "ncuts":6}
-
-addon_regions_50L1TAU12med = {}
-addon_regions_50L1TAU12med[data]            = {"OS":"SR_50L1TAU12med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med", "SS":"SR_SS50L1TAU12med", "ncuts":5}  
-addon_regions_50L1TAU12med[samples.Wjets]   = {"OS":"SR_50L1TAU12med", "SS":"SR_SS50L1TAU12med", "ncuts":5}
-addon_regions_50L1TAU12med[samples.Zlljets] = {"OS":"SR_50L1TAU12med", "SS":"SR_SS_50L1TAU12med", "ncuts":5}
-addon_regions_50L1TAU12med[samples.top]     = {"OS":"SR_50L1TAU12med", "SS":"SR_SS_50L1TAU12med", "ncuts":5}
-
-addon_regions_50L1TAU12med_lowPT = {}
-addon_regions_50L1TAU12med_lowPT[data]            = {"SS":"SR_SS50L1TAU12med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "OS":"SR_50L1TAU12med_lowPT", "ncuts":6}  
-addon_regions_50L1TAU12med_lowPT[samples.Wjets]   = {"OS":"SR_50L1TAU12med_lowPT", "SS":"SR_SS50L1TAU12med_lowPT", "ncuts":6}
-addon_regions_50L1TAU12med_lowPT[samples.Zlljets] = {"OS":"SR_50L1TAU12med_lowPT", "SS":"SR_SS50L1TAU12med_lowPT", "ncuts":6}
-addon_regions_50L1TAU12med_lowPT[samples.top]     = {"OS":"SR_50L1TAU12med_lowPT", "SS":"SR_SS50L1TAU12med_lowPT", "ncuts":6}
-
-addon_regions_50L1TAU12med_highPT = {}
-addon_regions_50L1TAU12med_highPT[data]            = {"SS":"SR_SS50L1TAU12med_highPT",  "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "OS":"SR_50L1TAU12med_highPT", "ncuts":6}  
-addon_regions_50L1TAU12med_highPT[samples.Wjets]   = {"OS":"SR_50L1TAU12med_highPT", "SS":"SR_SS50L1TAU12med_highPT", "ncuts":6}
-addon_regions_50L1TAU12med_highPT[samples.Zlljets] = {"OS":"SR_50L1TAU12med_highPT", "SS":"SR_SS50L1TAU12med_highPT", "ncuts":6}
-addon_regions_50L1TAU12med_highPT[samples.top]     = {"OS":"SR_50L1TAU12med_highPT", "SS":"SR_SS50L1TAU12med_highPT", "ncuts":6}
-
-addon_regions_80med = {}
-addon_regions_80med[data]            = {"OS":"SR_80med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med", "SS":"SR_SS80med", "ncuts":5}  
-addon_regions_80med[samples.Wjets]   = {"OS":"SR_80med", "SS":"SR_SS80med", "ncuts":5}
-addon_regions_80med[samples.Zlljets] = {"OS":"SR_80med", "SS":"SR_SS_80med", "ncuts":5}
-addon_regions_80med[samples.top]     = {"OS":"SR_80med", "SS":"SR_SS_80med", "ncuts":5}
-
-addon_regions_80med_lowPT = {}
-addon_regions_80med_lowPT[data]            = {"SS":"SR_SS80med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "OS":"SR_80med_lowPT", "ncuts":6}  
-addon_regions_80med_lowPT[samples.Wjets]   = {"OS":"SR_80med_lowPT", "SS":"SR_SS80med_lowPT", "ncuts":6}
-addon_regions_80med_lowPT[samples.Zlljets] = {"OS":"SR_80med_lowPT", "SS":"SR_SS80med_lowPT", "ncuts":6}
-addon_regions_80med_lowPT[samples.top]     = {"OS":"SR_80med_lowPT", "SS":"SR_SS80med_lowPT", "ncuts":6}
-
-addon_regions_80med_highPT = {}
-addon_regions_80med_highPT[data]            = {"SS":"SR_SS80med_highPT",  "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "OS":"SR_80med_highPT", "ncuts":6}  
-addon_regions_80med_highPT[samples.Wjets]   = {"OS":"SR_80med_highPT", "SS":"SR_SS80med_highPT", "ncuts":6}
-addon_regions_80med_highPT[samples.Zlljets] = {"OS":"SR_80med_highPT", "SS":"SR_SS80med_highPT", "ncuts":6}
-addon_regions_80med_highPT[samples.top]     = {"OS":"SR_80med_highPT", "SS":"SR_SS80med_highPT", "ncuts":6}
-
-addon_regions_80L1TAU60med = {}
-addon_regions_80L1TAU60med[data]            = {"OS":"SR_80L1TAU60med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med", "SS":"SR_SS80L1TAU60med", "ncuts":5}  
-addon_regions_80L1TAU60med[samples.Wjets]   = {"OS":"SR_80L1TAU60med", "SS":"SR_SS80L1TAU60med", "ncuts":5}
-addon_regions_80L1TAU60med[samples.Zlljets] = {"OS":"SR_80L1TAU60med", "SS":"SR_SS_80L1TAU60med", "ncuts":5}
-addon_regions_80L1TAU60med[samples.top]     = {"OS":"SR_80L1TAU60med", "SS":"SR_SS_80L1TAU60med", "ncuts":5}
-
-addon_regions_80L1TAU60med_lowPT = {}
-addon_regions_80L1TAU60med_lowPT[data]            = {"SS":"SR_SS80L1TAU60med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "OS":"SR_80L1TAU60med_lowPT", "ncuts":6}  
-addon_regions_80L1TAU60med_lowPT[samples.Wjets]   = {"OS":"SR_80L1TAU60med_lowPT", "SS":"SR_SS80L1TAU60med_lowPT", "ncuts":6}
-addon_regions_80L1TAU60med_lowPT[samples.Zlljets] = {"OS":"SR_80L1TAU60med_lowPT", "SS":"SR_SS80L1TAU60med_lowPT", "ncuts":6}
-addon_regions_80L1TAU60med_lowPT[samples.top]     = {"OS":"SR_80L1TAU60med_lowPT", "SS":"SR_SS80L1TAU60med_lowPT", "ncuts":6}
-
-addon_regions_80L1TAU60med_highPT = {}
-addon_regions_80L1TAU60med_highPT[data]            = {"SS":"SR_SS80L1TAU60med_highPT",  "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "OS":"SR_80L1TAU60med_highPT", "ncuts":6}  
-addon_regions_80L1TAU60med_highPT[samples.Wjets]   = {"OS":"SR_80L1TAU60med_highPT", "SS":"SR_SS80L1TAU60med_highPT", "ncuts":6}
-addon_regions_80L1TAU60med_highPT[samples.Zlljets] = {"OS":"SR_80L1TAU60med_highPT", "SS":"SR_SS80L1TAU60med_highPT", "ncuts":6}
-addon_regions_80L1TAU60med_highPT[samples.top]     = {"OS":"SR_80L1TAU60med_highPT", "SS":"SR_SS80L1TAU60med_highPT", "ncuts":6}
-
-addon_regions_125med = {}
-addon_regions_125med[data]            = {"OS":"SR_125med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med", "SS":"SR_SS125med", "ncuts":5}  
-addon_regions_125med[samples.Wjets]   = {"OS":"SR_125med", "SS":"SR_SS125med", "ncuts":5}
-addon_regions_125med[samples.Zlljets] = {"OS":"SR_125med", "SS":"SR_SS_125med", "ncuts":5}
-addon_regions_125med[samples.top]     = {"OS":"SR_125med", "SS":"SR_SS_125med", "ncuts":5}
-
-addon_regions_125med_lowPT = {}
-addon_regions_125med_lowPT[data]            = {"SS":"SR_SS125med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "OS":"SR_125med_lowPT", "ncuts":6}  
-addon_regions_125med_lowPT[samples.Wjets]   = {"OS":"SR_125med_lowPT", "SS":"SR_SS125med_lowPT", "ncuts":6}
-addon_regions_125med_lowPT[samples.Zlljets] = {"OS":"SR_125med_lowPT", "SS":"SR_SS125med_lowPT", "ncuts":6}
-addon_regions_125med_lowPT[samples.top]     = {"OS":"SR_125med_lowPT", "SS":"SR_SS125med_lowPT", "ncuts":6}
-
-addon_regions_125med_highPT = {}
-addon_regions_125med_highPT[data]            = {"SS":"SR_SS125med_highPT",  "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "OS":"SR_125med_highPT", "ncuts":6}  
-addon_regions_125med_highPT[samples.Wjets]   = {"OS":"SR_125med_highPT", "SS":"SR_SS125med_highPT", "ncuts":6}
-addon_regions_125med_highPT[samples.Zlljets] = {"OS":"SR_125med_highPT", "SS":"SR_SS125med_highPT", "ncuts":6}
-addon_regions_125med_highPT[samples.top]     = {"OS":"SR_125med_highPT", "SS":"SR_SS125med_highPT", "ncuts":6}
-
-addon_regions_160med = {}
-addon_regions_160med[data]            = {"OS":"SR_160med", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med", "SS":"SR_SS160med", "ncuts":5}  
-addon_regions_160med[samples.Wjets]   = {"OS":"SR_160med", "SS":"SR_SS160med", "ncuts":5}
-addon_regions_160med[samples.Zlljets] = {"OS":"SR_160med", "SS":"SR_SS_160med", "ncuts":5}
-addon_regions_160med[samples.top]     = {"OS":"SR_160med", "SS":"SR_SS_160med", "ncuts":5}
-
-addon_regions_160med_lowPT = {}
-addon_regions_160med_lowPT[data]            = {"SS":"SR_SS160med_lowPT", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT", "OS":"SR_160med_lowPT", "ncuts":6}  
-addon_regions_160med_lowPT[samples.Wjets]   = {"OS":"SR_160med_lowPT", "SS":"SR_SS160med_lowPT", "ncuts":6}
-addon_regions_160med_lowPT[samples.Zlljets] = {"OS":"SR_160med_lowPT", "SS":"SR_SS160med_lowPT", "ncuts":6}
-addon_regions_160med_lowPT[samples.top]     = {"OS":"SR_160med_lowPT", "SS":"SR_SS160med_lowPT", "ncuts":6}
-
-addon_regions_160med_highPT = {}
-addon_regions_160med_highPT[data]            = {"SS":"SR_SS160med_highPT",  "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT", "OS":"SR_160med_highPT", "ncuts":6}  
-addon_regions_160med_highPT[samples.Wjets]   = {"OS":"SR_160med_highPT", "SS":"SR_SS160med_highPT", "ncuts":6}
-addon_regions_160med_highPT[samples.Zlljets] = {"OS":"SR_160med_highPT", "SS":"SR_SS160med_highPT", "ncuts":6}
-addon_regions_160med_highPT[samples.top]     = {"OS":"SR_160med_highPT", "SS":"SR_SS160med_highPT", "ncuts":6}
-
-#--------------------
-# one track
-#--------------------
-
-addon_regions_1Track = {}
-addon_regions_1Track[data]            = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau1Track", "ncuts":5}#{"SS":"SR_SS_Tau1Track", "ncuts":5}  
-addon_regions_1Track[samples.Wjets]   = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau1Track", "ncuts":5}#{"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "ncuts":5}
-addon_regions_1Track[samples.Zlljets] = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau1Track", "ncuts":5}#{"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "ncuts":5}
-addon_regions_1Track[samples.top]     = {"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau1Track", "ncuts":5}#{"OS":"SR_Tau1Track", "SS":"SR_SS_Tau1Track", "ncuts":5}
-
-addon_regions_highPT_1Track = {}
-addon_regions_highPT_1Track[data]            = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau1Track", "ncuts":6}#{"SS":"SR_SS_highPT_Tau1Track", "ncuts":6}  
-addon_regions_highPT_1Track[samples.Wjets]   = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau1Track", "ncuts":6}#{"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "ncuts":6}
-addon_regions_highPT_1Track[samples.Zlljets] = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau1Track", "ncuts":6}#{"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "ncuts":6}
-addon_regions_highPT_1Track[samples.top]     = {"OS":"SR_highPT_Tau1Track", "SS":"SR_SS_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau1Track", "ncuts":6}
-
-addon_regions_lowPT_1Track = {}
-addon_regions_lowPT_1Track[data]            = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau1Track", "ncuts":6}#{"SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}  
-addon_regions_lowPT_1Track[samples.Wjets]   = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau1Track", "ncuts":6}#{"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}
-addon_regions_lowPT_1Track[samples.Zlljets] = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau1Track", "ncuts":6}#{"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "ncuts":6}
-addon_regions_lowPT_1Track[samples.top]     = {"OS":"SR_lowPT_Tau1Track", "SS":"SR_SS_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau1Track", "ncuts":6}
-
-
-addon_regions_25med_1Track = {}
-addon_regions_25med_1Track[data]            = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau1Track", "ncuts":6}#'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',{"SS":"SR_SS25med_Tau1Track", "ncuts":6}  
-addon_regions_25med_1Track[samples.Wjets]   = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau1Track", "ncuts":6}#{"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "ncuts":6}
-addon_regions_25med_1Track[samples.Zlljets] = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau1Track", "ncuts":6}#{"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "ncuts":6}
-addon_regions_25med_1Track[samples.top]     = {"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau1Track", "ncuts":6}#{"OS":"SR_25med_Tau1Track", "SS":"SR_SS25med_Tau1Track", "ncuts":6}
-
-addon_regions_25med_lowPT_1Track = {}
-addon_regions_25med_lowPT_1Track[data]            = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau1Track", "ncuts":7}#{"SS":"SR_SS25med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_25med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau1Track", "ncuts":7}##SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track{"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_25med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau1Track", "ncuts":7}#{"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_25med_lowPT_1Track[samples.top]     = {"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau1Track", "ncuts":7}#{"OS":"SR_25med_lowPT_Tau1Track", "SS":"SR_SS25med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_25med_highPT_1Track = {}
-addon_regions_25med_highPT_1Track[data]            = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau1Track", "ncuts":7}#{"SS":"SR_SS25med_highPT_Tau1Track", "ncuts":7}  
-addon_regions_25med_highPT_1Track[samples.Wjets]   = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau1Track", "ncuts":7}#{"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "ncuts":7}
-addon_regions_25med_highPT_1Track[samples.Zlljets] = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau1Track", "ncuts":7}#{"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "ncuts":7}
-addon_regions_25med_highPT_1Track[samples.top]     = {"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau1Track", "ncuts":7}#{"OS":"SR_25med_highPT_Tau1Track", "SS":"SR_SS25med_highPT_Tau1Track", "ncuts":7}
-
-addon_regions_35med_1Track = {}
-addon_regions_35med_1Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med_Tau1Track", "OS":"SR_35med_Tau1Track", "SS":"SR_SS35med_Tau1Track", "ncuts":6}  
-addon_regions_35med_1Track[samples.Wjets]   = {"OS":"SR_35med_Tau1Track", "SS":"SR_SS35med_Tau1Track", "ncuts":6}
-addon_regions_35med_1Track[samples.Zlljets] = {"OS":"SR_35med_Tau1Track", "SS":"SR_SS35med_Tau1Track", "ncuts":6}
-addon_regions_35med_1Track[samples.top]     = {"OS":"SR_35med_Tau1Track", "SS":"SR_SS35med_Tau1Track", "ncuts":6}
-
-addon_regions_35med_lowPT_1Track = {}
-addon_regions_35med_lowPT_1Track[data]            = {"SS":"SR_SS35med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med_lowPT_Tau1Track", "OS":"SR_35med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_35med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_35med_lowPT_Tau1Track", "SS":"SR_SS35med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_35med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_35med_lowPT_Tau1Track", "SS":"SR_SS35med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_35med_lowPT_1Track[samples.top]     = {"OS":"SR_35med_lowPT_Tau1Track", "SS":"SR_SS35med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_35med_highPT_1Track = {}
-addon_regions_35med_highPT_1Track[data]            = {"SS":"SR_SS35med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med_highPT_Tau1Track", "OS":"SR_35med_highPT_Tau1Track","ncuts":7}  
-addon_regions_35med_highPT_1Track[samples.Wjets]   = {"OS":"SR_35med_highPT_Tau1Track", "SS":"SR_SS35med_highPT_Tau1Track", "ncuts":7}
-addon_regions_35med_highPT_1Track[samples.Zlljets] = {"OS":"SR_35med_highPT_Tau1Track", "SS":"SR_SS35med_highPT_Tau1Track", "ncuts":7}
-addon_regions_35med_highPT_1Track[samples.top]     = {"OS":"SR_35med_highPT_Tau1Track", "SS":"SR_SS35med_highPT_Tau1Track", "ncuts":7}
-
-addon_regions_50L1TAU12med_1Track = {}
-addon_regions_50L1TAU12med_1Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med_Tau1Track", "OS":"SR_50L1TAU12med_Tau1Track", "SS":"SR_SS50L1TAU12med_Tau1Track", "ncuts":6}  
-addon_regions_50L1TAU12med_1Track[samples.Wjets]   = {"OS":"SR_50L1TAU12med_Tau1Track", "SS":"SR_SS50L1TAU12med_Tau1Track", "ncuts":6}
-addon_regions_50L1TAU12med_1Track[samples.Zlljets] = {"OS":"SR_50L1TAU12med_Tau1Track", "SS":"SR_SS50L1TAU12med_Tau1Track", "ncuts":6}
-addon_regions_50L1TAU12med_1Track[samples.top]     = {"OS":"SR_50L1TAU12med_Tau1Track", "SS":"SR_SS50L1TAU12med_Tau1Track", "ncuts":6}
-
-addon_regions_50L1TAU12med_lowPT_1Track = {}
-addon_regions_50L1TAU12med_lowPT_1Track[data]            = {"SS":"SR_SS50L1TAU12med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med_lowPT_Tau1Track", "OS":"SR_50L1TAU12med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_50L1TAU12med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_50L1TAU12med_lowPT_Tau1Track", "SS":"SR_SS50L1TAU12med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_50L1TAU12med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_50L1TAU12med_lowPT_Tau1Track", "SS":"SR_SS50L1TAU12med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_50L1TAU12med_lowPT_1Track[samples.top]     = {"OS":"SR_50L1TAU12med_lowPT_Tau1Track", "SS":"SR_SS50L1TAU12med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_50L1TAU12med_highPT_1Track = {}
-addon_regions_50L1TAU12med_highPT_1Track[data]            = {"SS":"SR_SS50L1TAU12med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med_highPT_Tau1Track", "OS":"SR_50L1TAU12med_highPT_Tau1Track","ncuts":7}  
-addon_regions_50L1TAU12med_highPT_1Track[samples.Wjets]   = {"OS":"SR_50L1TAU12med_highPT_Tau1Track", "SS":"SR_SS50L1TAU12med_highPT_Tau1Track", "ncuts":7}
-addon_regions_50L1TAU12med_highPT_1Track[samples.Zlljets] = {"OS":"SR_50L1TAU12med_highPT_Tau1Track", "SS":"SR_SS50L1TAU12med_highPT_Tau1Track", "ncuts":7}
-addon_regions_50L1TAU12med_highPT_1Track[samples.top]     = {"OS":"SR_50L1TAU12med_highPT_Tau1Track", "SS":"SR_SS50L1TAU12med_highPT_Tau1Track", "ncuts":7}
-
-addon_regions_80med_1Track = {}
-addon_regions_80med_1Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med_Tau1Track", "OS":"SR_80med_Tau1Track", "SS":"SR_SS80med_Tau1Track", "ncuts":6}  
-addon_regions_80med_1Track[samples.Wjets]   = {"OS":"SR_80med_Tau1Track", "SS":"SR_SS80med_Tau1Track", "ncuts":6}
-addon_regions_80med_1Track[samples.Zlljets] = {"OS":"SR_80med_Tau1Track", "SS":"SR_SS80med_Tau1Track", "ncuts":6}
-addon_regions_80med_1Track[samples.top]     = {"OS":"SR_80med_Tau1Track", "SS":"SR_SS80med_Tau1Track", "ncuts":6}
-
-addon_regions_80med_lowPT_1Track = {}
-addon_regions_80med_lowPT_1Track[data]            = {"SS":"SR_SS80med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med_lowPT_Tau1Track", "OS":"SR_80med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_80med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_80med_lowPT_Tau1Track", "SS":"SR_SS80med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_80med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_80med_lowPT_Tau1Track", "SS":"SR_SS80med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_80med_lowPT_1Track[samples.top]     = {"OS":"SR_80med_lowPT_Tau1Track", "SS":"SR_SS80med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_80med_highPT_1Track = {}
-addon_regions_80med_highPT_1Track[data]            = {"SS":"SR_SS80med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med_highPT_Tau1Track", "OS":"SR_80med_highPT_Tau1Track","ncuts":7}  
-addon_regions_80med_highPT_1Track[samples.Wjets]   = {"OS":"SR_80med_highPT_Tau1Track", "SS":"SR_SS80med_highPT_Tau1Track", "ncuts":7}
-addon_regions_80med_highPT_1Track[samples.Zlljets] = {"OS":"SR_80med_highPT_Tau1Track", "SS":"SR_SS80med_highPT_Tau1Track", "ncuts":7}
-addon_regions_80med_highPT_1Track[samples.top]     = {"OS":"SR_80med_highPT_Tau1Track", "SS":"SR_SS80med_highPT_Tau1Track", "ncuts":7}
-
-addon_regions_80L1TAU60med_1Track = {}
-addon_regions_80L1TAU60med_1Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med_Tau1Track", "OS":"SR_80L1TAU60med_Tau1Track", "SS":"SR_SS80L1TAU60med_Tau1Track", "ncuts":6}  
-addon_regions_80L1TAU60med_1Track[samples.Wjets]   = {"OS":"SR_80L1TAU60med_Tau1Track", "SS":"SR_SS80L1TAU60med_Tau1Track", "ncuts":6}
-addon_regions_80L1TAU60med_1Track[samples.Zlljets] = {"OS":"SR_80L1TAU60med_Tau1Track", "SS":"SR_SS80L1TAU60med_Tau1Track", "ncuts":6}
-addon_regions_80L1TAU60med_1Track[samples.top]     = {"OS":"SR_80L1TAU60med_Tau1Track", "SS":"SR_SS80L1TAU60med_Tau1Track", "ncuts":6}
-
-addon_regions_80L1TAU60med_lowPT_1Track = {}
-addon_regions_80L1TAU60med_lowPT_1Track[data]            = {"SS":"SR_SS80L1TAU60med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med_lowPT_Tau1Track", "OS":"SR_80L1TAU60med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_80L1TAU60med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_80L1TAU60med_lowPT_Tau1Track", "SS":"SR_SS80L1TAU60med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_80L1TAU60med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_80L1TAU60med_lowPT_Tau1Track", "SS":"SR_SS80L1TAU60med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_80L1TAU60med_lowPT_1Track[samples.top]     = {"OS":"SR_80L1TAU60med_lowPT_Tau1Track", "SS":"SR_SS80L1TAU60med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_80L1TAU60med_highPT_1Track = {}
-addon_regions_80L1TAU60med_highPT_1Track[data]            = {"SS":"SR_SS80L1TAU60med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med_highPT_Tau1Track", "OS":"SR_80L1TAU60med_highPT_Tau1Track","ncuts":7}  
-addon_regions_80L1TAU60med_highPT_1Track[samples.Wjets]   = {"OS":"SR_80L1TAU60med_highPT_Tau1Track", "SS":"SR_SS80L1TAU60med_highPT_Tau1Track", "ncuts":7}
-addon_regions_80L1TAU60med_highPT_1Track[samples.Zlljets] = {"OS":"SR_80L1TAU60med_highPT_Tau1Track", "SS":"SR_SS80L1TAU60med_highPT_Tau1Track", "ncuts":7}
-addon_regions_80L1TAU60med_highPT_1Track[samples.top]     = {"OS":"SR_80L1TAU60med_highPT_Tau1Track", "SS":"SR_SS80L1TAU60med_highPT_Tau1Track", "ncuts":7}
-
-addon_regions_125med_1Track = {}
-addon_regions_125med_1Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med_Tau1Track", "OS":"SR_125med_Tau1Track", "SS":"SR_SS125med_Tau1Track", "ncuts":6}  
-addon_regions_125med_1Track[samples.Wjets]   = {"OS":"SR_125med_Tau1Track", "SS":"SR_SS125med_Tau1Track", "ncuts":6}
-addon_regions_125med_1Track[samples.Zlljets] = {"OS":"SR_125med_Tau1Track", "SS":"SR_SS125med_Tau1Track", "ncuts":6}
-addon_regions_125med_1Track[samples.top]     = {"OS":"SR_125med_Tau1Track", "SS":"SR_SS125med_Tau1Track", "ncuts":6}
-
-addon_regions_125med_lowPT_1Track = {}
-addon_regions_125med_lowPT_1Track[data]            = {"SS":"SR_SS125med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med_lowPT_Tau1Track", "OS":"SR_125med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_125med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_125med_lowPT_Tau1Track", "SS":"SR_SS125med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_125med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_125med_lowPT_Tau1Track", "SS":"SR_SS125med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_125med_lowPT_1Track[samples.top]     = {"OS":"SR_125med_lowPT_Tau1Track", "SS":"SR_SS125med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_125med_highPT_1Track = {}
-addon_regions_125med_highPT_1Track[data]            = {"SS":"SR_SS125med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med_highPT_Tau1Track", "OS":"SR_125med_highPT_Tau1Track","ncuts":7}  
-addon_regions_125med_highPT_1Track[samples.Wjets]   = {"OS":"SR_125med_highPT_Tau1Track", "SS":"SR_SS125med_highPT_Tau1Track", "ncuts":7}
-addon_regions_125med_highPT_1Track[samples.Zlljets] = {"OS":"SR_125med_highPT_Tau1Track", "SS":"SR_SS125med_highPT_Tau1Track", "ncuts":7}
-addon_regions_125med_highPT_1Track[samples.top]     = {"OS":"SR_125med_highPT_Tau1Track", "SS":"SR_SS125med_highPT_Tau1Track", "ncuts":7}
-
-addon_regions_160med_1Track = {}
-addon_regions_160med_1Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med_Tau1Track", "OS":"SR_160med_Tau1Track", "SS":"SR_SS160med_Tau1Track", "ncuts":6}  
-addon_regions_160med_1Track[samples.Wjets]   = {"OS":"SR_160med_Tau1Track", "SS":"SR_SS160med_Tau1Track", "ncuts":6}
-addon_regions_160med_1Track[samples.Zlljets] = {"OS":"SR_160med_Tau1Track", "SS":"SR_SS160med_Tau1Track", "ncuts":6}
-addon_regions_160med_1Track[samples.top]     = {"OS":"SR_160med_Tau1Track", "SS":"SR_SS160med_Tau1Track", "ncuts":6}
-
-addon_regions_160med_lowPT_1Track = {}
-addon_regions_160med_lowPT_1Track[data]            = {"SS":"SR_SS160med_lowPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med_lowPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med_lowPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med_lowPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med_lowPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med_lowPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med_lowPT_Tau1Track", "OS":"SR_160med_lowPT_Tau1Track", "ncuts":7}  
-addon_regions_160med_lowPT_1Track[samples.Wjets]   = {"OS":"SR_160med_lowPT_Tau1Track", "SS":"SR_SS160med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_160med_lowPT_1Track[samples.Zlljets] = {"OS":"SR_160med_lowPT_Tau1Track", "SS":"SR_SS160med_lowPT_Tau1Track", "ncuts":7}
-addon_regions_160med_lowPT_1Track[samples.top]     = {"OS":"SR_160med_lowPT_Tau1Track", "SS":"SR_SS160med_lowPT_Tau1Track", "ncuts":7}
-
-addon_regions_160med_highPT_1Track = {}
-addon_regions_160med_highPT_1Track[data]            = {"SS":"SR_SS160med_highPT_Tau1Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med_highPT_Tau1Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med_highPT_Tau1Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med_highPT_Tau1Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med_highPT_Tau1Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med_highPT_Tau1Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med_highPT_Tau1Track", "OS":"SR_160med_highPT_Tau1Track","ncuts":7}  
-addon_regions_160med_highPT_1Track[samples.Wjets]   = {"OS":"SR_160med_highPT_Tau1Track", "SS":"SR_SS160med_highPT_Tau1Track", "ncuts":7}
-addon_regions_160med_highPT_1Track[samples.Zlljets] = {"OS":"SR_160med_highPT_Tau1Track", "SS":"SR_SS160med_highPT_Tau1Track", "ncuts":7}
-addon_regions_160med_highPT_1Track[samples.top]     = {"OS":"SR_160med_highPT_Tau1Track", "SS":"SR_SS160med_highPT_Tau1Track", "ncuts":7}
-
-#--------------------
-# three tracks
-#--------------------
-
-addon_regions_3Track = {}
-addon_regions_3Track[data]            = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau3Track", "ncuts":5}#{"SS":"SR_SS_Tau3Track", "ncuts":5}  
-addon_regions_3Track[samples.Wjets]   = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau3Track", "ncuts":5}#{"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "ncuts":5}
-addon_regions_3Track[samples.Zlljets] = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau3Track", "ncuts":5}#{"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "ncuts":5}
-addon_regions_3Track[samples.top]     = {"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_Tau3Track", "ncuts":5}#{"OS":"SR_Tau3Track", "SS":"SR_SS_Tau3Track", "ncuts":5}
-
-addon_regions_highPT_3Track = {}
-addon_regions_highPT_3Track[data]            = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau3Track", "ncuts":6}#{"SS":"SR_SS_highPT_Tau3Track", "ncuts":6}  
-addon_regions_highPT_3Track[samples.Wjets]   = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau3Track", "ncuts":6}#{"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "ncuts":6}
-addon_regions_highPT_3Track[samples.Zlljets] = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau3Track", "ncuts":6}#{"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "ncuts":6}
-addon_regions_highPT_3Track[samples.top]     = {"OS":"SR_highPT_Tau3Track", "SS":"SR_SS_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_highPT_Tau3Track", "ncuts":6}
-
-addon_regions_lowPT_3Track = {}
-addon_regions_lowPT_3Track[data]            = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau3Track", "ncuts":6}#{"SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}  
-addon_regions_lowPT_3Track[samples.Wjets]   = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau3Track", "ncuts":6}#{"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}
-addon_regions_lowPT_3Track[samples.Zlljets] = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau3Track", "ncuts":6}#{"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "ncuts":6}
-addon_regions_lowPT_3Track[samples.top]     = {"OS":"SR_lowPT_Tau3Track", "SS":"SR_SS_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS_lowPT_Tau3Track", "ncuts":6}
-
-addon_regions_25med_3Track = {}
-addon_regions_25med_3Track[data]            = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau3Track", "ncuts":6}#'SR_lowSCDP_lowMT_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',{"SS":"SR_SS25med_Tau3Track", "ncuts":6}  
-addon_regions_25med_3Track[samples.Wjets]   = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau3Track", "ncuts":6}#{"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "ncuts":6}
-addon_regions_25med_3Track[samples.Zlljets] = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau3Track", "ncuts":6}#{"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "ncuts":6}
-addon_regions_25med_3Track[samples.top]     = {"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_Tau3Track", "ncuts":6}#{"OS":"SR_25med_Tau3Track", "SS":"SR_SS25med_Tau3Track", "ncuts":6}
-
-addon_regions_25med_lowPT_3Track = {}
-addon_regions_25med_lowPT_3Track[data]            = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau3Track", "ncuts":7}#{"SS":"SR_SS25med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_25med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau3Track", "ncuts":7}##SR_lowSCDP_lowMT_SS'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track{"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_25med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau3Track", "ncuts":7}#{"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_25med_lowPT_3Track[samples.top]     = {"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_lowPT_Tau3Track", "ncuts":7}#{"OS":"SR_25med_lowPT_Tau3Track", "SS":"SR_SS25med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_25med_highPT_3Track = {}
-addon_regions_25med_highPT_3Track[data]            = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau3Track", "ncuts":7}#{"SS":"SR_SS25med_highPT_Tau3Track", "ncuts":7}  
-addon_regions_25med_highPT_3Track[samples.Wjets]   = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau3Track", "ncuts":7}#{"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "ncuts":7}
-addon_regions_25med_highPT_3Track[samples.Zlljets] = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau3Track", "ncuts":7}#{"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "ncuts":7}
-addon_regions_25med_highPT_3Track[samples.top]     = {"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_25med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS25med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS25med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_25med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS25med_highPT_Tau3Track", "ncuts":7}#{"OS":"SR_25med_highPT_Tau3Track", "SS":"SR_SS25med_highPT_Tau3Track", "ncuts":7}
-
-addon_regions_35med_3Track = {}
-addon_regions_35med_3Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med_Tau3Track", "OS":"SR_35med_Tau3Track", "SS":"SR_SS35med_Tau3Track", "ncuts":6}  
-addon_regions_35med_3Track[samples.Wjets]   = {"OS":"SR_35med_Tau3Track", "SS":"SR_SS35med_Tau3Track", "ncuts":6}
-addon_regions_35med_3Track[samples.Zlljets] = {"OS":"SR_35med_Tau3Track", "SS":"SR_SS35med_Tau3Track", "ncuts":6}
-addon_regions_35med_3Track[samples.top]     = {"OS":"SR_35med_Tau3Track", "SS":"SR_SS35med_Tau3Track", "ncuts":6}
-
-addon_regions_35med_lowPT_3Track = {}
-addon_regions_35med_lowPT_3Track[data]            = {"SS":"SR_SS35med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med_lowPT_Tau3Track", "OS":"SR_35med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_35med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_35med_lowPT_Tau3Track", "SS":"SR_SS35med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_35med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_35med_lowPT_Tau3Track", "SS":"SR_SS35med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_35med_lowPT_3Track[samples.top]     = {"OS":"SR_35med_lowPT_Tau3Track", "SS":"SR_SS35med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_35med_highPT_3Track = {}
-addon_regions_35med_highPT_3Track[data]            = {"SS":"SR_SS35med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_35med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS35med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_35med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS35med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_35med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS35med_highPT_Tau3Track", "OS":"SR_35med_highPT_Tau3Track","ncuts":7}  
-addon_regions_35med_highPT_3Track[samples.Wjets]   = {"OS":"SR_35med_highPT_Tau3Track", "SS":"SR_SS35med_highPT_Tau3Track", "ncuts":7}
-addon_regions_35med_highPT_3Track[samples.Zlljets] = {"OS":"SR_35med_highPT_Tau3Track", "SS":"SR_SS35med_highPT_Tau3Track", "ncuts":7}
-addon_regions_35med_highPT_3Track[samples.top]     = {"OS":"SR_35med_highPT_Tau3Track", "SS":"SR_SS35med_highPT_Tau3Track", "ncuts":7}
-
-addon_regions_50L1TAU12med_3Track = {}
-addon_regions_50L1TAU12med_3Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med_Tau3Track", "OS":"SR_50L1TAU12med_Tau3Track", "SS":"SR_SS50L1TAU12med_Tau3Track", "ncuts":6}  
-addon_regions_50L1TAU12med_3Track[samples.Wjets]   = {"OS":"SR_50L1TAU12med_Tau3Track", "SS":"SR_SS50L1TAU12med_Tau3Track", "ncuts":6}
-addon_regions_50L1TAU12med_3Track[samples.Zlljets] = {"OS":"SR_50L1TAU12med_Tau3Track", "SS":"SR_SS50L1TAU12med_Tau3Track", "ncuts":6}
-addon_regions_50L1TAU12med_3Track[samples.top]     = {"OS":"SR_50L1TAU12med_Tau3Track", "SS":"SR_SS50L1TAU12med_Tau3Track", "ncuts":6}
-
-addon_regions_50L1TAU12med_lowPT_3Track = {}
-addon_regions_50L1TAU12med_lowPT_3Track[data]            = {"SS":"SR_SS50L1TAU12med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med_lowPT_Tau3Track", "OS":"SR_50L1TAU12med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_50L1TAU12med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_50L1TAU12med_lowPT_Tau3Track", "SS":"SR_SS50L1TAU12med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_50L1TAU12med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_50L1TAU12med_lowPT_Tau3Track", "SS":"SR_SS50L1TAU12med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_50L1TAU12med_lowPT_3Track[samples.top]     = {"OS":"SR_50L1TAU12med_lowPT_Tau3Track", "SS":"SR_SS50L1TAU12med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_50L1TAU12med_highPT_3Track = {}
-addon_regions_50L1TAU12med_highPT_3Track[data]            = {"SS":"SR_SS50L1TAU12med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_50L1TAU12med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS50L1TAU12med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_50L1TAU12med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS50L1TAU12med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_50L1TAU12med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS50L1TAU12med_highPT_Tau3Track", "OS":"SR_50L1TAU12med_highPT_Tau3Track","ncuts":7}  
-addon_regions_50L1TAU12med_highPT_3Track[samples.Wjets]   = {"OS":"SR_50L1TAU12med_highPT_Tau3Track", "SS":"SR_SS50L1TAU12med_highPT_Tau3Track", "ncuts":7}
-addon_regions_50L1TAU12med_highPT_3Track[samples.Zlljets] = {"OS":"SR_50L1TAU12med_highPT_Tau3Track", "SS":"SR_SS50L1TAU12med_highPT_Tau3Track", "ncuts":7}
-addon_regions_50L1TAU12med_highPT_3Track[samples.top]     = {"OS":"SR_50L1TAU12med_highPT_Tau3Track", "SS":"SR_SS50L1TAU12med_highPT_Tau3Track", "ncuts":7}
-
-addon_regions_80med_3Track = {}
-addon_regions_80med_3Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med_Tau3Track", "OS":"SR_80med_Tau3Track", "SS":"SR_SS80med_Tau3Track", "ncuts":6}  
-addon_regions_80med_3Track[samples.Wjets]   = {"OS":"SR_80med_Tau3Track", "SS":"SR_SS80med_Tau3Track", "ncuts":6}
-addon_regions_80med_3Track[samples.Zlljets] = {"OS":"SR_80med_Tau3Track", "SS":"SR_SS80med_Tau3Track", "ncuts":6}
-addon_regions_80med_3Track[samples.top]     = {"OS":"SR_80med_Tau3Track", "SS":"SR_SS80med_Tau3Track", "ncuts":6}
-
-addon_regions_80med_lowPT_3Track = {}
-addon_regions_80med_lowPT_3Track[data]            = {"SS":"SR_SS80med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med_lowPT_Tau3Track", "OS":"SR_80med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_80med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_80med_lowPT_Tau3Track", "SS":"SR_SS80med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_80med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_80med_lowPT_Tau3Track", "SS":"SR_SS80med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_80med_lowPT_3Track[samples.top]     = {"OS":"SR_80med_lowPT_Tau3Track", "SS":"SR_SS80med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_80med_highPT_3Track = {}
-addon_regions_80med_highPT_3Track[data]            = {"SS":"SR_SS80med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80med_highPT_Tau3Track", "OS":"SR_80med_highPT_Tau3Track","ncuts":7}  
-addon_regions_80med_highPT_3Track[samples.Wjets]   = {"OS":"SR_80med_highPT_Tau3Track", "SS":"SR_SS80med_highPT_Tau3Track", "ncuts":7}
-addon_regions_80med_highPT_3Track[samples.Zlljets] = {"OS":"SR_80med_highPT_Tau3Track", "SS":"SR_SS80med_highPT_Tau3Track", "ncuts":7}
-addon_regions_80med_highPT_3Track[samples.top]     = {"OS":"SR_80med_highPT_Tau3Track", "SS":"SR_SS80med_highPT_Tau3Track", "ncuts":7}
-
-addon_regions_80L1TAU60med_3Track = {}
-addon_regions_80L1TAU60med_3Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med_Tau3Track", "OS":"SR_80L1TAU60med_Tau3Track", "SS":"SR_SS80L1TAU60med_Tau3Track", "ncuts":6}  
-addon_regions_80L1TAU60med_3Track[samples.Wjets]   = {"OS":"SR_80L1TAU60med_Tau3Track", "SS":"SR_SS80L1TAU60med_Tau3Track", "ncuts":6}
-addon_regions_80L1TAU60med_3Track[samples.Zlljets] = {"OS":"SR_80L1TAU60med_Tau3Track", "SS":"SR_SS80L1TAU60med_Tau3Track", "ncuts":6}
-addon_regions_80L1TAU60med_3Track[samples.top]     = {"OS":"SR_80L1TAU60med_Tau3Track", "SS":"SR_SS80L1TAU60med_Tau3Track", "ncuts":6}
-
-addon_regions_80L1TAU60med_lowPT_3Track = {}
-addon_regions_80L1TAU60med_lowPT_3Track[data]            = {"SS":"SR_SS80L1TAU60med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med_lowPT_Tau3Track", "OS":"SR_80L1TAU60med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_80L1TAU60med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_80L1TAU60med_lowPT_Tau3Track", "SS":"SR_SS80L1TAU60med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_80L1TAU60med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_80L1TAU60med_lowPT_Tau3Track", "SS":"SR_SS80L1TAU60med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_80L1TAU60med_lowPT_3Track[samples.top]     = {"OS":"SR_80L1TAU60med_lowPT_Tau3Track", "SS":"SR_SS80L1TAU60med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_80L1TAU60med_highPT_3Track = {}
-addon_regions_80L1TAU60med_highPT_3Track[data]            = {"SS":"SR_SS80L1TAU60med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_80L1TAU60med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS80L1TAU60med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_80L1TAU60med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS80L1TAU60med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_80L1TAU60med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS80L1TAU60med_highPT_Tau3Track", "OS":"SR_80L1TAU60med_highPT_Tau3Track","ncuts":7}  
-addon_regions_80L1TAU60med_highPT_3Track[samples.Wjets]   = {"OS":"SR_80L1TAU60med_highPT_Tau3Track", "SS":"SR_SS80L1TAU60med_highPT_Tau3Track", "ncuts":7}
-addon_regions_80L1TAU60med_highPT_3Track[samples.Zlljets] = {"OS":"SR_80L1TAU60med_highPT_Tau3Track", "SS":"SR_SS80L1TAU60med_highPT_Tau3Track", "ncuts":7}
-addon_regions_80L1TAU60med_highPT_3Track[samples.top]     = {"OS":"SR_80L1TAU60med_highPT_Tau3Track", "SS":"SR_SS80L1TAU60med_highPT_Tau3Track", "ncuts":7}
-
-addon_regions_125med_3Track = {}
-addon_regions_125med_3Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med_Tau3Track", "OS":"SR_125med_Tau3Track", "SS":"SR_SS125med_Tau3Track", "ncuts":6}  
-addon_regions_125med_3Track[samples.Wjets]   = {"OS":"SR_125med_Tau3Track", "SS":"SR_SS125med_Tau3Track", "ncuts":6}
-addon_regions_125med_3Track[samples.Zlljets] = {"OS":"SR_125med_Tau3Track", "SS":"SR_SS125med_Tau3Track", "ncuts":6}
-addon_regions_125med_3Track[samples.top]     = {"OS":"SR_125med_Tau3Track", "SS":"SR_SS125med_Tau3Track", "ncuts":6}
-
-addon_regions_125med_lowPT_3Track = {}
-addon_regions_125med_lowPT_3Track[data]            = {"SS":"SR_SS125med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med_lowPT_Tau3Track", "OS":"SR_125med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_125med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_125med_lowPT_Tau3Track", "SS":"SR_SS125med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_125med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_125med_lowPT_Tau3Track", "SS":"SR_SS125med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_125med_lowPT_3Track[samples.top]     = {"OS":"SR_125med_lowPT_Tau3Track", "SS":"SR_SS125med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_125med_highPT_3Track = {}
-addon_regions_125med_highPT_3Track[data]            = {"SS":"SR_SS125med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_125med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS125med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_125med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS125med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_125med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS125med_highPT_Tau3Track", "OS":"SR_125med_highPT_Tau3Track","ncuts":7}  
-addon_regions_125med_highPT_3Track[samples.Wjets]   = {"OS":"SR_125med_highPT_Tau3Track", "SS":"SR_SS125med_highPT_Tau3Track", "ncuts":7}
-addon_regions_125med_highPT_3Track[samples.Zlljets] = {"OS":"SR_125med_highPT_Tau3Track", "SS":"SR_SS125med_highPT_Tau3Track", "ncuts":7}
-addon_regions_125med_highPT_3Track[samples.top]     = {"OS":"SR_125med_highPT_Tau3Track", "SS":"SR_SS125med_highPT_Tau3Track", "ncuts":7}
-
-addon_regions_160med_3Track = {}
-addon_regions_160med_3Track[data]            = {"OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med_Tau3Track", "OS":"SR_160med_Tau3Track", "SS":"SR_SS160med_Tau3Track", "ncuts":6}  
-addon_regions_160med_3Track[samples.Wjets]   = {"OS":"SR_160med_Tau3Track", "SS":"SR_SS160med_Tau3Track", "ncuts":6}
-addon_regions_160med_3Track[samples.Zlljets] = {"OS":"SR_160med_Tau3Track", "SS":"SR_SS160med_Tau3Track", "ncuts":6}
-addon_regions_160med_3Track[samples.top]     = {"OS":"SR_160med_Tau3Track", "SS":"SR_SS160med_Tau3Track", "ncuts":6}
-
-addon_regions_160med_lowPT_3Track = {}
-addon_regions_160med_lowPT_3Track[data]            = {"SS":"SR_SS160med_lowPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med_lowPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med_lowPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med_lowPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med_lowPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med_lowPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med_lowPT_Tau3Track", "OS":"SR_160med_lowPT_Tau3Track", "ncuts":7}  
-addon_regions_160med_lowPT_3Track[samples.Wjets]   = {"OS":"SR_160med_lowPT_Tau3Track", "SS":"SR_SS160med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_160med_lowPT_3Track[samples.Zlljets] = {"OS":"SR_160med_lowPT_Tau3Track", "SS":"SR_SS160med_lowPT_Tau3Track", "ncuts":7}
-addon_regions_160med_lowPT_3Track[samples.top]     = {"OS":"SR_160med_lowPT_Tau3Track", "SS":"SR_SS160med_lowPT_Tau3Track", "ncuts":7}
-
-addon_regions_160med_highPT_3Track = {}
-addon_regions_160med_highPT_3Track[data]            = {"SS":"SR_SS160med_highPT_Tau3Track", "OS_lmt_lscdp":"SR_lowSCDP_lowMT_160med_highPT_Tau3Track", "SS_lmt_lscdp":"SR_lowSCDP_lowMT_SS160med_highPT_Tau3Track", "OS_hmt_hscdp":"SR_highSCDP_highMT_160med_highPT_Tau3Track", "SS_hmt_hscdp":"SR_highSCDP_highMT_SS160med_highPT_Tau3Track", "OS_hmt_lscdp":"SR_lowSCDP_highMT_160med_highPT_Tau3Track", "SS_hmt_lscdp":"SR_lowSCDP_highMT_SS160med_highPT_Tau3Track", "OS":"SR_160med_highPT_Tau3Track","ncuts":7}  
-addon_regions_160med_highPT_3Track[samples.Wjets]   = {"OS":"SR_160med_highPT_Tau3Track", "SS":"SR_SS160med_highPT_Tau3Track", "ncuts":7}
-addon_regions_160med_highPT_3Track[samples.Zlljets] = {"OS":"SR_160med_highPT_Tau3Track", "SS":"SR_SS160med_highPT_Tau3Track", "ncuts":7}
-addon_regions_160med_highPT_3Track[samples.top]     = {"OS":"SR_160med_highPT_Tau3Track", "SS":"SR_SS160med_highPT_Tau3Track", "ncuts":7}
-"""
 
 # SIGNAL REGIONS
 
@@ -2125,13 +2270,13 @@ addon_regions_35med[samples.Zlljets] = {"OS":"SR_35med", "SS":"SR_SS_35med", "nc
 addon_regions_35med[samples.top]     = {"OS":"SR_35med", "SS":"SR_SS_35med", "ncuts":5}
 
 addon_regions_35med_lowPT = {}
-addon_regions_35med_lowPT[data]            = {"SS":"SR_SS35med_lowPT", "OS_lscdp":"SR_lowSCDP_25med_lowPT", "SS_lscdp":"SR_lowSCDP_SS25med_lowPT", "OS":"SR_35med_lowPT", "ncuts":6}  
+addon_regions_35med_lowPT[data]            = {"SS":"SR_SS35med_lowPT", "OS_lscdp":"SR_lowSCDP_35med_lowPT", "SS_lscdp":"SR_lowSCDP_SS35med_lowPT", "OS":"SR_35med_lowPT", "ncuts":6}  
 addon_regions_35med_lowPT[samples.Wjets]   = {"OS":"SR_35med_lowPT", "SS":"SR_SS35med_lowPT", "ncuts":6}
 addon_regions_35med_lowPT[samples.Zlljets] = {"OS":"SR_35med_lowPT", "SS":"SR_SS35med_lowPT", "ncuts":6}
 addon_regions_35med_lowPT[samples.top]     = {"OS":"SR_35med_lowPT", "SS":"SR_SS35med_lowPT", "ncuts":6}
 
 addon_regions_35med_highPT = {}
-addon_regions_35med_highPT[data]            = {"SS":"SR_SS35med_highPT",  "OS_lscdp":"SR_lowSCDP_25med_highPT", "SS_lscdp":"SR_lowSCDP_SS25med_highPT","OS":"SR_35med_highPT", "ncuts":6}  
+addon_regions_35med_highPT[data]            = {"SS":"SR_SS35med_highPT",  "OS_lscdp":"SR_lowSCDP_35med_highPT", "SS_lscdp":"SR_lowSCDP_SS35med_highPT","OS":"SR_35med_highPT", "ncuts":6}  
 addon_regions_35med_highPT[samples.Wjets]   = {"OS":"SR_35med_highPT", "SS":"SR_SS35med_highPT", "ncuts":6}
 addon_regions_35med_highPT[samples.Zlljets] = {"OS":"SR_35med_highPT", "SS":"SR_SS35med_highPT", "ncuts":6}
 addon_regions_35med_highPT[samples.top]     = {"OS":"SR_35med_highPT", "SS":"SR_SS35med_highPT", "ncuts":6}
@@ -2143,13 +2288,13 @@ addon_regions_50L1TAU12med[samples.Zlljets] = {"OS":"SR_50L1TAU12med", "SS":"SR_
 addon_regions_50L1TAU12med[samples.top]     = {"OS":"SR_50L1TAU12med", "SS":"SR_SS_50L1TAU12med", "ncuts":5}
 
 addon_regions_50L1TAU12med_lowPT = {}
-addon_regions_50L1TAU12med_lowPT[data]            = {"SS":"SR_SS50L1TAU12med_lowPT", "OS_lscdp":"SR_lowSCDP_25med_lowPT", "SS_lscdp":"SR_lowSCDP_SS25med_lowPT", "OS":"SR_50L1TAU12med_lowPT", "ncuts":6}  
+addon_regions_50L1TAU12med_lowPT[data]            = {"SS":"SR_SS50L1TAU12med_lowPT", "OS_lscdp":"SR_lowSCDP_50L1TAU12med_lowPT", "SS_lscdp":"SR_lowSCDP_SS50L1TAU12med_lowPT", "OS":"SR_50L1TAU12med_lowPT", "ncuts":6}  
 addon_regions_50L1TAU12med_lowPT[samples.Wjets]   = {"OS":"SR_50L1TAU12med_lowPT", "SS":"SR_SS50L1TAU12med_lowPT", "ncuts":6}
 addon_regions_50L1TAU12med_lowPT[samples.Zlljets] = {"OS":"SR_50L1TAU12med_lowPT", "SS":"SR_SS50L1TAU12med_lowPT", "ncuts":6}
 addon_regions_50L1TAU12med_lowPT[samples.top]     = {"OS":"SR_50L1TAU12med_lowPT", "SS":"SR_SS50L1TAU12med_lowPT", "ncuts":6}
 
 addon_regions_50L1TAU12med_highPT = {}
-addon_regions_50L1TAU12med_highPT[data]            = {"SS":"SR_SS50L1TAU12med_highPT",  "OS_lscdp":"SR_lowSCDP_25med_highPT", "SS_lscdp":"SR_lowSCDP_SS25med_highPT", "OS":"SR_50L1TAU12med_highPT", "ncuts":6}  
+addon_regions_50L1TAU12med_highPT[data]            = {"SS":"SR_SS50L1TAU12med_highPT",  "OS_lscdp":"SR_lowSCDP_50L1TAU12med_highPT", "SS_lscdp":"SR_lowSCDP_SS50L1TAU12med_highPT", "OS":"SR_50L1TAU12med_highPT", "ncuts":6}  
 addon_regions_50L1TAU12med_highPT[samples.Wjets]   = {"OS":"SR_50L1TAU12med_highPT", "SS":"SR_SS50L1TAU12med_highPT", "ncuts":6}
 addon_regions_50L1TAU12med_highPT[samples.Zlljets] = {"OS":"SR_50L1TAU12med_highPT", "SS":"SR_SS50L1TAU12med_highPT", "ncuts":6}
 addon_regions_50L1TAU12med_highPT[samples.top]     = {"OS":"SR_50L1TAU12med_highPT", "SS":"SR_SS50L1TAU12med_highPT", "ncuts":6}
@@ -2161,13 +2306,13 @@ addon_regions_80med[samples.Zlljets] = {"OS":"SR_80med", "SS":"SR_SS_80med", "nc
 addon_regions_80med[samples.top]     = {"OS":"SR_80med", "SS":"SR_SS_80med", "ncuts":5}
 
 addon_regions_80med_lowPT = {}
-addon_regions_80med_lowPT[data]            = {"SS":"SR_SS80med_lowPT", "OS_lscdp":"SR_lowSCDP_25med_lowPT", "SS_lscdp":"SR_lowSCDP_SS25med_lowPT","OS":"SR_80med_lowPT", "ncuts":6}  
+addon_regions_80med_lowPT[data]            = {"SS":"SR_SS80med_lowPT", "OS_lscdp":"SR_lowSCDP_80med_lowPT", "SS_lscdp":"SR_lowSCDP_SS80med_lowPT","OS":"SR_80med_lowPT", "ncuts":6}  
 addon_regions_80med_lowPT[samples.Wjets]   = {"OS":"SR_80med_lowPT", "SS":"SR_SS80med_lowPT", "ncuts":6}
 addon_regions_80med_lowPT[samples.Zlljets] = {"OS":"SR_80med_lowPT", "SS":"SR_SS80med_lowPT", "ncuts":6}
 addon_regions_80med_lowPT[samples.top]     = {"OS":"SR_80med_lowPT", "SS":"SR_SS80med_lowPT", "ncuts":6}
 
 addon_regions_80med_highPT = {}
-addon_regions_80med_highPT[data]            = {"SS":"SR_SS80med_highPT",  "OS_lscdp":"SR_lowSCDP_25med_highPT", "SS_lscdp":"SR_lowSCDP_SS25med_highPT","OS":"SR_80med_highPT", "ncuts":6}  
+addon_regions_80med_highPT[data]            = {"SS":"SR_SS80med_highPT",  "OS_lscdp":"SR_lowSCDP_80med_highPT", "SS_lscdp":"SR_lowSCDP_SS80med_highPT","OS":"SR_80med_highPT", "ncuts":6}  
 addon_regions_80med_highPT[samples.Wjets]   = {"OS":"SR_80med_highPT", "SS":"SR_SS80med_highPT", "ncuts":6}
 addon_regions_80med_highPT[samples.Zlljets] = {"OS":"SR_80med_highPT", "SS":"SR_SS80med_highPT", "ncuts":6}
 addon_regions_80med_highPT[samples.top]     = {"OS":"SR_80med_highPT", "SS":"SR_SS80med_highPT", "ncuts":6}
@@ -2179,13 +2324,13 @@ addon_regions_80L1TAU60med[samples.Zlljets] = {"OS":"SR_80L1TAU60med", "SS":"SR_
 addon_regions_80L1TAU60med[samples.top]     = {"OS":"SR_80L1TAU60med", "SS":"SR_SS_80L1TAU60med", "ncuts":5}
 
 addon_regions_80L1TAU60med_lowPT = {}
-addon_regions_80L1TAU60med_lowPT[data]            = {"SS":"SR_SS80L1TAU60med_lowPT", "OS_lscdp":"SR_lowSCDP_25med_lowPT", "SS_lscdp":"SR_lowSCDP_SS25med_lowPT", "OS":"SR_80L1TAU60med_lowPT", "ncuts":6}  
+addon_regions_80L1TAU60med_lowPT[data]            = {"SS":"SR_SS80L1TAU60med_lowPT", "OS_lscdp":"SR_lowSCDP_80L1TAU60med_lowPT", "SS_lscdp":"SR_lowSCDP_SS80L1TAU60med_lowPT", "OS":"SR_80L1TAU60med_lowPT", "ncuts":6}  
 addon_regions_80L1TAU60med_lowPT[samples.Wjets]   = {"OS":"SR_80L1TAU60med_lowPT", "SS":"SR_SS80L1TAU60med_lowPT", "ncuts":6}
 addon_regions_80L1TAU60med_lowPT[samples.Zlljets] = {"OS":"SR_80L1TAU60med_lowPT", "SS":"SR_SS80L1TAU60med_lowPT", "ncuts":6}
 addon_regions_80L1TAU60med_lowPT[samples.top]     = {"OS":"SR_80L1TAU60med_lowPT", "SS":"SR_SS80L1TAU60med_lowPT", "ncuts":6}
 
 addon_regions_80L1TAU60med_highPT = {}
-addon_regions_80L1TAU60med_highPT[data]            = {"SS":"SR_SS80L1TAU60med_highPT",  "OS_lscdp":"SR_lowSCDP_25med_highPT", "SS_lscdp":"SR_lowSCDP_SS25med_highPT","OS":"SR_80L1TAU60med_highPT", "ncuts":6}  
+addon_regions_80L1TAU60med_highPT[data]            = {"SS":"SR_SS80L1TAU60med_highPT",  "OS_lscdp":"SR_lowSCDP_80L1TAU60med_highPT", "SS_lscdp":"SR_lowSCDP_SS80L1TAU60med_highPT","OS":"SR_80L1TAU60med_highPT", "ncuts":6}  
 addon_regions_80L1TAU60med_highPT[samples.Wjets]   = {"OS":"SR_80L1TAU60med_highPT", "SS":"SR_SS80L1TAU60med_highPT", "ncuts":6}
 addon_regions_80L1TAU60med_highPT[samples.Zlljets] = {"OS":"SR_80L1TAU60med_highPT", "SS":"SR_SS80L1TAU60med_highPT", "ncuts":6}
 addon_regions_80L1TAU60med_highPT[samples.top]     = {"OS":"SR_80L1TAU60med_highPT", "SS":"SR_SS80L1TAU60med_highPT", "ncuts":6}
@@ -2197,13 +2342,13 @@ addon_regions_125med[samples.Zlljets] = {"OS":"SR_125med", "SS":"SR_SS_125med", 
 addon_regions_125med[samples.top]     = {"OS":"SR_125med", "SS":"SR_SS_125med", "ncuts":5}
 
 addon_regions_125med_lowPT = {}
-addon_regions_125med_lowPT[data]            = {"SS":"SR_SS125med_lowPT", "OS_lscdp":"SR_lowSCDP_25med_lowPT", "SS_lscdp":"SR_lowSCDP_SS25med_lowPT", "OS":"SR_125med_lowPT", "ncuts":6}  
+addon_regions_125med_lowPT[data]            = {"SS":"SR_SS125med_lowPT", "OS_lscdp":"SR_lowSCDP_125med_lowPT", "SS_lscdp":"SR_lowSCDP_SS125med_lowPT", "OS":"SR_125med_lowPT", "ncuts":6}  
 addon_regions_125med_lowPT[samples.Wjets]   = {"OS":"SR_125med_lowPT", "SS":"SR_SS125med_lowPT", "ncuts":6}
 addon_regions_125med_lowPT[samples.Zlljets] = {"OS":"SR_125med_lowPT", "SS":"SR_SS125med_lowPT", "ncuts":6}
 addon_regions_125med_lowPT[samples.top]     = {"OS":"SR_125med_lowPT", "SS":"SR_SS125med_lowPT", "ncuts":6}
 
 addon_regions_125med_highPT = {}
-addon_regions_125med_highPT[data]            = {"SS":"SR_SS125med_highPT",  "OS_lscdp":"SR_lowSCDP_25med_highPT", "SS_lscdp":"SR_lowSCDP_SS25med_highPT", "OS":"SR_125med_highPT", "ncuts":6}  
+addon_regions_125med_highPT[data]            = {"SS":"SR_SS125med_highPT",  "OS_lscdp":"SR_lowSCDP_125med_highPT", "SS_lscdp":"SR_lowSCDP_SS125med_highPT", "OS":"SR_125med_highPT", "ncuts":6}  
 addon_regions_125med_highPT[samples.Wjets]   = {"OS":"SR_125med_highPT", "SS":"SR_SS125med_highPT", "ncuts":6}
 addon_regions_125med_highPT[samples.Zlljets] = {"OS":"SR_125med_highPT", "SS":"SR_SS125med_highPT", "ncuts":6}
 addon_regions_125med_highPT[samples.top]     = {"OS":"SR_125med_highPT", "SS":"SR_SS125med_highPT", "ncuts":6}
@@ -2215,17 +2360,70 @@ addon_regions_160med[samples.Zlljets] = {"OS":"SR_160med", "SS":"SR_SS_160med", 
 addon_regions_160med[samples.top]     = {"OS":"SR_160med", "SS":"SR_SS_160med", "ncuts":5}
 
 addon_regions_160med_lowPT = {}
-addon_regions_160med_lowPT[data]            = {"SS":"SR_SS160med_lowPT", "OS_lscdp":"SR_lowSCDP_25med_lowPT", "SS_lscdp":"SR_lowSCDP_SS25med_lowPT", "OS":"SR_160med_lowPT", "ncuts":6}  
+addon_regions_160med_lowPT[data]            = {"SS":"SR_SS160med_lowPT", "OS_lscdp":"SR_lowSCDP_160med_lowPT", "SS_lscdp":"SR_lowSCDP_SS160med_lowPT", "OS":"SR_160med_lowPT", "ncuts":6}  
 addon_regions_160med_lowPT[samples.Wjets]   = {"OS":"SR_160med_lowPT", "SS":"SR_SS160med_lowPT", "ncuts":6}
 addon_regions_160med_lowPT[samples.Zlljets] = {"OS":"SR_160med_lowPT", "SS":"SR_SS160med_lowPT", "ncuts":6}
 addon_regions_160med_lowPT[samples.top]     = {"OS":"SR_160med_lowPT", "SS":"SR_SS160med_lowPT", "ncuts":6}
 
 addon_regions_160med_highPT = {}
-addon_regions_160med_highPT[data]            = {"SS":"SR_SS160med_highPT",  "OS_lscdp":"SR_lowSCDP_25med_highPT", "SS_lscdp":"SR_lowSCDP_SS25med_highPT", "OS":"SR_160med_highPT", "ncuts":6}  
+addon_regions_160med_highPT[data]            = {"SS":"SR_SS160med_highPT",  "OS_lscdp":"SR_lowSCDP_160med_highPT", "SS_lscdp":"SR_lowSCDP_SS160med_highPT", "OS":"SR_160med_highPT", "ncuts":6}  
 addon_regions_160med_highPT[samples.Wjets]   = {"OS":"SR_160med_highPT", "SS":"SR_SS160med_highPT", "ncuts":6}
 addon_regions_160med_highPT[samples.Zlljets] = {"OS":"SR_160med_highPT", "SS":"SR_SS160med_highPT", "ncuts":6}
 addon_regions_160med_highPT[samples.top]     = {"OS":"SR_160med_highPT", "SS":"SR_SS160med_highPT", "ncuts":6}
 
+addon_regions_L1TAU12IMmed = {}
+addon_regions_L1TAU12IMmed[data]            = {"OS":"SR_L1TAU12IMmed", "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed", "SS":"SR_SSL1TAU12IMmed", "ncuts":5}  
+addon_regions_L1TAU12IMmed[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed", "SS":"SR_SSL1TAU12IMmed", "ncuts":5}
+addon_regions_L1TAU12IMmed[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed", "SS":"SR_SS_L1TAU12IMmed", "ncuts":5}
+addon_regions_L1TAU12IMmed[samples.top]     = {"OS":"SR_L1TAU12IMmed", "SS":"SR_SS_L1TAU12IMmed", "ncuts":5}
+
+addon_regions_L1TAU12IMmed_lowPT = {}
+addon_regions_L1TAU12IMmed_lowPT[data]            = {"SS":"SR_SSL1TAU12IMmed_lowPT", "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_lowPT", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_lowPT", "OS":"SR_L1TAU12IMmed_lowPT", "ncuts":6}  
+addon_regions_L1TAU12IMmed_lowPT[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_lowPT", "SS":"SR_SSL1TAU12IMmed_lowPT", "ncuts":6}
+addon_regions_L1TAU12IMmed_lowPT[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_lowPT", "SS":"SR_SSL1TAU12IMmed_lowPT", "ncuts":6}
+addon_regions_L1TAU12IMmed_lowPT[samples.top]     = {"OS":"SR_L1TAU12IMmed_lowPT", "SS":"SR_SSL1TAU12IMmed_lowPT", "ncuts":6}
+
+addon_regions_L1TAU12IMmed_highPT = {}
+addon_regions_L1TAU12IMmed_highPT[data]            = {"SS":"SR_SSL1TAU12IMmed_highPT",  "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_highPT", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_highPT", "OS":"SR_L1TAU12IMmed_highPT", "ncuts":6}  
+addon_regions_L1TAU12IMmed_highPT[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_highPT", "SS":"SR_SSL1TAU12IMmed_highPT", "ncuts":6}
+addon_regions_L1TAU12IMmed_highPT[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_highPT", "SS":"SR_SSL1TAU12IMmed_highPT", "ncuts":6}
+addon_regions_L1TAU12IMmed_highPT[samples.top]     = {"OS":"SR_L1TAU12IMmed_highPT", "SS":"SR_SSL1TAU12IMmed_highPT", "ncuts":6}
+
+addon_regions_ptonly = {}
+addon_regions_ptonly[data]            = {"OS":"SR_ptonly", "OS_lscdp":"SR_lowSCDP_ptonly", "SS_lscdp":"SR_lowSCDP_SSptonly", "SS":"SR_SSptonly", "ncuts":5}  
+addon_regions_ptonly[samples.Wjets]   = {"OS":"SR_ptonly", "SS":"SR_SSptonly", "ncuts":5}
+addon_regions_ptonly[samples.Zlljets] = {"OS":"SR_ptonly", "SS":"SR_SS_ptonly", "ncuts":5}
+addon_regions_ptonly[samples.top]     = {"OS":"SR_ptonly", "SS":"SR_SS_ptonly", "ncuts":5}
+
+addon_regions_ptonly_lowPT = {}
+addon_regions_ptonly_lowPT[data]            = {"SS":"SR_SSptonly_lowPT", "OS_lscdp":"SR_lowSCDP_ptonly_lowPT", "SS_lscdp":"SR_lowSCDP_SSptonly_lowPT", "OS":"SR_ptonly_lowPT", "ncuts":6}  
+addon_regions_ptonly_lowPT[samples.Wjets]   = {"OS":"SR_ptonly_lowPT", "SS":"SR_SSptonly_lowPT", "ncuts":6}
+addon_regions_ptonly_lowPT[samples.Zlljets] = {"OS":"SR_ptonly_lowPT", "SS":"SR_SSptonly_lowPT", "ncuts":6}
+addon_regions_ptonly_lowPT[samples.top]     = {"OS":"SR_ptonly_lowPT", "SS":"SR_SSptonly_lowPT", "ncuts":6}
+
+addon_regions_ptonly_highPT = {}
+addon_regions_ptonly_highPT[data]            = {"SS":"SR_SSptonly_highPT",  "OS_lscdp":"SR_lowSCDP_ptonly_highPT", "SS_lscdp":"SR_lowSCDP_SSptonly_highPT", "OS":"SR_ptonly_highPT", "ncuts":6}  
+addon_regions_ptonly_highPT[samples.Wjets]   = {"OS":"SR_ptonly_highPT", "SS":"SR_SSptonly_highPT", "ncuts":6}
+addon_regions_ptonly_highPT[samples.Zlljets] = {"OS":"SR_ptonly_highPT", "SS":"SR_SSptonly_highPT", "ncuts":6}
+addon_regions_ptonly_highPT[samples.top]     = {"OS":"SR_ptonly_highPT", "SS":"SR_SSptonly_highPT", "ncuts":6}
+
+addon_regions_tracktwo = {}
+addon_regions_tracktwo[data]            = {"OS":"SR_tracktwo", "OS_lscdp":"SR_lowSCDP_tracktwo", "SS_lscdp":"SR_lowSCDP_SStracktwo", "SS":"SR_SStracktwo", "ncuts":5}  
+addon_regions_tracktwo[samples.Wjets]   = {"OS":"SR_tracktwo", "SS":"SR_SStracktwo", "ncuts":5}
+addon_regions_tracktwo[samples.Zlljets] = {"OS":"SR_tracktwo", "SS":"SR_SS_tracktwo", "ncuts":5}
+addon_regions_tracktwo[samples.top]     = {"OS":"SR_tracktwo", "SS":"SR_SS_tracktwo", "ncuts":5}
+
+addon_regions_tracktwo_lowPT = {}
+addon_regions_tracktwo_lowPT[data]            = {"SS":"SR_SStracktwo_lowPT", "OS_lscdp":"SR_lowSCDP_tracktwo_lowPT", "SS_lscdp":"SR_lowSCDP_tracktwo_lowPT", "OS":"SR_tracktwo_lowPT", "ncuts":6}  
+addon_regions_tracktwo_lowPT[samples.Wjets]   = {"OS":"SR_tracktwo_lowPT", "SS":"SR_SStracktwo_lowPT", "ncuts":6}
+addon_regions_tracktwo_lowPT[samples.Zlljets] = {"OS":"SR_tracktwo_lowPT", "SS":"SR_SStracktwo_lowPT", "ncuts":6}
+addon_regions_tracktwo_lowPT[samples.top]     = {"OS":"SR_tracktwo_lowPT", "SS":"SR_SStracktwo_lowPT", "ncuts":6}
+
+addon_regions_tracktwo_highPT = {}
+addon_regions_tracktwo_highPT[data]            = {"SS":"SR_SStracktwo_highPT",  "OS_lscdp":"SR_lowSCDP_tracktwo_highPT", "SS_lscdp":"SR_lowSCDP_tracktwo_highPT", "OS":"SR_tracktwo_highPT", "ncuts":6}  
+addon_regions_tracktwo_highPT[samples.Wjets]   = {"OS":"SR_tracktwo_highPT", "SS":"SR_SStracktwo_highPT", "ncuts":6}
+addon_regions_tracktwo_highPT[samples.Zlljets] = {"OS":"SR_tracktwo_highPT", "SS":"SR_SStracktwo_highPT", "ncuts":6}
+addon_regions_tracktwo_highPT[samples.top]     = {"OS":"SR_tracktwo_highPT", "SS":"SR_SStracktwo_highPT", "ncuts":6}
 
 #--------------------
 # one track
@@ -2376,6 +2574,60 @@ addon_regions_160med_highPT_1Track[samples.Wjets]   = {"OS":"SR_160med_highPT_Ta
 addon_regions_160med_highPT_1Track[samples.Zlljets] = {"OS":"SR_160med_highPT_Tau1Track", "SS":"SR_SS160med_highPT_Tau1Track", "ncuts":7}
 addon_regions_160med_highPT_1Track[samples.top]     = {"OS":"SR_160med_highPT_Tau1Track", "SS":"SR_SS160med_highPT_Tau1Track", "ncuts":7}
 
+addon_regions_L1TAU12IMmed_1Track = {}
+addon_regions_L1TAU12IMmed_1Track[data]            = {"OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_Tau1Track", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_Tau1Track", "OS":"SR_L1TAU12IMmed_Tau1Track", "SS":"SR_SSL1TAU12IMmed_Tau1Track", "ncuts":6}  
+addon_regions_L1TAU12IMmed_1Track[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_Tau1Track", "SS":"SR_SSL1TAU12IMmed_Tau1Track", "ncuts":6}
+addon_regions_L1TAU12IMmed_1Track[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_Tau1Track", "SS":"SR_SSL1TAU12IMmed_Tau1Track", "ncuts":6}
+addon_regions_L1TAU12IMmed_1Track[samples.top]     = {"OS":"SR_L1TAU12IMmed_Tau1Track", "SS":"SR_SSL1TAU12IMmed_Tau1Track", "ncuts":6}
+
+addon_regions_L1TAU12IMmed_lowPT_1Track = {}
+addon_regions_L1TAU12IMmed_lowPT_1Track[data]            = {"SS":"SR_SSL1TAU12IMmed_lowPT_Tau1Track", "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_lowPT_Tau1Track", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_lowPT_Tau1Track", "OS":"SR_L1TAU12IMmed_lowPT_Tau1Track", "ncuts":7}  
+addon_regions_L1TAU12IMmed_lowPT_1Track[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_lowPT_Tau1Track", "SS":"SR_SSL1TAU12IMmed_lowPT_Tau1Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_lowPT_1Track[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_lowPT_Tau1Track", "SS":"SR_SSL1TAU12IMmed_lowPT_Tau1Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_lowPT_1Track[samples.top]     = {"OS":"SR_L1TAU12IMmed_lowPT_Tau1Track", "SS":"SR_SSL1TAU12IMmed_lowPT_Tau1Track", "ncuts":7}
+
+addon_regions_L1TAU12IMmed_highPT_1Track = {}
+addon_regions_L1TAU12IMmed_highPT_1Track[data]            = {"SS":"SR_SSL1TAU12IMmed_highPT_Tau1Track", "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_highPT_Tau1Track", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_highPT_Tau1Track", "OS":"SR_L1TAU12IMmed_highPT_Tau1Track","ncuts":7}  
+addon_regions_L1TAU12IMmed_highPT_1Track[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_highPT_Tau1Track", "SS":"SR_SSL1TAU12IMmed_highPT_Tau1Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_highPT_1Track[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_highPT_Tau1Track", "SS":"SR_SSL1TAU12IMmed_highPT_Tau1Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_highPT_1Track[samples.top]     = {"OS":"SR_L1TAU12IMmed_highPT_Tau1Track", "SS":"SR_SSL1TAU12IMmed_highPT_Tau1Track", "ncuts":7}
+
+addon_regions_ptonly_1Track = {}
+addon_regions_ptonly_1Track[data]            = {"OS_lscdp":"SR_lowSCDP_ptonly_Tau1Track", "SS_lscdp":"SR_lowSCDP_SSptonly_Tau1Track", "OS":"SR_ptonly_Tau1Track", "SS":"SR_SSptonly_Tau1Track", "ncuts":6}  
+addon_regions_ptonly_1Track[samples.Wjets]   = {"OS":"SR_ptonly_Tau1Track", "SS":"SR_SSptonly_Tau1Track", "ncuts":6}
+addon_regions_ptonly_1Track[samples.Zlljets] = {"OS":"SR_ptonly_Tau1Track", "SS":"SR_SSptonly_Tau1Track", "ncuts":6}
+addon_regions_ptonly_1Track[samples.top]     = {"OS":"SR_ptonly_Tau1Track", "SS":"SR_SSptonly_Tau1Track", "ncuts":6}
+
+addon_regions_ptonly_lowPT_1Track = {}
+addon_regions_ptonly_lowPT_1Track[data]            = {"SS":"SR_SSptonly_lowPT_Tau1Track", "OS_lscdp":"SR_lowSCDP_ptonly_lowPT_Tau1Track", "SS_lscdp":"SR_lowSCDP_SSptonly_lowPT_Tau1Track", "OS":"SR_ptonly_lowPT_Tau1Track", "ncuts":7}  
+addon_regions_ptonly_lowPT_1Track[samples.Wjets]   = {"OS":"SR_ptonly_lowPT_Tau1Track", "SS":"SR_SSptonly_lowPT_Tau1Track", "ncuts":7}
+addon_regions_ptonly_lowPT_1Track[samples.Zlljets] = {"OS":"SR_ptonly_lowPT_Tau1Track", "SS":"SR_SSptonly_lowPT_Tau1Track", "ncuts":7}
+addon_regions_ptonly_lowPT_1Track[samples.top]     = {"OS":"SR_ptonly_lowPT_Tau1Track", "SS":"SR_SSptonly_lowPT_Tau1Track", "ncuts":7}
+
+addon_regions_ptonly_highPT_1Track = {}
+addon_regions_ptonly_highPT_1Track[data]            = {"SS":"SR_SSptonly_highPT_Tau1Track", "OS_lscdp":"SR_lowSCDP_ptonly_highPT_Tau1Track", "SS_lscdp":"SR_lowSCDP_SSptonly_highPT_Tau1Track", "OS":"SR_ptonly_highPT_Tau1Track","ncuts":7}  
+addon_regions_ptonly_highPT_1Track[samples.Wjets]   = {"OS":"SR_ptonly_highPT_Tau1Track", "SS":"SR_SSptonly_highPT_Tau1Track", "ncuts":7}
+addon_regions_ptonly_highPT_1Track[samples.Zlljets] = {"OS":"SR_ptonly_highPT_Tau1Track", "SS":"SR_SSptonly_highPT_Tau1Track", "ncuts":7}
+addon_regions_ptonly_highPT_1Track[samples.top]     = {"OS":"SR_ptonly_highPT_Tau1Track", "SS":"SR_SSptonly_highPT_Tau1Track", "ncuts":7}
+
+addon_regions_tracktwo_1Track = {}
+addon_regions_tracktwo_1Track[data]            = {"OS_lscdp":"SR_lowSCDP_tracktwo_Tau1Track", "SS_lscdp":"SR_lowSCDP_SStracktwo_Tau1Track", "OS":"SR_tracktwo_Tau1Track", "SS":"SR_SStracktwo_Tau1Track", "ncuts":6}  
+addon_regions_tracktwo_1Track[samples.Wjets]   = {"OS":"SR_tracktwo_Tau1Track", "SS":"SR_SStracktwo_Tau1Track", "ncuts":6}
+addon_regions_tracktwo_1Track[samples.Zlljets] = {"OS":"SR_tracktwo_Tau1Track", "SS":"SR_SStracktwo_Tau1Track", "ncuts":6}
+addon_regions_tracktwo_1Track[samples.top]     = {"OS":"SR_tracktwo_Tau1Track", "SS":"SR_SStracktwo_Tau1Track", "ncuts":6}
+
+addon_regions_tracktwo_lowPT_1Track = {}
+addon_regions_tracktwo_lowPT_1Track[data]            = {"SS":"SR_SStracktwo_lowPT_Tau1Track", "OS_lscdp":"SR_lowSCDP_tracktwo_lowPT_Tau1Track", "SS_lscdp":"SR_lowSCDP_SStracktwo_lowPT_Tau1Track", "OS":"SR_tracktwo_lowPT_Tau1Track", "ncuts":7}  
+addon_regions_tracktwo_lowPT_1Track[samples.Wjets]   = {"OS":"SR_tracktwo_lowPT_Tau1Track", "SS":"SR_SStracktwo_lowPT_Tau1Track", "ncuts":7}
+addon_regions_tracktwo_lowPT_1Track[samples.Zlljets] = {"OS":"SR_tracktwo_lowPT_Tau1Track", "SS":"SR_SStracktwo_lowPT_Tau1Track", "ncuts":7}
+addon_regions_tracktwo_lowPT_1Track[samples.top]     = {"OS":"SR_tracktwo_lowPT_Tau1Track", "SS":"SR_SStracktwo_lowPT_Tau1Track", "ncuts":7}
+
+addon_regions_tracktwo_highPT_1Track = {}
+addon_regions_tracktwo_highPT_1Track[data]            = {"SS":"SR_SStracktwo_highPT_Tau1Track", "OS_lscdp":"SR_lowSCDP_tracktwo_highPT_Tau1Track", "SS_lscdp":"SR_lowSCDP_SStracktwo_highPT_Tau1Track", "OS":"SR_tracktwo_highPT_Tau1Track","ncuts":7}  
+addon_regions_tracktwo_highPT_1Track[samples.Wjets]   = {"OS":"SR_tracktwo_highPT_Tau1Track", "SS":"SR_SStracktwo_highPT_Tau1Track", "ncuts":7}
+addon_regions_tracktwo_highPT_1Track[samples.Zlljets] = {"OS":"SR_tracktwo_highPT_Tau1Track", "SS":"SR_SStracktwo_highPT_Tau1Track", "ncuts":7}
+addon_regions_tracktwo_highPT_1Track[samples.top]     = {"OS":"SR_tracktwo_highPT_Tau1Track", "SS":"SR_SStracktwo_highPT_Tau1Track", "ncuts":7}
+
 
 #--------------------
 # three tracks
@@ -2524,6 +2776,61 @@ addon_regions_160med_highPT_3Track[data]            = {"SS":"SR_SS160med_highPT_
 addon_regions_160med_highPT_3Track[samples.Wjets]   = {"OS":"SR_160med_highPT_Tau3Track", "SS":"SR_SS160med_highPT_Tau3Track", "ncuts":7}
 addon_regions_160med_highPT_3Track[samples.Zlljets] = {"OS":"SR_160med_highPT_Tau3Track", "SS":"SR_SS160med_highPT_Tau3Track", "ncuts":7}
 addon_regions_160med_highPT_3Track[samples.top]     = {"OS":"SR_160med_highPT_Tau3Track", "SS":"SR_SS160med_highPT_Tau3Track", "ncuts":7}
+
+addon_regions_L1TAU12IMmed_3Track = {}
+addon_regions_L1TAU12IMmed_3Track[data]            = {"OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_Tau3Track", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_Tau3Track","OS":"SR_L1TAU12IMmed_Tau3Track", "SS":"SR_SSL1TAU12IMmed_Tau3Track", "ncuts":6}  
+addon_regions_L1TAU12IMmed_3Track[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_Tau3Track", "SS":"SR_SSL1TAU12IMmed_Tau3Track", "ncuts":6}
+addon_regions_L1TAU12IMmed_3Track[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_Tau3Track", "SS":"SR_SSL1TAU12IMmed_Tau3Track", "ncuts":6}
+addon_regions_L1TAU12IMmed_3Track[samples.top]     = {"OS":"SR_L1TAU12IMmed_Tau3Track", "SS":"SR_SSL1TAU12IMmed_Tau3Track", "ncuts":6}
+
+addon_regions_L1TAU12IMmed_lowPT_3Track = {}
+addon_regions_L1TAU12IMmed_lowPT_3Track[data]            = {"SS":"SR_SSL1TAU12IMmed_lowPT_Tau3Track", "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_lowPT_Tau3Track", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_lowPT_Tau3Track", "OS":"SR_L1TAU12IMmed_lowPT_Tau3Track", "ncuts":7}  
+addon_regions_L1TAU12IMmed_lowPT_3Track[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_lowPT_Tau3Track", "SS":"SR_SSL1TAU12IMmed_lowPT_Tau3Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_lowPT_3Track[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_lowPT_Tau3Track", "SS":"SR_SSL1TAU12IMmed_lowPT_Tau3Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_lowPT_3Track[samples.top]     = {"OS":"SR_L1TAU12IMmed_lowPT_Tau3Track", "SS":"SR_SSL1TAU12IMmed_lowPT_Tau3Track", "ncuts":7}
+
+addon_regions_L1TAU12IMmed_highPT_3Track = {}
+addon_regions_L1TAU12IMmed_highPT_3Track[data]            = {"SS":"SR_SSL1TAU12IMmed_highPT_Tau3Track", "OS_lscdp":"SR_lowSCDP_L1TAU12IMmed_highPT_Tau3Track", "SS_lscdp":"SR_lowSCDP_SSL1TAU12IMmed_highPT_Tau3Track", "OS":"SR_L1TAU12IMmed_highPT_Tau3Track","ncuts":7}  
+addon_regions_L1TAU12IMmed_highPT_3Track[samples.Wjets]   = {"OS":"SR_L1TAU12IMmed_highPT_Tau3Track", "SS":"SR_SSL1TAU12IMmed_highPT_Tau3Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_highPT_3Track[samples.Zlljets] = {"OS":"SR_L1TAU12IMmed_highPT_Tau3Track", "SS":"SR_SSL1TAU12IMmed_highPT_Tau3Track", "ncuts":7}
+addon_regions_L1TAU12IMmed_highPT_3Track[samples.top]     = {"OS":"SR_L1TAU12IMmed_highPT_Tau3Track", "SS":"SR_SSL1TAU12IMmed_highPT_Tau3Track", "ncuts":7}
+
+addon_regions_ptonly_3Track = {}
+addon_regions_ptonly_3Track[data]            = {"OS_lscdp":"SR_lowSCDP_ptonly_Tau3Track", "SS_lscdp":"SR_lowSCDP_SSptonly_Tau3Track", "OS":"SR_ptonly_Tau3Track", "SS":"SR_SSptonly_Tau3Track", "ncuts":6}  
+addon_regions_ptonly_3Track[samples.Wjets]   = {"OS":"SR_ptonly_Tau3Track", "SS":"SR_SSptonly_Tau3Track", "ncuts":6}
+addon_regions_ptonly_3Track[samples.Zlljets] = {"OS":"SR_ptonly_Tau3Track", "SS":"SR_SSptonly_Tau3Track", "ncuts":6}
+addon_regions_ptonly_3Track[samples.top]     = {"OS":"SR_ptonly_Tau3Track", "SS":"SR_SSptonly_Tau3Track", "ncuts":6}
+
+addon_regions_ptonly_lowPT_3Track = {}
+addon_regions_ptonly_lowPT_3Track[data]            = {"SS":"SR_SSptonly_lowPT_Tau3Track", "OS_lscdp":"SR_lowSCDP_ptonly_lowPT_Tau3Track", "SS_lscdp":"SR_lowSCDP_SSptonly_lowPT_Tau3Track", "OS":"SR_ptonly_lowPT_Tau3Track", "ncuts":7}  
+addon_regions_ptonly_lowPT_3Track[samples.Wjets]   = {"OS":"SR_ptonly_lowPT_Tau3Track", "SS":"SR_SSptonly_lowPT_Tau3Track", "ncuts":7}
+addon_regions_ptonly_lowPT_3Track[samples.Zlljets] = {"OS":"SR_ptonly_lowPT_Tau3Track", "SS":"SR_SSptonly_lowPT_Tau3Track", "ncuts":7}
+addon_regions_ptonly_lowPT_3Track[samples.top]     = {"OS":"SR_ptonly_lowPT_Tau3Track", "SS":"SR_SSptonly_lowPT_Tau3Track", "ncuts":7}
+
+addon_regions_ptonly_highPT_3Track = {}
+addon_regions_ptonly_highPT_3Track[data]            = {"SS":"SR_SSptonly_highPT_Tau3Track", "OS_lscdp":"SR_lowSCDP_ptonly_highPT_Tau3Track", "SS_lscdp":"SR_lowSCDP_SSptonly_highPT_Tau3Track", "OS":"SR_ptonly_highPT_Tau3Track","ncuts":7}  
+addon_regions_ptonly_highPT_3Track[samples.Wjets]   = {"OS":"SR_ptonly_highPT_Tau3Track", "SS":"SR_SSptonly_highPT_Tau3Track", "ncuts":7}
+addon_regions_ptonly_highPT_3Track[samples.Zlljets] = {"OS":"SR_ptonly_highPT_Tau3Track", "SS":"SR_SSptonly_highPT_Tau3Track", "ncuts":7}
+addon_regions_ptonly_highPT_3Track[samples.top]     = {"OS":"SR_ptonly_highPT_Tau3Track", "SS":"SR_SSptonly_highPT_Tau3Track", "ncuts":7}
+
+addon_regions_tracktwo_3Track = {}
+addon_regions_tracktwo_3Track[data]            = {"OS_lscdp":"SR_lowSCDP_tracktwo_Tau3Track", "SS_lscdp":"SR_lowSCDP_SStracktwo_Tau3Track", "OS":"SR_tracktwo_Tau3Track", "SS":"SR_SStracktwo_Tau3Track", "ncuts":6}  
+addon_regions_tracktwo_3Track[samples.Wjets]   = {"OS":"SR_tracktwo_Tau3Track", "SS":"SR_SStracktwo_Tau3Track", "ncuts":6}
+addon_regions_tracktwo_3Track[samples.Zlljets] = {"OS":"SR_tracktwo_Tau3Track", "SS":"SR_SStracktwo_Tau3Track", "ncuts":6}
+addon_regions_tracktwo_3Track[samples.top]     = {"OS":"SR_tracktwo_Tau3Track", "SS":"SR_SStracktwo_Tau3Track", "ncuts":6}
+
+addon_regions_tracktwo_lowPT_3Track = {}
+addon_regions_tracktwo_lowPT_3Track[data]            = {"SS":"SR_SStracktwo_lowPT_Tau3Track", "OS_lscdp":"SR_lowSCDP_tracktwo_lowPT_Tau3Track", "SS_lscdp":"SR_lowSCDP_SStracktwo_lowPT_Tau3Track", "OS":"SR_tracktwo_lowPT_Tau3Track", "ncuts":7}  
+addon_regions_tracktwo_lowPT_3Track[samples.Wjets]   = {"OS":"SR_tracktwo_lowPT_Tau3Track", "SS":"SR_SStracktwo_lowPT_Tau3Track", "ncuts":7}
+addon_regions_tracktwo_lowPT_3Track[samples.Zlljets] = {"OS":"SR_tracktwo_lowPT_Tau3Track", "SS":"SR_SStracktwo_lowPT_Tau3Track", "ncuts":7}
+addon_regions_tracktwo_lowPT_3Track[samples.top]     = {"OS":"SR_tracktwo_lowPT_Tau3Track", "SS":"SR_SStracktwo_lowPT_Tau3Track", "ncuts":7}
+
+addon_regions_tracktwo_highPT_3Track = {}
+addon_regions_tracktwo_highPT_3Track[data]            = {"SS":"SR_SStracktwo_highPT_Tau3Track", "OS_lscdp":"SR_lowSCDP_tracktwo_highPT_Tau3Track", "SS_lscdp":"SR_lowSCDP_SStracktwo_highPT_Tau3Track", "OS":"SR_tracktwo_highPT_Tau3Track","ncuts":7}  
+addon_regions_tracktwo_highPT_3Track[samples.Wjets]   = {"OS":"SR_tracktwo_highPT_Tau3Track", "SS":"SR_SStracktwo_highPT_Tau3Track", "ncuts":7}
+addon_regions_tracktwo_highPT_3Track[samples.Zlljets] = {"OS":"SR_tracktwo_highPT_Tau3Track", "SS":"SR_SStracktwo_highPT_Tau3Track", "ncuts":7}
+addon_regions_tracktwo_highPT_3Track[samples.top]     = {"OS":"SR_tracktwo_highPT_Tau3Track", "SS":"SR_SStracktwo_highPT_Tau3Track", "ncuts":7}
+
 
 #--------------
 # Estimators
@@ -2743,6 +3050,78 @@ if ptbinning_y_or_n == "y":
 	       addon_regions = addon_regions_160med_highPT,
 	       print_info    = True,
 	       )
+       
+	for b in addon_backgrounds_L1TAU12IMmed_lowPT:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_lowPT,
+	       kf_regions    = kf_regions_L1TAU12IMmed_lowPT,
+	       addon_regions = addon_regions_L1TAU12IMmed_lowPT,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_L1TAU12IMmed_highPT:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_highPT,
+	       kf_regions    = kf_regions_L1TAU12IMmed_highPT,
+	       addon_regions = addon_regions_L1TAU12IMmed_highPT,
+	       print_info    = True,
+	       )
+        
+	for b in addon_backgrounds_ptonly_lowPT:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_lowPT,
+	       kf_regions    = kf_regions_ptonly_lowPT,
+	       addon_regions = addon_regions_ptonly_lowPT,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_ptonly_highPT:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_highPT,
+	       kf_regions    = kf_regions_ptonly_highPT,
+	       addon_regions = addon_regions_ptonly_highPT,
+	       print_info    = True,
+	       )
+        
+	for b in addon_backgrounds_tracktwo_lowPT:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_lowPT,
+	       kf_regions    = kf_regions_tracktwo_lowPT,
+	       addon_regions = addon_regions_tracktwo_lowPT,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_tracktwo_highPT:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_highPT,
+	       kf_regions    = kf_regions_tracktwo_highPT,
+	       addon_regions = addon_regions_tracktwo_highPT,
+	       print_info    = True,
+	       )
         
 	#--------------------
 	# one track
@@ -2945,6 +3324,79 @@ if ptbinning_y_or_n == "y":
 	       print_info    = True,
 	       )
         
+	
+	for b in addon_backgrounds_L1TAU12IMmed_lowPT_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_lowPT_1Track,
+	       kf_regions    = kf_regions_L1TAU12IMmed_lowPT_1Track,
+	       addon_regions = addon_regions_L1TAU12IMmed_lowPT_1Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_L1TAU12IMmed_highPT_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_highPT_1Track,
+	       kf_regions    = kf_regions_L1TAU12IMmed_highPT_1Track,
+	       addon_regions = addon_regions_L1TAU12IMmed_highPT_1Track,
+	       print_info    = True,
+	       )
+       
+	for b in addon_backgrounds_ptonly_lowPT_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_lowPT_1Track,
+	       kf_regions    = kf_regions_ptonly_lowPT_1Track,
+	       addon_regions = addon_regions_ptonly_lowPT_1Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_ptonly_highPT_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_highPT_1Track,
+	       kf_regions    = kf_regions_ptonly_highPT_1Track,
+	       addon_regions = addon_regions_ptonly_highPT_1Track,
+	       print_info    = True,
+	       )
+        
+
+	for b in addon_backgrounds_tracktwo_lowPT_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_lowPT_1Track,
+	       kf_regions    = kf_regions_tracktwo_lowPT_1Track,
+	       addon_regions = addon_regions_tracktwo_lowPT_1Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_tracktwo_highPT_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_highPT_1Track,
+	       kf_regions    = kf_regions_tracktwo_highPT_1Track,
+	       addon_regions = addon_regions_tracktwo_highPT_1Track,
+	       print_info    = True,
+	       ) 
 	#----------------
 	# three tracks
 	#---------------
@@ -3144,7 +3596,79 @@ if ptbinning_y_or_n == "y":
 	       addon_regions = addon_regions_160med_highPT_3Track,
 	       print_info    = True,
 	       )
+	
+	for b in addon_backgrounds_L1TAU12IMmed_lowPT_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_lowPT_3Track,
+	       kf_regions    = kf_regions_L1TAU12IMmed_lowPT_3Track,
+	       addon_regions = addon_regions_L1TAU12IMmed_lowPT_3Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_L1TAU12IMmed_highPT_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_highPT_3Track,
+	       kf_regions    = kf_regions_L1TAU12IMmed_highPT_3Track,
+	       addon_regions = addon_regions_L1TAU12IMmed_highPT_3Track,
+	       print_info    = True,
+	       )
+ 
+	for b in addon_backgrounds_ptonly_lowPT_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_lowPT_3Track,
+	       kf_regions    = kf_regions_ptonly_lowPT_3Track,
+	       addon_regions = addon_regions_ptonly_lowPT_3Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_ptonly_highPT_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_highPT_3Track,
+	       kf_regions    = kf_regions_ptonly_highPT_3Track,
+	       addon_regions = addon_regions_ptonly_highPT_3Track,
+	       print_info    = True,
+	       )
         
+
+	for b in addon_backgrounds_tracktwo_lowPT_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_lowPT_3Track,
+	       kf_regions    = kf_regions_tracktwo_lowPT_3Track,
+	       addon_regions = addon_regions_tracktwo_lowPT_3Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_tracktwo_highPT_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_highPT_3Track,
+	       kf_regions    = kf_regions_tracktwo_highPT_3Track,
+	       addon_regions = addon_regions_tracktwo_highPT_3Track,
+	       print_info    = True,
+	       )
 	#----------------------
 	# MERGE
 	#----------------------
@@ -3213,6 +3737,30 @@ if ptbinning_y_or_n == "y":
 		samples = [addon_backgrounds_160med_lowPT[i],addon_backgrounds_160med_highPT[i]]
 		)
 	
+	for i in range(len(addon_backgrounds_L1TAU12IMmed)):
+	 m = addon_backgrounds_L1TAU12IMmed[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_L1TAU12IMmed_lowPT[i],addon_backgrounds_L1TAU12IMmed_highPT[i]]
+		)
+
+	for i in range(len(addon_backgrounds_ptonly)):
+	 m = addon_backgrounds_ptonly[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_ptonly_lowPT[i],addon_backgrounds_ptonly_highPT[i]]
+		)
+	
+	for i in range(len(addon_backgrounds_tracktwo)):
+	 m = addon_backgrounds_tracktwo[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_tracktwo_lowPT[i],addon_backgrounds_tracktwo_highPT[i]]
+		)
+	
 	for i in range(len(addon_backgrounds_1Track)):
 	 m = addon_backgrounds_1Track[i]
 	 m.estimator = histmgr.MergeEstimator(
@@ -3275,6 +3823,30 @@ if ptbinning_y_or_n == "y":
 		hm = hm,
 		sample = m,
 		samples = [addon_backgrounds_160med_lowPT_1Track[i],addon_backgrounds_160med_highPT_1Track[i]]
+		)
+	
+	for i in range(len(addon_backgrounds_L1TAU12IMmed_1Track)):
+	 m = addon_backgrounds_L1TAU12IMmed_1Track[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_L1TAU12IMmed_lowPT_1Track[i],addon_backgrounds_L1TAU12IMmed_highPT_1Track[i]]
+		)
+
+	for i in range(len(addon_backgrounds_ptonly_1Track)):
+	 m = addon_backgrounds_ptonly_1Track[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_ptonly_lowPT_1Track[i],addon_backgrounds_ptonly_highPT_1Track[i]]
+		)
+
+	for i in range(len(addon_backgrounds_tracktwo_1Track)):
+	 m = addon_backgrounds_tracktwo_1Track[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_tracktwo_lowPT_1Track[i],addon_backgrounds_tracktwo_highPT_1Track[i]]
 		)
 
 	for i in range(len(addon_backgrounds_3Track)):
@@ -3340,7 +3912,32 @@ if ptbinning_y_or_n == "y":
 		sample = m,
 		samples = [addon_backgrounds_160med_lowPT_3Track[i],addon_backgrounds_160med_highPT_3Track[i]]
 		)
-		
+	
+	for i in range(len(addon_backgrounds_L1TAU12IMmed_3Track)):
+	 m = addon_backgrounds_L1TAU12IMmed_3Track[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_L1TAU12IMmed_lowPT_3Track[i],addon_backgrounds_L1TAU12IMmed_highPT_3Track[i]]
+		)
+
+	for i in range(len(addon_backgrounds_ptonly_3Track)):
+	 m = addon_backgrounds_ptonly_3Track[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_ptonly_lowPT_3Track[i],addon_backgrounds_ptonly_highPT_3Track[i]]
+		)
+
+	for i in range(len(addon_backgrounds_tracktwo_3Track)):
+	 m = addon_backgrounds_tracktwo_3Track[i]
+	 m.estimator = histmgr.MergeEstimator(
+		hm = hm,
+		sample = m,
+		samples = [addon_backgrounds_tracktwo_lowPT_3Track[i],addon_backgrounds_tracktwo_highPT_3Track[i]]
+		)
+
+	
 	for b in addon_backgrounds_OS_no_cuts:
 	 b.estimator = histmgr.AddOnEstimator(
 	       hm            = hm,
@@ -3529,6 +4126,42 @@ if ptbinning_y_or_n == "n":
 	       print_info    = True,
 	       )
 
+	for b in addon_backgrounds_L1TAU12IMmed:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed,
+	       kf_regions    = kf_regions_L1TAU12IMmed,
+	       addon_regions = addon_regions_L1TAU12IMmed,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_ptonly:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly,
+	       kf_regions    = kf_regions_ptonly,
+	       addon_regions = addon_regions_ptonly,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_tracktwo:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo,
+	       kf_regions    = kf_regions_tracktwo,
+	       addon_regions = addon_regions_tracktwo,
+	       print_info    = True,
+	       )
+
 	for b in addon_backgrounds_1Track:
 	 b.estimator = histmgr.AddOnEstimator(
 	       hm            = hm,
@@ -3622,6 +4255,42 @@ if ptbinning_y_or_n == "n":
 	       rqcd_regions  = rqcd_regions_160med_1Track,
 	       kf_regions    = kf_regions_160med_1Track,
 	       addon_regions = addon_regions_160med_1Track,
+	       print_info    = True,
+	       )
+	
+	for b in addon_backgrounds_L1TAU12IMmed_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_1Track,
+	       kf_regions    = kf_regions_L1TAU12IMmed_1Track,
+	       addon_regions = addon_regions_L1TAU12IMmed_1Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_ptonly_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_1Track,
+	       kf_regions    = kf_regions_ptonly_1Track,
+	       addon_regions = addon_regions_ptonly_1Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_tracktwo_1Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_1Track,
+	       kf_regions    = kf_regions_tracktwo_1Track,
+	       addon_regions = addon_regions_tracktwo_1Track,
 	       print_info    = True,
 	       )
 
@@ -3720,6 +4389,43 @@ if ptbinning_y_or_n == "n":
 	       addon_regions = addon_regions_160med_3Track,
 	       print_info    = True,
 	       )
+	
+	for b in addon_backgrounds_L1TAU12IMmed_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_3Track,
+	       kf_regions    = kf_regions_L1TAU12IMmed_3Track,
+	       addon_regions = addon_regions_L1TAU12IMmed_3Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_ptonly_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_ptonly_3Track,
+	       kf_regions    = kf_regions_ptonly_3Track,
+	       addon_regions = addon_regions_ptonly_3Track,
+	       print_info    = True,
+	       )
+
+	for b in addon_backgrounds_tracktwo_3Track:
+	 b.estimator = histmgr.AddOnEstimator(
+	       hm            = hm,
+	       sample        = b,
+	       data_sample   = data,
+	       mc_samples    = mc_backgrounds + mc_signals,
+	       rqcd_regions  = rqcd_regions_tracktwo_3Track,
+	       kf_regions    = kf_regions_tracktwo_3Track,
+	       addon_regions = addon_regions_tracktwo_3Track,
+	       print_info    = True,
+	       )
+
 
 
 #############################
@@ -3788,6 +4494,32 @@ sub_ztt_160med.estimator = histmgr.DataBkgSubEstimator(
 	mc_samples_rescales = None,
 	) 
 
+sub_ztt_L1TAU12IMmed.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_L1TAU12IMmed,
+	data_sample = data,
+	mc_samples = addon_backgrounds_L1TAU12IMmed,
+	mc_samples_rescales = None,
+	) 
+
+
+sub_ztt_ptonly.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_ptonly,
+	data_sample = data,
+	mc_samples = addon_backgrounds_ptonly,
+	mc_samples_rescales = None,
+	) 
+
+
+sub_ztt_tracktwo.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_tracktwo,
+	data_sample = data,
+	mc_samples = addon_backgrounds_tracktwo,
+	mc_samples_rescales = None,
+	) 
+
 sub_ztt_1Track.estimator = histmgr.DataBkgSubEstimator(
 	hm = hm,
 	sample = sub_ztt_1Track,
@@ -3849,6 +4581,30 @@ sub_ztt_160med_1Track.estimator = histmgr.DataBkgSubEstimator(
 	sample = sub_ztt_160med_1Track,
 	data_sample = data,
 	mc_samples = addon_backgrounds_160med_1Track,
+	mc_samples_rescales = None,
+	) 
+
+sub_ztt_L1TAU12IMmed_1Track.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_L1TAU12IMmed_1Track,
+	data_sample = data,
+	mc_samples = addon_backgrounds_L1TAU12IMmed_1Track,
+	mc_samples_rescales = None,
+	) 
+
+sub_ztt_ptonly_1Track.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_ptonly_1Track,
+	data_sample = data,
+	mc_samples = addon_backgrounds_ptonly_1Track,
+	mc_samples_rescales = None,
+	) 
+
+sub_ztt_tracktwo_1Track.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_tracktwo_1Track,
+	data_sample = data,
+	mc_samples = addon_backgrounds_tracktwo_1Track,
 	mc_samples_rescales = None,
 	) 
 
@@ -3916,6 +4672,30 @@ sub_ztt_160med_3Track.estimator = histmgr.DataBkgSubEstimator(
 	mc_samples_rescales = None,
 	) 
 
+sub_ztt_L1TAU12IMmed_3Track.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_L1TAU12IMmed_3Track,
+	data_sample = data,
+	mc_samples = addon_backgrounds_L1TAU12IMmed_3Track,
+	mc_samples_rescales = None,
+	) 
+
+sub_ztt_ptonly_3Track.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_ptonly_3Track,
+	data_sample = data,
+	mc_samples = addon_backgrounds_ptonly_3Track,
+	mc_samples_rescales = None,
+	) 
+
+sub_ztt_tracktwo_3Track.estimator = histmgr.DataBkgSubEstimator(
+	hm = hm,
+	sample = sub_ztt_tracktwo_3Track,
+	data_sample = data,
+	mc_samples = addon_backgrounds_tracktwo_3Track,
+	mc_samples_rescales = None,
+	) 
+
 #-----------------
 # Systematics       
 #-----------------
@@ -3935,6 +4715,7 @@ if ptbinning_y_or_n == "n":
 	
 	# NO PT BINNING
 	for s in addon_backgrounds:
+            #s.estimator.add_systematics(kW)
 	    s.estimator.add_systematics(RQCD_AntiIsoCR)
 	    s.estimator.add_systematics(MUID)
 	    s.estimator.add_systematics(MUMS)
@@ -3945,6 +4726,7 @@ if ptbinning_y_or_n == "n":
 	    s.estimator.add_systematics(METSCALE)
 
 	for t in addon_backgrounds_25med:
+                #t.estimator.add_systematics(kW_25med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_25med)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
@@ -3955,6 +4737,7 @@ if ptbinning_y_or_n == "n":
 		t.estimator.add_systematics(METSCALE)
 
 	for t in addon_backgrounds_35med:
+                #t.estimator.add_systematics(kW_35med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_35med)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
@@ -3966,6 +4749,7 @@ if ptbinning_y_or_n == "n":
 
 
 	for t in addon_backgrounds_50L1TAU12med:
+                #t.estimator.add_systematics(kW_50L1TAU12med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
@@ -3977,6 +4761,7 @@ if ptbinning_y_or_n == "n":
 
 
 	for t in addon_backgrounds_80med:
+                #t.estimator.add_systematics(kW_80med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_80med)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
@@ -3988,6 +4773,7 @@ if ptbinning_y_or_n == "n":
 
 
 	for t in addon_backgrounds_80L1TAU60med:
+                #t.estimator.add_systematics(kW_80L1TAU60med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
@@ -3999,6 +4785,7 @@ if ptbinning_y_or_n == "n":
 
 
 	for t in addon_backgrounds_125med:
+                #t.estimator.add_systematics(kW_125med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_125med)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
@@ -4010,7 +4797,19 @@ if ptbinning_y_or_n == "n":
 
 
 	for t in addon_backgrounds_160med:
+                #t.estimator.add_systematics(kW_160med)
 		t.estimator.add_systematics(RQCD_AntiIsoCR_160med)
+		t.estimator.add_systematics(MUID)
+		t.estimator.add_systematics(MUMS)
+		t.estimator.add_systematics(MUSCALE)
+		t.estimator.add_systematics(TAUSF_SYS)
+		t.estimator.add_systematics(MUSF_SYS)
+		t.estimator.add_systematics(MUSF_STAT)
+		t.estimator.add_systematics(METSCALE)
+	
+	for t in addon_backgrounds_L1TAU12IMmed:
+                #t.estimator.add_systematics(kW_L1TAU12IMmed)
+		t.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed)
 		t.estimator.add_systematics(MUID)
 		t.estimator.add_systematics(MUMS)
 		t.estimator.add_systematics(MUSCALE)
@@ -4023,6 +4822,7 @@ if ptbinning_y_or_n == "y":
 
 	# PT BINNING
 	for s in addon_backgrounds_lowPT:
+            #s.estimator.add_systematics(kW_lowPT)
 	    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT) 
 	    s.estimator.add_systematics(MUID)
 	    s.estimator.add_systematics(MUMS)
@@ -4032,9 +4832,10 @@ if ptbinning_y_or_n == "y":
 	    s.estimator.add_systematics(MUSF_STAT)
 	    s.estimator.add_systematics(METSCALE)
 	    s.estimator.add_systematics(PILEUP)
-            s.estimator.add_systematics(fw_incl)
+            s.estimator.add_systematics(fw_lowPT_incl)
 	    
 	for t in addon_backgrounds_highPT:
+            #t.estimator.add_systematics(kW_highPT)
 	    t.estimator.add_systematics(RQCD_AntiIsoCR_highPT)  
 	    t.estimator.add_systematics(MUID)
 	    t.estimator.add_systematics(MUMS)
@@ -4044,9 +4845,10 @@ if ptbinning_y_or_n == "y":
 	    t.estimator.add_systematics(MUSF_STAT)
 	    t.estimator.add_systematics(METSCALE)
 	    t.estimator.add_systematics(PILEUP)
-            t.estimator.add_systematics(fw_incl)
+            t.estimator.add_systematics(fw_highPT_incl)
 
 	for u in addon_backgrounds_25med_lowPT:
+            #u.estimator.add_systematics(kW_25med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4056,9 +4858,10 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-	    u.estimator.add_systematics(fw_incl)
+	    u.estimator.add_systematics(fw_lowPT_25med)
 
 	for v in addon_backgrounds_25med_highPT:
+            #v.estimator.add_systematics(kW_25med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4068,9 +4871,10 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_incl)
+            v.estimator.add_systematics(fw_highPT_25med)
   		
 	for u in addon_backgrounds_35med_lowPT:
+            #u.estimator.add_systematics(kW_35med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4082,6 +4886,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 	
 	for v in addon_backgrounds_35med_highPT:
+            #v.estimator.add_systematics(kW_35med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_35med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4093,6 +4898,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(PILEUP)
 
 	for u in addon_backgrounds_50L1TAU12med_lowPT:
+            #u.estimator.add_systematics(kW_50L1TAU12med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4104,6 +4910,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_50L1TAU12med_highPT:
+            #v.estimator.add_systematics(kW_50L1TAU12med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4116,6 +4923,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80med_lowPT:
+            #u.estimator.add_systematics(kW_80med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_80med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4127,6 +4935,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_80med_highPT:
+            #v.estimator.add_systematics(kW_80med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_80med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4139,6 +4948,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80L1TAU60med_lowPT:
+            #u.estimator.add_systematics(kW_80L1TAU60med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4150,6 +4960,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_80L1TAU60med_highPT:
+            #v.estimator.add_systematics(kW_80L1TAU60med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4162,6 +4973,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_125med_lowPT:
+            #u.estimator.add_systematics(kW_125med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_125med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4173,6 +4985,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_125med_highPT:
+            #v.estimator.add_systematics(kW_125med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_125med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4185,6 +4998,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_160med_lowPT:
+            #u.estimator.add_systematics(kW_160med_lowPT)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_160med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4196,6 +5010,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_160med_highPT:
+            #v.estimator.add_systematics(kW_160med_highPT)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_160med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4206,7 +5021,32 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
 		
+	for u in addon_backgrounds_L1TAU12IMmed_lowPT:
+            #u.estimator.add_systematics(kW_L1TAU12IMmed_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_lowPT) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+
+	for v in addon_backgrounds_L1TAU12IMmed_highPT:
+            #v.estimator.add_systematics(kW_L1TAU12IMmed_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_highPT)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+		
 	for s in addon_backgrounds_lowPT_1Track:
+            #s.estimator.add_systematics(kW_lowPT_Tau1Track)
 	    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT_Tau1Track) 
 	    s.estimator.add_systematics(MUID)
 	    s.estimator.add_systematics(MUMS)
@@ -4219,6 +5059,7 @@ if ptbinning_y_or_n == "y":
 	    s.estimator.add_systematics(fw_lowPT_1Track)
 
 	for t in addon_backgrounds_highPT_1Track:
+            #t.estimator.add_systematics(kW_highPT_Tau1Track)
 	    t.estimator.add_systematics(RQCD_AntiIsoCR_highPT_Tau1Track)
 	    t.estimator.add_systematics(MUID)
 	    t.estimator.add_systematics(MUMS)
@@ -4231,6 +5072,7 @@ if ptbinning_y_or_n == "y":
 	    t.estimator.add_systematics(fw_highPT_1Track)
 
 	for u in addon_backgrounds_25med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_25med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4243,6 +5085,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_25med_highPT_1Track:
+            #v.estimator.add_systematics(kW_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4255,6 +5098,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(fw_highPT_1Track_25med)
 	
 	for u in addon_backgrounds_35med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_35med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4267,6 +5111,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_1Track_35med)
 
 	for v in addon_backgrounds_35med_highPT_1Track:
+            #v.estimator.add_systematics(kW_35med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_35med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4279,6 +5124,7 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_1Track_35med)
 
 	for u in addon_backgrounds_50L1TAU12med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_50L1TAU12med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4291,6 +5137,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(fw_lowPT_1Track_50L1TAU12med)
 
 	for v in addon_backgrounds_50L1TAU12med_highPT_1Track:
+            #v.estimator.add_systematics(kW_50L1TAU12med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4304,6 +5151,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_80med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_80med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4316,6 +5164,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_1Track_80med)
 
 	for v in addon_backgrounds_80med_highPT_1Track:
+            #v.estimator.add_systematics(kW_80med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_80med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4329,6 +5178,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80L1TAU60med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_80L1TAU60med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4341,6 +5191,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_1Track_80L1TAU60med)
 
 	for v in addon_backgrounds_80L1TAU60med_highPT_1Track:
+            #v.estimator.add_systematics(kW_80L1TAU60med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4353,6 +5204,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(fw_highPT_1Track_80L1TAU60med)
 
 	for u in addon_backgrounds_125med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_125med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_125med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4365,6 +5217,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_1Track_125med)
 
 	for v in addon_backgrounds_125med_highPT_1Track:
+            #v.estimator.add_systematics(kW_125med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_125med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4377,6 +5230,7 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_1Track_125med)
 
 	for u in addon_backgrounds_160med_lowPT_1Track:
+            #u.estimator.add_systematics(kW_160med_lowPT_Tau1Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_160med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4389,6 +5243,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_1Track_160med)
 
 	for v in addon_backgrounds_160med_highPT_1Track:
+            #v.estimator.add_systematics(kW_160med_highPT_Tau1Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_160med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4399,9 +5254,87 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
             v.estimator.add_systematics(fw_highPT_1Track_160med)
+        	
+	for u in addon_backgrounds_L1TAU12IMmed_lowPT_1Track:
+            #u.estimator.add_systematics(kW_L1TAU12IMmed_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+            u.estimator.add_systematics(fw_lowPT_1Track_L1TAU12IMmed)
+
+	for v in addon_backgrounds_L1TAU12IMmed_highPT_1Track:
+            #v.estimator.add_systematics(kW_L1TAU12IMmed_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau1Track)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+            v.estimator.add_systematics(fw_highPT_1Track_L1TAU12IMmed)
 	
+	for u in addon_backgrounds_tracktwo_lowPT_1Track:
+            #u.estimator.add_systematics(kW_tracktwo_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_lowPT_Tau1Track) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+            u.estimator.add_systematics(fw_lowPT_1Track_tracktwo)
+
+	for v in addon_backgrounds_tracktwo_highPT_1Track:
+            #v.estimator.add_systematics(kW_tracktwo_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_highPT_Tau1Track)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+ 	    u.estimator.add_systematics(fw_highPT_1Track_tracktwo)
+
+	for u in addon_backgrounds_ptonly_lowPT_1Track:
+            #u.estimator.add_systematics(kW_ptonly_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_lowPT_Tau1Track) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+            u.estimator.add_systematics(fw_lowPT_1Track_ptonly)
+
+	for v in addon_backgrounds_ptonly_highPT_1Track:
+            #v.estimator.add_systematics(kW_ptonly_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_highPT_Tau1Track)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+ 	    u.estimator.add_systematics(fw_highPT_1Track_ptonly)
 
 	for s in addon_backgrounds_lowPT_3Track:
+            #s.estimator.add_systematics(kW_lowPT_Tau3Track)
 	    s.estimator.add_systematics(RQCD_AntiIsoCR_lowPT_Tau3Track) 
 	    s.estimator.add_systematics(MUID)
 	    s.estimator.add_systematics(MUMS)
@@ -4414,6 +5347,7 @@ if ptbinning_y_or_n == "y":
 	    s.estimator.add_systematics(fw_lowPT_3Track)
 
 	for t in addon_backgrounds_highPT_3Track:
+            #t.estimator.add_systematics(kW_highPT_Tau3Track)
 	    t.estimator.add_systematics(RQCD_AntiIsoCR_highPT_Tau3Track)
 	    t.estimator.add_systematics(MUID)
 	    t.estimator.add_systematics(MUMS)
@@ -4426,6 +5360,7 @@ if ptbinning_y_or_n == "y":
 	    t.estimator.add_systematics(fw_highPT_3Track)
 
 	for u in addon_backgrounds_25med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_25med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4438,6 +5373,7 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_25med_highPT_3Track:
+            #v.estimator.add_systematics(kW_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4450,6 +5386,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(fw_highPT_3Track_25med)    
 	
 	for u in addon_backgrounds_35med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_35med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4462,6 +5399,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_3Track_35med)
 
 	for v in addon_backgrounds_35med_highPT_3Track:
+            #v.estimator.add_systematics(kW_35med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_35med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4474,6 +5412,7 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_3Track_35med)
 	
 	for u in addon_backgrounds_50L1TAU12med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_50L1TAU12med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4486,6 +5425,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_3Track_50L1TAU12med)
 
 	for v in addon_backgrounds_50L1TAU12med_highPT_3Track:
+            #v.estimator.add_systematics(kW_50L1TAU12med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4499,6 +5439,7 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_80med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_80med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4511,6 +5452,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_3Track_80med)
 
 	for v in addon_backgrounds_80med_highPT_3Track:
+            #v.estimator.add_systematics(kW_80med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_80med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4523,6 +5465,7 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_3Track_80med)
 
 	for u in addon_backgrounds_80L1TAU60med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_80L1TAU60med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4535,6 +5478,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_3Track_80L1TAU60med)
 
 	for v in addon_backgrounds_80L1TAU60med_highPT_3Track:
+            #v.estimator.add_systematics(kW_80L1TAU60med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4547,6 +5491,7 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_3Track_80L1TAU60med)
 
 	for u in addon_backgrounds_125med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_125med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_125med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4559,6 +5504,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_3Track_125med)
 
 	for v in addon_backgrounds_125med_highPT_3Track:
+            #v.estimator.add_systematics(kW_125med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_125med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4571,6 +5517,7 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_3Track_125med)
 
 	for u in addon_backgrounds_160med_lowPT_3Track:
+            #u.estimator.add_systematics(kW_160med_lowPT_Tau3Track)
 	    u.estimator.add_systematics(RQCD_AntiIsoCR_160med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
@@ -4583,6 +5530,7 @@ if ptbinning_y_or_n == "y":
             u.estimator.add_systematics(fw_lowPT_3Track_160med)
 
 	for v in addon_backgrounds_160med_highPT_3Track:
+            #v.estimator.add_systematics(kW_160med_highPT_Tau3Track)
 	    v.estimator.add_systematics(RQCD_AntiIsoCR_160med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
@@ -4593,7 +5541,84 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
             v.estimator.add_systematics(fw_highPT_3Track_160med)	
-	
+
+	for u in addon_backgrounds_L1TAU12IMmed_lowPT_3Track:
+            #u.estimator.add_systematics(kW_L1TAU12IMmed_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau3Track) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+            u.estimator.add_systematics(fw_lowPT_3Track_L1TAU12IMmed)
+
+	for v in addon_backgrounds_L1TAU12IMmed_highPT_3Track:
+            #v.estimator.add_systematics(kW_L1TAU12IMmed_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau3Track)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+            v.estimator.add_systematics(fw_highPT_3Track_L1TAU12IMmed)	
+
+	for u in addon_backgrounds_tracktwo_lowPT_3Track:
+            #u.estimator.add_systematics(kW_tracktwo_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_lowPT_Tau3Track) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+            u.estimator.add_systematics(fw_lowPT_3Track_tracktwo)
+
+	for v in addon_backgrounds_tracktwo_highPT_3Track:
+            #v.estimator.add_systematics(kW_tracktwo_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_highPT_Tau3Track)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+            v.estimator.add_systematics(fw_highPT_3Track_tracktwo)	
+
+	for u in addon_backgrounds_ptonly_lowPT_3Track:
+            #u.estimator.add_systematics(kW_ptonly_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_lowPT_Tau3Track) 
+	    u.estimator.add_systematics(MUID)
+	    u.estimator.add_systematics(MUMS)
+	    u.estimator.add_systematics(MUSCALE)
+	    u.estimator.add_systematics(TAUSF_SYS)
+	    u.estimator.add_systematics(MUSF_SYS)
+	    u.estimator.add_systematics(MUSF_STAT)
+	    u.estimator.add_systematics(METSCALE)
+	    u.estimator.add_systematics(PILEUP)
+            u.estimator.add_systematics(fw_lowPT_3Track_ptonly)
+
+	for v in addon_backgrounds_ptonly_highPT_3Track:
+            #v.estimator.add_systematics(kW_ptonly_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_highPT_Tau3Track)
+	    v.estimator.add_systematics(MUID)
+	    v.estimator.add_systematics(MUMS)
+	    v.estimator.add_systematics(MUSCALE)
+	    v.estimator.add_systematics(TAUSF_SYS)
+	    v.estimator.add_systematics(MUSF_SYS)
+	    v.estimator.add_systematics(MUSF_STAT)
+	    v.estimator.add_systematics(METSCALE)
+	    v.estimator.add_systematics(PILEUP)
+            v.estimator.add_systematics(fw_highPT_3Track_ptonly)	
 
 vdict  = vars.vars_dict
 
@@ -4719,6 +5744,42 @@ elif "SR_160med_Tau1Track" == options.region:
         plot_signals.append(samples.Zttjets)
         plot_signals.append(sub_ztt_160med_1Track)  
 
+elif "SR_L1TAU12IMmed_Tau1Track" == options.region:
+ 
+	print "signal region _L1TAU12IMmed 1 prong"
+
+	plot_backgrounds.append(addon_data_L1TAU12IMmed_1Track)
+	plot_backgrounds.append(addon_Wjets_L1TAU12IMmed_1Track)
+	plot_backgrounds.append(addon_Zlljets_L1TAU12IMmed_1Track)
+	plot_backgrounds.append(addon_top_L1TAU12IMmed_1Track)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_L1TAU12IMmed_1Track)  
+
+elif "SR_ptonly_Tau1Track" == options.region:
+ 
+	print "signal region _ptonly 1 prong"
+
+	plot_backgrounds.append(addon_data_ptonly_1Track)
+	plot_backgrounds.append(addon_Wjets_ptonly_1Track)
+	plot_backgrounds.append(addon_Zlljets_ptonly_1Track)
+	plot_backgrounds.append(addon_top_ptonly_1Track)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_ptonly_1Track)  
+
+elif "SR_tracktwo_Tau1Track" == options.region:
+ 
+	print "signal region _tracktwo 1 prong"
+
+	plot_backgrounds.append(addon_data_tracktwo_1Track)
+	plot_backgrounds.append(addon_Wjets_tracktwo_1Track)
+	plot_backgrounds.append(addon_Zlljets_tracktwo_1Track)
+	plot_backgrounds.append(addon_top_tracktwo_1Track)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_tracktwo_1Track)  
+
 elif "SR_Tau3Track" == options.region:  
 
 	print "signal region 3 prong"
@@ -4804,6 +5865,31 @@ elif "SR_125med_Tau3Track" == options.region:
         plot_signals.append(samples.Zttjets)
         plot_signals.append(sub_ztt_125med_3Track)  
 
+elif "SR_ptonly_Tau3Track" == options.region:
+ 
+	print "signal region _ptonly 1 prong"
+
+	plot_backgrounds.append(addon_data_ptonly_3Track)
+	plot_backgrounds.append(addon_Wjets_ptonly_3Track)
+	plot_backgrounds.append(addon_Zlljets_ptonly_3Track)
+	plot_backgrounds.append(addon_top_ptonly_3Track)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_ptonly_3Track)  
+
+elif "SR_tracktwo_Tau3Track" == options.region:
+ 
+	print "signal region _tracktwo 1 prong"
+
+	plot_backgrounds.append(addon_data_tracktwo_3Track)
+	plot_backgrounds.append(addon_Wjets_tracktwo_3Track)
+	plot_backgrounds.append(addon_Zlljets_tracktwo_3Track)
+	plot_backgrounds.append(addon_top_tracktwo_3Track)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_tracktwo_3Track)  
+
+
 elif "SR_160med_Tau3Track" == options.region:
  
 	print "signal region _160med 1 prong"
@@ -4816,6 +5902,31 @@ elif "SR_160med_Tau3Track" == options.region:
         plot_signals.append(samples.Zttjets)
         plot_signals.append(sub_ztt_160med_3Track)  
 
+
+elif "SR_L1TAU12IMmed_Tau3Track" == options.region:
+ 
+	print "signal region _L1TAU12IMmed 1 prong"
+
+	plot_backgrounds.append(addon_data_L1TAU12IMmed_3Track)
+	plot_backgrounds.append(addon_Wjets_L1TAU12IMmed_3Track)
+	plot_backgrounds.append(addon_Zlljets_L1TAU12IMmed_3Track)
+	plot_backgrounds.append(addon_top_L1TAU12IMmed_3Track)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_L1TAU12IMmed_3Track)  
+
+
+elif "SR_L1TAU12IMmed" == options.region:
+ 
+	print "signal region _L1TAU12IMmed "
+
+	plot_backgrounds.append(addon_data_L1TAU12IMmed)
+	plot_backgrounds.append(addon_Wjets_L1TAU12IMmed)
+	plot_backgrounds.append(addon_Zlljets_L1TAU12IMmed)
+	plot_backgrounds.append(addon_top_L1TAU12IMmed)
+
+        plot_signals.append(samples.Zttjets)
+        #plot_signals.append(sub_ztt_L1TAU12IMmed)  
 
 #------------ HIGH?LOW SCDP REGIONS------------------#
 
@@ -5040,6 +6151,37 @@ elif "SR_35med" == options.region:
         plot_signals.append(samples.Zttjets)
         plot_signals.append(sub_ztt_35med)  
 
+elif "SR_tracktwo" == options.region:
+ 
+
+	plot_backgrounds.append(addon_data_tracktwo)
+	plot_backgrounds.append(addon_Wjets_tracktwo)
+	plot_backgrounds.append(addon_Zlljets_tracktwo)
+	plot_backgrounds.append(addon_top_tracktwo)
+
+        plot_signals.append(samples.Zttjets)
+
+elif "SR_ptonly" == options.region:
+ 
+	plot_backgrounds.append(addon_data_ptonly)
+	plot_backgrounds.append(addon_Wjets_ptonly)
+	plot_backgrounds.append(addon_Zlljets_ptonly)
+	plot_backgrounds.append(addon_top_ptonly)
+
+        plot_signals.append(samples.Zttjets)
+
+elif "SR_50L1TAU12med" == options.region:
+
+        print "signal region _50L1TAU12med "
+
+        plot_backgrounds.append(addon_data_50L1TAU12med)
+        plot_backgrounds.append(addon_Wjets_50L1TAU12med)
+        plot_backgrounds.append(addon_Zlljets_50L1TAU12med)
+        plot_backgrounds.append(addon_top_50L1TAU12med)
+
+        plot_signals.append(samples.Zttjets)
+        plot_signals.append(sub_ztt_50L1TAU12med)
+
 
 else: #MC as background
 	plot_signals.append(samples.Zttjets)
@@ -5061,7 +6203,7 @@ if options.makeplot == "True":
     rebin         = vdict[options.vname]['rebin'],
     log           = vdict[options.vname]['log'],
     icut          = int(options.icut),
-    sys_dict      = None,# sys_dict,
+    sys_dict      = None,#sys_dict,
     do_ratio_plot = True,
     plotsfile     = plotsfile,
     xmin2          = vdict[options.vname]['xmin2'],
@@ -5080,7 +6222,7 @@ else:
         icut        = int(options.icut),
         histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
         #rebin       = vdict[options.vname]['rebin'],
-        sys_dict    = None,# sys_dict,
+        sys_dict    = None,#sys_dict,
         outname     = plotsfile
         )	
 
