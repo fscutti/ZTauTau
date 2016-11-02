@@ -483,7 +483,7 @@ class AddOnEstimator(BaseEstimator):
                         #h_addon[t] = t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
 		        #h_addon[t].Scale(kf_SS[t])
 
-           
+         
         for s in addon_regions.keys():
            if s.name == "Wjets": 
                    print "working on wjets"
@@ -515,14 +515,17 @@ class AddOnEstimator(BaseEstimator):
 
                    kW_den += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
 
-		   if kW_den == 0:
+		   if kW_den == 0 or kW_num ==0:
 			kW_wjets = 0
 			print "kW_wjets = 0 and numerator was", 0
-
+			print "new wjets kfactor =", kW_wjets
+			#h_addon[s].Scale(kW_wjets)
 		   else:
 
 	                   kW_wjets = kW_num/kW_den
-			   
+			   print "new wjets kfactor =", kW_wjets
+		           #h_addon[s].Scale(kW_wjets)
+			  
 			   # ERROR FOR KW == FW
 			   fw_num1, fw_num_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
 			   print fw_num1, fw_num_err1
@@ -541,49 +544,56 @@ class AddOnEstimator(BaseEstimator):
 			   print fw_den2, fw_den_err2
 
 			   fw_den_err3 = rqcd_stat_unc
-			   if fw_num2 > 0 and fw_den2 > 0 and kW_num > 0:
+			   if fw_num2 == 0 and fw_num1 > 0: 
 
+				rqcd_term_err = 0
+
+				fw_num_err = math.sqrt(  (fw_num_err1/fw_num1)**2)
+			   elif fw_num2 == 0 and fw_num1 == 0:
+				rqcd_term_err = 0
+				fw_num_err = 0
+			   else:
 				   #rqcd_term_err = rqcd*fw_num2*math.sqrt( (fw_num_err2/fw_num2)**2 + (rqcd_stat_unc/rqcd)**2 )
 				   rqcd_term_err = rqcd*fw_num2**(math.sqrt( (fw_num_err2/fw_num2)**2 + (rqcd_stat_unc/rqcd)**2 ) )
 
 				   #fw_num_err =  math.sqrt(  (fw_num_err1)**2 + ( rqcd_term_err )**2 )
-				   fw_num_err = ( math.sqrt(  (fw_num_err1)**2  + ( rqcd_term_err )**2 ) )		   
+			   	   fw_num_err = ( math.sqrt(  (fw_num_err1/fw_num1)**2  + ( rqcd_term_err/(rqcd*fw_num2) )**2 ) )		   
 
-				   print fw_num_err, "is the num error on fw. Rep as a %:", fw_num_err/kW_num
+		           print fw_num_err, "is the num error on fw. Rep as a %:", fw_num_err/kW_num
 
+			   if fw_den2 == 0 and fw_den1 > 0:
+
+				den_rqcd_term_err = 0
+				fw_den_err =  math.sqrt(  (fw_den_err1/fw_den1)**2  )
+
+			   elif fw_den2 == 0 and fw_den1 == 0:
+				den_rqcd_term_err = 0
+				fw_den_err = 0
+
+		           else:
 				   #den_rqcd_term_err = rqcd*fw_den2*math.sqrt( (fw_den_err2/fw_den2)**2 + (rqcd_stat_unc/rqcd)**2 )
 				   den_rqcd_term_err = rqcd*fw_den2*(math.sqrt( (fw_den_err2/fw_den2)**2 + (rqcd_stat_unc/rqcd)**2 ) )
 
 				   #fw_den_err =  math.sqrt(  (fw_den_err1)**2 + ( den_rqcd_term_err )**2 )
-				   fw_den_err = ( math.sqrt(  (fw_den_err1)**2  + ( den_rqcd_term_err )**2 ) )
+		           	   fw_den_err = ( math.sqrt(  (fw_den_err1/fw_den1)**2  + ( den_rqcd_term_err/(rqcd*fw_den2) )**2 ) )
+
+
+			   if kW_den>0:
 
 				   print fw_den_err, "is the den error on fw. Rep as a %:", fw_den_err/kW_den
 				   
+			   	   if kW_num>0:
 
-				   fw_tot_err = kW_wjets * math.sqrt ( (fw_num_err2/kW_num)**2 + (fw_den_err2/kW_den)**2 )
-				   print "err on fW is", fw_tot_err, ". Rep as a %:", fw_tot_err/kW_wjets
-
+				   	fw_tot_err = kW_wjets * math.sqrt ( (fw_num_err/kW_num)**2 + (fw_den_err/kW_den)**2 )
+				   	print "err on fW is", fw_tot_err, ". Rep as a %:", fw_tot_err/kW_wjets
+			  
 	   
 		   if sys and "fw" in sys.name:
-	      	   	  """	
-			  wreg_list = addon_regions[self.data_sample]["OS"].split("_")
-			  wsys_list = sys.name.split("_")
-			  wreg_list = [u for u in wreg_list]
-			  wsys_list = [u for u in wsys_list]
-			  pt_split = None
-			  print wreg_list
-	           
-			  if "highPT" in wreg_list:
-				print "highPT systematic"
-				pt_split = "high"
-			  if "lowPT" in wreg_list:
-				pt_split = "low"
-			  print "systematics applied to wjets bkg!!"
-	                  """
-			  if mode == "up": kW_wjets *= (1.+sys.flat_err) 
-			  if mode == "dn": kW_wjets *= (1.-sys.flat_err) 
+			  print "yup, got the fw sys"
+			  if mode == "up": kW_wjets = kW_wjets*(1.+sys.flat_err) 
+			  if mode == "dn": kW_wjets = kW_wjets*(1.-sys.flat_err) 
  
-
+		   print "scaling wjets now!"
 		   
                    print "new wjets kfactor =", kW_wjets
 		 
