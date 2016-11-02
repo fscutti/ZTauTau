@@ -94,6 +94,23 @@ def get_sys_hists(
         hist_dict[sys] = (h_up,h_dn)
     return hist_dict 
 
+#____________________________________________________________
+def make_normalised_stat_hist(h):
+    '''
+    makes histogram with fractional bin uncertainty as entries
+    ie. new bin content = old bin error/old bin content
+    (used for making stat. ratio bands)
+    '''
+    h_stat = h.Clone('%s_stat'%(h.GetName()))
+    for i in range(1,h.GetNbinsX()+1): 
+
+        n = h.GetBinContent(i)
+        en = h.GetBinError(i)
+	stat = en
+        h_stat.SetBinContent(i,stat) 
+    return h_stat
+
+
 
 #____________________________________________________________
 def make_stat_hist(h):
@@ -134,6 +151,16 @@ def make_graph_from_hist(hist):
                 graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
                 graph.SetPointError(i-1,ex,ex,0,0)
     return graph
+#____________________________________________________________
+def make_error_graph_from_hist(hist):
+    graph = ROOT.TGraphAsymmErrors()
+    for i in range(1,hist.GetNbinsX()+1):
+                ex = hist.GetBinWidth(i)/2.
+                graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
+		err = hist.GetBinError(i)
+                graph.SetPointError(i-1,ex,ex,err,err)
+    return graph
+
 
 #____________________________________________________________
 def make_band_scatter(hist1, h_UP,h_DN=None):
@@ -147,6 +174,38 @@ def make_band_scatter(hist1, h_UP,h_DN=None):
                 graph.SetPoint(i-1,hist1.GetBinCenter(i),hist1.GetBinContent(i))
                 graph.SetPointError(i-1,ex,ex,eDN,eUP)
             return graph
+
+#____________________________________________________________
+def combination_ratio_stats(hist1,h_num,h_den, h_num_UP,h_num_DN,h_den_UP,h_den_DN):
+    graph = ROOT.TGraphAsymmErrors()
+    if hist1.GetNbinsX() == h_num_UP.GetNbinsX():
+            for i in range(1,hist1.GetNbinsX()+1):
+		num = h_num.GetBinContent(i)
+		den = h_den.GetBinContent(i)
+		if num:
+        		up1 = abs(h_num_UP.GetBinContent(i))/num
+		else:
+			up1 = 0
+		if den:
+			up2 = abs(h_den_UP.GetBinContent(i))/den
+		else:
+			up2 = 0
+		up_tot = sqrt(up1**2 + up2**2)
+                if num:
+                	dn1 = abs(h_num_DN.GetBinContent(i))/num
+		else:
+			dn1 = 0
+		if den:
+                	dn2 = abs(h_den_DN.GetBinContent(i))/den
+		else:
+			dn2 = 0
+                dn_tot = sqrt(dn1**2 + dn2**2)
+
+                ex = hist1.GetBinWidth(i)/2.
+                graph.SetPoint(i-1,hist1.GetBinCenter(i),hist1.GetBinContent(i))
+                graph.SetPointError(i-1,ex,ex,dn_tot,up_tot)
+            return graph
+
 #____________________________________________________________
 def make_band_graph_from_hist(h_UP,h_DN=None):
     '''
@@ -275,7 +334,7 @@ def plot_hist(
     else: samples = backgrounds
     
     if data: samples += [data] 
-
+    if data: print len(data.daughters)	
     ## generate nominal hists
     hists = get_hists(
 	region=region,
