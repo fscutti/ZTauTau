@@ -91,16 +91,61 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_MuonHLTmu20ilooseL1MU15ORmu40(self): #2015
 	mutrig = bool(self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 ==1 )
 	mutrig2 = bool(self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)
-        return mutrig or mutrig2
+	return mutrig or mutrig2
+
+    def cut_MuonHLTmu24imediumORHLTmu40(self): #2015
+	mutrig = bool(self.chain.HLT_mu24_imedium == 1 and self.chain.muTrigMatch_0_HLT_mu24_imedium ==1 )
+	mutrig2 = bool(self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)
+	return mutrig or mutrig2
 
     def cut_MuonHLTmu24imediumORHLTmu50(self): #2016
-        mutrig = bool(self.chain.HLT_mu24_imedium==1 and self.chain.muTrigMatch_0_HLT_mu24_imedium==1)
-        mutrig2 = bool(self.chain.HLT_mu50==1 and self.chain.muTrigMatch_0_HLT_mu50==1)
-        #return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
-        return mutrig or mutrig2
+	mutrig = bool(self.chain.HLT_mu24_imedium==1 and self.chain.muTrigMatch_0_HLT_mu24_imedium==1)
+	mutrig2 = bool(self.chain.HLT_mu50==1 and self.chain.muTrigMatch_0_HLT_mu50==1)
+	#return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
+	return mutrig or mutrig2
+
+    def cut_MuonHLTmu26ivarmediumORHLTmu50(self): #2016
+	mutrig = bool(self.chain.HLT_mu26_ivarmedium==1 and self.chain.muTrigMatch_0_HLT_mu26_ivarmedium==1)
+	mutrig2 = bool(self.chain.HLT_mu50==1 and self.chain.muTrigMatch_0_HLT_mu50==1)
+	#return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
+	#print "correct mu trig"
+	return mutrig or mutrig2
+
+    def cut_MuonHLTmuOptions(self):
+        if "mc" in self.sampletype:
+                run_number = self.chain.NOMINAL_pileup_random_run_number
+        else:
+                run_number = self.chain.run_number
+        if run_number >= 276262 and run_number <= 284484:
+                mutrig = bool(self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 ==1 )
+                mutrig2 = bool(self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)
+                return mutrig1 or mutrig2
+        elif run_number >= 296939 and run_number <= 300287:
+                mutrig = bool(self.chain.HLT_mu24_imedium == 1 and self.chain.muTrigMatch_0_HLT_mu24_imedium ==1 )
+                mutrig2 = bool(self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)
+                return mutrig or mutrig2
+        elif run_number >= 300345 and run_number <= 302872:
+                mutrig = bool(self.chain.HLT_mu24_imedium==1 and self.chain.muTrigMatch_0_HLT_mu24_imedium==1)
+                mutrig2 = bool(self.chain.HLT_mu50==1 and self.chain.muTrigMatch_0_HLT_mu50==1)
+                #return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
+                return mutrig or mutrig2
+        elif run_number >= 302919:
+                mutrig = bool(self.chain.HLT_mu26_ivarmedium==1 and self.chain.muTrigMatch_0_HLT_mu26_ivarmedium==1)
+                mutrig2 = bool(self.chain.HLT_mu50==1 and self.chain.muTrigMatch_0_HLT_mu50==1)
+                #return self.chain.HLT_mu24_imedium == 1 or self.chain.HLT_mu50 == 1
+                #print "correct mu trig"
+                return mutrig or mutrig2
 
     def cut_MuonMuTrigMatch0HLTmu20ilooseL1MU15(self):
         return self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1
+
+    def cut_HLTtau25perfptonly(self):
+	return self.chain.HLT_tau25_idperf_tracktwo_resurrected == 1
+
+    def cut_HLTtau25perftracktwo(self):
+	return self.chain.HLT_tau25_perf_tracktwo_resurrected ==1
+
+
     #__________________________________________________________________________
     # MUON CUT
     #__________________________________________________________________________
@@ -113,6 +158,23 @@ class CutAlg(pyframe.core.Algorithm):
 
     def cut_MuonPt26(self):
         return self.chain.lep_0_pt > 26.
+
+    def cut_MuonPt28(self):
+        return self.chain.lep_0_pt > 28.
+
+    def cut_MuonPtOptions(self):
+	if "mc" in self.sampletype:
+                run_number = self.chain.NOMINAL_pileup_random_run_number
+        else:
+                run_number = self.chain.run_number
+        if run_number >= 276262 and run_number <= 284484:
+		return self.chain.lep_0_pt > 22.
+        elif run_number >= 296939 and run_number <= 300287:
+		return self.chain.lep_0_pt > 26.
+        elif run_number >= 300345 and run_number <= 302872:
+		return self.chain.lep_0_pt > 26.
+        elif run_number >= 302919:
+		return self.chain.lep_0_pt > 28.
 
     def cut_MuonGradIso(self):
         return self.chain.lep_0_iso_wp>=10000
@@ -238,6 +300,10 @@ class CutAlg(pyframe.core.Algorithm):
 
     def cut_HLTTau160Med1TrackTwo(self):
         return self.chain.HLT_tau160_medium1_tracktwo_resurrected == 1
+
+    def cut_HLTTauL1TAU12IMMed1TrackTwo(self):
+        return self.chain.L1_TAU12IM_resurrected == 1
+
 
     #----- SYSTEMATICS----#
 
@@ -552,23 +618,32 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         self.h_topoetcone20pt = self.hist('h_topoetcone20pt', "ROOT.TH1F('$', ';TopoEtCone20/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
         self.h_ptvarcone30pt = self.hist('h_ptvarcone30pt', "ROOT.TH1F('$', ';PtVarCone30/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
  
-        #self.h_topoetcone20ptmev = self.hist('h_topoetcone20pt', "ROOT.TH1F('$', ';TopoEtCone20/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
-        #self.h_ptvarcone30ptmev = self.hist('h_ptvarcone30pt', "ROOT.TH1F('$', ';PtVarCone30/p_{T};Events', 100, -0.5, 0.5)", dir=MUONS)
-        
         self.h_topoetcone20 = self.hist('h_topoetcone20', "ROOT.TH1F('$', ';TopoEtCone20(GeV);Events', 220, -20, 200)", dir=MUONS)
         self.h_ptvarcone30 = self.hist('h_ptvarcone30', "ROOT.TH1F('$', ';PtVarCone30(GeV);Events', 330, -30, 300)", dir=MUONS)
 
-        #self.h_topoetcone20mev = self.hist('h_topoetcone20mev', "ROOT.TH1F('$', ';TopoEtCone20(MeV);Events', 220000, -20000, 200000)", dir=MUONS)
-        #self.h_ptvarcone30mev = self.hist('h_ptvarcone30mev', "ROOT.TH1F('$', ';PtVarCone30(MeV);Events', 330000, -30000, 300000)", dir=MUONS)
+        self.h_HLT_tau_eta = self.hist('h_HLT_tau_eta', "ROOT.TH1F('$', ';  HLT \eta ;Events', 24, -6.0, 6.0)", dir=TAUS)
 
+        self.h_HLT_tau_phi = self.hist('h_HLT_tau_phi', "ROOT.TH1F('$', ';  HLT \phi ;Events', 20, -5.0, 5.0)", dir=TAUS)
+
+        self.h_HLT_tau_pt = self.hist('h_HLT_tau_pt', "ROOT.TH1F('$', ';HLT p_{T} [GeV];Events', 1000, 0.0, 1000.0)", dir=TAUS)
+
+        self.h_HLT_jet_bdt_score = self.hist('h_HLT_jet_bdt_score', "ROOT.TH1F('$', ';  HLT BDT score ;Events', 18, -1.0, 2.0)", dir=TAUS)
+
+        self.h_HLT_tau_n_tracks = self.hist('h_HLT_tau_n_tracks', "ROOT.TH1F('$', ';  HLT N_{tracks} ;Events', 5, 0.0, 5.0)", dir=TAUS)
+
+        self.h_HLT_tau_n_wide_tracks = self.hist('h_HLT_tau_n_wide_tracks', "ROOT.TH1F('$', '; HLT N_{wide tracks} ;Events', 5, 0.0, 5.0)", dir=TAUS)
+
+        self.h_HLT_pt_res = self.hist('h_HLT_pt_res', "ROOT.TH1F('$', ';p_{T} resolution;Events', 1000, 0.0, 1000.0)", dir=TAUS)
+
+        self.h_pileup = self.hist('h_pileup', "ROOT.TH1F('$', ';<#mu>;Events', 40, 0, 40)", dir=EVT)
 
         self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
-        self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET)
+        self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events', 1000, 0.0, 1000.0)", dir=MET)
 
-        self.h_mu_pt = self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(\mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS)
+        self.h_mu_pt = self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(\mu) [GeV];Events', 1000, 0.0, 1000.0)", dir=MUONS)
 
-        self.h_tau_pt = self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS)
+        self.h_tau_pt = self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events', 1000, 0.0, 1000.0)", dir=TAUS)
 
         self.h_n_vx = self.hist('h_n_vx', "ROOT.TH1F('$', ';N_{vx} ;Events', 14, 0.0, 14.0)", dir=EVT)
 
@@ -613,14 +688,19 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
              self.h_topoetcone20.Fill(self.chain.lep_0_iso_topoetcone20/GeV, weight)
              self.h_ptvarcone30.Fill(self.chain.lep_0_iso_ptvarcone30/GeV, weight)
  
-             #self.h_topoetcone20mev.Fill(self.chain.lep_0_iso_topoetcone20, weight)
-             #self.h_ptvarcone30mev.Fill(self.chain.lep_0_iso_ptvarcone30, weight)
-
-	     #self.h_topoetcone20ptmev.Fill(self.chain.lep_0_iso_topoetcone20/self.chain.lep_0_pt, weight)
-	     #self.h_ptvarcone30ptmev.Fill(self.chain.lep_0_iso_ptvarcone30/self.chain.lep_0_pt, weight)	
+             self.h_HLT_tau_eta.Fill(self.chain.tau_0_trig1_HLT_eta, weight)
+             self.h_HLT_tau_phi.Fill(self.chain.tau_0_trig1_HLT_phi, weight) 
+             self.h_HLT_tau_pt.Fill(self.chain.tau_0_trig1_HLT_pt, weight) 
+             self.h_HLT_jet_bdt_score.Fill(self.chain.tau_0_trig1_HLT_jet_bdt_score, weight) 
+             self.h_HLT_tau_n_tracks.Fill(self.chain.tau_0_trig1_HLT_n_tracks, weight)
+             self.h_HLT_tau_n_wide_tracks.Fill(self.chain.tau_0_trig1_HLT_n_wide_tracks, weight)
+             self.h_HLT_pt_res.Fill( (self.chain.tau_0_trig1_HLT_pt - self.chain.tau_0_pt)/self.chain.tau_0_pt ,weight)
 
              self.h_topoetcone20pt.Fill( (self.chain.lep_0_iso_topoetcone20/GeV)/self.chain.lep_0_pt, weight)
              self.h_ptvarcone30pt.Fill( (self.chain.lep_0_iso_ptvarcone30/GeV)/self.chain.lep_0_pt, weight)
+
+
+             self.h_pileup.Fill(self.chain.n_avg_int_cor, weight)
 
              self.h_nmuons.Fill(self.chain.n_muons, weight)
  
