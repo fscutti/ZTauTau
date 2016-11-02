@@ -19,6 +19,15 @@ nmuons = Var(name = 'nmuons',
 	      xmax2 = None,
               )
 
+pileup = Var(name = 'pileup',
+              path  = 'event',
+              xmin  = 0,
+              xmax  = 40,
+              log   = False,
+	      xmin2 = None,
+	      xmax2 = None,
+              )
+
 n_vx = Var(name = 'n_vx',
               path    = 'event',
               xmin    = 0,
@@ -235,6 +244,71 @@ jet_bdt_score = Var(name  = 'jet_bdt_score',
              xmax2 = None,
 	     )
 
+HLT_tau_eta = Var(name = 'HLT_tau_eta',
+             path = 'taus',
+             xmin = -6.0,
+             xmax = 6.0,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_tau_phi = Var(name = 'HLT_tau_phi',
+             path = 'taus',
+             xmin = -5.0,
+             xmax = 5.0,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_tau_pt = Var(name = 'HLT_tau_pt',
+             path = 'taus',
+             xmin = 20,
+             xmax = 300,
+             rebin = 4,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_jet_bdt_score = Var(name = 'HLT_jet_bdt_score',
+             path = 'taus',
+             xmin = -1,
+             xmax = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_tau_n_tracks = Var(name = 'HLT_tau_n_tracks',
+             path = 'taus',
+             xmin = 0,
+             xmax = 5,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+ 
+HLT_tau_n_wide_tracks = Var(name = 'HLT_tau_n_wide_tracks',
+             path = 'taus',
+             xmin = 0,
+             xmax = 5,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_pt_res = Var(name = 'HLT_pt_res',
+             path = 'taus',
+             xmin = 0,
+             xmax = 300,
+             rebin = 4,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
 ## MET variables
 ## ---------------------------------------
 vis_mass = Var(name = 'vis_mass',
@@ -328,6 +402,15 @@ vars_list.append(topoetcone20mev)
 vars_list.append(m_trans_vs_sumcosdphi)
 vars_list.append(met_reco_et_vs_sumcosdphi)
 vars_list.append(met_reco_et_vs_m_trans)
+vars_list.append(pileup)
+vars_list.append(HLT_tau_eta)
+vars_list.append(HLT_tau_pt)
+vars_list.append(HLT_tau_phi)
+vars_list.append(HLT_tau_n_wide_tracks)
+vars_list.append(HLT_tau_n_tracks)
+vars_list.append(HLT_jet_bdt_score)
+vars_list.append(HLT_pt_res)
+
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
