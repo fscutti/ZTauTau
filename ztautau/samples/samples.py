@@ -86,7 +86,7 @@ GRL += ["276262", "276329",  "276330",  "276336",  "276416",  "276511",
 """
 # v17 2016
 GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
-        "298690", "298771",  "298773",  "298862",  "298967",  "299055",
+       "298690", "298771",  "298773",  "298862",  "298967",  "299055",
         "299144", "299147",  "299184",  "299241",  "299243",  "299288",
         "299315", "299340",  "299343",  "299390",  "299584",  "300279",
         "300287", "300345",  "300415",  "300418",  "300487",  "300540",
@@ -99,7 +99,7 @@ GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "303291", "303304",  "303338",  "303421",  "303499",  "303560"]
 
 """
-
+"""
 # v19 2016
 GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "298690", "298771",  "298773",  "298862",  "298967",  "299055",
@@ -115,8 +115,58 @@ GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
         "303291", "303304",  "303338",  "303421",  "303499",  "303560",
 	"303638", "303726",  "303811",  "303817",  "303819",  "303832",
 	"303846", "303892"]
+"""
 
-#GRL += ["299055"]
+
+GRL += ["297730", "298595",  "298609",  "298633",  "298687",  "298690",
+	"298771", "298773",  "298862",  "298967",  "299055",  "299144",
+ 	"299147", "299184",  "299243",  "299584",  "300279",  "300345",
+	"300415", "300418",  "300487",  "300540",  "300571",  "300600",
+	"300655", "300687",  "300784",  "300800",  "300863",  "300908",
+	"301912", "301918",  "301932",  "301973",  "302053",  "302137",
+	"302265", "302269",  "302300",  "302347",  "302380",  "302391",
+	"302393", "302737",  "302831",  "302872",  "302919",  "302925",
+	"302956", "303007",  "303079",  "303201",  "303208",  "303264",
+	"303266", "303291",  "303304",  "303338",  "303421",  "303499",
+	"303560", "303638",  "303832",  "303846",  "303892",  "303943",
+	"304006", "304008",  "304128",  "304178",  "304198",  "304211",
+	"304243", "304308",  "304337",  "304409",  "304431",  "304494",
+	"305380", "305543",  "305571",  "305618",  "305671",  "305674",
+	"305723", "305727",  "305735",  "305777",  "305811",  "305920",
+	"306269", "306278",  "306310",  "306384",  "306419",  "306442",
+	"306448", "306451",  "307126",  "307195",  "307259",  "307306",
+	"307354", "307358",  "307394",  "307454",  "307514",  "307539",
+	"307569", "307601",  "307619",  "307656",  "307710",  "307716",
+	"307732", "307861",  "307935",  "308047",  "308084"]
+
+"""
+# v22 2016
+GRL += ["297730", "298591",  "298595",  "298609",  "298633",  "298687",
+        "298690", "298771",  "298773",  "298862",  "298967",  "299055",
+        "299144", "299147",  "299184",  "299241",  "299243",  "299288",
+        "299315", "299340",  "299343",  "299390",  "299584",  "300279",
+        "300287", "300345",  "300415",  "300418",  "300487",  "300540",
+        "300571", "300600",  "300655",  "300687",  "300784",  "300800",
+        "300863", "300908",  "301912",  "301915",  "301918",  "301932",
+        "301973", "302053",  "302137",  "302265",  "302269",  "302300",
+        "302347", "302380",  "302391",  "302393",  "302737",  "302829",
+        "302831", "302919",  "302925",  "302956",  "303007",  "302872", 
+        "303059", "303079",  "303201",  "303208",  "303264",  "303266",
+        "303291", "303304",  "303338",  "303421",  "303499",  "303560",
+	"303638", "303726",  "303811",  "303817",  "303819",  "303832",
+	"303846", "303892",  "304006",  "304008",  "304128", 
+	"304178", "304211",  "304243",  "304308",  "304337",  "305920",
+	"304409", "304431",  "304494",  "305291",  "305293",  "305359", 
+	"305380", "305543",  "305571",  "305618",  "305671",  "305674",
+	"305723", "305727",  "305735",  "305777",  "305811",  "304198", 
+	"306247", "306269",  "306278",  "306310",  "306384",  "306419", 
+	"306442", "306448",  "306451",  "306556",  "306655",  "306657",
+	"307124", "307126",  "307195",  "307259",  "307306",  "307354",
+	"307358", "307394",  "307454",  "307514",  "307539",  "307569", 
+	"307601", "307619",  "307656",  "307710",  "307716",  "307732",
+	"307861", "307935",  "308047",  "308084",  "303943"]
+"""
+#"307912",
 
 ds_name = 'physics_Main_00%s'
 
@@ -135,6 +185,9 @@ data = Sample(name         = "data",
               fill_style   = 0,
               line_color   = black,
               line_style   = 1,
+              marker_color = black,
+              marker_style = 20,
+              daughters    = list_runs,
               marker_color = black,
               marker_style = 20,
               daughters    = list_runs,
@@ -809,6 +862,204 @@ sub_ztt_35med_1Track = Sample( name 	      = "sub_ztt_35med_1Track",
 		 )
 
 sub_ztt_35med_3Track = Sample( name 	      = "sub_ztt_35med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
+sub_ztt_50L1TAU12med = Sample( name 	      = "sub_ztt_50L1TAU12med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_50L1TAU12med_1Track = Sample( name 	      = "sub_ztt_50L1TAU12med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_50L1TAU12med_3Track = Sample( name 	      = "sub_ztt_50L1TAU12med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
+sub_ztt_80med = Sample( name 	      = "sub_ztt_80med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_80med_1Track = Sample( name 	      = "sub_ztt_80med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_80med_3Track = Sample( name 	      = "sub_ztt_80med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
+sub_ztt_80L1TAU60med = Sample( name 	      = "sub_ztt_80L1TAU60med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_80L1TAU60med_1Track = Sample( name 	      = "sub_ztt_80L1TAU60med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_80L1TAU60med_3Track = Sample( name 	      = "sub_ztt_80L1TAU60med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
+sub_ztt_125med = Sample( name 	      = "sub_ztt_125med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_125med_1Track = Sample( name 	      = "sub_ztt_125med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_125med_3Track = Sample( name 	      = "sub_ztt_125med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
+sub_ztt_160med = Sample( name 	      = "sub_ztt_160med",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_160med_1Track = Sample( name 	      = "sub_ztt_160med_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_160med_3Track = Sample( name 	      = "sub_ztt_160med_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_L1TAU12IMmed = Sample( name 	      = "sub_ztt_L1TAU12IMmed",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_L1TAU12IMmed_1Track = Sample( name 	      = "sub_ztt_L1TAU12IMmed_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_L1TAU12IMmed_3Track = Sample( name 	      = "sub_ztt_L1TAU12IMmed_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_ptonly = Sample( name 	      = "sub_ztt_ptonly",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_ptonly_1Track = Sample( name 	      = "sub_ztt_ptonly_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_ptonly_3Track = Sample( name 	      = "sub_ztt_ptonly_3Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+
+sub_ztt_tracktwo = Sample( name 	      = "sub_ztt_tracktwo",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_tracktwo_1Track = Sample( name 	      = "sub_ztt_tracktwo_1Track",
+		 tlatex       = "Ztt (data - add ons)",
+		 fill_color   = ROOT.kAzure-9,
+		 line_color   = ROOT.kBlack,
+		 marker_color = ROOT.kAzure-9,
+		 type	      = "datadriven",
+		 )
+
+sub_ztt_tracktwo_3Track = Sample( name 	      = "sub_ztt_tracktwo_3Track",
 		 tlatex       = "Ztt (data - add ons)",
 		 fill_color   = ROOT.kAzure-9,
 		 line_color   = ROOT.kBlack,
@@ -1941,8 +2192,7 @@ addon_Zlljets_highPT_3Track = Sample( name   = Zlljets.name,
                  type         = "datadriven",
                  )
 
-addon_Zttjets_highPT_3Track = Sample( name   = Zttjets.name,
-                 tlatex       = Zttjets.tlatex+"(OS-SS)_highPT",
+addon_Zttjets_highPT_3Track = Sample( name =Zttjets.name,
                  fill_color   = Zttjets.fill_color,
                  line_color   = Zttjets.line_color,
                  marker_color = Zttjets.marker_color,
