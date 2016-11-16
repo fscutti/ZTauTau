@@ -16,22 +16,22 @@ variable = "tau_pt"
 #variable = "pileup"
 
 #trax = None
-#trax = "1Track"
-trax = "3Track"
+trax = "1Track"
+#trax = "3Track"
 
 chain = None
 #chain = "ptonly"
 #chain = "tracktwo"
 #chain = "L1TAU12IMmed"
 
-#trig = "25med"
+trig = "25med"
 #trig = "35med"
 #trig = "50L1TAU12med"
 #trig = "80med"
 #trig = "80L1TAU60med"
 #trig = "125med"
 #trig = "160med"
-trig = "L1TAU12IMmed"
+#trig = "L1TAU12IMmed"
 #trig = "ptonly"
 #trig = "tracktwo"
 
@@ -163,6 +163,7 @@ if str(variable) == "tau_pt":
 
 elif str(variable) == "tau_eta":
 	print "eta!"
+
 	xlow = [-2.5,-2.,-1.52,-1.37,-0.5,0,0.5,1.37,1.52,2.,2.5]
 	hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(10,"hist_SR_subztt_pretrig",array.array('d',xlow))
 	hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(10,"hist_SR_subztt_posttrig",array.array('d',xlow))
@@ -177,17 +178,25 @@ elif str(variable) == "tau_eta":
 
 elif str(variable) == "pileup":
 	print "pileup!"
-	xlow = [0,10.,15.,20.,25.,30.,40.]
-	hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(6,"hist_SR_subztt_pretrig",array.array('d',xlow))
-	hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(6,"hist_SR_subztt_posttrig",array.array('d',xlow))
-	hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(6,"hist_SR_MC_pretrig",array.array('d',xlow))
-	hist_SR_MC_posttrig = hist_SR_MC_posttrig1.Rebin(6,"hist_SR_MC_posttrig",array.array('d',xlow))
-
+	if str(trax) == "3Track":
+		xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+		n = 7
+		hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(7,"hist_SR_subztt_pretrig",array.array('d',xlow))
+		hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(7,"hist_SR_subztt_posttrig",array.array('d',xlow))
+		hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(7,"hist_SR_MC_pretrig",array.array('d',xlow))
+		hist_SR_MC_posttrig = hist_SR_MC_posttrig1.Rebin(7,"hist_SR_MC_posttrig",array.array('d',xlow))
+	else:
+		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+		n = 8
+		hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(8,"hist_SR_subztt_pretrig",array.array('d',xlow))
+		hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(8,"hist_SR_subztt_posttrig",array.array('d',xlow))
+		hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(8,"hist_SR_MC_pretrig",array.array('d',xlow))
+		hist_SR_MC_posttrig = hist_SR_MC_posttrig1.Rebin(8,"hist_SR_MC_posttrig",array.array('d',xlow))
 	if trig and chain:
-		hist_SR_subztt_pretrig_chain = hist_SR_subztt_pretrig1_chain.Rebin(6,"hist_SR_subztt_pretrig_chain",array.array('d',xlow))
-		hist_SR_MC_pretrig_chain = hist_SR_MC_pretrig1_chain.Rebin(6,"hist_SR_MC_pretrig_chain",array.array('d',xlow))
-		hist_SR_subztt_posttrig_chain = hist_SR_subztt_posttrig1_chain.Rebin(6,"hist_SR_subztt_posttrig_chain",array.array('d',xlow))
-		hist_SR_MC_posttrig_chain = hist_SR_MC_posttrig1_chain.Rebin(6,"hist_SR_MC_posttrig_chain",array.array('d',xlow))
+		hist_SR_subztt_pretrig_chain = hist_SR_subztt_pretrig1_chain.Rebin(n,"hist_SR_subztt_pretrig_chain",array.array('d',xlow))
+		hist_SR_MC_pretrig_chain = hist_SR_MC_pretrig1_chain.Rebin(n,"hist_SR_MC_pretrig_chain",array.array('d',xlow))
+		hist_SR_subztt_posttrig_chain = hist_SR_subztt_posttrig1_chain.Rebin(n,"hist_SR_subztt_posttrig_chain",array.array('d',xlow))
+		hist_SR_MC_posttrig_chain = hist_SR_MC_posttrig1_chain.Rebin(n,"hist_SR_MC_posttrig_chain",array.array('d',xlow))
 
 data_post = hist_SR_subztt_posttrig.Clone()
 data_pre = hist_SR_subztt_pretrig.Clone()
@@ -305,10 +314,17 @@ if trig and chain:
 	h_efficiency_simple_mc_nominal.Write()
 outfile.Close()
 
+#if str(variable) == "tau_eta" or str(variable) == "pileup":
+#	if str(trig) in ["35med","50L1TAU12med", "80med","80L1TAU60med","125med","160med"]:
 
-sys_up = ['pretrig_fw_lowPT_Tau'+str(trax)+'_UP','pretrig_fw_highPT_Tau'+str(trax)+'_UP', 'posttrig_fw_lowPT_Tau'+str(trax)+'_UP', 'posttrig_fw_highPT_Tau'+str(trax)+'_UP',  'pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP', 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP', 'posttrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP', 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP', 'MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP']
+#		sys_up = ['pretrig_fw_highPT_Tau'+str(trax)+'_UP', 'posttrig_fw_highPT_Tau'+str(trax)+'_UP', 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP',  'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP', 'MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP']
 
-sys_dn = ['pretrig_fw_lowPT_Tau'+str(trax)+'_DN','pretrig_fw_highPT_Tau'+str(trax)+'_DN', 'posttrig_fw_lowPT_Tau'+str(trax)+'_DN', 'posttrig_fw_highPT_Tau'+str(trax)+'_DN','pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN', 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN', 'posttrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN', 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN', 'MUID_DN', 'MUMS_DN', 'MUSCALE_DN', 'TAUSF_SYS_DN', 'MUSF_SYS_DN', 'MUSF_STAT_DN', 'METSCALE_DN']
+#		sys_dn = ['pretrig_fw_highPT_Tau'+str(trax)+'_DN', 'posttrig_fw_highPT_Tau'+str(trax)+'_DN', 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN', 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN', 'MUID_DN', 'MUMS_DN', 'MUSCALE_DN', 'TAUSF_SYS_DN', 'MUSF_SYS_DN', 'MUSF_STAT_DN', 'METSCALE_DN']
+
+#else:
+sys_up = ['pretrig_kW_SS_lowPT_Tau'+str(trax)+'_UP','pretrig_kW_SS_highPT_Tau'+str(trax)+'_UP', 'posttrig_kW_SS_lowPT_Tau'+str(trax)+'_UP', 'posttrig_kW_SS_highPT_Tau'+str(trax)+'_UP','pretrig_kW_OS_lowPT_Tau'+str(trax)+'_UP','pretrig_kW_OS_highPT_Tau'+str(trax)+'_UP', 'posttrig_kW_OS_lowPT_Tau'+str(trax)+'_UP', 'posttrig_kW_OS_highPT_Tau'+str(trax)+'_UP','pretrig_fw_lowPT_Tau'+str(trax)+'_UP','pretrig_fw_highPT_Tau'+str(trax)+'_UP', 'posttrig_fw_lowPT_Tau'+str(trax)+'_UP', 'posttrig_fw_highPT_Tau'+str(trax)+'_UP',  'pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP', 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP', 'posttrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP', 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_UP', 'MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP']
+
+sys_dn = ['pretrig_kW_SS_lowPT_Tau'+str(trax)+'_DN','pretrig_kW_SS_highPT_Tau'+str(trax)+'_DN', 'posttrig_kW_SS_lowPT_Tau'+str(trax)+'_DN', 'posttrig_kW_SS_highPT_Tau'+str(trax)+'_DN','pretrig_kW_OS_lowPT_Tau'+str(trax)+'_DN','pretrig_kW_OS_highPT_Tau'+str(trax)+'_DN', 'posttrig_kW_OS_lowPT_Tau'+str(trax)+'_DN', 'posttrig_kW_OS_highPT_Tau'+str(trax)+'_DN','pretrig_fw_lowPT_Tau'+str(trax)+'_DN','pretrig_fw_highPT_Tau'+str(trax)+'_DN', 'posttrig_fw_lowPT_Tau'+str(trax)+'_DN', 'posttrig_fw_highPT_Tau'+str(trax)+'_DN','pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN', 'pretrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN', 'posttrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN', 'posttrig_RQCD_AntiIsoCR_highPT_Tau'+str(trax)+'_DN', 'MUID_DN', 'MUMS_DN', 'MUSCALE_DN', 'TAUSF_SYS_DN', 'MUSF_SYS_DN', 'MUSF_STAT_DN', 'METSCALE_DN']
 
 
 #sys_up = ['MUID_UP', 'MUMS_UP', 'MUSCALE_UP', 'TAUSF_SYS_UP', 'MUSF_SYS_UP', 'MUSF_STAT_UP', 'METSCALE_UP']
@@ -375,6 +391,66 @@ for i in range(len(sys_dn)):
 		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_fw_highPT_'+str(trax)+'_'+str(trig)+'_DN_sub_ztt_'+str(trig)+'_'+str(trax))
 
+	elif sys_dn[i] == 'pretrig_kW_OS_lowPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_OS_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+		
+	elif sys_dn[i] == 'pretrig_kW_OS_highPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_OS_highPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_dn[i] == 'posttrig_kW_OS_lowPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_OS_'+str(trig)+'_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_dn[i] == 'posttrig_kW_OS_highPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_OS_'+str(trig)+'_highPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_dn[i] == 'pretrig_kW_SS_lowPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_SS_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
+		print 'h_SR_Tau'+str(trax)+'_kW_SS_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax
+)
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+		
+	elif sys_dn[i] == 'pretrig_kW_SS_highPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_SS_highPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_dn[i] == 'posttrig_kW_SS_lowPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_SS_'+str(trig)+'_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'_'+str(trax))
+		print 'h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_SS_'+str(trig)+'_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'_'+str(trax)
+
+	elif sys_dn[i] == 'posttrig_kW_SS_highPT_Tau'+str(trax)+'_DN':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_dn_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_SS_'+str(trig)+'_highPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trig)+'_'+str(trax))
+
 	elif sys_dn[i] == 'pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN':
 		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
 		sys_dn_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_DN_sub_ztt_'+str(trax))
@@ -431,10 +507,14 @@ for i in range(len(sys_dn)):
 		sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(10,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
 
 	if str(variable) == "pileup":
-
-		xlow = [0,10.,15.,20.,25.,30.,40.]	
-		sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(6,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
-		sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(6,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
+		if str(trax) == "3Track":
+			xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+			sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(7,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
+			sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(7,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
+		else:
+			xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+			sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(8,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
+			sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(8,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
 
 	sys_dn_h_efficiency_subztt = sys_dn_hist_SR_subztt_posttrig.Clone()
 	sys_dn_h_efficiency_subztt_divide = sys_dn_hist_SR_subztt_pretrig.Clone()	
@@ -467,7 +547,7 @@ for i in range(len(sys_dn)):
 
 	g_efficiency_simple_subztt_nominal = nom_file.Get('data')
 
-	if str(variable) == "tau_pt":
+	if str(variable) == "tau_pt" or str(variable) == "pileup":
 		for j in range(0,sys_dn_h_efficiency_subztt.GetNbinsX()):
 
 			e_nom = g_efficiency_simple_subztt_nominal.GetY()[j]
@@ -521,6 +601,7 @@ for i in range(len(sys_up)):
 	if sys_up[i] == 'pretrig_fw_lowPT_Tau'+str(trax)+'_UP':
 		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
 		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_fw_lowPT_'+str(trax)+'_UP_sub_ztt_'+str(trax))
+		print 'h_SR_Tau'+str(trax)+'_fw_lowPT_'+str(trax)+'_UP_sub_ztt_'+str(trax)
 
 		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
 		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
@@ -547,6 +628,66 @@ for i in range(len(sys_up)):
 
 		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
 		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_fw_highPT_'+str(trax)+'_'+str(trig)+'_UP_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_up[i] == 'pretrig_kW_OS_lowPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_OS_lowPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_up[i] == 'pretrig_kW_OS_highPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_OS_highPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+
+	elif sys_up[i] == 'posttrig_kW_OS_lowPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_OS_'+str(trig)+'_lowPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trig)+'_'+str(trax))
+
+
+	elif sys_up[i] == 'posttrig_kW_OS_highPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_OS_'+str(trig)+'_highPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_up[i] == 'pretrig_kW_SS_lowPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_SS_lowPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+	elif sys_up[i] == 'pretrig_kW_SS_highPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_kW_SS_highPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trig)+'_'+str(trax))
+
+
+	elif sys_up[i] == 'posttrig_kW_SS_lowPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_SS_'+str(trig)+'_lowPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trig)+'_'+str(trax))
+
+
+	elif sys_up[i] == 'posttrig_kW_SS_highPT_Tau'+str(trax)+'_UP':
+		f0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_pretrig1 = f0.Get('h_SR_Tau'+str(trax)+'_nominal_sub_ztt_'+str(trax))
+
+		g0 = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR_'+str(trig)+'_Tau'+str(trax)+'.root')
+		sys_up_hist_SR_subztt_posttrig1 = g0.Get('h_SR_'+str(trig)+'_Tau'+str(trax)+'_kW_SS_'+str(trig)+'_highPT_Tau'+str(trax)+'_UP_sub_ztt_'+str(trig)+'_'+str(trax))
 
 
 	elif sys_up[i] == 'pretrig_RQCD_AntiIsoCR_lowPT_Tau'+str(trax)+'_UP':
@@ -606,11 +747,15 @@ for i in range(len(sys_up)):
 		sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(10,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
 		sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(10,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
 
-	if str(variable) == "tau_pileup":
-
-		xlow = [0,10.,15.,20.,25.,30.,40.] 
-		sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(6,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
-		sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(6,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
+	if str(variable) == "pileup":
+		if str(trax) == "3Track":
+			xlow = [0,12.,16.,18.,22.,24.,28.,40.]	
+			sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(7,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
+			sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(7,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
+		else:
+			xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]	
+			sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(8,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
+			sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(8,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
 
 	sys_up_h_efficiency_subztt_divide = sys_up_hist_SR_subztt_pretrig.Clone()
 	sys_up_h_efficiency_subztt = sys_up_hist_SR_subztt_posttrig.Clone()
@@ -640,7 +785,7 @@ for i in range(len(sys_up)):
 
 	g_efficiency_simple_subztt_nominal = nom_file.Get('data')
 
-	if str(variable) == "tau_pt":
+	if str(variable) == "tau_pt" or str(variable) == "pileup":
 
 		for j in range(0,sys_up_hist_SR_subztt_pretrig.GetNbinsX()):
 
@@ -690,10 +835,15 @@ if str(variable) == "tau_eta":
 	total_sys_dn_data = total_sys_dn_data1.Rebin(10,"total_sys_dn_data",array.array('d',xlow))
 
 if str(variable) == "pileup":
+	if str(trax) == "3Track":
 
-	xlow = [0,10.,15.,20.,25.,30.,40.] 
-	total_sys_up_data = total_sys_up_data1.Rebin(6,"total_sys_up_data",array.array('d',xlow))
-	total_sys_dn_data = total_sys_dn_data1.Rebin(6,"total_sys_dn_data",array.array('d',xlow))
+		xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+		total_sys_up_data = total_sys_up_data1.Rebin(7,"total_sys_up_data",array.array('d',xlow))
+		total_sys_dn_data = total_sys_dn_data1.Rebin(7,"total_sys_dn_data",array.array('d',xlow))
+	else:
+		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+		total_sys_up_data = total_sys_up_data1.Rebin(8,"total_sys_up_data",array.array('d',xlow))
+		total_sys_dn_data = total_sys_dn_data1.Rebin(8,"total_sys_dn_data",array.array('d',xlow))
 
 print len(nom_sub_up)
 for k in range(len(nom_sub_up)):
@@ -789,17 +939,28 @@ if str(variable) == "tau_eta":
 	h_efficiency_simple_mc_nominal = h_efficiency_simple_mc_nominal1.Rebin(10,"h_efficiency_simple_mc_nominal",array.array('d',xlow))
 
 if str(variable) == "pileup":
-	
-        xlow = [0,10.,15.,20.,25.,30.,40.] 
-	total_stat_up_data = total_stat_up_data1.Rebin(6,"total_stat_up_data",array.array('d',xlow))
-	total_stat_dn_data = total_stat_dn_data1.Rebin(6,"total_stat_dn_data",array.array('d',xlow))
+	if str(trax) == "3Track":
+		xlow = [0,12.,16.,18.,22.,24.,28.,40.]	
+		total_stat_up_data = total_stat_up_data1.Rebin(7,"total_stat_up_data",array.array('d',xlow))
+		total_stat_dn_data = total_stat_dn_data1.Rebin(7,"total_stat_dn_data",array.array('d',xlow))
 
-	total_stat_up_mc = total_stat_up_mc1.Rebin(6,"total_stat_up_mc",array.array('d',xlow))
-	total_stat_dn_mc = total_stat_dn_mc1.Rebin(6,"total_stat_dn_mc",array.array('d',xlow))
+		total_stat_up_mc = total_stat_up_mc1.Rebin(7,"total_stat_up_mc",array.array('d',xlow))
+		total_stat_dn_mc = total_stat_dn_mc1.Rebin(7,"total_stat_dn_mc",array.array('d',xlow))
 
-	h_efficiency_simple_subztt_nominal = h_efficiency_simple_subztt_nominal1.Rebin(6,"h_efficiency_simple_subztt_nominal",array.array('d',xlow))
+		h_efficiency_simple_subztt_nominal = h_efficiency_simple_subztt_nominal1.Rebin(7,"h_efficiency_simple_subztt_nominal",array.array('d',xlow))
 
-	h_efficiency_simple_mc_nominal = h_efficiency_simple_mc_nominal1.Rebin(6,"h_efficiency_simple_mc_nominal",array.array('d',xlow))
+		h_efficiency_simple_mc_nominal = h_efficiency_simple_mc_nominal1.Rebin(7,"h_efficiency_simple_mc_nominal",array.array('d',xlow))
+	else:
+		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]	
+		total_stat_up_data = total_stat_up_data1.Rebin(8,"total_stat_up_data",array.array('d',xlow))
+		total_stat_dn_data = total_stat_dn_data1.Rebin(8,"total_stat_dn_data",array.array('d',xlow))
+
+		total_stat_up_mc = total_stat_up_mc1.Rebin(8,"total_stat_up_mc",array.array('d',xlow))
+		total_stat_dn_mc = total_stat_dn_mc1.Rebin(8,"total_stat_dn_mc",array.array('d',xlow))
+
+		h_efficiency_simple_subztt_nominal = h_efficiency_simple_subztt_nominal1.Rebin(8,"h_efficiency_simple_subztt_nominal",array.array('d',xlow))
+
+		h_efficiency_simple_mc_nominal = h_efficiency_simple_mc_nominal1.Rebin(8,"h_efficiency_simple_mc_nominal",array.array('d',xlow))
 
 uppp = 0
 for l in range(0,total_stat_up_data.GetNbinsX()):
@@ -813,6 +974,8 @@ for l in range(0,total_stat_up_data.GetNbinsX()):
 	data_y_val = graph_efficiency_simple_subztt_nominal.GetY()[l-uppp]
 	mc_y_val = graph_efficiency_simple_mc_nominal.GetY()[l-uppp ]
 
+	graph_efficiency_simple_subztt_nominal.SetPointEYhigh(l-uppp,0)
+        graph_efficiency_simple_subztt_nominal.SetPointEYlow(l-uppp,0)
 
 	if str(variable) == "tau_eta":
 		if n_bin == -1.445:
@@ -904,7 +1067,7 @@ outfile.Close()
 data_sys_error_plot = funcs.make_error_scatter_graph(h_efficiency_simple_subztt_nominal, total_sys_up_data, total_sys_dn_data)
 data_sys_error_plot.SetFillColor(ROOT.kAzure-3)
 data_sys_error_plot.SetName("data_sys_error_plot")
-
+data_sys_error_plot.SetLineColor(ROOT.kAzure-3)
 # ----- Make total data sys + stat plots ----#
 
 total_up_data1 = ROOT.TH1F("total_up_data", "total_sys_up_data", 100, 0, 1000.)
@@ -932,13 +1095,20 @@ if str(variable) == "tau_eta":
 	total_err_dn_ratio = total_err_dn_ratio1.Rebin(10,"total_err_dn_ratio",array.array('d',xlow))
 
 if str(variable) == "pileup":
+	if str(trax) == "3Track":
+		xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+		total_up_data = total_up_data1.Rebin(7,"total_up_data",array.array('d',xlow))
+		total_dn_data = total_dn_data1.Rebin(7,"total_dn_data",array.array('d',xlow))
 
-	xlow = [0,10.,15.,20.,25.,30.,40.] 
-	total_up_data = total_up_data1.Rebin(6,"total_up_data",array.array('d',xlow))
-	total_dn_data = total_dn_data1.Rebin(6,"total_dn_data",array.array('d',xlow))
+		total_err_up_ratio = total_err_up_ratio1.Rebin(7,"total_err_up_ratio",array.array('d',xlow))
+		total_err_dn_ratio = total_err_dn_ratio1.Rebin(7,"total_err_dn_ratio",array.array('d',xlow))
+	else:
+		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+		total_up_data = total_up_data1.Rebin(8,"total_up_data",array.array('d',xlow))
+		total_dn_data = total_dn_data1.Rebin(8,"total_dn_data",array.array('d',xlow))
 
-	total_err_up_ratio = total_err_up_ratio1.Rebin(6,"total_err_up_ratio",array.array('d',xlow))
-	total_err_dn_ratio = total_err_dn_ratio1.Rebin(6,"total_err_dn_ratio",array.array('d',xlow))
+		total_err_up_ratio = total_err_up_ratio1.Rebin(8,"total_err_up_ratio",array.array('d',xlow))
+		total_err_dn_ratio = total_err_dn_ratio1.Rebin(8,"total_err_dn_ratio",array.array('d',xlow))
 
 for i in range(1,total_up_data.GetNbinsX()+1):
 
@@ -971,6 +1141,10 @@ g_tot_error_plot = funcs.make_error_scatter_graph(h_efficiency_simple_subztt_nom
 g_tot_error_plot.SetFillColor(ROOT.kCyan-9)
 g_tot_error_plot.SetName("g_tot_error_plot")
 
+data_stat_error_plot = funcs.make_error_scatter_graph(h_efficiency_simple_subztt_nominal,total_stat_up_data,total_stat_dn_data) 
+data_stat_error_plot.SetFillColor(ROOT.kCyan-9)
+data_stat_error_plot.SetName("data_stat_error_plot")
+data_stat_error_plot.SetLineColor(ROOT.kCyan-9)
 g_tot_error_plot.Print("all")
 
 h_data = h_efficiency_simple_subztt_nominal.Clone()
@@ -991,13 +1165,20 @@ h_ratio_graph.SetLineWidth(2)
 mc_stat_ratio_error_plot = funcs.make_error_scatter_graph(h_ratio,total_stat_up_mc,total_stat_dn_mc)
 data_sys_ratio_error_plot = funcs.make_error_scatter_graph(h_ratio, total_sys_up_data,total_sys_dn_data)
 mc_data_tot_err_ratio = funcs.make_error_scatter_graph(h_ratio,total_err_up_ratio, total_err_dn_ratio)
+data_stat_ratio_error_plot = funcs.make_error_scatter_graph(h_ratio,total_stat_up_data,total_stat_up_data) 
 
 mc_data_tot_err_ratio.SetName("mc_data_tot_err_ratio")
 mc_stat_ratio_error_plot.SetName("mc_stat_ratio_error_plot")
+data_stat_ratio_error_plot.SetName("data_stat_ratio_error_plot")
 
 mc_data_tot_err_ratio.SetFillColor(ROOT.kSpring)
 mc_stat_ratio_error_plot.SetFillColor(ROOT.kRed)
 data_sys_ratio_error_plot.SetFillColor(ROOT.kAzure-3) 
+data_stat_ratio_error_plot.SetFillColor(ROOT.kCyan-9)
+
+mc_stat_ratio_error_plot.SetLineColor(ROOT.kRed)
+data_sys_ratio_error_plot.SetLineColor(ROOT.kAzure-3)
+data_stat_ratio_error_plot.SetLineColor(ROOT.kCyan-9)
 
 yaxistitle = ""
 
@@ -1006,10 +1187,10 @@ x_legend = 0.63
 x_leg_shift = 0
 y_leg_shift = 0.0
 legYCompr = 8.0
-legYMax = 0.5
-legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
-legXMin = x_legend + x_leg_shift
-legXMax = legXMin + 0.4
+#legYMax = 0.5
+#legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
+#legXMin = x_legend + x_leg_shift
+#legXMax = legXMin + 0.4
 
 graph_efficiency_simple_mc_nominal.SetMarkerStyle(22)
 graph_efficiency_simple_mc_nominal.SetMarkerColor(ROOT.kRed)
@@ -1019,18 +1200,21 @@ graph_efficiency_simple_mc_nominal.SetLineWidth(2)
 graph_efficiency_simple_subztt_nominal.SetMarkerStyle(20)
 graph_efficiency_simple_subztt_nominal.SetMarkerColor(ROOT.kBlack)
 
-leg = ROOT.TLegend(0.5,0.4,0.7,0.6) #ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
+leg = ROOT.TLegend(0.5,0.15,0.87,0.33) #ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
 leg.SetBorderSize(0)
 leg.SetFillColor(0)
 leg.SetFillStyle(0)
-leg.AddEntry(graph_efficiency_simple_subztt_nominal,"Data 2016",'PL')
-leg.AddEntry(graph_efficiency_simple_mc_nominal,"MC Z#rightarrow#tau#tau",'PL')
-leg.AddEntry(g_tot_error_plot, "Data Sys.+Stat.", 'F')
-leg.AddEntry(data_sys_error_plot, "Data Sys.", 'F')
-leg.AddEntry(mc_data_tot_err_ratio, "Total Unc.", 'F')
+leg.SetNColumns(2)
+leg.SetTextSize(0.032)
+leg.AddEntry(graph_efficiency_simple_subztt_nominal,"Data 2016",'P')
+leg.AddEntry(graph_efficiency_simple_mc_nominal,"MC Z#rightarrow#tau#tau",'P')
+#leg.AddEntry(g_tot_error_plot, "Data Sys.+Stat.", 'F')
+leg.AddEntry(data_sys_error_plot, "Data sys. error", 'f')
+leg.AddEntry(mc_stat_ratio_error_plot, "MC stat. error", "L")
+#leg.AddEntry(mc_data_tot_err_ratio, "Total Unc.", 'F')
+leg.AddEntry(data_stat_ratio_error_plot, "Data stat. error",'f')
 
-
-c = ROOT.TCanvas(str(trax)+"efficiency",str(trax)+"efficiency",750,800)
+c = ROOT.TCanvas(str(variable)+"_"+str(trax)+"efficiency",str(variable)+"_"+str(trax)+"efficiency",600,600)
 xmin = h_efficiency_simple_subztt_nominal.GetBinLowEdge(1)
 xmax = 300
 ymin = 0
@@ -1054,7 +1238,7 @@ pad2.SetBottomMargin(0.40)
 pad2.SetLeftMargin(0.15)
 pad2.SetTicky()
 pad2.SetTickx()
-pad2.SetGridy()
+#pad2.SetGridy()
 if str(variable) == "tau_pt":
 	pad2.SetLogx()
 pad2.Draw()
@@ -1082,8 +1266,8 @@ yaxis1.SetTitle("Efficiency")
 tot_eff = ROOT.TMultiGraph()
 tot_eff.Add(g_tot_error_plot,"E2")
 tot_eff.Add(data_sys_error_plot,"E2")
-tot_eff.Add(graph_efficiency_simple_mc_nominal,"APZ")
-tot_eff.Add(graph_efficiency_simple_subztt_nominal,"APZ")
+tot_eff.Add(graph_efficiency_simple_mc_nominal,"PZ")
+tot_eff.Add(graph_efficiency_simple_subztt_nominal,"PZ")
 
 tot_eff.Draw("a")
 xaxis_top = tot_eff.GetXaxis()
@@ -1095,11 +1279,12 @@ if str(variable) == "tau_eta":
      xaxis_top.SetRangeUser(-3,3)
 if str(variable) == "pileup":
      xaxis_top.SetRangeUser(0,40)
-yaxis_top.SetTitleSize( yaxis_top.GetTitleSize() * scale )
+yaxis_top.SetTitleSize( 0.05)#yaxis_top.GetTitleSize() * scale )
 yaxis_top.SetTitleOffset( 1 )
-yaxis_top.SetLabelSize( 0.8 * yaxis_top.GetLabelSize() * scale )
+yaxis_top.SetLabelSize(0.045)# 0.8 * yaxis_top.GetLabelSize() * scale )
 yaxis_top.SetLabelOffset( 1. * yaxis_top.GetLabelOffset() / scale )
 xaxis_top.SetNdivisions(510)
+xaxis_top.SetNoExponent()
 yaxis_top.SetNdivisions(510)
 yaxis_top.SetTitle("Efficiency")
 yaxis_top.SetRangeUser(0,1.05)
@@ -1109,7 +1294,7 @@ leg.Draw()
 pad1.RedrawAxis()
 tlatex = ROOT.TLatex()
 tlatex.SetNDC()
-tlatex.SetTextSize(0.05)
+#tlatex.SetTextSize(0.05)
 lx = 0.5 
 ly = 0.845
 tlatex.SetTextFont(42)
@@ -1120,31 +1305,32 @@ tx = 0.5
 latex_y = ty-2.*th
 latex_yb = ty-4.*th
 
-tlatex.SetTextSize(0.035)
-tlatex.DrawLatex(0.5,0.26,'#intL dt = 24.8 fb^{-1}, #sqrt{s} = 13 TeV' ) 
+tlatex.SetTextSize(0.032)
+tlatex.DrawLatex(0.5,0.55,"#bf{#it{ATLAS}} Internal")
+tlatex.DrawLatex(0.5,0.42,'#intL dt = 24.8 fb^{-1}, #sqrt{s} = 13 TeV' )
 if str(trig) == "L1TAU12IMmed":
-	tlatex.DrawLatex(0.5,0.20,'L1TAU12IM')
+	tlatex.DrawLatex(0.5,0.5,'L1TAU12IM trigger')
 elif str(trig) == "tracktwo":
-        tlatex.DrawLatex(0.5,0.20,'HLT_tau25_perf_tracktwo')
+        tlatex.DrawLatex(0.5,0.5,'HLT tau25 perf trigger')
 elif str(trig) == "ptonly":
-        tlatex.DrawLatex(0.5,0.20,'HLT_tau25_idperf_tracktwo')
+        tlatex.DrawLatex(0.5,0.5,'HLT tau25 idperf trigger')
 else:
 	lab = str(trig).split("m") 
 	print lab[0]
-	tlatex.DrawLatex(0.5,0.20,'HLT_tau'+lab[0]+'_medium1_tracktwo') 
+	tlatex.DrawLatex(0.5,0.5,'HLT tau'+lab[0]+' medium trigger') 
 if trax:
 	if str(trax) == '1Track':
-		tlatex.DrawLatex(0.5,0.14,'1-prong')
+		tlatex.DrawLatex(0.5,0.36,'1-prong')
 	elif str(trax) == '3Track':
-		tlatex.DrawLatex(0.5,0.14,'3-prong')
+		tlatex.DrawLatex(0.5,0.36,'3-prong')
 
 pad2.cd()
 if str(variable) == "tau_pt":
-	fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;SF'%('Offline Tau P_{T} [GeV]'))
+	fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;Data/exp.'%('Offline Tau P_{T} [GeV]'))
 if str(variable) == "tau_eta":
-	fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;SF'%('\eta (#tau)'))
+	fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;Data/exp.'%('\eta'))
 if str(variable) == "pileup":
-	fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;SF'%('<#mu>'))
+	fr2 = pad2.DrawFrame(xmin,0.8,xmax,1.2,';%s;Data/exp.'%('<#mu>'))
 xaxis2 = fr2.GetXaxis()
 yaxis2 = fr2.GetYaxis()
 
@@ -1154,7 +1340,7 @@ yaxis2.SetLabelSize( yaxis2.GetLabelSize() * scale )
 yaxis2.SetTitleOffset( 2.1* yaxis2.GetTitleOffset() / scale  )
 yaxis2.SetLabelOffset(0.2 * yaxis2.GetLabelOffset() * scale )
 xaxis2.SetTitleSize( xaxis2.GetTitleSize() * scale )
-xaxis2.SetLabelSize( 0.8 * xaxis2.GetLabelSize() * scale )
+xaxis2.SetLabelSize( 0.6 * xaxis2.GetLabelSize() * scale )
 xaxis2.SetTickLength( xaxis2.GetTickLength() * scale )
 xaxis2.SetTitleOffset(0.5)
 xaxis2.SetLabelOffset( 2.5* xaxis2.GetLabelOffset() / scale )
@@ -1165,26 +1351,35 @@ xaxis2.SetNdivisions(510)
 if str(variable) == "tau_pt":
 	xaxis2.SetMoreLogLabels()
 xaxis2.SetTitleOffset(1)
-yaxis2.SetTitle("SF")
+yaxis2.SetTitle("Data/exp.")
 yaxis2.SetTitleOffset(0.5)
 
+ratio_line = ROOT.TLine(xmin,1,xmax,1)
+ratio_line.SetLineColor(ROOT.kRed)
+ratio_line.SetLineStyle(10)
+ratio_line.Draw()
+
 tot_ratio = ROOT.TMultiGraph()
-tot_ratio.Add(mc_data_tot_err_ratio,"E2")
+#tot_ratio.Add(mc_data_tot_err_ratio,"E2")
+tot_ratio.Add(data_stat_ratio_error_plot,"E2")
 tot_ratio.Add(mc_stat_ratio_error_plot,"E2")
 tot_ratio.Add(data_sys_ratio_error_plot,"E2")
 tot_ratio.Add(h_ratio_graph,"px")
-tot_ratio.Draw("a")
+tot_ratio.Draw("a same")
 
 xaxis_bot = tot_ratio.GetXaxis()
 yaxis_bot = tot_ratio.GetYaxis()
+xaxis_bot.SetLabelFont(42)
+yaxis_bot.SetLabelFont(42)
+
 yaxis_bot.SetTitleSize( yaxis_bot.GetTitleSize() * scale )
 yaxis_bot.SetLabelSize( yaxis_bot.GetLabelSize() * scale )
 yaxis_bot.SetTitleOffset( 2.1* yaxis_bot.GetTitleOffset() / scale  )
 yaxis_bot.SetLabelOffset(0.2 * yaxis_bot.GetLabelOffset() * scale )
-xaxis_bot.SetTitleSize( xaxis_bot.GetTitleSize() * scale )
-xaxis_bot.SetLabelSize( 0.8 * xaxis_bot.GetLabelSize() * scale )
+xaxis_bot.SetTitleSize( 0.095)#xaxis_bot.GetTitleSize() * scale )
+xaxis_bot.SetLabelSize( 0.095)# * xaxis_bot.GetLabelSize() * scale )
 xaxis_bot.SetTickLength( xaxis_bot.GetTickLength() * scale )
-xaxis_bot.SetTitleOffset(0.5)
+xaxis_bot.SetTitleOffset(0.45)
 xaxis_bot.SetLabelOffset( 2.5* xaxis_bot.GetLabelOffset() / scale )
 if str(variable) == "tau_pt":
      xaxis_bot.SetRangeUser(20,300)
@@ -1192,15 +1387,19 @@ if str(variable) == "tau_pt":
      xaxis_bot.SetMoreLogLabels()
 if str(variable) == "tau_eta":
      xaxis_bot.SetRangeUser(-3,3)
-     xaxis_bot.SetTitle('\eta (#tau)')
+     xaxis_bot.SetTitle('\eta')
 if str(variable) == "pileup":
      xaxis_bot.SetTitle('<#mu>')
+     xaxis_bot.SetRangeUser(0,40)
 yaxis_bot.SetRangeUser(0.6,1.4)
 yaxis_bot.SetNdivisions(4)
+xaxis_bot.SetNoExponent()
 xaxis_bot.SetNdivisions(510)
 xaxis_bot.SetTitleOffset(1)
-yaxis_bot.SetTitle("SF")
+yaxis_bot.SetTitle("Data/exp.")
 yaxis_bot.SetTitleOffset(0.5)
+yaxis_bot.SetLabelSize( 0.095)
+yaxis_bot.SetTitleSize( 0.095)
 
 pad2.RedrawAxis()
 if trax:
@@ -1289,21 +1488,36 @@ if trig and chain:
 		h_efficiency_simple_mc_nominal_chain = h_efficiency_simple_mc_nominal1_chain.Rebin(10,"h_efficiency_simple_mc_nominal_chain",array.array('d',xlow))
 
 	if str(variable) == "pileup":
+		if str(trax) == "3Track":
+			xlow = [0,12.,16.,18.,22.,24.,28.,40.]
 
-		xlow = [0,10.,15.,20.,25.,30.,40.]
+			total_stat_up_data_chain = total_stat_up_data1_chain.Rebin(7,"total_stat_up_data_chain",array.array('d',xlow))
+			total_stat_dn_data_chain = total_stat_dn_data1_chain.Rebin(7,"total_stat_dn_data_chain",array.array('d',xlow))
 
-		total_stat_up_data_chain = total_stat_up_data1_chain.Rebin(6,"total_stat_up_data_chain",array.array('d',xlow))
-		total_stat_dn_data_chain = total_stat_dn_data1_chain.Rebin(6,"total_stat_dn_data_chain",array.array('d',xlow))
+			total_stat_up_mc_chain = total_stat_up_mc1_chain.Rebin(7,"total_stat_up_mc_chain",array.array('d',xlow))
+			total_stat_dn_mc_chain = total_stat_dn_mc1_chain.Rebin(7,"total_stat_dn_mc_chain",array.array('d',xlow))
 
-		total_stat_up_mc_chain = total_stat_up_mc1_chain.Rebin(6,"total_stat_up_mc_chain",array.array('d',xlow))
-		total_stat_dn_mc_chain = total_stat_dn_mc1_chain.Rebin(6,"total_stat_dn_mc_chain",array.array('d',xlow))
+			total_stat_up_mc_data_chain = total_stat_up_mc_data1_chain.Rebin(7,"total_stat_up_mc_data_chain",array.array('d',xlow))
+			total_stat_dn_mc_data_chain = total_stat_dn_mc_data1_chain.Rebin(7,"total_stat_dn_mc_data_chain",array.array('d',xlow))
 
-		total_stat_up_mc_data_chain = total_stat_up_mc_data1_chain.Rebin(6,"total_stat_up_mc_data_chain",array.array('d',xlow))
-		total_stat_dn_mc_data_chain = total_stat_dn_mc_data1_chain.Rebin(6,"total_stat_dn_mc_data_chain",array.array('d',xlow))
+			h_efficiency_simple_subztt_nominal_chain = h_efficiency_simple_subztt_nominal1_chain.Rebin(7,"h_efficiency_simple_subztt_nominal_chain",array.array('d',xlow))
 
-		h_efficiency_simple_subztt_nominal_chain = h_efficiency_simple_subztt_nominal1_chain.Rebin(6,"h_efficiency_simple_subztt_nominal_chain",array.array('d',xlow))
+			h_efficiency_simple_mc_nominal_chain = h_efficiency_simple_mc_nominal1_chain.Rebin(7,"h_efficiency_simple_mc_nominal_chain",array.array('d',xlow))
+		else:
+			xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
 
-		h_efficiency_simple_mc_nominal_chain = h_efficiency_simple_mc_nominal1_chain.Rebin(6,"h_efficiency_simple_mc_nominal_chain",array.array('d',xlow))
+			total_stat_up_data_chain = total_stat_up_data1_chain.Rebin(8,"total_stat_up_data_chain",array.array('d',xlow))
+			total_stat_dn_data_chain = total_stat_dn_data1_chain.Rebin(8,"total_stat_dn_data_chain",array.array('d',xlow))
+
+			total_stat_up_mc_chain = total_stat_up_mc1_chain.Rebin(8,"total_stat_up_mc_chain",array.array('d',xlow))
+			total_stat_dn_mc_chain = total_stat_dn_mc1_chain.Rebin(8,"total_stat_dn_mc_chain",array.array('d',xlow))
+
+			total_stat_up_mc_data_chain = total_stat_up_mc_data1_chain.Rebin(8,"total_stat_up_mc_data_chain",array.array('d',xlow))
+			total_stat_dn_mc_data_chain = total_stat_dn_mc_data1_chain.Rebin(8,"total_stat_dn_mc_data_chain",array.array('d',xlow))
+
+			h_efficiency_simple_subztt_nominal_chain = h_efficiency_simple_subztt_nominal1_chain.Rebin(8,"h_efficiency_simple_subztt_nominal_chain",array.array('d',xlow))
+
+			h_efficiency_simple_mc_nominal_chain = h_efficiency_simple_mc_nominal1_chain.Rebin(8,"h_efficiency_simple_mc_nominal_chain",array.array('d',xlow))
 
 	uppp_chain = 0
 	for l in range(0,total_stat_up_data_chain.GetNbinsX()):
@@ -1374,6 +1588,17 @@ if trig and chain:
 			h_efficiency_simple_subztt_nominal_chain.SetBinContent(l+1, data_y_val_chain)
 			h_efficiency_simple_mc_nominal_chain.SetBinContent(l+1, mc_y_val_chain)
 
+		elif str(variable) == "pileup":
+
+			total_stat_up_mc_chain.SetBinContent(l+1, stat_up_mc_chain)
+			total_stat_dn_mc_chain.SetBinContent(l+1, stat_dn_mc_chain)
+
+			total_stat_up_data_chain.SetBinContent(l+1, stat_up_data_chain)
+			total_stat_dn_data_chain.SetBinContent(l+1, stat_dn_data_chain)
+
+			h_efficiency_simple_subztt_nominal_chain.SetBinContent(l+1, data_y_val_chain)
+			h_efficiency_simple_mc_nominal_chain.SetBinContent(l+1, mc_y_val_chain)
+
 	print "******** data_chain"
 	h_efficiency_simple_subztt_nominal_chain.Print("all")
 	print "******** mc_chain"
@@ -1396,7 +1621,16 @@ if trig and chain:
 	data_stat_chain = funcs.make_error_scatter_graph(h_efficiency_simple_subztt_nominal_chain,total_stat_up_data_chain,total_stat_dn_data_chain)
 	mc_stat_tot= funcs.make_error_scatter_graph(h_efficiency_simple_mc_nominal,total_stat_up_mc,total_stat_dn_mc)
 	mc_stat_chain = funcs.make_error_scatter_graph(h_efficiency_simple_mc_nominal_chain,total_stat_up_mc_chain,total_stat_dn_mc_chain)
-
+	if str(variable) == "tau_eta":
+		for i in range(h_efficiency_simple_subztt_nominal.GetNbinsX()):
+			val_trig = data_stat_tot.GetY()[i]	
+			val_chain = data_stat_chain.GetY()[i]
+			if val_trig == 0:
+				print "removing"
+				data_stat_tot.RemovePoint(i)
+			if val_chain == 0:
+				print "removing"
+				data_stat_chain.RemovePoint(i)
 	mc_stat_tot.Print("all")
 
 	data_stat_tot.SetMarkerColor(ROOT.kBlue)
@@ -1437,16 +1671,26 @@ if trig and chain:
 	h_ratio_MC_graph_chain.SetFillColor(ROOT.kRed)
 	h_ratio_MC_graph_chain.SetFillStyle(3144)
 		
+	if str(variable) == "tau_eta":
+		for i in range(h_efficiency_simple_subztt_nominal.GetNbinsX()):
+			val_data_c = h_ratio_graph_chain.GetY()[i]	
+			val_mc_c = h_ratio_MC_graph_chain.GetY()[i]
+			if val_data_c== 0:
+				print "removing"
+				h_ratio_graph_chain.RemovePoint(i)
+			if val_mc_c == 0:
+				print "removing"
+				h_ratio_MC_graph_chain.RemovePoint(i)
 	nLegend = 2
 	x_legend = 0.63
 	x_leg_shift = 0
 	y_leg_shift = 0.0
 	legYCompr = 8.0
-	legYMax = 0.5
-	legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
-	legXMin = x_legend + x_leg_shift
-	legXMax = legXMin + 0.4
-	leg = ROOT.TLegend(0.5,0.4,0.7,0.6)
+	#legYMax = 0.5
+	#legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
+	#legXMin = x_legend + x_leg_shift
+	#legXMax = legXMin + 0.4
+	leg = ROOT.TLegend(0.5,0.01,0.85,0.35)
 	leg.SetBorderSize(0)
 	leg.SetFillColor(0)
 	leg.SetFillStyle(0)
@@ -1466,7 +1710,7 @@ if trig and chain:
                 leg.AddEntry(mc_stat_chain, "MC w/o pt cut","F")
                 leg.AddEntry(mc_stat_tot,"MC w ptcut","F")
 
-	c_chain = ROOT.TCanvas(str(trax)+"_trigchain_efficiency",str(trax)+"_trigchain_efficiency",750,800)
+	c_chain = ROOT.TCanvas(str(variable)+"_"+str(trax)+"_trigchain_efficiency",str(variable)+"_"+str(trax)+"_trigchain_efficiency",750,800)
 	xmin = h_efficiency_simple_subztt_nominal_chain.GetBinLowEdge(1)
 	xmax = 300
 	ymin = 0
@@ -1480,7 +1724,8 @@ if trig and chain:
 	pad1_chain.SetTicky()
 	pad1_chain.SetTickx()
 	pad1_chain.SetBottomMargin(0.1)
-	#pad1_chain.SetLogx()
+	if str(variable) == "tau_pt":
+		pad1_chain.SetLogx()
 	pad1_chain.Draw()
 
 	pad2_chain = ROOT.TPad("pad2_chain","bottom pad",0,0,1,rsplit)
@@ -1489,8 +1734,9 @@ if trig and chain:
 	pad2_chain.SetLeftMargin(0.15)
 	pad2_chain.SetTicky()
 	pad2_chain.SetTickx()
-	pad2_chain.SetGridy()
-	#pad2_chain.SetLogx()
+	#pad2_chain.SetGridy()
+	if str(variable) == "tau_pt":
+		pad2_chain.SetLogx()
 	pad2_chain.Draw()
 	pad1_chain.cd()
 
@@ -1518,15 +1764,23 @@ if trig and chain:
         tot_eff_chain.Add(data_stat_tot,"APZ")
 
 	tot_eff_chain.Draw("a")
-	xaxis_top_chain = tot_eff.GetXaxis()
-	yaxis_top_chain = tot_eff.GetYaxis()
-	xaxis_top_chain.SetRangeUser(20,300)
-	#xaxis_top_chain.SetMoreLogLabels()
+	xaxis_top_chain = tot_eff_chain.GetXaxis()
+	yaxis_top_chain = tot_eff_chain.GetYaxis()
+
+	if str(variable) == "tau_pt":
+	     xaxis_top.SetRangeUser(20,300)
+	     xaxis_top.SetMoreLogLabels()
+	if str(variable) == "tau_eta":
+	     xaxis_top.SetRangeUser(-3,3)
+	if str(variable) == "pileup":
+	     xaxis_top.SetRangeUser(0,40)
+	
 	yaxis_top_chain.SetTitleSize( yaxis_top_chain.GetTitleSize() * scale )
 	yaxis_top_chain.SetTitleOffset( 1 )
 	yaxis_top_chain.SetLabelSize( 0.8 * yaxis_top_chain.GetLabelSize() * scale )
 	yaxis_top_chain.SetLabelOffset( 1. * yaxis_top_chain.GetLabelOffset() / scale )
 	xaxis_top_chain.SetNdivisions(510)
+	xaxis_top_chain.SetNoExponent()
 	yaxis_top_chain.SetNdivisions(510)
 	yaxis_top_chain.SetTitle("Trigger Efficiency")
 	yaxis_top_chain.SetRangeUser(0,1.05)
@@ -1547,18 +1801,19 @@ if trig and chain:
 	latex_yb = ty-4.*th
 
 	tlatex.SetTextSize(0.035)
-
-	tlatex.DrawLatex(0.5,0.26,'#intL dt = 24.8 fb^{-1}, #sqrt{s} = 13 TeV' )
+	tlatex.SetTextFont(42)
+	tlatex.DrawLatex(0.5,0.3,"#bf{#it{ATLAS}} Internal")
+	tlatex.DrawLatex(0.5,0.24,'#intL dt = 24.8 fb^{-1}, #sqrt{s} = 13 TeV' )
 	#tlatex.DrawLatex(0.5,0.20,'HLT_tau25_medium1_tracktwo') 
 	if trax:
 		if str(trax) == '1Track':
-			tlatex.DrawLatex(0.5,0.14,'1-prong')
+			tlatex.DrawLatex(0.5,0.18,'1-prong')
 		elif str(trax) == '3Track':
-			tlatex.DrawLatex(0.5,0.14,'3-prong')
+			tlatex.DrawLatex(0.5,0.18,'3-prong')
 
 	pad2_chain.cd()
 
-	fr2_chain = pad2_chain.DrawFrame(xmin,0.8,xmax,1.2,';%s;SF'%('Offline Tau P_{T} [GeV]'))
+	fr2_chain = pad2_chain.DrawFrame(xmin,0.8,xmax,1.2,';%s;Data/exp.'%('Offline Tau P_{T} [GeV]'))
 
 	xaxis2_chain = fr2_chain.GetXaxis()
 	yaxis2_chain = fr2_chain.GetYaxis()
@@ -1579,7 +1834,7 @@ if trig and chain:
 	xaxis2_chain.SetNdivisions(510)
 	#xaxis2_chain.SetMoreLogLabels()
 	xaxis2_chain.SetTitleOffset(1)
-	#yaxis2_chain.SetTitle("SF")
+	#yaxis2_chain.SetTitle("Data/exp.")
 	yaxis2_chain.SetTitleOffset(0.5)
 
 	tot_ratio_chain = ROOT.TMultiGraph()
@@ -1587,8 +1842,8 @@ if trig and chain:
 	tot_ratio_chain.Add(h_ratio_graph_chain,"APZ")
         tot_ratio_chain.Draw("a")
 
-	xaxis_bot_chain = tot_ratio.GetXaxis()
-	yaxis_bot_chain = tot_ratio.GetYaxis()
+	xaxis_bot_chain = tot_ratio_chain.GetXaxis()
+	yaxis_bot_chain = tot_ratio_chain.GetYaxis()
 	yaxis_bot_chain.SetTitleSize( yaxis_bot_chain.GetTitleSize() * scale )
 	yaxis_bot_chain.SetLabelSize( yaxis_bot_chain.GetLabelSize() * scale )
 	yaxis_bot_chain.SetTitleOffset( 2.1* yaxis_bot_chain.GetTitleOffset() / scale  )
@@ -1596,21 +1851,29 @@ if trig and chain:
 	xaxis_bot_chain.SetTitleSize( xaxis_bot_chain.GetTitleSize() * scale )
 	xaxis_bot_chain.SetLabelSize( 0.8 * xaxis_bot_chain.GetLabelSize() * scale )
 	xaxis_bot_chain.SetTickLength( xaxis_bot_chain.GetTickLength() * scale )
+	xaxis_bot_chain.SetNoExponent()
 	xaxis_bot_chain.SetTitleOffset(0.5)
 	xaxis_bot_chain.SetLabelOffset( 2.5* xaxis_bot_chain.GetLabelOffset() / scale )
-	xaxis_bot_chain.SetRangeUser(20,300)
 	if str(variable) == "tau_pt":
+	     xaxis_bot_chain.SetRangeUser(20,300)
 	     xaxis_bot_chain.SetTitle('Offline Tau P_{T} [GeV]')
+	     xaxis_bot_chain.SetMoreLogLabels()
 	if str(variable) == "tau_eta":
-	     xaxis_bot_chain.SetTitle('\eta (#tau)')
+             xaxis_bot_chain.SetRangeUser(-3,3)
+	     xaxis_bot_chain.SetTitle('\eta')
 	if str(variable) == "pileup":
+             xaxis_bot_chain.SetRangeUser(0,40)
 	     xaxis_bot_chain.SetTitle('<#mu>')
-	yaxis_bot_chain.SetRangeUser(0.6,1.4)
+	#yaxis_bot_chain.SetRangeUser(0.6,1.4)
 	yaxis_bot_chain.SetNdivisions(4)
 	xaxis_bot_chain.SetNdivisions(510)
-	#xaxis_bot_chain.SetMoreLogLabels()
 	xaxis_bot_chain.SetTitleOffset(1)
-	yaxis_bot_chain.SetTitle("BDT Efficiency")
+	if str(trig) == "25med" and str(chain) == "tracktwo":
+	     yaxis_bot_chain.SetTitle("BDT Eff.")
+	elif str(trig) == "tracktwo" and str(chain) == "ptonly":
+	     yaxis_bot_chain.SetTitle("Trk Eff.")
+	elif str(trig) == "ptonly" and str(chain) == "L1TAU12IMmed":
+	     yaxis_bot_chain.SetTitle("P_{T} Cut Eff.")
 	yaxis_bot_chain.SetTitleOffset(0.5)
 
 
