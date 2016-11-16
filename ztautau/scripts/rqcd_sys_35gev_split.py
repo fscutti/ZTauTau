@@ -623,6 +623,136 @@ print ""
 print "---> total sys 80L1TAU60med low pt (percentage) =", max( ((max_rqcd_i_low_topo_1track_80L1TAU60med - min_rqcd_i_low_topo_1track_80L1TAU60med)/2)/rqcd_i_low_1track_80L1TAU60med_val, ((max_rqcd_i_low_ptvar_1track_80L1TAU60med - min_rqcd_i_low_ptvar_1track_80L1TAU60med)/2)/rqcd_i_low_1track_80L1TAU60med_val )
 print "---> total sys 80L1TAU60med high pt (percentage) =", max( ((max_rqcd_i_high_topo_1track_80L1TAU60med - min_rqcd_i_high_topo_1track_80L1TAU60med)/2)/rqcd_i_high_1track_80L1TAU60med_val, ((max_rqcd_i_high_ptvar_1track_80L1TAU60med - min_rqcd_i_high_ptvar_1track_80L1TAU60med)/2)/rqcd_i_high_1track_80L1TAU60med_val )
 
+################################################################################################
+print " ----------------------------------- "
+print "            125 med trigger"
+print " ------------------------------------"
+rqcd_i_low_1track_125med_val = 0.722 
+rqcd_i_high_1track_125med_val = 1.159
+
+rqcd_i_low_topo_1track_125med = [0.793, 0.873, 0.873, 0.748, 0.748, 0.841, 1.000, 0.833, 1.000, 1.000, 1.000, 1.333, 2.000, 1.500, 0.500, 0.500, 0.500, 0.500, 0.500, 0.500, 0.500, 0.500, 1.000, 1.000, 1.000, 1.150]
+rqcd_i_high_topo_1track_125med = [1.027, 1.065, 1.042, 1.030, 1.046, 1.073, 1.098, 1.128, 1.097, 1.080, 1.067, 1.076, 1.043, 1.030, 1.006, 1.178, 1.153, 1.150, 1.156, 1.120, 1.132, 1.138, 1.097, 1.109, 1.102, 1.087, 1.104, 1.082, 1.072, 1.094]
+
+min_rqcd_i_low_topo_1track_125med = 2
+max_rqcd_i_low_topo_1track_125med = 0
+min_rqcd_i_high_topo_1track_125med = 2
+max_rqcd_i_high_topo_1track_125med = 0
+
+for i in range(len(rqcd_i_low_topo_1track_125med)):
+	if rqcd_i_low_topo_1track_125med[i]<min_rqcd_i_low_topo_1track_125med:
+		min_rqcd_i_low_topo_1track_125med = rqcd_i_low_topo_1track_125med[i]
+	if rqcd_i_low_topo_1track_125med[i]>max_rqcd_i_low_topo_1track_125med:
+		max_rqcd_i_low_topo_1track_125med = rqcd_i_low_topo_1track_125med[i]
+
+
+for i in range(len(rqcd_i_high_topo_1track_125med)):
+        if rqcd_i_high_topo_1track_125med[i]<min_rqcd_i_high_topo_1track_125med:
+                min_rqcd_i_high_topo_1track_125med = rqcd_i_high_topo_1track_125med[i]
+        if rqcd_i_high_topo_1track_125med[i]>max_rqcd_i_high_topo_1track_125med:
+                max_rqcd_i_high_topo_1track_125med = rqcd_i_high_topo_1track_125med[i]
+
+print "TOPO_125med: sys_i_low =", ((max_rqcd_i_low_topo_1track_125med - min_rqcd_i_low_topo_1track_125med)/2)
+print "TOPO_125med: sys_i_high =", ((max_rqcd_i_high_topo_1track_125med - min_rqcd_i_high_topo_1track_125med)/2)
+print "TOPO_125med: sys_i_low (percentage) =", ((max_rqcd_i_low_topo_1track_125med - min_rqcd_i_low_topo_1track_125med)/2)/rqcd_i_low_1track_125med_val
+print "TOPO_125med: sys_i_high (percentage) =", ((max_rqcd_i_high_topo_1track_125med - min_rqcd_i_high_topo_1track_125med)/2)/rqcd_i_high_1track_125med_val
+
+rqcd_i_low_ptvar_1track_125med = [0.617, 0.617, 0.617, 0.617, 0.565, 0.596, 0.631, 0.631, 0.671, 0.715, 0.715, 0.649, 0.649]
+rqcd_i_high_ptvar_1track_125med = [1.196, 1.198, 1.201, 1.198, 1.202, 1.197, 1.211, 1.219, 1.212, 1.214, 1.210, 1.207, 1.227, 1.223, 1.209, 1.220, 1.225, 1.213, 1.206, 1.207]
+
+min_rqcd_i_low_ptvar_1track_125med = 2
+max_rqcd_i_low_ptvar_1track_125med = 0
+min_rqcd_i_high_ptvar_1track_125med = 2
+max_rqcd_i_high_ptvar_1track_125med = 0
+
+for i in range(len(rqcd_i_low_ptvar_1track_125med)):
+        if rqcd_i_low_ptvar_1track_125med[i]<min_rqcd_i_low_ptvar_1track_125med:
+                min_rqcd_i_low_ptvar_1track_125med = rqcd_i_low_ptvar_1track_125med[i]
+        if rqcd_i_low_ptvar_1track_125med[i]>max_rqcd_i_low_ptvar_1track_125med:
+                max_rqcd_i_low_ptvar_1track_125med = rqcd_i_low_ptvar_1track_125med[i]
+
+
+for i in range(len(rqcd_i_high_ptvar_1track_125med)):
+        if rqcd_i_high_ptvar_1track_125med[i]<min_rqcd_i_high_ptvar_1track_125med:
+                min_rqcd_i_high_ptvar_1track_125med = rqcd_i_high_ptvar_1track_125med[i]
+        if rqcd_i_high_ptvar_1track_125med[i]>max_rqcd_i_high_ptvar_1track_125med:
+                max_rqcd_i_high_ptvar_1track_125med = rqcd_i_high_ptvar_1track_125med[i]
+
+print "PTVAR_125med: sys_i_low =", ((max_rqcd_i_low_ptvar_1track_125med - min_rqcd_i_low_ptvar_1track_125med)/2)
+print "PTVAR_125med: sys_i_high =", ((max_rqcd_i_high_ptvar_1track_125med - min_rqcd_i_high_ptvar_1track_125med)/2)
+print "PTVAR_125med: sys_i_low (percentage) =", ((max_rqcd_i_low_ptvar_1track_125med - min_rqcd_i_low_ptvar_1track_125med)/2)/rqcd_i_low_1track_125med_val
+print "PTVAR_125med: sys_i_high (percentage) =", ((max_rqcd_i_high_ptvar_1track_125med - min_rqcd_i_high_ptvar_1track_125med)/2)/rqcd_i_high_1track_125med_val
+print ""
+print "---> total sys 125med low pt =", max( ((max_rqcd_i_low_topo_1track_125med - min_rqcd_i_low_topo_1track_125med)/2), ((max_rqcd_i_low_ptvar_1track_125med - min_rqcd_i_low_ptvar_1track_125med)/2))
+print "---> total sys 125med high pt =", max( ((max_rqcd_i_high_topo_1track_125med - min_rqcd_i_high_topo_1track_125med)/2), ((max_rqcd_i_high_ptvar_1track_125med - min_rqcd_i_high_ptvar_1track_125med)/2) )
+print ""
+print "---> total sys 125med low pt (percentage) =", max( ((max_rqcd_i_low_topo_1track_125med - min_rqcd_i_low_topo_1track_125med)/2)/rqcd_i_low_1track_125med_val, ((max_rqcd_i_low_ptvar_1track_125med - min_rqcd_i_low_ptvar_1track_125med)/2)/rqcd_i_low_1track_125med_val )
+print "---> total sys 125med high pt (percentage) =", max( ((max_rqcd_i_high_topo_1track_125med - min_rqcd_i_high_topo_1track_125med)/2)/rqcd_i_high_1track_125med_val, ((max_rqcd_i_high_ptvar_1track_125med - min_rqcd_i_high_ptvar_1track_125med)/2)/rqcd_i_high_1track_125med_val )
+
+################################################################################################
+print " ----------------------------------- "
+print "            160 med trigger"
+print " ------------------------------------"
+rqcd_i_low_1track_160med_val = 1 
+rqcd_i_high_1track_160med_val = 1.159
+
+rqcd_i_low_topo_1track_160med = [1.200, 1.000, 1.333, 4.000, 3.000, ]
+rqcd_i_high_topo_1track_160med = [1.089, 1.108, 1.070, 1.116, 1.114, 1.145, 1.165, 1.192, 1.188, 1.177, 1.187, 1.104, 1.151, 1.161, 1.076, 1.086, 1.071, 1.086, 1.138, 1.191, 1.286, 1.116, 1.154, 1.164, 1.065, 1.077, 1.122, 1.072, ]
+
+min_rqcd_i_low_topo_1track_160med = 2
+max_rqcd_i_low_topo_1track_160med = 0
+min_rqcd_i_high_topo_1track_160med = 2
+max_rqcd_i_high_topo_1track_160med = 0
+
+for i in range(len(rqcd_i_low_topo_1track_160med)):
+	if rqcd_i_low_topo_1track_160med[i]<min_rqcd_i_low_topo_1track_160med:
+		min_rqcd_i_low_topo_1track_160med = rqcd_i_low_topo_1track_160med[i]
+	if rqcd_i_low_topo_1track_160med[i]>max_rqcd_i_low_topo_1track_160med:
+		max_rqcd_i_low_topo_1track_160med = rqcd_i_low_topo_1track_160med[i]
+
+
+for i in range(len(rqcd_i_high_topo_1track_160med)):
+        if rqcd_i_high_topo_1track_160med[i]<min_rqcd_i_high_topo_1track_160med:
+                min_rqcd_i_high_topo_1track_160med = rqcd_i_high_topo_1track_160med[i]
+        if rqcd_i_high_topo_1track_160med[i]>max_rqcd_i_high_topo_1track_160med:
+                max_rqcd_i_high_topo_1track_160med = rqcd_i_high_topo_1track_160med[i]
+
+print "TOPO_160med: sys_i_low =", ((max_rqcd_i_low_topo_1track_160med - min_rqcd_i_low_topo_1track_160med)/2)
+print "TOPO_160med: sys_i_high =", ((max_rqcd_i_high_topo_1track_160med - min_rqcd_i_high_topo_1track_160med)/2)
+print "TOPO_160med: sys_i_low (percentage) =", ((max_rqcd_i_low_topo_1track_160med - min_rqcd_i_low_topo_1track_160med)/2)/rqcd_i_low_1track_160med_val
+print "TOPO_160med: sys_i_high (percentage) =", ((max_rqcd_i_high_topo_1track_160med - min_rqcd_i_high_topo_1track_160med)/2)/rqcd_i_high_1track_160med_val
+
+rqcd_i_low_ptvar_1track_160med = [1.143, 1.143, 1.143, 1.333, 1.167]
+rqcd_i_high_ptvar_1track_160med = [1.135, 1.133, 1.127, 1.126, 1.124, 1.139, 1.135, 1.140, 1.132, 1.129, 1.121, 1.136, 1.131, 1.128, 1.134, 1.130, 1.123, 1.120,  1.112, 1.130, 1.144, 1.124, 1.131, 1.112, 1.107, 1.119, 1.122]
+
+min_rqcd_i_low_ptvar_1track_160med = 2
+max_rqcd_i_low_ptvar_1track_160med = 0
+min_rqcd_i_high_ptvar_1track_160med = 2
+max_rqcd_i_high_ptvar_1track_160med = 0
+
+for i in range(len(rqcd_i_low_ptvar_1track_160med)):
+        if rqcd_i_low_ptvar_1track_160med[i]<min_rqcd_i_low_ptvar_1track_160med:
+                min_rqcd_i_low_ptvar_1track_160med = rqcd_i_low_ptvar_1track_160med[i]
+        if rqcd_i_low_ptvar_1track_160med[i]>max_rqcd_i_low_ptvar_1track_160med:
+                max_rqcd_i_low_ptvar_1track_160med = rqcd_i_low_ptvar_1track_160med[i]
+
+
+for i in range(len(rqcd_i_high_ptvar_1track_160med)):
+        if rqcd_i_high_ptvar_1track_160med[i]<min_rqcd_i_high_ptvar_1track_160med:
+                min_rqcd_i_high_ptvar_1track_160med = rqcd_i_high_ptvar_1track_160med[i]
+        if rqcd_i_high_ptvar_1track_160med[i]>max_rqcd_i_high_ptvar_1track_160med:
+                max_rqcd_i_high_ptvar_1track_160med = rqcd_i_high_ptvar_1track_160med[i]
+
+print "PTVAR_160med: sys_i_low =", ((max_rqcd_i_low_ptvar_1track_160med - min_rqcd_i_low_ptvar_1track_160med)/2)
+print "PTVAR_160med: sys_i_high =", ((max_rqcd_i_high_ptvar_1track_160med - min_rqcd_i_high_ptvar_1track_160med)/2)
+print "PTVAR_160med: sys_i_low (percentage) =", ((max_rqcd_i_low_ptvar_1track_160med - min_rqcd_i_low_ptvar_1track_160med)/2)/rqcd_i_low_1track_160med_val
+print "PTVAR_160med: sys_i_high (percentage) =", ((max_rqcd_i_high_ptvar_1track_160med - min_rqcd_i_high_ptvar_1track_160med)/2)/rqcd_i_high_1track_160med_val
+print ""
+print "---> total sys 160med low pt =", max( ((max_rqcd_i_low_topo_1track_160med - min_rqcd_i_low_topo_1track_160med)/2), ((max_rqcd_i_low_ptvar_1track_160med - min_rqcd_i_low_ptvar_1track_160med)/2))
+print "---> total sys 160med high pt =", max( ((max_rqcd_i_high_topo_1track_160med - min_rqcd_i_high_topo_1track_160med)/2), ((max_rqcd_i_high_ptvar_1track_160med - min_rqcd_i_high_ptvar_1track_160med)/2) )
+print ""
+print "---> total sys 160med low pt (percentage) =", max( ((max_rqcd_i_low_topo_1track_160med - min_rqcd_i_low_topo_1track_160med)/2)/rqcd_i_low_1track_160med_val, ((max_rqcd_i_low_ptvar_1track_160med - min_rqcd_i_low_ptvar_1track_160med)/2)/rqcd_i_low_1track_160med_val )
+print "---> total sys 160med high pt (percentage) =", max( ((max_rqcd_i_high_topo_1track_160med - min_rqcd_i_high_topo_1track_160med)/2)/rqcd_i_high_1track_160med_val, ((max_rqcd_i_high_ptvar_1track_160med - min_rqcd_i_high_ptvar_1track_160med)/2)/rqcd_i_high_1track_160med_val )
+
 
 """
 # ----------------------------------- #
@@ -1233,6 +1363,138 @@ print "---> total sys 80L1TAU60med high pt =", max( ((max_rqcd_i_high_topo_3trac
 print ""
 print "---> total sys 80L1TAU60med low pt (percentage) =", max( ((max_rqcd_i_low_topo_3track_80L1TAU60med - min_rqcd_i_low_topo_3track_80L1TAU60med)/2)/rqcd_i_low_3track_80L1TAU60med_val, ((max_rqcd_i_low_ptvar_3track_80L1TAU60med - min_rqcd_i_low_ptvar_3track_80L1TAU60med)/2)/rqcd_i_low_3track_80L1TAU60med_val )
 print "---> total sys 80L1TAU60med high pt (percentage) =", max( ((max_rqcd_i_high_topo_3track_80L1TAU60med - min_rqcd_i_high_topo_3track_80L1TAU60med)/2)/rqcd_i_high_3track_80L1TAU60med_val, ((max_rqcd_i_high_ptvar_3track_80L1TAU60med - min_rqcd_i_high_ptvar_3track_80L1TAU60med)/2)/rqcd_i_high_3track_80L1TAU60med_val )
+
+################################################################################################
+print " ----------------------------------- "
+print "            125 med trigger"
+print " ------------------------------------"
+rqcd_i_low_3track_125med_val = 0.569 
+rqcd_i_high_3track_125med_val = 0.923
+
+rqcd_i_low_topo_3track_125med = [0.562, 0.562, 0.229, 0.229, 0.333, 1.000, ]
+rqcd_i_high_topo_3track_125med = [0.998, 0.983, 0.939, 0.791, 0.849, 1.018, 0.849, 0.764, 0.978, 1.060, 0.930, 0.867, 0.500,  0.923, 0.875, 0.915, 0.800, 0.749, 0.648, 0.698]
+
+min_rqcd_i_low_topo_3track_125med = 2
+max_rqcd_i_low_topo_3track_125med = 0
+min_rqcd_i_high_topo_3track_125med = 2
+max_rqcd_i_high_topo_3track_125med = 0
+
+for i in range(len(rqcd_i_low_topo_3track_125med)):
+	if rqcd_i_low_topo_3track_125med[i]<min_rqcd_i_low_topo_3track_125med:
+		min_rqcd_i_low_topo_3track_125med = rqcd_i_low_topo_3track_125med[i]
+	if rqcd_i_low_topo_3track_125med[i]>max_rqcd_i_low_topo_3track_125med:
+		max_rqcd_i_low_topo_3track_125med = rqcd_i_low_topo_3track_125med[i]
+
+
+for i in range(len(rqcd_i_high_topo_3track_125med)):
+        if rqcd_i_high_topo_3track_125med[i]<min_rqcd_i_high_topo_3track_125med:
+                min_rqcd_i_high_topo_3track_125med = rqcd_i_high_topo_3track_125med[i]
+        if rqcd_i_high_topo_3track_125med[i]>max_rqcd_i_high_topo_3track_125med:
+                max_rqcd_i_high_topo_3track_125med = rqcd_i_high_topo_3track_125med[i]
+
+print "TOPO_125med: sys_i_low =", ((max_rqcd_i_low_topo_3track_125med - min_rqcd_i_low_topo_3track_125med)/2)
+print "TOPO_125med: sys_i_high =", ((max_rqcd_i_high_topo_3track_125med - min_rqcd_i_high_topo_3track_125med)/2)
+print "TOPO_125med: sys_i_low (percentage) =", ((max_rqcd_i_low_topo_3track_125med - min_rqcd_i_low_topo_3track_125med)/2)/rqcd_i_low_3track_125med_val
+print "TOPO_125med: sys_i_high (percentage) =", ((max_rqcd_i_high_topo_3track_125med - min_rqcd_i_high_topo_3track_125med)/2)/rqcd_i_high_3track_125med_val
+
+rqcd_i_low_ptvar_3track_125med = [0.469, 0.369, 0.269, 0.333, 0.375, 0.429]
+rqcd_i_high_ptvar_3track_125med = [1.414, 1.393, 1.299, 1.257, 1.295, 0.375, 1.359, 1.396, 1.314, 1.295, 1.300, 1.267, 1.286, 1.264, 1.235, 1.235, 1.380, 1.367, 1.354, 1.377, 1.350, 1.328, 1.333, 1.323, 1.328, 1.304, ]
+
+min_rqcd_i_low_ptvar_3track_125med = 2
+max_rqcd_i_low_ptvar_3track_125med = 0
+min_rqcd_i_high_ptvar_3track_125med = 2
+max_rqcd_i_high_ptvar_3track_125med = 0
+
+for i in range(len(rqcd_i_low_ptvar_3track_125med)):
+        if rqcd_i_low_ptvar_3track_125med[i]<min_rqcd_i_low_ptvar_3track_125med:
+                min_rqcd_i_low_ptvar_3track_125med = rqcd_i_low_ptvar_3track_125med[i]
+        if rqcd_i_low_ptvar_3track_125med[i]>max_rqcd_i_low_ptvar_3track_125med:
+                max_rqcd_i_low_ptvar_3track_125med = rqcd_i_low_ptvar_3track_125med[i]
+
+
+for i in range(len(rqcd_i_high_ptvar_3track_125med)):
+        if rqcd_i_high_ptvar_3track_125med[i]<min_rqcd_i_high_ptvar_3track_125med:
+                min_rqcd_i_high_ptvar_3track_125med = rqcd_i_high_ptvar_3track_125med[i]
+        if rqcd_i_high_ptvar_3track_125med[i]>max_rqcd_i_high_ptvar_3track_125med:
+                max_rqcd_i_high_ptvar_3track_125med = rqcd_i_high_ptvar_3track_125med[i]
+
+print "PTVAR_125med: sys_i_low =", ((max_rqcd_i_low_ptvar_3track_125med - min_rqcd_i_low_ptvar_3track_125med)/2)
+print "PTVAR_125med: sys_i_high =", ((max_rqcd_i_high_ptvar_3track_125med - min_rqcd_i_high_ptvar_3track_125med)/2)
+print "PTVAR_125med: sys_i_low (percentage) =", ((max_rqcd_i_low_ptvar_3track_125med - min_rqcd_i_low_ptvar_3track_125med)/2)/rqcd_i_low_3track_125med_val
+print "PTVAR_125med: sys_i_high (percentage) =", ((max_rqcd_i_high_ptvar_3track_125med - min_rqcd_i_high_ptvar_3track_125med)/2)/rqcd_i_high_3track_125med_val
+print ""
+print "---> total sys 125med low pt =", max( ((max_rqcd_i_low_topo_3track_125med - min_rqcd_i_low_topo_3track_125med)/2), ((max_rqcd_i_low_ptvar_3track_125med - min_rqcd_i_low_ptvar_3track_125med)/2))
+print "---> total sys 125med high pt =", max( ((max_rqcd_i_high_topo_3track_125med - min_rqcd_i_high_topo_3track_125med)/2), ((max_rqcd_i_high_ptvar_3track_125med - min_rqcd_i_high_ptvar_3track_125med)/2) )
+print ""
+print "---> total sys 125med low pt (percentage) =", max( ((max_rqcd_i_low_topo_3track_125med - min_rqcd_i_low_topo_3track_125med)/2)/rqcd_i_low_3track_125med_val, ((max_rqcd_i_low_ptvar_3track_125med - min_rqcd_i_low_ptvar_3track_125med)/2)/rqcd_i_low_3track_125med_val )
+print "---> total sys 125med high pt (percentage) =", max( ((max_rqcd_i_high_topo_3track_125med - min_rqcd_i_high_topo_3track_125med)/2)/rqcd_i_high_3track_125med_val, ((max_rqcd_i_high_ptvar_3track_125med - min_rqcd_i_high_ptvar_3track_125med)/2)/rqcd_i_high_3track_125med_val )
+
+################################################################################################
+print " ----------------------------------- "
+print "            160 med trigger"
+print " ------------------------------------"
+rqcd_i_low_3track_160med_val = 0.672 
+rqcd_i_high_3track_160med_val = 1.482
+
+rqcd_i_low_topo_3track_160med = [0.344, 0.500, 1.000]
+rqcd_i_high_topo_3track_160med = [1.044, 1.084, 1.026, 1.026, 1.055, 1.138, 1.059, 0.980, 0.962, 0.994, 0.950, 0.994, 0.945, 0.832, 0.960, 1.026, 1.055, 1.138, 1.059, 0.980, 0.901]
+
+min_rqcd_i_low_topo_3track_160med = 2
+max_rqcd_i_low_topo_3track_160med = 0
+min_rqcd_i_high_topo_3track_160med = 2
+max_rqcd_i_high_topo_3track_160med = 0
+
+for i in range(len(rqcd_i_low_topo_3track_160med)):
+	if rqcd_i_low_topo_3track_160med[i]<min_rqcd_i_low_topo_3track_160med:
+		min_rqcd_i_low_topo_3track_160med = rqcd_i_low_topo_3track_160med[i]
+	if rqcd_i_low_topo_3track_160med[i]>max_rqcd_i_low_topo_3track_160med:
+		max_rqcd_i_low_topo_3track_160med = rqcd_i_low_topo_3track_160med[i]
+
+
+for i in range(len(rqcd_i_high_topo_3track_160med)):
+        if rqcd_i_high_topo_3track_160med[i]<min_rqcd_i_high_topo_3track_160med:
+                min_rqcd_i_high_topo_3track_160med = rqcd_i_high_topo_3track_160med[i]
+        if rqcd_i_high_topo_3track_160med[i]>max_rqcd_i_high_topo_3track_160med:
+                max_rqcd_i_high_topo_3track_160med = rqcd_i_high_topo_3track_160med[i]
+
+print "TOPO_160med: sys_i_low =", ((max_rqcd_i_low_topo_3track_160med - min_rqcd_i_low_topo_3track_160med)/2)
+print "TOPO_160med: sys_i_high =", ((max_rqcd_i_high_topo_3track_160med - min_rqcd_i_high_topo_3track_160med)/2)
+print "TOPO_160med: sys_i_low (percentage) =", ((max_rqcd_i_low_topo_3track_160med - min_rqcd_i_low_topo_3track_160med)/2)/rqcd_i_low_3track_160med_val
+print "TOPO_160med: sys_i_high (percentage) =", ((max_rqcd_i_high_topo_3track_160med - min_rqcd_i_high_topo_3track_160med)/2)/rqcd_i_high_3track_160med_val
+
+rqcd_i_low_ptvar_3track_160med = [0.672, 0.422, 0.500]
+rqcd_i_high_ptvar_3track_160med = [1.366, 1.312, 1.229, 1.205, 1.084, 1.205, 1.174, 1.211, 1.305, 1.199, 1.236, 1.229, 1.285, 1.258, 1.293, 1.330, 1.301, 1.310, 1.281, 1.222, ]
+
+min_rqcd_i_low_ptvar_3track_160med = 2
+max_rqcd_i_low_ptvar_3track_160med = 0
+min_rqcd_i_high_ptvar_3track_160med = 2
+max_rqcd_i_high_ptvar_3track_160med = 0
+
+for i in range(len(rqcd_i_low_ptvar_3track_160med)):
+        if rqcd_i_low_ptvar_3track_160med[i]<min_rqcd_i_low_ptvar_3track_160med:
+                min_rqcd_i_low_ptvar_3track_160med = rqcd_i_low_ptvar_3track_160med[i]
+        if rqcd_i_low_ptvar_3track_160med[i]>max_rqcd_i_low_ptvar_3track_160med:
+                max_rqcd_i_low_ptvar_3track_160med = rqcd_i_low_ptvar_3track_160med[i]
+
+
+for i in range(len(rqcd_i_high_ptvar_3track_160med)):
+        if rqcd_i_high_ptvar_3track_160med[i]<min_rqcd_i_high_ptvar_3track_160med:
+                min_rqcd_i_high_ptvar_3track_160med = rqcd_i_high_ptvar_3track_160med[i]
+        if rqcd_i_high_ptvar_3track_160med[i]>max_rqcd_i_high_ptvar_3track_160med:
+                max_rqcd_i_high_ptvar_3track_160med = rqcd_i_high_ptvar_3track_160med[i]
+
+print "PTVAR_160med: sys_i_low =", ((max_rqcd_i_low_ptvar_3track_160med - min_rqcd_i_low_ptvar_3track_160med)/2)
+print "PTVAR_160med: sys_i_high =", ((max_rqcd_i_high_ptvar_3track_160med - min_rqcd_i_high_ptvar_3track_160med)/2)
+print "PTVAR_160med: sys_i_low (percentage) =", ((max_rqcd_i_low_ptvar_3track_160med - min_rqcd_i_low_ptvar_3track_160med)/2)/rqcd_i_low_3track_160med_val
+print "PTVAR_160med: sys_i_high (percentage) =", ((max_rqcd_i_high_ptvar_3track_160med - min_rqcd_i_high_ptvar_3track_160med)/2)/rqcd_i_high_3track_160med_val
+print ""
+print "---> total sys 160med low pt =", max( ((max_rqcd_i_low_topo_3track_160med - min_rqcd_i_low_topo_3track_160med)/2), ((max_rqcd_i_low_ptvar_3track_160med - min_rqcd_i_low_ptvar_3track_160med)/2))
+print "---> total sys 160med high pt =", max( ((max_rqcd_i_high_topo_3track_160med - min_rqcd_i_high_topo_3track_160med)/2), ((max_rqcd_i_high_ptvar_3track_160med - min_rqcd_i_high_ptvar_3track_160med)/2) )
+print ""
+print "---> total sys 160med low pt (percentage) =", max( ((max_rqcd_i_low_topo_3track_160med - min_rqcd_i_low_topo_3track_160med)/2)/rqcd_i_low_3track_160med_val, ((max_rqcd_i_low_ptvar_3track_160med - min_rqcd_i_low_ptvar_3track_160med)/2)/rqcd_i_low_3track_160med_val )
+print "---> total sys 160med high pt (percentage) =", max( ((max_rqcd_i_high_topo_3track_160med - min_rqcd_i_high_topo_3track_160med)/2)/rqcd_i_high_3track_160med_val, ((max_rqcd_i_high_ptvar_3track_160med - min_rqcd_i_high_ptvar_3track_160med)/2)/rqcd_i_high_3track_160med_val )
+
+
 
 """
 # ----------------------------------- #
