@@ -125,7 +125,6 @@ def make_stat_hist(h):
         n = h.GetBinContent(i)
         en = h.GetBinError(i)
         stat = en / n if n else 0.0
-	#stat = en
         h_stat.SetBinContent(i,stat) 
     return h_stat
 
@@ -157,7 +156,9 @@ def make_error_graph_from_hist(hist):
     for i in range(1,hist.GetNbinsX()+1):
                 ex = hist.GetBinWidth(i)/2.
                 graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
-		err = hist.GetBinError(i)
+		err0 = hist.GetBinError(i)
+                n = hist.GetBinContent(i)
+		err = err0# / n if n else 0.0
                 graph.SetPointError(i-1,ex,ex,err,err)
     return graph
 
@@ -232,6 +233,7 @@ def make_error_scatter_graph(hist,h_UP,h_DN):
     for i in range(1,hist.GetNbinsX()+1):
         eUP = abs(h_UP.GetBinContent(i))
         eDN = abs(h_DN.GetBinContent(i))
+	
 	ex = h_UP.GetBinWidth(i)/2.
 	graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
 	graph.SetPointError(i-1,ex,ex,eDN,eUP)
@@ -405,18 +407,29 @@ def plot_hist(
 		total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
 		
 		g_stat = make_band_graph_from_hist(total_hists[0])
-		g_stat.SetFillColor(ROOT.kRed-4)
+		g_stat.SetFillColor(ROOT.kGray+3)
 		g_stat.SetFillStyle(3001)
 		g_tot  = make_band_graph_from_hist(total_hists[3],total_hists[4])
-		g_tot.SetFillColor(ROOT.kAzure+6)
+		g_tot.SetFillColor(ROOT.kRed)
 		g_tot.SetFillStyle(3001)
 	    else:
 		h_total_stat = make_stat_hist(h_total)
 		g_stat = make_band_graph_from_hist(h_total_stat)
-		g_stat.SetFillColor(ROOT.kRed-4)
+		g_stat.SetFillColor(ROOT.kGray+3)
 		g_stat.SetFillStyle(3001)
+		
 		g_tot = None
 
+	    
+
+            mc_total_stat = make_stat_hist(h_total)
+            mc_stat_scatter = make_error_graph_from_hist(h_total)#make_error_scatter_graph(h_total,mc_total_stat,mc_total_stat)
+            mc_stat_scatter.SetFillStyle(3001)
+            mc_stat_scatter.SetFillColor(ROOT.kGray+3)
+            mc_stat_scatter.SetLineStyle(1)
+ 
+	    ROOT.gStyle.SetHatchesLineWidth(3)
+            ROOT.gStyle.SetHatchesSpacing(0.05)
 	    ## blind data and create ratio 
 	    h_data  = None
 	    h_ratio = None
@@ -447,9 +460,9 @@ def plot_hist(
 	    legYCompr = 8.0
 	    legYMax = 0.85
 	    legYMin = legYMax - (legYMax - (0.55 + y_leg_shift)) / legYCompr * nLegend
-	    legXMin = x_legend + x_leg_shift
-	    legXMax = legXMin + 0.4
-	  
+	    legXMin = 0.5#x_legend + x_leg_shift
+	    legXMax = 0.87#legXMin + 0.4
+	     
 	    ## create legend (could use metaroot functionality?)
 	    if not do_ratio_plot:
 	      legXMin -= 0.005
@@ -458,6 +471,8 @@ def plot_hist(
 	    leg.SetBorderSize(0)
 	    leg.SetFillColor(0)
 	    leg.SetFillStyle(0)
+            leg.SetNColumns(2)
+            leg.SetTextSize(0.03)
 	    if data: leg.AddEntry(h_data,data.tlatex,'PL')
 	    for s in signal:
 	      sig_tag = s.tlatex
@@ -467,8 +482,9 @@ def plot_hist(
 	    for b in backgrounds: 
 	      if not b in hists.keys(): continue
 	      leg.AddEntry(hists[b],b.tlatex,'F')
+	    #leg.AddEntry(mc_stat_scatter, "MC Stat. Unc.","F")
 	    if sys_dict:
-		leg.AddEntry(g_tot, "MC Sys.+Stat.", 'F')
+		leg.AddEntry(g_tot, "Sys + Stat Unc.", 'F')
 	    leg.AddEntry(g_stat, "MC Stat.", 'F')
 
 	    ## create canvas
@@ -476,8 +492,8 @@ def plot_hist(
 	    if not reg: reg = ""
 	    name = '_'.join([reg,histname]).replace('/','_') 
 	    cname = "c_final_%s"%name
-	    if do_ratio_plot: c = ROOT.TCanvas(cname,cname,750,800)
-	    else: c = ROOT.TCanvas(cname,cname,800,700)	
+	    if do_ratio_plot: c = ROOT.TCanvas(cname,cname,600,600)
+	    else: c = ROOT.TCanvas(cname,cname,800,600)	
 	    if xmin==None: xmin = h_total.GetBinLowEdge(1)
 	    if xmax==None: xmax = h_total.GetBinLowEdge(h_total.GetNbinsX()+1)
 	    ymin = 1.e-3
@@ -489,6 +505,10 @@ def plot_hist(
 	    if log: ymax *= 100000.
 	    else:   ymax *= 1.8
 	    xtitle = h_total.GetXaxis().GetTitle()
+
+	    ratio_line = ROOT.TLine(xmin,1,xmax,1)
+	    ratio_line.SetLineColor(ROOT.kRed)
+            ratio_line.SetLineStyle(10)
 
 	    if do_ratio_plot: rsplit = 0.3
 	    else: rsplit = 0.
@@ -507,17 +527,18 @@ def plot_hist(
 	      pad2.SetLeftMargin(0.15)
 	      pad2.SetTicky()
 	      pad2.SetTickx()
-	      pad2.SetGridy()
+	      #pad2.SetGridy()
 	    #if do_ratio_plot: pad2.Draw()
 	      pad2.Draw()
 	    pad1.cd()
 
 	    ytitle = "Events" 
 	    if not rebin: ytitle = yaxistitle
+            #ytitle = yaxistitle
 	    elif rebin!=1:
 	      if not "BDT" in xtitle:
 		ytitle += " / %s"%rebin
-		if ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
+		if ("f" in xtitle) or ("track" in xtitle) or ("S" in xtitle) or ("R" in xtitle) or ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
 		else: ytitle += " GeV"
 	      else: ytitle += " / %s"%(0.05)
 
@@ -536,15 +557,15 @@ def plot_hist(
 	      xaxis1.SetTitleOffset( 1.3* xaxis1.GetTitleOffset() / scale  )
 	      xaxis1.SetLabelOffset( 1.* xaxis1.GetLabelOffset() / scale )
 
-	    yaxis1.SetTitleSize( yaxis1.GetTitleSize() * scale )
+	    yaxis1.SetTitleSize(0.045)# yaxis1.GetTitleSize() * scale )
 	    yaxis1.SetTitleOffset( 2.1 * yaxis1.GetTitleOffset() / scale )
-	    yaxis1.SetLabelSize( 0.8 * yaxis1.GetLabelSize() * scale )
+	    yaxis1.SetLabelSize(0.04)# 0.8 * yaxis1.GetLabelSize() * scale )
 	    yaxis1.SetLabelOffset( 1. * yaxis1.GetLabelOffset() / scale )
 	    xaxis1.SetNdivisions(510)
 	    yaxis1.SetNdivisions(510)
 
 	    h_stack.Draw("SAME,HIST")
-	    
+	    mc_stat_scatter.Draw("E2 SAME") 
 	    """
 	    for s in reversed(signal):
 	      if not s in hists.keys(): continue
@@ -569,15 +590,21 @@ def plot_hist(
 	    th = 0.07
 	    tx = 0.18
 	    lumi = backgrounds[0].estimator.hm.target_lumi/1000.
-	    textsize = 0.8
+	    textsize = 0.7
 	    if not do_ratio_plot: textsize = 0.8
 	    latex_y = ty-2.*th
-	    tlatex.DrawLatex(tx,latex_y,'#scale[%lf]{#scale[%lf]{#int}L dt = %2.1f fb^{-1}, #sqrt{s} = 13 TeV}'%(textsize,0.8*textsize,lumi) )
+	    tlatex.DrawLatex(tx,latex_y,"#scale[0.7]{#bf{#it{ATLAS}} Internal}")
+	    tlatex.DrawLatex(tx,latex_y-0.07,'#scale[%lf]{#scale[%lf]{#int}L dt = %2.1f fb^{-1}}'%(textsize,0.8*textsize,lumi) )
+	    tlatex.DrawLatex(tx,latex_y-0.14,'#scale[%lf]{#sqrt{s} = 13 TeV}'%(textsize))
+	    tlatex.DrawLatex(tx, latex_y-0.21,'#scale[%lf]{Z#rightarrow#tau#tau#rightarrow#mu#tau_{had} T&P}'%(textsize))
 	    if label:
-	      latex_y -= 0.06
+              if label == "": pass
+              else:
+
+	        tlatex.DrawLatex(tx,latex_y - 0.28,"#scale[0.7]{%s}"%(label))
+	      #latex_y -= 0.1
 	      #for i,line in enumerate(label):
 	      #  tlatex.DrawLatex(tx,latex_y-i*0.06,"#scale[%lf]{%s}"%(textsize,line))
-	      tlatex.DrawLatex(tx,latex_y - 0.06,"#scale[%lf]{%s}"%(textsize,label))
 	    if blind:
 		line = ROOT.TLine()
 		line.SetLineColor(ROOT.kBlack)
@@ -592,16 +619,16 @@ def plot_hist(
 
 	    if do_ratio_plot:
 	      pad2.cd()
-	      fr2 = pad2.DrawFrame(xmin,0.49,xmax,1.51,';%s;Data / Bkg_{SM}'%(xtitle))
+	      fr2 = pad2.DrawFrame(xmin,0.49,xmax,1.51,';%s;Data/exp.'%(xtitle))
 	      xaxis2 = fr2.GetXaxis()
 	      yaxis2 = fr2.GetYaxis()
 	      scale = (1. / rsplit)
-	      yaxis2.SetTitleSize( yaxis2.GetTitleSize() * scale )
-	      yaxis2.SetLabelSize( yaxis2.GetLabelSize() * scale )
-	      yaxis2.SetTitleOffset( 2.1* yaxis2.GetTitleOffset() / scale  )
+	      yaxis2.SetTitleSize( 0.095)#yaxis2.GetTitleSize() * scale )
+	      yaxis2.SetLabelSize( 0.095)#yaxis2.GetLabelSize() * scale )
+	      yaxis2.SetTitleOffset(0.4)# 2.1* yaxis2.GetTitleOffset() / scale  )
 	      yaxis2.SetLabelOffset(0.4 * yaxis2.GetLabelOffset() * scale )
-	      xaxis2.SetTitleSize( xaxis2.GetTitleSize() * scale )
-	      xaxis2.SetLabelSize( 0.8 * xaxis2.GetLabelSize() * scale )
+	      xaxis2.SetTitleSize( 0.095)#xaxis2.GetTitleSize() * scale )
+	      xaxis2.SetLabelSize( 0.095)#0.8 * xaxis2.GetLabelSize() * scale )
 	      xaxis2.SetTickLength( xaxis2.GetTickLength() * scale )
 	      xaxis2.SetTitleOffset( 3.2* xaxis2.GetTitleOffset() / scale  )
 	      xaxis2.SetLabelOffset( 2.5* xaxis2.GetLabelOffset() / scale )
@@ -613,9 +640,9 @@ def plot_hist(
 		xaxis2.SetMoreLogLabels()
 	      else: 
 		pass
-
+              ratio_line.Draw()
 	      if g_tot: 
-		 g_tot.Draw("E2")
+                 g_tot.Draw("E2 Same")
 		 g_stat.Draw("E2 Same")
 
 	      else: g_stat.Draw("E2")
