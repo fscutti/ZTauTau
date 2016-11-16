@@ -399,7 +399,17 @@ class AddOnEstimator(BaseEstimator):
 
                 kf_SS_unc[s] = ratiounc(a = kf_ss_top, b = kf_ss_bot, sigmaa = kf_ss_top_err, sigmab = kf_ss_bot_err)
 
-        # compute rqcd transfer factor
+	   print "kfactor is", kf_SS[s], kf_OS[s]
+           if sys and "kW_OS" in sys.name:
+                   print "yup, got the kW OS sys"
+                   if mode == "up": kf_OS[s] = kf_OS[s]*(1.+sys.flat_err)
+                   if mode == "dn": kf_OS[s] = kf_OS[s]*(1.-sys.flat_err)
+           if sys and "kW_SS" in sys.name:
+                   print "yup, got the kW SS sys"
+                   if mode == "up": kf_SS[s] = kf_SS[s]*(1.+sys.flat_err)
+                   if mode == "dn": kf_SS[s] = kf_SS[s]*(1.-sys.flat_err)
+	   print "kfactor is", kf_SS[s], kf_OS[s]
+
         # adding k_factors to the estimators
         self.data_minus_mc_num.mc_samples_rescales = kf_OS
         self.data_minus_mc_den.mc_samples_rescales = kf_SS
@@ -412,7 +422,10 @@ class AddOnEstimator(BaseEstimator):
         """
         rqcd_top, rqcd_top_err = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-        rqcd = rqcd_top/rqcd_bot
+	if rqcd_bot == 0:
+		rqcd = 0
+	else:
+        	rqcd = rqcd_top/rqcd_bot
         
         if sys and "RQCD" in sys.name:
           # assuming numerator is always OS!!!
@@ -454,8 +467,8 @@ class AddOnEstimator(BaseEstimator):
           print "Sample | Region | k-factor | k-factor unc | Rqcd | Rqcd stat unc"
           print "----------------------------------------"
           for s in self.kf_regions.keys():
-            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],kf_OS_unc[s],rqcd,rqcd_stat_unc)
-            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],kf_SS_unc[s],rqcd,rqcd_stat_unc)
+            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],kf_OS_unc[s],rqcd,rqcd_stat_unc/rqcd)
+            print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],kf_SS_unc[s],rqcd,rqcd_stat_unc/rqcd)
             print 
         
         addon_regions = self.addon_regions
@@ -475,10 +488,10 @@ class AddOnEstimator(BaseEstimator):
 		if t ==self.data_sample: continue
 		elif t.name == "Wjets": continue
 		else:  
-			print "scaling", t.name, "by kfactor"
+			print "scaling", t.name, "by kfactors", kf_OS[s], kf_SS[s]
 			h_addon[t] =t.hist(region=addon_regions[t]["OS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
-			h_addon[t].Scale(kf_OS[t])
-			h_addon[t].Add(t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone(), -1.0 * rqcd * kf_SS[t])
+			h_addon[t].Scale(kf_OS[s])
+			h_addon[t].Add(t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone(), -1.0 * rqcd * kf_SS[s])
 
                         #h_addon[t] = t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
 		        #h_addon[t].Scale(kf_SS[t])
