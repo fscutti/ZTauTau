@@ -274,8 +274,8 @@ HLT_tau_pt = Var(name = 'HLT_tau_pt',
 
 HLT_jet_bdt_score = Var(name = 'HLT_jet_bdt_score',
              path = 'taus',
-             xmin = -1,
-             xmax = 2,
+             xmin = 0,
+             xmax = 1.5,
              log = False,
              xmin2 = None,
              xmax2 = None,
@@ -301,9 +301,173 @@ HLT_tau_n_wide_tracks = Var(name = 'HLT_tau_n_wide_tracks',
 
 HLT_pt_res = Var(name = 'HLT_pt_res',
              path = 'taus',
-             xmin = 0,
+             xmin = -0.2,
+             xmax = 0.2,
+             rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+Presel_tau_eta = Var(name = 'Presel_tau_eta',
+             path = 'taus',
+             xmin = -6.0,
+             xmax = 6.0,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+Presel_tau_phi = Var(name = 'Presel_tau_phi',
+             path = 'taus',
+             xmin = -5.0,
+             xmax = 5.0,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+Presel_tau_pt = Var(name = 'Presel_tau_pt',
+             path = 'taus',
+             xmin = 20,
              xmax = 300,
              rebin = 4,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+Presel_tau_n_tracks = Var(name = 'Presel_tau_n_tracks',
+             path = 'taus',
+             xmin = 0,
+             xmax = 5,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+ 
+Presel_tau_n_wide_tracks = Var(name = 'Presel_tau_n_wide_tracks',
+             path = 'taus',
+             xmin = 0,
+             xmax = 5,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+        
+HLT_ratio_trkemsys_pt = Var(name = 'HLT_ratio_trkemsys_pt',
+             path = 'taus',
+             xmin = 0,
+             xmax = 3,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_1P_frac_trks_iso_region = Var(name = 'HLT_1P_frac_trks_iso_region',
+             path = 'taus',
+             xmin = 0,
+             xmax = 1,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_3P_trans_flightpath_sig = Var(name = 'HLT_3P_trans_flightpath_sig',
+             path = 'taus',
+             xmin = -10,
+             xmax = 10,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_3P_massTrkSysCorrected = Var(name = 'HLT_3P_massTrkSysCorrected',
+             path = 'taus',
+             xmin = 0,
+             xmax = 6000,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+HLT_m_trk_EM_system = Var(name = 'HLT_m_trk_EM_system',
+             path = 'taus',
+             xmin = 0,
+             xmax = 6000,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_1P_lead_trk_IP_sig = Var(name = 'HLT_1P_lead_trk_IP_sig',
+             path = 'taus',
+             xmin = 0,
+             xmax = 2,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_3P_dRmax = Var(name = 'HLT_3P_dRmax',
+             path = 'taus',
+             xmin = 0,
+             xmax = 0.2,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+HLT_trk_radius = Var(name = 'HLT_trk_radius',
+             path = 'taus',
+             xmin = 0,
+             xmax = 0.2,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_lead_trk_p_frac = Var(name = 'HLT_lead_trk_p_frac',
+             path = 'taus',
+             xmin = 0,
+             xmax = 10,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_ratio_energy_to_trk_p = Var(name = 'HLT_ratio_energy_to_trk_p',
+             path = 'taus',
+             xmin = 0,
+             xmax = 10,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_frac_EM_from_charged_pions = Var(name = 'HLT_frac_EM_from_charged_pions',
+             path = 'taus',
+             xmin = -1,
+             xmax = 1,
+	     rebin = 2,
+             log = False,
+             xmin2 = None,
+             xmax2 = None,
+             )
+
+HLT_fcent = Var(name = 'HLT_fcent',
+             path = 'taus',
+             xmin = 0,
+             xmax = 1,
+	     rebin = 2,
              log = False,
              xmin2 = None,
              xmax2 = None,
@@ -410,7 +574,23 @@ vars_list.append(HLT_tau_n_wide_tracks)
 vars_list.append(HLT_tau_n_tracks)
 vars_list.append(HLT_jet_bdt_score)
 vars_list.append(HLT_pt_res)
-
+vars_list.append(Presel_tau_eta)
+vars_list.append(Presel_tau_pt)
+vars_list.append(Presel_tau_phi)
+vars_list.append(Presel_tau_n_wide_tracks)
+vars_list.append(Presel_tau_n_tracks)
+vars_list.append(HLT_ratio_trkemsys_pt)
+vars_list.append(HLT_1P_frac_trks_iso_region)
+vars_list.append(HLT_m_trk_EM_system)
+vars_list.append(HLT_1P_lead_trk_IP_sig)
+vars_list.append(HLT_trk_radius)
+vars_list.append(HLT_lead_trk_p_frac)
+vars_list.append(HLT_ratio_energy_to_trk_p)
+vars_list.append(HLT_frac_EM_from_charged_pions)
+vars_list.append(HLT_fcent)
+vars_list.append(HLT_3P_dRmax)
+vars_list.append(HLT_3P_massTrkSysCorrected)
+vars_list.append(HLT_3P_trans_flightpath_sig)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
