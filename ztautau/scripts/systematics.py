@@ -97,22 +97,22 @@ PILEUP = sys_dict['PILEUP'] = Systematic(
 
 RQCD_AntiIsoCR_lowPT = sys_dict['RQCD_AntiIsoCR_lowPT'] = Systematic(
         'RQCD_AntiIsoCR_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0656871218669,
+        flat_err=0.00907519446845,
         )
 
 RQCD_AntiIsoCR_highPT = sys_dict['RQCD_AntiIsoCR_highPT'] = Systematic(
         'RQCD_AntiIsoCR_highPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0838079739626,
+        flat_err=0.00854353132628,
         )
 
 RQCD_AntiIsoCR_25med_lowPT = sys_dict['RQCD_AntiIsoCR_25med_lowPT'] = Systematic(
         'RQCD_AntiIsoCR_25med_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0576241134752,
+        flat_err=0.00709219858156,
         )
 
 RQCD_AntiIsoCR_25med_highPT = sys_dict['RQCD_AntiIsoCR_25med_highPT'] = Systematic(
         'RQCD_AntiIsoCR_25med_highPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.087929656275,
+        flat_err=0.0167865707434,
         )
 
 RQCD_AntiIsoCR_35med_lowPT = sys_dict['RQCD_AntiIsoCR_35med_lowPT'] = Systematic(
@@ -194,22 +194,22 @@ RQCD_AntiIsoCR_L1TAU12IMmed_highPT = sys_dict['RQCD_AntiIsoCR_L1TAU12IMmed_highP
 
 RQCD_AntiIsoCR_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0621669626998,  
+        flat_err=0.0111012433393,  
         )
 
 RQCD_AntiIsoCR_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0503384094755,  
+        flat_err=0.00761421319797,  
         )
 
 RQCD_AntiIsoCR_25med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_25med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_25med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.059620596206,  
+        flat_err=0.0185185185185,  
         )
 
 RQCD_AntiIsoCR_25med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_25med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_25med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0520570948783,  
+        flat_err=0.0134340890008,  
         )
 
 RQCD_AntiIsoCR_35med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_35med_lowPT_Tau1Track'] = Systematic(
@@ -243,37 +243,36 @@ RQCD_AntiIsoCR_80med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80med_highPT_Ta
         flat_err=0.0768272425249,  
         )
 
-# REDO
+
 RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.716906946265,  
         )
-# REDO
+
 RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.0547717842324,  
         )
 
-# REDO
+
 RQCD_AntiIsoCR_125med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_125med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_125med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
-        )
-# REDO
-RQCD_AntiIsoCR_125med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_125med_highPT_Tau1Track'] = Systematic(
-        'RQCD_AntiIsoCR_125med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=1.03878116343,  
         )
 
-# REDO
+RQCD_AntiIsoCR_125med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_125med_highPT_Tau1Track'] = Systematic(
+        'RQCD_AntiIsoCR_125med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.0742018981881,  
+        )
+
 RQCD_AntiIsoCR_160med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_160med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=1.5,  
         )
-# REDO
+
 RQCD_AntiIsoCR_160med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_160med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.095340811044,  
         )
 
 RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track'] = Systematic(
@@ -312,22 +311,22 @@ RQCD_AntiIsoCR_ptonly_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_ptonly_highPT_
 
 RQCD_AntiIsoCR_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0989541432019,  
+        flat_err=0.016894609815,  
         )
 
 RQCD_AntiIsoCR_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.212100139082,  
+        flat_err=0.0243393602225,  
         )
 
 RQCD_AntiIsoCR_25med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_25med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_25med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.151671974522,  
+        flat_err=0.015923566879,  
         )
 
 RQCD_AntiIsoCR_25med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_25med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_25med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.24857324033,  
+        flat_err=0.0383639822448,  
         )
 
 RQCD_AntiIsoCR_35med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_35med_lowPT_Tau3Track'] = Systematic(
@@ -361,37 +360,37 @@ RQCD_AntiIsoCR_80med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80med_highPT_Ta
         flat_err=0.235807860262,  
         )
 
-# REDO
+
 RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.780691299166,  
         )
-# REDO
+
 RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.192615912994,  
         )
 
-# REDO
+
 RQCD_AntiIsoCR_125med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_125med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_125med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
-        )
-# REDO
-RQCD_AntiIsoCR_125med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_125med_highPT_Tau3Track'] = Systematic(
-        'RQCD_AntiIsoCR_125med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.677504393673,  
         )
 
-# REDO
+RQCD_AntiIsoCR_125med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_125med_highPT_Tau3Track'] = Systematic(
+        'RQCD_AntiIsoCR_125med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
+        flat_err=0.562838569881,  
+        )
+
+
 RQCD_AntiIsoCR_160med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_160med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.488095238095,  
         )
-# REDO
+
 RQCD_AntiIsoCR_160med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_160med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.05,  
+        flat_err=0.103238866397,  
         )
 
 
@@ -684,267 +683,500 @@ fw_highPT_3Track_tracktwo = sys_dict['fw_highPT_3Track_tracktwo'] = Systematic(
 	)
 
 
+
 # ------------------#
-#	kW
+#	kW_OS_OS
 #-------------------#
 
 # 1-prong
 
 # REDO
-kW_Tau1Track = sys_dict['kW_Tau1Track'] = Systematic(
-        'kW_Tau1Track','$\\sigma_{kW}}$',      
+
+
+kW_OS_lowPT = sys_dict['kW_OS_lowPT'] = Systematic(
+        'kW_OS_lowPT','$\\sigma_{kW}}$',      
+        flat_err=0.0028388928318,  
+        )
+
+kW_OS_highPT = sys_dict['kW_OS_highPT'] = Systematic(
+        'kW_OS_highPT','$\\sigma_{kW}}$',      
+        flat_err=0.014131897712,  
+        )
+kW_OS_25med_lowPT = sys_dict['kW_OS_25med_lowPT'] = Systematic(
+        'kW_OS_25med_lowPT','$\\sigma_{kW}}$',      
+        flat_err=0.00549048316252,  
+        )
+
+kW_OS_25med_highPT = sys_dict['kW_OS_25med_highPT'] = Systematic(
+        'kW_OS_25med_highPT','$\\sigma_{kW}}$',      
+        flat_err=0.0156136528686,  
+        )
+
+kW_OS_lowPT_Tau1Track = sys_dict['kW_OS_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00774907749077,  
+        )
+
+kW_OS_highPT_Tau1Track = sys_dict['kW_OS_highPT_Tau1Track'] = Systematic(
+        'kW_OS_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00962861072902,  
+        )
+kW_OS_25med_lowPT_Tau1Track = sys_dict['kW_OS_25med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_25med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0037397157816,  
+        )
+
+kW_OS_25med_highPT_Tau1Track = sys_dict['kW_OS_25med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_25med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0123502994012,  
+        )
+
+
+kW_OS_35med_lowPT_Tau1Track = sys_dict['kW_OS_35med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_35med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0490985807442,  
+        )
+
+kW_OS_35med_highPT_Tau1Track = sys_dict['kW_OS_35med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_35med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0110323089046,  
+        )
+
+
+kW_OS_50L1TAU12med_lowPT_Tau1Track = sys_dict['kW_OS_50L1TAU12med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_50L1TAU12med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.242158671587,  
+        )
+
+kW_OS_50L1TAU12med_highPT_Tau1Track = sys_dict['kW_OS_50L1TAU12med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_50L1TAU12med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00632911392405,  
+        )
+
+kW_OS_80med_lowPT_Tau1Track = sys_dict['kW_OS_80med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_80med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.485099337748,  
+        )
+
+kW_OS_80med_highPT_Tau1Track = sys_dict['kW_OS_80med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_80med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0312292358804,  
+        )
+
+
+kW_OS_80L1TAU60med_lowPT_Tau1Track = sys_dict['kW_OS_80L1TAU60med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_80L1TAU60med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.111578947368,  
+        )
+
+kW_OS_80L1TAU60med_highPT_Tau1Track = sys_dict['kW_OS_80L1TAU60med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_80L1TAU60med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0736568457539,  
+        )
+
+
+kW_OS_125med_lowPT_Tau1Track = sys_dict['kW_OS_125med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_125med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_lowPT_Tau1Track = sys_dict['kW_lowPT_Tau1Track'] = Systematic(
-        'kW_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+kW_OS_125med_highPT_Tau1Track = sys_dict['kW_OS_125med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_125med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0937645416473,  
+        )
+
+
+kW_OS_160med_lowPT_Tau1Track = sys_dict['kW_OS_160med_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_160med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_highPT_Tau1Track = sys_dict['kW_highPT_Tau1Track'] = Systematic(
-        'kW_highPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_OS_160med_highPT_Tau1Track = sys_dict['kW_OS_160med_highPT_Tau1Track'] = Systematic(
+        'kW_OS_160med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.136266747868,  
         )
-# REDO
-kW_25med_Tau1Track = sys_dict['kW_25med_Tau1Track'] = Systematic(
-        'kW_25med_Tau1Track','$\\sigma_{kW}}$',      
+
+kW_OS_L1TAU12IMmed_lowPT_Tau1Track = sys_dict['kW_OS_L1TAU12IMmed_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_L1TAU12IMmed_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00634802091113,  
+        )
+
+kW_OS_L1TAU12IMmed_highPT_Tau1Track = sys_dict['kW_OS_L1TAU12IMmed_highPT_Tau1Track'] = Systematic(
+        'kW_OS_L1TAU12IMmed_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0132036136206,  
+        )
+kW_OS_ptonly_lowPT_Tau1Track = sys_dict['kW_OS_ptonly_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_ptonly_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00547945205479,  
+        )
+
+kW_OS_ptonly_highPT_Tau1Track = sys_dict['kW_OS_ptonly_highPT_Tau1Track'] = Systematic(
+        'kW_OS_ptonly_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0118219749652,  
+        )
+kW_OS_tracktwo_lowPT_Tau1Track = sys_dict['kW_OS_tracktwo_lowPT_Tau1Track'] = Systematic(
+        'kW_OS_tracktwo_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00530410183876,  
+        )
+
+kW_OS_tracktwo_highPT_Tau1Track = sys_dict['kW_OS_tracktwo_highPT_Tau1Track'] = Systematic(
+        'kW_OS_tracktwo_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0109729334309,  
+        )
+# 3-prong
+
+kW_OS_lowPT_Tau3Track = sys_dict['kW_OS_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.00656660412758,  
+        )
+
+kW_OS_highPT_Tau3Track = sys_dict['kW_OS_highPT_Tau3Track'] = Systematic(
+        'kW_OS_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0335384615385,  
+        )
+
+kW_OS_25med_lowPT_Tau3Track = sys_dict['kW_OS_25med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_25med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0319218241042,  
+        )
+
+kW_OS_25med_highPT_Tau3Track = sys_dict['kW_OS_25med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_25med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0516759776536,  
+        )
+
+kW_OS_35med_lowPT_Tau3Track = sys_dict['kW_OS_35med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_35med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.578276562148,  
+        )
+
+kW_OS_35med_highPT_Tau3Track = sys_dict['kW_OS_35med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_35med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0845181674566,  
+        )
+
+kW_OS_50L1TAU12med_lowPT_Tau3Track = sys_dict['kW_OS_50L1TAU12med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_50L1TAU12med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.121537229784,  
+        )
+
+kW_OS_50L1TAU12med_highPT_Tau3Track = sys_dict['kW_OS_50L1TAU12med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_50L1TAU12med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.129470672389,  
+        )
+
+
+kW_OS_80med_lowPT_Tau3Track = sys_dict['kW_OS_80med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_80med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0,  
+        )
+
+kW_OS_80med_highPT_Tau3Track = sys_dict['kW_OS_80med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_80med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.34056122449,  
+        )
+
+kW_OS_80L1TAU60med_lowPT_Tau3Track = sys_dict['kW_OS_80L1TAU60med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_80L1TAU60med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0,  
+        )
+
+kW_OS_80L1TAU60med_highPT_Tau3Track = sys_dict['kW_OS_80L1TAU60med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_80L1TAU60med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=1.14552238806,  
+        )
+
+kW_OS_125med_lowPT_Tau3Track = sys_dict['kW_OS_125med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_125med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_25med_lowPT_Tau1Track = sys_dict['kW_25med_lowPT_Tau1Track'] = Systematic(
-        'kW_25med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+kW_OS_125med_highPT_Tau3Track = sys_dict['kW_OS_125med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_125med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.604938271605,  
+        )
+
+kW_OS_160med_lowPT_Tau3Track = sys_dict['kW_OS_160med_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_160med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0,  
+        )
+
+kW_OS_160med_highPT_Tau3Track = sys_dict['kW_OS_160med_highPT_Tau3Track'] = Systematic(
+        'kW_OS_160med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.266,  
+        )
+
+kW_OS_L1TAU12IMmed_lowPT_Tau3Track = sys_dict['kW_OS_L1TAU12IMmed_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_L1TAU12IMmed_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0202927478377,  
+        )
+
+kW_OS_L1TAU12IMmed_highPT_Tau3Track = sys_dict['kW_OS_L1TAU12IMmed_highPT_Tau3Track'] = Systematic(
+        'kW_OS_L1TAU12IMmed_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0398040416412,  
+        )
+kW_OS_ptonly_lowPT_Tau3Track = sys_dict['kW_OS_ptonly_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_ptonly_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0281049250535,  
+        )
+
+kW_OS_ptonly_highPT_Tau3Track = sys_dict['kW_OS_ptonly_highPT_Tau3Track'] = Systematic(
+        'kW_OS_ptonly_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0363914373089,  
+        )
+kW_OS_tracktwo_lowPT_Tau3Track = sys_dict['kW_OS_tracktwo_lowPT_Tau3Track'] = Systematic(
+        'kW_OS_tracktwo_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0337611607143,  
+        )
+
+kW_OS_tracktwo_highPT_Tau3Track = sys_dict['kW_OS_tracktwo_highPT_Tau3Track'] = Systematic(
+        'kW_OS_tracktwo_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0428479381443,  
+        )
+
+# ------------------#
+#	kW_SS
+#-------------------#
+
+# 1-prong
+
+#REDO
+kW_SS_lowPT = sys_dict['kW_SS_lowPT'] = Systematic(
+        'kW_SS_lowPT','$\\sigma_{kW}}$',      
+        flat_err=0.0165922144225,  
+        )
+#REDO
+kW_SS_highPT = sys_dict['kW_SS_highPT'] = Systematic(
+        'kW_SS_highPT','$\\sigma_{kW}}$',      
+        flat_err=0.00733496332518,  
+        )
+
+kW_SS_25med_lowPT = sys_dict['kW_SS_25med_lowPT'] = Systematic(
+        'kW_SS_25med_lowPT','$\\sigma_{kW}}$',      
+        flat_err=0.0329849771391,  
+        )
+
+kW_SS_25med_highPT = sys_dict['kW_SS_25med_highPT'] = Systematic(
+        'kW_SS_25med_highPT','$\\sigma_{kW}}$',      
+        flat_err=0.0117707267144,  
+        )
+
+kW_SS_lowPT_Tau1Track = sys_dict['kW_SS_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0185421994885,  
+        )
+
+kW_SS_highPT_Tau1Track = sys_dict['kW_SS_highPT_Tau1Track'] = Systematic(
+        'kW_SS_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.00147433654855,  
+        )
+
+kW_SS_25med_lowPT_Tau1Track = sys_dict['kW_SS_25med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_25med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0340246273493,  
+        )
+
+kW_SS_25med_highPT_Tau1Track = sys_dict['kW_SS_25med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_25med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.026180698152,  
+        )
+
+kW_SS_35med_lowPT_Tau1Track = sys_dict['kW_SS_35med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_35med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.105699364214,  
+        )
+
+kW_SS_35med_highPT_Tau1Track = sys_dict['kW_SS_35med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_35med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0375399361022,  
+        )
+
+kW_SS_50L1TAU12med_lowPT_Tau1Track = sys_dict['kW_SS_50L1TAU12med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_50L1TAU12med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0937277263008,  
+        )
+
+kW_SS_50L1TAU12med_highPT_Tau1Track = sys_dict['kW_SS_50L1TAU12med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_50L1TAU12med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0282918149466,  
+        )
+
+kW_SS_80med_lowPT_Tau1Track = sys_dict['kW_SS_80med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_80med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.126764886433,  
+        )
+
+kW_SS_80med_highPT_Tau1Track = sys_dict['kW_SS_80med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_80med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.136170212766,  
+        )
+
+kW_SS_80L1TAU60med_lowPT_Tau1Track = sys_dict['kW_SS_80L1TAU60med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_80L1TAU60med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.161916072842,  
+        )
+
+kW_SS_80L1TAU60med_highPT_Tau1Track = sys_dict['kW_SS_80L1TAU60med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_80L1TAU60med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0650395418598,  
+        )
+
+kW_SS_125med_lowPT_Tau1Track = sys_dict['kW_SS_125med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_125med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_25med_highPT_Tau1Track = sys_dict['kW_25med_highPT_Tau1Track'] = Systematic(
-        'kW_25med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+kW_SS_125med_highPT_Tau1Track = sys_dict['kW_SS_125med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_125med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.216463414634,  
+        )
+
+kW_SS_160med_lowPT_Tau1Track = sys_dict['kW_SS_160med_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_160med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-# REDO
-kW_35med_Tau1Track = sys_dict['kW_35med_Tau1Track'] = Systematic(
-        'kW_35med_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_35med_lowPT_Tau1Track = sys_dict['kW_35med_lowPT_Tau1Track'] = Systematic(
-        'kW_35med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_35med_highPT_Tau1Track = sys_dict['kW_35med_highPT_Tau1Track'] = Systematic(
-        'kW_35med_highPT_Tau1Track','$\\sigma_{kW}}$',      
+kW_SS_160med_highPT_Tau1Track = sys_dict['kW_SS_160med_highPT_Tau1Track'] = Systematic(
+        'kW_SS_160med_highPT_Tau1Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-# REDO
-kW_50L1TAU12med_Tau1Track = sys_dict['kW_50L1TAU12med_Tau1Track'] = Systematic(
-        'kW_50L1TAU12med_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_50L1TAU12med_lowPT_Tau1Track = sys_dict['kW_50L1TAU12med_lowPT_Tau1Track'] = Systematic(
-        'kW_50L1TAU12med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_50L1TAU12med_highPT_Tau1Track = sys_dict['kW_50L1TAU12med_highPT_Tau1Track'] = Systematic(
-        'kW_50L1TAU12med_highPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_L1TAU12IMmed_lowPT_Tau1Track = sys_dict['kW_SS_L1TAU12IMmed_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_L1TAU12IMmed_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0210325047801,  
         )
 
-# REDO
-kW_80med_Tau1Track = sys_dict['kW_80med_Tau1Track'] = Systematic(
-        'kW_80med_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_L1TAU12IMmed_highPT_Tau1Track = sys_dict['kW_SS_L1TAU12IMmed_highPT_Tau1Track'] = Systematic(
+        'kW_SS_L1TAU12IMmed_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0218351324828,  
         )
-# REDO
-kW_80med_lowPT_Tau1Track = sys_dict['kW_80med_lowPT_Tau1Track'] = Systematic(
-        'kW_80med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_80med_highPT_Tau1Track = sys_dict['kW_80med_highPT_Tau1Track'] = Systematic(
-        'kW_80med_highPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_ptonly_lowPT_Tau1Track = sys_dict['kW_SS_ptonly_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_ptonly_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0305702527925,  
         )
 
-# REDO
-kW_80L1TAU60med_Tau1Track = sys_dict['kW_80L1TAU60med_Tau1Track'] = Systematic(
-        'kW_80L1TAU60med_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_ptonly_highPT_Tau1Track = sys_dict['kW_SS_ptonly_highPT_Tau1Track'] = Systematic(
+        'kW_SS_ptonly_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0215369554577,  
         )
-# REDO
-kW_80L1TAU60med_lowPT_Tau1Track = sys_dict['kW_80L1TAU60med_lowPT_Tau1Track'] = Systematic(
-        'kW_80L1TAU60med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_80L1TAU60med_highPT_Tau1Track = sys_dict['kW_80L1TAU60med_highPT_Tau1Track'] = Systematic(
-        'kW_80L1TAU60med_highPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_tracktwo_lowPT_Tau1Track = sys_dict['kW_SS_tracktwo_lowPT_Tau1Track'] = Systematic(
+        'kW_SS_tracktwo_lowPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0319214241866,  
         )
 
-# REDO
-kW_125med_Tau1Track = sys_dict['kW_125med_Tau1Track'] = Systematic(
-        'kW_125med_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_125med_lowPT_Tau1Track = sys_dict['kW_125med_lowPT_Tau1Track'] = Systematic(
-        'kW_125med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_125med_highPT_Tau1Track = sys_dict['kW_125med_highPT_Tau1Track'] = Systematic(
-        'kW_125med_highPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-
-# REDO
-kW_160med_Tau1Track = sys_dict['kW_160med_Tau1Track'] = Systematic(
-        'kW_160med_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_160med_lowPT_Tau1Track = sys_dict['kW_160med_lowPT_Tau1Track'] = Systematic(
-        'kW_160med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_160med_highPT_Tau1Track = sys_dict['kW_160med_highPT_Tau1Track'] = Systematic(
-        'kW_160med_highPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_tracktwo_highPT_Tau1Track = sys_dict['kW_SS_tracktwo_highPT_Tau1Track'] = Systematic(
+        'kW_SS_tracktwo_highPT_Tau1Track','$\\sigma_{kW}}$',      
+        flat_err=0.0252626313157,  
         )
 
 # 3-prong
 
-# REDO
-kW_Tau3Track = sys_dict['kW_Tau3Track'] = Systematic(
-        'kW_Tau3Track','$\\sigma_{kW}}$',      
+kW_SS_lowPT_Tau3Track = sys_dict['kW_SS_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0111111111111,  
+        )
+
+kW_SS_highPT_Tau3Track = sys_dict['kW_SS_highPT_Tau3Track'] = Systematic(
+        'kW_SS_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0280979827089,  
+        )
+
+kW_SS_25med_lowPT_Tau3Track = sys_dict['kW_SS_25med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_25med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0268624641834,  
+        )
+
+kW_SS_25med_highPT_Tau3Track = sys_dict['kW_SS_25med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_25med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0578446909667,  
+        )
+
+kW_SS_35med_lowPT_Tau3Track = sys_dict['kW_SS_35med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_35med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0792819745699,  
+        )
+
+kW_SS_35med_highPT_Tau3Track = sys_dict['kW_SS_35med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_35med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.205670103093,  
+        )
+
+kW_SS_50L1TAU12med_lowPT_Tau3Track = sys_dict['kW_SS_50L1TAU12med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_50L1TAU12med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0268096514745,  
+        )
+
+kW_SS_50L1TAU12med_highPT_Tau3Track = sys_dict['kW_SS_50L1TAU12med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_50L1TAU12med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.152113843603,  
+        )
+
+kW_SS_80med_lowPT_Tau3Track = sys_dict['kW_SS_80med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_80med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.116533864542,  
+        )
+
+kW_SS_80med_highPT_Tau3Track = sys_dict['kW_SS_80med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_80med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.26293622142,  
+        )
+
+kW_SS_80L1TAU60med_lowPT_Tau3Track = sys_dict['kW_SS_80L1TAU60med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_80L1TAU60med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0925925925926,  
+        )
+
+kW_SS_80L1TAU60med_highPT_Tau3Track = sys_dict['kW_SS_80L1TAU60med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_80L1TAU60med_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.30320855615,  
+        )
+
+kW_SS_125med_lowPT_Tau3Track = sys_dict['kW_SS_125med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_125med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0,  
+        )
+
+kW_SS_125med_highPT_Tau3Track = sys_dict['kW_SS_125med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_125med_highPT_Tau3Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_lowPT_Tau3Track = sys_dict['kW_lowPT_Tau3Track'] = Systematic(
-        'kW_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+kW_SS_160med_lowPT_Tau3Track = sys_dict['kW_SS_160med_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_160med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_highPT_Tau3Track = sys_dict['kW_highPT_Tau3Track'] = Systematic(
-        'kW_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_25med_Tau3Track = sys_dict['kW_25med_Tau3Track'] = Systematic(
-        'kW_25med_Tau3Track','$\\sigma_{kW}}$',      
+kW_SS_160med_highPT_Tau3Track = sys_dict['kW_SS_160med_highPT_Tau3Track'] = Systematic(
+        'kW_SS_160med_highPT_Tau3Track','$\\sigma_{kW}}$',      
         flat_err=0.0,  
         )
 
-kW_25med_lowPT_Tau3Track = sys_dict['kW_25med_lowPT_Tau3Track'] = Systematic(
-        'kW_25med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_L1TAU12IMmed_lowPT_Tau3Track = sys_dict['kW_SS_L1TAU12IMmed_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_L1TAU12IMmed_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0147260273973,  
         )
 
-kW_25med_highPT_Tau3Track = sys_dict['kW_25med_highPT_Tau3Track'] = Systematic(
-        'kW_25med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_L1TAU12IMmed_highPT_Tau3Track = sys_dict['kW_SS_L1TAU12IMmed_highPT_Tau3Track'] = Systematic(
+        'kW_SS_L1TAU12IMmed_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0512063023141,  
         )
-# REDO
-kW_35med_Tau3Track = sys_dict['kW_35med_Tau3Track'] = Systematic(
-        'kW_35med_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_35med_lowPT_Tau3Track = sys_dict['kW_35med_lowPT_Tau3Track'] = Systematic(
-        'kW_35med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_35med_highPT_Tau3Track = sys_dict['kW_35med_highPT_Tau3Track'] = Systematic(
-        'kW_35med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_ptonly_lowPT_Tau3Track = sys_dict['kW_SS_ptonly_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_ptonly_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0200103950104,  
         )
 
-# REDO
-kW_50L1TAU12med_Tau3Track = sys_dict['kW_50L1TAU12med_Tau3Track'] = Systematic(
-        'kW_50L1TAU12med_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_ptonly_highPT_Tau3Track = sys_dict['kW_SS_ptonly_highPT_Tau3Track'] = Systematic(
+        'kW_SS_ptonly_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0599608418992,  
         )
-# REDO
-kW_50L1TAU12med_lowPT_Tau3Track = sys_dict['kW_50L1TAU12med_lowPT_Tau3Track'] = Systematic(
-        'kW_50L1TAU12med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_50L1TAU12med_highPT_Tau3Track = sys_dict['kW_50L1TAU12med_highPT_Tau3Track'] = Systematic(
-        'kW_50L1TAU12med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_tracktwo_lowPT_Tau3Track = sys_dict['kW_SS_tracktwo_lowPT_Tau3Track'] = Systematic(
+        'kW_SS_tracktwo_lowPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0083932853717,  
         )
 
-# REDO
-kW_80med_Tau3Track = sys_dict['kW_80med_Tau3Track'] = Systematic(
-        'kW_80med_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
+kW_SS_tracktwo_highPT_Tau3Track = sys_dict['kW_SS_tracktwo_highPT_Tau3Track'] = Systematic(
+        'kW_SS_tracktwo_highPT_Tau3Track','$\\sigma_{kW}}$',      
+        flat_err=0.0747734138973,  
         )
-# REDO
-kW_80med_lowPT_Tau3Track = sys_dict['kW_80med_lowPT_Tau3Track'] = Systematic(
-        'kW_80med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_80med_highPT_Tau3Track = sys_dict['kW_80med_highPT_Tau3Track'] = Systematic(
-        'kW_80med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-
-# REDO
-kW_80L1TAU60med_Tau3Track = sys_dict['kW_80L1TAU60med_Tau3Track'] = Systematic(
-        'kW_80L1TAU60med_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_80L1TAU60med_lowPT_Tau3Track = sys_dict['kW_80L1TAU60med_lowPT_Tau3Track'] = Systematic(
-        'kW_80L1TAU60med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_80L1TAU60med_highPT_Tau3Track = sys_dict['kW_80L1TAU60med_highPT_Tau3Track'] = Systematic(
-        'kW_80L1TAU60med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-
-# REDO
-kW_125med_Tau3Track = sys_dict['kW_125med_Tau3Track'] = Systematic(
-        'kW_125med_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_125med_lowPT_Tau3Track = sys_dict['kW_125med_lowPT_Tau3Track'] = Systematic(
-        'kW_125med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_125med_highPT_Tau3Track = sys_dict['kW_125med_highPT_Tau3Track'] = Systematic(
-        'kW_125med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-
-# REDO
-kW_160med_Tau3Track = sys_dict['kW_160med_Tau3Track'] = Systematic(
-        'kW_160med_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_160med_lowPT_Tau3Track = sys_dict['kW_160med_lowPT_Tau3Track'] = Systematic(
-        'kW_160med_lowPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-# REDO
-kW_160med_highPT_Tau3Track = sys_dict['kW_160med_highPT_Tau3Track'] = Systematic(
-        'kW_160med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.0,  
-        )
-
-
 
 ## EOF
