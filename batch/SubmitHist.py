@@ -65,8 +65,8 @@ AUTOBUILD = True
 
 # outputs
 
-#RUN = 'HIST_2810_v22_all_trigs_and_chains'
-RUN = 'HIST_0211_KW'
+#RUN = 'HIST_1411_bdtTight'
+RUN = 'HIST_1411_RQCD_chains_top'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
@@ -106,7 +106,7 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_data + all_mc 
+    nominal  = all_mc#all_data + all_mc 
 
     all_sys = [
     	
