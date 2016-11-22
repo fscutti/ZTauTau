@@ -52,7 +52,7 @@ USER   = os.getenv('USER')
 #NTUP='/coepp/cephfs/mel/fscutti/ztautau/v03/merged' 
 
 #NTUP='/coepp/cephfs/mel/laram1/v19/2016'
-NTUP='/coepp/cephfs/mel/laram1/v22'
+NTUP='/coepp/cephfs/mel/laram1/v23'
 
 # The Melb cloud is twisted and does not recognize home dirs...
 #JOBDIR = "/data/%s/jobdir" % USER 
@@ -65,8 +65,8 @@ AUTOBUILD = True
 
 # outputs
 
-#RUN = 'HIST_1411_bdtTight'
-RUN = 'HIST_1411_RQCD_chains_top'
+RUN = 'HIST_2311_v23'
+#RUN = 'HIST_1411_RQCD_chains_top'
 
 #OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
 OUTPATH="/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
@@ -106,28 +106,28 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_mc#all_data + all_mc 
+    nominal  = all_data + all_mc 
 
     all_sys = [
     	
-	#['MUSF_STAT_UP',                  all_mc],
-        #['MUSF_STAT_DN',                  all_mc],
-	#['TAUSF_SYS_UP',                  all_mc],
-        #['TAUSF_SYS_DN',                  all_mc],
-	#['MUSF_SYS_UP',                  all_mc],
-        #['MUSF_SYS_DN',                  all_mc],
-	#['MUMS_UP',                  all_mc],
-	#['MUMS_DN',                  all_mc],
-	#['MUSCALE_UP',                  all_mc],
-	#['MUSCALE_DN',                  all_mc],
-	#['MUID_UP',                  all_mc],
-	#['MUID_DN',                  all_mc],
-        #['METSCALE_UP',                  all_mc],
-	#['METSCALE_DN',                  all_mc],
-	#['METResoPara',			 all_mc],
-	#['METResoPerp', 		 all_mc],
- 	#['PILEUP_UP', 			all_mc],
-        #['PILEUP_DN',                   all_mc],	
+	['MUSF_STAT_UP',                  all_mc],
+        ['MUSF_STAT_DN',                  all_mc],
+	['TAUSF_SYS_UP',                  all_mc],
+        ['TAUSF_SYS_DN',                  all_mc],
+	['MUSF_SYS_UP',                  all_mc],
+        ['MUSF_SYS_DN',                  all_mc],
+	['MUMS_UP',                  all_mc],
+	['MUMS_DN',                  all_mc],
+	['MUSCALE_UP',                  all_mc],
+	['MUSCALE_DN',                  all_mc],
+	['MUID_UP',                  all_mc],
+	['MUID_DN',                  all_mc],
+        ['METSCALE_UP',                  all_mc],
+	['METSCALE_DN',                  all_mc],
+	['METResoPara',			 all_mc],
+	['METResoPerp', 		 all_mc],
+ 	['PILEUP_UP', 			all_mc],
+        ['PILEUP_DN',                   all_mc],	
         ]    
     
     ## ensure output path exists
