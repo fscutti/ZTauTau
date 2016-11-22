@@ -230,10 +230,10 @@ def analyze(config):
     ##-------------------------------------------------------------------------
     ## make plots
     ##-------------------------------------------------------------------------
-    triggers = ["L1TAU12IM"]
+    #triggers = [160]
     #trigchains = [] 
 
-    #triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160, "L1TAU12IM"]
+    triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160, "L1TAU12IM"]
     trigchains = ["tracktwo", "ptonly"]
     trax = [1,3]
 
@@ -3357,7 +3357,7 @@ def analyze(config):
     """
     
      
-   
+    """ 
     n = 10
     while n < 31:
         loop += ztautau.algs.algs.PlotAlg(
@@ -3878,7 +3878,7 @@ def analyze(config):
                                     ],
                                   )
         n += 1
-     
+    """ 
     """
     m = 10		    
     while m < 16:
