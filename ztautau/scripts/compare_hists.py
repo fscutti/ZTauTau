@@ -15,6 +15,8 @@ sign = "os"
 #trax = "1"
 #trax = "3"
 trax = None
+trig = "25med"
+#trig = None
 """
 a = ROOT.TFile('../../test/hists_tau_pt_SR.root')
 a_my_est1 = a.Get('h_SR_nominal_Wjets')
@@ -198,35 +200,37 @@ elif trax == "3":
 	outfile.Close()
 
 else:
-	sr_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR.root')
-	sr1 = sr_file.Get('h_SR_nominal_Wjets')
+	if trig:
+		sr_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_25med.root')
+		sr1 = sr_file.Get('h_SR_25med_nominal_Wjets')
 
-        #sr_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_25med.root')
-        #sr1 = sr_file.Get('h_SR_25med_nominal_Wjets')
+		lscdp_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP_25med.root')
+		lscdp1 = lscdp_file.Get('h_SR_lowSCDP_25med_nominal_Wjets')
 
-	lscdp_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_lowSCDP.root')
-	lscdp1 = lscdp_file.Get('h_SR_lowSCDP_nominal_Wjets')
+		lscdp_lowmt_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP_lowMT.root')
+		lscdp_lowmt1 = lscdp_lowmt_file.Get('h_SR_lowSCDP_lowMT_nominal_Wjets')
 
-        #lscdp_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_lowSCDP_25med.root')
-        #lscdp1 = lscdp_file.Get('h_SR_lowSCDP_25med_nominal_Wjets')
 
-	#lscdp_lowmt_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP_lowMT.root')
-	#lscdp_lowmt1 = lscdp_lowmt_file.Get('h_SR_lowSCDP_lowMT_nominal_Wjets')
+		sr_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_SS25med.root')
+		sr_ss1 = sr_ss_file.Get('h_SR_SS25med_nominal_Wjets')
 
-	sr_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_SS.root')
-	sr_ss1 = sr_ss_file.Get('h_SR_SS_nominal_Wjets')
+		lscdp_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP_SS25med.root')
+		lscdp_ss1 = lscdp_ss_file.Get('h_SR_lowSCDP_SS25med_nominal_Wjets')
 
-        #sr_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_SS25med.root')
-        #sr_ss1 = sr_ss_file.Get('h_SR_SS25med_nominal_Wjets')
+		lscdp_lowmt_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP_lowMT_SS.root')
+		lscdp_lowmt_ss1 = lscdp_lowmt_ss_file.Get('h_SR_lowSCDP_lowMT_SS_nominal_Wjets')
 
-	lscdp_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_SS_lowSCDP.root')
-	lscdp_ss1 = lscdp_ss_file.Get('h_SR_SS_lowSCDP_nominal_Wjets')
+	else:
+		sr_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR.root')
+		sr1 = sr_file.Get('h_SR_nominal_Wjets')
+		lscdp_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP.root')
+		lscdp1 = lscdp_file.Get('h_SR_lowSCDP_nominal_Wjets')
 
-        #lscdp_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_vis_mass_SR_lowSCDP_SS25med.root')
-        #lscdp_ss1 = lscdp_ss_file.Get('h_SR_lowSCDP_SS25med_nominal_Wjets')
+		sr_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_SS.root')
+		sr_ss1 = sr_ss_file.Get('h_SR_SS_nominal_Wjets')
+		lscdp_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_SS_lowSCDP.root')
+		lscdp_ss1 = lscdp_ss_file.Get('h_SR_SS_lowSCDP_nominal_Wjets')
 
-	#lscdp_lowmt_ss_file = ROOT.TFile('./Wjets_new_est_verification/hists_tau_pt_SR_lowSCDP_lowMT_SS.root')
-	#lscdp_lowmt_ss1 = lscdp_lowmt_ss_file.Get('h_SR_lowSCDP_lowMT_SS_nominal_Wjets')
 
 	sr2 = sr1.Clone()
 	#lscdp_lowmt2 = lscdp_lowmt1.Clone()
@@ -299,10 +303,10 @@ x_legend = 0.63
 x_leg_shift = 0
 y_leg_shift = 0.0
 legYCompr = 8.0
-legYMax = 0.5
+legYMax = 0.85
 legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
-legXMin = x_legend + x_leg_shift
-legXMax = legXMin + 0.4
+legXMin = 0.5 
+legXMax = 0.87 
 
 #lscdp_lowmt.SetMarkerStyle(20)
 #lscdp_lowmt.SetMarkerColor(ROOT.kBlack)
@@ -314,26 +318,27 @@ lscdp.SetMarkerColor(ROOT.kRed)
 lscdp_ss.SetMarkerStyle(20)
 lscdp_ss.SetMarkerColor(ROOT.kRed)
 
-leg = ROOT.TLegend(0.5,0.6,0.8,0.8) #ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
+leg = ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
 leg.SetBorderSize(0)
 leg.SetFillColor(0)
 leg.SetFillStyle(0)
+leg.SetTextSize(0.03)
 
 if sign == "os":
 	leg.AddEntry(sr, "Wjets (signal region)",'F')
 	#leg.AddEntry(lscdp_lowmt,"Wjets (LSCDP LowMT region)",'PL')
-	leg.AddEntry(lscdp,"Wjets (LSCDP region)",'PL')
+	leg.AddEntry(lscdp,"Wjets (LSCDP region)",'P')
 
 
 elif sign == "ss":
 	leg.AddEntry(sr_ss, "Wjets (signal SS region)",'F')
 	#leg.AddEntry(lscdp_lowmt_ss,"Wjets (LSCDP LowMT SS region)",'PL')
-	leg.AddEntry(lscdp_ss,"Wjets (LSCDP SS region)",'PL')	
+	leg.AddEntry(lscdp_ss,"Wjets (LSCDP SS region)",'P')	
 
 if sign == "os":
-	c = ROOT.TCanvas("wjets_OS","wjets_OS",750,800)
+	c = ROOT.TCanvas("wjets_OS","wjets_OS",800,600)
 if sign == "ss":
-        c = ROOT.TCanvas("wjets_SS","wjets_SS",750,800)
+        c = ROOT.TCanvas("wjets_SS","wjets_SS",800,600)
 
 xmin = sr.GetBinLowEdge(1)
 xmax = 100
@@ -342,22 +347,26 @@ ymax = 0.8
 #ymax *= 1.8
 xtitle = ""
 
-rsplit = 0.3
-pad1 = ROOT.TPad("pad1","top pad",0.,0.2,1.,1.)
+ratio_line = ROOT.TLine(xmin,1,xmax,1)
+ratio_line.SetLineColor(ROOT.kRed)
+ratio_line.SetLineStyle(10)
+
+rsplit = 0
+pad1 = ROOT.TPad("pad1","top pad",0.,rsplit,1.,1.)
 pad1.SetLeftMargin(0.15)
 pad1.SetTicky()
 pad1.SetTickx()
-pad1.SetBottomMargin(0.04)
+pad1.SetBottomMargin(0.15)
 pad1.Draw()
 
-pad2 = ROOT.TPad("pad2","bottom pad",0,0,1,0.1)
-pad2.SetTopMargin(0.04)
-pad2.SetBottomMargin(0.40)
-pad2.SetLeftMargin(0.15)
-pad2.SetTicky()
-pad2.SetTickx()
-pad2.SetGridy()
-pad2.Draw()
+#pad2 = ROOT.TPad("pad2","bottom pad",0,0,1,rsplit)
+#pad2.SetTopMargin(0.04)
+#pad2.SetBottomMargin(0.40)
+#pad2.SetLeftMargin(0.15)
+#pad2.SetTicky()
+#pad2.SetTickx()
+#pad2.SetGridy()
+#pad2.Draw()
 pad1.cd()
 
 ytitle = "Events"
@@ -372,10 +381,13 @@ yaxis1 = fr1.GetYaxis()
 scale = (1.3+rsplit)
 yaxis1.SetTitleSize( yaxis1.GetTitleSize() * scale )
 yaxis1.SetTitleOffset( 1 )
-yaxis1.SetLabelSize( 0.8 * yaxis1.GetLabelSize() * scale )
-yaxis1.SetLabelOffset( 1. * yaxis1.GetLabelOffset() / scale )
+#yaxis1.SetLabelSize( 0.8 * yaxis1.GetLabelSize() * scale )
+#yaxis1.SetLabelOffset( 1. * yaxis1.GetLabelOffset() / scale )
 xaxis1.SetNdivisions(510)
 yaxis1.SetNdivisions(510)
+yaxis1.SetTitleSize(0.045)
+yaxis1.SetLabelSize(0.04)
+xaxis1.SetLabelSize(0.04)
 
 yaxis1.SetTitle("Events")
 
@@ -396,56 +408,63 @@ pad1.RedrawAxis()
 tlatex = ROOT.TLatex()
 tlatex.SetNDC()
 tlatex.SetTextSize(0.05)
-lx = 0.5 # for ATLAS internal
+lx = 0.6 # for ATLAS internal
 ly = 0.845
 tlatex.SetTextFont(42)
 
-ty = 0.5
-th = 0.1
-tx = 0.5
+ty = 0.96
+th = 0.07
+tx = 0.18
 latex_y = ty-2.*th
 latex_yb = ty-4.*th
 #tlatex.SetTextAlign(10)
 tlatex.SetTextSize(0.035)
+textsize = 0.7
+latex_y = ty-2.*th
+tlatex.DrawLatex(tx,latex_y,"#scale[0.7]{#bf{#it{ATLAS}} Internal}")
+tlatex.DrawLatex(tx,latex_y-0.07,'#scale[%lf]{#scale[%lf]{#int}L dt = 24.8 fb^{-1}}'%(textsize,0.8*textsize) )
+tlatex.DrawLatex(tx,latex_y-0.14,'#scale[%lf]{#sqrt{s} = 13 TeV}'%(textsize))
+if trig:
+	tlatex.DrawLatex(tx,latex_y-0.21,'#scale[%lf]{tau 25 medium trigger}'%(textsize))
+#pad2.cd()
+#
+#fr2 = pad2.DrawFrame(20,0.8,100,1.2,';%s;SF'%('Offline Tau P_{T} [GeV]'))
 
-tlatex.DrawLatex(0.5,0.4,'#intL dt = 11.5 fb^{-1}, #sqrt{s} = 13 TeV' ) #(tx,latex_y,'#intL dt = 3.2 fb^{-1}, #sqrt{s} = 13 TeV}' )
+#xaxis2 = fr2.GetXaxis()
+#yaxis2 = fr2.GetYaxis()
 
-pad2.cd()
+#scale = (1. / rsplit)
+#yaxis2.SetTitleSize( yaxis2.GetTitleSize() * scale )
+#yaxis2.SetLabelSize( yaxis2.GetLabelSize() * scale )
+#yaxis2.SetTitleOffset( 2.1* yaxis2.GetTitleOffset() / scale  )
+#yaxis2.SetLabelOffset(0.2 * yaxis2.GetLabelOffset() * scale )
+#xaxis2.SetTitleSize( xaxis2.GetTitleSize() * scale )
+#xaxis2.SetLabelSize( 0.8 * xaxis2.GetLabelSize() * scale )
+#xaxis2.SetTickLength( xaxis2.GetTickLength() * scale )
+#xaxis2.SetTitleOffset(0.5)
+#xaxis2.SetLabelOffset( 2.5* xaxis2.GetLabelOffset() / scale )
+#xaxis2.SetRangeUser(20,100)
+#yaxis2.SetRangeUser(0.6,1.4)
+#yaxis2.SetNdivisions(4)
+#xaxis2.SetNdivisions(510)
+#xaxis2.SetMoreLogLabels()
+#xaxis2.SetTitleOffset(1)
+#yaxis2.SetTitle("Ratio")
+#yaxis2.SetTitleOffset(0.5)
 
-fr2 = pad2.DrawFrame(20,0.8,100,1.2,';%s;SF'%('Offline Tau P_{T} [GeV]'))
+#h_ratio.Draw("Same")
 
-xaxis2 = fr2.GetXaxis()
-yaxis2 = fr2.GetYaxis()
-
-scale = (1. / rsplit)
-yaxis2.SetTitleSize( yaxis2.GetTitleSize() * scale )
-yaxis2.SetLabelSize( yaxis2.GetLabelSize() * scale )
-yaxis2.SetTitleOffset( 2.1* yaxis2.GetTitleOffset() / scale  )
-yaxis2.SetLabelOffset(0.2 * yaxis2.GetLabelOffset() * scale )
-xaxis2.SetTitleSize( xaxis2.GetTitleSize() * scale )
-xaxis2.SetLabelSize( 0.8 * xaxis2.GetLabelSize() * scale )
-xaxis2.SetTickLength( xaxis2.GetTickLength() * scale )
-xaxis2.SetTitleOffset(0.5)
-xaxis2.SetLabelOffset( 2.5* xaxis2.GetLabelOffset() / scale )
-xaxis2.SetRangeUser(20,100)
-yaxis2.SetRangeUser(0.6,1.4)
-yaxis2.SetNdivisions(4)
-xaxis2.SetNdivisions(510)
-xaxis2.SetMoreLogLabels()
-xaxis2.SetTitleOffset(1)
-yaxis2.SetTitle("Ratio")
-yaxis2.SetTitleOffset(0.5)
-
-h_ratio.Draw("Same")
-
-pad2.RedrawAxis()
+#pad2.RedrawAxis()
 
 if trax == "1":
 	plotsfile = os.path.join("./",str(trax)+"wjets_new_method_val_"+str(sign)+".root")
 elif trax == "3":
 	plotsfile = os.path.join("./",str(trax)+"wjets_new_method_val_"+str(sign)+".root")
 else:
-        plotsfile = os.path.join("./","wjets_new_method_val_"+str(sign)+".root")
+	if trig:
+        	plotsfile = os.path.join("./","wjets_new_method_val_"+str(trig)+"_"+str(sign)+".root")
+        else:
+		plotsfile = os.path.join("./","wjets_new_method_val_"+str(sign)+".root")
 fout = ROOT.TFile.Open(plotsfile,'UPDATE')
 fout.WriteTObject(c)
 fout.Close()
