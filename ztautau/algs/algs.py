@@ -658,6 +658,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_HLT_pt_res = self.hist('h_HLT_pt_res', "ROOT.TH1F('$', ';HLT p_{T} resolution;Events', 2000, -10.0, 10.0)", dir=TAUS)
 
+        self.h_HLT_pt_res_TProfile = self.hist('h_HLT_pt_res_TProfile', "ROOT.TProfile('h_HLT_pt_res_TProfile','h_HLT_pt_res_TProfile', 2000, 0, 50.0, 0,1000)", dir=TAUS)
 
 
         self.h_HLT_fcent = self.hist('h_HLT_fcent', "ROOT.TH1F('$', ';f_{cent};Events', 40, 0, 1.0)", dir=TAUS)
@@ -695,7 +696,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_Presel_tau_pt = self.hist('h_Presel_tau_pt', "ROOT.TH1F('$', ';HLT p_{T} [GeV];Events', 1000, 0.0, 1000.0)", dir=TAUS)
 
-        self.h_pileup = self.hist('h_pileup', "ROOT.TH1F('$', ';<#mu>;Events', 40, 0, 40)", dir=EVT)
+        self.h_pileup = self.hist('h_pileup', "ROOT.TH1F('$', ';<#mu>;Events', 60, 0, 60)", dir=EVT)
 
         self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
@@ -713,7 +714,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
         self.h_vis_mass = self.hist('h_vis_mass', "ROOT.TH1F('$', ';Visible Mass (#tau,#mu) [GeV];Events', 200, 0.0, 200.0)", dir=EVT)
 
-        self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\sum\cos(\Delta \phi) ;Events', 20, -2.0, 2.0)", dir=EVT)
+        self.h_sumcosdphi = self.hist('h_sumcosdphi', "ROOT.TH1F('$', ';\sum\cos(\Delta \phi) ;Events', 40, -2.0, 2.0)", dir=EVT)
 
         self.h_lowsumcosdphi = self.hist('h_lowsumcosdphi', "ROOT.TH1F('$', ';\sum\cos(\Delta \phi) ;Events', 10, -2.0, -0.6)", dir=EVT)
 
@@ -759,7 +760,8 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 	     	self.h_HLT_pt_res.Fill( (self.chain.tau_0_trig1_HLT_pt - self.chain.tau_0_pt)/self.chain.tau_0_pt ,weight)
 	     else:
 		self.h_HLT_pt_res.Fill( 0 , weight)
-
+            
+	     self.h_HLT_pt_res_TProfile.Fill(self.chain.n_avg_int_cor, self.chain.tau_0_trig1_HLT_pt - self.chain.tau_0_pt, weight)
 
              self.h_HLT_fcent.Fill( self.chain.tau_0_trig1_HLT_centFracCorrected, weight)
         
@@ -775,7 +777,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
 
 	     self.h_HLT_m_trk_EM_system.Fill(self.chain.tau_0_trig1_HLT_mEflowApproxCorrected, weight)
 
-	     self.h_HLT_1P_frac_trks_iso_region.Fill(self.chain.tau_0_trig1_HLT_SumPtTrkFracCorrected, weight)
+	     self.h_HLT_1P_frac_trks_iso_region.Fill(self.chain.tau_0_trig1_HLT_SumPtTrkFrac, weight)
 
              self.h_HLT_ratio_trkemsys_pt.Fill(self.chain.tau_0_trig1_HLT_ptRatioEflowApproxCorrected, weight)
 
