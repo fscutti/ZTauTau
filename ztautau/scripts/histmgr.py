@@ -422,11 +422,20 @@ class AddOnEstimator(BaseEstimator):
         """
         rqcd_top, rqcd_top_err = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
         rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-	if rqcd_bot == 0:
-		rqcd = 0
-	else:
-        	rqcd = rqcd_top/rqcd_bot
-        
+	if rqcd_bot == 0: rqcd_bot = 1
+	if rqcd_top == 0: rqcd_top = 1
+
+        #rqcd = rqcd_top/rqcd_bot
+        #if ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau1Track" in rqcd_regions[self.data_sample]["num"]) and ("low" in rqcd_regions[self.data_sample]["num"]):
+	#	rqcd = 1.107
+        #elif ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau1Track" in rqcd_regions[self.data_sample]["num"]) and ("high" in rqcd_regions[self.data_sample]["num"]):
+	#	rqcd = 1.191
+        #elif ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau3Track" in rqcd_regions[self.data_sample]["num"]) and ("low" in rqcd_regions[self.data_sample]["num"]):
+ 	#	rqcd = 1.256
+        #elif ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau3Track" in rqcd_regions[self.data_sample]["num"]) and ("high" in rqcd_regions[self.data_sample]["num"]):
+	#	rqcd = 1.577
+	#else:
+	rqcd = rqcd_top/rqcd_bot
         if sys and "RQCD" in sys.name:
           # assuming numerator is always OS!!!
           reg_list = rqcd_regions[self.data_sample]["num"].split("_")
@@ -442,7 +451,7 @@ class AddOnEstimator(BaseEstimator):
 		pt_split = "low"
           print sys_list
 
-          assert all(True if sys_list.count(item) == reg_list.count(item) else False for item in sys_list), "ERROR: RQCD sys name not matching region name!!!"
+          #assert all(True if sys_list.count(item) == reg_list.count(item) else False for item in sys_list), "ERROR: RQCD sys name not matching region name!!!"
           if mode == "up": rqcd *= (1.+sys.flat_err) 
           if mode == "dn": rqcd *= (1.-sys.flat_err) 
         
