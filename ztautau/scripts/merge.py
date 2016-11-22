@@ -49,8 +49,9 @@ parser.add_option('-k', '--kwsys', dest='kwsys',
 #lumi = 9966.815 #2016 v17
 
 #lumi = 11473.88 #2016 v19
-lumi = 24799 #2016 v22
-
+#lumi = 24799 #2016 v22
+lumi = 33256 #2016 v23
+#lumi = 33223
 # Control regions
 plotsfile = []
 if options.makeplot == "False":
@@ -1805,6 +1806,9 @@ rqcd_regions_25med[data]  = {"num":"AntiIsoCR_OS_25med", "den":"AntiIsoCR_SS_25m
 rqcd_regions_25med_lowPT[data]  = {"num":"AntiIsoCR_OS_25med_lowPT", "den":"AntiIsoCR_SS_25med_lowPT", "ncuts":5}
 rqcd_regions_25med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT", "den":"AntiIsoCR_SS_25med_highPT", "ncuts":5}
 
+#rqcd_regions_35med[data]  = {"num":"AntiIsoCR_OS_25med", "den":"AntiIsoCR_SS_25med", "ncuts":4}
+#rqcd_regions_35med_lowPT[data]  = {"num":"AntiIsoCR_OS_25med_lowPT", "den":"AntiIsoCR_SS_25med_lowPT", "ncuts":5}
+#rqcd_regions_35med_highPT[data]  = {"num":"AntiIsoCR_OS_25med_highPT", "den":"AntiIsoCR_SS_25med_highPT", "ncuts":5}
 rqcd_regions_35med[data]  = {"num":"AntiIsoCR_OS_35med", "den":"AntiIsoCR_SS_35med", "ncuts":4}
 rqcd_regions_35med_lowPT[data]  = {"num":"AntiIsoCR_OS_35med_lowPT", "den":"AntiIsoCR_SS_35med_lowPT", "ncuts":5}
 rqcd_regions_35med_highPT[data]  = {"num":"AntiIsoCR_OS_35med_highPT", "den":"AntiIsoCR_SS_35med_highPT", "ncuts":5}
@@ -2254,10 +2258,10 @@ addon_regions_OS_no_cuts[samples.Zlljets] = {"OS":"SR_OS_no_cuts_forvismass", "S
 addon_regions_OS_no_cuts[samples.top]     = {"OS":"SR_OS_no_cuts_forvismass", "SS":"SR_SS_no_cuts_forvismass", "ncuts":3}
 
 addon_regions_lowSCDP = {}
-addon_regions_lowSCDP[data]            = {"SS":"SR_SS_lowSCDP", "ncuts":3}
-addon_regions_lowSCDP[samples.Wjets]   = {"OS":"SR_lowSCDP", "SS":"SR_SS_lowSCDP", "ncuts":3}
-addon_regions_lowSCDP[samples.Zlljets] = {"OS":"SR_lowSCDP", "SS":"SR_SS_lowSCDP", "ncuts":3}
-addon_regions_lowSCDP[samples.top]     = {"OS":"SR_lowSCDP", "SS":"SR_SS_lowSCDP", "ncuts":3}
+addon_regions_lowSCDP[data]            = {"SS":"SR_SS_lowSCDP", "ncuts":4}
+addon_regions_lowSCDP[samples.Wjets]   = {"OS":"SR_lowSCDP", "SS":"SR_SS_lowSCDP", "ncuts":4}
+addon_regions_lowSCDP[samples.Zlljets] = {"OS":"SR_lowSCDP", "SS":"SR_SS_lowSCDP", "ncuts":4}
+addon_regions_lowSCDP[samples.top]     = {"OS":"SR_lowSCDP", "SS":"SR_SS_lowSCDP", "ncuts":4}
 
 addon_regions_highSCDP = {}
 addon_regions_highSCDP[data]            = {"SS":"SR_SS_highSCDP", "ncuts":3}
@@ -3239,8 +3243,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_35med_lowPT_1Track,
-	       kf_regions    = kf_regions_35med_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_35med_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3251,8 +3255,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_35med_highPT_1Track,
-	       kf_regions    = kf_regions_35med_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_35med_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3264,8 +3268,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_50L1TAU12med_lowPT_1Track,
-	       kf_regions    = kf_regions_50L1TAU12med_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_50L1TAU12med_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3276,8 +3280,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_50L1TAU12med_highPT_1Track,
-	       kf_regions    = kf_regions_50L1TAU12med_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_50L1TAU12med_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3289,8 +3293,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80med_lowPT_1Track,
-	       kf_regions    = kf_regions_80med_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_80med_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3301,8 +3305,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80med_highPT_1Track,
-	       kf_regions    = kf_regions_80med_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_80med_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3314,8 +3318,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80L1TAU60med_lowPT_1Track,
-	       kf_regions    = kf_regions_80L1TAU60med_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_80L1TAU60med_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3326,8 +3330,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80L1TAU60med_highPT_1Track,
-	       kf_regions    = kf_regions_80L1TAU60med_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_80L1TAU60med_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3339,8 +3343,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_125med_lowPT_1Track,
-	       kf_regions    = kf_regions_125med_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_125med_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3351,8 +3355,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_125med_highPT_1Track,
-	       kf_regions    = kf_regions_125med_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_125med_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3364,8 +3368,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_160med_lowPT_1Track,
-	       kf_regions    = kf_regions_160med_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_160med_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3376,8 +3380,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_160med_highPT_1Track,
-	       kf_regions    = kf_regions_160med_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_160med_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3389,8 +3393,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_lowPT_1Track,
-	       kf_regions    = kf_regions_L1TAU12IMmed_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_L1TAU12IMmed_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3401,8 +3405,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_highPT_1Track,
-	       kf_regions    = kf_regions_L1TAU12IMmed_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_L1TAU12IMmed_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3413,8 +3417,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_ptonly_lowPT_1Track,
-	       kf_regions    = kf_regions_ptonly_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_ptonly_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3425,8 +3429,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_ptonly_highPT_1Track,
-	       kf_regions    = kf_regions_ptonly_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_ptonly_highPT_1Track,
 	       print_info    = True,
 	       )
@@ -3438,8 +3442,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_tracktwo_lowPT_1Track,
-	       kf_regions    = kf_regions_tracktwo_lowPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_1Track,
+	       kf_regions    = kf_regions_25med_lowPT_1Track,
 	       addon_regions = addon_regions_tracktwo_lowPT_1Track,
 	       print_info    = True,
 	       )
@@ -3450,8 +3454,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_tracktwo_highPT_1Track,
-	       kf_regions    = kf_regions_tracktwo_highPT_1Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_1Track,
+	       kf_regions    = kf_regions_25med_highPT_1Track,
 	       addon_regions = addon_regions_tracktwo_highPT_1Track,
 	       print_info    = True,
 	       ) 
@@ -3513,8 +3517,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_35med_lowPT_3Track,
-	       kf_regions    = kf_regions_35med_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_35med_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3525,8 +3529,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_35med_highPT_3Track,
-	       kf_regions    = kf_regions_35med_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_35med_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3537,8 +3541,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_50L1TAU12med_lowPT_3Track,
-	       kf_regions    = kf_regions_50L1TAU12med_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_50L1TAU12med_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3549,8 +3553,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_50L1TAU12med_highPT_3Track,
-	       kf_regions    = kf_regions_50L1TAU12med_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_50L1TAU12med_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3562,8 +3566,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80med_lowPT_3Track,
-	       kf_regions    = kf_regions_80med_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_80med_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3574,8 +3578,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80med_highPT_3Track,
-	       kf_regions    = kf_regions_80med_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_80med_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3587,8 +3591,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80L1TAU60med_lowPT_3Track,
-	       kf_regions    = kf_regions_80L1TAU60med_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_80L1TAU60med_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3599,8 +3603,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_80L1TAU60med_highPT_3Track,
-	       kf_regions    = kf_regions_80L1TAU60med_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_80L1TAU60med_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3612,8 +3616,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_125med_lowPT_3Track,
-	       kf_regions    = kf_regions_125med_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_125med_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3624,8 +3628,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_125med_highPT_3Track,
-	       kf_regions    = kf_regions_125med_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_125med_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3637,8 +3641,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_160med_lowPT_3Track,
-	       kf_regions    = kf_regions_160med_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_160med_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3649,8 +3653,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_160med_highPT_3Track,
-	       kf_regions    = kf_regions_160med_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_160med_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3661,8 +3665,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_lowPT_3Track,
-	       kf_regions    = kf_regions_L1TAU12IMmed_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_L1TAU12IMmed_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3673,8 +3677,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_L1TAU12IMmed_highPT_3Track,
-	       kf_regions    = kf_regions_L1TAU12IMmed_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_L1TAU12IMmed_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3685,8 +3689,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_ptonly_lowPT_3Track,
-	       kf_regions    = kf_regions_ptonly_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_ptonly_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3697,8 +3701,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_ptonly_highPT_3Track,
-	       kf_regions    = kf_regions_ptonly_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_ptonly_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -3710,8 +3714,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_tracktwo_lowPT_3Track,
-	       kf_regions    = kf_regions_tracktwo_lowPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_lowPT_3Track,
+	       kf_regions    = kf_regions_25med_lowPT_3Track,
 	       addon_regions = addon_regions_tracktwo_lowPT_3Track,
 	       print_info    = True,
 	       )
@@ -3722,8 +3726,8 @@ if ptbinning_y_or_n == "y":
 	       sample        = b,
 	       data_sample   = data,
 	       mc_samples    = mc_backgrounds + mc_signals,
-	       rqcd_regions  = rqcd_regions_tracktwo_highPT_3Track,
-	       kf_regions    = kf_regions_tracktwo_highPT_3Track,
+	       rqcd_regions  = rqcd_regions_25med_highPT_3Track,
+	       kf_regions    = kf_regions_25med_highPT_3Track,
 	       addon_regions = addon_regions_tracktwo_highPT_3Track,
 	       print_info    = True,
 	       )
@@ -5143,9 +5147,9 @@ if ptbinning_y_or_n == "y":
             v.estimator.add_systematics(fw_highPT_25med)
   		
 	for u in addon_backgrounds_35med_lowPT:
-#            u.estimator.add_systematics(kW_OS_35med_lowPT)
-#            u.estimator.add_systematics(kW_SS_35med_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT) 
+#            u.estimator.add_systematics(kW_OS_25med_lowPT)
+#            u.estimator.add_systematics(kW_SS_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5156,8 +5160,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 	
 	for v in addon_backgrounds_35med_highPT:
-            #v.estimator.add_systematics(kW_35med_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_35med_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5168,8 +5172,8 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(PILEUP)
 
 	for u in addon_backgrounds_50L1TAU12med_lowPT:
-            #u.estimator.add_systematics(kW_50L1TAU12med_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_lowPT) 
+            #u.estimator.add_systematics(kW_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5180,8 +5184,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_50L1TAU12med_highPT:
-            #v.estimator.add_systematics(kW_50L1TAU12med_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5193,8 +5197,8 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80med_lowPT:
-            #u.estimator.add_systematics(kW_80med_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_80med_lowPT) 
+            #u.estimator.add_systematics(kW_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5205,8 +5209,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_80med_highPT:
-            #v.estimator.add_systematics(kW_80med_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_80med_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5218,8 +5222,8 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_80L1TAU60med_lowPT:
-            #u.estimator.add_systematics(kW_80L1TAU60med_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_lowPT) 
+            #u.estimator.add_systematics(kW_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5230,8 +5234,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_80L1TAU60med_highPT:
-            #v.estimator.add_systematics(kW_80L1TAU60med_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5243,8 +5247,8 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_125med_lowPT:
-            #u.estimator.add_systematics(kW_125med_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_125med_lowPT) 
+            #u.estimator.add_systematics(kW_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5255,8 +5259,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_125med_highPT:
-            #v.estimator.add_systematics(kW_125med_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_125med_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5268,8 +5272,8 @@ if ptbinning_y_or_n == "y":
 
 
 	for u in addon_backgrounds_160med_lowPT:
-            #u.estimator.add_systematics(kW_160med_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_160med_lowPT) 
+            #u.estimator.add_systematics(kW_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5280,8 +5284,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_160med_highPT:
-            #v.estimator.add_systematics(kW_160med_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_160med_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5292,8 +5296,8 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(PILEUP)
 		
 	for u in addon_backgrounds_L1TAU12IMmed_lowPT:
-            #u.estimator.add_systematics(kW_L1TAU12IMmed_lowPT)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_lowPT) 
+            #u.estimator.add_systematics(kW_25med_lowPT)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5304,8 +5308,8 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(PILEUP)
 
 	for v in addon_backgrounds_L1TAU12IMmed_highPT:
-            #v.estimator.add_systematics(kW_L1TAU12IMmed_highPT)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_highPT)
+            #v.estimator.add_systematics(kW_25med_highPT)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5372,9 +5376,9 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(fw_highPT_1Track_25med)
 	
 	for u in addon_backgrounds_35med_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_35med_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_35med_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5383,12 +5387,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_35med)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_35med_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_35med_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_35med_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_35med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5397,12 +5401,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_1Track_35med)
+            v.estimator.add_systematics(fw_highPT_1Track_25med)
 
 	for u in addon_backgrounds_50L1TAU12med_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_50L1TAU12med_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_50L1TAU12med_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5411,12 +5415,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-	    u.estimator.add_systematics(fw_lowPT_1Track_50L1TAU12med)
+	    u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_50L1TAU12med_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_50L1TAU12med_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_50L1TAU12med_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5425,13 +5429,13 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_1Track_50L1TAU12med)
+            v.estimator.add_systematics(fw_highPT_1Track_25med)
 
 
 	for u in addon_backgrounds_80med_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_80med_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_80med_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_80med_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5440,12 +5444,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_80med)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_80med_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_80med_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_80med_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_80med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5454,13 +5458,13 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-	    v.estimator.add_systematics(fw_highPT_1Track_80med)
+	    v.estimator.add_systematics(fw_highPT_1Track_25med)
 
 
 	for u in addon_backgrounds_80L1TAU60med_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_80L1TAU60med_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_80L1TAU60med_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5469,12 +5473,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_80L1TAU60med)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_80L1TAU60med_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_80L1TAU60med_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_80L1TAU60med_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5483,12 +5487,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-	    v.estimator.add_systematics(fw_highPT_1Track_80L1TAU60med)
+	    v.estimator.add_systematics(fw_highPT_1Track_25med)
 
 	for u in addon_backgrounds_125med_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_125med_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_125med_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_125med_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5497,12 +5501,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_125med)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_125med_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_125med_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_125med_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_125med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5511,12 +5515,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_1Track_125med)
+            v.estimator.add_systematics(fw_highPT_1Track_25med)
 
 	for u in addon_backgrounds_160med_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_160med_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_160med_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_160med_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5525,12 +5529,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_160med)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_160med_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_160med_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_160med_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_160med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5539,12 +5543,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_1Track_160med)
+            v.estimator.add_systematics(fw_highPT_1Track_25med)
         	
 	for u in addon_backgrounds_L1TAU12IMmed_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_L1TAU12IMmed_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_L1TAU12IMmed_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5553,12 +5557,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_L1TAU12IMmed)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_L1TAU12IMmed_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_L1TAU12IMmed_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_L1TAU12IMmed_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5567,12 +5571,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_1Track_L1TAU12IMmed)
+            v.estimator.add_systematics(fw_highPT_1Track_25med)
 	
 	for u in addon_backgrounds_tracktwo_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_tracktwo_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_tracktwo_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5581,12 +5585,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_tracktwo)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_tracktwo_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_tracktwo_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_tracktwo_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5595,12 +5599,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
- 	    u.estimator.add_systematics(fw_highPT_1Track_tracktwo)
+ 	    u.estimator.add_systematics(fw_highPT_1Track_25med)
 
 	for u in addon_backgrounds_ptonly_lowPT_1Track:
-            u.estimator.add_systematics(kW_OS_ptonly_lowPT_Tau1Track)
-            u.estimator.add_systematics(kW_SS_ptonly_lowPT_Tau1Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_lowPT_Tau1Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau1Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau1Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau1Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5609,12 +5613,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_1Track_ptonly)
+            u.estimator.add_systematics(fw_lowPT_1Track_25med)
 
 	for v in addon_backgrounds_ptonly_highPT_1Track:
-            v.estimator.add_systematics(kW_OS_ptonly_highPT_Tau1Track)
-            v.estimator.add_systematics(kW_SS_ptonly_highPT_Tau1Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau1Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau1Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau1Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5623,7 +5627,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
- 	    u.estimator.add_systematics(fw_highPT_1Track_ptonly)
+ 	    u.estimator.add_systematics(fw_highPT_1Track_25med)
 
 	for s in addon_backgrounds_lowPT_3Track:
             s.estimator.add_systematics(kW_OS_lowPT_Tau3Track)
@@ -5682,9 +5686,9 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(fw_highPT_3Track_25med)    
 	
 	for u in addon_backgrounds_35med_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_35med_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_35med_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_35med_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5693,12 +5697,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_35med)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_35med_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_35med_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_35med_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_35med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5707,12 +5711,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_35med)
+            v.estimator.add_systematics(fw_highPT_3Track_25med)
 	
 	for u in addon_backgrounds_50L1TAU12med_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_50L1TAU12med_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_50L1TAU12med_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5721,12 +5725,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_50L1TAU12med)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_50L1TAU12med_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_50L1TAU12med_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_50L1TAU12med_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5735,13 +5739,13 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_50L1TAU12med)
+            v.estimator.add_systematics(fw_highPT_3Track_25med)
 
 
 	for u in addon_backgrounds_80med_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_80med_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_80med_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_80med_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5750,12 +5754,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_80med)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_80med_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_80med_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_80med_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_80med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5764,12 +5768,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_80med)
+            v.estimator.add_systematics(fw_highPT_3Track_25med)
 
 	for u in addon_backgrounds_80L1TAU60med_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_80L1TAU60med_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_80L1TAU60med_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5778,12 +5782,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_80L1TAU60med)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_80L1TAU60med_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_80L1TAU60med_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_80L1TAU60med_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5792,12 +5796,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_80L1TAU60med)
+            v.estimator.add_systematics(fw_highPT_3Track_25med)
 
 	for u in addon_backgrounds_125med_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_125med_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_125med_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_125med_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5806,12 +5810,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_125med)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_125med_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_125med_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_125med_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_125med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5820,12 +5824,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_125med)
+            v.estimator.add_systematics(fw_highPT_3Track_25med)
 
 	for u in addon_backgrounds_160med_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_160med_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_160med_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_160med_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5834,12 +5838,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_160med)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_160med_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_160med_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_160med_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_160med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5848,12 +5852,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_160med)	
+            v.estimator.add_systematics(fw_highPT_3Track_25med)	
 
 	for u in addon_backgrounds_L1TAU12IMmed_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_L1TAU12IMmed_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_L1TAU12IMmed_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5862,12 +5866,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_L1TAU12IMmed)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_L1TAU12IMmed_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_L1TAU12IMmed_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_L1TAU12IMmed_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5876,12 +5880,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_L1TAU12IMmed)	
+            v.estimator.add_systematics(fw_highPT_3Track_25med)	
 
 	for u in addon_backgrounds_tracktwo_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_tracktwo_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_tracktwo_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5890,12 +5894,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_tracktwo)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_tracktwo_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_tracktwo_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_tracktwo_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_tracktwo_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5904,12 +5908,12 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_tracktwo)	
+            v.estimator.add_systematics(fw_highPT_3Track_25med)	
 
 	for u in addon_backgrounds_ptonly_lowPT_3Track:
-            u.estimator.add_systematics(kW_OS_ptonly_lowPT_Tau3Track)
-            u.estimator.add_systematics(kW_SS_ptonly_lowPT_Tau3Track)
-	    u.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_lowPT_Tau3Track) 
+            u.estimator.add_systematics(kW_OS_25med_lowPT_Tau3Track)
+            u.estimator.add_systematics(kW_SS_25med_lowPT_Tau3Track)
+	    u.estimator.add_systematics(RQCD_AntiIsoCR_25med_lowPT_Tau3Track) 
 	    u.estimator.add_systematics(MUID)
 	    u.estimator.add_systematics(MUMS)
 	    u.estimator.add_systematics(MUSCALE)
@@ -5918,12 +5922,12 @@ if ptbinning_y_or_n == "y":
 	    u.estimator.add_systematics(MUSF_STAT)
 	    u.estimator.add_systematics(METSCALE)
 	    u.estimator.add_systematics(PILEUP)
-            u.estimator.add_systematics(fw_lowPT_3Track_ptonly)
+            u.estimator.add_systematics(fw_lowPT_3Track_25med)
 
 	for v in addon_backgrounds_ptonly_highPT_3Track:
-            v.estimator.add_systematics(kW_OS_ptonly_highPT_Tau3Track)
-            v.estimator.add_systematics(kW_SS_ptonly_highPT_Tau3Track)
-	    v.estimator.add_systematics(RQCD_AntiIsoCR_ptonly_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_OS_25med_highPT_Tau3Track)
+            v.estimator.add_systematics(kW_SS_25med_highPT_Tau3Track)
+	    v.estimator.add_systematics(RQCD_AntiIsoCR_25med_highPT_Tau3Track)
 	    v.estimator.add_systematics(MUID)
 	    v.estimator.add_systematics(MUMS)
 	    v.estimator.add_systematics(MUSCALE)
@@ -5932,7 +5936,7 @@ if ptbinning_y_or_n == "y":
 	    v.estimator.add_systematics(MUSF_STAT)
 	    v.estimator.add_systematics(METSCALE)
 	    v.estimator.add_systematics(PILEUP)
-            v.estimator.add_systematics(fw_highPT_3Track_ptonly)	
+            v.estimator.add_systematics(fw_highPT_3Track_25med)	
 
 vdict  = vars.vars_dict
 
@@ -5971,7 +5975,7 @@ elif "SR_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_1Track)
 	
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_1Track) 
+        #plot_signals.append(sub_ztt_1Track) 
 	
 elif "SR_25med_Tau1Track" == options.region:
  
@@ -6105,7 +6109,7 @@ elif "SR_Tau3Track" == options.region:
 	plot_backgrounds.append(addon_top_3Track)
 
         plot_signals.append(samples.Zttjets)
-        plot_signals.append(sub_ztt_3Track) 
+        #plot_signals.append(sub_ztt_3Track) 
 	
 elif "SR_25med_Tau3Track" == options.region:
  
@@ -6325,10 +6329,10 @@ elif "SR_lowSCDP_lowMT_SS" == options.region:
 
 elif "SR_SS_lowSCDP" == options.region:
         #plot_backgrounds.append(addon_Wjets)
-        plot_signals.append(samples.Wjets)
+        #plot_signals.append(samples.Wjets)
         #plot_signals.append(samples.Zttjets)
         #plot_backgrounds.append(samples.Zlljets)
-        #plot_backgrounds.append(samples.top)
+        plot_backgrounds.append(samples.top)
 
 elif "SR_highSCDP" == options.region:
 
@@ -6351,12 +6355,12 @@ elif "SR_SS_no_cuts_2D" == options.region:
 
 elif "SR_lowSCDP" == options.region:
 
-	#plot_signals.append(samples.Zttjets)
+	plot_signals.append(samples.Zttjets)
 	#plot_backgrounds.append(addon_data_lowSCDP)
-        #plot_backgrounds.append(addon_Wjets_lowSCDP)
-        #plot_backgrounds.append(addon_Zlljets_lowSCDP)
-        #plot_backgrounds.append(addon_top_lowSCDP)
-        plot_signals.append(samples.Wjets)
+        plot_backgrounds.append(addon_Wjets_lowSCDP)
+        plot_backgrounds.append(addon_Zlljets_lowSCDP)
+        plot_backgrounds.append(addon_top_lowSCDP)
+        #plot_signals.append(samples.Wjets)
         #plot_backgrounds.append(samples.Zlljets)
         #plot_backgrounds.append(samples.top)
 
@@ -6400,13 +6404,39 @@ elif "SR_SS_Tau3Track" == options.region:
         plot_signals.append(samples.Wjets)
 
 
-elif "AntiIsoCR_OS" == options.region:
+elif "Wjets_OS_Tau3Track" == options.region:
 
         plot_signals.append(samples.Zttjets)
-        plot_backgrounds.append(addon_data)
-	plot_backgrounds.append(addon_Wjets)
-        plot_backgrounds.append(addon_Zlljets)
-        plot_backgrounds.append(addon_top)
+        plot_backgrounds.append(addon_data_3Track)
+	plot_backgrounds.append(addon_Wjets_3Track)
+        plot_backgrounds.append(addon_Zlljets_3Track)
+        plot_backgrounds.append(addon_top_3Track)
+
+elif "Wjets_OS" == options.region:
+
+        plot_signals.append(samples.Zttjets)
+
+	plot_backgrounds.append(addon_Wjets_OS_no_cuts)
+	plot_backgrounds.append(addon_Zlljets_OS_no_cuts)
+	plot_backgrounds.append(addon_top_OS_no_cuts)
+	#plot_backgrounds.append(samples.Wjets)
+        #plot_backgrounds.append(samples.Zlljets)
+        #plot_backgrounds.append(samples.top)
+elif "AntiIsoCR_SS" == options.region:
+
+        plot_signals.append(samples.Zttjets)
+        plot_backgrounds.append(addon_data_OS_no_cuts)
+	plot_backgrounds.append(samples.Wjets)
+        plot_backgrounds.append(samples.Zlljets)
+        plot_backgrounds.append(samples.top)
+
+elif "AntiIsoCR_OS_Tau1Track" == options.region:
+
+        plot_signals.append(samples.Zttjets)
+        plot_backgrounds.append(addon_data_1Track)
+	plot_backgrounds.append(addon_Wjets_1Track)
+        plot_backgrounds.append(addon_Zlljets_1Track)
+        plot_backgrounds.append(addon_top_1Track)
 
 elif "SR_OS_no_cuts_forvismass" == options.region:  
 
@@ -6536,7 +6566,7 @@ else:
         icut        = int(options.icut),
         histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
         #rebin       = vdict[options.vname]['rebin'],
-        sys_dict    = sys_dict,
+        sys_dict    = None,#sys_dict,
         outname     = plotsfile
         )	
 
