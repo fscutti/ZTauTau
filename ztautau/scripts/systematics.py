@@ -107,7 +107,7 @@ RQCD_AntiIsoCR_highPT = sys_dict['RQCD_AntiIsoCR_highPT'] = Systematic(
 
 RQCD_AntiIsoCR_25med_lowPT = sys_dict['RQCD_AntiIsoCR_25med_lowPT'] = Systematic(
         'RQCD_AntiIsoCR_25med_lowPT','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.00709219858156,
+        flat_err=0.0141843971631,
         )
 
 RQCD_AntiIsoCR_25med_highPT = sys_dict['RQCD_AntiIsoCR_25med_highPT'] = Systematic(
@@ -214,96 +214,96 @@ RQCD_AntiIsoCR_25med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_25med_highPT_Ta
 
 RQCD_AntiIsoCR_35med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_35med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_35med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.400884955752,  
+        flat_err=0.0438053097345,  
         )
 
 RQCD_AntiIsoCR_35med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_35med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_35med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0533165407221,  
+        flat_err=0.0155331654072,  
         )
 
 
 RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.447655398037,  
+        flat_err=0.087786259542,  
         )
 
 RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0721077654517,  
+        flat_err=0.0396196513471,  
         )
 
 RQCD_AntiIsoCR_80med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_80med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.653482373173,  
+        flat_err=0.0911435941531,  
         )
 
 RQCD_AntiIsoCR_80med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_80med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0768272425249,  
+        flat_err=0.0485880398671,  
         )
 
 
 RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.716906946265,  
+        flat_err=0.0871559633028,  
         )
 
 RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0547717842324,  
+        flat_err=0.0630705394191,  
         )
-
 
 RQCD_AntiIsoCR_125med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_125med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_125med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=1.03878116343,  
+        flat_err=0.488227146814,  
         )
+
 
 RQCD_AntiIsoCR_125med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_125med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_125med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0742018981881,  
+        flat_err=0.0647109577222,  
         )
 
 RQCD_AntiIsoCR_160med_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_160med_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=1.5,  
+        flat_err=0.2145,  
         )
 
 RQCD_AntiIsoCR_160med_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_160med_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.095340811044,  
+        flat_err=0.0427092320966,  
         )
 
 RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0661896243292,  
+        flat_err=0.0156529516995,  
         )
 
 RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0518707482993,  
+        flat_err=0.0102040816327,  
         )
 
 RQCD_AntiIsoCR_tracktwo_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_tracktwo_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_tracktwo_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0698496905393,  
+        flat_err=0.0181255526083,  
         )
 
 RQCD_AntiIsoCR_tracktwo_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_tracktwo_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_tracktwo_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0497890295359,  
+        flat_err=0.0160337552743,  
         )
 
 
 RQCD_AntiIsoCR_ptonly_lowPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_ptonly_lowPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_ptonly_lowPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0633363068689,  
+        flat_err=0.0156110615522,  
         )
 
 RQCD_AntiIsoCR_ptonly_highPT_Tau1Track = sys_dict['RQCD_AntiIsoCR_ptonly_highPT_Tau1Track'] = Systematic(
         'RQCD_AntiIsoCR_ptonly_highPT_Tau1Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0391156462585,  
+        flat_err=0.00977891156463,  
         )
 
 
@@ -331,99 +331,99 @@ RQCD_AntiIsoCR_25med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_25med_highPT_Ta
 
 RQCD_AntiIsoCR_35med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_35med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_35med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.448942377826,  
+        flat_err=0.092633114515,  
         )
 RQCD_AntiIsoCR_35med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_35med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_35med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.212546816479,  
+        flat_err=0.0358926342072,  
         )
 
 
 RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_50L1TAU12med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.215750915751,  
+        flat_err=0.191941391941,  
         )
 
 RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_50L1TAU12med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.241066020594,  
+        flat_err=0.034221683828,  
         )
 
 
 RQCD_AntiIsoCR_80med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_80med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.711574952562,  
+        flat_err=2.50284629981, 
         )
 
 RQCD_AntiIsoCR_80med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_80med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.235807860262,  
+        flat_err=0.322052401747,  
         )
 
 
 RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.780691299166,  
+        flat_err=2.61859356377,  
         )
 
 RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_80L1TAU60med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.192615912994,  
+        flat_err=0.506868918145,  
         )
 
 
 RQCD_AntiIsoCR_125med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_125med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_125med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.677504393673,  
+        flat_err=0.169595782074,  
         )
 
 RQCD_AntiIsoCR_125med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_125med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_125med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.562838569881,  
+        flat_err=0.23022751896,  
         )
 
 
 RQCD_AntiIsoCR_160med_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_160med_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.488095238095,  
+        flat_err=0.43005952381,  
         )
 
 RQCD_AntiIsoCR_160med_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_160med_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_160med_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.103238866397,  
+        flat_err=0.255735492578,  
         )
 
 
 RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_L1TAU12IMmed_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0789049919485,  
+        flat_err=0.0269726247987,  
         )
 
 RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_L1TAU12IMmed_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.216747070986,  
+        flat_err=0.0251550654721,  
         )
 
 
 RQCD_AntiIsoCR_ptonly_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_ptonly_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_ptonly_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0218270008084,  
+        flat_err=0.0278900565885,  
         )
 
 RQCD_AntiIsoCR_ptonly_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_ptonly_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_ptonly_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0382231404959,  
+        flat_err=0.151515151515,  
         )
 
 
 RQCD_AntiIsoCR_tracktwo_lowPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_tracktwo_lowPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_tracktwo_lowPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.0691318327974,  
+        flat_err=0.0253215434084,  
         )
 
 RQCD_AntiIsoCR_tracktwo_highPT_Tau3Track = sys_dict['RQCD_AntiIsoCR_tracktwo_highPT_Tau3Track'] = Systematic(
         'RQCD_AntiIsoCR_tracktwo_highPT_Tau3Track','$\\sigma_{R_{\\rm QCD}}$',      
-        flat_err=0.223310810811,  
+        flat_err=0.0347972972973,  
         )
 
 
@@ -862,7 +862,7 @@ kW_OS_50L1TAU12med_lowPT_Tau3Track = sys_dict['kW_OS_50L1TAU12med_lowPT_Tau3Trac
 
 kW_OS_50L1TAU12med_highPT_Tau3Track = sys_dict['kW_OS_50L1TAU12med_highPT_Tau3Track'] = Systematic(
         'kW_OS_50L1TAU12med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.129470672389,  
+        flat_err=0.0825498307634,  
         )
 
 
@@ -883,7 +883,7 @@ kW_OS_80L1TAU60med_lowPT_Tau3Track = sys_dict['kW_OS_80L1TAU60med_lowPT_Tau3Trac
 
 kW_OS_80L1TAU60med_highPT_Tau3Track = sys_dict['kW_OS_80L1TAU60med_highPT_Tau3Track'] = Systematic(
         'kW_OS_80L1TAU60med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=1.14552238806,  
+        flat_err=0.0825498307634,  
         )
 
 kW_OS_125med_lowPT_Tau3Track = sys_dict['kW_OS_125med_lowPT_Tau3Track'] = Systematic(
@@ -1013,7 +1013,7 @@ kW_SS_80med_highPT_Tau1Track = sys_dict['kW_SS_80med_highPT_Tau1Track'] = System
 
 kW_SS_80L1TAU60med_lowPT_Tau1Track = sys_dict['kW_SS_80L1TAU60med_lowPT_Tau1Track'] = Systematic(
         'kW_SS_80L1TAU60med_lowPT_Tau1Track','$\\sigma_{kW}}$',      
-        flat_err=0.161916072842,  
+        flat_err=0.0925925925926,  
         )
 
 kW_SS_80L1TAU60med_highPT_Tau1Track = sys_dict['kW_SS_80L1TAU60med_highPT_Tau1Track'] = Systematic(
@@ -1108,7 +1108,7 @@ kW_SS_50L1TAU12med_lowPT_Tau3Track = sys_dict['kW_SS_50L1TAU12med_lowPT_Tau3Trac
 
 kW_SS_50L1TAU12med_highPT_Tau3Track = sys_dict['kW_SS_50L1TAU12med_highPT_Tau3Track'] = Systematic(
         'kW_SS_50L1TAU12med_highPT_Tau3Track','$\\sigma_{kW}}$',      
-        flat_err=0.152113843603,  
+        flat_err=0.0798563138989,  
         )
 
 kW_SS_80med_lowPT_Tau3Track = sys_dict['kW_SS_80med_lowPT_Tau3Track'] = Systematic(
