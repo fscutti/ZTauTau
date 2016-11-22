@@ -508,7 +508,7 @@ def plot_hist(
 
 	    ratio_line = ROOT.TLine(xmin,1,xmax,1)
 	    ratio_line.SetLineColor(ROOT.kRed)
-            ratio_line.SetLineStyle(10)
+            ratio_line.SetLineStyle(7)
 
 	    if do_ratio_plot: rsplit = 0.3
 	    else: rsplit = 0.
@@ -537,10 +537,10 @@ def plot_hist(
             #ytitle = yaxistitle
 	    elif rebin!=1:
 	      if not "BDT" in xtitle:
-		ytitle += " / %s"%rebin
 		if ("f" in xtitle) or ("track" in xtitle) or ("S" in xtitle) or ("R" in xtitle) or ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
-		else: ytitle += " GeV"
-	      else: ytitle += " / %s"%(0.05)
+		ytitle += " / %s"%rebin
+		ytitle += " GeV"
+	      #else: ytitle += " / %s"%(0.05)
 
 	    fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle))
 	    if do_ratio_plot:
@@ -563,6 +563,7 @@ def plot_hist(
 	    yaxis1.SetLabelOffset( 1. * yaxis1.GetLabelOffset() / scale )
 	    xaxis1.SetNdivisions(510)
 	    yaxis1.SetNdivisions(510)
+            xaxis1.SetLabelSize(0.04)
 
 	    h_stack.Draw("SAME,HIST")
 	    mc_stat_scatter.Draw("E2 SAME") 
@@ -598,10 +599,14 @@ def plot_hist(
 	    tlatex.DrawLatex(tx,latex_y-0.14,'#scale[%lf]{#sqrt{s} = 13 TeV}'%(textsize))
 	    tlatex.DrawLatex(tx, latex_y-0.21,'#scale[%lf]{Z#rightarrow#tau#tau#rightarrow#mu#tau_{had} T&P}'%(textsize))
 	    if label:
-              if label == "": pass
-              else:
+              if "_" in label:
+		list_labels = label.split("_")
+		fin_lab = ""
+		for j in range(len(list_labels)):
+			fin_lab += list_labels[j]
+			fin_lab += " "
 
-	        tlatex.DrawLatex(tx,latex_y - 0.28,"#scale[0.7]{%s}"%(label))
+	        tlatex.DrawLatex(tx,latex_y - 0.28,"#scale[0.7]{%s}"%(str(fin_lab)))
 	      #latex_y -= 0.1
 	      #for i,line in enumerate(label):
 	      #  tlatex.DrawLatex(tx,latex_y-i*0.06,"#scale[%lf]{%s}"%(textsize,line))
