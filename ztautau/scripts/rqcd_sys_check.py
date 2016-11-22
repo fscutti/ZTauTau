@@ -563,8 +563,8 @@ print " ------------------------------------"
 rqcd_i_low_1track_125med_val = 0.722 
 rqcd_i_high_1track_125med_val = 1.159
 
-rqcd_i_low_topo_1track_125med = []
-rqcd_i_high_topo_1track_125med = []
+rqcd_i_low_topo_1track_125med = [0.634, 0.570, 0.570, 0.700, 0.700, 0.642, 0.572, 0.674, 0.629, 0.629, 0.652, 0.614, 0.580, 0.635, 0.746, 0.746, 0.746, 0.746, 0.746, 0.746, 0.746]
+rqcd_i_high_topo_1track_125med = [1.301, 1.244, 1.258, 1.255, 1.235, 1.210, 1.190, 1.172, 1.185, 1.191, 1.195, 1.188, 1.198, 1.199, 1.205, 1.151, 1.158, 1.159, 1.158, 1.166, 1.163]
 
 min_rqcd_i_low_topo_1track_125med = 2
 max_rqcd_i_low_topo_1track_125med = 0
@@ -628,8 +628,8 @@ print " ------------------------------------"
 rqcd_i_low_1track_160med_val = 1 
 rqcd_i_high_1track_160med_val = 1.159
 
-rqcd_i_low_topo_1track_160med = []
-rqcd_i_high_topo_1track_160med = []
+rqcd_i_low_topo_1track_160med = [0.667, 0.667, 0.667, 1.000, 0.571, 0.714, ]
+rqcd_i_high_topo_1track_160med = [1.234, 1.207, 1.242, 1.234, 1.230, 1.230, 1.153, 1.143, 1.145, 1.150, 1.147, 1.172, 1.162, 1.215, 1.179, 1.182, 1.179, 1.158, 1.153, 1.177, 1.158]
 
 min_rqcd_i_low_topo_1track_160med = 2
 max_rqcd_i_low_topo_1track_160med = 0
@@ -696,8 +696,8 @@ print "---> total sys 160med high pt (percentage) =", max( ((max_rqcd_i_high_top
 rqcd_i_low_ptonly1Track_val =  1.121
 rqcd_i_high_ptonly1Track_val = 1.176
 
-rqcd_i_low_topo_ptonly1Track = []
-rqcd_i_high_topo_ptonly1Track = []
+rqcd_i_low_topo_ptonly1Track = [1.121, 1.137, 1.147, 1.151, 1.156, 1.152, 1.153, 1.153, 1.151, 1.147, 1.144, 1.144, 1.141, 1.144, 1.143, 1.141, 1.142, 1.140, 1.140, 1.137, 1.137]
+rqcd_i_high_topo_ptonly1Track = [1.186, 1.187, 1.189, 1.196, 1.196, 1.192, 1.185, 1.183, 1.183, 1.186, 1.188, 1.186, 1.185, 1.190, 1.191, 1.189, 1.186, 1.186, 1.186, 1.185, 1.183]
 
 min_rqcd_i_low_topo_ptonly1Track = 2
 max_rqcd_i_low_topo_ptonly1Track = 0
@@ -763,8 +763,8 @@ print "---> total sys ptonly1Track high pt (percentage) =", max( ((max_rqcd_i_hi
 rqcd_i_low_tracktwo1Track_val = 1.131 
 rqcd_i_high_tracktwo1Track_val = 1.185
 
-rqcd_i_low_topo_tracktwo1Track = []
-rqcd_i_high_topo_tracktwo1Track = []
+rqcd_i_low_topo_tracktwo1Track = [1.115, 1.137, 1.149, 1.149, 1.154, 1.152, 1.154, 1.155, 1.156, 1.151, 1.148, 1.149, 1.146, 1.149, 1.150, 1.148, 1.148, 1.148, 1.147, 1.145, 1.144]
+rqcd_i_high_topo_tracktwo1Track = [1.202, 1.202, 1.203, 1.210, 1.210, 1.204, 1.194, 1.193, 1.195, 1.197, 1.198, 1.197, 1.196, 1.201, 1.202, 1.201, 1.198, 1.197, 1.197, 1.195, 1.193]
 
 min_rqcd_i_low_topo_tracktwo1Track = 2
 max_rqcd_i_low_topo_tracktwo1Track = 0
@@ -830,8 +830,8 @@ print "---> total sys tracktwo1Track high pt (percentage) =", max( ((max_rqcd_i_
 rqcd_i_low_L1TAU12IM1Track_val = 1.118 
 rqcd_i_high_L1TAU12IM1Track_val = 1.176
 
-rqcd_i_low_topo_L1TAU12IM1Track = []
-rqcd_i_high_topo_L1TAU12IM1Track = []
+rqcd_i_low_topo_L1TAU12IM1Track = [1.117, 1.133, 1.142, 1.146, 1.152, 1.148, 1.146, 1.146, 1.146, 1.142, 1.140, 1.140, 1.137, 1.140, 1.139, 1.137, 1.138, 1.137, 1.136, 1.133, 1.133]
+rqcd_i_high_topo_L1TAU12IM1Track = [1.188, 1.188, 1.191, 1.198, 1.198, 1.194, 1.186, 1.184, 1.184, 1.187, 1.189, 1.188, 1.187, 1.191, 1.193, 1.191, 1.188, 1.187, 1.187, 1.186, 1.185]
 
 min_rqcd_i_low_topo_L1TAU12IM1Track = 2
 max_rqcd_i_low_topo_L1TAU12IM1Track = 0
@@ -1304,8 +1304,8 @@ print " ------------------------------------"
 rqcd_i_low_3track_125med_val = 0.569 
 rqcd_i_high_3track_125med_val = 0.923
 
-rqcd_i_low_topo_3track_125med = []
-rqcd_i_high_topo_3track_125med = []
+rqcd_i_low_topo_3track_125med = [0.571, 0.571, 0.571, 0.571, 0.571, 0.571, 0.714, 0.714, 0.714, 0.670, 0.586, 0.586, 0.586, 0.586, 0.586, 0.586, 0.586, 0.521, 0.521, 0.521, 0.521]
+rqcd_i_high_topo_3track_125med = [2.039, 2.030, 2.052, 2.002, 2.050, 1.986, 2.008, 1.966, 1.861, 1.795, 1.732, 1.683, 1.683, 1.627, 1.644, 1.710, 1.743, 1.743, 1.747, 1.747, 1.758]
 
 min_rqcd_i_low_topo_3track_125med = 2
 max_rqcd_i_low_topo_3track_125med = 0
@@ -1369,8 +1369,8 @@ print " ------------------------------------"
 rqcd_i_low_3track_160med_val = 0.672 
 rqcd_i_high_3track_160med_val = 1.482
 
-rqcd_i_low_topo_3track_160med = []
-rqcd_i_high_topo_3track_160med = []
+rqcd_i_low_topo_3track_160med = [1.000, 0.844, 0.562, 0.562, 0.422]
+rqcd_i_high_topo_3track_160med = [2.356, 2.189, 1.764, 1.764, 1.718, 1.808, 1.808, 1.847, 1.651, 1.690, 1.729, 1.768, 2.409, 2.193, 2.257, 2.120, 2.114, 2.102, 1.843]
 
 min_rqcd_i_low_topo_3track_160med = 2
 max_rqcd_i_low_topo_3track_160med = 0
@@ -1438,8 +1438,8 @@ print "---> total sys 160med high pt (percentage) =", max( ((max_rqcd_i_high_top
 rqcd_i_low_ptonly3Track_val =  1.237
 rqcd_i_high_ptonly3Track_val = 1.452
 
-rqcd_i_low_topo_ptonly3Track = []
-rqcd_i_high_topo_ptonly3Track = []
+rqcd_i_low_topo_ptonly3Track = [1.329, 1.318, 1.293, 1.282, 1.279, 1.274, 1.275, 1.274, 1.280, 1.274, 1.269, 1.267, 1.261, 1.263, 1.260, 1.261, 1.274, 1.274, 1.280, 1.280, 1.278]
+rqcd_i_high_topo_ptonly3Track = [1.556, 1.582, 1.579, 1.573, 1.564, 1.546, 1.535, 1.537, 1.520, 1.519, 1.511, 1.526, 1.519, 1.509, 1.510, 1.519, 1.521, 1.524, 1.521, 1.521, 1.520]
 
 min_rqcd_i_low_topo_ptonly3Track = 2
 max_rqcd_i_low_topo_ptonly3Track = 0
@@ -1505,8 +1505,8 @@ print "---> total sys ptonly3Track high pt (percentage) =", max( ((max_rqcd_i_hi
 rqcd_i_low_tracktwo3Track_val =  1.244
 rqcd_i_high_tracktwo3Track_val = 1.480
 
-rqcd_i_low_topo_tracktwo3Track = []
-rqcd_i_high_topo_tracktwo3Track = []
+rqcd_i_low_topo_tracktwo3Track = [1.291, 1.263, 1.235, 1.228, 1.228, 1.231, 1.234, 1.234, 1.236, 1.241, 1.235, 1.234, 1.229, 1.229, 1.229, 1.232, 1.243, 1.241, 1.249, 1.248, 1.247]
+rqcd_i_high_topo_tracktwo3Track = [1.603, 1.628, 1.632, 1.626, 1.612, 1.592, 1.578, 1.568, 1.548, 1.545, 1.536, 1.551, 1.543, 1.535, 1.532, 1.543, 1.546, 1.550, 1.551, 1.554, 1.551]
 
 min_rqcd_i_low_topo_tracktwo3Track = 2
 max_rqcd_i_low_topo_tracktwo3Track = 0
@@ -1571,8 +1571,8 @@ print "---> total sys tracktwo3Track high pt (percentage) =", max( ((max_rqcd_i_
 rqcd_i_low_L1TAU12IM3Track_val = 1.242 
 rqcd_i_high_L1TAU12IM3Track_val = 1.451
 
-rqcd_i_low_topo_L1TAU12IM3Track = []
-rqcd_i_high_topo_L1TAU12IM3Track = []
+rqcd_i_low_topo_L1TAU12IM3Track = [1.327, 1.315, 1.294, 1.286, 1.283, 1.279, 1.281, 1.275, 1.281, 1.274, 1.269, 1.266, 1.261, 1.263, 1.262, 1.260, 1.272, 1.272, 1.277, 1.278, 1.276]
+rqcd_i_high_topo_L1TAU12IM3Track = [1.554, 1.580, 1.578, 1.571, 1.563, 1.544, 1.533, 1.535, 1.516, 1.516, 1.508, 1.524, 1.516, 1.507, 1.507, 1.516, 1.519, 1.521, 1.519, 1.519, 1.518]
 
 min_rqcd_i_low_topo_L1TAU12IM3Track = 2
 max_rqcd_i_low_topo_L1TAU12IM3Track = 0
