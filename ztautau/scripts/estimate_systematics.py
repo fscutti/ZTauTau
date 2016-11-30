@@ -24,9 +24,9 @@ variable = "tau_pt"
 trax = "3Track"
 
 #chain = None
-chain = "ptonly"
+#chain = "ptonly"
 #chain = "tracktwo"
-#chain = "L1TAU12IMmed"
+chain = "L1TAU12IMmed"
 
 #trig = "25med"
 #trig = "35med"
@@ -36,8 +36,8 @@ chain = "ptonly"
 #trig = "125med"
 #trig = "160med"
 #trig = "L1TAU12IMmed"
-#trig = "ptonly"
-trig = "tracktwo"
+trig = "ptonly"
+#trig = "tracktwo"
 
 
 y = ROOT.TFile('../../test/Hists_systematics/BDT_medium/hists_tau_pt_SR.root')
@@ -1700,8 +1700,12 @@ if trig and chain:
 
 	h_ratio_MC_graph_chain = funcs.combination_ratio_stats(MC_ratio_plot,MC_eff_ratio_num,MC_eff_ratio_den,total_stat_up_mc,total_stat_dn_mc,total_stat_up_mc_chain,total_stat_dn_mc_chain)
 	h_ratio_MC_graph_chain.SetFillColor(ROOT.kRed)
-	h_ratio_MC_graph_chain.SetFillStyle(3144)
+	h_ratio_MC_graph_chain.SetFillStyle(3001)
 		
+	h_ratio_MC_graph_chain.SetMarkerStyle(20)
+	h_ratio_MC_graph_chain.SetLineWidth(2)	
+	h_ratio_MC_graph_chain.SetMarkerColor(ROOT.kRed)
+	h_ratio_MC_graph_chain.SetLineColor(ROOT.kRed)
 	if str(variable) == "tau_eta":
 		for i in range(h_efficiency_simple_subztt_nominal.GetNbinsX()):
 			val_data_c = h_ratio_graph_chain.GetY()[i]	
@@ -1898,6 +1902,7 @@ if trig and chain:
 
 	tot_ratio_chain = ROOT.TMultiGraph()
 	tot_ratio_chain.Add(h_ratio_MC_graph_chain,"E2")
+	tot_ratio_chain.Add(h_ratio_MC_graph_chain,"APZ")
 	tot_ratio_chain.Add(h_ratio_graph_chain,"APZ")
         tot_ratio_chain.Draw("a Same")
 
