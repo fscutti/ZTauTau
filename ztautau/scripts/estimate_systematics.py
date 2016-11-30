@@ -6,84 +6,71 @@ import funcs
 import os
 import math
 from pyplot import histutils
-from ztautau.samples import samples
-from ztautau.plots   import vars
+#from ztautau.samples import samples
+#from ztautau.plots   import vars
 from systematics     import *
 import numpy as np
 
 #bdt = "loose"
-#bdt = "medium"
-bdt = "tight"
+bdt = "medium"
+#bdt = "tight"
 
 variable = "tau_pt"
 #variable = "tau_eta"
 #variable = "pileup"
 
 #trax = None
-trax = "1Track"
-#trax = "3Track"
+#trax = "1Track"
+trax = "3Track"
 
-chain = None
-#chain = "ptonly"
+#chain = None
+chain = "ptonly"
 #chain = "tracktwo"
 #chain = "L1TAU12IMmed"
 
 #trig = "25med"
 #trig = "35med"
 #trig = "50L1TAU12med"
-trig = "80med"
+#trig = "80med"
 #trig = "80L1TAU60med"
 #trig = "125med"
 #trig = "160med"
 #trig = "L1TAU12IMmed"
 #trig = "ptonly"
-#trig = "tracktwo"
+trig = "tracktwo"
 
-"""
-y = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR.root')
+
+y = ROOT.TFile('../../test/Hists_systematics/BDT_medium/hists_tau_pt_SR.root')
 wjets = y.Get('h_SR_nominal_Wjets')
-top = y.Get('h_SR_nominal_top')
+top_truth = y.Get('h_SR_nominal_top_truth')
+top_antitruth = y.Get('h_SR_nominal_top_antitruth')
 zlljets = y.Get('h_SR_nominal_Zlljets')
-zttjets = y.Get('h_SR_nominal_Zttjets')
+zttjets_truth = y.Get('h_SR_nominal_Zttjets_truth')
+zttjets_antitruth = y.Get('h_SR_nominal_Zttjets_antitruth')
 data = y.Get('h_SR_nominal_data')
-subztt = y.Get('h_SR_nominal_sub_ztt')
+#subztt = y.Get('h_SR_nominal_sub_ztt')
 
-# CHECK FOR NEG BINS
-for j in range(1, wjets.GetNbinsX()+1):
-	content = wjets.GetBinContent(j)
-	if content < 0:
-		print "wjets has bin", j, "less than zero with content", content
-
-for j in range(1, top.GetNbinsX()+1):
-	content = top.GetBinContent(j)
-	if content < 0:
-		print "top has bin", j, "less than zero with content", content
-
-for j in range(1, zlljets.GetNbinsX()+1):
-	content = zlljets.GetBinContent(j)
-	if content < 0:
-		print "zlljets has bin", j, "less than zero with content", content
-
-"""
-"""
 # YIELDS
 Wjets,wjets_int_err = histutils.full_integral_and_error(wjets)
 print "Wjets integral", Wjets, wjets_int_err
-Top,top_int_err = histutils.full_integral_and_error(top)
-print "top", Top, top_int_err
+Top_truth,top_truth_int_err = histutils.full_integral_and_error(top_truth)
+print "top_truth", Top_truth, top_truth_int_err
+Top_antitruth,top_antitruth_int_err = histutils.full_integral_and_error(top_antitruth)
+print "top_antitruth", Top_antitruth, top_antitruth_int_err
 Zlljets,zll_int_err = histutils.full_integral_and_error(zlljets)
 print "zlljets", Zlljets, zll_int_err
-Data,data_int_err = histutils.full_integral_and_error(data)
-print "data", Data, data_int_err
-Zttjets,ztt_int_err = histutils.full_integral_and_error(zttjets)
-print "zttjets", Zttjets, ztt_int_err
-Subztt,subztt_int_err = histutils.full_integral_and_error(subztt)
-print "subztt", Subztt, subztt_int_err
-ssdata = Data-Subztt-Wjets-Top-Zlljets
-ssdata_err = math.sqrt( wjets_int_err**2 + top_int_err**2 + zll_int_err**2 + data_int_err**2 + subztt_int_err**2 ) 
-print "ssdata", ssdata, ssdata_err
-print "expected", Wjets+Top+Zlljets+Zttjets+ssdata, math.sqrt( wjets_int_err**2 + top_int_err**2 + zll_int_err**2 + data_int_err**2 + ztt_int_err**2 )
-"""
+SS_data,SS_data_int_err = histutils.full_integral_and_error(data)
+print "ssdata", SS_data, SS_data_int_err
+Zttjets_antitruth,ztt_antitruth_int_err = histutils.full_integral_and_error(zttjets_antitruth)
+print "zttjets antitruth", Zttjets_antitruth, ztt_antitruth_int_err
+Zttjets_truth,ztt_truth_int_err = histutils.full_integral_and_error(zttjets_truth)
+print "zttjets truth", Zttjets_truth, ztt_truth_int_err
+#Subztt,subztt_int_err = histutils.full_integral_and_error(subztt)
+#print "subztt", Subztt, subztt_int_err
+#Data = Subztt+SS_data+Zlljets+Top+Wjets
+#print "data", Data
+#print "expected", Wjets+Top+Zlljets+Zttjets+SS_data, math.sqrt( wjets_int_err**2 + top_int_err**2 + zll_int_err**2 + SS_data_int_err**2 + ztt_int_err**2 )
+
 #--------- inclusive ------------#
 """
 f = ROOT.TFile('../../test/Hists_systematics/hists_'+str(variable)+'_SR.root')
@@ -185,14 +172,14 @@ elif str(variable) == "tau_eta":
 elif str(variable) == "pileup":
 	print "pileup!"
 	if str(trax) == "3Track":
-		xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+		xlow = [0,12.,16.,18.,22.,24.,30.,50.]
 		n = 7
 		hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(7,"hist_SR_subztt_pretrig",array.array('d',xlow))
 		hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(7,"hist_SR_subztt_posttrig",array.array('d',xlow))
 		hist_SR_MC_pretrig = hist_SR_MC_pretrig1.Rebin(7,"hist_SR_MC_pretrig",array.array('d',xlow))
 		hist_SR_MC_posttrig = hist_SR_MC_posttrig1.Rebin(7,"hist_SR_MC_posttrig",array.array('d',xlow))
 	else:
-		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+		xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]
 		n = 8
 		hist_SR_subztt_pretrig = hist_SR_subztt_pretrig1.Rebin(8,"hist_SR_subztt_pretrig",array.array('d',xlow))
 		hist_SR_subztt_posttrig = hist_SR_subztt_posttrig1.Rebin(8,"hist_SR_subztt_posttrig",array.array('d',xlow))
@@ -524,11 +511,11 @@ for i in range(len(sys_dn)):
 
 	if str(variable) == "pileup":
 		if str(trax) == "3Track":
-			xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+			xlow = [0,12.,16.,18.,22.,24.,30.,50.]
 			sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(7,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
 			sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(7,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
 		else:
-			xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+			xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]
 			sys_dn_hist_SR_subztt_pretrig = sys_dn_hist_SR_subztt_pretrig.Rebin(8,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_pretrig",array.array('d',xlow))
 			sys_dn_hist_SR_subztt_posttrig = sys_dn_hist_SR_subztt_posttrig.Rebin(8,"sys_dn_"+str(sys_dn[i])+"_hist_SR_subztt_posttrig",array.array('d',xlow))
 
@@ -765,11 +752,11 @@ for i in range(len(sys_up)):
 
 	if str(variable) == "pileup":
 		if str(trax) == "3Track":
-			xlow = [0,12.,16.,18.,22.,24.,28.,40.]	
+			xlow = [0,12.,16.,18.,22.,24.,30.,50.]	
 			sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(7,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
 			sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(7,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
 		else:
-			xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]	
+			xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]	
 			sys_up_hist_SR_subztt_pretrig = sys_up_hist_SR_subztt_pretrig1.Rebin(8,"sys_up_hist_SR_subztt_pretrig",array.array('d',xlow))
 			sys_up_hist_SR_subztt_posttrig = sys_up_hist_SR_subztt_posttrig1.Rebin(8,"sys_up_hist_SR_subztt_posttrig",array.array('d',xlow))
 
@@ -853,11 +840,11 @@ if str(variable) == "tau_eta":
 if str(variable) == "pileup":
 	if str(trax) == "3Track":
 
-		xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+		xlow = [0,12.,16.,18.,22.,24.,30.,50.]
 		total_sys_up_data = total_sys_up_data1.Rebin(7,"total_sys_up_data",array.array('d',xlow))
 		total_sys_dn_data = total_sys_dn_data1.Rebin(7,"total_sys_dn_data",array.array('d',xlow))
 	else:
-		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+		xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]
 		total_sys_up_data = total_sys_up_data1.Rebin(8,"total_sys_up_data",array.array('d',xlow))
 		total_sys_dn_data = total_sys_dn_data1.Rebin(8,"total_sys_dn_data",array.array('d',xlow))
 
@@ -956,7 +943,7 @@ if str(variable) == "tau_eta":
 
 if str(variable) == "pileup":
 	if str(trax) == "3Track":
-		xlow = [0,12.,16.,18.,22.,24.,28.,40.]	
+		xlow = [0,12.,16.,18.,22.,24.,30.,50.]	
 		total_stat_up_data = total_stat_up_data1.Rebin(7,"total_stat_up_data",array.array('d',xlow))
 		total_stat_dn_data = total_stat_dn_data1.Rebin(7,"total_stat_dn_data",array.array('d',xlow))
 
@@ -967,7 +954,7 @@ if str(variable) == "pileup":
 
 		h_efficiency_simple_mc_nominal = h_efficiency_simple_mc_nominal1.Rebin(7,"h_efficiency_simple_mc_nominal",array.array('d',xlow))
 	else:
-		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]	
+		xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]	
 		total_stat_up_data = total_stat_up_data1.Rebin(8,"total_stat_up_data",array.array('d',xlow))
 		total_stat_dn_data = total_stat_dn_data1.Rebin(8,"total_stat_dn_data",array.array('d',xlow))
 
@@ -990,8 +977,8 @@ for l in range(0,total_stat_up_data.GetNbinsX()):
 	data_y_val = graph_efficiency_simple_subztt_nominal.GetY()[l-uppp]
 	mc_y_val = graph_efficiency_simple_mc_nominal.GetY()[l-uppp ]
 
-	graph_efficiency_simple_subztt_nominal.SetPointEYhigh(l-uppp,0)
-        graph_efficiency_simple_subztt_nominal.SetPointEYlow(l-uppp,0)
+	#graph_efficiency_simple_subztt_nominal.SetPointEYhigh(l-uppp,0)
+        #graph_efficiency_simple_subztt_nominal.SetPointEYlow(l-uppp,0)
 
 	if str(variable) == "tau_eta":
 		if n_bin == -1.445:
@@ -1112,14 +1099,14 @@ if str(variable) == "tau_eta":
 
 if str(variable) == "pileup":
 	if str(trax) == "3Track":
-		xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+		xlow = [0,12.,16.,18.,22.,24.,30.,50.]
 		total_up_data = total_up_data1.Rebin(7,"total_up_data",array.array('d',xlow))
 		total_dn_data = total_dn_data1.Rebin(7,"total_dn_data",array.array('d',xlow))
 
 		total_err_up_ratio = total_err_up_ratio1.Rebin(7,"total_err_up_ratio",array.array('d',xlow))
 		total_err_dn_ratio = total_err_dn_ratio1.Rebin(7,"total_err_dn_ratio",array.array('d',xlow))
 	else:
-		xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+		xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]
 		total_up_data = total_up_data1.Rebin(8,"total_up_data",array.array('d',xlow))
 		total_dn_data = total_dn_data1.Rebin(8,"total_dn_data",array.array('d',xlow))
 
@@ -1216,12 +1203,12 @@ graph_efficiency_simple_mc_nominal.SetLineWidth(2)
 graph_efficiency_simple_subztt_nominal.SetMarkerStyle(20)
 graph_efficiency_simple_subztt_nominal.SetMarkerColor(ROOT.kBlack)
 
-leg = ROOT.TLegend(0.5,0.15,0.87,0.33) #ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
+leg = ROOT.TLegend(0.45,0.15,0.87,0.33) #ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
 leg.SetBorderSize(0)
 leg.SetFillColor(0)
 leg.SetFillStyle(0)
 leg.SetNColumns(2)
-leg.SetTextSize(0.032)
+leg.SetTextSize(0.038)
 leg.AddEntry(graph_efficiency_simple_subztt_nominal,"Data 2016",'P')
 leg.AddEntry(graph_efficiency_simple_mc_nominal,"MC Z#rightarrow#tau#tau",'P')
 #leg.AddEntry(g_tot_error_plot, "Data Sys.+Stat.", 'F')
@@ -1230,7 +1217,7 @@ leg.AddEntry(mc_stat_ratio_error_plot, "MC stat. error", "L")
 #leg.AddEntry(mc_data_tot_err_ratio, "Total Unc.", 'F')
 leg.AddEntry(data_stat_error_plot, "Data stat. error",'f')
 
-c = ROOT.TCanvas(str(variable)+"_"+str(trax)+"_"+str(trig)+"_efficiency",str(variable)+"_"+str(trax)+"efficiency",600,600)
+c = ROOT.TCanvas(str(variable)+"_"+str(trax)+"_"+str(trig)+"_"+str(bdt)+"_efficiency",str(variable)+"_"+str(trax)+"efficiency",600,600)
 xmin = h_efficiency_simple_subztt_nominal.GetBinLowEdge(1)
 if str(variable) == "tau_pt": xmax = 300
 if str(variable) == "tau_eta": xmax = 3
@@ -1297,14 +1284,14 @@ if str(variable) == "tau_pt":
                 xaxis_top.SetRangeUser(50,300)
 	elif "80" in str(trig):
 	        xaxis_top.SetRangeUser(80,300)
-	elif ("120" in str(trig)) or ("160" in str(trig)):
+	elif ("125" in str(trig)) or ("160" in str(trig)):
                 xaxis_top.SetRangeUser(100,300)
 	else:
 		xaxis_top.SetRangeUser(20,300)
 if str(variable) == "tau_eta":
      xaxis_top.SetRangeUser(-3,3)
 if str(variable) == "pileup":
-     xaxis_top.SetRangeUser(0,40)
+     xaxis_top.SetRangeUser(0,50)
 yaxis_top.SetTitleSize( 0.045)#yaxis_top.GetTitleSize() * scale )
 yaxis_top.SetTitleOffset( 1 )
 yaxis_top.SetLabelSize(0.045)# 0.8 * yaxis_top.GetLabelSize() * scale )
@@ -1333,24 +1320,30 @@ tx = 0.5
 latex_y = ty-2.*th
 latex_yb = ty-4.*th
 
-tlatex.SetTextSize(0.032)
-tlatex.DrawLatex(0.5,0.55,"#bf{#it{ATLAS}} Internal")
-tlatex.DrawLatex(0.5,0.42,'#intL dt = 24.8 fb^{-1}, #sqrt{s} = 13 TeV' )
+tlatex.SetTextSize(0.038)
+tlatex.DrawLatex(0.45,0.55,"#bf{#it{ATLAS}} Internal")
+tlatex.DrawLatex(0.45,0.42,'#intL dt = 33.3 fb^{-1}, #sqrt{s} = 13 TeV' )
 if str(trig) == "L1TAU12IMmed":
-	tlatex.DrawLatex(0.5,0.5,'L1TAU12IM trigger')
+	tlatex.DrawLatex(0.45,0.5,'L1TAU12IM trigger')
 elif str(trig) == "tracktwo":
-        tlatex.DrawLatex(0.5,0.5,'HLT tau25 perf trigger')
+        tlatex.DrawLatex(0.45,0.5,'HLT tau25 perf trigger')
 elif str(trig) == "ptonly":
-        tlatex.DrawLatex(0.5,0.5,'HLT tau25 idperf trigger')
+        tlatex.DrawLatex(0.45,0.5,'HLT tau25 idperf trigger')
 else:
 	lab = str(trig).split("m") 
 	print lab[0]
-	tlatex.DrawLatex(0.5,0.5,'HLT tau'+lab[0]+' medium trigger') 
+	tlatex.DrawLatex(0.45,0.5,'HLT tau'+lab[0]+' medium trigger') 
 if trax:
 	if str(trax) == '1Track':
-		tlatex.DrawLatex(0.5,0.36,'1-prong, BDT '+str(bdt))
+		if str(bdt) == "medium":
+			tlatex.DrawLatex(0.45,0.36,'1-prong')
+		else:
+			tlatex.DrawLatex(0.45,0.36,'1-prong, BDT '+str(bdt))
 	elif str(trax) == '3Track':
-		tlatex.DrawLatex(0.5,0.36,'3-prong, BDT '+str(bdt))
+		if str(bdt) == "medium":
+			tlatex.DrawLatex(0.45,0.36,'3-prong')
+		else:
+			tlatex.DrawLatex(0.45,0.36,'3-prong, BDT '+str(bdt))
 
 pad2.cd()
 if str(variable) == "tau_pt":
@@ -1416,7 +1409,7 @@ if str(variable) == "tau_pt":
                 xaxis_bot.SetRangeUser(50,300)
 	elif "80" in str(trig):
 	        xaxis_bot.SetRangeUser(80,300)
-	elif ("120" in str(trig)) or ("160" in str(trig)):
+	elif ("125" in str(trig)) or ("160" in str(trig)):
                 xaxis_bot.SetRangeUser(100,300)
 	else:
      		xaxis_bot.SetRangeUser(20,300)
@@ -1424,17 +1417,17 @@ if str(variable) == "tau_pt":
      	xaxis_bot.SetMoreLogLabels()
 if str(variable) == "tau_eta":
      xaxis_bot.SetRangeUser(-3,3)
-     xaxis_bot.SetTitle('\eta')
+     xaxis_bot.SetTitle('Offline Tau \eta')
 if str(variable) == "pileup":
-     xaxis_bot.SetTitle('<#mu>')
-     xaxis_bot.SetRangeUser(0,40)
+     xaxis_bot.SetTitle('#mu')
+     xaxis_bot.SetRangeUser(0,50)
 yaxis_bot.SetRangeUser(0.6,1.4)
 yaxis_bot.SetNdivisions(4)
 xaxis_bot.SetNoExponent()
 xaxis_bot.SetNdivisions(510)
 xaxis_bot.SetTitleOffset(1)
 yaxis_bot.SetTitle("Data/exp.")
-yaxis_bot.SetTitleOffset(0.5)
+yaxis_bot.SetTitleOffset(0.48)
 yaxis_bot.SetLabelSize( 0.095)
 yaxis_bot.SetTitleSize( 0.1)
 
@@ -1527,7 +1520,7 @@ if trig and chain:
 
 	if str(variable) == "pileup":
 		if str(trax) == "3Track":
-			xlow = [0,12.,16.,18.,22.,24.,28.,40.]
+			xlow = [0,12.,16.,18.,22.,24.,30.,50.]
 
 			total_stat_up_data_chain = total_stat_up_data1_chain.Rebin(7,"total_stat_up_data_chain",array.array('d',xlow))
 			total_stat_dn_data_chain = total_stat_dn_data1_chain.Rebin(7,"total_stat_dn_data_chain",array.array('d',xlow))
@@ -1542,7 +1535,7 @@ if trig and chain:
 
 			h_efficiency_simple_mc_nominal_chain = h_efficiency_simple_mc_nominal1_chain.Rebin(7,"h_efficiency_simple_mc_nominal_chain",array.array('d',xlow))
 		else:
-			xlow = [0,12.,16.,18.,20.,22.,24.,28.,40.]
+			xlow = [0,12.,16.,18.,20.,22.,24.,30.,50.]
 
 			total_stat_up_data_chain = total_stat_up_data1_chain.Rebin(8,"total_stat_up_data_chain",array.array('d',xlow))
 			total_stat_dn_data_chain = total_stat_dn_data1_chain.Rebin(8,"total_stat_dn_data_chain",array.array('d',xlow))
@@ -1728,9 +1721,9 @@ if trig and chain:
 	#legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
 	#legXMin = x_legend + x_leg_shift
 	#legXMax = legXMin + 0.4
-	leg = ROOT.TLegend(0.5,0.15,0.87,0.33)
+	leg = ROOT.TLegend(0.45,0.15,0.87,0.33)
 	leg.SetBorderSize(0)
-	leg.SetTextSize(0.032)
+	leg.SetTextSize(0.038)
 	leg.SetNColumns(2)
 	leg.SetFillColor(0)
 	leg.SetFillStyle(0)
@@ -1742,10 +1735,10 @@ if trig and chain:
 		leg.AddEntry(h_ratio_graph_chain,"BDT eff. in data", 'PL')
 		leg.AddEntry(h_ratio_MC_graph_chain,"BDT eff. in MC", 'F')
         if str(chain) == "ptonly":
-                leg.AddEntry(data_stat_chain,"Data w/o tracking",'PL')
-                leg.AddEntry(mc_stat_chain, "MC w/o tracking","F")
-                leg.AddEntry(data_stat_tot,"Data w tracking", 'PL')
-                leg.AddEntry(mc_stat_tot,"MC w tracking","F")
+                leg.AddEntry(data_stat_chain,"Data w/o trk",'PL')
+                leg.AddEntry(mc_stat_chain, "MC w/o trk","F")
+                leg.AddEntry(data_stat_tot,"Data w trk", 'PL')
+                leg.AddEntry(mc_stat_tot,"MC w trk","F")
 		leg.AddEntry(h_ratio_graph_chain,"Trk. eff. in data", 'PL')
 		leg.AddEntry(h_ratio_MC_graph_chain,"Trk. eff. in MC", 'F')
         if str(chain) == "L1TAU12IMmed":
@@ -1818,7 +1811,7 @@ if trig and chain:
 			xaxis_top_chain.SetRangeUser(50,300)
 		elif "80" in str(trig):
 			xaxis_top_chain.SetRangeUser(80,300)
-		elif ("120" in str(trig)) or ("160" in str(trig)):
+		elif ("125" in str(trig)) or ("160" in str(trig)):
 			xaxis_top_chain.SetRangeUser(100,300)
 		else:
 		     	xaxis_top_chain.SetRangeUser(20,300)
@@ -1826,7 +1819,7 @@ if trig and chain:
 	if str(variable) == "tau_eta":
 	     xaxis_top_chain.SetRangeUser(-3,3)
 	if str(variable) == "pileup":
-	     xaxis_top_chain.SetRangeUser(0,40)
+	     xaxis_top_chain.SetRangeUser(0,50)
 	
 	yaxis_top_chain.SetTitleSize(0.045)# yaxis_top_chain.GetTitleSize() * scale )
 	yaxis_top_chain.SetTitleOffset( 1 )
@@ -1854,16 +1847,22 @@ if trig and chain:
 	latex_y = ty-2.*th
 	latex_yb = ty-4.*th
 
-	tlatex.SetTextSize(0.032)
+	tlatex.SetTextSize(0.038)
 	tlatex.SetTextFont(42)
-	tlatex.DrawLatex(0.2,0.3,"#bf{#it{ATLAS}} Internal")
-	tlatex.DrawLatex(0.2,0.22,'#intL dt = 24.8 fb^{-1}, #sqrt{s} = 13 TeV' )
+	tlatex.DrawLatex(0.45,0.55,"#bf{#it{ATLAS}} Internal")
+	tlatex.DrawLatex(0.45,0.47,'#intL dt = 33.3 fb^{-1}, #sqrt{s} = 13 TeV' )
 	#tlatex.DrawLatex(0.5,0.20,'HLT_tau25_medium1_tracktwo') 
 	if trax:
 		if str(trax) == '1Track':
-			tlatex.DrawLatex(0.2,0.16,'1-prong, BDT '+str(bdt))
+			if str(bdt) == "medium":
+				tlatex.DrawLatex(0.45,0.41,'1-prong')
+			else:
+				tlatex.DrawLatex(0.45,0.41,'1-prong, BDT '+str(bdt))
 		elif str(trax) == '3Track':
-			tlatex.DrawLatex(0.2,0.16,'3-prong, BDT '+str(bdt))
+			if str(bdt) == "medium":
+				tlatex.DrawLatex(0.45,0.41,'3-prong')
+			else:
+				tlatex.DrawLatex(0.45,0.41,'3-prong, BDT '+str(bdt))
 
 	pad2_chain.cd()
 
@@ -1922,7 +1921,7 @@ if trig and chain:
 			xaxis_bot_chain.SetRangeUser(50,300)
 		elif "80" in str(trig):
 			xaxis_bot_chain.SetRangeUser(80,300)
-		elif ("120" in str(trig)) or ("160" in str(trig)):
+		elif ("125" in str(trig)) or ("160" in str(trig)):
 			xaxis_bot_chain.SetRangeUser(100,300)
 		else:
 	     		xaxis_bot_chain.SetRangeUser(20,300)
@@ -1930,10 +1929,10 @@ if trig and chain:
 	    	xaxis_bot_chain.SetMoreLogLabels()
 	if str(variable) == "tau_eta":
              xaxis_bot_chain.SetRangeUser(-3,3)
-	     xaxis_bot_chain.SetTitle('\eta')
+	     xaxis_bot_chain.SetTitle('Offline Tau \eta')
 	if str(variable) == "pileup":
-             xaxis_bot_chain.SetRangeUser(0,40)
-	     xaxis_bot_chain.SetTitle('<#mu>')
+             xaxis_bot_chain.SetRangeUser(0,50)
+	     xaxis_bot_chain.SetTitle('#mu')
 	#yaxis_bot_chain.SetRangeUser(0.6,1.4)
 	yaxis_bot_chain.SetNdivisions(4)
 	yaxis_bot_chain.SetLabelSize( 0.1)
@@ -1954,12 +1953,17 @@ if trig and chain:
 	if trax:
 		if str(trig) == "25med" and str(chain) == "tracktwo":
 			plotsfile = os.path.join("./","eff_"+str(variable)+"_BDT_tau25med_"+str(trax)+"_"+str(bdt)+"_SYS.root")
-       
+                        h_ratio_MC_graph_chain.SetName("BDT_mc_"+str(trax))
+			h_ratio_graph_chain.SetName("BDT_data_"+str(trax)) 
                 elif str(trig) == "tracktwo" and str(chain) == "ptonly":
                         plotsfile = os.path.join("./","eff_"+str(variable)+"_tracking_tau25med_"+str(trax)+"_"+str(bdt)+"_SYS.root")
+                        h_ratio_MC_graph_chain.SetName("tracking_mc_"+str(trax))
+			h_ratio_graph_chain.SetName("tracking_data_"+str(trax)) 
         
                 elif str(trig) == "ptonly" and str(chain) == "L1TAU12IMmed":
                         plotsfile = os.path.join("./","eff_"+str(variable)+"_ptcut_tau25med_"+str(trax)+"_"+str(bdt)+"_SYS.root")
+                        h_ratio_MC_graph_chain.SetName("ptcut_mc_"+str(trax))
+			h_ratio_graph_chain.SetName("ptcut_data_"+str(trax)) 
 	else:
 		plotsfile = os.path.join("./","eff_inclusive_"+str(trig)+"_"+str(chain)+"_SYS.root")
 	#c.SaveAs("Test")
@@ -1967,11 +1971,26 @@ if trig and chain:
 	fout.WriteTObject(c_chain)
 	fout.Close()
 
-
+        
+	trig_effs = ROOT.TFile("./trigger_chain_effiencies.root", "update")
+	h_ratio_MC_graph_chain.Write()
+	h_ratio_graph_chain.Write()
+	trig_effs.Close()
     
-	     
+if str(trig) == "L1TAU12IMmed":
+	trig_effs = ROOT.TFile("./trigger_chain_effiencies.root", "update")
 
+	data_stat_error_plot.SetName("L1_data_stat_"+str(trax))
+	data_sys_error_plot.SetName("L1_data_sys_"+str(trax))
+	graph_efficiency_simple_mc_nominal.SetName("L1_eff_MC_"+str(trax))
+	graph_efficiency_simple_subztt_nominal.SetName("L1_eff_data_"+str(trax))
 
+	data_stat_error_plot.Write()
+	data_sys_error_plot.Write()
+	graph_efficiency_simple_mc_nominal.Write()
+	graph_efficiency_simple_subztt_nominal.Write()
+
+	trig_effs.Close()
 
 		
 		
