@@ -30,15 +30,15 @@ def get_sys_dict(sys_name=None, sys_tree="NOMINAL", sys_var=None):
 
 #_____________________________________________________________________________
 def analyze(config):
-  
+
     ##-------------------------------------------------------------------------
     ## setup
     ##-------------------------------------------------------------------------
     config['do_var_log'] = True
     main_path = os.getenv('MAIN')
-    
+
     ##-------------------------------------------------------------------------
-    ## systematics 
+    ## systematics
     ##-------------------------------------------------------------------------
     """
     pass systematics on the command line like this:
@@ -54,35 +54,35 @@ def analyze(config):
     """
 
     sys_dict = None
-    
+
     if   sys == None: sys_dict = get_sys_dict()
-    
-    # this is how you tell the weights 
+
+    # this is how you tell the weights
     # what is the direction of the variation
     elif sys == 'MUSF_STAT_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
     elif sys == 'MUSF_STAT_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
-    elif sys == 'TAUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up") 
+    elif sys == 'TAUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
     elif sys == 'TAUSF_SYS_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'MUSF_SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
     elif sys == 'MUSF_SYS_DN':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'PILEUP_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
     elif sys == 'PILEUP_UP':       sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
-    elif sys == 'MUMS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1up", sys_var = "up")
-    elif sys == 'MUMS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_MS_1down", sys_var = "dn")
-    elif sys == 'MUSCALE_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_SCALE_1up", sys_var = "up")
-    elif sys == 'MUSCALE_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_SCALE_1down", sys_var = "dn")
-    elif sys == 'MUID_UP':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1up", sys_var = "up")
-    elif sys == 'MUID_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1down", sys_var = "dn")
+    elif sys == 'MUMS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUON_MS_1up", sys_var = "up")
+    elif sys == 'MUMS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUON_MS_1down", sys_var = "dn")
+    elif sys == 'MUSCALE_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUON_SCALE_1up", sys_var = "up")
+    elif sys == 'MUSCALE_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUON_SCALE_1down", sys_var = "dn")
+    elif sys == 'MUID_UP':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUON_ID_1up", sys_var = "up")
+    elif sys == 'MUID_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUON_ID_1down", sys_var = "dn")
     elif sys == 'METSCALE_UP':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ScaleUp", sys_var = "up")
     elif sys == 'METSCALE_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ScaleDown", sys_var = "dn")
     elif sys == 'METResoPara':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPara", sys_var = "up")
     elif sys == 'METResoPerp':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MET_SoftTrk_ResoPerp", sys_var = "dn")
-    else: 
+    else:
         assert False, "Invalid sys %s!"%(sys)
-    
+
     ## build chain
     config['tree'] = sys_dict['tree']
-    
+
     chain = ROOT.TChain(config['tree'])
     chain.SetCacheSize(0)
     for fn in config['input']: chain.Add(fn)
@@ -96,7 +96,7 @@ def analyze(config):
                                   outfile='ntuple.root',
                                   quiet=False,
                                   )
-    
+
     ## build and pt-sort objects
     ## ---------------------------------------
     #loop += pyframe.algs.ListBuilder(
@@ -110,7 +110,7 @@ def analyze(config):
     #loop += ztautau.algs.vars.ParticlesBuilder(
     #    key='muons',
     #    )
-    
+
     """
     ## build MET
     ## ---------------------------------------
@@ -122,31 +122,31 @@ def analyze(config):
         prefix='metFinalTrk',
         key = 'met_trk',
         )
-   
+
     ## initialize and/or decorate objects
     ## ---------------------------------------
     loop += ztautau.algs.vars.PairsBuilder(
         obj_keys=['muons'],
         pair_key='mu_pairs',
-        met_key='met_clus', 
+        met_key='met_clus',
         )
-    """ 
+    """
 
-    ## start preselection cutflow 
+    ## start preselection cutflow
     ## ---------------------------------------
     loop += pyframe.algs.CutFlowAlg(key='presel')
-    
+
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
     #loop += ztautau.algs.weights.MCEventWeight(cutflow='presel',key='weight_mc_event')
-    loop += ztautau.algs.weights.JetsSF(cutflow='presel',key='jets_sf')
+    #loop += ztautau.algs.weights.JetsSF(cutflow='presel',key='jets_sf')
     loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup', sys_name=sys_dict['name'], scale=sys_dict['variation'])
     #loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
-  
+
     ## cuts
     ## +++++++++++++++++++++++++++++++++++++++
 
-    #---- BASE CUT ----#   
+    #---- BASE CUT ----#
 
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='OneMuon')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='NoElectrons')
@@ -158,7 +158,7 @@ def analyze(config):
 
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu20ilooseL1MU15ORmu40') #2015
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu24imediumORHLTmu40')
-    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu24imediumORHLTmu50') 
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu24imediumORHLTmu50')
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmu26ivarmediumORHLTmu50') # v22 2016
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonMuTrigMatch0HLTmu20ilooseL1MU15')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonHLTmuOptions')
@@ -170,18 +170,18 @@ def analyze(config):
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonEta25')
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonPt28') #2016
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='MuonPtOptions')
- 
+
     #---- TAUS ----#
 
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauPt25')
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauPt30')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauEta247')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauCharge1')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauTrack')
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauLoose')
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauMed')
-    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauTight')
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauMed')
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauTight')
 
-    
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='Filter')
     ## weights configuration
     ## ---------------------------------------
     ## event
@@ -201,7 +201,7 @@ def analyze(config):
         scale=sys_dict['variation'],
         sys_name=sys_dict['name'],
         )
-   
+
     """
     loop += ztautau.algs.EvWeights.MuTrigSF(
             is_di_mu = True,
@@ -210,7 +210,7 @@ def analyze(config):
             key='DiMuonTrigSF',
             scale=None,
             )
-    """ 
+    """
     ## objects
     ## +++++++++++++++++++++++++++++++++++++++
     """
@@ -226,22 +226,22 @@ def analyze(config):
             key='MuSubLeadAllSF',
             scale=None,
             )
-    """ 
+    """
     ##-------------------------------------------------------------------------
     ## make plots
     ##-------------------------------------------------------------------------
-    #triggers = [160]
-    #trigchains = [] 
+    triggers = [25]#, "L1TAU12IM"]#,35,"50L1TAU12", 80, "80L1TAU60", 125, 160]
+    trigchains = []
 
-    triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160, "L1TAU12IM"]
-    trigchains = ["tracktwo", "ptonly"]
+    #triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160, "L1TAU12IM"]
+    #trigchains = ["tracktwo", "ptonly"]
     trax = [1,3]
 
     #---------------------#
     #    NO TRIG
     #---------------------#
 
-        
+
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_OS_no_cuts',
             plot_all  = False,
@@ -313,7 +313,7 @@ def analyze(config):
 #-----------------------------#
 #       THREE TRACK TAU
 #-----------------------------#
-        
+
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_Tau3Track',
             plot_all  = False,
@@ -403,7 +403,7 @@ def analyze(config):
               ['Tau3Track',["TauTotalWeight"]],
               ],
             )
-    
+
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_lowPT_Tau3Track',
             plot_all  = False,
@@ -507,7 +507,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ['Tau3Track',["TauTotalWeight"]],
               ],
             )
@@ -520,7 +520,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ['Tau3Track',["TauTotalWeight"]],
               ],
             )
@@ -533,7 +533,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ['Tau3Track',["TauTotalWeight"]],
               ],
             )
@@ -546,7 +546,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ['Tau3Track',["TauTotalWeight"]],
               ],
             )
@@ -555,7 +555,7 @@ def analyze(config):
 #-----------------------------#
 #    ONE TRACK TAU
 #-----------------------------#
-    
+
 
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_Tau1Track',
@@ -635,7 +635,7 @@ def analyze(config):
 
 
 
-   
+
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_highPT_Tau1Track',
             plot_all  = False,
@@ -749,7 +749,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ['Tau1Track',["TauTotalWeight"]],
               ],
             )
@@ -762,7 +762,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ['Tau1Track',["TauTotalWeight"]],
               ],
             )
@@ -775,7 +775,7 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ['Tau1Track',["TauTotalWeight"]],
               ],
             )
@@ -788,15 +788,15 @@ def analyze(config):
               ['InvMuonGradIso',["MuonWeightAI"]],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ['Tau1Track',["TauTotalWeight"]],
               ],
             )
-    
+
 #-----------------------------#
 #       INCLUSIVE
 #-----------------------------#
-    
+
 
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS',
@@ -865,7 +865,7 @@ def analyze(config):
               ],
             )
 
-      
+
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_highPT',
             plot_all  = False,
@@ -971,7 +971,7 @@ def analyze(config):
               ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['TauHighPt',["TauTotalWeight"]],
+              ['MuHighPt',None],#['TauHighPt',["TauTotalWeight"]],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
@@ -983,7 +983,7 @@ def analyze(config):
               ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['OS',None],
-              ['TauLowPt',["TauTotalWeight"]],
+              ['MuLowPt',None],#['TauLowPt',["TauTotalWeight"]],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
@@ -994,7 +994,7 @@ def analyze(config):
               ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['TauHighPt',["TauTotalWeight"]],
+              ['MuHighPt',None],#['TauHighPt',["TauTotalWeight"]],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
@@ -1006,11 +1006,11 @@ def analyze(config):
               ['MTrans50',None],
               ['SumCosDPhi05',None],
               ['SS',None],
-              ['TauLowPt',["TauTotalWeight"]],
+              ['MuLowPt',None],#['TauLowPt',["TauTotalWeight"]],
               ['InvMuonGradIso',["MuonWeightAI"]],
               ],
             )
- 
+
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_highSCDP_nomtcut',
             plot_all  = False,
@@ -1097,7 +1097,7 @@ def analyze(config):
               ['SumCosDPhi06',None],
               ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
-              ['TauPt25',None],             
+              ['TauPt25',None],
               ['OS',None],
               ],
             )
@@ -1225,7 +1225,7 @@ def analyze(config):
             plot_all  = False,
             cut_flow  = [
               ['SumCosDPhi05',None],
-              ['TauPt25',None],             
+              ['TauPt25',None],
               ['MuonGradIso',["MuonTotalWeight"]],
               ['VisMass4580',None],
               ['SS',None],
@@ -1662,11 +1662,11 @@ def analyze(config):
             )
 
 
-   
-############ TRIGGERS
-    
 
-    
+############ TRIGGERS
+
+
+
     for i in range(len(triggers)):
         loop += ztautau.algs.algs.PlotAlg(
                 region    = 'Wjets_OS_'+str(triggers[i])+'med',
@@ -1678,7 +1678,7 @@ def analyze(config):
                   ['MuonGradIso',["MuonTotalWeight"]],
                   ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
                   ],
-                ) 
+                )
 
 
         loop += ztautau.algs.algs.PlotAlg(
@@ -1691,7 +1691,7 @@ def analyze(config):
                   ['MuonGradIso',["MuonTotalWeight"]],
                   ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
                   ],
-                ) 
+                )
 
         loop += ztautau.algs.algs.PlotAlg(
                 region    = 'SR_'+str(triggers[i])+'med',
@@ -1860,7 +1860,7 @@ def analyze(config):
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
-                  ['TauLowPt',None],
+                  ['MuLowPt',None],#['TauLowPt',None],
                   ],
                 )
 
@@ -1873,7 +1873,7 @@ def analyze(config):
                   ['SumCosDPhi05',None],
                   ['OS',None],
                   ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
-                  ['TauHighPt',None],
+                  ['MuHighPt',None],#['TauHighPt',None],
                   ],
                 )
 
@@ -1886,7 +1886,7 @@ def analyze(config):
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
-                  ['TauLowPt',None],
+                  ['MuLowPt',None],#['TauLowPt',None],
                   ],
                 )
 
@@ -1899,7 +1899,7 @@ def analyze(config):
                   ['SumCosDPhi05',None],
                   ['SS',None],
                   ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
-                  ['TauHighPt',None],
+                  ['MuHighPt',None],#['TauHighPt',None],
                   ],
                 )
 
@@ -1920,7 +1920,7 @@ def analyze(config):
                 region    = 'SR_highSCDP_'+str(triggers[i])+'med_lowPT',
                 plot_all  = False,
                 cut_flow  = [
-                  ['TauPt25',None],        
+                  ['TauPt25',None],
                   ['SumCosDPhi05',None],
                   ['MuonGradIso',["MuonTotalWeight"]],
                   ['VisMass4580',None],
@@ -1984,7 +1984,7 @@ def analyze(config):
           ['TauHighPt',None],
           ],
           )
-  
+
         loop += ztautau.algs.algs.PlotAlg(
         region    = 'SR_lowSCDP_'+str(triggers[i])+'med',
         plot_all  = False,
@@ -2068,7 +2068,7 @@ def analyze(config):
           ],
           )
 
- 
+
         for j in range(len(trax)):
 
             loop += ztautau.algs.algs.PlotAlg(
@@ -2082,7 +2082,7 @@ def analyze(config):
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
               ],
-            ) 
+            )
 
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
@@ -2123,7 +2123,7 @@ def analyze(config):
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
               ],
-            ) 
+            )
 
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_SS_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[j])+'Track',
@@ -2264,7 +2264,7 @@ def analyze(config):
               ['OS',None],
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ],
               )
 
@@ -2278,9 +2278,10 @@ def analyze(config):
               ['OS',None],
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ],
               )
+
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'AntiIsoCR_SS_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
             plot_all  = False,
@@ -2304,7 +2305,7 @@ def analyze(config):
               ['SS',None],
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ],
               )
 
@@ -2318,11 +2319,11 @@ def analyze(config):
               ['SS',None],
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ],
               )
 
-    
+
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_highSCDP_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
             plot_all  = False,
@@ -2349,7 +2350,7 @@ def analyze(config):
               ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
               ['TauLowPt',None],
-              ['TauPt25',None],              
+              ['TauPt25',None],
               ],
               )
 
@@ -2413,7 +2414,7 @@ def analyze(config):
               ],
               )
 
-        
+
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_lowSCDP_'+str(triggers[i])+'med_Tau'+str(trax[j])+'Track',
             plot_all  = False,
@@ -2516,7 +2517,7 @@ def analyze(config):
           ['MuonGradIso',["MuonTotalWeight"]],
           ['HLTtau25perf'+str(trigchains[c]),None],
           ],
-        ) 
+        )
 
         loop += ztautau.algs.algs.PlotAlg(
         region    = 'Wjets_SS_'+str(trigchains[c]),
@@ -2528,7 +2529,7 @@ def analyze(config):
           ['MuonGradIso',["MuonTotalWeight"]],
           ['HLTtau25perf'+str(trigchains[c]),None],
           ],
-        ) 
+        )
 
         loop += ztautau.algs.algs.PlotAlg(
         region    = 'SR_'+str(trigchains[c]),
@@ -2697,7 +2698,7 @@ def analyze(config):
           ['SumCosDPhi05',None],
           ['OS',None],
           ['HLTtau25perf'+str(trigchains[c]),None],
-          ['TauLowPt',None],
+          ['MuLowPt',None],#['TauLowPt',None],
           ],
           )
 
@@ -2710,7 +2711,7 @@ def analyze(config):
           ['SumCosDPhi05',None],
           ['OS',None],
           ['HLTtau25perf'+str(trigchains[c]),None],
-          ['TauHighPt',None],
+          ['MuHighPt',None],#['TauHighPt',None],
           ],
           )
 
@@ -2723,7 +2724,7 @@ def analyze(config):
           ['SumCosDPhi05',None],
           ['SS',None],
           ['HLTtau25perf'+str(trigchains[c]),None],
-          ['TauLowPt',None],
+          ['MuLowPt',None],#['TauLowPt',None],
           ],
           )
 
@@ -2736,10 +2737,10 @@ def analyze(config):
           ['SumCosDPhi05',None],
           ['SS',None],
           ['HLTtau25perf'+str(trigchains[c]),None],
-          ['TauHighPt',None],
+          ['MuHighPt',None],#['TauHighPt',None],
           ],
           )
- 
+
         loop += ztautau.algs.algs.PlotAlg(
         region    = 'SR_highSCDP_'+str(trigchains[c]),
         plot_all  = False,
@@ -2757,7 +2758,7 @@ def analyze(config):
         region    = 'SR_highSCDP_'+str(trigchains[c])+'_lowPT',
         plot_all  = False,
         cut_flow  = [
-          ['TauPt25',None],        
+          ['TauPt25',None],
           ['SumCosDPhi05',None],
           ['MuonGradIso',["MuonTotalWeight"]],
           ['VisMass4580',None],
@@ -2822,7 +2823,7 @@ def analyze(config):
           ['TauHighPt',None],
           ],
           )
-  
+
         loop += ztautau.algs.algs.PlotAlg(
         region    = 'SR_lowSCDP_'+str(trigchains[c]),
         plot_all  = False,
@@ -2904,7 +2905,7 @@ def analyze(config):
           ['TauHighPt',None],
           ],
           )
- 
+
         for j in range(len(trax)):
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_'+str(trigchains[c])+'_Tau'+str(trax[j])+'Track',
@@ -2917,7 +2918,7 @@ def analyze(config):
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
               ],
-            ) 
+            )
 
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_OS_'+str(trigchains[c])+'_lowPT_Tau'+str(trax[j])+'Track',
@@ -2958,7 +2959,7 @@ def analyze(config):
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
               ],
-            ) 
+            )
 
             loop += ztautau.algs.algs.PlotAlg(
             region    = 'Wjets_SS_'+str(trigchains[c])+'_lowPT_Tau'+str(trax[j])+'Track',
@@ -3101,7 +3102,7 @@ def analyze(config):
               ['OS',None],
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ],
               )
 
@@ -3115,7 +3116,7 @@ def analyze(config):
               ['OS',None],
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ],
               )
             loop += ztautau.algs.algs.PlotAlg(
@@ -3141,7 +3142,7 @@ def analyze(config):
               ['SS',None],
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauLowPt',None],
+              ['MuLowPt',None],#['TauLowPt',None],
               ],
               )
 
@@ -3155,7 +3156,7 @@ def analyze(config):
               ['SS',None],
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
-              ['TauHighPt',None],
+              ['MuHighPt',None],#['TauHighPt',None],
               ],
               )
 
@@ -3185,7 +3186,7 @@ def analyze(config):
               ['HLTtau25perf'+str(trigchains[c]),None],
               ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
               ['TauLowPt',None],
-              ['TauPt25',None],              
+              ['TauPt25',None],
               ],
               )
 
@@ -3338,10 +3339,10 @@ def analyze(config):
               )
 
 
-    
+
 ############ # RQCD SYSTEMATICS
-    """ 
-    
+    """
+
     #test region no iso
     loop += ztautau.algs.algs.PlotAlg(
             region    = 'SR_no_iso',
@@ -3355,9 +3356,9 @@ def analyze(config):
             )
 
     """
-    
-     
-    """ 
+
+
+    """
     n = 10
     while n < 31:
         loop += ztautau.algs.algs.PlotAlg(
@@ -3372,7 +3373,7 @@ def analyze(config):
                     ],
                   )
 
-    	    
+
         loop += ztautau.algs.algs.PlotAlg(
                 region   = 'AntiIsoCR_OS_lowPT_Topoetcone20pt0'+str(n),
                 plot_all = False,
@@ -3393,7 +3394,7 @@ def analyze(config):
                     ['MTrans50',None],
                     ['SumCosDPhi05',None],
                     ['OS',None],
-                    ['TauHighPt',["TauTotalWeight"]],          
+                    ['TauHighPt',["TauTotalWeight"]],
                     ['InvMuonGradIso',None],
                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                     ],
@@ -3432,13 +3433,13 @@ def analyze(config):
                     ['MTrans50',None],
                     ['SumCosDPhi05',None],
                     ['SS',None],
-                    ['TauHighPt',["TauTotalWeight"]],          
+                    ['TauHighPt',["TauTotalWeight"]],
                     ['InvMuonGradIso',None],
                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                     ],
                  )
-	     
-        
+
+
         for j in range(len(trax)):
 
                 loop += ztautau.algs.algs.PlotAlg(
@@ -3475,7 +3476,7 @@ def analyze(config):
                             ['MTrans50',None],
                             ['SumCosDPhi05',None],
                             ['OS',None],
-                            ['TauHighPt',["TauTotalWeight"]],          
+                            ['TauHighPt',["TauTotalWeight"]],
                             ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
                             ['InvMuonGradIso',None],
                             ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
@@ -3518,14 +3519,14 @@ def analyze(config):
                             ['SumCosDPhi05',None],
                             ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
                             ['SS',None],
-                            ['TauHighPt',["TauTotalWeight"]],          
+                            ['TauHighPt',["TauTotalWeight"]],
                             ['InvMuonGradIso',None],
                             ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                             ],
                           )
 
         for i in range(len(triggers)):
-        
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_Topoetcone20pt0'+str(n),
                         plot_all = False,
@@ -3538,7 +3539,7 @@ def analyze(config):
                             ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
                             ],
                           )
-                
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_lowPT_Topoetcone20pt0'+str(n),
                         plot_all = False,
@@ -3561,7 +3562,7 @@ def analyze(config):
                             ['SumCosDPhi05',None],
                             ['OS',None],
                             ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
-                            ['TauHighPt',["TauTotalWeight"]],          
+                            ['TauHighPt',["TauTotalWeight"]],
                             ['InvMuonGradIso',None],
                             ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                             ],
@@ -3603,15 +3604,15 @@ def analyze(config):
                             ['SumCosDPhi05',None],
                             ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
                             ['SS',None],
-                            ['TauHighPt',["TauTotalWeight"]],          
+                            ['TauHighPt',["TauTotalWeight"]],
                             ['InvMuonGradIso',None],
                             ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                             ],
                           )
 
-    
+
                 for k in range(len(trax)):
-    
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_Tau'+str(trax[k])+'Track_Topoetcone20pt0'+str(n),
                                 plot_all = False,
@@ -3640,7 +3641,7 @@ def analyze(config):
                                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                                     ],
                                   )
-		    
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_highPT_Tau'+str(trax[k])+'Track_Topoetcone20pt0'+str(n),
                                 plot_all = False,
@@ -3650,7 +3651,7 @@ def analyze(config):
                                     ['SumCosDPhi05',None],
                                     ['OS',None],
                                     ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
-                                    ['TauHighPt',["TauTotalWeight"]],          
+                                    ['TauHighPt',["TauTotalWeight"]],
                                     ['InvMuonGradIso',None],
                                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                                     ],
@@ -3695,17 +3696,17 @@ def analyze(config):
                                     ['HLTTau'+str(triggers[i])+'Med1TrackTwo',None],
                                     ['Tau'+str(trax[k])+'Track',["TauTotalWeight"]],
                                     ['SS',None],
-                                    ['TauHighPt',["TauTotalWeight"]],          
+                                    ['TauHighPt',["TauTotalWeight"]],
                                     ['InvMuonGradIso',None],
                                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                                     ],
                                   )
 
-		    
-                   
+
+
 
         for c in range(len(trigchains)):
-        
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_Topoetcone20pt0'+str(n),
                         plot_all = False,
@@ -3718,7 +3719,7 @@ def analyze(config):
                             ['HLTtau25perf'+str(trigchains[c]),None],
                             ],
                           )
-                
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_lowPT_Topoetcone20pt0'+str(n),
                         plot_all = False,
@@ -3741,7 +3742,7 @@ def analyze(config):
                             ['SumCosDPhi05',None],
                             ['OS',None],
                             ['HLTtau25perf'+str(trigchains[c]),None],
-                            ['TauHighPt',["TauTotalWeight"]],          
+                            ['TauHighPt',["TauTotalWeight"]],
                             ['InvMuonGradIso',None],
                             ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                             ],
@@ -3782,14 +3783,14 @@ def analyze(config):
                             ['SumCosDPhi05',None],
                             ['HLTtau25perf'+str(trigchains[c]),None],
                             ['SS',None],
-                            ['TauHighPt',["TauTotalWeight"]],          
+                            ['TauHighPt',["TauTotalWeight"]],
                             ['InvMuonGradIso',None],
                             ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                             ],
                           )
 
                 for k in range(len(trax)):
-    
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_Tau'+str(trax[k])+'Track_Topoetcone20pt0'+str(n),
                                 plot_all = False,
@@ -3818,7 +3819,7 @@ def analyze(config):
                                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                                     ],
                                   )
-		    
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_highPT_Tau'+str(trax[k])+'Track_Topoetcone20pt0'+str(n),
                                 plot_all = False,
@@ -3828,7 +3829,7 @@ def analyze(config):
                                     ['SumCosDPhi05',None],
                                     ['OS',None],
                                     ['HLTtau25perf'+str(trigchains[c]),None],
-                                    ['TauHighPt',["TauTotalWeight"]],          
+                                    ['TauHighPt',["TauTotalWeight"]],
                                     ['InvMuonGradIso',None],
                                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                                     ],
@@ -3872,15 +3873,15 @@ def analyze(config):
                                     ['HLTtau25perf'+str(trigchains[c]),None],
                                     ['Tau'+str(trax[k])+'Track',["TauTotalWeight"]],
                                     ['SS',None],
-                                    ['TauHighPt',["TauTotalWeight"]],          
+                                    ['TauHighPt',["TauTotalWeight"]],
                                     ['InvMuonGradIso',None],
                                     ['Topoetcone20pt0'+str(n),["MuonWeightAI"]],
                                     ],
                                   )
         n += 1
-    """ 
     """
-    m = 10		    
+    """
+    m = 10
     while m < 16:
 
         loop += ztautau.algs.algs.PlotAlg(
@@ -3894,7 +3895,7 @@ def analyze(config):
                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                     ],
                   )
- 
+
         loop += ztautau.algs.algs.PlotAlg(
                 region   = 'AntiIsoCR_OS_lowPT_Ptvarcone30pt0'+str(m),
                 plot_all = False,
@@ -3921,7 +3922,7 @@ def analyze(config):
                     ],
                   )
 
-	     
+
         loop += ztautau.algs.algs.PlotAlg(
                 region   = 'AntiIsoCR_SS_Ptvarcone30pt0'+str(m),
                 plot_all = False,
@@ -3933,7 +3934,7 @@ def analyze(config):
                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                     ],
                   )
- 
+
         loop += ztautau.algs.algs.PlotAlg(
                 region   = 'AntiIsoCR_SS_lowPT_Ptvarcone30pt0'+str(m),
                 plot_all = False,
@@ -3959,7 +3960,7 @@ def analyze(config):
                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                     ],
                   )
-        
+
         for j in range(len(trax)):
 
 
@@ -4047,7 +4048,7 @@ def analyze(config):
                           )
 
         for i in range(len(triggers)):
-        
+
 
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_Ptvarcone30pt0'+str(m),
@@ -4061,7 +4062,7 @@ def analyze(config):
                             ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                             ],
                           )
-     
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_lowPT_Ptvarcone30pt0'+str(m),
                         plot_all = False,
@@ -4103,7 +4104,7 @@ def analyze(config):
                             ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                             ],
                           )
-         
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_SS_'+str(triggers[i])+'med_lowPT_Ptvarcone30pt0'+str(m),
                         plot_all = False,
@@ -4130,10 +4131,10 @@ def analyze(config):
                             ['InvMuonGradIso',None],
                             ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                             ],
-                          )    
-    
+                          )
+
                 for k in range(len(trax)):
-    
+
 
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_Tau'+str(trax[k])+'Track_Ptvarcone30pt0'+str(m),
@@ -4148,7 +4149,7 @@ def analyze(config):
                                     ['Tau'+str(trax[k])+'Track',["TauTotalWeight"]],
                                     ],
                                   )
-		 
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[k])+'Track_Ptvarcone30pt0'+str(m),
                                 plot_all = False,
@@ -4193,7 +4194,7 @@ def analyze(config):
                                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                                     ],
                                   )
-		 
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_SS_'+str(triggers[i])+'med_lowPT_Tau'+str(trax[k])+'Track_Ptvarcone30pt0'+str(m),
                                 plot_all = False,
@@ -4223,11 +4224,11 @@ def analyze(config):
                                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                                     ],
                                   )
-		    
-                   
+
+
 
         for c in range(len(trigchains)):
-        
+
 
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_Ptvarcone30pt0'+str(m),
@@ -4241,7 +4242,7 @@ def analyze(config):
                             ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                             ],
                           )
-     
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_lowPT_Ptvarcone30pt0'+str(m),
                         plot_all = False,
@@ -4282,7 +4283,7 @@ def analyze(config):
                             ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                             ],
                           )
-         
+
                 loop += ztautau.algs.algs.PlotAlg(
                         region   = 'AntiIsoCR_SS_'+str(trigchains[c])+'med_lowPT_Ptvarcone30pt0'+str(m),
                         plot_all = False,
@@ -4309,10 +4310,10 @@ def analyze(config):
                             ['InvMuonGradIso',None],
                             ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                             ],
-                          )    
-    
+                          )
+
                 for k in range(len(trax)):
-    
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_Tau'+str(trax[k])+'Track_Ptvarcone30pt0'+str(m),
                                 plot_all = False,
@@ -4326,7 +4327,7 @@ def analyze(config):
                                     ['Tau'+str(trax[k])+'Track',["TauTotalWeight"]],
                                     ],
                                   )
-		 
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_OS_'+str(trigchains[c])+'med_lowPT_Tau'+str(trax[k])+'Track_Ptvarcone30pt0'+str(m),
                                 plot_all = False,
@@ -4370,7 +4371,7 @@ def analyze(config):
                                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                                     ],
                                   )
-		 
+
                         loop += ztautau.algs.algs.PlotAlg(
                                 region   = 'AntiIsoCR_SS_'+str(trigchains[c])+'med_lowPT_Tau'+str(trax[k])+'Track_Ptvarcone30pt0'+str(m),
                                 plot_all = False,
@@ -4400,15 +4401,15 @@ def analyze(config):
                                     ['Ptvarcone30pt0'+str(m),["MuonWeightAI"]],
                                     ],
                                   )
-		    
-                   
-             
+
+
+
         m  += 1
-   
-   
-    """ 
+
+
+    """
     ############ # KW SYSTEMATICS
-    """ 
+    """
     namekw = [625,675,725,775,825,875,925,975,1025,1075]
     for i in range(len(namekw)):
 
@@ -4421,8 +4422,8 @@ def analyze(config):
                     ['SS',None],
               	    ['MuonGradIso',["MuonTotalWeight"]],
               	    ],
-            	  ) 
-    
+            	  )
+
         loop += ztautau.algs.algs.PlotAlg(
               	region    = 'Wjets_OS_MTrans'+str(namekw[i]),
             	plot_all  = False,
@@ -4432,7 +4433,7 @@ def analyze(config):
               	    ['OS',None],
               	    ['MuonGradIso',["MuonTotalWeight"]],
               	    ],
-            	  ) 
+            	  )
 
         loop += ztautau.algs.algs.PlotAlg(
             	region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_highPT',
@@ -4501,7 +4502,7 @@ def analyze(config):
 			      ['MuonGradIso',["MuonTotalWeight"]],
 			      ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
 			      ],
-		   	    ) 
+		   	    )
 
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_lowPT',
@@ -4542,7 +4543,7 @@ def analyze(config):
 			      ['MuonGradIso',["MuonTotalWeight"]],
 			      ['HLTTau'+str(triggers[k])+'Med1TrackTwo',None],
 			      ],
-			    ) 
+			    )
 
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_lowPT',
@@ -4557,7 +4558,7 @@ def analyze(config):
 			      ['TauLowPt',None],
 			      ],
 			    )
-    
+
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(triggers[k])+'med_highPT',
 			  plot_all  = False,
@@ -4584,7 +4585,7 @@ def analyze(config):
 			      ['MuonGradIso',["MuonTotalWeight"]],
 			      ['HLTtau25perf'+str(trigchains[c]),None],
 			      ],
-		   	    ) 
+		   	    )
 
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(trigchains[c])+'med_lowPT',
@@ -4625,7 +4626,7 @@ def analyze(config):
 			      ['MuonGradIso',["MuonTotalWeight"]],
 			      ['HLTtau25perf'+str(trigchains[c]),None],
 			      ],
-			    ) 
+			    )
 
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(trigchains[c])+'med_lowPT',
@@ -4640,7 +4641,7 @@ def analyze(config):
 			      ['TauLowPt',None],
 			      ],
 			    )
-    
+
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(trigchains[c])+'med_highPT',
 			  plot_all  = False,
@@ -4657,7 +4658,7 @@ def analyze(config):
 
 
         for j in range(len(trax)):
-		  
+
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_Tau'+str(trax[j])+'Track',
 			  plot_all  = False,
@@ -4669,8 +4670,8 @@ def analyze(config):
 			      ['MuonGradIso',["MuonTotalWeight"]],
 			      ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
 			      ],
-			    ) 
-    
+			    )
+
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_lowPT_Tau'+str(trax[j])+'Track',
 			  plot_all  = False,
@@ -4710,7 +4711,7 @@ def analyze(config):
 			      ['MuonGradIso',["MuonTotalWeight"]],
 			      ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
 			      ],
-			    ) 
+			    )
 
 		  loop += ztautau.algs.algs.PlotAlg(
 			  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_lowPT_Tau'+str(trax[j])+'Track',
@@ -4739,7 +4740,7 @@ def analyze(config):
 			      ['TauHighPt',None],
 			      ],
 			    )
-		
+
 		  for l in range(len(triggers)):
 
 		  	  loop += ztautau.algs.algs.PlotAlg(
@@ -4751,11 +4752,11 @@ def analyze(config):
 				      ['OS',None],
 				      ['MTrans'+str(namekw[i]),None],
 			              ['MuonGradIso',["MuonTotalWeight"]],
-				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],			
+				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],
 				      ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
 				      ],
-				    ) 
-			 
+				    )
+
 			  loop += ztautau.algs.algs.PlotAlg(
 				  region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(triggers[l])+'med_lowPT_Tau'+str(trax[j])+'Track',
 				  plot_all  = False,
@@ -4778,7 +4779,7 @@ def analyze(config):
 				      ['MTrans60',None],
 				      ['MET30',None],
 				      ['OS',None],
-				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],				     
+				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],
 				      ['MTrans'+str(namekw[i]),None],
 				      ['MuonGradIso',["MuonTotalWeight"]],
 				      ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
@@ -4793,12 +4794,12 @@ def analyze(config):
 				      ['MTrans60',None],
 				      ['MET30',None],
 				      ['SS',None],
-				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],				     
+				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],
 				      ['MTrans'+str(namekw[i]),None],
 				      ['MuonGradIso',["MuonTotalWeight"]],
 				      ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
 				      ],
-				    ) 
+				    )
 
 			  loop += ztautau.algs.algs.PlotAlg(
 				  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(triggers[l])+'med_lowPT_Tau'+str(trax[j])+'Track',
@@ -4809,7 +4810,7 @@ def analyze(config):
 				      ['SS',None],
 				      ['MTrans'+str(namekw[i]),None],
 				      ['MuonGradIso',["MuonTotalWeight"]],
-				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],				     
+				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],
 				      ['Tau'+str(trax[j])+'Track',["TauTotalWeight"]],
 				      ['TauLowPt',None],
 				      ],
@@ -4821,7 +4822,7 @@ def analyze(config):
 				  cut_flow  = [
 				      ['MTrans60',None],
 				      ['MET30',None],
-				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],				     
+				      ['HLTTau'+str(triggers[l])+'Med1TrackTwo',None],
 			              ['SS',None],
 				      ['MTrans'+str(namekw[i]),None],
 				      ['MuonGradIso',["MuonTotalWeight"]],
@@ -4829,7 +4830,7 @@ def analyze(config):
 				      ['TauHighPt',None],
 				      ],
 				    )
-     
+
 		  for c in range(len(trigchains)):
 
 			  loop += ztautau.algs.algs.PlotAlg(
@@ -4844,7 +4845,7 @@ def analyze(config):
 				      ['MuonGradIso',["MuonTotalWeight"]],
 				      ['HLTtau25perf'+str(trigchains[c]),None],
 				      ],
-				    ) 
+				    )
 
 			  loop += ztautau.algs.algs.PlotAlg(
 				  region    = 'Wjets_OS_MTrans'+str(namekw[i])+'_'+str(trigchains[c])+'med_lowPT'+str(trax[j])+'Track',
@@ -4888,7 +4889,7 @@ def analyze(config):
 				      ['MuonGradIso',["MuonTotalWeight"]],
 				      ['HLTtau25perf'+str(trigchains[c]),None],
 				      ],
-				    ) 
+				    )
 
 			  loop += ztautau.algs.algs.PlotAlg(
 				  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(trigchains[c])+'med_lowPT'+str(trax[j])+'Track',
@@ -4904,7 +4905,7 @@ def analyze(config):
 				      ['TauLowPt',None],
 				      ],
 				    )
-	    
+
 			  loop += ztautau.algs.algs.PlotAlg(
 				  region    = 'Wjets_SS_MTrans'+str(namekw[i])+'_'+str(trigchains[c])+'med_highPT'+str(trax[j])+'Track',
 				  plot_all  = False,
@@ -4923,7 +4924,7 @@ def analyze(config):
     loop += pyframe.algs.HistCopyAlg()
 
 
-    
+
     ##-------------------------------------------------------------------------
     ## run the job
     ##-------------------------------------------------------------------------
