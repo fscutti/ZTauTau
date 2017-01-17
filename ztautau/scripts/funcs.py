@@ -24,7 +24,7 @@ import array
 #____________________________________________________________
 def apply_blind(h,blind_min):
     for i in range(1,h.GetNbinsX()+1):
-        if h.GetBinLowEdge(i)>=blind_min: 
+        if h.GetBinLowEdge(i)>=blind_min:
             h.SetBinContent(i,0.)
             h.SetBinError(i,0.)
 
@@ -38,10 +38,10 @@ def get_hists(
         sys_dict  = None,
         ):
     '''
-    if sys_dict is passed, hists for all systematics will be appended in a dict. 
+    if sys_dict is passed, hists for all systematics will be appended in a dict.
     '''
-    
-    hists = {} 
+
+    hists = {}
     for s in samples:
       if not s.hist(region=region,icut=icut,histname=histname): continue
       h = s.hist(region=region,icut=icut,histname=histname).Clone()
@@ -49,7 +49,7 @@ def get_hists(
       hists[s] = h
       assert h, 'failed to gen hist for %s'%s.name
       h.SetName('h_%s_%s'%(region,s.name))
-      if sys_dict: 
+      if sys_dict:
          h.sys_hists = get_sys_hists(region    = region,
                                      icut      = icut,
                                      histname  = histname,
@@ -70,7 +70,7 @@ def get_sys_hists(
         rebin    = None,
         sys_dict = None,
         ):
-    
+
     '''
     TODO: put description here
     '''
@@ -80,19 +80,19 @@ def get_sys_hists(
         h_up = h_dn = None
         if sample.estimator.is_affected_by_systematic(sys):
           if not h_up:
-            h_up = sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='up').Clone() 
+            h_up = sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='up').Clone()
           else:  h_up.Add(sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='up').Clone())
-          if not h_dn: h_dn = sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='dn').Clone() 
+          if not h_dn: h_dn = sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='dn').Clone()
           else:  h_dn.Add(sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='dn').Clone())
           h_up.SetName('h_%s_%s_up_%s'%(region,sys.name,sample.name))
           h_dn.SetName('h_%s_%s_dn_%s'%(region,sys.name,sample.name))
-          
+
           if rebin:
            if h_up: h_up.Rebin(rebin)
            if h_dn: h_dn.Rebin(rebin)
-             
+
         hist_dict[sys] = (h_up,h_dn)
-    return hist_dict 
+    return hist_dict
 
 #____________________________________________________________
 def make_normalised_stat_hist(h):
@@ -102,12 +102,12 @@ def make_normalised_stat_hist(h):
     (used for making stat. ratio bands)
     '''
     h_stat = h.Clone('%s_stat'%(h.GetName()))
-    for i in range(1,h.GetNbinsX()+1): 
+    for i in range(1,h.GetNbinsX()+1):
 
         n = h.GetBinContent(i)
         en = h.GetBinError(i)
 	stat = en
-        h_stat.SetBinContent(i,stat) 
+        h_stat.SetBinContent(i,stat)
     return h_stat
 
 
@@ -120,12 +120,12 @@ def make_stat_hist(h):
     (used for making stat. ratio bands)
     '''
     h_stat = h.Clone('%s_stat'%(h.GetName()))
-    for i in range(1,h.GetNbinsX()+1): 
+    for i in range(1,h.GetNbinsX()+1):
 
         n = h.GetBinContent(i)
         en = h.GetBinError(i)
         stat = en / n if n else 0.0
-        h_stat.SetBinContent(i,stat) 
+        h_stat.SetBinContent(i,stat)
     return h_stat
 
 
@@ -134,10 +134,10 @@ def make_stat_scatter(hist1, hist2):
     #make s stat error graph from hist 1, centered on hist 2 (for ratio plot)
     graph = ROOT.TGraphAsymmErrors()
     if hist1.GetNbinsX() == hist2.GetNbinsX():
-	    for i in range(1,hist1.GetNbinsX()+1):	
+	    for i in range(1,hist1.GetNbinsX()+1):
 		n = hist1.GetBinContent(i)
 		en = hist1.GetBinError(i)
-		stat = en / n if n else 0.0	
+		stat = en / n if n else 0.0
 		ex = hist1.GetBinWidth(i)/2.
 		graph.SetPoint(i-1,hist2.GetBinCenter(i),hist2.GetBinContent(i))
 		graph.SetPointError(i-1,ex,ex,stat,stat)
@@ -179,25 +179,25 @@ def make_band_scatter(hist1, h_UP,h_DN=None):
 #____________________________________________________________
 def combination_ratio_stats(hist1,h_num,h_den, h_num_UP,h_num_DN,h_den_UP,h_den_DN):
     graph = ROOT.TGraphAsymmErrors()
-    if hist1.GetNbinsX() == h_num_UP.GetNbinsX():
-            for i in range(1,hist1.GetNbinsX()+1):
+    #if hist1.GetNbinsX() == h_num_UP.GetNbinsX():
+    for i in range(1,hist1.GetNbinsX()+1):
 		num = h_num.GetBinContent(i)
 		den = h_den.GetBinContent(i)
 		if num:
-        		up1 = abs(h_num_UP.GetBinContent(i))/num
+        		up1 = abs(h_num_UP.GetBinContent(i))#/num
 		else:
 			up1 = 0
 		if den:
-			up2 = abs(h_den_UP.GetBinContent(i))/den
+			up2 = abs(h_den_UP.GetBinContent(i))#/den
 		else:
 			up2 = 0
 		up_tot = sqrt(up1**2 + up2**2)
                 if num:
-                	dn1 = abs(h_num_DN.GetBinContent(i))/num
+                	dn1 = abs(h_num_DN.GetBinContent(i))#/num
 		else:
 			dn1 = 0
 		if den:
-                	dn2 = abs(h_den_DN.GetBinContent(i))/den
+                	dn2 = abs(h_den_DN.GetBinContent(i))#/den
 		else:
 			dn2 = 0
                 dn_tot = sqrt(dn1**2 + dn2**2)
@@ -205,7 +205,7 @@ def combination_ratio_stats(hist1,h_num,h_den, h_num_UP,h_num_DN,h_den_UP,h_den_
                 ex = hist1.GetBinWidth(i)/2.
                 graph.SetPoint(i-1,hist1.GetBinCenter(i),hist1.GetBinContent(i))
                 graph.SetPointError(i-1,ex,ex,dn_tot,up_tot)
-            return graph
+    return graph
 
 #____________________________________________________________
 def make_band_graph_from_hist(h_UP,h_DN=None):
@@ -215,7 +215,7 @@ def make_band_graph_from_hist(h_UP,h_DN=None):
     '''
     graph = ROOT.TGraphAsymmErrors()
     # added following line
-    #graph.GetXaxis().SetRangeUser(h_UP.GetXaxis().GetXmin(),h_UP.GetXaxis().GetXmax()) 
+    #graph.GetXaxis().SetRangeUser(h_UP.GetXaxis().GetXmin(),h_UP.GetXaxis().GetXmax())
     for i in range(1,h_UP.GetNbinsX()+1):
         eUP = abs(h_UP.GetBinContent(i))
         eDN = abs(h_UP.GetBinContent(i))
@@ -233,7 +233,7 @@ def make_error_scatter_graph(hist,h_UP,h_DN):
     for i in range(1,hist.GetNbinsX()+1):
         eUP = abs(h_UP.GetBinContent(i))
         eDN = abs(h_DN.GetBinContent(i))
-	
+
 	ex = h_UP.GetBinWidth(i)/2.
 	graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
 	graph.SetPointError(i-1,ex,ex,eDN,eUP)
@@ -241,7 +241,7 @@ def make_error_scatter_graph(hist,h_UP,h_DN):
 #____________________________________________________________
 def get_total_stat_sys_hists(hists,sys_dict):
     """
-    first make total hist for each systematic. 
+    first make total hist for each systematic.
     then sum deviations in quadrature bin-by-bin to make band.
     """
 
@@ -252,7 +252,7 @@ def get_total_stat_sys_hists(hists,sys_dict):
     for sys in sys_dict.values():
         hists_up = []
         hists_dn = []
-        for h in hists: 
+        for h in hists:
             ## if hist not found, take nominal
             if not h.sys_hists.has_key(sys):
                 hists_up.append(h)
@@ -283,11 +283,11 @@ def get_total_stat_sys_hists(hists,sys_dict):
 
             tot_sys_UP2 += pow(v_UP,2)
             tot_sys_DN2 += pow(v_DN,2)
-        tot_sys_UP = sqrt(tot_sys_UP2)            
-        tot_sys_DN = sqrt(tot_sys_DN2)            
+        tot_sys_UP = sqrt(tot_sys_UP2)
+        tot_sys_DN = sqrt(tot_sys_DN2)
         h_sys_UP.SetBinContent(i,tot_sys_UP)
         h_sys_DN.SetBinContent(i,tot_sys_DN)
-        
+
         stat = h_total_stat.GetBinContent(i)
         tot_UP = sqrt(pow(tot_sys_UP,2)+pow(stat,2))
         tot_DN = sqrt(pow(tot_sys_DN,2)+pow(stat,2))
@@ -299,9 +299,9 @@ def get_total_stat_sys_hists(hists,sys_dict):
 
 
 #____________________________________________________________
-def plot_hist( 
+def plot_hist(
     backgrounds   = None,
-    signal        = None,   
+    signal        = None,
     data          = None,
     region        = None,
     label         = None,
@@ -319,24 +319,25 @@ def plot_hist(
     do_ratio_plot = False,
     plotsfile     = None,
     sig_rescale   = None,
+    tprofile      = False,
     ):
-    
+
     '''
-    TODO: 
+    TODO:
         * move this to a new module when finished
         * write description for this function
 
     '''
     print 'making plot: ', histname, ' in region', region
-    
+
 	    #assert signal, "ERROR: no signal provided for plot_hist"
-    assert backgrounds, "ERROR: no background provided for plot_hist"
- 
-    if signal:samples = backgrounds + signal    
+    #assert backgrounds, "ERROR: no background provided for plot_hist"
+
+    if signal:samples = backgrounds + signal
     else: samples = backgrounds
-    
-    if data: samples += [data] 
-    if data: print len(data.daughters)	
+
+    if data: samples += [data]
+    if data: print len(data.daughters)
     ## generate nominal hists
     hists = get_hists(
 	region=region,
@@ -355,10 +356,29 @@ def plot_hist(
       if s.name == "Wjets":
 	h_wjets = hists[s]
 	print "got the", s.name, "hist"
-  
+      if s.name == "truth_taus":
+        h_ztt_mc = hists[s]
     h_total = histutils.add_hists(h_samp_list)
 
-    if xmin2:
+    if tprofile:
+        print "tprofile"
+        reg = region
+        if not reg: reg = ""
+        name = '_'.join([reg,histname]).replace('/','_')
+        cname = "c_final_%s"%name
+        c = ROOT.TCanvas(cname,cname,800,700)
+        h_ztt_mc.Draw()
+        #h_data = hists[data]
+        #h_data.Draw()
+        c.cd()
+
+        print 'saving plot...'
+        c.SaveAs("%s.eps"%c.GetName())
+        fout = ROOT.TFile.Open(plotsfile,'UPDATE')
+        fout.WriteTObject(c)
+        fout.Close()
+
+    elif xmin2:
         reg = region
         if not reg: reg = ""
         name = '_'.join([reg,histname]).replace('/','_')
@@ -376,7 +396,7 @@ def plot_hist(
 	projh2Y = h_wjets.ProjectionY()
 
 	center_pad.cd()
-	h_wjets.Draw("CONT1Z")		
+	h_wjets.Draw("CONT1Z")
 	c_factor = h_wjets.GetCorrelationFactor(1,2)
 
 	print "***********************************************"
@@ -403,9 +423,9 @@ def plot_hist(
 	    print "making a 1D plot for you!"
 
 	    ## get stat / sys bands
-	    if sys_dict: 
+	    if sys_dict:
 		total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
-		
+
 		g_stat = make_band_graph_from_hist(total_hists[0])
 		g_stat.SetFillColor(ROOT.kGray+3)
 		g_stat.SetFillStyle(3001)
@@ -417,33 +437,33 @@ def plot_hist(
 		g_stat = make_band_graph_from_hist(h_total_stat)
 		g_stat.SetFillColor(ROOT.kGray+3)
 		g_stat.SetFillStyle(3001)
-		
+
 		g_tot = None
 
-	    
+
 
             mc_total_stat = make_stat_hist(h_total)
             mc_stat_scatter = make_error_graph_from_hist(h_total)#make_error_scatter_graph(h_total,mc_total_stat,mc_total_stat)
             mc_stat_scatter.SetFillStyle(3001)
             mc_stat_scatter.SetFillColor(ROOT.kGray+3)
             mc_stat_scatter.SetLineStyle(1)
- 
+
 	    ROOT.gStyle.SetHatchesLineWidth(3)
             ROOT.gStyle.SetHatchesSpacing(0.05)
-	    ## blind data and create ratio 
+	    ## blind data and create ratio
 	    h_data  = None
 	    h_ratio = None
-	    if data: 
+	    if data:
 		h_data = hists[data]
 		if blind: apply_blind(h_data,blind)
 		h_ratio = h_data.Clone('%s_ratio'%(h_data.GetName()))
 		h_ratio.Divide(h_total)
 		h_ratio.SetMarkerStyle(20)
-	    
+
 	    yaxistitle = None
 	    for b in reversed(backgrounds):
 	      if not b in hists.keys(): continue
-	      else : 
+	      else :
 		yaxistitle = hists[b].GetYaxis().GetTitle()
 		break
 
@@ -452,17 +472,17 @@ def plot_hist(
 	    for b in reversed(signal+backgrounds):
 	      if not b in hists.keys(): continue
 	      h_stack.Add(hists[b])
-	   
+
 	    nLegend = len(signal+backgrounds) + 1
 	    x_legend = 0.63
 	    x_leg_shift = -0.055
-	    y_leg_shift = 0.0 
+	    y_leg_shift = 0.0
 	    legYCompr = 8.0
 	    legYMax = 0.85
 	    legYMin = legYMax - (legYMax - (0.55 + y_leg_shift)) / legYCompr * nLegend
-	    legXMin = 0.5#x_legend + x_leg_shift
-	    legXMax = 0.87#legXMin + 0.4
-	     
+	    legXMin = 0.39#x_legend + x_leg_shift
+	    legXMax = 0.88#legXMin + 0.4
+
 	    ## create legend (could use metaroot functionality?)
 	    if not do_ratio_plot:
 	      legXMin -= 0.005
@@ -472,14 +492,14 @@ def plot_hist(
 	    leg.SetFillColor(0)
 	    leg.SetFillStyle(0)
             leg.SetNColumns(2)
-            leg.SetTextSize(0.03)
+            leg.SetTextSize(0.032)
 	    if data: leg.AddEntry(h_data,data.tlatex,'PL')
 	    for s in signal:
 	      sig_tag = s.tlatex
 	      if sig_rescale: sig_tag = "%d #times "%int(sig_rescale) + sig_tag
 	      if not s in hists.keys(): continue
 	      leg.AddEntry(hists[s],sig_tag,'F')
-	    for b in backgrounds: 
+	    for b in backgrounds:
 	      if not b in hists.keys(): continue
 	      leg.AddEntry(hists[b],b.tlatex,'F')
 	    #leg.AddEntry(mc_stat_scatter, "MC Stat. Unc.","F")
@@ -490,10 +510,10 @@ def plot_hist(
 	    ## create canvas
 	    reg = region
 	    if not reg: reg = ""
-	    name = '_'.join([reg,histname]).replace('/','_') 
+	    name = '_'.join([reg,histname]).replace('/','_')
 	    cname = "c_final_%s"%name
 	    if do_ratio_plot: c = ROOT.TCanvas(cname,cname,600,600)
-	    else: c = ROOT.TCanvas(cname,cname,800,600)	
+	    else: c = ROOT.TCanvas(cname,cname,800,600)
 	    if xmin==None: xmin = h_total.GetBinLowEdge(1)
 	    if xmax==None: xmax = h_total.GetBinLowEdge(h_total.GetNbinsX()+1)
 	    ymin = 1.e-3
@@ -532,12 +552,11 @@ def plot_hist(
 	      pad2.Draw()
 	    pad1.cd()
 
-	    ytitle = "Events" 
+	    ytitle = "Events"
 	    if not rebin: ytitle = yaxistitle
             #ytitle = yaxistitle
 	    elif rebin!=1:
-	      if not "BDT" in xtitle:
-		if ("f" in xtitle) or ("track" in xtitle) or ("S" in xtitle) or ("R" in xtitle) or ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
+	      if "GeV" in xtitle:
 		ytitle += " / %s"%rebin
 		ytitle += " GeV"
 	      #else: ytitle += " / %s"%(0.05)
@@ -563,17 +582,20 @@ def plot_hist(
 	    yaxis1.SetLabelOffset( 1. * yaxis1.GetLabelOffset() / scale )
 	    xaxis1.SetNdivisions(510)
 	    yaxis1.SetNdivisions(510)
+            if "tracks" in xtitle:
+                xaxis1.SetTickLength(0)
+		xaxis1.SetNdivisions(5)
             xaxis1.SetLabelSize(0.04)
 
 	    h_stack.Draw("SAME,HIST")
-	    mc_stat_scatter.Draw("E2 SAME") 
+	    mc_stat_scatter.Draw("E2 SAME")
 	    """
 	    for s in reversed(signal):
 	      if not s in hists.keys(): continue
 	      if sig_rescale: hists[s].Scale(sig_rescale)
 	      hists[s].Draw("SAME,HIST")
 	    """
-	    
+
 	    if data: h_data.Draw("SAME")
 	    pad1.SetLogy(log)
 	    pad1.SetLogx(logx)
@@ -586,18 +608,19 @@ def plot_hist(
 	    lx = 0.6 # for ATLAS internal
 	    ly = 0.845
 	    tlatex.SetTextFont(42)
-	    
+
 	    ty = 0.96
 	    th = 0.07
 	    tx = 0.18
 	    lumi = backgrounds[0].estimator.hm.target_lumi/1000.
-	    textsize = 0.7
+	    textsize = 0.8
+	    tlatex.SetTextSize(0.038)
 	    if not do_ratio_plot: textsize = 0.8
 	    latex_y = ty-2.*th
-	    tlatex.DrawLatex(tx,latex_y,"#scale[0.7]{#bf{#it{ATLAS}} Internal}")
-	    tlatex.DrawLatex(tx,latex_y-0.07,'#scale[%lf]{#scale[%lf]{#int}L dt = %2.1f fb^{-1}}'%(textsize,0.8*textsize,lumi) )
-	    tlatex.DrawLatex(tx,latex_y-0.14,'#scale[%lf]{#sqrt{s} = 13 TeV}'%(textsize))
-	    tlatex.DrawLatex(tx, latex_y-0.21,'#scale[%lf]{Z#rightarrow#tau#tau#rightarrow#mu#tau_{had} T&P}'%(textsize))
+	    tlatex.DrawLatex(tx,latex_y,"#bf{#it{ATLAS}} Internal")
+	    tlatex.DrawLatex(tx,latex_y-0.07,'%2.1f fb^{-1}'%(lumi) )
+	    tlatex.DrawLatex(tx,latex_y-0.14,'#sqrt{s} = 13 TeV')
+	    tlatex.DrawLatex(tx, latex_y-0.21,'Z#rightarrow#tau_{#mu}#tau_{had} T&P')
 	    if label:
               if "_" in label:
 		list_labels = label.split("_")
@@ -605,8 +628,9 @@ def plot_hist(
 		for j in range(len(list_labels)):
 			fin_lab += list_labels[j]
 			fin_lab += " "
-
-	        tlatex.DrawLatex(tx,latex_y - 0.28,"#scale[0.7]{%s}"%(str(fin_lab)))
+	      else:
+		fin_lab = str(label)
+	      tlatex.DrawLatex(tx,latex_y - 0.28,"%s"%(str(fin_lab)))
 	      #latex_y -= 0.1
 	      #for i,line in enumerate(label):
 	      #  tlatex.DrawLatex(tx,latex_y-i*0.06,"#scale[%lf]{%s}"%(textsize,line))
@@ -635,24 +659,27 @@ def plot_hist(
 	      xaxis2.SetTitleSize( 0.095)#xaxis2.GetTitleSize() * scale )
 	      xaxis2.SetLabelSize( 0.095)#0.8 * xaxis2.GetLabelSize() * scale )
 	      xaxis2.SetTickLength( xaxis2.GetTickLength() * scale )
+	      xaxis2.SetNdivisions(510)
+	      if "tracks" in xtitle:
+		xaxis2.SetNdivisions(5)
+		xaxis2.SetTickLength(0)
 	      xaxis2.SetTitleOffset( 3.2* xaxis2.GetTitleOffset() / scale  )
 	      xaxis2.SetLabelOffset( 2.5* xaxis2.GetLabelOffset() / scale )
 	      yaxis2.SetNdivisions(510)
-	      xaxis2.SetNdivisions(510)
 
-	      if logx: 
-		pad2.SetLogx(logx) 
+	      if logx:
+		pad2.SetLogx(logx)
 		xaxis2.SetMoreLogLabels()
-	      else: 
+	      else:
 		pass
               ratio_line.Draw()
-	      if g_tot: 
+	      if g_tot:
                  g_tot.Draw("E2 Same")
 		 g_stat.Draw("E2 Same")
 
 	      else: g_stat.Draw("E2")
 
-	      if data: h_ratio.Draw("SAME") 
+	      if data: h_ratio.Draw("SAME")
 	      pad2.RedrawAxis()
 
 	    print 'saving plot...'
@@ -676,7 +703,7 @@ def write_hist(
         ):
     """
     write hists for backgrounds, signals and data to file.
-    will also write sys hists if sys_dict is passed. 
+    will also write sys hists if sys_dict is passed.
     also write smtot hists for summed background.
     No folder structure is provided
     """
@@ -687,7 +714,7 @@ def write_hist(
         region=region,
         icut=icut,
         histname=histname,
-        samples=samples, 
+        samples=samples,
         rebin=rebin,
         sys_dict=sys_dict,
         )
@@ -703,9 +730,9 @@ def write_hist(
         if hasattr(h,'sys_hists'):
          if sys_dict:
             for sys,hsys in h.sys_hists.items():
-                
+
                 s_name = sys.name
-                
+
                 hname_sys_up = hname.replace('nominal','%s_%s' % (s_name,'UP'))
                 hname_sys_dn = hname.replace('nominal','%s_%s' % (s_name,'DN'))
 
@@ -717,7 +744,7 @@ def write_hist(
     ## create total background hists
     #h_total = histutils.add_hists([ hists[s] for s in backgrounds ])
     #fout.WriteTObject(h_total,'h_%s_nominal_smtot'%region)
-    
+
     fout.Close()
 
 
@@ -730,7 +757,7 @@ def list_open_files():
         obj = itr.Next()
 
 def ratiounc(a,b,sigmaa,sigmab):
-  unc = 0 
+  unc = 0
   unc += pow(1./b,2) * sigmaa * sigmaa
   unc += (pow(a,2) / pow(b,4)) * sigmab * sigmab
   return sqrt(unc)
