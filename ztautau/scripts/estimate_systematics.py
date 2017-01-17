@@ -20,8 +20,8 @@ variable = "tau_pt"
 #variable = "pileup"
 
 #trax = None
-#trax = "1Track"
-trax = "3Track"
+trax = "1Track"
+#trax = "3Track"
 
 chain = None
 #chain = "ptonly"
