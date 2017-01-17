@@ -17,6 +17,7 @@ nmuons = Var(name = 'nmuons',
               log   = False,
 	      xmin2 = None,
 	      xmax2 = None,
+	      tprofile = False,
               )
 
 pileup = Var(name = 'pileup',
@@ -26,6 +27,7 @@ pileup = Var(name = 'pileup',
               log   = False,
 	      xmin2 = None,
 	      xmax2 = None,
+	      tprofile = False,
               )
 
 n_vx = Var(name = 'n_vx',
@@ -36,6 +38,7 @@ n_vx = Var(name = 'n_vx',
               log     = False,
               xmin2 = None,
               xmax2 = None,
+	      tprofile = False,
               )
 
 n_bjets = Var(name = 'n_bjets',
@@ -45,6 +48,7 @@ n_bjets = Var(name = 'n_bjets',
               xmin2 = None,
               xmax2 = None,
 	      log = False,
+	      tprofile = False,
 	      )
 
 n_jets = Var(name = 'n_jets',
@@ -53,6 +57,7 @@ n_jets = Var(name = 'n_jets',
               xmin2 = None,
               xmax2 = None,
               xmax = 19,
+	      tprofile = False,
               log = False,
               )
 
@@ -64,6 +69,7 @@ mu_pt = Var(name = 'mu_pt',
               xmax    = 150,
               rebin   = 4,
               xmin2 = None,
+	      tprofile = False,
               xmax2 = None,
               log     = False,
               )
@@ -73,6 +79,7 @@ mu_phi = Var(name = 'mu_phi',
               xmin    = -4,
               xmax    = 4,
               xmin2 = None,
+	      tprofile = False,
               xmax2 = None,
               #rebin   = 2,
               log     = False,
@@ -82,6 +89,7 @@ mu_eta = Var(name = 'mu_eta',
               path    = 'muons',
               xmin    = -3,
               xmax    = 3,
+	      tprofile = False,
               xmin2 = None,
               xmax2 = None,
 #              rebin   = 2,
@@ -96,6 +104,7 @@ topoetcone20ptmev = Var(name = 'topoetcone20pt',
               		xmin2 = None,
               		xmax2 = None,
 			log = False,
+	      		tprofile = False,
 			)
 
 ptvarcone30ptmev = Var(name = 'ptvarcone30pt',
@@ -105,6 +114,7 @@ ptvarcone30ptmev = Var(name = 'ptvarcone30pt',
                         xmin2 = None,
                         xmax2 = None,
                         log = False,
+	      		tprofile = False,
                         )
 
 topoetcone20mev = Var(name = 'topoetcone20',
@@ -114,6 +124,7 @@ topoetcone20mev = Var(name = 'topoetcone20',
                         xmin2 = None,
                         xmax2 = None,
                         log = False,
+	      		tprofile = False,
                         )
 
 ptvarcone30mev = Var(name = 'ptvarcone30',
@@ -121,6 +132,7 @@ ptvarcone30mev = Var(name = 'ptvarcone30',
                         xmin = -30000,
                         xmax = 300000,
                         log = False,
+	      		tprofile = False,
                         xmin2 = None,
                         xmax2 = None,
                         )
@@ -131,6 +143,7 @@ topoetcone20pt = Var(name = 'topoetcone20pt',
 			xmax = 0.5,
 			log = False,
                         xmin2 = None,
+	      		tprofile = False,
                         xmax2 = None,
 			)
 
@@ -140,6 +153,7 @@ ptvarcone30pt = Var(name = 'ptvarcone30pt',
                         xmax = 0.5,
                         log = False,
                         xmin2 = None,
+	      		tprofile = False,
                         xmax2 = None,
                         )
 
@@ -148,6 +162,7 @@ topoetcone20 = Var(name = 'topoetcone20',
                         xmin = -20,
                         xmax = 200,
                         log = False,
+	      		tprofile = False,
                         xmin2 = None,
                         xmax2 = None,
                         )
@@ -157,6 +172,7 @@ ptvarcone30 = Var(name = 'ptvarcone30',
                         xmin = -30,
                         xmax = 300,
                         log = False,
+	      		tprofile = False,
                         xmin2 = None,
                         xmax2 = None,
                         )
@@ -172,6 +188,7 @@ tau_pt = Var(name = 'tau_pt',
               xmin2 = None,
               xmax2 = None,
               log     = False,
+	      tprofile = False,
               )
 
 m_trans_vs_sumcosdphi = Var(name = 'm_trans_vs_sumcosdphi',
@@ -181,6 +198,7 @@ m_trans_vs_sumcosdphi = Var(name = 'm_trans_vs_sumcosdphi',
 				#rebin = 2,
 				xmin2 = -2,
 				xmax2 = 2,
+	      			tprofile = False,
 				log = False,
 				)	
 
@@ -190,6 +208,7 @@ met_reco_et_vs_sumcosdphi = Var(name = 'met_reco_et_vs_sumcosdphi',
                                 xmax = 1000,
                                 #rebin = 2,
                                 xmin2 = -2,
+	      			tprofile = False,
                                 xmax2 = 2,
                                 log = False,
                                 )
@@ -200,6 +219,7 @@ met_reco_et_vs_m_trans = Var(name = 'met_reco_et_vs_m_trans',
                                 xmax = 1000,
                                 #rebin = 4,
                                 xmin2 = 1,
+	      			tprofile = False,
                                 xmax2 = 200,
                                 log = False,
                                 )
@@ -212,6 +232,7 @@ tau_phi = Var(name = 'tau_phi',
               xmax2 = None,
              # rebin   = 2,
               log     = False,
+	      tprofile = False,
               )
               
 tau_eta = Var(name = 'tau_eta',
@@ -222,6 +243,7 @@ tau_eta = Var(name = 'tau_eta',
               xmin2 = None,
               xmax2 = None,
 	      log     = False,
+	      tprofile = False,
               )
 
 tau_n_tracks = Var(name = 'tau_n_tracks',
@@ -232,6 +254,7 @@ tau_n_tracks = Var(name = 'tau_n_tracks',
               xmin2 = None,
               xmax2 = None,
               log     = False,
+	      tprofile = False,
               )
 
 jet_bdt_score = Var(name  = 'jet_bdt_score',
@@ -241,6 +264,7 @@ jet_bdt_score = Var(name  = 'jet_bdt_score',
 	     rebin = 1,
 	     log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
 	     )
 
@@ -250,6 +274,7 @@ HLT_tau_eta = Var(name = 'HLT_tau_eta',
              xmax = 6.0,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -260,6 +285,7 @@ HLT_tau_phi = Var(name = 'HLT_tau_phi',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 HLT_tau_pt = Var(name = 'HLT_tau_pt',
@@ -269,6 +295,7 @@ HLT_tau_pt = Var(name = 'HLT_tau_pt',
              rebin = 4,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -279,6 +306,7 @@ HLT_jet_bdt_score = Var(name = 'HLT_jet_bdt_score',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 HLT_tau_n_tracks = Var(name = 'HLT_tau_n_tracks',
@@ -288,6 +316,7 @@ HLT_tau_n_tracks = Var(name = 'HLT_tau_n_tracks',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
  
 HLT_tau_n_wide_tracks = Var(name = 'HLT_tau_n_wide_tracks',
@@ -297,6 +326,18 @@ HLT_tau_n_wide_tracks = Var(name = 'HLT_tau_n_wide_tracks',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
+             )
+
+HLT_pt_res_TProfile = Var(name = 'HLT_pt_res_TProfile',
+             path = 'taus',
+             xmin = 0, 
+             xmax = 50.0,
+             #rebin = 2,
+             log = False,
+	     tprofile = True,
+             xmin2 = 0,  
+             xmax2 = 1000,
              )
 
 HLT_pt_res = Var(name = 'HLT_pt_res',
@@ -305,6 +346,7 @@ HLT_pt_res = Var(name = 'HLT_pt_res',
              xmax = 0.2,
              rebin = 2,
              log = False,
+	     tprofile = False,
              xmin2 = None,
              xmax2 = None,
              )
@@ -315,6 +357,7 @@ Presel_tau_eta = Var(name = 'Presel_tau_eta',
              xmax = 6.0,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -325,6 +368,7 @@ Presel_tau_phi = Var(name = 'Presel_tau_phi',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 Presel_tau_pt = Var(name = 'Presel_tau_pt',
@@ -335,6 +379,7 @@ Presel_tau_pt = Var(name = 'Presel_tau_pt',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 Presel_tau_n_tracks = Var(name = 'Presel_tau_n_tracks',
@@ -344,6 +389,7 @@ Presel_tau_n_tracks = Var(name = 'Presel_tau_n_tracks',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
  
 Presel_tau_n_wide_tracks = Var(name = 'Presel_tau_n_wide_tracks',
@@ -353,6 +399,7 @@ Presel_tau_n_wide_tracks = Var(name = 'Presel_tau_n_wide_tracks',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
         
 HLT_ratio_trkemsys_pt = Var(name = 'HLT_ratio_trkemsys_pt',
@@ -363,6 +410,7 @@ HLT_ratio_trkemsys_pt = Var(name = 'HLT_ratio_trkemsys_pt',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 HLT_1P_frac_trks_iso_region = Var(name = 'HLT_1P_frac_trks_iso_region',
@@ -372,6 +420,7 @@ HLT_1P_frac_trks_iso_region = Var(name = 'HLT_1P_frac_trks_iso_region',
 	     rebin = 2,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -382,6 +431,7 @@ HLT_3P_trans_flightpath_sig = Var(name = 'HLT_3P_trans_flightpath_sig',
 	     rebin = 2,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -393,6 +443,7 @@ HLT_3P_massTrkSysCorrected = Var(name = 'HLT_3P_massTrkSysCorrected',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 HLT_m_trk_EM_system = Var(name = 'HLT_m_trk_EM_system',
              path = 'taus',
@@ -402,6 +453,7 @@ HLT_m_trk_EM_system = Var(name = 'HLT_m_trk_EM_system',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 HLT_1P_lead_trk_IP_sig = Var(name = 'HLT_1P_lead_trk_IP_sig',
@@ -412,6 +464,7 @@ HLT_1P_lead_trk_IP_sig = Var(name = 'HLT_1P_lead_trk_IP_sig',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 HLT_3P_dRmax = Var(name = 'HLT_3P_dRmax',
@@ -422,6 +475,7 @@ HLT_3P_dRmax = Var(name = 'HLT_3P_dRmax',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 HLT_trk_radius = Var(name = 'HLT_trk_radius',
              path = 'taus',
@@ -431,6 +485,7 @@ HLT_trk_radius = Var(name = 'HLT_trk_radius',
              log = False,
              xmin2 = None,
              xmax2 = None,
+	     tprofile = False,
              )
 
 HLT_lead_trk_p_frac = Var(name = 'HLT_lead_trk_p_frac',
@@ -440,6 +495,7 @@ HLT_lead_trk_p_frac = Var(name = 'HLT_lead_trk_p_frac',
 	     rebin = 2,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -450,6 +506,7 @@ HLT_ratio_energy_to_trk_p = Var(name = 'HLT_ratio_energy_to_trk_p',
 	     rebin = 2,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -460,6 +517,7 @@ HLT_frac_EM_from_charged_pions = Var(name = 'HLT_frac_EM_from_charged_pions',
 	     rebin = 2,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -470,6 +528,7 @@ HLT_fcent = Var(name = 'HLT_fcent',
 	     rebin = 2,
              log = False,
              xmin2 = None,
+	     tprofile = False,
              xmax2 = None,
              )
 
@@ -482,6 +541,7 @@ vis_mass = Var(name = 'vis_mass',
               rebin   = 4,
               xmin2 = None,
               xmax2 = None,
+	      tprofile = False,
               log     = False,
               )
 
@@ -493,6 +553,7 @@ sumcosdphi = Var(name = 'sumcosdphi',
               xmin2 = None,
               xmax2 = None,
               log     = False,
+	      tprofile = False,
               )
 
 lowsumcosdphi = Var(name = 'lowsumcosdphi',
@@ -503,6 +564,7 @@ lowsumcosdphi = Var(name = 'lowsumcosdphi',
               xmin2 = None,
               xmax2 = None,
               log     = False,
+	      tprofile = False,
               )
 
 
@@ -514,6 +576,7 @@ m_trans = Var(name = 'm_trans',
               xmax2 = None,
               rebin   = 4,
               log     = False,
+	      tprofile = False,
               )
 
 met_reco_et = Var(name = 'met_reco_et',
@@ -523,6 +586,7 @@ met_reco_et = Var(name = 'met_reco_et',
               rebin   = 5,
               xmin2 = None,
               xmax2 = None,
+	      tprofile = False,
               log     = False,
               )
 
@@ -534,6 +598,7 @@ met_reco_phi = Var(name = 'met_reco_phi',
               xmin2 = None,
               xmax2 = None,
               log     = False,
+	      tprofile = False,
               )
 
 vars_list = []
@@ -591,6 +656,7 @@ vars_list.append(HLT_fcent)
 vars_list.append(HLT_3P_dRmax)
 vars_list.append(HLT_3P_massTrkSysCorrected)
 vars_list.append(HLT_3P_trans_flightpath_sig)
+vars_list.append(HLT_pt_res_TProfile)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__
