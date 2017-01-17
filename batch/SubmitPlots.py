@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'HIST_2011_v23_new'
-outdir   = 'Plots_2211_v23'
+indir    = 'HIST_1001_mu_pt_split_chains'
+outdir   = 'Plots_v25_2016_musplit_25med'
 #indir = 'HistROO_2016_incltopoptvar'
 #outdir = 'PLOTSv19_2016_topocone'
 
@@ -26,7 +26,7 @@ MAIN    = os.getenv('MAIN')
 #inpath = os.path.join("/imports/rcs5_data",USER,ana)
 #inpath  = os.path.join("/data/laram1/ztautau")
 inpath  = os.path.join("/coepp/cephfs/mel/laram1/ztautau")
-INDIR   = os.path.join(inpath,indir)  
+INDIR   = os.path.join(inpath,indir)
 OUTDIR  = os.path.join(inpath,outdir)
 
 if not os.path.isdir(OUTDIR): os.makedirs(OUTDIR)
@@ -64,15 +64,16 @@ regions = {}
 #regions["SR_SS_no_cuts"] = [0, "SR_SS_no_cuts"]
 #regions["SR_lowSCDP"] = [4,"SR_low_#sum_cos#Delta#phi_region"]
 
-regions["SR"] 		= [4,"SR"]
+#regions["SR"] 		= [4,"Signal_Region"]
 
-regions['SR_Tau3Track'] = [5,'3_prong']
-regions['SR_Tau1Track'] = [5,'1_prong']
+#regions['SR_Tau3Track'] = [5,'3-prong']
+#regions['SR_Tau1Track'] = [5,'1-prong']
 
+#regions['SR_L1TAU12IMmed_Tau1Track'] = [6,'L1 trig,_1-prong']
+#regions["SR_L1TAU12IMmed_Tau3Track"] = [6,"L1 trig,_3-prong"]
 regions["SR_25med"] 	= [5,"HLT_tau25_medium_trigger"]
-
-#regions['SR_25med_Tau1Track'] = [6,'SR_25med_Tau1Track']
-#regions["SR_25med_Tau3Track"] = [6,"SR_25med_Tau3Track"]
+#regions['SR_25med_Tau1Track'] = [6,'HLT_tau25_medium_trigger,_1-prong']
+#regions["SR_25med_Tau3Track"] = [6,"HLT_tau25_medium_trigger,_3-prong"]
 """
 regions['SR_25med_lowPT_Tau1Track'] = [7,'SR_25med_lowPT_Tau1Track']
 regions['SR_25med_highPT_Tau1Track'] = [7,'SR_25med_highPT_Tau1Track']
@@ -196,11 +197,11 @@ for REG,OPT in regions.iteritems():
     job_vars['ICUT']     = str(OPT[0])
     job_vars['LAB']      = OPT[1]
     job_vars['MAKEPLOT'] = True
-    
+
     VARS = []
-    
+
     for vname in job_vars.keys(): VARS += ['%s=%s' % (vname,job_vars[vname])]
-    
+
     cmd = 'qsub'
     cmd += " -q %s" % QUEUE
     cmd += ' -v "%s"' % (','.join(VARS))
@@ -211,7 +212,7 @@ for REG,OPT in regions.iteritems():
     print cmd
     m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
     print m.communicate()[0]
- 
- 
+
+
 ## EOF
 
