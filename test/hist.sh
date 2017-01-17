@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Batch
-python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v23/nominal/physics_Main_00306442.root --sampletype="data"
-#python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v22/nominal/PoPy8_Zmumu.root --sampletype="mc"
-#python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v22/nominal/PoPy_P2012_ttb_nonallh.root --sampletype="mc"
-#python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/data16/nominal/PoPy8_Zmumu.root --sampletype="mc"
+python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v25_2016/nominal/physics_Main_00302380.root --sampletype="data"
+#python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v25_2016/nominal/PoPy8_Ztt_truth.root --sampletype="mcTruth"
+#python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v25_2016/nominal/PoPy_P2012_STSchan_noAllHad_atop_antitruth.root  --sampletype="mcAntiTruth"
+#python ../ztautau/run/j.plotter.py --input /coepp/cephfs/mel/laram1/v25_2015/nominal/PoPy8_Zmumu.root --sampletype="mc"
