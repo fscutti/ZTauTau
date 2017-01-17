@@ -182,12 +182,12 @@ class MuonSF(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
 		#sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
@@ -198,12 +198,12 @@ class MuonSF(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
 		#sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
@@ -214,12 +214,12 @@ class MuonSF(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
 		#sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
@@ -230,12 +230,12 @@ class MuonSF(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
 		#sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone	
@@ -283,11 +283,11 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 
           if run_number >= 276262 and run_number <= 284484:
           	sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-          if run_number >= 296939 and run_number <= 300287:
+          elif run_number >= 296939 and run_number <= 300287:
                 sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-          if run_number >= 300345 and run_number <= 302872:
+          elif run_number >= 300345 and run_number <= 302872:
                 sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-          if run_number >= 302919: 
+          elif run_number >= 302919: 
           	sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
 	  #print "pt(mu) %lf, antiIso trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium)          
@@ -299,11 +299,11 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 
 		if run_number >= 276262 and run_number <= 284484:
 			sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-		if run_number >= 296939 and run_number <= 300287:
+		elif run_number >= 296939 and run_number <= 300287:
 			sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-		if run_number >= 300345 and run_number <= 302872:
+		elif run_number >= 300345 and run_number <= 302872:
 			sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-		if run_number >= 302919:
+		elif run_number >= 302919:
 			sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
 		#sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
@@ -314,12 +314,12 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
                 
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
@@ -330,12 +330,12 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
                 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
                 sf *= self.chain.lep_0_MUON_TTVA_STAT_1up_MuEffSF_TTVA
@@ -345,12 +345,12 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
 
                 if run_number >= 276262 and run_number <= 284484:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone # 2015
-                if run_number >= 296939 and run_number <= 300287:
+                elif run_number >= 296939 and run_number <= 300287:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
-                if run_number >= 300345 and run_number <= 302872:
+                elif run_number >= 300345 and run_number <= 302872:
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                if run_number >= 302919:
-                        sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
+                elif run_number >= 302919:
+                	sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
