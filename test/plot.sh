@@ -4,20 +4,28 @@
 #  HLT BDT VARS
 #-------------------#
 
-#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="AntiIsoCR_SS" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
-#python ../ztautau/scripts/merge.py --var="vis-mass" --reg="AntiIsoCR_OS_Tau3Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
-#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="Wjets_OS" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="AntiIsoCR_OS" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_3011_truth_antitruth_mc" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="AntiIsoCR_SS" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_3011_truth_antitruth_mc" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="Wjets_OS" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_3011_truth_antitruth_mc" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="Wjets_SS" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_3011_truth_antitruth_mc" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="AntiIsoCR_OS_Tau1Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="AntiIsoCR_OS_Tau3Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="m_trans" --reg="Wjets_OS_Tau3Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="Wjets_OS_Tau3Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="m_trans" --reg="Wjets_OS_Tau1Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="Wjets_OS_Tau1Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="vis_mass" --reg="Wjets_OS_Tau1Track" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
 
 #python ../ztautau/scripts/merge.py --var="HLT_1P_frac_trks_iso_region" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
 ##python ../ztautau/scripts/merge.py --var="HLT_frac_trks_iso_region" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
-python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=False
-python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="HLT_1P_lead_trk_IP_sig" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="HLT_trk_radius" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="HLT_lead_trk_p_frac" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="HLT_ratio_energy_to_trk_p" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
-#python ../ztautau/scripts/merge.py --var="HLT_frac_EM_from_charged_pions" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="HLT_frac_EM_from_charged_pions" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="HLT_fcent" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
 
 #python ../ztautau/scripts/merge.py --var="HLT_massTrkSysCorrected" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
@@ -30,7 +38,10 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #python ../ztautau/scripts/merge.py --var="HLT_frac_EM_from_charged_pions" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="HLT_fcent" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0711_HLT_BDT_vars" --output="./" --makeplot=True
 #
-#python ../ztautau/scripts/merge.py --var="HLT_pt_res" --reg="SR_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="HLT_pt_res_TProfile" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0112_v23_truth_taupt_30" --output="../ztautau/scripts/HLT_pt_res_plot/" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="HLT_pt_res_TProfile" --reg="SR_Tau3Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0112_v23_truth_taupt_30" --output="../ztautau/scripts/HLT_pt_res_plot/" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="HLT_pt_res" --reg="SR_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0112_v23_truth_taupt_30" --output="../ztautau/scripts/HLT_pt_res_plot/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="HLT_pt_res" --reg="SR_Tau3Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0112_v23_truth_taupt_30" --output="../ztautau/scripts/HLT_pt_res_plot/" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="HLT_jet_bdt_score" --reg="SR_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0211_v22_HLT_vars" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="Presel_tau_pt" --reg="SR_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0311_v22_HLT_Presel_vars" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="Presel_tau_phi" --reg="SR_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0311_v22_HLT_Presel_vars" --output="./" --makeplot=True
@@ -44,11 +55,19 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #-------------------#
 
 
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_SS25med" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med" --lab="tau 25 medium trigger" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2011_v23_new" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_MEDIUM" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="25med" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_MEDIUM" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR" --lab="Sig-Reg" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_MEDIUM" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2611_v23" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_MEDIUM" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="mu_eta" --reg="SR" --lab="" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_MEDIUM" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="mu_phi" --reg="SR" --lab="" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2611_v23" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="mu_pt" --reg="SR_Tau3Track" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./" --makeplot=True
 
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="tau 35 medium trigger" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0901_v25_2016_rqcd_mu_pt" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="tau 25 medium trigger" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0901_v25_2016_rqcd_mu_pt" --output="./" --makeplot=True
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="tau 35 medium trigger" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
 
 #---------------------#
@@ -90,10 +109,16 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #----------------------#
 
 #python ../ztautau/scripts/merge.py --var="m_trans" --reg="SR_highSCDP" --lab="TEST REGION" --icut="3" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0410_new_mt_regions" --output="./" --makeplot=True
-#python ../ztautau/scripts/merge.py --var="sumcosdphi" --reg="SR_lowSCDP" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_lowSCDP" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_3011_truth_antitruth_mc" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_lowSCDP" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_3011_truth_antitruth_mc" --output="./" --makeplot=False
+
 #python ../ztautau/scripts/merge.py --var="m_trans" --reg="SR_lowSCDP" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_lowSCDP_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0610_all_triggers" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_lowSCDP_SS25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0610_all_triggers" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="m_trans" --reg="SR_lowSCDP_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="m_trans" --reg="SR_lowSCDP_Tau3Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="SR_lowSCDP" --lab="TEST REGION" --icut="4" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="SR_lowSCDP_Tau1Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="vis_mass" --reg="SR_lowSCDP_Tau3Track" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=True
 
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_lowSCDP_25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_lowSCDP_SS25med" --lab="TEST REGION" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
@@ -111,42 +136,42 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #   EFFICIENCIES v22 TAU PT
 #---------------------------#
 
-##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
+#     ONE PRONG  
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
 
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
 
 #     THREE PRONG  
 
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-##
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_errthing" --output="./" --makeplot=False
-##
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_MEDIUM" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#
 ##---------------------------#
 #   EFFICIENCIES v22 TAU ETA
 #---------------------------#
 
-##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_taupt165" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+###     ONE PRONG  
+#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
@@ -160,8 +185,8 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 
 #     THREE PRONG  
 
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_taupt165" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
@@ -178,8 +203,8 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #---------------------------#
 
 ##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
@@ -187,14 +212,14 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_taupt130" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1711_taupt165" --output="./" --makeplot=False
 
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0112_v23_truth_taupt_30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0112_v23_truth_taupt_30" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
 
 #     THREE PRONG  
 
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1601_tau_pt_30" --output="./Hists_systematics/BDT_medium/" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
 #python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
@@ -352,198 +377,107 @@ python ../ztautau/scripts/merge.py --var="HLT_m_trk_EM_system" --reg="SR_25med_T
 #---------------------------#
 
 #     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
 
 #     THREE PRONG  
 
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1911_BDT_loose" --output="./" --makeplot=False
-
-#---------------------------#
-#   EFFICIENCIES v22 TAU ETA
-#---------------------------#
-
-##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-
-#     THREE PRONG  
-
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=True
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
 #
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#
-#---------------------------#
-#   EFFICIENCIES v22 pileup
-#---------------------------#
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_LOOSE" --output="./Hists_systematics/BDT_loose/" --makeplot=False
 
-##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
 
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-
-#     THREE PRONG  
-
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#
-###### BDT LOOSE ####
+###### BDT TIGHT ####
 
 
 #---------------------------#
 #   EFFICIENCIES v22 TAU PT
 #---------------------------#
 
-###     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-
-#     THREE PRONG  
-#
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1411_bdtTight" --output="./" --makeplot=False
-
-#---------------------------#
-#   EFFICIENCIES v22 TAU ETA
-#---------------------------#
-
 ##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
 
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
 
+##     THREE PRONG  
+#
+python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1201_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0712_v25_2016_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1001_mu_pt_split_chains_TIGHT" --output="./Hists_systematics/BDT_tight/" --makeplot=False
+
+###### BDT LOOSE 2015 ####
+
+
+#---------------------------#
+#   EFFICIENCIES v22 TAU PT
+#---------------------------#
+
+#     ONE PRONG  
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+##
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#
 #     THREE PRONG  
 
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="tau_eta" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#
-#---------------------------#
-#   EFFICIENCIES v22 pileup
-#---------------------------#
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
 
-##     ONE PRONG  
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau1Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_35med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_50L1TAU12med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80L1TAU60med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_125med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_160med_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
+#python ../ztautau/scripts/merge.py --var="tau_pt" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0812_v25_2015_LOOSE" --output="./Hists_systematics/2015/BDT_loose/" --makeplot=False
 
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_L1TAU12IMmed_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_tracktwo_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_ptonly_Tau1Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
 
-#     THREE PRONG  
-
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_Tau3Track" --lab="TEST" --icut="5" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_25med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_35med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt40" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_50L1TAU12med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt55" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_80L1TAU60med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_1311_taupt85" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_125med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_160med_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_2810_v22_all_trigs_and_chains" --output="./" --makeplot=False
-#
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_L1TAU12IMmed_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_tracktwo_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
-#python ../ztautau/scripts/merge.py --var="pileup" --reg="SR_ptonly_Tau3Track" --lab="TEST REGION" --icut="6" --input="/coepp/cephfs/mel/laram1/ztautau/HIST_0811_taupt30" --output="./" --makeplot=False
