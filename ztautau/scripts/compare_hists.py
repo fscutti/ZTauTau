@@ -305,8 +305,8 @@ y_leg_shift = 0.0
 legYCompr = 8.0
 legYMax = 0.85
 legYMin = legYMax - (legYMax - (0.2 + y_leg_shift)) / legYCompr * nLegend
-legXMin = 0.5 
-legXMax = 0.87 
+legXMin = 0.5
+legXMax = 0.87
 
 #lscdp_lowmt.SetMarkerStyle(20)
 #lscdp_lowmt.SetMarkerColor(ROOT.kBlack)
@@ -333,7 +333,7 @@ if sign == "os":
 elif sign == "ss":
 	leg.AddEntry(sr_ss, "Wjets (signal SS region)",'F')
 	#leg.AddEntry(lscdp_lowmt_ss,"Wjets (LSCDP LowMT SS region)",'PL')
-	leg.AddEntry(lscdp_ss,"Wjets (LSCDP SS region)",'P')	
+	leg.AddEntry(lscdp_ss,"Wjets (LSCDP SS region)",'P')
 
 if sign == "os":
 	c = ROOT.TCanvas("wjets_OS","wjets_OS",800,600)
@@ -343,7 +343,7 @@ if sign == "ss":
 xmin = sr.GetBinLowEdge(1)
 xmax = 100
 ymin = 0
-ymax = 0.8 
+ymax = 0.8
 #ymax *= 1.8
 xtitle = ""
 
@@ -422,7 +422,7 @@ tlatex.SetTextSize(0.035)
 textsize = 0.7
 latex_y = ty-2.*th
 tlatex.DrawLatex(tx,latex_y,"#scale[0.7]{#bf{#it{ATLAS}} Internal}")
-tlatex.DrawLatex(tx,latex_y-0.07,'#scale[%lf]{#scale[%lf]{#int}L dt = 24.8 fb^{-1}}'%(textsize,0.8*textsize) )
+tlatex.DrawLatex(tx,latex_y-0.07,'#scale[%lf]{#scale[%lf] 24.8 fb^{-1}}'%(textsize,0.8*textsize) )
 tlatex.DrawLatex(tx,latex_y-0.14,'#scale[%lf]{#sqrt{s} = 13 TeV}'%(textsize))
 if trig:
 	tlatex.DrawLatex(tx,latex_y-0.21,'#scale[%lf]{tau 25 medium trigger}'%(textsize))
