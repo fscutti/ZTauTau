@@ -9,7 +9,7 @@ description:
 ## modules
 from pyplot import histutils, fileio
 from funcs import ratiounc
-import os 
+import os
 import random
 import ROOT
 import copy
@@ -25,13 +25,13 @@ log = logging.getLogger(__name__)
 #------------------------------------------------------------
 class HistMgr():
     '''
-    description of HistMgr 
+    description of HistMgr
     '''
     #____________________________________________________________
     def __init__(self,
             basedir = None,
             target_lumi = None,
-            cutflow_histname = 'h_metadata', 
+            cutflow_histname = 'h_metadata',
             ):
         self.basedir = basedir
         self.target_lumi = target_lumi
@@ -60,14 +60,14 @@ class HistMgr():
             histname   = None,
             samplename = None,
             region     = None,
-            icut       = None, 
+            icut       = None,
             sys        = None,
             mode       = None,
             ):
 
         assert histname,  'must define histname'
         assert samplename,    'must define samplename'
-        if sys: 
+        if sys:
             assert mode in ['up','dn'], "mode must be either 'up' or 'dn'"
 	    #print "from hist, sys =", sys.name
         path_to_file = self.get_file_path(samplename,sys,mode)
@@ -78,20 +78,20 @@ class HistMgr():
         path_to_hist = ''
         if region != None:
            path_to_hist = os.path.join('regions',region)
-           
+
            ## check region exists
            if not f.Get(path_to_hist):
                f.Close()
                return None
-           
+
            cutflow = get_icut_path(path_to_file, path_to_hist, icut)
            if icut == 0: pass #cutflow = "ALL"
-           if not cutflow: 
+           if not cutflow:
                log.debug( '%s no cut: %s'% (samplename,icut) )
                f.Close()
                return None
            path_to_hist = os.path.join(path_to_hist,cutflow)
-          
+
         path_to_hist = os.path.join(path_to_hist,histname)
 
         h = f.Get(path_to_hist)
@@ -100,7 +100,7 @@ class HistMgr():
             f.Close()
             print 'failed retrieveing hist: %s:%s'%(path_to_file,path_to_hist)
             return None
-        
+
         h = h.Clone()
         h.SetDirectory(0)
         f.Close()
@@ -111,24 +111,24 @@ class HistMgr():
             else:            h.Scale(1.-sys.flat_err)
 
         return h
-          
+
     #____________________________________________________________
     def get_nevents(self,samplename,sys=None,mode=None):
         '''
-        retrieves cutflow hist for given sample 
-        and given systematic (which contains the 
+        retrieves cutflow hist for given sample
+        and given systematic (which contains the
         total events before skim)
         '''
         assert samplename, 'must provide samplename'
-    
-        nevents = None 
+
+        nevents = None
         path_to_file = self.get_file_path(samplename,sys,mode)
         f = ROOT.TFile.Open(path_to_file)
-        if f: 
+        if f:
             h = f.Get(self.cutflow_histname)
             if h: nevents = h.GetBinContent(8)
             f.Close()
-        
+
         return nevents
 
 
@@ -141,19 +141,19 @@ class BaseEstimator(object):
     def __init__(self,hm=None,sample=None):
         self.hm = hm
         self.sample = sample
-        
-        ## allowed systematics 
+
+        ## allowed systematics
         self.allowed_systematics = []
         self.hist_store = {}
 
         assert self.sample, 'must provide sample to BaseEstimator'
-    
+
     #____________________________________________________________
     def get_hist_tag(self,histname=None,region=None,icut=None,sys=None,mode=None):
       if isinstance(region,list): region = "_".join(region)
       htag = "_".join([str(s) for s in [histname,region,icut,sys,mode]])
       return htag
-        
+
     #____________________________________________________________
     def hist(self,histname=None,region=None,icut=None,sys=None,mode=None):
         """
@@ -175,18 +175,18 @@ class BaseEstimator(object):
           h = None
           if not all(v is None for v in h_dict.values()):
             h = histutils.add_hists(h_dict.values())
-          if h: 
+          if h:
             self.sample.plotopts.configure(h)
             log.debug('%s: %s'%(self.sample.name,h.Integral()))
 
           self.hist_store[htag] = h
         return self.hist_store[htag]
-    
+
     #__________________________________________________________________________
     def add_systematics(self, sys):
         if not isinstance(sys,list): sys = [sys]
         self.allowed_systematics += sys
-    
+
     #__________________________________________________________________________
     def is_affected_by_systematic(self, sys):
         return sys in self.allowed_systematics
@@ -201,7 +201,7 @@ class BaseEstimator(object):
 #------------------------------------------------------------
 class Estimator(BaseEstimator):
     '''
-    Standard Estimator class (for MC and data) 
+    Standard Estimator class (for MC and data)
     '''
     #____________________________________________________________
     def __init__(self,**kw):
@@ -210,7 +210,7 @@ class Estimator(BaseEstimator):
         ## xsec / Ntotal, seperately for each systematic
         ## (set on first call to hist)
         self.mc_lumi_frac = {}
-   
+
 
     #____________________________________________________________
     def __hist__(self,histname=None,region=None,icut=None,sys=None,mode=None):
@@ -224,29 +224,29 @@ class Estimator(BaseEstimator):
                          sys=sys,
                          mode=mode,
                          )
-        if h and self.sample.type == 'mc': 
+        if h and ('mc' in self.sample.type) :
             lumi_frac = self.get_mc_lumi_frac(sys,mode)
             h.Scale(self.hm.target_lumi * lumi_frac)
 
-        return h    
+        return h
     #____________________________________________________________
     def get_mc_lumi_frac(self,sys,mode):
         '''
-        Gets the effective luminosity fraction of the mc sample. 
-        This is done seperately for each sys, since the total 
-        number of events can potentially be different for different 
-        sys samples. Once retrieved, the value is stored for 
-        further access. 
+        Gets the effective luminosity fraction of the mc sample.
+        This is done seperately for each sys, since the total
+        number of events can potentially be different for different
+        sys samples. Once retrieved, the value is stored for
+        further access.
         '''
-        if sys: 
+        if sys:
             assert mode in ['up','dn'], "mode must be either 'up' or 'dn'"
-        
+
         sysname = 'nominal'
         if sys:
             if mode == 'up': sysname = '%s_up'%(sys.name)
             else:            sysname = '%s_dn'%(sys.name)
 
-        if not self.mc_lumi_frac.has_key(sysname): 
+        if not self.mc_lumi_frac.has_key(sysname):
             xsec    = self.sample.xsec
             feff    = self.sample.feff
             kfactor = self.sample.kfactor
@@ -260,7 +260,7 @@ class Estimator(BaseEstimator):
 #------------------------------------------------------------
 class DataBkgSubEstimator(BaseEstimator):
     '''
-    DataBkgSub Estimator class 
+    DataBkgSub Estimator class
     subtracts bkgs from data for estimate
     '''
     #____________________________________________________________
@@ -272,13 +272,14 @@ class DataBkgSubEstimator(BaseEstimator):
     #____________________________________________________________
     def __hist__(self,histname=None,region=None,icut=None,sys=None,mode=None):
         h = self.data_sample.hist(histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone()
-        if self.mc_samples: 
-            for s in self.mc_samples: 
+        if self.mc_samples:
+            for s in self.mc_samples:
                 hs = s.hist(histname=histname,region=region,icut=icut,sys=sys,mode=mode)
                 mc_rescale = -1.0
-                if self.mc_samples_rescales: 
+                if self.mc_samples_rescales:
                   if s in self.mc_samples_rescales.keys():
                     mc_rescale *= self.mc_samples_rescales[s]
+		    print "scaling for you", s.name, self.mc_samples_rescales[s]
                 h.Add(hs, mc_rescale)
         return h
     #__________________________________________________________________________
@@ -288,21 +289,21 @@ class DataBkgSubEstimator(BaseEstimator):
         Check all daughter systematics
         """
         if sys in self.allowed_systematics: return True
-        for s in self.mc_samples + [self.data_sample]: 
+        for s in self.mc_samples + [self.data_sample]:
             if s.estimator.is_affected_by_systematic(sys): return True
         return False
     #__________________________________________________________________________
     def flush_hists(self):
         BaseEstimator.flush_hists(self)
         self.data_sample.estimator.flush_hists()
-        for s in self.mc_samples: 
+        for s in self.mc_samples:
             s.estimator.flush_hists()
 
 
 #------------------------------------------------------------
 class AddOnEstimator(BaseEstimator):
     '''
-    AddOnEstimator Estimator class 
+    AddOnEstimator Estimator class
     '''
     #____________________________________________________________
     def __init__(self,
@@ -321,13 +322,13 @@ class AddOnEstimator(BaseEstimator):
         self.data_minus_mc     = DataBkgSubEstimator(self.data_sample,None,None,**kw)
         self.data_minus_mc_num = DataBkgSubEstimator(self.data_sample,self.mc_samples,None,**kw)
         self.data_minus_mc_den = DataBkgSubEstimator(self.data_sample,self.mc_samples,None,**kw)
-        self.rqcd_regions      = rqcd_regions 
-        self.kf_regions        = kf_regions 
-#        self.rregions          = rregions 
-#        self.kregions          = kregions 
-        self.addon_regions     = addon_regions 
+        self.rqcd_regions      = rqcd_regions
+        self.kf_regions        = kf_regions
+#        self.rregions          = rregions
+#        self.kregions          = kregions
+        self.addon_regions     = addon_regions
         self.print_info        = print_info
-        
+
         assert self.rqcd_regions,  "ERROR: must provide rqcd regions"
         assert self.kf_regions,    "ERROR: must provide kf regions"
         #assert self.rregions,  "ERROR: must provide rqcd regions"
@@ -336,40 +337,35 @@ class AddOnEstimator(BaseEstimator):
 
     #____________________________________________________________
     def __hist__(self,region=None,histname=None,icut=None,sys=None,mode=None):
-        
+
         """
         implementation of nominal hist getter
         """
-        # compute k-factors for OS and SS regions 
-        kf_OS = {}  
-        kf_SS = {}  
-        
-        kf_OS_unc = {}  
-        kf_SS_unc = {}  
-         
+        # compute k-factors for OS and SS regions
+        kf_OS = {}
+        kf_SS = {}
+
+        kf_OS_unc = {}
+        kf_SS_unc = {}
+
         # initialise k-factors
         for s in self.mc_samples:
            kf_OS[s] = 1.0
-           kf_SS[s] = 1.0 
-           
+           kf_SS[s] = 1.0
+
            kf_OS_unc[s] = 0.0
-           kf_SS_unc[s] = 0.0 
-        
-        kf_regions = self.kf_regions 
-       
-        # compute k-factors 
+           kf_SS_unc[s] = 0.0
+
+        kf_regions = self.kf_regions
+
+        # compute k-factors
         for s in self.kf_regions.keys():
            tmp_samples = list(self.mc_samples)
            tmp_samples.remove(s)
            data_sub = copy(self.data_minus_mc)
            data_sub.mc_samples = tmp_samples
-           #for l in range(len(tmp_samples)):
-	   #print tmp_samples[l].name
-           """
-           kf_OS[s]  = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           kf_OS[s] /= histutils.full_integral_and_error(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           kf_SS[s]  = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["SS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
-           """
+           for l in range(len(tmp_samples)):
+	    print tmp_samples[l].name
 
            kf_os_top, kf_os_top_err = histutils.full_integral_and_error(data_sub.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
            kf_os_bot, kf_os_bot_err = histutils.full_integral_and_error(s.hist(region=kf_regions[s]["OS"],histname=histname,icut=kf_regions[s]["ncuts"],sys=sys,mode=mode))
@@ -377,8 +373,6 @@ class AddOnEstimator(BaseEstimator):
            if kf_os_bot == 0:
                 print s.name
                 kf_OS[s] == 1.0
-                #kf_OS_unc[s] = 0.0
-                #kf_SS_unc[s] = 0.0
            else:
            	kf_OS[s] = kf_os_top/kf_os_bot
 		kf_OS_unc[s] = ratiounc(a = kf_os_top, b = kf_os_bot, sigmaa = kf_os_top_err, sigmab = kf_os_bot_err)
@@ -389,13 +383,8 @@ class AddOnEstimator(BaseEstimator):
            if kf_ss_bot == 0:
                 print s.name
 	   	kf_SS[s] == 1.0
-                #kf_OS_unc[s] = 0.0
-                #kf_SS_unc[s] = 0.0
            else:
                 kf_SS[s] = kf_ss_top/kf_ss_bot
-                #kf_OS_unc[s] = abs(kf_OS[s])*math.sqrt( (kf_os_top_err/kf_os_top)**2 + (kf_os_bot_err/kf_os_bot)**2 )
-                #kf_SS_unc[s] = abs(kf_SS[s])*math.sqrt( (kf_ss_top_err/kf_ss_top)**2 + (kf_ss_bot_err/kf_ss_bot)**2 )
-
 
                 kf_SS_unc[s] = ratiounc(a = kf_ss_top, b = kf_ss_bot, sigmaa = kf_ss_top_err, sigmab = kf_ss_bot_err)
 
@@ -410,31 +399,33 @@ class AddOnEstimator(BaseEstimator):
                    if mode == "dn": kf_SS[s] = kf_SS[s]*(1.-sys.flat_err)
 	   print "kfactor is", kf_SS[s], kf_OS[s]
 
+        truth_mc_samples = []
         # adding k_factors to the estimators
+        for l in self.mc_samples:
+            if "_truth" in l.name:
+                truth_mc_samples.append(l)
+                continue
+            kf_OS[l] = kf_OS[s]
+            kf_SS[l] = kf_SS[s]
+
+        data_sub_truth_os = copy(self.data_minus_mc)
+	data_sub_truth_os.mc_samples = truth_mc_samples
+        data_sub_truth_os.mc_samples_rescales = kf_OS
+
+        data_sub_truth_ss = copy(self.data_minus_mc)
+	data_sub_truth_ss.mc_samples = truth_mc_samples
+        data_sub_truth_ss.mc_samples_rescales = kf_SS
+
         self.data_minus_mc_num.mc_samples_rescales = kf_OS
         self.data_minus_mc_den.mc_samples_rescales = kf_SS
-        
+        #print kf_OS
         rqcd_regions = self.rqcd_regions
 
-        """
-        rqcd  = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-        rqcd /= histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-        """
-        rqcd_top, rqcd_top_err = histutils.full_integral_and_error(self.data_minus_mc_num.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
-        rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(self.data_minus_mc_den.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
+        rqcd_top, rqcd_top_err = histutils.full_integral_and_error(data_sub_truth_os.hist(region=rqcd_regions[self.data_sample]["num"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
+        rqcd_bot,rqcd_bot_err = histutils.full_integral_and_error(data_sub_truth_ss.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"],sys=sys,mode=mode))
 	if rqcd_bot == 0: rqcd_bot = 1
 	if rqcd_top == 0: rqcd_top = 1
 
-        #rqcd = rqcd_top/rqcd_bot
-        #if ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau1Track" in rqcd_regions[self.data_sample]["num"]) and ("low" in rqcd_regions[self.data_sample]["num"]):
-	#	rqcd = 1.107
-        #elif ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau1Track" in rqcd_regions[self.data_sample]["num"]) and ("high" in rqcd_regions[self.data_sample]["num"]):
-	#	rqcd = 1.191
-        #elif ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau3Track" in rqcd_regions[self.data_sample]["num"]) and ("low" in rqcd_regions[self.data_sample]["num"]):
- 	#	rqcd = 1.256
-        #elif ("med" in rqcd_regions[self.data_sample]["num"]) and ("Tau3Track" in rqcd_regions[self.data_sample]["num"]) and ("high" in rqcd_regions[self.data_sample]["num"]):
-	#	rqcd = 1.577
-	#else:
 	rqcd = rqcd_top/rqcd_bot
         if sys and "RQCD" in sys.name:
           # assuming numerator is always OS!!!
@@ -452,25 +443,22 @@ class AddOnEstimator(BaseEstimator):
           print sys_list
 
           #assert all(True if sys_list.count(item) == reg_list.count(item) else False for item in sys_list), "ERROR: RQCD sys name not matching region name!!!"
-          if mode == "up": rqcd *= (1.+sys.flat_err) 
-          if mode == "dn": rqcd *= (1.-sys.flat_err) 
-        
-        #print "printing numerator and denominator"
-        #print rqcd_top, rqcd_top_err
-        #print rqcd_bot, rqcd_bot_err
+          if mode == "up": rqcd *= (1.+sys.flat_err)
+          if mode == "dn": rqcd *= (1.-sys.flat_err)
+
 
         rqcd_stat_unc = abs(rqcd)*math.sqrt( (rqcd_top_err/rqcd_top)**2 + (rqcd_bot_err/rqcd_bot)**2 )
         #rqcd_stat_unc = ratiounc(a = rqcd_top, b = rqcd_bot, sigmaa = rqcd_top_err, sigmab = rqcd_bot_err)
- 
+
         sys_name = "nominal"
         if sys: sys_name = sys.name
         if self.print_info:
-          print 
-          print  
+          print
+          print
           print "++++++++++++++++++++++++++++++++++++++++"
           print "Iteration for %s" % self.sample.name
           print "++++++++++++++++++++++++++++++++++++++++"
-          print 
+          print
           print "k-factors for %s, sys: %s, sys mode: %s" % (histname,sys_name,mode)
           print "----------------------------------------"
           print "Sample | Region | k-factor | k-factor unc | Rqcd | Rqcd stat unc"
@@ -478,76 +466,75 @@ class AddOnEstimator(BaseEstimator):
           for s in self.kf_regions.keys():
             print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["OS"],kf_OS[s],kf_OS_unc[s],rqcd,rqcd_stat_unc/rqcd)
             print "%s | %s | %.3lf | %.3lf | %.3lf | %.3lf" % (s.name,kf_regions[s]["SS"],kf_SS[s],kf_SS_unc[s],rqcd,rqcd_stat_unc/rqcd)
-            print 
-        
-        addon_regions = self.addon_regions
+            print
 
+        addon_regions = self.addon_regions
+        #h_fakes = self.data_sample.hist(region=rqcd_regions[self.data_sample]["den"],histname=histname,icut=rqcd_regions[self.data_sample]["ncuts"]).Clone() #for anti-iso region plot
 	h_fakes = self.data_sample.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"]).Clone()
 	fakes_int = histutils.full_integral(h_fakes)
 	#print "fakes pre rqcd", fakes_int
-        h_fakes.Scale(rqcd) 
+        h_fakes.Scale(rqcd)
 	fakes_int_scaled = histutils.full_integral(h_fakes)
-        #print "fakes post rqcd", fakes_int_scaled        
+        #print "fakes post rqcd", fakes_int_scaled
 	#print "does rqcd =", fakes_int_scaled/fakes_int
 
-        h_addon = {} 
+        h_addon = {}
         h_addon[self.data_sample] = h_fakes.Clone()
-	
+
 	for t in addon_regions.keys():
 		if t ==self.data_sample: continue
 		elif t.name == "Wjets": continue
-		else:  
+		else:
 			print "scaling", t.name, "by kfactors", kf_OS[s], kf_SS[s]
 			h_addon[t] =t.hist(region=addon_regions[t]["OS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
 			h_addon[t].Scale(kf_OS[s])
 			h_addon[t].Add(t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone(), -1.0 * rqcd * kf_SS[s])
 
-                        #h_addon[t] = t.hist(region=addon_regions[t]["SS"],histname=histname,icut=addon_regions[t]["ncuts"],sys=sys,mode=mode).Clone()
-		        #h_addon[t].Scale(kf_SS[t])
-
-         
-        for s in addon_regions.keys():
-           if s.name == "Wjets": 
+        #for s in addon_regions.keys():
+        if self.sample.name == "Wjets":
                    print "working on wjets"
 
-	           tmp_samples_wjets = list(self.mc_samples)
-           	   tmp_samples_wjets.remove(s)
-           	   data_sub_wjets = copy(self.data_minus_mc)
-           	   data_sub_wjets.mc_samples = tmp_samples_wjets
-           	   for l in range(len(tmp_samples_wjets)):
-                	print tmp_samples_wjets[l].name
+	           tmp_samples_wjets_os = list(self.mc_samples)
+           	   tmp_samples_wjets_os.remove(s)
+	           tmp_samples_wjets_ss = list(self.mc_samples)
+           	   tmp_samples_wjets_ss.remove(s)
 
-		   h_addon[s] = data_sub_wjets.hist(region=addon_regions[self.data_sample]["OS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() 
-                   h_addon[s].Add(data_sub_wjets.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone(),    -1.0 * rqcd)
-		   
-		   #kW_wjets = 2.9404166756
 
-                   #total_wjets_os = histutils.full_integral( data_sub_wjets.hist(region=addon_regions[self.data_sample]["OS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
-                   #total_wjets_ss = histutils.full_integral( data_sub_wjets.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
-		   #print s.name, "has a total integral of", total_wjets_os, "and", total_wjets_ss
+                   mc_remove = list(truth_mc_samples)
+                   mc_remove.append(s)
+           	   data_sub_wjets_os = copy(self.data_minus_mc)
+           	   data_sub_wjets_os.mc_samples_rescales = kf_OS
+		   data_sub_wjets_os.mc_samples = truth_mc_samples#tmp_samples_wjets_os
+           	   data_sub_wjets_ss = copy(self.data_minus_mc)
+           	   data_sub_wjets_ss.mc_samples_rescales = kf_SS
+           	   data_sub_wjets_ss.mc_samples = truth_mc_samples#tmp_samples_wjets_ss
 
-		   #kW_num = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone())
-		   #kW_den = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lmt_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone())
+           	   for l in range(len(mc_remove)):
+                	print mc_remove[l].name
+
+
+		   h_addon[s] = data_sub_wjets_os.hist(region=addon_regions[self.data_sample]["OS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()
+
+		   h_addon[s].Add(self.data_sample.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone(), -1.0*rqcd)
 
 		   kW_num = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
 
-		   kW_num += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() ))
+		   kW_num += -1.0* rqcd* ( histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() ))
 
 		   kW_den = histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["OS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone() )
 
-                   kW_den += -1.0 * (rqcd) * (histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
+                   kW_den += -1.0*rqcd*(histutils.full_integral(  s.hist(region=addon_regions[self.data_sample]["SS_lscdp"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()))
+
 
 		   if kW_den == 0 or kW_num ==0:
 			kW_wjets = 0
 			print "kW_wjets = 0 and numerator was", 0
 			print "new wjets kfactor =", kW_wjets
-			#h_addon[s].Scale(kW_wjets)
 		   else:
 
 	                   kW_wjets = kW_num/kW_den
 			   print "new wjets kfactor =", kW_wjets
-		           #h_addon[s].Scale(kW_wjets)
-			  
+	                   """
 			   # ERROR FOR KW == FW
 			   fw_num1, fw_num_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
 			   print fw_num1, fw_num_err1
@@ -566,7 +553,7 @@ class AddOnEstimator(BaseEstimator):
 			   print fw_den2, fw_den_err2
 
 			   fw_den_err3 = rqcd_stat_unc
-			   if fw_num2 == 0 and fw_num1 > 0: 
+			   if fw_num2 == 0 and fw_num1 > 0:
 
 				rqcd_term_err = 0
 
@@ -579,7 +566,7 @@ class AddOnEstimator(BaseEstimator):
 				   rqcd_term_err = rqcd*fw_num2**(math.sqrt( (fw_num_err2/fw_num2)**2 + (rqcd_stat_unc/rqcd)**2 ) )
 
 				   #fw_num_err =  math.sqrt(  (fw_num_err1)**2 + ( rqcd_term_err )**2 )
-			   	   fw_num_err = ( math.sqrt(  (fw_num_err1/fw_num1)**2  + ( rqcd_term_err/(rqcd*fw_num2) )**2 ) )		   
+			   	   fw_num_err = ( math.sqrt(  (fw_num_err1/fw_num1)**2  + ( rqcd_term_err/(rqcd*fw_num2) )**2 ) )
 
 		           print fw_num_err, "is the num error on fw. Rep as a %:", fw_num_err/kW_num
 
@@ -603,53 +590,53 @@ class AddOnEstimator(BaseEstimator):
 			   if kW_den>0:
 
 				   print fw_den_err, "is the den error on fw. Rep as a %:", fw_den_err/kW_den
-				   
+
 			   	   if kW_num>0:
 
 				   	fw_tot_err = kW_wjets * math.sqrt ( (fw_num_err/kW_num)**2 + (fw_den_err/kW_den)**2 )
 				   	print "err on fW is", fw_tot_err, ". Rep as a %:", fw_tot_err/kW_wjets
-			  
-	   
+			   """
+
 		   if sys and "fw" in sys.name:
 			  print "yup, got the fw sys"
-			  if mode == "up": kW_wjets = kW_wjets*(1.+sys.flat_err) 
-			  if mode == "dn": kW_wjets = kW_wjets*(1.-sys.flat_err) 
- 
+			  if mode == "up": kW_wjets = kW_wjets*(1.+sys.flat_err)
+			  if mode == "dn": kW_wjets = kW_wjets*(1.-sys.flat_err)
+
 		   print "scaling wjets now!"
-		   
+
                    print "new wjets kfactor =", kW_wjets
-		 
+
 		   h_addon[s].Scale(kW_wjets)
-		   
-        
+
+
         """
         ToDo: implement sys uncertainty for the scales!!!
         """
         #if sys and "scale" in sys.name: pass
-        
+
         if not self.sample.name == "fakes":
           for s in h_addon.keys():
             if self.sample.name == s.name:
               return  h_addon[s]
         else:
           return  histutils.add_hists(h_addon.values())
-        
-    
+
+
     #__________________________________________________________________________
     def add_systematics(self, sys):
         if not isinstance(sys,list): sys = [sys]
         self.allowed_systematics += sys
- 
+
     #__________________________________________________________________________
     def is_affected_by_systematic(self, sys):
         """
         Override BaseEstimator implemenation.
         """
         if sys in self.allowed_systematics: return True
-        for s in self.mc_samples + [self.data_sample]: 
+        for s in self.mc_samples + [self.data_sample]:
             if s.estimator.is_affected_by_systematic(sys): return True
         return False
-    
+
     #__________________________________________________________________________
     def flush_hists(self):
         BaseEstimator.flush_hists(self)
@@ -661,8 +648,8 @@ class AddOnEstimator(BaseEstimator):
 #------------------------------------------------------------
 class MergeEstimator(BaseEstimator):
     '''
-    Merge Estimator class 
-    This estimator can be used for splitting 
+    Merge Estimator class
+    This estimator can be used for splitting
     the measurement into different pt bins
     '''
     #____________________________________________________________
@@ -672,7 +659,7 @@ class MergeEstimator(BaseEstimator):
     #____________________________________________________________
     def __hist__(self,region=None,icut=None,histname=None,sys=None,mode=None):
         hists = []
-        for s in self.samples: 
+        for s in self.samples:
             h = s.hist(region=region,icut=icut,histname=histname,sys=sys,mode=mode)
             if h: hists.append(h)
         h = histutils.add_hists(hists)
@@ -684,7 +671,8 @@ class MergeEstimator(BaseEstimator):
         Override BaseEstimator implementation.
         Pass systematics to daughters.
         '''
-        for s in self.samples: 
+        for s in self.samples:
+	    #print s.name, s.estimator
             s.estimator.add_systematics(sys)
 
     #__________________________________________________________________________
@@ -693,7 +681,9 @@ class MergeEstimator(BaseEstimator):
         Override BaseEstimator implemenation.
         Check all daughter systematics
         """
-        for s in self.samples: 
+        for s in self.samples:
+	    #print s.name
+	    #print s, s.type, s.estimator
             if s.estimator.is_affected_by_systematic(sys): return True
         return False
 
@@ -712,8 +702,7 @@ def load_base_estimator(hm,input_sample):
     If sample has daughters, sets the MergeEstimator.
     '''
     if input_sample.estimator == None:
-
-        if input_sample.daughters: 
+        if input_sample.daughters:
              input_sample.estimator = MergeEstimator(
                      input_sample.daughters,
                      sample=input_sample,
@@ -723,9 +712,9 @@ def load_base_estimator(hm,input_sample):
              for d in input_sample.daughters:
                  load_base_estimator(hm,d)
 
-        else: 
+        else:
              #load estimators
-             if input_sample.type in ["data","mc"]: 
+             if input_sample.type in ["data","mc","mcTruth","mcAntiTruth"]:
                     input_sample.estimator = Estimator(hm=hm,sample=input_sample)
                     #print 'sample %s, assigned Estimator' % (input_sample.name)
 
@@ -741,7 +730,7 @@ def dir_name_max(filename, dirpath):
 
     temp = None
     dir = f.GetDirectory(dirpath)
-    if not dir:  
+    if not dir:
         log.warn( '%s doesn\'t exist in %s' % (dirpath,filename) )
     else:
         list = dir.GetListOfKeys()
@@ -752,8 +741,8 @@ def dir_name_max(filename, dirpath):
             if len(temp) < len(d.GetName()) and d.IsFolder():
                 temp = d.GetName()
             d = next()
-    f.Close()  
-    return temp 
+    f.Close()
+    return temp
 
 
 #____________________________________________________________
@@ -773,16 +762,16 @@ def get_ncuts(filename, dirpath):
 #____________________________________________________________
 def get_icut(filename, dirpath,i):
     cuts = dir_cuts(filename,dirpath)
-    if i>= len(cuts): 
+    if i>= len(cuts):
         return None
     return cuts[i]
 
 #____________________________________________________________
 def get_icut_path(filename, dirpath,i):
     cuts = dir_cuts(filename,dirpath)
-    if i>= len(cuts): 
+    if i>= len(cuts):
         return None
     return '_'.join(cuts[:i+1])
-    
+
 
 ## EOF
