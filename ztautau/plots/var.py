@@ -26,7 +26,7 @@ class Var(object):
             log   = None,
 	    xmin2 = None,
 	    xmax2 = None,
-
+	    tprofile = None,
             ):
         self.name = name
         if not title: title = name
@@ -42,6 +42,7 @@ class Var(object):
         self.log   = log
 	self.xmin2 = xmin2
 	self.xmax2 = xmax2
+	self.tprofile = tprofile
 
 
 
