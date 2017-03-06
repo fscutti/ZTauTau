@@ -50,8 +50,11 @@ parser.add_option('-k', '--kwsys', dest='kwsys',
 
 #lumi = 11473.88 #2016 v19
 #lumi = 24799 #2016 v22
-lumi = 33256 #2016 v23
-#lumi = 33223
+
+#lumi = 33256 #2016 v23
+#lumi = 26612 #old v26
+#lumi = 32795
+lumi = 32861
 # Control regions
 plotsfile = []
 if options.makeplot == "False":
@@ -5016,6 +5019,8 @@ sample = m,
 samples = [addon_Zlljets_25med_3Track, addon_Zttjets_antitruth_25med_3Track, addon_top_antitruth_25med_3Track, addon_Wjets_25med_3Track, addon_data_25med_3Track]
 )
 
+#print "about to merge the truth taus"
+
 m = truth_taus
 m.estimator = histmgr.MergeEstimator(
 hm = hm,
@@ -6467,10 +6472,8 @@ if "SR" == options.region:
 	plot_backgrounds.append(addon_Wjets)
 	plot_backgrounds.append(addon_Zlljets)
 	plot_backgrounds.append(addon_top)#_antitruth)
-
         #plot_signals.append(sub_ztt)
-	plot_signals.append(truth_taus)
-
+        plot_signals.append(truth_taus)
 elif "SR_Tau1Track" == options.region:
 
 	print "signal region 1 prong"
@@ -6482,7 +6485,7 @@ elif "SR_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_1Track)
 
         plot_signals.append(truth_taus)
-        plot_signals.append(sub_ztt_1Track)
+        #plot_signals.append(sub_ztt_1Track)
 
 elif "SR_25med_Tau1Track" == options.region:
 
@@ -6495,7 +6498,7 @@ elif "SR_25med_Tau1Track" == options.region:
 	plot_backgrounds.append(addon_top_25med_1Track)
 
         plot_signals.append(truth_taus)
-        plot_signals.append(sub_ztt_25med_1Track)
+        #plot_signals.append(sub_ztt_25med_1Track)
 
 elif "SR_35med_Tau1Track" == options.region:
 
@@ -6612,10 +6615,10 @@ elif "SR_Tau3Track" == options.region:
 
 	#plot_backgrounds.append(fakes_background_3Track)
 
-	#plot_backgrounds.append(addon_data_3Track)
-	#plot_backgrounds.append(addon_Wjets_3Track)
-	#plot_backgrounds.append(addon_Zlljets_3Track)
-	#plot_backgrounds.append(addon_top_3Track)
+	plot_backgrounds.append(addon_data_3Track)
+	plot_backgrounds.append(addon_Wjets_3Track)
+	plot_backgrounds.append(addon_Zlljets_3Track)
+	plot_backgrounds.append(addon_top_3Track)
 
         plot_signals.append(truth_taus)
         plot_signals.append(sub_ztt_3Track)
@@ -6625,10 +6628,10 @@ elif "SR_25med_Tau3Track" == options.region:
 	print "signal region _25med 3 prong"
 	#plot_backgrounds.append(fakes_background_25med_3Track)
 
-	#plot_backgrounds.append(addon_data_25med_3Track)
-	#plot_backgrounds.append(addon_Wjets_25med_3Track)
-	#plot_backgrounds.append(addon_Zlljets_25med_3Track)
-	#plot_backgrounds.append(addon_top_25med_3Track)
+	plot_backgrounds.append(addon_data_25med_3Track)
+	plot_backgrounds.append(addon_Wjets_25med_3Track)
+	plot_backgrounds.append(addon_Zlljets_25med_3Track)
+	plot_backgrounds.append(addon_top_25med_3Track)
 
         plot_signals.append(truth_taus)
         plot_signals.append(sub_ztt_25med_3Track)
@@ -6637,7 +6640,7 @@ elif "SR_35med_Tau3Track" == options.region:
 
 	print "signal region _35med 3 prong"
 
-	plot_backgrounds.append(addon_data_35med_3Track)
+	#plot_backgrounds.append(addon_data_35med_3Track)
 	plot_backgrounds.append(addon_Wjets_35med_3Track)
 	plot_backgrounds.append(addon_Zlljets_35med_3Track)
 	plot_backgrounds.append(addon_top_35med_3Track)
@@ -6649,7 +6652,7 @@ elif "SR_50L1TAU12med_Tau3Track" == options.region:
 
 	print "signal region _50L1TAU12med 3 prong"
 
-	plot_backgrounds.append(addon_data_50L1TAU12med_3Track)
+	#plot_backgrounds.append(addon_data_50L1TAU12med_3Track)
 	plot_backgrounds.append(addon_Wjets_50L1TAU12med_3Track)
 	plot_backgrounds.append(addon_Zlljets_50L1TAU12med_3Track)
 	plot_backgrounds.append(addon_top_50L1TAU12med_3Track)
@@ -6661,7 +6664,7 @@ elif "SR_80med_Tau3Track" == options.region:
 
 	print "signal region _80med 3 prong"
 
-	plot_backgrounds.append(addon_data_80med_3Track)
+	#plot_backgrounds.append(addon_data_80med_3Track)
 	plot_backgrounds.append(addon_Wjets_80med_3Track)
 	plot_backgrounds.append(addon_Zlljets_80med_3Track)
 	plot_backgrounds.append(addon_top_80med_3Track)
@@ -6673,7 +6676,7 @@ elif "SR_80L1TAU60med_Tau3Track" == options.region:
 
 	print "signal region _80L1TAU60med 3 prong"
 
-	plot_backgrounds.append(addon_data_80L1TAU60med_3Track)
+	#plot_backgrounds.append(addon_data_80L1TAU60med_3Track)
 	plot_backgrounds.append(addon_Wjets_80L1TAU60med_3Track)
 	plot_backgrounds.append(addon_Zlljets_80L1TAU60med_3Track)
 	plot_backgrounds.append(addon_top_80L1TAU60med_3Track)
@@ -6685,7 +6688,7 @@ elif "SR_125med_Tau3Track" == options.region:
 
 	print "signal region _125med 3 prong"
 
-	plot_backgrounds.append(addon_data_125med_3Track)
+	#plot_backgrounds.append(addon_data_125med_3Track)
 	plot_backgrounds.append(addon_Wjets_125med_3Track)
 	plot_backgrounds.append(addon_Zlljets_125med_3Track)
 	plot_backgrounds.append(addon_top_125med_3Track)
@@ -6722,7 +6725,7 @@ elif "SR_160med_Tau3Track" == options.region:
 
 	print "signal region _160med 3 prong"
 
-	plot_backgrounds.append(addon_data_160med_3Track)
+	#plot_backgrounds.append(addon_data_160med_3Track)
 	plot_backgrounds.append(addon_Wjets_160med_3Track)
 	plot_backgrounds.append(addon_Zlljets_160med_3Track)
 	plot_backgrounds.append(addon_top_160med_3Track)
@@ -7170,7 +7173,7 @@ else:
         icut        = int(options.icut),
         histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
         #rebin       = vdict[options.vname]['rebin'],
-        sys_dict    = sys_dict,
+        sys_dict    = None,#sys_dict,
         outname     = plotsfile
         )
 
