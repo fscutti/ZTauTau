@@ -216,7 +216,7 @@ def make_band_graph_from_hist(h_UP,h_DN=None):
     graph = ROOT.TGraphAsymmErrors()
     # added following line
     #graph.GetXaxis().SetRangeUser(h_UP.GetXaxis().GetXmin(),h_UP.GetXaxis().GetXmax())
-    for i in range(1,h_UP.GetNbinsX()+1):
+    for i in range(1,h_UP.GetNbinsX()+2):
         eUP = abs(h_UP.GetBinContent(i))
         eDN = abs(h_UP.GetBinContent(i))
         if h_DN: eDN = abs(h_DN.GetBinContent(i))
@@ -230,10 +230,10 @@ def make_band_graph_from_hist(h_UP,h_DN=None):
 def make_error_scatter_graph(hist,h_UP,h_DN):
 
     graph = ROOT.TGraphAsymmErrors()
-    for i in range(1,hist.GetNbinsX()+1):
+    for i in range(1,h_UP.GetNbinsX()+1):
         eUP = abs(h_UP.GetBinContent(i))
         eDN = abs(h_DN.GetBinContent(i))
-
+        #print i, hist.GetBinCenter(i)
 	ex = h_UP.GetBinWidth(i)/2.
 	graph.SetPoint(i-1,hist.GetBinCenter(i),hist.GetBinContent(i))
 	graph.SetPointError(i-1,ex,ex,eDN,eUP)
@@ -427,7 +427,7 @@ def plot_hist(
 		total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
 
 		g_stat = make_band_graph_from_hist(total_hists[0])
-		g_stat.SetFillColor(ROOT.kGray+3)
+		g_stat.SetFillColor(ROOT.kGray+2)
 		g_stat.SetFillStyle(3001)
 		g_tot  = make_band_graph_from_hist(total_hists[3],total_hists[4])
 		g_tot.SetFillColor(ROOT.kRed)
@@ -435,7 +435,7 @@ def plot_hist(
 	    else:
 		h_total_stat = make_stat_hist(h_total)
 		g_stat = make_band_graph_from_hist(h_total_stat)
-		g_stat.SetFillColor(ROOT.kGray+3)
+		g_stat.SetFillColor(ROOT.kGray+2)
 		g_stat.SetFillStyle(3001)
 
 		g_tot = None
@@ -491,6 +491,7 @@ def plot_hist(
 	    leg.SetBorderSize(0)
 	    leg.SetFillColor(0)
 	    leg.SetFillStyle(0)
+            #if
             leg.SetNColumns(2)
             leg.SetTextSize(0.032)
 	    if data: leg.AddEntry(h_data,data.tlatex,'PL')
@@ -505,7 +506,7 @@ def plot_hist(
 	    #leg.AddEntry(mc_stat_scatter, "MC Stat. Unc.","F")
 	    if sys_dict:
 		leg.AddEntry(g_tot, "Sys + Stat Unc.", 'F')
-	    leg.AddEntry(g_stat, "MC Stat.", 'F')
+	    #leg.AddEntry(g_stat, "Stat.", 'F')
 
 	    ## create canvas
 	    reg = region
@@ -559,7 +560,7 @@ def plot_hist(
 	      if "GeV" in xtitle:
 		ytitle += " / %s"%rebin
 		ytitle += " GeV"
-	      #else: ytitle += " / %s"%(0.05)
+	      else: ytitle += " / %s"%rebin
 
 	    fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle))
 	    if do_ratio_plot:
@@ -675,7 +676,7 @@ def plot_hist(
               ratio_line.Draw()
 	      if g_tot:
                  g_tot.Draw("E2 Same")
-		 g_stat.Draw("E2 Same")
+		 #g_stat.Draw("E2 Same")
 
 	      else: g_stat.Draw("E2")
 
