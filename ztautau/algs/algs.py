@@ -119,6 +119,30 @@ class CutAlg(pyframe.core.Algorithm):
 	#print "correct mu trig"
 	return mutrig or mutrig2
 
+    def cut_2015(self):
+        if "mc" in self.sampletype:
+            run_number = self.chain.NOMINAL_pileup_random_run_number
+        else:
+            run_number = self.chain.run_number
+        if run_number >= 276262 and run_number <= 284484:
+            #print 2015
+            return True
+        else:
+            #print "nope"
+            return False
+
+    def cut_2016(self):
+        if "mc" in self.sampletype:
+            run_number = self.chain.NOMINAL_pileup_random_run_number
+        else:
+            run_number = self.chain.run_number
+        if run_number >= 296939:
+            #print "2016"
+            return True
+        else:
+            #print "nope"
+            return False
+
     def cut_MuonHLTmuOptions(self):
         if "mc" in self.sampletype:
                 run_number = self.chain.NOMINAL_pileup_random_run_number
@@ -240,13 +264,13 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.tau_0_jet_bdt_loose == 1
 
     def cut_BDTtauMed(self):
-        print "BDT med"
-        print self.sampletype
+        #print "BDT med"
+        #print self.sampletype
         return self.chain.tau_0_jet_bdt_medium == 1
 
     def cut_BDTtauTight(self):
-        print "BDT tight"
-        print self.sampletype
+        #print "BDT tight"
+        #print self.sampletype
         return self.chain.tau_0_jet_bdt_tight == 1
 
     def cut_TauLowPt(self):
