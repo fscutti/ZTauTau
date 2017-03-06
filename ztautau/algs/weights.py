@@ -41,7 +41,7 @@ class WeightTotal(pyframe.core.Algorithm):
         self.key = key
     #_________________________________________________________________________
     def execute(self, weight):
-        if "mc" in self.sampletype: 
+        if "mc" in self.sampletype:
             wtotal = self.chain.weight_total
             if self.key: self.store[self.key] = wtotal
             self.set_weight(wtotal*weight)
@@ -63,17 +63,17 @@ class Pileup(pyframe.core.Algorithm):
 	self.sys_name = sys_name
     #_________________________________________________________________________
     def execute(self, weight):
-        if "mc" in self.sampletype: 
+        if "mc" in self.sampletype:
 	    #if self.scale:
 	    if self.sys_name == "PILEUP_UP":
 			wpileup = self.chain.weight_mc*self.chain.PRW_DATASF_1up_pileup_combined_weight
-            elif self.sys_name == "PILEUP_DN":            
+            elif self.sys_name == "PILEUP_DN":
 			wpileup = self.chain.weight_mc*self.chain.PRW_DATASF_1down_pileup_combined_weight
 	    else:
 			wpileup = self.chain.weight_mc*self.chain.NOMINAL_pileup_combined_weight
             if self.key: self.store[self.key] = wpileup
             self.set_weight(wpileup*weight)
-            	
+
         return True
 
 #------------------------------------------------------------------------------
@@ -90,11 +90,11 @@ class JetsSF(pyframe.core.Algorithm):
 	self.sys_name = sys_name
     #_________________________________________________________________________
     def execute(self, weight):
-        if "mc" in self.sampletype: 
+        if "mc" in self.sampletype:
             jetssf = self.chain.jet_NOMINAL_global_effSF_MVX#*self.chain.jet_NOMINAL_global_ineffSF_MVX
             if self.key: self.store[self.key] = jetssf
             self.set_weight(jetssf*weight)
-            	
+
         return True
 
 #------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ class MCEventWeight(pyframe.core.Algorithm):
         self.key = key
     #_________________________________________________________________________
     def execute(self, weight):
-        if "mc" in self.sampletype: 
+        if "mc" in self.sampletype:
             wmc = self.chain.weight_mc
             if self.key: self.store[self.key] = wmc
             self.set_weight(wmc*weight)
@@ -143,11 +143,11 @@ class MuonSF(pyframe.core.Algorithm):
 
     #_________________________________________________________________________
     def initialize(self): pass
-   
+
     #________________________________________________________________________
     def execute(self, weight):
         sf=1.0
-        if "mc" in self.sampletype: 
+        if "mc" in self.sampletype:
           run_number = self.chain.NOMINAL_pileup_random_run_number
 
 	  #sf=1.0
@@ -168,12 +168,12 @@ class MuonSF(pyframe.core.Algorithm):
                 sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
           elif run_number >= 300345 and run_number <= 302872:
                 sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-          elif run_number >= 302919: 
+          elif run_number >= 302919:
           	sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 	  #print "run number", run_number
 
 	  #print "pt(mu) %lf, trig SF %lf, reco SF %lf, isoGrad SF %lf" % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium, self.chain.lep_0_NOMINAL_MuEffSF_IsoGradient)
- 
+
           if self.scale:
                sf = 1.0
                if self.sys_name == 'MUSF_STAT_UP':
@@ -238,10 +238,10 @@ class MuonSF(pyframe.core.Algorithm):
                 	sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoGradient
-		#sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone	
+		#sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
                 sf *= self.chain.lep_0_MUON_ISO_SYS_1down_MuEffSF_IsoGradient
           else: pass
-        if self.key: 
+        if self.key:
           self.store[self.key] = sf
 
         return True
@@ -287,10 +287,10 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
                 sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu40_QualMedium_IsoNone # 2016
           elif run_number >= 300345 and run_number <= 302872:
                 sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-          elif run_number >= 302919: 
+          elif run_number >= 302919:
           	sf *= self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
 
-	  #print "pt(mu) %lf, antiIso trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium)          
+	  #print "pt(mu) %lf, antiIso trig SF %lf, reco SF %lf " % (self.chain.lep_0_pt, self.chain.lep_0_NOMINAL_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone, self.chain.lep_0_NOMINAL_MuEffSF_Reco_QualMedium)
 
           if self.scale:
                sf = 1.0
@@ -320,7 +320,7 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
                         sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
                 elif run_number >= 302919:
                 	sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                
+
 
                 #sf *= self.chain.lep_0_MUON_EFF_TrigSystUncertainty_1down_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
                 sf *= self.chain.lep_0_MUON_TTVA_SYS_1down_MuEffSF_TTVA
@@ -336,7 +336,7 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
                         sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu24_imedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
                 elif run_number >= 302919:
                 	sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone # 2016
-                
+
                 #sf *= self.chain.lep_0_MUON_EFF_TrigStatUncertainty_1up_MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone
                 sf *= self.chain.lep_0_MUON_TTVA_STAT_1up_MuEffSF_TTVA
 
@@ -357,7 +357,7 @@ class MuonSFIsoGrad(pyframe.core.Algorithm):
                 sf *= self.chain.lep_0_MUON_TTVA_STAT_1down_MuEffSF_TTVA
 
           else: pass
-          
+
 
 
         if self.key:
@@ -387,23 +387,23 @@ class TauSF(pyframe.core.Algorithm):
 
     #_________________________________________________________________________
     def initialize(self): pass
-   
+
     #________________________________________________________________________
     def execute(self, weight):
         sf=1.0
-        if "mc" in self.sampletype: 
- 
+        if "mc" in self.sampletype:
+
 	  #sf=1.0
 
           #sf *= self.chain.tau_0_NOMINAL_TauEffSF_selection #v19
-	  #sf *= self.chain.tau_0_NOMINAL_TAU_EFF_SELECTION #v12 
+	  #sf *= self.chain.tau_0_NOMINAL_TAU_EFF_SELECTION #v12
 
 	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium
  	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_reco
 	  #sf *= self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad
        	  sf *= self.chain.tau_0_NOMINAL_TauEffSF_LooseLlhEleOLR_electron
  	  #print "tau(mu) %lf, tau id trig SF %lf, tau reco SF %lf, tau olr SF %lf " % (self.chain.tau_0_pt, self.chain.tau_0_NOMINAL_TauEffSF_JetBDTmedium, self.chain.tau_0_NOMINAL_TauEffSF_reco, self.chain.tau_0_NOMINAL_TauEffSF_HadTauEleOLR_tauhad)
-        
+
 	  if self.scale:
 	       sf = 1.0
 
@@ -412,14 +412,14 @@ class TauSF(pyframe.core.Algorithm):
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1up_TauEffSF_selection
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1up_TauEffSF_selection
 
-               elif self.sys_name=='TAUSF_SYS_DN': 
+               elif self.sys_name=='TAUSF_SYS_DN':
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_JETID_TOTAL_1down_TauEffSF_JetBDTmedium
                 sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_ELEOLR_TOTAL_1down_TauEffSF_selection
-                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1down_TauEffSF_selection	  
-               
+                sf *= self.chain.tau_0_TAUS_TRUEHADTAU_EFF_RECO_TOTAL_1down_TauEffSF_selection
+
 	  else: pass
 
-        if self.key: 
+        if self.key:
           self.store[self.key] = sf
 
         return True
