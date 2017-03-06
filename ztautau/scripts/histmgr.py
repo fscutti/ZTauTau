@@ -389,6 +389,16 @@ class AddOnEstimator(BaseEstimator):
                 kf_SS_unc[s] = ratiounc(a = kf_ss_top, b = kf_ss_bot, sigmaa = kf_ss_top_err, sigmab = kf_ss_bot_err)
 
 	   print "kfactor is", kf_SS[s], kf_OS[s]
+           """
+           if self.sample.name == "Wjets":
+               kw_file = open("kw_sys_loose.txt",'a')
+               kw_file.write(str(kf_regions[s]["OS"]))
+               kw_file.write(' '.join(["OS:",str(kf_OS[s]),",","SS:",str(kf_SS[s])]))
+               kw_file.write('\n')
+               kw_file.write('**********************')
+               kw_file.write('\n')
+               kw_file.close()
+           """
            if sys and "kW_OS" in sys.name:
                    print "yup, got the kW OS sys"
                    if mode == "up": kf_OS[s] = kf_OS[s]*(1.+sys.flat_err)
@@ -534,8 +544,10 @@ class AddOnEstimator(BaseEstimator):
 
 	                   kW_wjets = kW_num/kW_den
 			   print "new wjets kfactor =", kW_wjets
-	                   """
-			   # ERROR FOR KW == FW
+
+
+                   """
+                    # ERROR FOR KW == FW
 			   fw_num1, fw_num_err1 = histutils.full_integral_and_error(  s.hist(region=addon_regions[self.data_sample]["OS"],histname=histname,icut=addon_regions[self.data_sample]["ncuts"],sys=sys,mode=mode).Clone()  )
 			   print fw_num1, fw_num_err1
 
@@ -595,7 +607,7 @@ class AddOnEstimator(BaseEstimator):
 
 				   	fw_tot_err = kW_wjets * math.sqrt ( (fw_num_err/kW_num)**2 + (fw_den_err/kW_den)**2 )
 				   	print "err on fW is", fw_tot_err, ". Rep as a %:", fw_tot_err/kW_wjets
-			   """
+	           """
 
 		   if sys and "fw" in sys.name:
 			  print "yup, got the fw sys"
@@ -607,7 +619,6 @@ class AddOnEstimator(BaseEstimator):
                    print "new wjets kfactor =", kW_wjets
 
 		   h_addon[s].Scale(kW_wjets)
-
 
         """
         ToDo: implement sys uncertainty for the scales!!!
@@ -662,6 +673,10 @@ class MergeEstimator(BaseEstimator):
         for s in self.samples:
             h = s.hist(region=region,icut=icut,histname=histname,sys=sys,mode=mode)
             if h: hists.append(h)
+            #if "truth" in s.name:
+            #    f_int = histutils.full_integral_and_error(h)
+            #    print s.name, f_int
+
         h = histutils.add_hists(hists)
         return h
 
