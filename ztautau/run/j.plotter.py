@@ -147,7 +147,8 @@ def analyze(config):
     ## +++++++++++++++++++++++++++++++++++++++
 
     #---- BASE CUT ----#
-
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='2015')
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='2016')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='OneMuon')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='NoElectrons')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneTau')
@@ -173,13 +174,13 @@ def analyze(config):
 
     #---- TAUS ----#
 
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauPt30')
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauPt25')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauEta247')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauCharge1')
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='TauTrack')
     #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauLoose')
-    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauMed')
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauTight')
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauMed')
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='BDTtauTight')
 
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='Filter')
     ## weights configuration
@@ -230,11 +231,11 @@ def analyze(config):
     ##-------------------------------------------------------------------------
     ## make plots
     ##-------------------------------------------------------------------------
-    triggers = [25]#, "L1TAU12IM"]#,35,"50L1TAU12", 80, "80L1TAU60", 125, 160]
+    triggers = [25, "L1TAU12IM"]#,35,"50L1TAU12", 80, "80L1TAU60", 125, 160]
     trigchains = []
 
     #triggers = [25,35,"50L1TAU12", 80, "80L1TAU60", 125, 160, "L1TAU12IM"]
-    #trigchains = ["tracktwo", "ptonly"]
+    trigchains = ["tracktwo", "ptonly"]
     trax = [1,3]
 
     #---------------------#
