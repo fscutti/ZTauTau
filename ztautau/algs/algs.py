@@ -208,55 +208,6 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         return cut_passed
 
 
-#------------------------------------------------------------------------------
-class VarsAlg(pyframe.core.Algorithm):
-    """
-    
-    calcualtes derived quantities, like masses, dphi etc...
-
-    """
-    #__________________________________________________________________________
-    def __init__(self, 
-                 name ='VarsAlg',
-                 key_muons = 'muons',
-                 #key_met = 'met',
-                 ):
-        pyframe.core.Algorithm.__init__(self, name)
-        self.key_muons = key_muons
-        #self.key_met = key_met
-
-    #__________________________________________________________________________
-    def execute(self, weight):
-        pyframe.core.Algorithm.execute(self, weight)
-        """
-        computes variables and puts them in the store
-        """
-
-        ## get objects from event candidate
-        ## --------------------------------------------------
-        assert self.store.has_key(self.key_muons), "muons key: %s not found in store!" % (self.key_muons)
-        muons = self.store[self.key_muons]
-        #assert len(muons)>=2, "less than 2 muons in event!"
-        
-        #assert self.store.has_key(self.key_met), "met key: %s not found in store!" % (self.key_met)
-        #met = self.store[self.key_met]
-
-        ## evaluate vars
-        ## --------------------------------------------------           
-        #muon1 = muons[0]
-        #tau1T = ROOT.TLorentzVector()
-        #tau1T.SetPtEtaPhiM( tau1.tlv.Pt(), 0., tau1.tlv.Phi(), tau1.tlv.M() )
-        
-        
-        #self.store['charge_product'] = tau2.charge*tau1.charge
-        #self.store['mVis']           = (tau2.tlv+tau1.tlv).M()
-        #self.store['mTtot']          = (tau1T + tau2T + met.tlv).M()  #TODO once we have MET
-        #self.store['taus_dphi']      = abs(tau2.tlv.DeltaPhi(tau1.tlv))
-        #self.store['taus_deta']      = abs(tau2.tlv.Eta()-tau1.tlv.Eta())
-
-        return True
-
-
 #__________________________________________________________________________
 def log_bins(nbins,xmin,xmax):
     xmin_log = math.log(xmin)
