@@ -73,20 +73,20 @@ def analyze(config):
     
     ## start preselection cutflow 
     ## ---------------------------------------
-    loop += pyframe.algs.CutFlowAlg(key='presel')
+    loop += pyframe.algs.CutFlowAlg(key='PreselMu2016')
     
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
-    loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
+    loop += ztautau.algs.weights.WeightTotal(cutflow='PreselMu2016',key='weight_total')
 
 
     ## initialize and/or decorate objects
     ## ---------------------------------------
-    loop += ztautau.algs.vars.Vars()
+    #loop += ztautau.algs.vars.Vars()
 
     ## cuts
     ## +++++++++++++++++++++++++++++++++++++++
-    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneMuon') 
+    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneMuon') 
 
     
     ## weights configuration
@@ -99,8 +99,98 @@ def analyze(config):
     ## +++++++++++++++++++++++++++++++++++++++
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "tau_0",
+            branch_name = "TauEffSF_reco",
+            key         = "TauReco",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "tau_0",
             branch_name = "TauEffSF_JetBDTmedium",
             key         = "TauID",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "tau_0",
+            branch_name = "TauEffSF_HadTauEleOLR_tauhad",
+            key         = "TauEVeto",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "MuEffSF_TTVA",
+            key         = "MuTTVA",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "MuEffSF_Reco_QualMedium",
+            key         = "MuRecoID",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "MuEffSF_IsoGradient",
+            key         = "MuIsoGrad",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "EleEffSF_offline_RecoTrk",
+            key         = "ElRecoTrk",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "EleEffSF_offline_MediumLLH_d0z0_v11",
+            key         = "ElID",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "EleEffSF_Isolation_MediumLLH_d0z0_v11_isolGradient",
+            key         = "ElIsoGrad",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone",
+            key         = "MuTrig2015",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone",
+            key         = "MuTrig2016",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "EleEffSF_SINGLE_E_2015_e24_lhmedium_L1EM20VH_OR_e60_lhmedium_OR_e120_lhloose_2016_e26_lhtight_nod0_ivarloose_OR_e60_lhmedium_nod0_OR_e140_lhloose_nod0_MediumLLH_d0z0_v11_isolGradient",
+            key         = "ElTrig2015",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "lep_0",
+            branch_name = "EleEffSF_SINGLE_E_2015_e24_lhmedium_L1EM20VH_OR_e60_lhmedium_OR_e120_lhloose_2016_e26_lhtight_nod0_ivarloose_OR_e60_lhmedium_nod0_OR_e140_lhloose_nod0_MediumLLH_d0z0_v11_isolGradient",
+            key         = "ElTrig2016",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "jet",
+            branch_name = "global_effSF_MVX",
+            key         = "JetEff",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "jet",
+            branch_name = "global_ineffSF_MVX",
+            key         = "JetIneff",
+            scale       = None,
+            )
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "jet",
+            branch_name = "central_jets_global_effSF_JVT",
+            key         = "JetJVT",
             scale       = None,
             )
     
@@ -120,13 +210,87 @@ def analyze(config):
     ## TEST region
     ## ---------------------------------------
     loop += ztautau.algs.algs.PlotAlg(
-            region       = 'TEST',
+            region       = 'PreselEl2016',
             do_var_check = True,
             hist_list    = hist_list,
             plot_all     = False,
             cut_flow  = [
-                          ['AtLeastOneMuon',["TauID"]],
-                          ['MuonPt24',None],
+                          ['ElecOnly'     , ['weight_total']] ,
+                          ['2016ElecTrig' , ['ElTrig2016']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['ElRecoTrk']] , 
+                          ['LepQual'      , ['ElID']] ,
+                          ['LepIso'       , ['ElIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'PreselEl2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['ElecOnly'     , ['weight_total']] ,
+                          ['2015ElecTrig' , ['ElTrig2015']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['ElRecoTrk']] , 
+                          ['LepQual'      , ['ElID']] ,
+                          ['LepIso'       , ['ElIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'PreselMu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['MuonOnly'     , ['weight_total']] ,
+                          ['2016MuonTrig' , ['MuTrig2016']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['MuTTVA']] , 
+                          ['LepQual'      , ['MuRecoID']] ,
+                          ['LepIso'       , ['MuIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'PreselMu2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['MuonOnly'     , ['weight_total']] ,
+                          ['2015MuonTrig' , ['MuTrig2015']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['MuTTVA']] , 
+                          ['LepQual'      , ['MuRecoID']] ,
+                          ['LepIso'       , ['MuIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
                         ],
             )
     

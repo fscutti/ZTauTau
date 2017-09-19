@@ -11,7 +11,7 @@
 #python ../ztautau/run/j.plotter.py --input /coepp/cephfs/share/atlas/LFV/july/data/group.phys-higgs.ClhsH.data16_13TeV.00311481.physics_Main.D2.f758_m1710_p2950.1707nomv3_hist/group.phys-higgs.11697527._000013.hist-output.root --sampletype="data" --events=10 #--config="sys:MUID_DN"
 
 
-python ../ztautau/run/j.plotter.py --input /coepp/cephfs/share/atlas/LFV/july/mc/group.phys-higgs.ClhsH.mc15_13TeV.410000.PoPy_P2012_ttb_nonallh.D2.e3698_s2608_s2183_r7725_r7676_p2949.1707nomv3_hist/group.phys-higgs.11697682._000030.hist-output.root --sampletype="mc" --events=1000 #--config="sys:MUID_DN"
+python ../ztautau/run/j.plotter.py --input /coepp/cephfs/share/atlas/LFV/july/mc/group.phys-higgs.ClhsH.mc15_13TeV.410000.PoPy_P2012_ttb_nonallh.D2.e3698_s2608_s2183_r7725_r7676_p2949.1707nomv3_hist/group.phys-higgs.11697682._000030.hist-output.root --sampletype="mc" --events=10000 --config="branches_on_file:branches.txt"
 
 
 

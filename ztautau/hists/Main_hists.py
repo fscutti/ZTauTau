@@ -8,7 +8,7 @@ hist_list = []
 # event
 # -------
 hist_list.append(h_n_vx)
-hist_list.append(h_dummy)
+#hist_list.append(h_dummy)
 
 # -------
 # jets

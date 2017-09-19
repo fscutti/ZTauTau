@@ -63,11 +63,80 @@ class CutAlg(pyframe.core.Algorithm):
         return result
     
     #__________________________________________________________________________
-    def cut_AtLeastOneMuon(self):
-        return self.chain.n_muons > 0
+    def cut_MuonOnly(self):
+        return self.chain.n_muons == 1 and self.chain.n_electrons == 0 and self.chain.n_pvx > 0
     #__________________________________________________________________________
-    def cut_MuonPt24(self):
-        return self.chain.lep_0_pt > 24.
+    def cut_ElecOnly(self):
+        return self.chain.n_muons == 0 and self.chain.n_electrons == 1 and self.chain.n_pvx > 0
+    #__________________________________________________________________________
+    def cut_2015MuonTrig(self):
+        return ((self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1) or (self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1))
+    #__________________________________________________________________________
+    def cut_2015ElecTrig(self):
+        return ((self.chain.HLT_e24_lhmedium_L1EM20VH == 1 and self.chain.eleTrigMatch_0_HLT_e24_lhmedium_L1EM20VH == 1) or (self.chain.HLT_e60_lhmedium == 1 and self.chain.eleTrigMatch_0_HLT_e60_lhmedium == 1) or (self.chain.HLT_e120_lhloose == 1 and self.chain.eleTrigMatch_0_HLT_e120_lhloose == 1))
+    #__________________________________________________________________________
+    def cut_2016MuonTrig(self):
+        return ((self.chain.HLT_mu26_ivarmedium == 1 and self.chain.muTrigMatch_0_HLT_mu26_ivarmedium == 1) or (self.chain.HLT_mu50 == 1 and self.chain.muTrigMatch_0_HLT_mu50 == 1) )
+    #__________________________________________________________________________
+    def cut_2016ElecTrig(self):
+        return ((self.chain.HLT_e26_lhtight_nod0_ivarloose == 1 and self.chain.eleTrigMatch_0_HLT_e26_lhtight_nod0_ivarloose == 1) or (self.chain.HLT_e60_lhmedium_nod0 == 1 and self.chain.eleTrigMatch_0_HLT_e60_lhmedium_nod0 == 1) or (self.chain.HLT_e140_lhloose_nod0 == 1 and self.chain.eleTrigMatch_0_HLT_e140_lhloose_nod0 == 1))
+    #__________________________________________________________________________
+    def cut_LepQual(self):
+        return self.chain.lep_0_id_medium == 1 and abs(self.chain.lep_0_eta) < 2.5
+    #__________________________________________________________________________
+    def cut_LepIso(self):
+        return self.chain.lep_0_iso_Gradient == 1
+    #__________________________________________________________________________
+    def cut_LepAntiIso(self):
+        return self.chain.lep_0_iso_Gradient == 0
+    #__________________________________________________________________________
+    def cut_LepPt(self):
+        return self.chain.lep_0_pt > 27
+    #__________________________________________________________________________
+    def cut_TauQual(self):
+        return self.chain.n_taus > 0 and abs(self.chain.tau_0_q) == 1 and abs(self.chain.tau_0_eta) < 2.4
+    #__________________________________________________________________________
+    def cut_TauID(self):
+        return self.chain.n_taus_medium == 1 and self.chain.tau_0_jet_bdt_medium == 1
+    #__________________________________________________________________________
+    def cut_TauAntiID(self):
+        return self.chain.n_taus_medium == 0 and self.chain.tau_0_jet_bdt_medium == 0 and self.chain.tau_0_jet_bdt_score > 0.25 
+    #__________________________________________________________________________
+    def cut_TauPt(self):
+        return self.chain.tau_0_pt > 25
+    #__________________________________________________________________________
+    def cut_OS(self):
+        return self.chain.lephad_qxq == 1
+    #__________________________________________________________________________
+    def cut_SS(self):
+        return self.chain.lephad_qxq == -1
+    #__________________________________________________________________________
+    def cut_TauEVeto(self):
+        return (self.chain.tau_0_n_tracks == 1 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.15) or (self.chain.tau_0_n_tracks == 3 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.05) 
+    #__________________________________________________________________________
+    def cut_SCDP(self):
+        return self.chain.lephad_met_sum_cos_dphi > -0.35
+    #__________________________________________________________________________
+    def cut_dEta(self):
+        return abs(self.chain.lephad_deta) < 2
+    #__________________________________________________________________________
+    def cut_BVeto(self):
+        return self.chain.n_bjets == 0
+    #__________________________________________________________________________
+    def cut_SR1(self):
+        return self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40
+    #__________________________________________________________________________
+    def cut_SR2(self):
+        return self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met < 40
+    #__________________________________________________________________________
+    def cut_SR3(self):
+        return self.chain.tau_0_pt < 45 and self.chain.tau_0_pt > 25 and self.chain.lep_0_pt > 45
+    ##__________________________________________________________________________
+    #def cut_WCR(self):
+    #    return self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met > 40
+    #__________________________________________________________________________
+    def cut_TopCR(self):
+        return self.chain.n_bjets > 0 and self.chain.n_jets > 1
     
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
