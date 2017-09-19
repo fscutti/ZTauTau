@@ -110,6 +110,7 @@ def analyze(config):
     ## ---------------------------------------
     hist_list = []
     hist_list += ztautau.hists.Main_hists.hist_list
+    hist_list += ztautau.hists.H2D_hists.hist_list
    
 
 

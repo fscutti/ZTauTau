@@ -60,13 +60,12 @@ h_met_reco_et  = Hist1D( hname  = "h_met_reco_et",
                               vexpr  = "self.chain.met_reco_et",
 
                               )
-"""
 # --------
 # 2D hists
 # --------
-h_mulead_pt_jetlead_pt  = Hist2D( hname      = "h_mulead_pt_jetlead_pt",
-                              xtitle  = "p_{T}(#mu_{lead}) [GeV]",
-                              ytitle  = "p_{T}(jet_{lead}) [GeV]", 
+h_lep_0_pt_tau_0_pt  = Hist2D( hname  = "h_lep_0_pt_tau_0_pt",
+                              xtitle  = "p_{T}(l_{lead}) [GeV]",
+                              ytitle  = "p_{T}(#tau_{lead}) [GeV]", 
                               nbinsx  = 1000,
                               xmin    = 0.,
                               xmax    = 1000.,
@@ -74,8 +73,7 @@ h_mulead_pt_jetlead_pt  = Hist2D( hname      = "h_mulead_pt_jetlead_pt",
                               ymin    = 0.,
                               ymax    = 1000.,
                               dir     = "event",
-                              vexpr   = " self.store['muons'][0].tlv.Pt() / GeV , self.store['jets'][0].tlv.Pt() / GeV",
+                              vexpr   = " self.chain.lep_0_pt , self.chain.tau_0_pt",
                           )
 
-"""
 # EOF
