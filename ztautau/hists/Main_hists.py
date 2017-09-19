@@ -8,14 +8,12 @@ hist_list = []
 # event
 # -------
 hist_list.append(h_n_vx)
+hist_list.append(h_dummy)
+
+# -------
+# jets
+# -------
 hist_list.append(h_jet_0_pt)
-
-# -------
-# muons
-# -------
-
-# mulead
-#hist_list.append(h_mulead_pt)
 
 # -------
 # MET

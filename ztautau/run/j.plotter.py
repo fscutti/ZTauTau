@@ -17,8 +17,6 @@ import pyframe
 ## local modules
 import ztautau
 
-GeV = 1000.0
-
 #_____________________________________________________________________________
 def get_sys_dict(sys_name=None, sys_tree="NOMINAL", sys_var=None):
   return {"name":sys_name, "tree":sys_tree, "variation":sys_var}
@@ -79,10 +77,13 @@ def analyze(config):
     
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
-    loop += ztautau.algs.weights.MCEventWeight(cutflow='presel',key='weight_mc_event')
-    #loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup')
     loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
-   
+
+
+    ## initialize and/or decorate objects
+    ## ---------------------------------------
+    loop += ztautau.algs.vars.Vars()
+
     ## cuts
     ## +++++++++++++++++++++++++++++++++++++++
     loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneMuon') 
@@ -124,9 +125,9 @@ def analyze(config):
             hist_list    = hist_list,
             plot_all     = False,
             cut_flow  = [
-              ['AtLeastOneMuon',["TauID"]],
-              ['MuonPt24',None],
-              ],
+                          ['AtLeastOneMuon',["TauID"]],
+                          ['MuonPt24',None],
+                        ],
             )
     
     loop += pyframe.algs.HistCopyAlg()
@@ -138,7 +139,8 @@ def analyze(config):
             branches_on_file = config.get('branches_on_file'),
             do_var_log = config.get('do_var_log'),
             )
-#______________________________________________________________________________
+
+    #______________________________________________________________________________
 if __name__ == '__main__':
     pyframe.config.main(analyze)
 

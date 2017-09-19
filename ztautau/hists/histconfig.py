@@ -21,6 +21,18 @@ h_n_vx = Hist1D( hname  = "h_n_vx",
                               vexpr  = "self.chain.n_vx",
                             )
 
+h_dummy = Hist1D( hname  = "h_dummy",
+                              xtitle = "DUMMY",
+                              ytitle = "Events", 
+                              nbins  = 2000,
+                              xmin   = 0.,
+                              xmax   = 2000.0,
+                              dir    = "event",
+                              vexpr  = "self.store['dummy']",
+                            )
+
+
+
 # -------
 # jets
 # -------
@@ -34,25 +46,6 @@ h_jet_0_pt  = Hist1D( hname  = "h_jet_0_pt",
                               vexpr  = "self.chain.jet_0_pt",
                             )
 
-"""
-# -------
-# muons
-# -------
-
-# mulead
-# ------
-h_mulead_pt = Hist1D( hname  = "h_mulead_pt",
-                              xtitle = "p_{T}(#mu_{lead}) [GeV]",
-                              ytitle = "Events / (1 GeV)", 
-                              nbins  = 2000,
-                              xmin   = 0.0,
-                              xmax   = 2000.0,
-                              dir    = "muons",
-                              vexpr  = "self.store['muons'][0].tlv.Pt() / GeV",
-                            )
-
-
-"""
 
 # -------
 # MET
@@ -65,8 +58,8 @@ h_met_reco_et  = Hist1D( hname  = "h_met_reco_et",
                               xmax   = 2000.,
                               dir    = "met",
                               vexpr  = "self.chain.met_reco_et",
-                            )
 
+                              )
 """
 # --------
 # 2D hists
