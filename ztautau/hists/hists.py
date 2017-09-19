@@ -17,7 +17,7 @@ class Hist1D(object):
     def __init__(self,
             hname    = None,
             xtitle   = None,
-            ytitle   = None,
+            ytitle   = "Events",
             nbins    = None,
             xmin     = None,
             xmax     = None,
