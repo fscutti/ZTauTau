@@ -11,30 +11,30 @@ other config files !!!
 # -------
 # event
 # -------
-h_NPV = Hist1D( hname  = "h_NPV",
+h_n_vx = Hist1D( hname  = "h_n_vx",
                               xtitle = "NPV",
                               ytitle = "Events", 
                               nbins  = 35,
                               xmin   = 0.,
                               xmax   = 35.0,
                               dir    = "event",
-                              vexpr  = "self.chain.NPV",
+                              vexpr  = "self.chain.n_vx",
                             )
 
 # -------
 # jets
 # -------
-h_jetlead_pt  = Hist1D( hname  = "h_jetlead_pt",
+h_jet_0_pt  = Hist1D( hname  = "h_jet_0_pt",
                               xtitle = "p_{T}(jet_{lead}) [GeV]",
                               ytitle = "Events / (1 GeV)", 
                               nbins  = 2000,
                               xmin   = 0.0,
                               xmax   = 2000.0,
                               dir    = "jets",
-                              vexpr  = "self.store['jets'][0].tlv.Pt()/GeV",
+                              vexpr  = "self.chain.jet_0_pt",
                             )
 
-
+"""
 # -------
 # muons
 # -------
@@ -52,33 +52,22 @@ h_mulead_pt = Hist1D( hname  = "h_mulead_pt",
                             )
 
 
-# -------------
-# tag and probe
-# -------------
-h_tag_pt = Hist1D( hname  = "h_tag_pt",
-                              xtitle = "p_{T}(#mu_{tag}) [GeV]",
-                              ytitle = "Events / (1 GeV)", 
-                              nbins  = 2000,
-                              xmin   = 0.0,
-                              xmax   = 2000.0,
-                              dir    = "muons",
-                              vexpr  = "self.store['tag'].tlv.Pt() / GeV",
-                            )
-
+"""
 
 # -------
 # MET
 # -------
-h_met_clus_et  = Hist1D( hname  = "h_met_clus_et",
-                              xtitle = "E^{miss}_{T}(clus) [GeV]",
+h_met_reco_et  = Hist1D( hname  = "h_met_reco_et",
+                              xtitle = "E^{miss}_{T}(reco) [GeV]",
                               ytitle = "Events / (1 GeV)", 
                               nbins  = 2000,
                               xmin   = 0.,
                               xmax   = 2000.,
                               dir    = "met",
-                              vexpr  = "self.store['met_clus'].tlv.Pt()/GeV",
+                              vexpr  = "self.chain.met_reco_et",
                             )
 
+"""
 # --------
 # 2D hists
 # --------
@@ -95,4 +84,5 @@ h_mulead_pt_jetlead_pt  = Hist2D( hname      = "h_mulead_pt_jetlead_pt",
                               vexpr   = " self.store['muons'][0].tlv.Pt() / GeV , self.store['jets'][0].tlv.Pt() / GeV",
                           )
 
+"""
 # EOF

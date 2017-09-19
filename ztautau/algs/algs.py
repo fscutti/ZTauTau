@@ -14,6 +14,7 @@ import itertools
 import os
 import math
 import ROOT
+import sys
 
 ## logging
 import logging
@@ -27,7 +28,7 @@ import pyframe
 
 #import mcutils
 
-#GeV = 1000.0
+GeV = 1000.0
 
 #------------------------------------------------------------------------------
 class CutAlg(pyframe.core.Algorithm):
@@ -71,7 +72,6 @@ class CutAlg(pyframe.core.Algorithm):
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
     """
-
     For making a set of standard plots after each cut in a cutflow.  PlotAlg
     inherets from CutAlg so all the functionality from CutAlg is available for
     applying selection. In addition you can apply weights at different points
@@ -97,21 +97,28 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
     """
     #__________________________________________________________________________
     def __init__(self,
-                 name     = 'PlotAlg',
-                 region   = '',
-                 obj_keys = [], # make cutflow hist for just this objects
-                 cut_flow = None,
-                 plot_all = True,
+                 name          = 'PlotAlg',
+                 region        = '',
+                 hist_list     = [], # list of histograms to be filled
+                 cut_flow      = None,
+                 plot_all      = True,
+                 do_var_check  = False,
                  ):
-        pyframe.algs.CutFlowAlg.__init__(self,key=region,obj_keys=obj_keys)
+        pyframe.algs.CutFlowAlg.__init__(self,key=region)
         CutAlg.__init__(self,name,isfilter=False)
-        self.cut_flow = cut_flow
-        self.region   = region
-        self.plot_all = plot_all
-        self.obj_keys = obj_keys
+        self.cut_flow     = cut_flow
+        self.region       = region
+        self.plot_all     = plot_all
+        self.hist_list    = hist_list
+        self.do_var_check = do_var_check
     
     #_________________________________________________________________________
     def initialize(self):
+
+        # remove eventual repetitions from list of histograms
+        h_dict = {}
+        for h in self.hist_list: h_dict[h.hname] = h
+        self.hist_list = h_dict.values()
         pyframe.algs.CutFlowAlg.initialize(self)
     #_________________________________________________________________________
     def execute(self, weight):
@@ -139,7 +146,7 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
                region_name = region_name.replace('!', 'N')
                region = os.path.join('/regions/', region_name)
                
-               self.plot(region, passed, list_cuts, cut, list_weights=list_weights, weight=weight)
+               self.plot(region, passed, list_cuts, cut, weight=weight)
 
         return True
 
@@ -148,65 +155,58 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         pyframe.algs.CutFlowAlg.finalize(self)
 
     #__________________________________________________________________________
-    def plot(self, region, passed, list_cuts, cut, list_weights=None, weight=1.0):
+    def plot(self, region, passed, list_cuts, cut, weight=1.0):
         
         # should probably make this configurable
-        
-        ## plot directories
-        EVT   = os.path.join(region, 'event')
-        MET   = os.path.join(region, 'met')
-        MUONS = os.path.join(region, 'muons')
-        TAUS  = os.path.join(region, 'taus')
-       
 
         # -----------------
-        # create histograms 
-        # if there are none
+        # Create histograms
         # -----------------
+        for h in self.hist_list:
+            if h.get_name() == "Hist1D":
+              h.instance = self.hist(h.hname, "ROOT.TH1F('$', ';%s;%s', %d, %lf, %lf)" % (h.xtitle,h.ytitle,h.nbins,h.xmin,h.xmax), dir=os.path.join(region, '%s'%h.dir))
+            elif h.get_name() == "Hist2D":
+              h.instance = self.hist(h.hname, "ROOT.TH2F('$', ';%s;%s', %d, %lf, %lf, %d, %lf, %lf)" % (h.hname,h.hname,h.nbinsx,h.xmin,h.xmax,h.nbinsy,h.ymin,h.ymax), dir=os.path.join(region, '%s'%h.dir))
+              h.set_axis_titles()
 
-        ## event plots
-        self.h_nmuons = self.hist('h_nmuons', "ROOT.TH1F('$', ';N_{#mu};Events', 8, 0, 8)", dir=EVT)
 
-        ## met plots
-        self.h_met_reco_et = self.hist('h_met_reco_et', "ROOT.TH1F('$', ';E^{miss}_{T} [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MET)
-        
-        ## muons plots
-        self.h_mu_pt = self.hist('h_mu_pt', "ROOT.TH1F('$', ';p_{T}(#mu) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=MUONS)
-        
-        
-        ## taus plots
-        self.h_tau_pt = self.hist('h_tau_pt', "ROOT.TH1F('$', ';p_{T}(#tau) [GeV];Events / (1 GeV)', 1000, 0.0, 1000.0)", dir=TAUS)
-
-        # -----------------
-        # fill histograms 
-        # if passed == True 
-        # -----------------
-
+        # ---------------
+        # Fill histograms
+        # ---------------
         if passed:
-          self.h_nmuons.Fill(self.chain.n_muons, weight)
-          self.h_met_reco_et.Fill(self.chain.met_reco_et, weight)
-          self.h_tau_pt.Fill(self.chain.tau_0_pt, weight)
-          self.h_mu_pt.Fill(self.chain.lep_0_pt, weight)
+          for h in self.hist_list:
+            if self.do_var_check:
+              exec ( "present = %s"%h.varcheck() )
+              if not present:
+                sys.exit( "ERROR: variable %s  not found for hist %s"%(h.vexpr,h.hname) )
 
-        
+            if h.get_name() == "Hist1D":
+              var = -999.
+
+              # this all part gives me the shivers. But is just temporary. Don't panic
+              exec( "var = %s" % h.vexpr ) # so dirty !!!
+
+              if h.instance and var!=-999.: h.fill(var, weight)
+
+            elif h.get_name() == "Hist2D":
+              varx = -999.
+              vary = -999.
+              exec( "varx,vary = %s" % h.vexpr ) # so dirty !!!
+              if h.instance and varx!=-999. and vary!=-999.: h.fill(varx,vary, weight)
+
+
     #__________________________________________________________________________
     def check_region(self,cutnames):
         cut_passed = True
         for cn in cutnames:
-            ## could use this to fail when cuts not available
-            #if not cuts.has_key(cn): return False
-    
-            ## pass if None
             if cn == 'ALL': continue
 
             if cn.startswith('!'):
                 cut_passed = not self.apply_cut(cn[1:])
             else:
                 cut_passed = self.apply_cut(cn) and cut_passed
-            #if not cut_passed:
-            #    return False
         return cut_passed
-    
+
 
 #------------------------------------------------------------------------------
 class VarsAlg(pyframe.core.Algorithm):
@@ -270,10 +270,6 @@ def log_bins_str(nbins,xmin,xmax):
     bins = log_bins(nbins,xmin,xmax)
     bins_str = "%d, array.array('f',%s)" % (len(bins)-1, str(bins))
     return bins_str 
-
-
-
-
 
 
 

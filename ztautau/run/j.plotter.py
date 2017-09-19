@@ -17,12 +17,11 @@ import pyframe
 ## local modules
 import ztautau
 
-#GeV = 1000.0
+GeV = 1000.0
 
 #_____________________________________________________________________________
 def get_sys_dict(sys_name=None, sys_tree="NOMINAL", sys_var=None):
   return {"name":sys_name, "tree":sys_tree, "variation":sys_var}
-
 #_____________________________________________________________________________
 def analyze(config):
   
@@ -45,11 +44,6 @@ def analyze(config):
 
     sys = config['sys']
     
-    """
-    IMPORTANT: no not really. This docstring is useless
-    https://www.youtube.com/watch?v=sjJBpw5WNtU
-    """
-
     sys_dict = None
     
     if   sys == None: sys_dict = get_sys_dict()
@@ -79,95 +73,45 @@ def analyze(config):
                                   quiet=False,
                                   )
     
-    ## build and pt-sort objects
-    ## ---------------------------------------
-    #loop += pyframe.algs.ListBuilder(
-    #    prefixes = ['lep_0_','tau_0_','jet_0_'],
-    #    keys = ['muons','taus','jets'],
-    #    )
-    #loop += pyframe.algs.AttachTLVs(
-    #    keys = ['muons','taus','jets'],
-    #    )
-    # just a decoration of particles ...
-    #loop += ztautau.algs.vars.ParticlesBuilder(
-    #    key='muons',
-    #    )
-    
-    """
-    ## build MET
-    ## ---------------------------------------
-    loop += ztautau.algs.met.METCLUS(
-        prefix='metFinalClus',
-        key = 'met_clus',
-        )
-    loop += ztautau.algs.met.METTRK(
-        prefix='metFinalTrk',
-        key = 'met_trk',
-        )
-   
-    ## initialize and/or decorate objects
-    ## ---------------------------------------
-    loop += ztautau.algs.vars.PairsBuilder(
-        obj_keys=['muons'],
-        pair_key='mu_pairs',
-        met_key='met_clus', 
-        )
-    """ 
-
     ## start preselection cutflow 
     ## ---------------------------------------
     loop += pyframe.algs.CutFlowAlg(key='presel')
     
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
-    #loop += ztautau.algs.weights.MCEventWeight(cutflow='presel',key='weight_mc_event')
+    loop += ztautau.algs.weights.MCEventWeight(cutflow='presel',key='weight_mc_event')
     #loop += ztautau.algs.weights.Pileup(cutflow='presel',key='weight_pileup')
     loop += ztautau.algs.weights.WeightTotal(cutflow='presel',key='weight_total')
    
     ## cuts
     ## +++++++++++++++++++++++++++++++++++++++
-    #loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneMuon') 
+    loop += ztautau.algs.algs.CutAlg(cutflow='presel',cut='AtLeastOneMuon') 
 
     
     ## weights configuration
     ## ---------------------------------------
     ## event
     ## +++++++++++++++++++++++++++++++++++++++
-    """ 
-    loop += ztautau.algs.EvWeights.MuTrigSF(
-            is_single_mu = True,
-            mu_trig_level="Loose_Loose",
-            mu_trig_chain="HLT_mu20_iloose_L1MU15_OR_HLT_mu50",
-            key='SingleMuonTrigSF',
-            scale=None,
-            )
     
-    """
-    """
-    loop += ztautau.algs.EvWeights.MuTrigSF(
-            is_di_mu = True,
-            mu_trig_level="Loose_Loose",
-            mu_trig_chain="HLT_2mu10",
-            key='DiMuonTrigSF',
-            scale=None,
-            )
-    """ 
+    
     ## objects
     ## +++++++++++++++++++++++++++++++++++++++
-    """
-    loop += ztautau.algs.ObjWeights.MuAllSF(
-            #mu_level="Tight",
-            mu_index=0,
-            key='MuLeadAllSF',
-            scale=None,
+    loop += ztautau.algs.weights.ObjWeight(
+            obj_name    = "tau_0",
+            branch_name = "TauEffSF_JetBDTmedium",
+            key         = "TauID",
+            scale       = None,
             )
-    loop += ztautau.algs.ObjWeights.MuAllSF(
-            #mu_level="NotTight",
-            mu_index=1,
-            key='MuSubLeadAllSF',
-            scale=None,
-            )
-    """ 
+    
+
+
+    ## configure histograms
+    ## ---------------------------------------
+    hist_list = []
+    hist_list += ztautau.hists.Main_hists.hist_list
+   
+
+
     ##-------------------------------------------------------------------------
     ## make plots
     ##-------------------------------------------------------------------------
@@ -175,10 +119,12 @@ def analyze(config):
     ## TEST region
     ## ---------------------------------------
     loop += ztautau.algs.algs.PlotAlg(
-            region    = 'TEST',
-            plot_all  = False,
+            region       = 'TEST',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
             cut_flow  = [
-              ['AtLeastOneMuon',None],
+              ['AtLeastOneMuon',["TauID"]],
               ['MuonPt24',None],
               ],
             )
