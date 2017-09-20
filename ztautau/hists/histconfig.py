@@ -191,32 +191,50 @@ h_lh_met_cent      = Hist1D( 'lephad_met_cent',
 ##################
 # EVENTT RELATED #
 ##################
-#h_evt_nvx          = Hist1D( 'n_vtx',
-#                             title = 'N_{vertex}',
-#                             nbins = 100, 
-#                             xmin = 0., 
-#                             xmax = 100.0, 
-#                             dir='event', 
-#                             vexpr = 'self.chain.n_vtx',                   
-#                             )
-#
-#h_evt_nint         = Hist1D( 'n_int',
-#                             title = '<#mu>',
-#                             nbins = 100, 
-#                             xmin = 0., 
-#                             xmax = 100.0, 
-#                             dir='event', 
-#                             vexpr = 'self.chain.n_int',                   
-#                             )
-#
-#h_evt_nintcor      = Hist1D( 'n_int_cor',
-#                             title = '<#mu>_{corrected}',
-#                             nbins = 100, 
-#                             xmin = 0., 
-#                             xmax = 100.0, 
-#                             dir='event', 
-#                             vexpr = 'self.chain.n_int_cor',               
-#                             )
+h_evt_nvx          = Hist1D( 'n_vx',
+                             title = 'N_{vertex}',
+                             nbins = 100, 
+                             xmin = 0., 
+                             xmax = 100.0, 
+                             dir='event', 
+                             vexpr = 'self.chain.n_vx',
+                             )
+
+h_evt_npvx         = Hist1D( 'n_pvx',
+                             title = 'N_{Primary vertex}',
+                             nbins = 100, 
+                             xmin = 0., 
+                             xmax = 100.0, 
+                             dir='event', 
+                             vexpr = 'self.chain.n_pvx',
+                             )
+
+h_evt_navgint      = Hist1D( 'n_avg_int',
+                             title = '<#mu>',
+                             nbins = 100, 
+                             xmin = 0., 
+                             xmax = 100.0, 
+                             dir='event', 
+                             vexpr = 'self.chain.n_avg_int',                   
+                             )
+
+h_evt_navgintcor   = Hist1D( 'n_avg_int_cor',
+                             title = '<#mu>_{corrected}',
+                             nbins = 100, 
+                             xmin = 0., 
+                             xmax = 100.0, 
+                             dir='event', 
+                             vexpr = 'self.chain.n_avg_int_cor',               
+                             )
+
+h_evt_n_jets       = Hist1D( 'n_jets',
+                             title = 'N_{jets}',
+                             nbins = 100, 
+                             xmin = 0., 
+                             xmax = 100.0, 
+                             dir='event', 
+                             vexpr = 'self.chain.n_jets',               
+                             )
 
 ###############
 # MET RELATED #

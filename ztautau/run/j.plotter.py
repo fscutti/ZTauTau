@@ -200,6 +200,8 @@ def analyze(config):
     ## ---------------------------------------
     hist_list = []
     hist_list += ztautau.hists.Main_hists.hist_list
+    hist_presel = []
+    hist_presel += ztautau.hists.Main_hists.hist_presel
    
 
 
@@ -209,10 +211,10 @@ def analyze(config):
     
     ## TEST region
     ## ---------------------------------------
-    loop += ztautau.algs.algs.PlotAlg(
+    PreselEl2016 = ztautau.algs.algs.PlotAlg(
             region       = 'PreselEl2016',
             do_var_check = True,
-            hist_list    = hist_list,
+            hist_list    = hist_list+hist_presel,
             plot_all     = False,
             cut_flow  = [
                           ['ElecOnly'     , ['weight_total']] ,
@@ -230,10 +232,10 @@ def analyze(config):
                           ['dEta'         , None] , 
                         ],
             )
-    loop += ztautau.algs.algs.PlotAlg(
+    PreselEl2015 = ztautau.algs.algs.PlotAlg(
             region       = 'PreselEl2015',
             do_var_check = True,
-            hist_list    = hist_list,
+            hist_list    = hist_list+hist_presel,
             plot_all     = False,
             cut_flow  = [
                           ['ElecOnly'     , ['weight_total']] ,
@@ -251,10 +253,10 @@ def analyze(config):
                           ['dEta'         , None] , 
                         ],
             )
-    loop += ztautau.algs.algs.PlotAlg(
+    PreselMu2016 = ztautau.algs.algs.PlotAlg(
             region       = 'PreselMu2016',
             do_var_check = True,
-            hist_list    = hist_list,
+            hist_list    = hist_list+hist_presel,
             plot_all     = False,
             cut_flow  = [
                           ['MuonOnly'     , ['weight_total']] ,
@@ -272,8 +274,328 @@ def analyze(config):
                           ['dEta'         , None] , 
                         ],
             )
-    loop += ztautau.algs.algs.PlotAlg(
+    PreselMu2015 = ztautau.algs.algs.PlotAlg(
             region       = 'PreselMu2015',
+            do_var_check = True,
+            hist_list    = hist_list+hist_presel,
+            plot_all     = False,
+            cut_flow  = [
+                          ['MuonOnly'     , ['weight_total']] ,
+                          ['2015MuonTrig' , ['MuTrig2015']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['MuTTVA']] , 
+                          ['LepQual'      , ['MuRecoID']] ,
+                          ['LepIso'       , ['MuIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+
+    loop += PreselMu2015
+    loop += PreselMu2016
+    loop += PreselEl2015
+    loop += PreselEl2016
+
+    #######
+    # SR1 #
+    #######
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR1Mu2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2015.cut_flow+[['SR1', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR1Mu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2016.cut_flow+[['SR1', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR1El2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2015.cut_flow+[['SR1', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR1El2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2016.cut_flow+[['SR1', None]]
+            )
+    
+    #######
+    # SR2 #
+    #######
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR2Mu2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2015.cut_flow+[['SR2', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR2Mu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2016.cut_flow+[['SR2', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR2El2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2015.cut_flow+[['SR2', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR2El2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2016.cut_flow+[['SR2', None]]
+            )
+    
+    #######
+    # SR3 #
+    #######
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR3Mu2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2015.cut_flow+[['SR3', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR3Mu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2016.cut_flow+[['SR3', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR3El2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2015.cut_flow+[['SR3', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'SR3El2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2016.cut_flow+[['SR3', None]]
+            )
+    
+    #######
+    # TCR #
+    #######
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'TopCREl2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['ElecOnly'     , ['weight_total']] ,
+                          ['2016ElecTrig' , ['ElTrig2016']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['ElRecoTrk']] , 
+                          ['LepQual'      , ['ElID']] ,
+                          ['LepIso'       , ['ElIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['TCR'          , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'TopCREl2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['ElecOnly'     , ['weight_total']] ,
+                          ['2015ElecTrig' , ['ElTrig2015']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['ElRecoTrk']] , 
+                          ['LepQual'      , ['ElID']] ,
+                          ['LepIso'       , ['ElIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['TCR'          , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'TopCRMu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['MuonOnly'     , ['weight_total']] ,
+                          ['2016MuonTrig' , ['MuTrig2016']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['MuTTVA']] , 
+                          ['LepQual'      , ['MuRecoID']] ,
+                          ['LepIso'       , ['MuIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['TCR'          , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'TopCRMu2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['MuonOnly'     , ['weight_total']] ,
+                          ['2015MuonTrig' , ['MuTrig2015']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['MuTTVA']] , 
+                          ['LepQual'      , ['MuRecoID']] ,
+                          ['LepIso'       , ['MuIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['TCR'          , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['dEta'         , None] , 
+                        ],
+            )
+    #######
+    # WCR #
+    #######
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'WCRMu2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2015.cut_flow+[['WCR', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'WCRMu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselMu2016.cut_flow+[['WCR', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'WCREl2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2015.cut_flow+[['WCR', None]]
+            )
+    
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'WCREl2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow     = PreselEl2016.cut_flow+[['WCR', None]]
+            )
+
+    #########
+    # QCDCR #
+    #########
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'QCDCREl2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['ElecOnly'     , ['weight_total']] ,
+                          ['2016ElecTrig' , ['ElTrig2016']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['ElRecoTrk']] , 
+                          ['LepQual'      , ['ElID']] ,
+                          ['LepIso'       , ['ElIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['QCDCR'        , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'QCDCREl2015',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['ElecOnly'     , ['weight_total']] ,
+                          ['2015ElecTrig' , ['ElTrig2015']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['ElRecoTrk']] , 
+                          ['LepQual'      , ['ElID']] ,
+                          ['LepIso'       , ['ElIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['QCDCR'        , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'QCDCRMu2016',
+            do_var_check = True,
+            hist_list    = hist_list,
+            plot_all     = False,
+            cut_flow  = [
+                          ['MuonOnly'     , ['weight_total']] ,
+                          ['2016MuonTrig' , ['MuTrig2016']] ,
+                          ['OS'           , None] ,
+                          ['LepPt'        , ['MuTTVA']] , 
+                          ['LepQual'      , ['MuRecoID']] ,
+                          ['LepIso'       , ['MuIsoGrad']] ,
+                          ['TauPt'        , ['TauReco']] , 
+                          ['TauQual'      , None] , 
+                          ['TauID'        , ['TauID']] , 
+                          ['TauEVeto'     , ['TauEVeto']] , 
+                          ['BVeto'        , ['JetEff', 'JetIneff']] , 
+                          ['SCDP'         , None] , 
+                          ['QCDCR'        , None] , 
+                        ],
+            )
+    loop += ztautau.algs.algs.PlotAlg(
+            region       = 'QCDCRMu2015',
             do_var_check = True,
             hist_list    = hist_list,
             plot_all     = False,
@@ -290,7 +612,7 @@ def analyze(config):
                           ['TauEVeto'     , ['TauEVeto']] , 
                           ['BVeto'        , ['JetEff', 'JetIneff']] , 
                           ['SCDP'         , None] , 
-                          ['dEta'         , None] , 
+                          ['QCDCR'        , None] , 
                         ],
             )
     

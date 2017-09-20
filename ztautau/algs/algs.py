@@ -132,11 +132,19 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_SR3(self):
         return self.chain.tau_0_pt < 45 and self.chain.tau_0_pt > 25 and self.chain.lep_0_pt > 45
     ##__________________________________________________________________________
-    #def cut_WCR(self):
-    #    return self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met > 40
+    def cut_WCR(self):
+        # W CR
+        # This one I'm sure is orthogonal
+        return self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met > 40 and self.chain.tau_0_pt > 45
     #__________________________________________________________________________
-    def cut_TopCR(self):
+    def cut_TCR(self):
+        # TopCR
         return self.chain.n_bjets > 0 and self.chain.n_jets > 1
+    #__________________________________________________________________________
+    def cut_QCDCR(self):
+        # QCD CR
+        # This one I'm sure is orthogonal
+        return abs(self.chain.lephad_deta) < 2 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
     
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
