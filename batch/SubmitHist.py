@@ -1,39 +1,6 @@
 # encoding: utf-8
 '''
 SubmitHist.py
-
-quick start:
-Go to the Global Variable config below, setup specifics for your analysis, 
-and launch - should be pretty straight forward. 
-
-
-description:
-Batch submission script for the pyframe analysis.  One
- job is made for each systematic config (eg. nominal, TES_UP, etc...):
-    j.plot.nominal[XXX]
-    j.plot.TES_UP[XXX]
-    ...
-
-The job is split into one sub-job per output sample (so there can be 100s of
-subjobs). Since each sub-job runs over a different sample and may have
-different setup configurations, the config for the job is stored in a config
-file that contains one-line per sub-job. Each line contains 4 entries delimited
-by the ';' character: 
-    <sample name>;<input file>;<sample type>;<config>
-
-An example config file might look like this: 
-    periodL;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/periodL.root;data;
-    Ztautau;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/Ztautau.root;mc;
-    DYtautau_180M250;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/DYtautau_180M250.root;mc;
-    Zprime2000tautau_DYtautau_180M250;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/DYtautau_180M250.root;mc;ZPNOSM:2000
-    Zprime2000tautau_DYtautau_250M400;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/DYtautau_250M400.root;mc;ZPNOSM:2000
-    ...
-
-The line number in the config file corresponds to the PBS subjob index, so the
-line is extracted from the config file in the .exec.sh script, and decoded
-to setup the job.
-
-
 '''
 
 ## modules
@@ -55,7 +22,6 @@ NTUP='/data/fscutti/test/merged'
 JOBDIR = "/data/%s/jobdir" % USER 
 INTARBALL = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
 
-
 # auto-build tarball using Makefile.tarball
 AUTOBUILD = True                
 
@@ -63,7 +29,7 @@ AUTOBUILD = True
 RUN = 'HistTEST'
 
 OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
-OUTFILE="ntuple.root"         # file output by pyframe job 
+#OUTFILE="ntuple.root"         # file output by pyframe job 
 
 # running
 QUEUE="long"                         # length of pbs queue (short, long, extralong )
@@ -74,6 +40,7 @@ DO_NTUP_SYS = False                  # submit the NTUP systematics jobs
 DO_PLOT_SYS = False                  # submit the plot systematics jobs
 TESTMODE = False                     # submit only 1 sub-job (for testing)
 
+NCORES = 1
 
 def main():
     """
@@ -89,7 +56,7 @@ def main():
     global AUTOBUILD
     global RUN
     global OUTPATH
-    global OUTFILE
+    #global OUTFILE
     global QUEUE
     global SCRIPT
     global BEXEC
@@ -150,7 +117,7 @@ def submit(tag,job_sys,samps,config={}):
     global AUTOBUILD
     global RUN
     global OUTPATH
-    global OUTFILE
+    #global OUTFILE
     global QUEUE
     global SCRIPT
     global BEXEC
@@ -160,12 +127,15 @@ def submit(tag,job_sys,samps,config={}):
     global TESTMODE
 
     ## construct config file
-    cfg = os.path.join(JOBDIR,'ConfigHistZtautau.%s'%tag)
+    ## ---------------------
+    cfg = os.path.join(JOBDIR,'Config%s.%s'%(RUN,tag))
     f = open(cfg,'w')
+
     for s in samps:
 
-        ## input
+        ## input & output
         sinput = input_file(s,job_sys) 
+        soutput = output_file(s,job_sys)
 
         ## sample type
         stype  = s.type
@@ -176,37 +146,40 @@ def submit(tag,job_sys,samps,config={}):
         sconfig.update(s.config)
         sconfig_str = ",".join(["%s:%s"%(key,val) for key,val in sconfig.items()])
 
-        line = ';'.join([s.name,sinput,stype,sconfig_str])
-        f.write('%s\n'%line) 
+        line = ';'.join([s.name,sinput,soutput,stype,sconfig_str])
+        
+        if not file_exists(absoutpath,s.name+".root"): f.write('%s\n'%line)
 
     f.close()
 
+    # configure input path 
+    # --------------------
     abscfg     = os.path.abspath(cfg)
     absintar   = os.path.abspath(INTARBALL)
-    absoutpath = os.path.abspath(os.path.join(OUTPATH,tag))
-    abslogpath = os.path.abspath(os.path.join(OUTPATH,'log_%s'%tag))
     nsubjobs   = len(samps)
     if TESTMODE: nsubjobs = 1
+
 
     prepare_path(absoutpath)
     prepare_path(abslogpath)
 
     vars=[]
-    vars+=["CONFIG=%s" % abscfg]
-    vars+=["INTARBALL=%s" % absintar]
-    vars+=["OUTFILE=%s" % OUTFILE]
-    vars+=["OUTPATH=%s" % absoutpath]
-    vars+=["SCRIPT=%s" % SCRIPT]
-     
+    vars+=["CONFIG=%s"    % abscfg     ]
+    vars+=["INTARBALL=%s" % absintar   ]
+    vars+=["OUTPATH=%s"   % absoutpath ]
+    vars+=["SCRIPT=%s"    % SCRIPT     ]
+    vars+=["NCORES=%d"    % NCORES     ]
+
     VARS = ','.join(vars)
 
     cmd = 'qsub'
-    cmd += " -q %s" % QUEUE
-    cmd += ' -v "%s"' % VARS
-    cmd += ' -N j.hist.%s' % (tag)
-    cmd += ' -j oe -o %s/log' % (abslogpath)
-    cmd += ' -t1-%d' % (nsubjobs)
-    cmd += ' %s' % BEXEC
+    cmd += ' -l nodes=1:ppn=%d' % NCORES
+    cmd += ' -q %s'             % QUEUE
+    cmd += ' -v "%s"'           % VARS
+    cmd += ' -N j.hist.%s'      % tag
+    cmd += ' -j oe -o %s/log'   % abslogpath
+    cmd += ' -t1-%d'            % nsubjobs
+    cmd += ' %s'                % BEXEC 
     print cmd
     m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
     print m.communicate()[0]
@@ -218,14 +191,27 @@ def prepare_path(path):
 
 def input_file(sample,sys):
     global NTUP
-    sinput = sample.name
+    sinput = sample.infile
     
     if sys!='nominal': sys='sys_'+sys
     sinput += '.root'
     sinput = os.path.join(NTUP,sys,sinput) 
     return sinput
 
+def file_exists(path,file):
+    if os.path.exists(path):
+      return file in os.listdir(os.path.join(path))
+    else: return False
+
+def output_file(sample,sys):
+    soutput = sample.name
+    soutput += '.root'
+    return soutput
+
 if __name__=='__main__': main()
 
 
 ## EOF
+
+
+

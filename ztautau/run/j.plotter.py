@@ -67,10 +67,11 @@ def analyze(config):
     ##-------------------------------------------------------------------------
     loop = pyframe.core.EventLoop(name='ztautau',
                                   sampletype=config['sampletype'],
-                                  outfile='ntuple.root',
+                                  samplename=config['samplename'],
+                                  outfile=config['samplename']+".root",
                                   quiet=False,
                                   )
-    
+
     ## start preselection cutflow 
     ## ---------------------------------------
     loop += pyframe.algs.CutFlowAlg(key='presel')
@@ -141,7 +142,7 @@ def analyze(config):
             do_var_log = config.get('do_var_log'),
             )
 
-    #______________________________________________________________________________
+#______________________________________________________________________________
 if __name__ == '__main__':
     pyframe.config.main(analyze)
 
