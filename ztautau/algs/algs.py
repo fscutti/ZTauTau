@@ -70,16 +70,38 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.n_muons == 0 and self.chain.n_electrons == 1 and self.chain.n_pvx > 0
     #__________________________________________________________________________
     def cut_2015MuonTrig(self):
-        return ((self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1) or (self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1))
+        if ((self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1) or (self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)):
+            if self.sampletype == 'mc':
+                return self.chain.NOMINAL_pileup_random_run_number > 0 and self.chain.NOMINAL_pileup_random_run_number <= 284484
+            else:
+                return self.chain.run_number > 0 and self.chain.run_number <= 284484
     #__________________________________________________________________________
     def cut_2015ElecTrig(self):
-        return ((self.chain.HLT_e24_lhmedium_L1EM20VH == 1 and self.chain.eleTrigMatch_0_HLT_e24_lhmedium_L1EM20VH == 1) or (self.chain.HLT_e60_lhmedium == 1 and self.chain.eleTrigMatch_0_HLT_e60_lhmedium == 1) or (self.chain.HLT_e120_lhloose == 1 and self.chain.eleTrigMatch_0_HLT_e120_lhloose == 1))
+        if ((self.chain.HLT_e24_lhmedium_L1EM20VH == 1 and self.chain.eleTrigMatch_0_HLT_e24_lhmedium_L1EM20VH == 1) or (self.chain.HLT_e60_lhmedium == 1 and self.chain.eleTrigMatch_0_HLT_e60_lhmedium == 1) or (self.chain.HLT_e120_lhloose == 1 and self.chain.eleTrigMatch_0_HLT_e120_lhloose == 1)):
+            if self.sampletype == 'mc':
+                return self.chain.NOMINAL_pileup_random_run_number > 0 and self.chain.NOMINAL_pileup_random_run_number <= 284484
+            else:
+                return self.chain.run_number > 0 and self.chain.run_number <= 284484
     #__________________________________________________________________________
     def cut_2016MuonTrig(self):
-        return ((self.chain.HLT_mu26_ivarmedium == 1 and self.chain.muTrigMatch_0_HLT_mu26_ivarmedium == 1) or (self.chain.HLT_mu50 == 1 and self.chain.muTrigMatch_0_HLT_mu50 == 1) )
+        if ((self.chain.HLT_mu26_ivarmedium == 1 and self.chain.muTrigMatch_0_HLT_mu26_ivarmedium == 1) or (self.chain.HLT_mu50 == 1 and self.chain.muTrigMatch_0_HLT_mu50 == 1) ):
+            if self.sampletype == 'mc':
+                return self.chain.NOMINAL_pileup_random_run_number > 284484
+            else:
+                return self.chain.run_number > 284484
     #__________________________________________________________________________
     def cut_2016ElecTrig(self):
-        return ((self.chain.HLT_e26_lhtight_nod0_ivarloose == 1 and self.chain.eleTrigMatch_0_HLT_e26_lhtight_nod0_ivarloose == 1) or (self.chain.HLT_e60_lhmedium_nod0 == 1 and self.chain.eleTrigMatch_0_HLT_e60_lhmedium_nod0 == 1) or (self.chain.HLT_e140_lhloose_nod0 == 1 and self.chain.eleTrigMatch_0_HLT_e140_lhloose_nod0 == 1))
+        if ((self.chain.HLT_e26_lhtight_nod0_ivarloose == 1 and self.chain.eleTrigMatch_0_HLT_e26_lhtight_nod0_ivarloose == 1) or (self.chain.HLT_e60_lhmedium_nod0 == 1 and self.chain.eleTrigMatch_0_HLT_e60_lhmedium_nod0 == 1) or (self.chain.HLT_e140_lhloose_nod0 == 1 and self.chain.eleTrigMatch_0_HLT_e140_lhloose_nod0 == 1)):
+            if self.sampletype == 'mc':
+                return self.chain.NOMINAL_pileup_random_run_number > 284484
+            else:
+                return self.chain.run_number > 284484
+    #__________________________________________________________________________
+    def cut_RRN2015(self):
+        return self.chain.NOMINAL_pileup_random_run_number > 0 and self.chain.NOMINAL_pileup_random_run_number <= 284484
+    #__________________________________________________________________________
+    def cut_RRN2016(self):
+        return self.chain.NOMINAL_pileup_random_run_number > 284484
     #__________________________________________________________________________
     def cut_LepQual(self):
         return self.chain.lep_0_id_medium == 1 and abs(self.chain.lep_0_eta) < 2.5
