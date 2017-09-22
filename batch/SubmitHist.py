@@ -1,39 +1,6 @@
 # encoding: utf-8
 '''
 SubmitHist.py
-
-quick start:
-Go to the Global Variable config below, setup specifics for your analysis, 
-and launch - should be pretty straight forward. 
-
-
-description:
-Batch submission script for the pyframe analysis.  One
- job is made for each systematic config (eg. nominal, TES_UP, etc...):
-    j.plot.nominal[XXX]
-    j.plot.TES_UP[XXX]
-    ...
-
-The job is split into one sub-job per output sample (so there can be 100s of
-subjobs). Since each sub-job runs over a different sample and may have
-different setup configurations, the config for the job is stored in a config
-file that contains one-line per sub-job. Each line contains 4 entries delimited
-by the ';' character: 
-    <sample name>;<input file>;<sample type>;<config>
-
-An example config file might look like this: 
-    periodL;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/periodL.root;data;
-    Ztautau;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/Ztautau.root;mc;
-    DYtautau_180M250;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/DYtautau_180M250.root;mc;
-    Zprime2000tautau_DYtautau_180M250;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/DYtautau_180M250.root;mc;ZPNOSM:2000
-    Zprime2000tautau_DYtautau_250M400;/lustre/atlas/group/higgs/TauTauHadHad//full/_p1443_v00-02-08_merged/nominal/DYtautau_250M400.root;mc;ZPNOSM:2000
-    ...
-
-The line number in the config file corresponds to the PBS subjob index, so the
-line is extracted from the config file in the .exec.sh script, and decoded
-to setup the job.
-
-
 '''
 
 ## modules
@@ -43,37 +10,35 @@ import subprocess
 import time
 from   ztautau.samples import samples
 
+def prepare_path(path):
+    if not os.path.exists(path):
+        #print 'preparing outpath: %s'%(path)
+        os.makedirs(path)
+
 ## environment variables
-MAIN   = os.getenv('MAIN') # upper folder
-USER   = os.getenv('USER')
+## ---------------------
+MAIN        = os.getenv('MAIN')                    # upper folder
+USER        = os.getenv('USER')
+NTUP        = '/coepp/cephfs/share/atlas/LFV/july' # global config input NTUP path
+JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER             # The Melb cloud is twisted and does not recognize home dirs...
+prepare_path(JOBDIR)
+INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
+AUTOBUILD   = True                                 # auto-build tarball using Makefile.tarball
+NJMAX       = 500
 
-## global config
-# input NTUP path
-NTUP='/data/fscutti/test/merged' 
-
-# The Melb cloud is twisted and does not recognize home dirs...
-JOBDIR = "/data/%s/jobdir" % USER 
-INTARBALL = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
-
-
-# auto-build tarball using Makefile.tarball
-AUTOBUILD = True                
-
-# outputs
-RUN = 'HistTEST'
-
-OUTPATH="/data/%s/ztautau/%s"%(USER,RUN) # 
-OUTFILE="ntuple.root"         # file output by pyframe job 
+# outputs  
+RUN         = 'HistTEST'
+OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
-QUEUE="long"                         # length of pbs queue (short, long, extralong )
-SCRIPT="./ztautau/run/j.plotter.py"  # pyframe job script
-BEXEC="Hist.sh"                      # exec script (probably dont change) 
-DO_NOM = True                        # submit the nominal job
-DO_NTUP_SYS = False                  # submit the NTUP systematics jobs
-DO_PLOT_SYS = False                  # submit the plot systematics jobs
-TESTMODE = False                     # submit only 1 sub-job (for testing)
-
+QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
+SCRIPT      = "./ztautau/run/j.plotter.py"       # pyframe job script
+BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
+DO_NOM      = True                               # submit the nominal job
+DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
+DO_PLOT_SYS = False                              # submit the plot systematics jobs
+TESTMODE    = False                              # submit only 1 sub-job (for testing)
+NCORES      = 1
 
 def main():
     """
@@ -89,7 +54,6 @@ def main():
     global AUTOBUILD
     global RUN
     global OUTPATH
-    global OUTFILE
     global QUEUE
     global SCRIPT
     global BEXEC
@@ -102,8 +66,6 @@ def main():
     all_mc   = samples.all_mc
     all_data = samples.all_data
     nominal  = all_data + all_mc 
-   
-
     
     ntup_sys = [
         ['SYS1_UP',                  all_mc],
@@ -114,7 +76,6 @@ def main():
         ['SYS2_UP',                  all_mc],
         ['SYS2_DN',                  all_mc],
         ]    
-
     
     all_sys = ntup_sys + plot_sys
 
@@ -146,11 +107,11 @@ def submit(tag,job_sys,samps,config={}):
     global MAIN
     global USER
     global NTUP
+    global NJMAX
     global INTARBALL
     global AUTOBUILD
     global RUN
     global OUTPATH
-    global OUTFILE
     global QUEUE
     global SCRIPT
     global BEXEC
@@ -158,74 +119,147 @@ def submit(tag,job_sys,samps,config={}):
     global DO_NTUP_SYS
     global DO_PLOT_SYS
     global TESTMODE
+    
+    assert (NJMAX<=600), "Error: please, not more than 600 subjobs per array!"
 
     ## construct config file
-    cfg = os.path.join(JOBDIR,'ConfigHistZtautau.%s'%tag)
-    f = open(cfg,'w')
-    for s in samps:
+    ## ---------------------
+    nsubjobs = 0
+    nrun     = 1
+    nlines   = 0
+    f_dict   = {} 
 
-        ## input
-        sinput = input_file(s,job_sys) 
+    data_subdir = get_subdir( os.path.join(NTUP,'data') )
+    mc_subdir = get_subdir( os.path.join(NTUP,'mc') )
 
-        ## sample type
-        stype  = s.type
+    all_subdir = data_subdir + mc_subdir
 
-        ## config
-        sconfig = {}
-        sconfig.update(config)
-        sconfig.update(s.config)
-        sconfig_str = ",".join(["%s:%s"%(key,val) for key,val in sconfig.items()])
-
-        line = ';'.join([s.name,sinput,stype,sconfig_str])
-        f.write('%s\n'%line) 
-
-    f.close()
-
-    abscfg     = os.path.abspath(cfg)
-    absintar   = os.path.abspath(INTARBALL)
-    absoutpath = os.path.abspath(os.path.join(OUTPATH,tag))
-    abslogpath = os.path.abspath(os.path.join(OUTPATH,'log_%s'%tag))
-    nsubjobs   = len(samps)
-    if TESTMODE: nsubjobs = 1
-
-    prepare_path(absoutpath)
-    prepare_path(abslogpath)
-
-    vars=[]
-    vars+=["CONFIG=%s" % abscfg]
-    vars+=["INTARBALL=%s" % absintar]
-    vars+=["OUTFILE=%s" % OUTFILE]
-    vars+=["OUTPATH=%s" % absoutpath]
-    vars+=["SCRIPT=%s" % SCRIPT]
-     
-    VARS = ','.join(vars)
-
-    cmd = 'qsub'
-    cmd += " -q %s" % QUEUE
-    cmd += ' -v "%s"' % VARS
-    cmd += ' -N j.hist.%s' % (tag)
-    cmd += ' -j oe -o %s/log' % (abslogpath)
-    cmd += ' -t1-%d' % (nsubjobs)
-    cmd += ' %s' % BEXEC
-    print cmd
-    m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-    print m.communicate()[0]
-
-def prepare_path(path):
-    if not os.path.exists(path):
-        print 'preparing outpath: %s'%(path)
-        os.makedirs(path)
-
-def input_file(sample,sys):
-    global NTUP
-    sinput = sample.name
+    outrootpath = os.path.abspath(os.path.join(OUTPATH,tag))
+    logrootpath = os.path.abspath(os.path.join(OUTPATH,'log_%s'%tag))
     
-    if sys!='nominal': sys='sys_'+sys
-    sinput += '.root'
-    sinput = os.path.join(NTUP,sys,sinput) 
-    return sinput
+    prepare_path(outrootpath)
+    prepare_path(logrootpath)
+
+    absintar   = os.path.abspath(INTARBALL)
+   
+   
+    totsubjob = 0
+    # not efficienct. Who cares?
+    for s in samps:
+        sinputs  = input_files(all_subdir,s,job_sys) 
+        for infile in sinputs:
+          #soutput  = output_file(s,infile,job_sys)
+          #if file_exists(os.path.abspath(os.path.join(outrootpath,s.type,s.name)),soutput): continue
+          totsubjob += 1
+
+
+    for s in samps:
+        
+        # configure output path 
+        absoutpath = os.path.abspath(os.path.join(outrootpath,s.type,s.name))
+        
+        prepare_path(absoutpath)
+
+        ## input & output
+        sinputs  = input_files(all_subdir,s,job_sys) 
+         
+        for infile in sinputs:
+           soutput  = output_file(s,infile,job_sys)
+           
+           if file_exists(absoutpath,soutput): continue
+           
+           ## config
+           sconfig = {}
+           sconfig.update(config)
+           sconfig.update(s.config)
+           sconfig_str = ",".join(["%s:%s"%(key,val) for key,val in sconfig.items()])
+           
+           # abspath of infile
+           infpath = os.path.join(NTUP,s.type,infile)
+
+           # write many lines here
+           line = ';'.join([s.name,infpath,soutput,s.type,sconfig_str])
+           
+           cfg = os.path.join(JOBDIR,'Config%s.%s.run.%s'%(RUN,tag,nrun))
+           abslogpath = os.path.abspath(os.path.join(logrootpath,"log_run_%d"%nrun))
+           
+           if not str(nrun) in f_dict.keys():
+             """
+             WIP
+             if file_exists(JOBDIR,'Config%s.%s.run.%s'%(RUN,tag,nrun)): 
+               
+               # resubmission of failed jobs
+               cfg = cfg.replace(".run.",".resub.")
+               abslogpath = abslogpath.replace("_run_","_resub_")
+             """ 
+             f_dict[str(nrun)] = open(cfg,'w')
+           prepare_path(abslogpath)
+           
+           f_dict[str(nrun)].write('%s\n'%line)
+           nlines += 1
+           nsubjobs += 1 
+           
+           if nsubjobs >= nrun*NJMAX or nsubjobs==totsubjob:
+             
+             f_dict[str(nrun)].close()
+             
+             nrun += 1
+             
+             # configure input path 
+             # --------------------
+             abscfg     = os.path.abspath(cfg)
+             if TESTMODE: nsubjobs = 1
+             
+             vars=[]
+             vars+=["CONFIG=%s"    % abscfg       ]
+             vars+=["INTARBALL=%s" % absintar     ]
+             vars+=["OUTPATH=%s"   % outrootpath  ]
+             vars+=["SCRIPT=%s"    % SCRIPT       ]
+             vars+=["NCORES=%d"    % NCORES       ]
+             
+             VARS = ','.join(vars)
+             
+             cmd = 'qsub'
+             cmd += ' -l nodes=1:ppn=%d'  % NCORES
+             cmd += ' -q %s'              % QUEUE
+             cmd += ' -v "%s"'            % VARS
+             cmd += ' -N j.hist.%s'       % tag
+             cmd += ' -j oe -o %s/log'    % abslogpath
+             cmd += ' -t1-%d'             % nlines
+             cmd += ' %s'                 % BEXEC 
+             print cmd
+             
+             m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
+             print m.communicate()[0]
+
+             nlines = 0
+
+def input_files(subdirs,sample,sys):
+    global NTUP
+    for sdir in subdirs:
+      if sample.name in sdir:
+        return get_subfile(os.path.join(NTUP,sample.type,sdir))
+
+def output_file(sample,infile,sys):
+    return os.path.basename(infile)
+
+def file_exists(path,file):
+    if os.path.exists(path):
+      return file in os.listdir(os.path.join(path))
+    else: return False
+
+def get_subdir(mydir):
+    return [name for name in os.listdir(mydir)
+            if os.path.isdir(os.path.join(mydir, name))]
+
+def get_subfile(mydir):
+    return [os.path.join(mydir,name) for name in os.listdir(mydir)
+            if os.path.isfile(os.path.join(mydir, name))]
+
 
 if __name__=='__main__': main()
 
-
 ## EOF
+
+
+

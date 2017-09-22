@@ -2,59 +2,33 @@
 '''
 samples.py
 
-description:
-
 '''
-
-#------------------------------------------------------------------------------
-# All MC xsections can be found here:
-# https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/CentralMC15ProductionList
-#------------------------------------------------------------------------------
-
 ## modules
 from sample import Sample
 import ROOT
 
 
-## colors
-black = ROOT.kBlack
-white = ROOT.kWhite
-red   = ROOT.kRed
-green = ROOT.kGreen+1
-
-
-
-#-------------------------------------------------------------------------------
+# -----------------------------------------
 # data
-#-------------------------------------------------------------------------------
+# -----------------------------------------
+
 GRL = []
 
-#GRL += ["276262","276329","276336","276416","276511","276689",
-#        "276778","276790","276952","276954","278880","278912",
-#        "278968","279169","279259","279279","279284","279345",
-#        "279515","279598","279685","279764","279813","279867",
-#        "279928","279932","279984","280231","280319","280368",
-#        "280423","280464","280500","280520","280614","280673",
-#        "280753","280853","280862","280950","280977","281070",
-#        "281074","281075","281317","281385","281411","282625",
-#        "282631","282712","282784","282992","283074","283155",
-#        "283270","283429","283608","283780","284006","284154",
-#        "284213","284285","284420","284427","284484"]
-GRL += ["276073", "276778",  "279345",  "280423",  "281130",  "283608",
-        "276147", "276790",  "279515",  "280464",  "281143",  "283780",
-        "276161", "276952",  "279598",  "280500",  "281317",  "284006",
-        "276183", "276954",  "279685",  "280520",  "281381",  "284154",
-        "276189", "278727",  "279764",  "280614",  "281385",  "284213",
-        "276212", "278748",  "279813",  "280673",  "281411",  "284285",
-        "276245", "278880",  "279867",  "280753",  "282625",  "284420",
-        "276262", "278912",  "279928",  "280853",  "282712",  "284427",
-        "276329", "278968",  "279932",  "280862",  "282784",  "284473",
-        "276330", "278970",  "279984",  "280950",  "282992",  "284484",
-        "276336", "279169",  "280231",  "280977",  "283074",  "276416",
-        "279259", "280273",  "281070",  "283155",  "276511",  "279279",
-        "280319", "281074",  "283270",  "276689",  "279284",  "280368",
-        "281075", "283429"]
-ds_name = 'physics_Main_00%s'
+GRL += [ 
+         "00309640","00279764","00307732","00308047","00301918","00309759","00302380",
+         "00306419","00300287","00281074","00306655","00276778","00301932","00307124",
+         "00279259","00280368","00306247","00309516","00304178","00280500","00283429",
+         "00299584","00303201","00304198","00298773","00304128","00303846","00300784",
+         "00303499","00303007","00304308","00299184","00302391","00299340","00305777",
+         "00305380","00300279","00283074","00303943","00301912","00280673","00280231",
+         "00307935","00299147","00301973","00279813","00281385","00310341","00303291",
+         "00284473","00304243","00306278","00279984","00305293","00303421","00282784",
+         "00282712","00302300","00305727","00305291","00283608","00305674","00310863",
+         "00310691","00276511","00309674","00307656","00302137","00299315","00302829",
+         "00305543","00299243","00310405","00278880","00306269","00300418",
+         ]
+
+ds_name = '%s'
 
 for run in GRL:
     name = ds_name % run
@@ -67,666 +41,370 @@ list_runs =[globals()[ds_name%(run)] for run in GRL]
 
 data = Sample(name         = "data",
               tlatex       = "Data 2015",
-              fill_color   = white,
+              fill_color   = ROOT.kWhite,
               fill_style   = 0,
-              line_color   = black,
+              line_color   = ROOT.kBlack,
               line_style   = 1,
-              marker_color = black,
+              marker_color = ROOT.kBlack,
               marker_style = 20,
               daughters    = list_runs,
               )
 
-
-
-#-----------------------------------------------------------------------------
-# W + jets (Madgraph+Pythia8)
-# Notes:
-#     * cross sections: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryWjetsMadgraph
-#-----------------------------------------------------------------------------
-"""
-MadPy8_Wenu_Np0   = Sample( name =  "MadPy8_Wenu_Np0",    xsec = ) 
-MadPy8_Wenu_Np1   = Sample( name =  "MadPy8_Wenu_Np1",    xsec = ) 
-MadPy8_Wenu_Np2   = Sample( name =  "MadPy8_Wenu_Np2",    xsec = ) 
-MadPy8_Wenu_Np3   = Sample( name =  "MadPy8_Wenu_Np3",    xsec = ) 
-MadPy8_Wmunu_Np2  = Sample( name =  "MadPy8_Wmunu_Np2",   xsec = ) 
-MadPy8_Wmunu_Np3  = Sample( name =  "MadPy8_Wmunu_Np3",   xsec = ) 
-MadPy8_Wmunu_Np4  = Sample( name =  "MadPy8_Wmunu_Np4",   xsec = ) 
-MadPy8_Wtaunu_Np0 = Sample( name =  "MadPy8_Wtaunu_Np0",  xsec = ) 
-MadPy8_Wtaunu_Np1 = Sample( name =  "MadPy8_Wtaunu_Np1",  xsec = ) 
-MadPy8_Wtaunu_Np2 = Sample( name =  "MadPy8_Wtaunu_Np2",  xsec = ) 
-MadPy8_Wtaunu_Np3 = Sample( name =  "MadPy8_Wtaunu_Np3",  xsec = ) 
-MadPy8_Wtaunu_Np4 = Sample( name =  "MadPy8_Wtaunu_Np4",  xsec = ) 
-"""
-
-
-#-----------------------------------------------------------------------------
-# Z + jets (Madgraph+Pythia8)
-# Notes:
-#     * cross sections: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryZjetsMadgraph 
-#-----------------------------------------------------------------------------
-"""
-MadPy8_Zee_lowMll_Np0    = Sample( name =  "MadPy8_Zee_lowMll_Np0",    xsec = )
-MadPy8_Zee_lowMll_Np1    = Sample( name =  "MadPy8_Zee_lowMll_Np1",    xsec = )
-MadPy8_Zee_lowMll_Np2    = Sample( name =  "MadPy8_Zee_lowMll_Np2",    xsec = )
-MadPy8_Zee_lowMll_Np3    = Sample( name =  "MadPy8_Zee_lowMll_Np3",    xsec = )
-MadPy8_Zee_Np0           = Sample( name =  "MadPy8_Zee_Np0",           xsec = )
-MadPy8_Zee_Np1           = Sample( name =  "MadPy8_Zee_Np1",           xsec = )
-MadPy8_Zee_Np2           = Sample( name =  "MadPy8_Zee_Np2",           xsec = )
-MadPy8_Zee_Np3           = Sample( name =  "MadPy8_Zee_Np3",           xsec = )
-MadPy8_Zee_Np4           = Sample( name =  "MadPy8_Zee_Np4",           xsec = )
-MadPy8_Zmumu_lowMll_Np0  = Sample( name =  "MadPy8_Zmumu_lowMll_Np0",  xsec = )
-MadPy8_Zmumu_lowMll_Np1  = Sample( name =  "MadPy8_Zmumu_lowMll_Np1",  xsec = )
-MadPy8_Zmumu_lowMll_Np2  = Sample( name =  "MadPy8_Zmumu_lowMll_Np2",  xsec = )
-MadPy8_Zmumu_lowMll_Np3  = Sample( name =  "MadPy8_Zmumu_lowMll_Np3",  xsec = )
-MadPy8_Zmumu_lowMll_Np4  = Sample( name =  "MadPy8_Zmumu_lowMll_Np4",  xsec = )
-MadPy8_Zmumu_Np0         = Sample( name =  "MadPy8_Zmumu_Np0",         xsec = )
-MadPy8_Zmumu_Np1         = Sample( name =  "MadPy8_Zmumu_Np1",         xsec = )
-MadPy8_Zmumu_Np2         = Sample( name =  "MadPy8_Zmumu_Np2",         xsec = )
-MadPy8_Zmumu_Np3         = Sample( name =  "MadPy8_Zmumu_Np3",         xsec = )
-MadPy8_Zmumu_Np4         = Sample( name =  "MadPy8_Zmumu_Np4",         xsec = )
-MadPy8_Ztt_lowMll_Np0    = Sample( name =  "MadPy8_Ztt_lowMll_Np0",    xsec = )
-MadPy8_Ztt_lowMll_Np1    = Sample( name =  "MadPy8_Ztt_lowMll_Np1",    xsec = )
-MadPy8_Ztt_lowMll_Np2    = Sample( name =  "MadPy8_Ztt_lowMll_Np2",    xsec = )
-MadPy8_Ztt_lowMll_Np3    = Sample( name =  "MadPy8_Ztt_lowMll_Np3",    xsec = )
-MadPy8_Ztt_lowMll_Np4    = Sample( name =  "MadPy8_Ztt_lowMll_Np4",    xsec = )
-MadPy8_Ztt_Np0           = Sample( name =  "MadPy8_Ztt_Np0",           xsec = )
-MadPy8_Ztt_Np1           = Sample( name =  "MadPy8_Ztt_Np1",           xsec = )
-MadPy8_Ztt_Np2           = Sample( name =  "MadPy8_Ztt_Np2",           xsec = )
-MadPy8_Ztt_Np3           = Sample( name =  "MadPy8_Ztt_Np3",           xsec = )
-MadPy8_Ztt_Np4           = Sample( name =  "MadPy8_Ztt_Np4",           xsec = )
-"""
-
-
-#-----------------------------------------------------------------------------
-# W + jets (Powheg+Pythia8)
-# Notes:
-#     * cross sections: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryWjetsPowPy8Incl
-#-----------------------------------------------------------------------------
-
-PoPy8_Wminusenu   = Sample( name =  "PoPy8_Wminusenu",    xsec = 8579.00109999)
-PoPy8_Wminusmunu  = Sample( name =  "PoPy8_Wminusmunu",   xsec = 8579.00109999)
-PoPy8_Wminustaunu = Sample( name =  "PoPy8_Wminustaunu",  xsec = 8579.00109999)
-PoPy8_Wplusenu    = Sample( name =  "PoPy8_Wplusenu",     xsec = 11500.9154)
-PoPy8_Wplusmunu   = Sample( name =  "PoPy8_Wplusmunu",    xsec = 11500.9154)
-PoPy8_Wplustaunu  = Sample( name =  "PoPy8_Wplustaunu",   xsec = 11500.9154)
-
-Wenujets = Sample( name =   'Wenujets',
-                  tlatex = 'W #rightarrow e#nu+jets',
-                  fill_color = ROOT.kCyan+1,
-                  line_color =  ROOT.kCyan+2,
-                  marker_color =  ROOT.kCyan+2,
-                  daughters = [
-                               PoPy8_Wminusenu,
-			       PoPy8_Wplusenu,
-                              ],
-                )
-Wmunujets = Sample( name =   'Wmunujets',
-                  tlatex = 'W #rightarrow #mu #nu+jets',
-                  fill_color = ROOT.kAzure+1,
-                  line_color =  ROOT.kAzure+2,
-                  marker_color =  ROOT.kAzure+2,
-                  daughters = [
-                               PoPy8_Wminusmunu,
-                               PoPy8_Wplusmunu,
-                              ],
-                )
-Wtaujets = Sample( name =   'Wtaujets',
-                  tlatex = 'W #rightarrow #tau#nu+jets',
-                  fill_color = ROOT.kGreen+1,
-                  line_color =  ROOT.kGreen+2,
-                  marker_color =  ROOT.kGreen+2,
-                  daughters = [
-                               PoPy8_Wminustaunu,
-                               PoPy8_Wplustaunu,
-                              ],
-                )
-
-# merge all W+jets samples
-Wjets = Sample( name =   'Wjets',
-                  tlatex = 'W #rightarrow l#nu+jets',
-                  fill_color = ROOT.kBlue+1,
-                  line_color =  ROOT.kBlue+2,
-                  marker_color =  ROOT.kBlue+2,
-                  daughters = [Wenujets,
-                               Wmunujets,
-                               Wtaujets,
-                              ],
-                )
-
-
-
-#-----------------------------------------------------------------------------
-# Z + jets (Powheg+Pythia8)
-# Notes:
-#     * cross sections: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryZjetsPowPy8Incl
-#-----------------------------------------------------------------------------
-
-PoPy8_Zee   = Sample( name =  "PoPy8_Zee",    xsec = 1950.63210001)
-PoPy8_Zmumu = Sample( name =  "PoPy8_Zmumu",  xsec = 1950.63210001)
-PoPy8_Ztt   = Sample( name =  "PoPy8_Ztt",    xsec = 1950.63210001)
-
-Zmumujets = Sample( name =   'Zmumujets',
-                  tlatex = 'Z #rightarrow #mu#mu+jets',
-                  fill_color = ROOT.kSpring+1,
-                  line_color =  ROOT.kSpring+2,
-                  marker_color =  ROOT.kSpring+2,
-                  daughters = [
-			       PoPy8_Zmumu,
-                              ],
-                )
-
-
-Zeejets = Sample( name =   'Zeejets',
-                  tlatex = 'Z #rightarrow ee+jets',
-                  fill_color = ROOT.kBlue+1,
-                  line_color =  ROOT.kBlue+2,
-                  marker_color =  ROOT.kBlue+2,
-                  daughters = [
-                               PoPy8_Zee,
-                              ],
-                )
-
-Zttjets = Sample( name =   'Zttjets',
-                  tlatex = 'Z #rightarrow #tau#tau+jets',
-                  fill_color = ROOT.kYellow-4,
-                  line_color =  ROOT.kYellow-3,
-                  marker_color =  ROOT.kYellow-3,
-                  daughters = [
-                               PoPy8_Ztt,
-                              ],
-                )
-
-# merge light leptons ones
-Zlljets = Sample( name =   'Zlljets',
-                  tlatex = 'Z #rightarrow ll+jets',
-                  fill_color = ROOT.kOrange+7,
-                  line_color =  ROOT.kOrange+4,
-                  marker_color =  ROOT.kGreen+4,
-                  daughters = [
-                               Zmumujets,
-                               Zeejets,
-                              ],
-                )
-
-
-#-----------------------------------------------------------------------------
-# W + jets (Sherpa)
-# Notes:
-#       * cross sections: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryWjetsSherpaLight (light filter)
-#                         https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryWjetsSherpaC     (C filter) 
-#                         https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryWjetsSherpaB     (B filter) 
-#-----------------------------------------------------------------------------
-
-#-----
-# Wenu
-#-----
-
-Sh_NNPDF30NNLO_Wenu_Pt0_70_CVetoBVeto      = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt0_70_CVetoBVeto",      xsec = 17217.7589809) 
-Sh_NNPDF30NNLO_Wenu_Pt70_140_CVetoBVeto    = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt70_140_CVetoBVeto",    xsec = 419.458902664)
-Sh_NNPDF30NNLO_Wenu_Pt140_280_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt140_280_CVetoBVeto",   xsec = 55.812213827 )
-Sh_NNPDF30NNLO_Wenu_Pt280_500_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt280_500_CVetoBVeto",   xsec = 3.415293894  )
-Sh_NNPDF30NNLO_Wenu_Pt500_700_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt500_700_CVetoBVeto",   xsec = 0.204156559  )
-Sh_NNPDF30NNLO_Wenu_Pt700_1000_CVetoBVeto  = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt700_1000_CVetoBVeto",  xsec = 0.033518757  )
-Sh_NNPDF30NNLO_Wenu_Pt1000_2000_CVetoBVeto = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt1000_2000_CVetoBVeto", xsec = 0.004526723  )
-                                                                                                             
-Sh_NNPDF30NNLO_Wenu_Pt0_70_CFiltBVet       = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt0_70_CFiltBVet",       xsec = 957.166425598)
-Sh_NNPDF30NNLO_Wenu_Pt70_140_CFiltBVet     = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt70_140_CFiltBVet",     xsec = 101.537442087)
-Sh_NNPDF30NNLO_Wenu_Pt140_280_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt140_280_CFiltBVet",    xsec = 16.838461137 )
-Sh_NNPDF30NNLO_Wenu_Pt280_500_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt280_500_CFiltBVet",    xsec = 1.159086019  )
-Sh_NNPDF30NNLO_Wenu_Pt500_700_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt500_700_CFiltBVet",    xsec = 0.076063692  )
-Sh_NNPDF30NNLO_Wenu_Pt700_1000_CFiltBVet   = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt700_1000_CFiltBVet",   xsec = 0.011205872  )
-Sh_NNPDF30NNLO_Wenu_Pt1000_2000_CFiltBVet  = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt1000_2000_CFiltBVet",  xsec = 0.001755119  )
-                                                                                                             
-Sh_NNPDF30NNLO_Wenu_Pt0_70_BFilter         = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt0_70_BFilter",         xsec = 1161.20628355)
-Sh_NNPDF30NNLO_Wenu_Pt70_140_BFilter       = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt70_140_BFilter",       xsec = 55.459634594 )
-Sh_NNPDF30NNLO_Wenu_Pt140_280_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt140_280_BFilter",      xsec = 9.19142934   )
-Sh_NNPDF30NNLO_Wenu_Pt280_500_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt280_500_BFilter",      xsec = 0.679805485  )
-Sh_NNPDF30NNLO_Wenu_Pt500_700_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt500_700_BFilter",      xsec = 0.048845728  )
-Sh_NNPDF30NNLO_Wenu_Pt700_1000_BFilter     = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt700_1000_BFilter",     xsec = 0.00959807   )
-Sh_NNPDF30NNLO_Wenu_Pt1000_2000_BFilter    = Sample( name =  "Sh_NNPDF30NNLO_Wenu_Pt1000_2000_BFilter",    xsec = 0.001258268  )
-
-Wenu = Sample( name =   'Wenu',
-                  tlatex = 'W #rightarrow e#nu+jets',
-                  fill_color = ROOT.kRed+1,
-                  line_color =  ROOT.kRed+2,
-                  marker_color =  ROOT.kRed+2,
-                  daughters = [
-                               Sh_NNPDF30NNLO_Wenu_Pt0_70_CVetoBVeto,        
-                               Sh_NNPDF30NNLO_Wenu_Pt70_140_CVetoBVeto,                                    
-                               Sh_NNPDF30NNLO_Wenu_Pt140_280_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Wenu_Pt280_500_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Wenu_Pt500_700_CVetoBVeto,     
-                               #Sh_NNPDF30NNLO_Wenu_Pt700_1000_CVetoBVeto,    missing!!!
-                               #Sh_NNPDF30NNLO_Wenu_Pt1000_2000_CVetoBVeto,   missing!!!
-                               Sh_NNPDF30NNLO_Wenu_Pt0_70_CFiltBVet,      
-                               Sh_NNPDF30NNLO_Wenu_Pt70_140_CFiltBVet,    
-                               Sh_NNPDF30NNLO_Wenu_Pt140_280_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Wenu_Pt280_500_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Wenu_Pt500_700_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Wenu_Pt700_1000_CFiltBVet,  
-                               #Sh_NNPDF30NNLO_Wenu_Pt1000_2000_CFiltBVet,    missing!!! 
-                               Sh_NNPDF30NNLO_Wenu_Pt0_70_BFilter,           
-                               Sh_NNPDF30NNLO_Wenu_Pt70_140_BFilter,         
-                               Sh_NNPDF30NNLO_Wenu_Pt140_280_BFilter,        
-                               Sh_NNPDF30NNLO_Wenu_Pt280_500_BFilter,        
-                               Sh_NNPDF30NNLO_Wenu_Pt500_700_BFilter,        
-                               Sh_NNPDF30NNLO_Wenu_Pt700_1000_BFilter,       
-                               Sh_NNPDF30NNLO_Wenu_Pt1000_2000_BFilter,      
-                              ],
-                ) 
-
-
-#------
-# Wmunu
-#------
-
-Sh_NNPDF30NNLO_Wmunu_Pt0_70_CVetoBVeto      = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt0_70_CVetoBVeto",      xsec = 17340.6393371)
-Sh_NNPDF30NNLO_Wmunu_Pt70_140_CVetoBVeto    = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt70_140_CVetoBVeto",    xsec = 419.506840815) 
-Sh_NNPDF30NNLO_Wmunu_Pt140_280_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt140_280_CVetoBVeto",   xsec = 55.841494484 )
-Sh_NNPDF30NNLO_Wmunu_Pt280_500_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt280_500_CVetoBVeto",   xsec = 3.432031461  )
-Sh_NNPDF30NNLO_Wmunu_Pt500_700_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt500_700_CVetoBVeto",   xsec = 0.202350513  )
-Sh_NNPDF30NNLO_Wmunu_Pt700_1000_CVetoBVeto  = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt700_1000_CVetoBVeto",  xsec = 0.035335673  )
-Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_CVetoBVeto = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_CVetoBVeto", xsec = 0.004290787  )
-                                                                                                                  
-Sh_NNPDF30NNLO_Wmunu_Pt0_70_CFiltBVet       = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt0_70_CFiltBVet",       xsec = 919.838769744)
-Sh_NNPDF30NNLO_Wmunu_Pt70_140_CFiltBVet     = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt70_140_CFiltBVet",     xsec = 100.564174092)
-Sh_NNPDF30NNLO_Wmunu_Pt140_280_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt140_280_CFiltBVet",    xsec = 16.649629005 )
-Sh_NNPDF30NNLO_Wmunu_Pt280_500_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt280_500_CFiltBVet",    xsec = 1.160810758  )
-Sh_NNPDF30NNLO_Wmunu_Pt500_700_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt500_700_CFiltBVet",    xsec = 0.075282837  )
-Sh_NNPDF30NNLO_Wmunu_Pt700_1000_CFiltBVet   = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt700_1000_CFiltBVet",   xsec = 0.012748102  )
-Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_CFiltBVet  = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_CFiltBVet",  xsec = 0.001699121  )
-                                                                                                                  
-Sh_NNPDF30NNLO_Wmunu_Pt0_70_BFilter         = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt0_70_BFilter",         xsec = 1158.97092326)
-Sh_NNPDF30NNLO_Wmunu_Pt70_140_BFilter       = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt70_140_BFilter",       xsec = 55.568454407 )
-Sh_NNPDF30NNLO_Wmunu_Pt140_280_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt140_280_BFilter",      xsec = 9.22013311   )
-Sh_NNPDF30NNLO_Wmunu_Pt280_500_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt280_500_BFilter",      xsec = 0.680142792  )
-Sh_NNPDF30NNLO_Wmunu_Pt500_700_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt500_700_BFilter",      xsec = 0.051706999  )
-Sh_NNPDF30NNLO_Wmunu_Pt700_1000_BFilter     = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt700_1000_BFilter",     xsec = 0.00874855   )
-Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_BFilter    = Sample( name =  "Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_BFilter",    xsec = 0.001139207  )
-
-Wmunu = Sample( name =   'Wmunu',
-                  tlatex = 'W #rightarrow #mu#nu+jets',
-                  fill_color = ROOT.kGreen+1,
-                  line_color =  ROOT.kGreen+2,
-                  marker_color =  ROOT.kGreen+2,
-                  daughters = [
-                               Sh_NNPDF30NNLO_Wmunu_Pt0_70_CVetoBVeto,        
-                               Sh_NNPDF30NNLO_Wmunu_Pt70_140_CVetoBVeto,                                    
-                               #Sh_NNPDF30NNLO_Wmunu_Pt140_280_CVetoBVeto,     missing !!!
-                               #Sh_NNPDF30NNLO_Wmunu_Pt280_500_CVetoBVeto,     missing !!!
-                               #Sh_NNPDF30NNLO_Wmunu_Pt500_700_CVetoBVeto,     missing !!!
-                               #Sh_NNPDF30NNLO_Wmunu_Pt700_1000_CVetoBVeto,    missing !!!
-                               #Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_CVetoBVeto,   missing !!!
-                               Sh_NNPDF30NNLO_Wmunu_Pt0_70_CFiltBVet,      
-                               Sh_NNPDF30NNLO_Wmunu_Pt70_140_CFiltBVet,    
-                               Sh_NNPDF30NNLO_Wmunu_Pt140_280_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Wmunu_Pt280_500_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Wmunu_Pt500_700_CFiltBVet,   
-                               #Sh_NNPDF30NNLO_Wmunu_Pt700_1000_CFiltBVet,     missing !!!
-                               #Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_CFiltBVet,    missing !!!
-                               Sh_NNPDF30NNLO_Wmunu_Pt0_70_BFilter,           
-                               Sh_NNPDF30NNLO_Wmunu_Pt70_140_BFilter,         
-                               Sh_NNPDF30NNLO_Wmunu_Pt140_280_BFilter,        
-                               Sh_NNPDF30NNLO_Wmunu_Pt280_500_BFilter,        
-                               Sh_NNPDF30NNLO_Wmunu_Pt500_700_BFilter,        
-                               Sh_NNPDF30NNLO_Wmunu_Pt700_1000_BFilter,       
-                               Sh_NNPDF30NNLO_Wmunu_Pt1000_2000_BFilter,      
-                              ],
-                ) 
-
-#-------
-# Wtaunu
-#-------
-
-Sh_NNPDF30NNLO_Wtaunu_Pt0_70_CVetoBVeto      = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt0_70_CVetoBVeto",      xsec = 17314.4290983 )
-Sh_NNPDF30NNLO_Wtaunu_Pt70_140_CVetoBVeto    = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt70_140_CVetoBVeto",    xsec = 419.122578495 ) 
-Sh_NNPDF30NNLO_Wtaunu_Pt140_280_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt140_280_CVetoBVeto",   xsec = 55.916387347  )
-Sh_NNPDF30NNLO_Wtaunu_Pt280_500_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt280_500_CVetoBVeto",   xsec = 3.406527101   )
-Sh_NNPDF30NNLO_Wtaunu_Pt500_700_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt500_700_CVetoBVeto",   xsec = 0.197106496   )
-Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_CVetoBVeto  = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_CVetoBVeto",  xsec = 0.034681733   )
-Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_CVetoBVeto = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_CVetoBVeto", xsec = 0.004373938   )
-                                                                                                                 
-Sh_NNPDF30NNLO_Wtaunu_Pt0_70_CFiltBVet       = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt0_70_CFiltBVet",       xsec =  945.692972992)
-Sh_NNPDF30NNLO_Wtaunu_Pt70_140_CFiltBVet     = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt70_140_CFiltBVet",     xsec =  101.503853138)
-Sh_NNPDF30NNLO_Wtaunu_Pt140_280_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt140_280_CFiltBVet",    xsec =  16.794548709 )
-Sh_NNPDF30NNLO_Wtaunu_Pt280_500_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt280_500_CFiltBVet",    xsec =  1.149628406  )
-Sh_NNPDF30NNLO_Wtaunu_Pt500_700_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt500_700_CFiltBVet",    xsec =  0.074064213  )
-Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_CFiltBVet   = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_CFiltBVet",   xsec =  0.012089998  )
-Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_CFiltBVet  = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_CFiltBVet",  xsec =  0.001705245  )
-                                                                                                                 
-Sh_NNPDF30NNLO_Wtaunu_Pt0_70_BFilter         = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt0_70_BFilter",         xsec =  1159.25995066)
-Sh_NNPDF30NNLO_Wtaunu_Pt70_140_BFilter       = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt70_140_BFilter",       xsec =  55.038425769 )
-Sh_NNPDF30NNLO_Wtaunu_Pt140_280_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt140_280_BFilter",      xsec =  9.259878116  )
-Sh_NNPDF30NNLO_Wtaunu_Pt280_500_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt280_500_BFilter",      xsec =  0.692107677  )
-Sh_NNPDF30NNLO_Wtaunu_Pt500_700_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt500_700_BFilter",      xsec =  0.05020675   )
-Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_BFilter     = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_BFilter",     xsec =  0.008573241  )
-Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_BFilter    = Sample( name =  "Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_BFilter",    xsec =  0.001282272  )
-
-Wtaunu = Sample( name =   'Wtaunu',
-                  tlatex = 'W #rightarrow #tau#nu+jets',
-                  fill_color = ROOT.kBlue+1,
-                  line_color =  ROOT.kBlue+2,
-                  marker_color =  ROOT.kBlue+2,
-                  daughters = [
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt0_70_CVetoBVeto,     missing !!!
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt70_140_CVetoBVeto,                                    
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt140_280_CVetoBVeto,     
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt280_500_CVetoBVeto,     
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt500_700_CVetoBVeto,     
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_CVetoBVeto,    
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_CVetoBVeto,   
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt0_70_CFiltBVet,      
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt70_140_CFiltBVet,    
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt140_280_CFiltBVet,   
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt280_500_CFiltBVet,   
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt500_700_CFiltBVet,   
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_CFiltBVet,  
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_CFiltBVet, 
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt0_70_BFilter,           
-                               Sh_NNPDF30NNLO_Wtaunu_Pt70_140_BFilter,         
-                               Sh_NNPDF30NNLO_Wtaunu_Pt140_280_BFilter,        
-                               Sh_NNPDF30NNLO_Wtaunu_Pt280_500_BFilter,        
-                               Sh_NNPDF30NNLO_Wtaunu_Pt500_700_BFilter,        
-                               Sh_NNPDF30NNLO_Wtaunu_Pt700_1000_BFilter,       
-                               #Sh_NNPDF30NNLO_Wtaunu_Pt1000_2000_BFilter,      
-                              ],
-                ) 
-
-
-#-----------------------------------------------------------------------------
-# Z + jets (Sherpa)
-# Notes:
-#       * cross sections: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryZjetsSherpaLight (light filter)
-#                         https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryZjetsSherpaC     (C filter) 
-#                         https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryZjetsSherpaB     (B filter) 
-#-----------------------------------------------------------------------------
-
-#-----
-# Zee
-#-----
-
-Sh_NNPDF30NNLO_Zee_Pt0_70_CVetoBVeto      = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt0_70_CVetoBVeto",      xsec = 1549.26000693) 
-Sh_NNPDF30NNLO_Zee_Pt70_140_CVetoBVeto    = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt70_140_CVetoBVeto",    xsec = 44.22776987  )
-Sh_NNPDF30NNLO_Zee_Pt140_280_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt140_280_CVetoBVeto",   xsec = 6.506584189  )
-Sh_NNPDF30NNLO_Zee_Pt280_500_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt280_500_CVetoBVeto",   xsec = 0.407251422  )
-Sh_NNPDF30NNLO_Zee_Pt500_700_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt500_700_CVetoBVeto",   xsec = 0.024016122  )
-Sh_NNPDF30NNLO_Zee_Pt700_1000_CVetoBVeto  = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt700_1000_CVetoBVeto",  xsec = 0.004150103  )
-Sh_NNPDF30NNLO_Zee_Pt1000_2000_CVetoBVeto = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt1000_2000_CVetoBVeto", xsec = 0.000504024  )
-                                                                                                        
-Sh_NNPDF30NNLO_Zee_Pt0_70_CFiltBVet       = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt0_70_CFiltBVet",       xsec = 282.772058138)
-Sh_NNPDF30NNLO_Zee_Pt70_140_CFiltBVet     = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt70_140_CFiltBVet",     xsec = 14.952742932 )
-Sh_NNPDF30NNLO_Zee_Pt140_280_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt140_280_CFiltBVet",    xsec = 2.538900646  )
-Sh_NNPDF30NNLO_Zee_Pt280_500_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt280_500_CFiltBVet",    xsec = 0.17993672   )
-Sh_NNPDF30NNLO_Zee_Pt500_700_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt500_700_CFiltBVet",    xsec = 0.011351653  )
-Sh_NNPDF30NNLO_Zee_Pt700_1000_CFiltBVet   = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt700_1000_CFiltBVet",   xsec = 0.002197952  )
-Sh_NNPDF30NNLO_Zee_Pt1000_2000_CFiltBVet  = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt1000_2000_CFiltBVet",  xsec = 0.000296457  )
-                                                                                                        
-Sh_NNPDF30NNLO_Zee_Pt0_70_BFilter         = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt0_70_BFilter",         xsec = 158.396126791)
-Sh_NNPDF30NNLO_Zee_Pt70_140_BFilter       = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt70_140_BFilter",       xsec = 8.994572804  )
-Sh_NNPDF30NNLO_Zee_Pt140_280_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt140_280_BFilter",      xsec = 1.579281881  )
-Sh_NNPDF30NNLO_Zee_Pt280_500_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt280_500_BFilter",      xsec = 0.107766448  )
-Sh_NNPDF30NNLO_Zee_Pt500_700_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt500_700_BFilter",      xsec = 0.007056014  )
-Sh_NNPDF30NNLO_Zee_Pt700_1000_BFilter     = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt700_1000_BFilter",     xsec = 0.001344726  )
-Sh_NNPDF30NNLO_Zee_Pt1000_2000_BFilter    = Sample( name =  "Sh_NNPDF30NNLO_Zee_Pt1000_2000_BFilter",    xsec = 0.000183289  )
-
-Zee = Sample( name =   'Zee',
-                  tlatex = 'Z #rightarrow ee+jets',
-                  fill_color = ROOT.kOrange+1,
-                  line_color =  ROOT.kOrange+2,
-                  marker_color =  ROOT.kOrange+2,
-                  daughters = [
-                               Sh_NNPDF30NNLO_Zee_Pt0_70_CVetoBVeto,        
-                               Sh_NNPDF30NNLO_Zee_Pt70_140_CVetoBVeto,                                    
-                               Sh_NNPDF30NNLO_Zee_Pt140_280_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Zee_Pt280_500_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Zee_Pt500_700_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Zee_Pt700_1000_CVetoBVeto,    
-                               #Sh_NNPDF30NNLO_Zee_Pt1000_2000_CVetoBVeto,   
-                               Sh_NNPDF30NNLO_Zee_Pt0_70_CFiltBVet,      
-                               Sh_NNPDF30NNLO_Zee_Pt70_140_CFiltBVet,    
-                               Sh_NNPDF30NNLO_Zee_Pt140_280_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Zee_Pt280_500_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Zee_Pt500_700_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Zee_Pt700_1000_CFiltBVet,  
-                               Sh_NNPDF30NNLO_Zee_Pt1000_2000_CFiltBVet, 
-                               Sh_NNPDF30NNLO_Zee_Pt0_70_BFilter,           
-                               Sh_NNPDF30NNLO_Zee_Pt70_140_BFilter,         
-                               Sh_NNPDF30NNLO_Zee_Pt140_280_BFilter,        
-                               Sh_NNPDF30NNLO_Zee_Pt280_500_BFilter,        
-                               Sh_NNPDF30NNLO_Zee_Pt500_700_BFilter,        
-                               Sh_NNPDF30NNLO_Zee_Pt700_1000_BFilter,       
-                               Sh_NNPDF30NNLO_Zee_Pt1000_2000_BFilter,      
-                              ],
-                ) 
-
-
-#-------
-# Zmumu
-#-------
-
-Sh_NNPDF30NNLO_Zmumu_Pt0_70_CVetoBVeto      = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt0_70_CVetoBVeto",      xsec = 1545.03412569 )
-Sh_NNPDF30NNLO_Zmumu_Pt70_140_CVetoBVeto    = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt70_140_CVetoBVeto",    xsec = 44.406818306  ) 
-Sh_NNPDF30NNLO_Zmumu_Pt140_280_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt140_280_CVetoBVeto",   xsec = 6.403162188   )
-Sh_NNPDF30NNLO_Zmumu_Pt280_500_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt280_500_CVetoBVeto",   xsec = 0.402575488   )
-Sh_NNPDF30NNLO_Zmumu_Pt500_700_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt500_700_CVetoBVeto",   xsec = 0.023490348   )
-Sh_NNPDF30NNLO_Zmumu_Pt700_1000_CVetoBVeto  = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt700_1000_CVetoBVeto",  xsec = 0.004066761   )
-Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_CVetoBVeto = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_CVetoBVeto", xsec = 0.000566401   )
-                                                                                                        
-Sh_NNPDF30NNLO_Zmumu_Pt0_70_CFiltBVet       = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt0_70_CFiltBVet",       xsec =  281.969546386)
-Sh_NNPDF30NNLO_Zmumu_Pt70_140_CFiltBVet     = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt70_140_CFiltBVet",     xsec =  15.044569464 )
-Sh_NNPDF30NNLO_Zmumu_Pt140_280_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt140_280_CFiltBVet",    xsec =  2.535541296  )
-Sh_NNPDF30NNLO_Zmumu_Pt280_500_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt280_500_CFiltBVet",    xsec =  0.185533832  )
-Sh_NNPDF30NNLO_Zmumu_Pt500_700_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt500_700_CFiltBVet",    xsec =  0.011157277  )
-Sh_NNPDF30NNLO_Zmumu_Pt700_1000_CFiltBVet   = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt700_1000_CFiltBVet",   xsec =  0.002053806  )
-Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_CFiltBVet  = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_CFiltBVet",  xsec =  0.000265446  )
-                                                                                                        
-Sh_NNPDF30NNLO_Zmumu_Pt0_70_BFilter         = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt0_70_BFilter",         xsec =  158.199011129)
-Sh_NNPDF30NNLO_Zmumu_Pt70_140_BFilter       = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt70_140_BFilter",       xsec =  8.937479488  )
-Sh_NNPDF30NNLO_Zmumu_Pt140_280_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt140_280_BFilter",      xsec =  1.554540292  )
-Sh_NNPDF30NNLO_Zmumu_Pt280_500_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt280_500_BFilter",      xsec =  0.113373913  )
-Sh_NNPDF30NNLO_Zmumu_Pt500_700_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt500_700_BFilter",      xsec =  0.007371738  )
-Sh_NNPDF30NNLO_Zmumu_Pt700_1000_BFilter     = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt700_1000_BFilter",     xsec =  0.001297194  )
-Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_BFilter    = Sample( name =  "Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_BFilter",    xsec =  0.000190262  )
-
-Zmumu = Sample( name =   'Zmumu',
-                  tlatex = 'Z #rightarrow #mu#mu+jets',
-                  fill_color = ROOT.kSpring+1,
-                  line_color =  ROOT.kSpring+2,
-                  marker_color =  ROOT.kSpring+2,
-                  daughters = [
-                               Sh_NNPDF30NNLO_Zmumu_Pt0_70_CVetoBVeto,        
-                               Sh_NNPDF30NNLO_Zmumu_Pt70_140_CVetoBVeto,                                    
-                               #Sh_NNPDF30NNLO_Zmumu_Pt140_280_CVetoBVeto,     missing !!!
-                               #Sh_NNPDF30NNLO_Zmumu_Pt280_500_CVetoBVeto,     
-                               #Sh_NNPDF30NNLO_Zmumu_Pt500_700_CVetoBVeto,     
-                               #Sh_NNPDF30NNLO_Zmumu_Pt700_1000_CVetoBVeto,    
-                               #Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_CVetoBVeto,   
-                               #Sh_NNPDF30NNLO_Zmumu_Pt0_70_CFiltBVet,      
-                               Sh_NNPDF30NNLO_Zmumu_Pt70_140_CFiltBVet,    
-                               Sh_NNPDF30NNLO_Zmumu_Pt140_280_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Zmumu_Pt280_500_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Zmumu_Pt500_700_CFiltBVet,   
-                               #Sh_NNPDF30NNLO_Zmumu_Pt700_1000_CFiltBVet,  
-                               #Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_CFiltBVet, 
-                               Sh_NNPDF30NNLO_Zmumu_Pt0_70_BFilter,           
-                               Sh_NNPDF30NNLO_Zmumu_Pt70_140_BFilter,         
-                               Sh_NNPDF30NNLO_Zmumu_Pt140_280_BFilter,        
-                               Sh_NNPDF30NNLO_Zmumu_Pt280_500_BFilter,        
-                               Sh_NNPDF30NNLO_Zmumu_Pt500_700_BFilter,        
-                               Sh_NNPDF30NNLO_Zmumu_Pt700_1000_BFilter,       
-                               Sh_NNPDF30NNLO_Zmumu_Pt1000_2000_BFilter,      
-                              ],
-                ) 
-
-#---------
+# -----------------------------------------
 # Ztautau
-#---------
+# -----------------------------------------
+Sh221_PDF30_Ztt_MHPT0_70_l13l7                    = Sample(  name="Sh221_PDF30_Ztt_MHPT0_70_l13l7"          , dsid="344772" , xsec=50.1405  , kfactor=0.9751 ) 
+Sh221_PDF30_Ztt_MHPT0_70_l15h20                   = Sample(  name="Sh221_PDF30_Ztt_MHPT0_70_l15h20"         , dsid="344774" , xsec=105.6425 , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT70_140_l13l7                  = Sample(  name="Sh221_PDF30_Ztt_MHPT70_140_l13l7"        , dsid="344776" , xsec=3.8705   , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT70_140_l15h20                 = Sample(  name="Sh221_PDF30_Ztt_MHPT70_140_l15h20"       , dsid="344778" , xsec=7.945    , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT140_280_l13l7                 = Sample(  name="Sh221_PDF30_Ztt_MHPT140_280_l13l7"       , dsid="344780" , xsec=1.68222  , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT140_280_l15h20                = Sample(  name="Sh221_PDF30_Ztt_MHPT140_280_l15h20"      , dsid="344781" , xsec=3.8047   , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT280_500_CVetoBVeto            = Sample(  name="Sh221_PDF30_Ztt_MHPT280_500_CVetoBVeto"  , dsid="364137" , xsec=4.7911   , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT280_500_CFiltBVet             = Sample(  name="Sh221_PDF30_Ztt_MHPT280_500_CFiltBVet"   , dsid="364138" , xsec=2.2756   , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT280_500_BFilter               = Sample(  name="Sh221_PDF30_Ztt_MHPT280_500_BFilter"     , dsid="364139" , xsec=1.5028   , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT500_1000                      = Sample(  name="Sh221_PDF30_Ztt_MHPT500_1000"            , dsid="364140" , xsec=1.8096   , kfactor=0.9751 )
+Sh221_PDF30_Ztt_MHPT1000_E_CMS                    = Sample(  name="Sh221_PDF30_Ztt_MHPT1000_E_CMS"          , dsid="364141" , xsec=0.14834  , kfactor=0.9751 )
 
-Sh_NNPDF30NNLO_Ztt_Pt0_70_CVetoBVeto      = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt0_70_CVetoBVeto",      xsec = 1540.4178651 )
-Sh_NNPDF30NNLO_Ztt_Pt70_140_CVetoBVeto    = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt70_140_CVetoBVeto",    xsec = 44.65676361  ) 
-Sh_NNPDF30NNLO_Ztt_Pt140_280_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt140_280_CVetoBVeto",   xsec = 6.455693712  )
-Sh_NNPDF30NNLO_Ztt_Pt280_500_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt280_500_CVetoBVeto",   xsec = 0.401065     )
-Sh_NNPDF30NNLO_Ztt_Pt500_700_CVetoBVeto   = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt500_700_CVetoBVeto",   xsec = 0.02348807   )
-Sh_NNPDF30NNLO_Ztt_Pt700_1000_CVetoBVeto  = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt700_1000_CVetoBVeto",  xsec = 0.004107715  )
-Sh_NNPDF30NNLO_Ztt_Pt1000_2000_CVetoBVeto = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt1000_2000_CVetoBVeto", xsec = 0.000532212  )
-                                                                                                        
-Sh_NNPDF30NNLO_Ztt_Pt0_70_CFiltBVet       = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt0_70_CFiltBVet",       xsec = 282.756352896)
-Sh_NNPDF30NNLO_Ztt_Pt70_140_CFiltBVet     = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt70_140_CFiltBVet",     xsec = 15.209340192 )
-Sh_NNPDF30NNLO_Ztt_Pt140_280_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt140_280_CFiltBVet",    xsec = 2.529223599  )
-Sh_NNPDF30NNLO_Ztt_Pt280_500_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt280_500_CFiltBVet",    xsec = 0.176406172  )
-Sh_NNPDF30NNLO_Ztt_Pt500_700_CFiltBVet    = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt500_700_CFiltBVet",    xsec = 0.011224933  )
-Sh_NNPDF30NNLO_Ztt_Pt700_1000_CFiltBVet   = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt700_1000_CFiltBVet",   xsec = 0.002156445  )
-Sh_NNPDF30NNLO_Ztt_Pt1000_2000_CFiltBVet  = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt1000_2000_CFiltBVet",  xsec = 0.000329597  )
-                                                                                                        
-Sh_NNPDF30NNLO_Ztt_Pt0_70_BFilter         = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt0_70_BFilter",         xsec = 157.407818354)
-Sh_NNPDF30NNLO_Ztt_Pt70_140_BFilter       = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt70_140_BFilter",       xsec = 8.971250612  )
-Sh_NNPDF30NNLO_Ztt_Pt140_280_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt140_280_BFilter",      xsec = 1.494293679  )
-Sh_NNPDF30NNLO_Ztt_Pt280_500_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt280_500_BFilter",      xsec = 0.108832258  )
-Sh_NNPDF30NNLO_Ztt_Pt500_700_BFilter      = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt500_700_BFilter",      xsec = 0.007076053  )
-Sh_NNPDF30NNLO_Ztt_Pt700_1000_BFilter     = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt700_1000_BFilter",     xsec = 0.001318545  )
-Sh_NNPDF30NNLO_Ztt_Pt1000_2000_BFilter    = Sample( name =  "Sh_NNPDF30NNLO_Ztt_Pt1000_2000_BFilter",    xsec = 0.000161628  )
-
-Ztautau = Sample( name =   'Ztautau',
-                  tlatex = 'Z #rightarrow #tau#tau+jets',
-                  fill_color = ROOT.kAzure-4,
-                  line_color =  ROOT.kAzure-5,
-                  marker_color =  ROOT.kAzure-5,
-                  daughters = [
-                               Sh_NNPDF30NNLO_Ztt_Pt0_70_CVetoBVeto,        
-                               Sh_NNPDF30NNLO_Ztt_Pt70_140_CVetoBVeto,                                    
-                               #Sh_NNPDF30NNLO_Ztt_Pt140_280_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Ztt_Pt280_500_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Ztt_Pt500_700_CVetoBVeto,     
-                               Sh_NNPDF30NNLO_Ztt_Pt700_1000_CVetoBVeto,    
-                               #Sh_NNPDF30NNLO_Ztt_Pt1000_2000_CVetoBVeto,   
-                               Sh_NNPDF30NNLO_Ztt_Pt0_70_CFiltBVet,      
-                               Sh_NNPDF30NNLO_Ztt_Pt70_140_CFiltBVet,    
-                               Sh_NNPDF30NNLO_Ztt_Pt140_280_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Ztt_Pt280_500_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Ztt_Pt500_700_CFiltBVet,   
-                               Sh_NNPDF30NNLO_Ztt_Pt700_1000_CFiltBVet,  
-                               Sh_NNPDF30NNLO_Ztt_Pt1000_2000_CFiltBVet, 
-                               Sh_NNPDF30NNLO_Ztt_Pt0_70_BFilter,           
-                               Sh_NNPDF30NNLO_Ztt_Pt70_140_BFilter,         
-                               Sh_NNPDF30NNLO_Ztt_Pt140_280_BFilter,        
-                               Sh_NNPDF30NNLO_Ztt_Pt280_500_BFilter, 
-                               Sh_NNPDF30NNLO_Ztt_Pt500_700_BFilter,        
-                               Sh_NNPDF30NNLO_Ztt_Pt700_1000_BFilter,       
-                               Sh_NNPDF30NNLO_Ztt_Pt1000_2000_BFilter,      
-                              ],
-                ) 
+Ztautau =  Sample( name =   'Ztautau',
+                   tlatex = 'Z#rightarrow#tau#tau',
+                   fill_color   =  1041,
+                   line_color   =  1041,
+                   marker_color =  1041,
+                   daughters    = [
+                                   Sh221_PDF30_Ztt_MHPT0_70_l13l7,
+                                   Sh221_PDF30_Ztt_MHPT0_70_l15h20,       
+                                   Sh221_PDF30_Ztt_MHPT70_140_l13l7,      
+                                   Sh221_PDF30_Ztt_MHPT70_140_l15h20,     
+                                   Sh221_PDF30_Ztt_MHPT140_280_l13l7,    
+                                   Sh221_PDF30_Ztt_MHPT140_280_l15h20,    
+                                   Sh221_PDF30_Ztt_MHPT280_500_CVetoBVeto,
+                                   Sh221_PDF30_Ztt_MHPT280_500_CFiltBVet, 
+                                   Sh221_PDF30_Ztt_MHPT280_500_BFilter,   
+                                   Sh221_PDF30_Ztt_MHPT500_1000,          
+                                   Sh221_PDF30_Ztt_MHPT1000_E_CMS,        
+                                ]
+                )
 
 
-#-----------------------------------------------------------------------------
-# Top 
-# Notes:
-#     * single-top cross section: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummarySingleTop
-#     * ttbar cross section: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/XsecSummaryTTbar 
-#-----------------------------------------------------------------------------
+# -----------------------------------------
+# Zleplep
+# -----------------------------------------
+Sh221_PDF30_Zmumu_MHPT0_70_CVetoBVeto             = Sample(  name="Sh221_PDF30_Zmumu_MHPT0_70_CVetoBVeto"      , dsid="364100" , xsec=1630.2243  , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT0_70_CFiltBVet              = Sample(  name="Sh221_PDF30_Zmumu_MHPT0_70_CFiltBVet"       , dsid="364101" , xsec=223.72     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT0_70_BFilter                = Sample(  name="Sh221_PDF30_Zmumu_MHPT0_70_BFilter"         , dsid="364102" , xsec=127.180    , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT70_140_CVetoBVeto           = Sample(  name="Sh221_PDF30_Zmumu_MHPT70_140_CVetoBVeto"    , dsid="364103" , xsec=75.016     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT70_140_CFiltBVet            = Sample(  name="Sh221_PDF30_Zmumu_MHPT70_140_CFiltBVet"     , dsid="364104" , xsec=20.348     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT70_140_BFilter              = Sample(  name="Sh221_PDF30_Zmumu_MHPT70_140_BFilter"       , dsid="364105" , xsec=12.388     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT140_280_CVetoBVeto          = Sample(  name="Sh221_PDF30_Zmumu_MHPT140_280_CVetoBVeto"   , dsid="364106" , xsec=24.285     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT140_280_CFiltBVet           = Sample(  name="Sh221_PDF30_Zmumu_MHPT140_280_CFiltBVet"    , dsid="364107" , xsec=9.275      , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT140_280_BFilter             = Sample(  name="Sh221_PDF30_Zmumu_MHPT140_280_BFilter"      , dsid="364108" , xsec=5.833      , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT280_500_CVetoBVeto          = Sample(  name="Sh221_PDF30_Zmumu_MHPT280_500_CVetoBVeto"   , dsid="364109" , xsec=4.7729     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT280_500_CFiltBVet           = Sample(  name="Sh221_PDF30_Zmumu_MHPT280_500_CFiltBVet"    , dsid="364110" , xsec=2.2655     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT280_500_BFilter             = Sample(  name="Sh221_PDF30_Zmumu_MHPT280_500_BFilter"      , dsid="364111" , xsec=1.4913     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT500_1000                    = Sample(  name="Sh221_PDF30_Zmumu_MHPT500_1000"             , dsid="364112" , xsec=1.7881     , kfactor=0.9751  )
+Sh221_PDF30_Zmumu_MHPT1000_E_CMS                  = Sample(  name="Sh221_PDF30_Zmumu_MHPT1000_E_CMS"           , dsid="364113" , xsec=0.14769    , kfactor=0.9751  )
+Sh221__Zmm_Mll10_40_MHPT70_280_BVeto              = Sample(  name="Sh221__Zmm_Mll10_40_MHPT70_280_BVeto"       , dsid="364200" , xsec=44.8791    , kfactor=0.9751  )
+Sh221__Zmm_Mll10_40_MHPT70_280_BFilter            = Sample(  name="Sh221__Zmm_Mll10_40_MHPT70_280_BFilter"     , dsid="364201" , xsec=5.115      , kfactor=0.9751  )
+Sh221__Zmm_Mll10_40_MHPT280_BVeto                 = Sample(  name="Sh221__Zmm_Mll10_40_MHPT280_BVeto"          , dsid="364202" , xsec=2.760      , kfactor=0.9751  )
+Sh221__Zmm_Mll10_40_MHPT280_BFilter               = Sample(  name="Sh221__Zmm_Mll10_40_MHPT280_BFilter"        , dsid="364203" , xsec=0.4721     , kfactor=0.9751  )
+
+Sh221_PDF30_Zee_MHPT0_70_CVetoBVeto               = Sample(  name="Sh221_PDF30_Zee_MHPT0_70_CVetoBVeto"        , dsid="364114" , xsec=1627.1767  , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT0_70_CFiltBVet                = Sample(  name="Sh221_PDF30_Zee_MHPT0_70_CFiltBVet"         , dsid="364115" , xsec=223.731    , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT0_70_BFilter                  = Sample(  name="Sh221_PDF30_Zee_MHPT0_70_BFilter"           , dsid="364116" , xsec=126.45     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT70_140_CVetoBVeto             = Sample(  name="Sh221_PDF30_Zee_MHPT70_140_CVetoBVeto"      , dsid="364117" , xsec=76.292     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT70_140_CFiltBVet              = Sample(  name="Sh221_PDF30_Zee_MHPT70_140_CFiltBVet"       , dsid="364118" , xsec=20.336     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT70_140_BFilter                = Sample(  name="Sh221_PDF30_Zee_MHPT70_140_BFilter"         , dsid="364119" , xsec=12.623     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT140_280_CVetoBVeto            = Sample(  name="Sh221_PDF30_Zee_MHPT140_280_CVetoBVeto"     , dsid="364120" , xsec=25.0300    , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT140_280_CFiltBVet             = Sample(  name="Sh221_PDF30_Zee_MHPT140_280_CFiltBVet"      , dsid="364121" , xsec=9.372      , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT140_280_BFilter               = Sample(  name="Sh221_PDF30_Zee_MHPT140_280_BFilter"        , dsid="364122" , xsec=6.0826     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT280_500_CVetoBVeto            = Sample(  name="Sh221_PDF30_Zee_MHPT280_500_CVetoBVeto"     , dsid="364123" , xsec=4.8692     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT280_500_CFiltBVet             = Sample(  name="Sh221_PDF30_Zee_MHPT280_500_CFiltBVet"      , dsid="364124" , xsec=2.2799     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT280_500_BFilter               = Sample(  name="Sh221_PDF30_Zee_MHPT280_500_BFilter"        , dsid="364125" , xsec=1.49437    , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT500_1000                      = Sample(  name="Sh221_PDF30_Zee_MHPT500_1000"               , dsid="364126" , xsec=1.8081     , kfactor=0.9751  )
+Sh221_PDF30_Zee_MHPT1000_E_CMS                    = Sample(  name="Sh221_PDF30_Zee_MHPT1000_E_CMS"             , dsid="364127" , xsec=0.14857    , kfactor=0.9751  )
+Sh221__Zee_Mll10_40_MHPT0_70_BVeto                = Sample(  name="Sh221__Zee_Mll10_40_MHPT0_70_BVeto"         , dsid="364204" , xsec=2331.22    , kfactor=0.9751  )
+Sh221__Zee_Mll10_40_MHPT0_70_BFilter              = Sample(  name="Sh221__Zee_Mll10_40_MHPT0_70_BFilter"       , dsid="364205" , xsec=81.357     , kfactor=0.9751  )
+Sh221__Zee_Mll10_40_MHPT70_280_BVeto              = Sample(  name="Sh221__Zee_Mll10_40_MHPT70_280_BVeto"       , dsid="364206" , xsec=44.97      , kfactor=0.9751  )
+Sh221__Zee_Mll10_40_MHPT70_280_BFilter            = Sample(  name="Sh221__Zee_Mll10_40_MHPT70_280_BFilter"     , dsid="364207" , xsec=5.4814     , kfactor=0.9751  )
+Sh221__Zee_Mll10_40_MHPT280_BVeto                 = Sample(  name="Sh221__Zee_Mll10_40_MHPT280_BVeto"          , dsid="364208" , xsec=2.777      , kfactor=0.9751  )
+Sh221__Zee_Mll10_40_MHPT280_BFilter               = Sample(  name="Sh221__Zee_Mll10_40_MHPT280_BFilter"        , dsid="364209" , xsec=0.4730     , kfactor=0.9751  )
+
+Zleplep =  Sample( name =   'Zleplep',
+                   tlatex = 'Z#rightarrowll',
+                   fill_color   =  1053,
+                   line_color   =  1053,
+                   marker_color =  1053,
+                   daughters    = [
+                                    Sh221_PDF30_Zmumu_MHPT0_70_CVetoBVeto,                                     
+                                    Sh221_PDF30_Zmumu_MHPT0_70_CFiltBVet,   
+                                    Sh221_PDF30_Zmumu_MHPT0_70_BFilter,     
+                                    Sh221_PDF30_Zmumu_MHPT70_140_CVetoBVeto,
+                                    Sh221_PDF30_Zmumu_MHPT70_140_CFiltBVet, 
+                                    Sh221_PDF30_Zmumu_MHPT70_140_BFilter,   
+                                    Sh221_PDF30_Zmumu_MHPT140_280_CVetoBVeto,
+                                    Sh221_PDF30_Zmumu_MHPT140_280_CFiltBVet,
+                                    Sh221_PDF30_Zmumu_MHPT140_280_BFilter,  
+                                    Sh221_PDF30_Zmumu_MHPT280_500_CVetoBVeto,
+                                    Sh221_PDF30_Zmumu_MHPT280_500_CFiltBVet,
+                                    Sh221_PDF30_Zmumu_MHPT280_500_BFilter,  
+                                    Sh221_PDF30_Zmumu_MHPT500_1000,         
+                                    Sh221_PDF30_Zmumu_MHPT1000_E_CMS,       
+                                    Sh221__Zmm_Mll10_40_MHPT70_280_BVeto,   
+                                    Sh221__Zmm_Mll10_40_MHPT70_280_BFilter, 
+                                    Sh221__Zmm_Mll10_40_MHPT280_BVeto,      
+                                    Sh221__Zmm_Mll10_40_MHPT280_BFilter,    
+                                    Sh221_PDF30_Zee_MHPT0_70_CVetoBVeto,    
+                                    Sh221_PDF30_Zee_MHPT0_70_CFiltBVet,     
+                                    Sh221_PDF30_Zee_MHPT0_70_BFilter,       
+                                    Sh221_PDF30_Zee_MHPT70_140_CVetoBVeto,  
+                                    Sh221_PDF30_Zee_MHPT70_140_CFiltBVet,   
+                                    Sh221_PDF30_Zee_MHPT70_140_BFilter,     
+                                    Sh221_PDF30_Zee_MHPT140_280_CVetoBVeto,
+                                    Sh221_PDF30_Zee_MHPT140_280_CFiltBVet,  
+                                    Sh221_PDF30_Zee_MHPT140_280_BFilter,    
+                                    Sh221_PDF30_Zee_MHPT280_500_CVetoBVeto, 
+                                    Sh221_PDF30_Zee_MHPT280_500_CFiltBVet,  
+                                    Sh221_PDF30_Zee_MHPT280_500_BFilter,    
+                                    Sh221_PDF30_Zee_MHPT500_1000,           
+                                    Sh221_PDF30_Zee_MHPT1000_E_CMS,         
+                                    Sh221__Zee_Mll10_40_MHPT0_70_BVeto,     
+                                    Sh221__Zee_Mll10_40_MHPT0_70_BFilter,   
+                                    Sh221__Zee_Mll10_40_MHPT70_280_BVeto,   
+                                    Sh221__Zee_Mll10_40_MHPT70_280_BFilter, 
+                                    Sh221__Zee_Mll10_40_MHPT280_BVeto,      
+                                    Sh221__Zee_Mll10_40_MHPT280_BFilter,    
+                                 ]
+                )
 
 
-#-----------
-# single-top
-#-----------
-PoPy_P2012_STSchan_noAllHad_atop = Sample( name =  "PoPy_P2012_STSchan_noAllHad_atop",   xsec = 1.288662)
-PoPy_P2012_STSchan_noAllHad_top  = Sample( name =  "PoPy_P2012_STSchan_noAllHad_top",    xsec = 2.06121)
-PoPy_P2012_st_tchan_lept_atop    = Sample( name =  "PoPy_P2012_st_tchan_lept_atop",      xsec = 26.27637)
-PoPy_P2012_st_tchan_lept_top     = Sample( name =  "PoPy_P2012_st_tchan_lept_top",       xsec = 44.152092)
-PoPy_P2012_Wt_incl_atop          = Sample( name =  "PoPy_P2012_Wt_incl_atop",            xsec = 35.824406)
-PoPy_P2012_Wt_incl_top           = Sample( name =  "PoPy_P2012_Wt_incl_top",             xsec = 35.845486)
 
-#-----------
-# ttbar
-#-----------
-PoPy_P2012_ttb_nonallh           = Sample( name =  "PoPy_P2012_ttb_nonallh",             xsec = 831.76)
+# -----------------------------------------
+# Wlepnu
+# -----------------------------------------
+Sh221_PDF30_Wmunu_MHPT0_70_CVetoBVeto             = Sample(  name="Sh221_PDF30_Wmunu_MHPT0_70_CVetoBVeto"      , dsid="364156" , xsec=19143     , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT0_70_CFiltBVet              = Sample(  name="Sh221_PDF30_Wmunu_MHPT0_70_CFiltBVet"       , dsid="364157" , xsec=2493.38   , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT0_70_BFilter                = Sample(  name="Sh221_PDF30_Wmunu_MHPT0_70_BFilter"         , dsid="364158" , xsec=853.97    , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT70_140_CVetoBVeto           = Sample(  name="Sh221_PDF30_Wmunu_MHPT70_140_CVetoBVeto"    , dsid="364159" , xsec=637.42    , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT70_140_CFiltBVet            = Sample(  name="Sh221_PDF30_Wmunu_MHPT70_140_CFiltBVet"     , dsid="364160" , xsec=219.965   , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT70_140_BFilter              = Sample(  name="Sh221_PDF30_Wmunu_MHPT70_140_BFilter"       , dsid="364161" , xsec=73.191    , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT140_280_CVetoBVeto          = Sample(  name="Sh221_PDF30_Wmunu_MHPT140_280_CVetoBVeto"   , dsid="364162" , xsec=207.554   , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT140_280_CFiltBVet           = Sample(  name="Sh221_PDF30_Wmunu_MHPT140_280_CFiltBVet"    , dsid="364163" , xsec=98.437    , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT140_280_BFilter             = Sample(  name="Sh221_PDF30_Wmunu_MHPT140_280_BFilter"      , dsid="364164" , xsec=37.4744   , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT280_500_CVetoBVeto          = Sample(  name="Sh221_PDF30_Wmunu_MHPT280_500_CVetoBVeto"   , dsid="364165" , xsec=39.3824   , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT280_500_CFiltBVet           = Sample(  name="Sh221_PDF30_Wmunu_MHPT280_500_CFiltBVet"    , dsid="364166" , xsec=22.9178   , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT280_500_BFilter             = Sample(  name="Sh221_PDF30_Wmunu_MHPT280_500_BFilter"      , dsid="364167" , xsec=9.6086    , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT500_1000                    = Sample(  name="Sh221_PDF30_Wmunu_MHPT500_1000"             , dsid="364168" , xsec=15.01     , kfactor=0.9702  )
+Sh221_PDF30_Wmunu_MHPT1000_E_CMS                  = Sample(  name="Sh221_PDF30_Wmunu_MHPT1000_E_CMS"           , dsid="364169" , xsec=1.2344    , kfactor=0.9702  )
 
-top = Sample( name =   'top',
-              tlatex = 'Top',
-              fill_color = ROOT.kGray+1,
-              line_color =  ROOT.kGray+2,
-              marker_color =  ROOT.kGray+2,
-              daughters = [
-                           PoPy_P2012_STSchan_noAllHad_atop,
-                           PoPy_P2012_STSchan_noAllHad_top, 
-                           PoPy_P2012_st_tchan_lept_atop,   
-                           PoPy_P2012_st_tchan_lept_top,    
-                           PoPy_P2012_Wt_incl_atop,         
-                           PoPy_P2012_Wt_incl_top,          
-                           PoPy_P2012_ttb_nonallh,                              
-                          ],
-            ) 
+Sh221_PDF30_Wenu_MHPT0_70_CVetoBVeto              = Sample(  name="Sh221_PDF30_Wenu_MHPT0_70_CVetoBVeto"       , dsid="364170" , xsec=15769.63  , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT0_70_CFiltBVet               = Sample(  name="Sh221_PDF30_Wenu_MHPT0_70_CFiltBVet"        , dsid="364171" , xsec=2492.639  , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT0_70_BFilter                 = Sample(  name="Sh221_PDF30_Wenu_MHPT0_70_BFilter"          , dsid="364172" , xsec=844.6380  , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT70_140_CVetoBVeto            = Sample(  name="Sh221_PDF30_Wenu_MHPT70_140_CVetoBVeto"     , dsid="364173" , xsec=630.322   , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT70_140_CFiltBVet             = Sample(  name="Sh221_PDF30_Wenu_MHPT70_140_CFiltBVet"      , dsid="364174" , xsec=215.49    , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT70_140_BFilter               = Sample(  name="Sh221_PDF30_Wenu_MHPT70_140_BFilter"        , dsid="364175" , xsec=97.74     , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT140_280_CVetoBVeto           = Sample(  name="Sh221_PDF30_Wenu_MHPT140_280_CVetoBVeto"    , dsid="364176" , xsec=202.8359  , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT140_280_CFiltBVet            = Sample(  name="Sh221_PDF30_Wenu_MHPT140_280_CFiltBVet"     , dsid="364177" , xsec=98.44     , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT140_280_BFilter              = Sample(  name="Sh221_PDF30_Wenu_MHPT140_280_BFilter"       , dsid="364178" , xsec=33.996    , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT280_500_CVetoBVeto           = Sample(  name="Sh221_PDF30_Wenu_MHPT280_500_CVetoBVeto"    , dsid="364179" , xsec=39.24     , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT280_500_CFiltBVet            = Sample(  name="Sh221_PDF30_Wenu_MHPT280_500_CFiltBVet"     , dsid="364180" , xsec=22.84     , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT280_500_BFilter              = Sample(  name="Sh221_PDF30_Wenu_MHPT280_500_BFilter"       , dsid="364181" , xsec=9.656     , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT500_1000                     = Sample(  name="Sh221_PDF30_Wenu_MHPT500_1000"              , dsid="364182" , xsec=15.04     , kfactor=0.9702  )
+Sh221_PDF30_Wenu_MHPT1000_E_CMS                   = Sample(  name="Sh221_PDF30_Wenu_MHPT1000_E_CMS"            , dsid="364183" , xsec=1.2334    , kfactor=0.9702  )
+
+Wlepnu =  Sample( name =   'Wlepnu',
+                   tlatex = 'W+Jets',
+                   fill_color   =  1055,
+                   line_color   =  1055,
+                   marker_color =  1055,
+                   daughters    = [
+                                     Sh221_PDF30_Wmunu_MHPT0_70_CVetoBVeto,                                      
+                                     Sh221_PDF30_Wmunu_MHPT0_70_CFiltBVet,      
+                                     Sh221_PDF30_Wmunu_MHPT0_70_BFilter,        
+                                     Sh221_PDF30_Wmunu_MHPT70_140_CVetoBVeto,   
+                                     Sh221_PDF30_Wmunu_MHPT70_140_CFiltBVet,    
+                                     Sh221_PDF30_Wmunu_MHPT70_140_BFilter,      
+                                     Sh221_PDF30_Wmunu_MHPT140_280_CVetoBVeto,  
+                                     Sh221_PDF30_Wmunu_MHPT140_280_CFiltBVet,   
+                                     Sh221_PDF30_Wmunu_MHPT140_280_BFilter,     
+                                     Sh221_PDF30_Wmunu_MHPT280_500_CVetoBVeto,  
+                                     Sh221_PDF30_Wmunu_MHPT280_500_CFiltBVet,   
+                                     Sh221_PDF30_Wmunu_MHPT280_500_BFilter,     
+                                     Sh221_PDF30_Wmunu_MHPT500_1000,            
+                                     Sh221_PDF30_Wmunu_MHPT1000_E_CMS,          
+                                     Sh221_PDF30_Wenu_MHPT0_70_CVetoBVeto,      
+                                     Sh221_PDF30_Wenu_MHPT0_70_CFiltBVet,       
+                                     Sh221_PDF30_Wenu_MHPT0_70_BFilter,         
+                                     Sh221_PDF30_Wenu_MHPT70_140_CVetoBVeto,    
+                                     Sh221_PDF30_Wenu_MHPT70_140_CFiltBVet,     
+                                     Sh221_PDF30_Wenu_MHPT70_140_BFilter,       
+                                     Sh221_PDF30_Wenu_MHPT140_280_CVetoBVeto,   
+                                     Sh221_PDF30_Wenu_MHPT140_280_CFiltBVet,    
+                                     Sh221_PDF30_Wenu_MHPT140_280_BFilter,      
+                                     Sh221_PDF30_Wenu_MHPT280_500_CVetoBVeto,   
+                                     Sh221_PDF30_Wenu_MHPT280_500_CFiltBVet,    
+                                     Sh221_PDF30_Wenu_MHPT280_500_BFilter,      
+                                     Sh221_PDF30_Wenu_MHPT500_1000,             
+                                     Sh221_PDF30_Wenu_MHPT1000_E_CMS,           
+                                  ]
+                )
+                     
+# -----------------------------------------
+# Wtaunu
+# -----------------------------------------
+Sh221_PDF30_Wtaunu_MHPT0_70_CVetoBVeto            = Sample(  name="Sh221_PDF30_Wtaunu_MHPT0_70_CVetoBVeto"     , dsid="364184" , xsec=15799.44   , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT0_70_CFiltBVet             = Sample(  name="Sh221_PDF30_Wtaunu_MHPT0_70_CFiltBVet"      , dsid="364185" , xsec=2477.249   , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT0_70_BFilter               = Sample(  name="Sh221_PDF30_Wtaunu_MHPT0_70_BFilter"        , dsid="364186" , xsec=854.55     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT70_140_CVetoBVeto          = Sample(  name="Sh221_PDF30_Wtaunu_MHPT70_140_CVetoBVeto"   , dsid="364187" , xsec=638.54     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT70_140_CFiltBVet           = Sample(  name="Sh221_PDF30_Wtaunu_MHPT70_140_CFiltBVet"    , dsid="364188" , xsec=210.3823   , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT70_140_BFilter             = Sample(  name="Sh221_PDF30_Wtaunu_MHPT70_140_BFilter"      , dsid="364189" , xsec=98.065     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT140_280_CVetoBVeto         = Sample(  name="Sh221_PDF30_Wtaunu_MHPT140_280_CVetoBVeto"  , dsid="364190" , xsec=202.33     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT140_280_CFiltBVet          = Sample(  name="Sh221_PDF30_Wtaunu_MHPT140_280_CFiltBVet"   , dsid="364191" , xsec=98.577     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT140_280_BFilter            = Sample(  name="Sh221_PDF30_Wtaunu_MHPT140_280_BFilter"     , dsid="364192" , xsec=38.128     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT280_500_CVetoBVeto         = Sample(  name="Sh221_PDF30_Wtaunu_MHPT280_500_CVetoBVeto"  , dsid="364193" , xsec=39.316     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT280_500_CFiltBVet          = Sample(  name="Sh221_PDF30_Wtaunu_MHPT280_500_CFiltBVet"   , dsid="364194" , xsec=22.7789    , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT280_500_BFilter            = Sample(  name="Sh221_PDF30_Wtaunu_MHPT280_500_BFilter"     , dsid="364195" , xsec=9.6702     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT500_1000                   = Sample(  name="Sh221_PDF30_Wtaunu_MHPT500_1000"            , dsid="364196" , xsec=15.046     , kfactor=0.9702  )
+Sh221_PDF30_Wtaunu_MHPT1000_E_CMS                 = Sample(  name="Sh221_PDF30_Wtaunu_MHPT1000_E_CMS"          , dsid="364197" , xsec=1.2339     , kfactor=0.9702  )
+
+Wtaunu =  Sample( name =   'Wtaunu',
+                   tlatex = 'W#rightarrow #tau#nu+Jets',
+                   fill_color   =  1052,
+                   line_color   =  1052,
+                   marker_color =  1052,
+                   daughters    = [
+                                    Sh221_PDF30_Wtaunu_MHPT0_70_CVetoBVeto,
+                                    Sh221_PDF30_Wtaunu_MHPT0_70_CFiltBVet,    
+                                    Sh221_PDF30_Wtaunu_MHPT0_70_BFilter,      
+                                    Sh221_PDF30_Wtaunu_MHPT70_140_CVetoBVeto, 
+                                    Sh221_PDF30_Wtaunu_MHPT70_140_CFiltBVet,  
+                                    Sh221_PDF30_Wtaunu_MHPT70_140_BFilter,    
+                                    Sh221_PDF30_Wtaunu_MHPT140_280_CVetoBVeto,
+                                    Sh221_PDF30_Wtaunu_MHPT140_280_CFiltBVet, 
+                                    Sh221_PDF30_Wtaunu_MHPT140_280_BFilter,   
+                                    Sh221_PDF30_Wtaunu_MHPT280_500_CVetoBVeto,
+                                    Sh221_PDF30_Wtaunu_MHPT280_500_CFiltBVet, 
+                                    Sh221_PDF30_Wtaunu_MHPT280_500_BFilter,   
+                                    Sh221_PDF30_Wtaunu_MHPT500_1000,          
+                                    Sh221_PDF30_Wtaunu_MHPT1000_E_CMS,        
+                                  ]
+                )
+
+# -----------------------------------------
+# Top
+# -----------------------------------------
+PoPy_P2012_ttb_nonallh                            = Sample(  name="PoPy_P2012_ttb_nonallh"           , dsid="410000" , xsec=831.78   , kfactor=0.543   )
+PoPy_P2012_ttb_allh                               = Sample(  name="PoPy_P2012_ttb_allh"              , dsid="410007" , xsec=831.77   , kfactor=0.4562  )
+PoPy_P2012_st_tchan_lept_top                      = Sample(  name="PoPy_P2012_st_tchan_lept_top"     , dsid="410011" , xsec=44.1501  , kfactor=1.0000  )
+PoPy_P2012_st_tchan_lept_atop                     = Sample(  name="PoPy_P2012_st_tchan_lept_atop"    , dsid="410012" , xsec=25.778   , kfactor=1.0193  )
+PoPy_P2012_Wt_incl_top                            = Sample(  name="PoPy_P2012_Wt_incl_top"           , dsid="410013" , xsec=34.009   , kfactor=1.054   )
+PoPy_P2012_Wt_incl_atop                           = Sample(  name="PoPy_P2012_Wt_incl_atop"          , dsid="410014" , xsec=33.989   , kfactor=1.054   )
+PoPy_P2012_STSchan_noAllHad_top                   = Sample(  name="PoPy_P2012_STSchan_noAllHad_top"  , dsid="410025" , xsec=2.0517   , kfactor=1.0046  )
+PoPy_P2012_STSchan_noAllHad_atop                  = Sample(  name="PoPy_P2012_STSchan_noAllHad_atop" , dsid="410026" , xsec=1.2615   , kfactor=1.0215  )
 
 
-#-------------------------------------------------------------------------------
-# data-driven backgrounds
-#-------------------------------------------------------------------------------
-fakes  = Sample( name         = "fakes",
-                 tlatex       = "Fakes",
-                 fill_color   = ROOT.kGreen+1,
-                 line_color   = ROOT.kGreen+2,
-                 marker_color = ROOT.kGreen+2,
-                 type         = "datadriven",
-                 )
+top =  Sample( name =   'top',
+               tlatex = 'Top',
+               fill_color   =  1022,
+               line_color   =  1022,
+               marker_color =  1022,
+               daughters    = [
+                                PoPy_P2012_ttb_nonallh,
+                                PoPy_P2012_ttb_allh,             
+                                PoPy_P2012_st_tchan_lept_top,    
+                                PoPy_P2012_st_tchan_lept_atop,   
+                                PoPy_P2012_Wt_incl_top,          
+                                PoPy_P2012_Wt_incl_atop,         
+                                PoPy_P2012_STSchan_noAllHad_top, 
+                                PoPy_P2012_STSchan_noAllHad_atop,
+                              ]
+             )
 
-addon_data  = Sample( name   = "data",
-                 tlatex       = "Same Sign",
-                 fill_color   = ROOT.kGreen+1,
-                 line_color   = ROOT.kGreen+2,
-                 marker_color = ROOT.kGreen+2,
-                 type         = "datadriven",
-                 )
 
-addon_Wjets = Sample( name   = Wjets.name,
-                 tlatex       = Wjets.tlatex+"(OS-SS)",
-                 fill_color   = Wjets.fill_color,
-                 line_color   = Wjets.line_color,
-                 marker_color = Wjets.marker_color,
-                 type         = "datadriven",
-                 )
+# -----------------------------------------
+# LFVH
+# -----------------------------------------
+PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"     , dsid="344084" , xsec=30.1089 )
+PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"    , dsid="344085" , xsec=3.8155  )
+PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"      , dsid="344088" , xsec=30.189  )
+PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"     , dsid="344089" , xsec=3.8155  )
 
-addon_Zlljets = Sample( name   = Zlljets.name,
-                 tlatex       = Zlljets.tlatex+"(OS-SS)",
-                 fill_color   = Zlljets.fill_color,
-                 line_color   = Zlljets.line_color,
-                 marker_color = Zlljets.marker_color,
-                 type         = "datadriven",
-                 )
+lfvh =  Sample( name =   'lfvh',
+                tlatex = 'H#rightarrow#tau#tau (LFV)',
+                fill_color   =  1031,
+                line_color   =  1031,
+                marker_color =  1031,
+                daughters    = [
+                                 PoPy8_ggH125_taumu, 
+                                 PoPy8_VBFH125_taumu,
+                                 PoPy8_ggH125_taue,  
+                                 PoPy8_VBFH125_taue,
+                                ]
+                )
 
-addon_Zttjets = Sample( name   = Zttjets.name,
-                 tlatex       = Zttjets.tlatex+"(OS-SS)",
-                 fill_color   = Zttjets.fill_color,
-                 line_color   = Zttjets.line_color,
-                 marker_color = Zttjets.marker_color,
-                 type         = "datadriven",
-                 )
 
-addon_top = Sample( name   = top.name,
-                 tlatex       = top.tlatex+"(OS-SS)",
-                 fill_color   = top.fill_color,
-                 line_color   = top.line_color,
-                 marker_color = top.marker_color,
-                 type         = "datadriven",
-                 )
 
-#-------------------------------------------------------------------------------
-# Collections 
-#-------------------------------------------------------------------------------
+# the following samples we have locally but they are not included in the xml
+"""
+PoPy8_ggH125_WWlvlv_EF_15_5                       = Sample(  name="PoPy8_ggH125_WWlvlv_EF_15_5"      , dsid="341079" , xsec=     )      
+PoPy8_VBFH125_WWlvlv_EF_15_5                      = Sample(  name="PoPy8_VBFH125_WWlvlv_EF_15_5"     , dsid="341080" , xsec=     )
+PoPy8_ggH125_ttlh_CPodd                           = Sample(  name="PoPy8_ggH125_ttlh_CPodd"          , dsid="341902" , xsec=     )
+PoPy8_ggH125_ttlh_mix50                           = Sample(  name="PoPy8_ggH125_ttlh_mix50"          , dsid="341903" , xsec=     )
+PoPy8_ggH125_ttlh_unpol                           = Sample(  name="PoPy8_ggH125_ttlh_unpol"          , dsid="341904" , xsec=     )
+PoPy8_VBFH125_ttlh_CPodd                          = Sample(  name="PoPy8_VBFH125_ttlh_CPodd"         , dsid="341908" , xsec=     )
+PoPy8_VBFH125_ttlh_mix50                          = Sample(  name="PoPy8_VBFH125_ttlh_mix50"         , dsid="341909" , xsec=     )
+PoPy8_VBFH125_ttlh_unpol                          = Sample(  name="PoPy8_VBFH125_ttlh_unpol"         , dsid="341910" , xsec=     )
+"""
+
+"""
+Sh221_PDF30_Zmumu_MHPT0_70_VBF                    = Sample(  name="Sh221_PDF30_Zmumu_MHPT0_70_VBF"      , dsid="345099" , xsec=   , kfactor=  )
+Sh221_PDF30_Zmumu_MHPT70_140_VBF                  = Sample(  name="Sh221_PDF30_Zmumu_MHPT70_140_VBF"    , dsid="345100" , xsec=   , kfactor=  )
+Sh221_PDF30_Zee_MHPT0_70_VBF                      = Sample(  name="Sh221_PDF30_Zee_MHPT0_70_VBF"        , dsid="345101" , xsec=   , kfactor=  )
+Sh221_PDF30_Zee_MHPT70_140_VBF                    = Sample(  name="Sh221_PDF30_Zee_MHPT70_140_VBF"      , dsid="345102" , xsec=   , kfactor=  )
+
+Sh_llll                                           = Sample(  name="Sh_llll"                   , dsid="361063" , xsec=   , kfactor=  )
+Sh_lllvSFMinus                                    = Sample(  name="Sh_lllvSFMinus"            , dsid="361064" , xsec=   , kfactor=  )
+Sh_lllvOFMinus                                    = Sample(  name="Sh_lllvOFMinus"            , dsid="361065" , xsec=   , kfactor=  ) 
+Sh_lllvSFPlus                                     = Sample(  name="Sh_lllvSFPlus"             , dsid="361066" , xsec=   , kfactor=  )
+Sh_lllvOFPlus                                     = Sample(  name="Sh_lllvOFPlus"             , dsid="361067" , xsec=   , kfactor=  )
+Sh_llvv                                           = Sample(  name="Sh_llvv"                   , dsid="361068" , xsec=   , kfactor=  )
+Sh_WplvWmqq                                       = Sample(  name="Sh_WplvWmqq"               , dsid="361081" , xsec=   , kfactor=  )
+Sh_WpqqWmlv                                       = Sample(  name="Sh_WpqqWmlv"               , dsid="361082" , xsec=   , kfactor=  )
+Sh_WlvZqq                                         = Sample(  name="Sh_WlvZqq"                 , dsid="361083" , xsec=   , kfactor=  )
+Sh_WqqZll                                         = Sample(  name="Sh_WqqZll"                 , dsid="361084" , xsec=   , kfactor=  )
+Sh_ZqqZll                                         = Sample(  name="Sh_ZqqZll"                 , dsid="361086" , xsec=   , kfactor=  )
+Sh_lvvv                                           = Sample(  name="Sh_lvvv"                   , dsid="361088" , xsec=   , kfactor=  )
+Sh_vvvv                                           = Sample(  name="Sh_vvvv"                   , dsid="361089" , xsec=   , kfactor=  )
+Sh_WqqZvv_SHv21_improved                          = Sample(  name="Sh_WqqZvv_SHv21_improved"  , dsid="361095" , xsec=   , kfactor=  )
+Sh_ZqqZvv_SHv21_improved                          = Sample(  name="Sh_ZqqZvv_SHv21_improved"  , dsid="361097" , xsec=   , kfactor=  )
+"""
+
+"""
+Sh221_PDF30_Ztt_MHPT0_70_CVetoBVeto               = Sample(  name="Sh221_PDF30_Ztt_MHPT0_70_CVetoBVeto"     , dsid="364128" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT0_70_CFiltBVet                = Sample(  name="Sh221_PDF30_Ztt_MHPT0_70_CFiltBVet"      , dsid="364129" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT0_70_BFilter                  = Sample(  name="Sh221_PDF30_Ztt_MHPT0_70_BFilter"        , dsid="364130" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT70_140_CVetoBVeto             = Sample(  name="Sh221_PDF30_Ztt_MHPT70_140_CVetoBVeto"   , dsid="364131" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT70_140_CFiltBVet              = Sample(  name="Sh221_PDF30_Ztt_MHPT70_140_CFiltBVet"    , dsid="364132" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT70_140_BFilter                = Sample(  name="Sh221_PDF30_Ztt_MHPT70_140_BFilter"      , dsid="364133" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT140_280_CVetoBVeto            = Sample(  name="Sh221_PDF30_Ztt_MHPT140_280_CVetoBVeto"  , dsid="364134" , xsec=   , kfactor=  )
+Sh221_PDF30_Ztt_MHPT140_280_CFiltBVet             = Sample(  name="Sh221_PDF30_Ztt_MHPT140_280_CFiltBVet"   , dsid="364135" , xsec=   , kfactor=  ) 
+Sh221_PDF30_Ztt_MHPT140_280_BFilter               = Sample(  name="Sh221_PDF30_Ztt_MHPT140_280_BFilter"     , dsid="364136" , xsec=   , kfactor=  )
+"""
+
+"""
+PoPy8_A14_ttb_nonallh                             = Sample(  name="PoPy8_A14_ttb_nonallh"                  , dsid="410500" , xsec=   , kfactor=  )
+PoPy_P2012radHi_ttb_down_nonallh                  = Sample(  name="PoPy_P2012radHi_ttb_down_nonallh"       , dsid="410001" , xsec=   , kfactor=  )
+PoPy_P2012radLo_ttb_up_nonallh                    = Sample(  name="PoPy_P2012radLo_ttb_up_nonallh"         , dsid="410002" , xsec=   , kfactor=  )
+PowhegHerwigppEvtGen_UEEE5_ttb_nonallh            = Sample(  name="PowhegHerwigppEvtGen_UEEE5_ttb_nonallh" , dsid="410004" , xsec=   , kfactor=  )
+"""
 
 all_data = data.daughters
 
 all_mc = []
-#all_mc += Wenu.daughters
-#all_mc += Wmunu.daughters
-#all_mc += Wtaunu.daughters
-#all_mc += Zee.daughters
-#all_mc += Zmumu.daughters
-#all_mc += Ztautau.daughters
-all_mc += Wtaujets.daughters
+all_mc += Wtaunu.daughters
+all_mc += Wlepnu.daughters
+all_mc += Zleplep.daughters
+all_mc += Ztautau.daughters
 all_mc += top.daughters
-all_mc += Wenujets.daughters
-all_mc += Wmunujets.daughters
-all_mc += Zeejets.daughters
-all_mc += Zmumujets.daughters
-all_mc += Zttjets.daughters
+all_mc += lfvh.daughters
 
-## EOF
+# EOF

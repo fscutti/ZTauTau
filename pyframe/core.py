@@ -43,12 +43,13 @@ class EventLoop(object):
     loop.run(tree)
     """
     #_________________________________________________________________________
-    def __init__(self, name="loop", version="test", sampletype=None, outfile=None, quiet=False):
+    def __init__(self, name="loop", version="test", sampletype=None, samplename=None, outfile=None, quiet=False):
         self.name        = name
         self.version     = version
         self.outfile     = outfile or "%s.%s.%s.hist.root" % (name, version, timestamp)
         self.quiet       = quiet if sys.stdout.isatty() else True
         self.sampletype  = sampletype
+        self.samplename  = samplename
         self._algorithms = []
         self._hists      = dict() # persists for the entire event-loop
         self._store      = dict() # cleared event-by-event
@@ -444,7 +445,7 @@ class ParticleProxy(object):
         tree_proxy =  object.__getattribute__(self, "tree_proxy")
         if prefix_and_name in tree_proxy.branches:
             index = object.__getattribute__(self, "index")
-            return getattr(tree_proxy, prefix_and_name)[index]
+            return getattr(tree_proxy, prefix_and_name)[index] 
         return object.__getattribute__(self, name)
 
 

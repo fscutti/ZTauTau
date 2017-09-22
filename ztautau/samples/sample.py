@@ -23,10 +23,12 @@ class Sample(object):
     def __init__(self,
                  name          = '',
                  tlatex        = None,
+                 infile        = None, 
                  xsec          = 0.0,
                  feff          = 1.0,
                  kfactor       = 1.0,
                  files         = [],
+                 dsid          = None,
                  type          = "mc",
                  config        = None,
                  daughters     = [],
@@ -37,10 +39,12 @@ class Sample(object):
         ## -------------------------------------------------------
         self.name          = name
         self.tlatex        = tlatex or name
+        self.infile        = infile or name
         self.xsec          = xsec
         self.feff          = feff
         self.kfactor       = kfactor
         self.files         = files
+        self.dsid          = dsid
         self.type          = type
         self.config        = config or {}
         self.daughters     = daughters
@@ -77,9 +81,5 @@ class Sample(object):
 
         h = self.estimator.hist(**kw)
         return h
-
-
-
-
 
 ## EOF
