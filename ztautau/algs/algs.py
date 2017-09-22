@@ -134,39 +134,43 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.lephad_qxq == -1
     #__________________________________________________________________________
     def cut_TauEVeto(self):
-        return (self.chain.tau_0_n_tracks == 1 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.15) or (self.chain.tau_0_n_tracks == 3 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.05) 
+        return self.chain.n_electrons == 1 and ((self.chain.tau_0_n_tracks == 1 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.15) or (self.chain.tau_0_n_tracks == 3 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.05))
     #__________________________________________________________________________
     def cut_SCDP(self):
         return self.chain.lephad_met_sum_cos_dphi > -0.35
     #__________________________________________________________________________
-    def cut_dEta(self):
-        return abs(self.chain.lephad_deta) < 2
-    #__________________________________________________________________________
-    def cut_BVeto(self):
-        return self.chain.n_bjets == 0
+    def cut_Presel(self):
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2
     #__________________________________________________________________________
     def cut_SR1(self):
-        return self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40
     #__________________________________________________________________________
     def cut_SR2(self):
-        return self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met < 40
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met < 40
     #__________________________________________________________________________
     def cut_SR3(self):
-        return self.chain.tau_0_pt < 45 and self.chain.tau_0_pt > 25 and self.chain.lep_0_pt > 45
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40 and self.chain.lep_0_pt > 45
     ##__________________________________________________________________________
     def cut_WCR(self):
         # W CR
-        # This one I'm sure is orthogonal
-        return self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met > 40 and self.chain.tau_0_pt > 45
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.lephad_mt_lep1_met > 40 and self.chain.lephad_mt_lep0_met > 60 
     #__________________________________________________________________________
     def cut_TCR(self):
         # TopCR
-        return self.chain.n_bjets > 0 and self.chain.n_jets > 1
+        return self.chain.n_bjets  > 0 and abs(self.chain.lephad_deta) < 2 and self.chain.n_jets > 1
     #__________________________________________________________________________
     def cut_QCDCR(self):
+        # QCD CR 1
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) > 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 60
+    #__________________________________________________________________________
+    def cut_QCDCR2(self):
+        # QCD CR 2 : What is this used for
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) > 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
+    #__________________________________________________________________________
+    def cut_ZCR(self):
         # QCD CR
         # This one I'm sure is orthogonal
-        return abs(self.chain.lephad_deta) < 2 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
     
 #------------------------------------------------------------------------------
 class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
