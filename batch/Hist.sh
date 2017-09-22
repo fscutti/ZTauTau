@@ -77,9 +77,11 @@ echo "reading in config file '${CONFIG}', line ${PBS_ARRAYID}"
 line=`sed -n -e ${PBS_ARRAYID}p ${CONFIG}`
 echo ${line}
 arrIN=(${line//;/ });
-SAMPLENAME=${arrIN[0]}
+
+SAMPLEDIR=${arrIN[0]}
 INPUT=${arrIN[1]}
 OUTPUT=${arrIN[2]}
+SAMPLENAME=${arrIN[2]%.root*}
 SAMPLETYPE=${arrIN[3]}
 CFG=${arrIN[4]}
 
@@ -116,9 +118,9 @@ if [ ! -d ${OUTPATH} ]; then mkdir ${OUTPATH}; fi
 
 echo "copying output"
 # hardcoded output ntuple
-echo cp ${OUTPUT} ${OUTPATH}
-cp ${OUTPUT} ${OUTPATH}
-chmod a+r ${OUTPATH}/${OUTPUT}
+echo cp ${OUTPUT} ${OUTPATH}/${SAMPLETYPE}/${SAMPLEDIR}
+cp ${OUTPUT} ${OUTPATH}/${SAMPLETYPE}/${SAMPLEDIR}
+chmod a+r ${OUTPATH}
 
 echo "cd ${TMPDIR}"
 cd ${TMPDIR}

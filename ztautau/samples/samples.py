@@ -14,7 +14,8 @@ import ROOT
 
 GRL = []
 
-GRL += [ "00309640","00279764","00307732","00308047","00301918","00309759","00302380",
+GRL += [ 
+         "00309640","00279764","00307732","00308047","00301918","00309759","00302380",
          "00306419","00300287","00281074","00306655","00276778","00301932","00307124",
          "00279259","00280368","00306247","00309516","00304178","00280500","00283429",
          "00299584","00303201","00304198","00298773","00304128","00303846","00300784",
@@ -24,9 +25,10 @@ GRL += [ "00309640","00279764","00307732","00308047","00301918","00309759","0030
          "00284473","00304243","00306278","00279984","00305293","00303421","00282784",
          "00282712","00302300","00305727","00305291","00283608","00305674","00310863",
          "00310691","00276511","00309674","00307656","00302137","00299315","00302829",
-         "00305543","00299243","00310405","00278880","00306269","00300418",]
+         "00305543","00299243","00310405","00278880","00306269","00300418",
+         ]
 
-ds_name = 'physics_Main_%s'
+ds_name = '%s'
 
 for run in GRL:
     name = ds_name % run
@@ -39,11 +41,11 @@ list_runs =[globals()[ds_name%(run)] for run in GRL]
 
 data = Sample(name         = "data",
               tlatex       = "Data 2015",
-              fill_color   = white,
+              fill_color   = ROOT.kWhite,
               fill_style   = 0,
-              line_color   = black,
+              line_color   = ROOT.kBlack,
               line_style   = 1,
-              marker_color = black,
+              marker_color = ROOT.kBlack,
               marker_style = 20,
               daughters    = list_runs,
               )
@@ -139,10 +141,10 @@ Zleplep =  Sample( name =   'Zleplep',
                                     Sh221_PDF30_Zmumu_MHPT70_140_CVetoBVeto,
                                     Sh221_PDF30_Zmumu_MHPT70_140_CFiltBVet, 
                                     Sh221_PDF30_Zmumu_MHPT70_140_BFilter,   
-                                    Sh221_PDF30_Zmumu_MHPT140_280_CVetoBVet,
+                                    Sh221_PDF30_Zmumu_MHPT140_280_CVetoBVeto,
                                     Sh221_PDF30_Zmumu_MHPT140_280_CFiltBVet,
                                     Sh221_PDF30_Zmumu_MHPT140_280_BFilter,  
-                                    Sh221_PDF30_Zmumu_MHPT280_500_CVetoBVet,
+                                    Sh221_PDF30_Zmumu_MHPT280_500_CVetoBVeto,
                                     Sh221_PDF30_Zmumu_MHPT280_500_CFiltBVet,
                                     Sh221_PDF30_Zmumu_MHPT280_500_BFilter,  
                                     Sh221_PDF30_Zmumu_MHPT500_1000,         
