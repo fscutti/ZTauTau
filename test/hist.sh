@@ -3,7 +3,7 @@
 
 INPATH="/coepp/cephfs/share/atlas/LFV/july"
 INSCRIPT="../ztautau/run"
-SCRIPT="j.plotter.py"
+SCRIPT="brian.plotter.py"
 
 
 python  ${INSCRIPT}/${SCRIPT} \
