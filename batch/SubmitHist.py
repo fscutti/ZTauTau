@@ -31,13 +31,13 @@ RUN         = 'HistTEST'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
-QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
-SCRIPT      = "./ztautau/run/j.plotter.py"       # pyframe job script
-BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
-DO_NOM      = True                               # submit the nominal job
-DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
-DO_PLOT_SYS = False                              # submit the plot systematics jobs
-TESTMODE    = False                              # submit only 1 sub-job (for testing)
+QUEUE       = "long"                               # length of pbs queue (short, long, extralong )
+SCRIPT      = "./ztautau/run/j.plotter.py"         # pyframe job script
+BEXEC       = "Hist.sh"                            # exec script (probably dont change) 
+DO_NOM      = True                                 # submit the nominal job
+DO_NTUP_SYS = False                                # submit the NTUP systematics jobs
+DO_PLOT_SYS = False                                # submit the plot systematics jobs
+TESTMODE    = False                                # submit only 1 sub-job (for testing)
 NCORES      = 1
 
 def main():
