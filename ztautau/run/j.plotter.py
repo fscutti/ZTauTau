@@ -18,8 +18,8 @@ import pyframe
 import ztautau
 
 #_____________________________________________________________________________
-def get_sys_dict(sys_name=None, sys_tree="NOMINAL", sys_var=None):
-  return {"name":sys_name, "tree":sys_tree, "variation":sys_var}
+def get_sys_dict(sys_name=None, sys_tree="NOMINAL",sys_friendtree="NN_NOMINAL", sys_var=None):
+  return {"name":sys_name, "tree":sys_tree, "friendtree":sys_friendtree, "variation":sys_var}
 #_____________________________________________________________________________
 def analyze(config):
   
@@ -57,10 +57,14 @@ def analyze(config):
         assert False, "Invalid sys %s!"%(sys)
     
     ## build chain
-    config['tree'] = sys_dict['tree']
-    
+    config['tree']       = sys_dict['tree']
+    config['friendtree'] = sys_dict['friendtree'] 
+
     chain = ROOT.TChain(config['tree'])
     for fn in config['input']: chain.Add(fn)
+    if config['friendinput']: 
+      assert config['friendtree'], 'ERROR: name of friendtree not provided for friendfile %s'%config['friendinput']
+      chain.AddFriend(config['friendtree'],config['friendinput'])
 
     ##-------------------------------------------------------------------------
     ## event loop

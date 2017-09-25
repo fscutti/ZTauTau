@@ -43,13 +43,14 @@ class EventLoop(object):
     loop.run(tree)
     """
     #_________________________________________________________________________
-    def __init__(self, name="loop", version="test", sampletype=None, samplename=None, outfile=None, quiet=False):
+    def __init__(self, name="loop", version="test", sampletype=None, samplename=None, friendtree=None, outfile=None, quiet=False):
         self.name        = name
         self.version     = version
         self.outfile     = outfile or "%s.%s.%s.hist.root" % (name, version, timestamp)
         self.quiet       = quiet if sys.stdout.isatty() else True
         self.sampletype  = sampletype
         self.samplename  = samplename
+        self.friendtree  = friendtree
         self._algorithms = []
         self._hists      = dict() # persists for the entire event-loop
         self._store      = dict() # cleared event-by-event
@@ -91,9 +92,11 @@ class EventLoop(object):
                 if line:
                     branches_on.append(line)
             f.close()
+        
         # setup
-        tree_proxy = TreeProxy(chain)
+        tree_proxy = TreeProxy(chain,self.friendtree)
         self.setup(tree_proxy, branches_on=branches_on)
+
         n_entries = chain.GetEntries()
         if max_entry < 0:
             max_entry = n_entries
@@ -370,14 +373,22 @@ class TreeProxy(object):
     from its tree.
     """
     #_________________________________________________________________________
-    def __init__(self, tree):
+    def __init__(self, tree, friendtree=None):
         self.tree = tree
+        self.friendtree = friendtree
         self.branches = set()
         self.branches_read = set()
         self.branches_on = set()
+        
         # cache the branch names
         for b in tree.GetListOfBranches():
             self.branches.add( b.GetName() )
+        
+        # if a friend tree has been added
+        if self.friendtree:
+          for bf in tree.GetFriend(self.friendtree).GetListOfBranches():
+              self.branches.add( bf.GetName() )
+        
         # turn on all branches
         self.set_all_branches_on()
         self._cache = {}

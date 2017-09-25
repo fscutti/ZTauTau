@@ -8,16 +8,18 @@ import os
 import sys
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--channel"    , default=0  , help="Channel number for juggling similar analyses.")
-parser.add_argument("--execfiles"  , default="" , help="Comma-separated list of files to be executed by config.")
-parser.add_argument("--input"      , default="" , help="Comma-separated list of input ROOT files.")
-parser.add_argument("--events"     , default=0  , help="Maximum number of events considered by EventLoop.")
-parser.add_argument("--proc"       , default=0  , help="Number of parallel processes to run.")
-parser.add_argument("--samplename" , default="" , help="Name of sample (eg Ztautau, Zee).")
-parser.add_argument("--sampletype" , default="" , help="Type of sample (eg data12-Muons, mc12, AF2")
-parser.add_argument("--tree"       , default="" , help="Name of tree.")
-parser.add_argument("--version"    , default="" , help="Version of the job.")
-parser.add_argument("--config"     , default="" , help="Set config entries by commandline 'KEY1:VAL1,KEY2:VAL2...'")
+parser.add_argument("--channel"     , default=0  , help="Channel number for juggling similar analyses.")
+parser.add_argument("--execfiles"   , default="" , help="Comma-separated list of files to be executed by config.")
+parser.add_argument("--input"       , default="" , help="Comma-separated list of input ROOT files.")
+parser.add_argument("--events"      , default=0  , help="Maximum number of events considered by EventLoop.")
+parser.add_argument("--proc"        , default=0  , help="Number of parallel processes to run.")
+parser.add_argument("--samplename"  , default="" , help="Name of sample (eg Ztautau, Zee).")
+parser.add_argument("--friendinput" , default="" , help="Name of sample with friend tree")
+parser.add_argument("--friendtree"  , default="" , help="Name of friend tree to be retrieved from friendinput")
+parser.add_argument("--sampletype"  , default="" , help="Type of sample (eg data12-Muons, mc12, AF2")
+parser.add_argument("--tree"        , default="" , help="Name of tree.")
+parser.add_argument("--version"     , default="" , help="Version of the job.")
+parser.add_argument("--config"      , default="" , help="Set config entries by commandline 'KEY1:VAL1,KEY2:VAL2...'")
 ops, unknown = parser.parse_known_args()
 
 GeV = 1000.0
@@ -57,13 +59,15 @@ def main(analyze):
             execfile(_file)
 
     # get config from the command-line
-    if ops.events     : config["events"]     = int(ops.events)
-    if ops.channel    : config["channel"]    = int(ops.channel)
-    if ops.tree       : config["tree"]       = ops.tree
-    if ops.version    : config["version"]    = ops.version
-    if ops.proc       : config["proc"]       = int(ops.proc)
-    if ops.samplename : config["samplename"] = ops.samplename
-    if ops.sampletype : config["sampletype"] = ops.sampletype
+    if ops.events      : config["events"]      = int(ops.events)
+    if ops.channel     : config["channel"]     = int(ops.channel)
+    if ops.tree        : config["tree"]        = ops.tree
+    if ops.friendtree  : config["friendtree"]  = ops.friendtree
+    if ops.friendinput : config["friendinput"] = ops.friendinput
+    if ops.version     : config["version"]     = ops.version
+    if ops.proc        : config["proc"]        = int(ops.proc)
+    if ops.samplename  : config["samplename"]  = ops.samplename
+    if ops.sampletype  : config["sampletype"]  = ops.sampletype
 
     # retrieve command line config
     if ops.config: 
