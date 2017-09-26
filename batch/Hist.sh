@@ -80,10 +80,11 @@ arrIN=(${line//;/ });
 
 SAMPLEDIR=${arrIN[0]}
 INPUT=${arrIN[1]}
-OUTPUT=${arrIN[2]}
-SAMPLENAME=${arrIN[2]%.root*}
-SAMPLETYPE=${arrIN[3]}
-CFG=${arrIN[4]}
+FRIENDINPUT=${arrIN[2]}
+OUTPUT=${arrIN[3]}
+SAMPLENAME=${arrIN[3]%.root*}
+SAMPLETYPE=${arrIN[4]}
+CFG=${arrIN[5]}
 
 echo "SAMPLENAME: ${SAMPLENAME}"
 echo "SAMPLETYPE: ${SAMPLETYPE}"
@@ -106,9 +107,8 @@ echo $$ > /cgroup/cpuset/${USER}/${PBS_JOBID}/tasks
 
 echo ""
 echo "executing job..."
-echo ${SCRIPT} --input ${INPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE} --config "${CFG}"
-
-${SCRIPT} --input ${INPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE} --config "${CFG}"
+echo ${SCRIPT} --input ${INPUT} --friendinput ${FRIENDINPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE} --config "${CFG}"
+${SCRIPT} --input ${INPUT} --friendinput ${FRIENDINPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE} --config "${CFG}"
 
 echo "finished execution"
 

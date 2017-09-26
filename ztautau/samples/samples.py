@@ -335,9 +335,9 @@ lfvh =  Sample( name =   'lfvh',
                 marker_color =  1031,
                 daughters    = [
                                  PoPy8_ggH125_taumu, 
-                                 PoPy8_VBFH125_taumu,
-                                 PoPy8_ggH125_taue,  
-                                 PoPy8_VBFH125_taue,
+                                 #PoPy8_VBFH125_taumu,
+                                 #PoPy8_ggH125_taue,  
+                                 #PoPy8_VBFH125_taue,
                                 ]
                 )
 

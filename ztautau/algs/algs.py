@@ -171,6 +171,9 @@ class CutAlg(pyframe.core.Algorithm):
       # QCD CR
       # This one I'm sure is orthogonal
       return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
+    #__________________________________________________________________________
+    def cut_TESTFRIEND(self):
+      return self.chain.NN_input_tau_E > 50.
     
     
 #------------------------------------------------------------------------------

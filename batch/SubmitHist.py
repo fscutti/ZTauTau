@@ -17,22 +17,23 @@ def prepare_path(path):
 
 ## environment variables
 ## ---------------------
-MAIN        = os.getenv('MAIN')                    # upper folder
+MAIN        = os.getenv('MAIN')                           # upper folder
 USER        = os.getenv('USER')
-NTUP        = '/coepp/cephfs/share/atlas/LFV/july' # global config input NTUP path
-JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER             # The Melb cloud is twisted and does not recognize home dirs...
+NTUP        = '/coepp/cephfs/share/atlas/LFV/july'        # global config input NTUP path
+FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/friendsLFVH' # path where friend input is located; same "granularity as NTUP"
+JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER        # The Melb cloud is twisted and does not recognize home dirs...
 prepare_path(JOBDIR)
 INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
-AUTOBUILD   = True                                 # auto-build tarball using Makefile.tarball
+AUTOBUILD   = True                                        # auto-build tarball using Makefile.tarball
 NJMAX       = 500
 
 # outputs  
-RUN         = 'HistTEST'
+RUN         = 'HistFriendTEST'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
 QUEUE       = "long"                               # length of pbs queue (short, long, extralong )
-SCRIPT      = "./ztautau/run/j.plotter.py"         # pyframe job script
+SCRIPT      = "./ztautau/run/brian.plotter.py"         # pyframe job script
 BEXEC       = "Hist.sh"                            # exec script (probably dont change) 
 DO_NOM      = True                                 # submit the nominal job
 DO_NTUP_SYS = False                                # submit the NTUP systematics jobs
@@ -107,6 +108,7 @@ def submit(tag,job_sys,samps,config={}):
     global MAIN
     global USER
     global NTUP
+    global FRIENDPATH
     global NJMAX
     global INTARBALL
     global AUTOBUILD
@@ -176,10 +178,13 @@ def submit(tag,job_sys,samps,config={}):
            
            # abspath of infile
            infpath = os.path.join(NTUP,s.type,infile)
-
-           # write many lines here
-           line = ';'.join([s.name,infpath,soutput,s.type,sconfig_str])
+           infpathfriend = ""
+           if FRIENDPATH:
+              infriend = infile.replace(NTUP,FRIENDPATH)+".friend"
            
+           # write many lines here
+           line = ';'.join([s.name,infpath,infriend,soutput,s.type,sconfig_str])
+
            cfg = os.path.join(JOBDIR,'Config%s.%s.run.%s'%(RUN,tag,nrun))
            abslogpath = os.path.abspath(os.path.join(logrootpath,"log_run_%d"%nrun))
            
@@ -211,11 +216,11 @@ def submit(tag,job_sys,samps,config={}):
              if TESTMODE: nsubjobs = 1
              
              vars=[]
-             vars+=["CONFIG=%s"    % abscfg       ]
-             vars+=["INTARBALL=%s" % absintar     ]
-             vars+=["OUTPATH=%s"   % outrootpath  ]
-             vars+=["SCRIPT=%s"    % SCRIPT       ]
-             vars+=["NCORES=%d"    % NCORES       ]
+             vars+=["CONFIG=%s"     % abscfg       ]
+             vars+=["INTARBALL=%s"  % absintar     ]
+             vars+=["OUTPATH=%s"    % outrootpath  ]
+             vars+=["SCRIPT=%s"     % SCRIPT       ]
+             vars+=["NCORES=%d"     % NCORES       ]
              
              VARS = ','.join(vars)
              
