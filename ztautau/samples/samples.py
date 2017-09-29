@@ -5,6 +5,7 @@ samples.py
 '''
 ## modules
 from sample import Sample
+from colours import *
 import ROOT
 
 
@@ -27,6 +28,8 @@ GRL += [
          "00310691","00276511","00309674","00307656","00302137","00299315","00302829",
          "00305543","00299243","00310405","00278880","00306269","00300418",
          ]
+#GRL = ['00300418']
+GRL.sort()
 
 ds_name = '%s'
 
@@ -330,18 +333,30 @@ PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125
 
 lfvh =  Sample( name =   'lfvh',
                 tlatex = 'H#rightarrow#tau#tau (LFV)',
+                fill_color   =  1020,
+                line_color   =  1020,
+                marker_color =  1020,
+                daughters    = [
+                                 PoPy8_ggH125_taumu, 
+                                 PoPy8_VBFH125_taumu,
+                                 PoPy8_ggH125_taue,  
+                                 PoPy8_VBFH125_taue,
+                                ]
+                )
+
+PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_tautau"    , dsid="341123" , xsec=1.262409959 )
+PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_tautau"   , dsid="341156" , xsec=0.107869976 )
+
+smh  =  Sample( name =   'smh',
+                tlatex = 'H#rightarrow#tau#tau (SM)',
                 fill_color   =  1031,
                 line_color   =  1031,
                 marker_color =  1031,
                 daughters    = [
-                                 PoPy8_ggH125_taumu, 
-                                 #PoPy8_VBFH125_taumu,
-                                 #PoPy8_ggH125_taue,  
-                                 #PoPy8_VBFH125_taue,
+                                 PoPy8_ggH125_tautau, 
+                                 PoPy8_VBFH125_tautau,
                                 ]
                 )
-
-
 
 # the following samples we have locally but they are not included in the xml
 """
@@ -400,11 +415,11 @@ PowhegHerwigppEvtGen_UEEE5_ttb_nonallh            = Sample(  name="PowhegHerwigp
 all_data = data.daughters
 
 all_mc = []
-all_mc += Wtaunu.daughters
-all_mc += Wlepnu.daughters
-all_mc += Zleplep.daughters
-all_mc += Ztautau.daughters
-all_mc += top.daughters
+#all_mc += Wtaunu.daughters
+#all_mc += Wlepnu.daughters
+#all_mc += Zleplep.daughters
+#all_mc += Ztautau.daughters
+#all_mc += top.daughters
 all_mc += lfvh.daughters
 
 # EOF

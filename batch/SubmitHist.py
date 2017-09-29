@@ -20,7 +20,7 @@ def prepare_path(path):
 MAIN        = os.getenv('MAIN')                           # upper folder
 USER        = os.getenv('USER')
 NTUP        = '/coepp/cephfs/share/atlas/LFV/july'        # global config input NTUP path
-FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/friendsLFVH' # path where friend input is located; same "granularity as NTUP"
+FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/base_test_july_evtnofix' # path where friend input is located; same "granularity as NTUP"
 JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER        # The Melb cloud is twisted and does not recognize home dirs...
 prepare_path(JOBDIR)
 INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
@@ -28,18 +28,18 @@ AUTOBUILD   = True                                        # auto-build tarball u
 NJMAX       = 500
 
 # outputs  
-RUN         = 'HistFriendTEST'
+RUN         = 'NN_mc_missing'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
-QUEUE       = "long"                               # length of pbs queue (short, long, extralong )
-SCRIPT      = "./ztautau/run/brian.plotter.py"         # pyframe job script
-BEXEC       = "Hist.sh"                            # exec script (probably dont change) 
-DO_NOM      = True                                 # submit the nominal job
-DO_NTUP_SYS = False                                # submit the NTUP systematics jobs
-DO_PLOT_SYS = False                                # submit the plot systematics jobs
-TESTMODE    = False                                # submit only 1 sub-job (for testing)
-NCORES      = 1
+QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
+SCRIPT      = "./ztautau/run/mc.plotter.py"   # pyframe job script
+BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
+DO_NOM      = True                               # submit the nominal job
+DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
+DO_PLOT_SYS = False                              # submit the plot systematics jobs
+TESTMODE    = False                              # submit only 1 sub-job (for testing)
+NCORES      = 2
 
 def main():
     """
@@ -66,7 +66,8 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_data + all_mc 
+    #nominal  = all_data + all_mc 
+    nominal  = all_mc
     
     ntup_sys = [
         ['SYS1_UP',                  all_mc],

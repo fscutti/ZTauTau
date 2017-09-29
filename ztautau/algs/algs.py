@@ -112,6 +112,9 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_LepAntiIso(self):
         return self.chain.lep_0_iso_Gradient == 0
     #__________________________________________________________________________
+    def cut_LepIsoLoose(self):
+        return self.chain.lep_0_iso_Loose == 0
+    #__________________________________________________________________________
     def cut_LepPt(self):
         return self.chain.lep_0_pt > 27
     #__________________________________________________________________________
@@ -120,6 +123,12 @@ class CutAlg(pyframe.core.Algorithm):
     #__________________________________________________________________________
     def cut_TauID(self):
         return self.chain.n_taus_medium == 1 and self.chain.tau_0_jet_bdt_medium == 1
+    #__________________________________________________________________________
+    def cut_TauLoose(self):
+        return self.chain.tau_0_jet_bdt_loose == 1
+    #__________________________________________________________________________
+    def cut_TauLooseNMed(self):
+        return self.chain.tau_0_jet_bdt_loose == 1 and self.chain.tau_0_jet_bdt_medium == 0
     #__________________________________________________________________________
     def cut_TauAntiID(self):
         return self.chain.n_taus_medium == 0 and self.chain.tau_0_jet_bdt_medium == 0 and self.chain.tau_0_jet_bdt_score > 0.25 
@@ -140,6 +149,8 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.lephad_met_sum_cos_dphi > -0.35
     #__________________________________________________________________________
     def cut_Presel(self):
+        if not self.chain.event_number == self.chain.eventNumber:
+            print "Problem mismatch between %i and %i" % (self.chain.event_number, self.chain.eventNumber)
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2
     #__________________________________________________________________________
     def cut_SR1(self):

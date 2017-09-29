@@ -123,7 +123,7 @@ def analyze(config):
     #        )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "tau_0",
-            branch_name = "tau_0_NOMINAL_TauEffSF_MediumEleBDTPlusVeto_electron",
+            branch_name = "TauEffSF_HadTauEleOLR_tauhad",
             key         = "TauEVeto",
             scale       = None,
             )
@@ -357,6 +357,7 @@ def analyze(config):
         regname[c[0]][c[1]] = c[0]+c[1]
     ## ---------------------------------------
     runSR = True
+    preselOnly = True
     if runSR:
         print "Running over SR"
         for c in comb:
@@ -369,33 +370,34 @@ def analyze(config):
                                   ['Presel', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
-            #loop += ztautau.algs.algs.PlotAlg(
-            #        region       = 'sr1_'+regname[c[0]][c[1]],
-            #        do_var_check = True,
-            #        hist_list    = hist_list,
-            #        plot_all     = False,
-            #        cut_flow  = cutflow[c[0]][c[1]]+[
-            #                      ['SR1', ['JetEff', 'JetIneff']] , 
-            #                    ],
-            #        )
-            #loop += ztautau.algs.algs.PlotAlg(
-            #        region       = 'sr2_'+regname[c[0]][c[1]],
-            #        do_var_check = True,
-            #        hist_list    = hist_list,
-            #        plot_all     = False,
-            #        cut_flow  = cutflow[c[0]][c[1]]+[
-            #                      ['SR2', ['JetEff', 'JetIneff']] , 
-            #                    ],
-            #        )
-            #loop += ztautau.algs.algs.PlotAlg(
-            #        region       = 'sr3_'+regname[c[0]][c[1]],
-            #        do_var_check = True,
-            #        hist_list    = hist_list,
-            #        plot_all     = False,
-            #        cut_flow  = cutflow[c[0]][c[1]]+[
-            #                      ['SR3', ['JetEff', 'JetIneff']] , 
-            #                    ],
-            #        )
+            if preselOnly: continue
+            loop += ztautau.algs.algs.PlotAlg(
+                    region       = 'sr1_'+regname[c[0]][c[1]],
+                    do_var_check = True,
+                    hist_list    = hist_list,
+                    plot_all     = False,
+                    cut_flow  = cutflow[c[0]][c[1]]+[
+                                  ['SR1', ['JetEff', 'JetIneff']] , 
+                                ],
+                    )
+            loop += ztautau.algs.algs.PlotAlg(
+                    region       = 'sr2_'+regname[c[0]][c[1]],
+                    do_var_check = True,
+                    hist_list    = hist_list,
+                    plot_all     = False,
+                    cut_flow  = cutflow[c[0]][c[1]]+[
+                                  ['SR2', ['JetEff', 'JetIneff']] , 
+                                ],
+                    )
+            loop += ztautau.algs.algs.PlotAlg(
+                    region       = 'sr3_'+regname[c[0]][c[1]],
+                    do_var_check = True,
+                    hist_list    = hist_list,
+                    plot_all     = False,
+                    cut_flow  = cutflow[c[0]][c[1]]+[
+                                  ['SR3', ['JetEff', 'JetIneff']] , 
+                                ],
+                    )
     runCR = False
     if runCR:
         print "Running over CR"
@@ -447,7 +449,8 @@ def analyze(config):
                                 ],
                     )
     ## Comment following lines out
-    if not config['sampletype'] == 'data':
+    runDD = True
+    if config['sampletype'] == 'data' and runDD:
         print "Running over data-driven regions"
         for c in comb:
             loop += ztautau.algs.algs.PlotAlg(
@@ -459,6 +462,7 @@ def analyze(config):
                                   ['Presel', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
+            if preselOnly: continue
             loop += ztautau.algs.algs.PlotAlg(
                     region       = 'sr1_antiiso'+regname[c[0]][c[1]],
                     do_var_check = True,
@@ -543,6 +547,7 @@ def analyze(config):
                                   ['Presel', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
+            if preselOnly: continue
             loop += ztautau.algs.algs.PlotAlg(
                     region       = 'sr1_osaidcr'+regname[c[0]][c[1]],
                     do_var_check = True,
@@ -570,6 +575,7 @@ def analyze(config):
                                   ['SR3', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
+            if not runCR: continue
             loop += ztautau.algs.algs.PlotAlg(
                     region       = 'tcr_osaidcr'+regname[c[0]][c[1]],
                     do_var_check = True,
@@ -626,6 +632,7 @@ def analyze(config):
                                   ['Presel', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
+            if preselOnly: continue
             loop += ztautau.algs.algs.PlotAlg(
                     region       = 'sr1_sswjtcr'+regname[c[0]][c[1]],
                     do_var_check = True,
@@ -653,6 +660,7 @@ def analyze(config):
                                   ['SR3', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
+            if not runCR: continue
             loop += ztautau.algs.algs.PlotAlg(
                     region       = 'tcr_sswjtcr'+regname[c[0]][c[1]],
                     do_var_check = True,
@@ -712,6 +720,7 @@ def analyze(config):
 #______________________________________________________________________________
 if __name__ == '__main__':
     pyframe.config.main(analyze)
+
 
 
 
