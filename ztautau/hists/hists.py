@@ -15,26 +15,30 @@ class Hist1D(object):
     '''
     #________________________________________________________
     def __init__(self,
-            hname    = None,
-            xtitle   = None,
-            ytitle   = "Events",
-            nbins    = None,
-            xmin     = None,
-            xmax     = None,
-            dir      = None,
-            instance = None,
-            vexpr    = None,
+            hname      = None,
+            xtitle     = None,
+            ytitle     = "Events",
+            nbins      = None,
+            xmin       = None,
+            xmax       = None,
+            dir        = None,
+            instance   = None,
+            vexpr      = None,
+            log        = False,
+            rebin_dict = False,
             **kw):
        
-       self.hname    = hname
-       self.xtitle   = xtitle
-       self.ytitle   = ytitle
-       self.nbins    = nbins
-       self.xmin     = xmin
-       self.xmax     = xmax
-       self.dir      = dir
-       self.instance = instance
-       self.vexpr    = vexpr
+       self.hname      = hname
+       self.xtitle     = xtitle
+       self.ytitle     = ytitle
+       self.nbins      = nbins
+       self.xmin       = xmin
+       self.xmax       = xmax
+       self.dir        = dir
+       self.instance   = instance
+       self.vexpr      = vexpr
+       self.log        = log
+       self.rebin_dict = rebin_dict
         
        ## set additional key-word args
        # -------------------------------------------------------
@@ -44,6 +48,32 @@ class Hist1D(object):
     #________________________________________________________
     def get_name(self):
       return self.__class__.__name__
+    
+    #________________________________________________________
+    def apply_final_binning(self, rebin_dict=False):
+      # Rebin histograms with a dictionary, reset name to remove 'h_'
+      if 'rebin_dict' in kw.keys():
+          if 'xmin' in self.rebin_dict: 
+              self.xmin  = self.rebin_dict['xmin']
+          if 'xmax' in self.rebin_dict: 
+              self.xmax  = self.rebin_dict['xmax']
+          if 'nbins' in self.rebin_dict: 
+              self.nbins = self.rebin_dict['nbins']
+          if 'log' in self.rebin_dict.keys():
+              self.log = self.rebin_dict['log']
+          self.hname = self.hname[2:]
+      elif rebin_dict:
+          if 'xmin' in rebin_dict: 
+              self.xmin  = rebin_dict['xmin']
+          if 'xmax' in rebin_dict: 
+              self.xmax  = rebin_dict['xmax']
+          if 'nbins' in rebin_dict: 
+              self.nbins = rebin_dict['nbins']
+          if 'log' in rebin_dict.keys():
+              self.log = rebin_dict['log']
+          self.hname = hname[2:]
+      else:
+          print "No dictionary provided!"
     
     #________________________________________________________
     def fill(self,var,weight):
@@ -105,6 +135,45 @@ class Hist2D(object):
     #________________________________________________________
     def get_name(self):
       return self.__class__.__name__
+    
+    #________________________________________________________
+    def apply_final_binning(self, rebin_dict=False):
+      # Rebin histograms with a dictionary, reset name to remove 'h_'
+      # Rebin histograms with a dictionary, reset name to remove 'h_'
+      if 'rebin_dict' in kw.keys():
+          if 'xmin' in self.rebin_dict: 
+              self.xmin  = self.rebin_dict['xmin']
+          if 'xmax' in self.rebin_dict: 
+              self.xmax  = self.rebin_dict['xmax']
+          if 'nbinsx' in self.rebin_dict: 
+              self.nbins = self.rebin_dict['nbinsx']
+          if 'ymin' in self.rebin_dict: 
+              self.ymin  = self.rebin_dict['ymin']
+          if 'ymax' in self.rebin_dict: 
+              self.ymax  = self.rebin_dict['ymax']
+          if 'nbinsy' in self.rebin_dict: 
+              self.nbins = self.rebin_dict['nbinsy']
+          if 'log' in self.rebin_dict.keys():
+              self.log = self.rebin_dict['log']
+          self.hname = self.hname[2:]
+      elif rebin_dict:
+          if 'xmin' in rebin_dict: 
+              self.xmin  = rebin_dict['xmin']
+          if 'xmax' in rebin_dict: 
+              self.xmax  = rebin_dict['xmax']
+          if 'nbinsx' in rebin_dict: 
+              self.nbins = rebin_dict['nbinsx']
+          if 'ymin' in rebin_dict: 
+              self.ymin  = rebin_dict['ymin']
+          if 'ymax' in rebin_dict: 
+              self.ymax  = rebin_dict['ymax']
+          if 'nbinsy' in rebin_dict: 
+              self.nbins = rebin_dict['nbinsy']
+          if 'log' in rebin_dict.keys():
+              self.log = rebin_dict['log']
+          self.hname = hname[2:]
+      else:
+          print "No dictionary provided!"
     
     #________________________________________________________
     def set_axis_titles(self):

@@ -13,7 +13,7 @@ python  ${INSCRIPT}/${SCRIPT} \
   --sampletype="mc" \
   --samplename="mc.hist-output" \
   --events=1000 \
-#--config="sys:TAUID_DN"
+--config="sys:TAUID_DN"
 
 
 python  ${INSCRIPT}/${SCRIPT} \
@@ -22,3 +22,4 @@ python  ${INSCRIPT}/${SCRIPT} \
   --sampletype="data" \
   --samplename="data.hist-output" \
   --events=1000 \
+
