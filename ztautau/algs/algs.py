@@ -178,6 +178,12 @@ class CutAlg(pyframe.core.Algorithm):
         # QCD CR 2 : What is this used for
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) > 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
     #__________________________________________________________________________
+    def cut_1p(self):
+        return self.chain.tau_0_n_tracks == 1
+    #__________________________________________________________________________
+    def cut_3p(self):
+        return self.chain.tau_0_n_tracks == 3
+    #__________________________________________________________________________
     def cut_ZCR(self):
       # QCD CR
       # This one I'm sure is orthogonal

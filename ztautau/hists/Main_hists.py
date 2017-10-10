@@ -64,8 +64,6 @@ hist_presel.append(h_NN_input_mmmc    )
 hist_presel.append(h_NN_input_boost   )
 
 import itertools as it
-
-
 variables_NN      = [
                     h_NN_input_tau_E ,
                     h_NN_input_lep_px,
@@ -81,7 +79,6 @@ variables_NN      = [
                     h_NN_Z_output,
                     h_NN_comb_output
                     ]
-
 comb_2d  = it.combinations(variables_NN, 2 )
 combs_2d = []
 for c in comb_2d:

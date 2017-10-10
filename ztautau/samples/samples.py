@@ -71,9 +71,9 @@ Sh221_PDF30_Ztt_MHPT1000_E_CMS                    = Sample(  name="Sh221_PDF30_Z
 
 Ztautau =  Sample( name =   'Ztautau',
                    tlatex = 'Z#rightarrow#tau#tau',
-                   fill_color   =  1041,
-                   line_color   =  1041,
-                   marker_color =  1041,
+                   fill_color   =  1042,
+                   line_color   =  1042,
+                   marker_color =  1042,
                    daughters    = [
                                    Sh221_PDF30_Ztt_MHPT0_70_l13l7,
                                    Sh221_PDF30_Ztt_MHPT0_70_l15h20,       
@@ -135,9 +135,9 @@ Sh221__Zee_Mll10_40_MHPT280_BFilter               = Sample(  name="Sh221__Zee_Ml
 
 Zleplep =  Sample( name =   'Zleplep',
                    tlatex = 'Z#rightarrowll',
-                   fill_color   =  1053,
-                   line_color   =  1053,
-                   marker_color =  1053,
+                   fill_color   =  1043,
+                   line_color   =  1043,
+                   marker_color =  1043,
                    daughters    = [
                                     Sh221_PDF30_Zmumu_MHPT0_70_CVetoBVeto,                                     
                                     Sh221_PDF30_Zmumu_MHPT0_70_CFiltBVet,   
@@ -350,9 +350,9 @@ PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125
 
 smh  =  Sample( name =   'smh',
                 tlatex = 'H#rightarrow#tau#tau (SM)',
-                fill_color   =  1031,
-                line_color   =  1031,
-                marker_color =  1031,
+                fill_color   =  1010,
+                line_color   =  1010,
+                marker_color =  1010,
                 daughters    = [
                                  PoPy8_ggH125_tautau, 
                                  PoPy8_VBFH125_tautau,
@@ -418,28 +418,28 @@ PowhegHerwigppEvtGen_UEEE5_ttb_nonallh            = Sample(  name="PowhegHerwigp
 
 Wjets_dd = Sample( name         = 'Wjets_dd',
                    tlatex       = 'W+Jets',
-                   fill_color   = 1055,
-                   line_color   = 1055,
-                   marker_color = 1055,
+                   fill_color   = 1053,
+                   line_color   = 1053,
+                   marker_color = 1053,
                    type         = "datadriven",
                )
 
 Multijet_dd = Sample( name         = 'Multijet_dd',
                       tlatex       = 'Multi-jet',
-                      fill_color   = 920,
-                      line_color   = 921,
-                      marker_color = 921,
+                      fill_color   = 1002,
+                      line_color   = 1002,
+                      marker_color = 1002,
                       type         = "datadriven",
                     )
 
 all_data = data.daughters
 
 all_mc = []
-#all_mc += Wtaunu.daughters
-#all_mc += Wlepnu.daughters
-#all_mc += Zleplep.daughters
-#all_mc += Ztautau.daughters
-#all_mc += top.daughters
+all_mc += Wtaunu.daughters
+all_mc += Wlepnu.daughters
+all_mc += Zleplep.daughters
+all_mc += Ztautau.daughters
+all_mc += top.daughters
 all_mc += lfvh.daughters
 
 # EOF

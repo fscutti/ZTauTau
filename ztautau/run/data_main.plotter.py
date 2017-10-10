@@ -237,162 +237,99 @@ def analyze(config):
     import itertools as it
     chan = ['mu', 'el']
     year = ['15', '16']
-    comb = list(it.product(chan, year))
+    trck = ['1p', '3p']
+    comb = list(it.product(chan, year, trck))
     cutbase = [
     ]
-    cutflow = {'mu': {'15': [], '16': []}, 'el': {'15': [], '16': []}}
+    cutflow = {'mu': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}, 'el': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}}
     ## Data regions for bkgd estimate
-    antiiso = {'mu': {'15': [], '16': []}, 'el': {'15': [], '16': []}}
-    sswjtcr = {'mu': {'15': [], '16': []}, 'el': {'15': [], '16': []}}
-    osaidcr = {'mu': {'15': [], '16': []}, 'el': {'15': [], '16': []}}
+    antiiso = {'mu': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}, 'el': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}}
+    sswjtcr = {'mu': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}, 'el': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}}
+    osaidcr = {'mu': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}, 'el': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}}
     ## Canonical region name
-    regname = {'mu': {'15': [], '16': []}, 'el': {'15': [], '16': []}}
+    regname = {'mu': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}, 'el': {'15': {'1p': [], '3p': []}, '16': {'1p': [], '3p': []}}}
     for c in comb:
         if c[0] == 'mu': 
-            if   c[1] == '15':
-                cutflow[c[0]][c[1]] += [['MuonOnly', None] , ['2015MuonTrig' , ['MuTrig2015']]]
-                antiiso[c[0]][c[1]] += [['MuonOnly', None] , ['2015MuonTrig' , ['MuTrig2015']]]
-                sswjtcr[c[0]][c[1]] += [['MuonOnly', None] , ['2015MuonTrig' , ['MuTrig2015']]]
-                osaidcr[c[0]][c[1]] += [['MuonOnly', None] , ['2015MuonTrig' , ['MuTrig2015']]]
-            elif c[1] == '16':
-                cutflow[c[0]][c[1]] += [['MuonOnly', None] , ['2016MuonTrig' , ['MuTrig2016']]]
-                antiiso[c[0]][c[1]] += [['MuonOnly', None] , ['2016MuonTrig' , ['MuTrig2016']]]
-                sswjtcr[c[0]][c[1]] += [['MuonOnly', None] , ['2016MuonTrig' , ['MuTrig2016']]]
-                osaidcr[c[0]][c[1]] += [['MuonOnly', None] , ['2016MuonTrig' , ['MuTrig2016']]]
-            cutflow[c[0]][c[1]] += [
-                                   ['OS'           , None] ,
-                                   ['LepPt'        , ['MuTTVA']] , 
-                                   ['LepQual'      , ['MuRecoID']] ,
-                                   ['LepIso'       , ['MuIsoGrad']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauID'        , ['TauID']] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-            antiiso[c[0]][c[1]] += [
-                                   ['OS'           , None] ,
-                                   ['LepPt'        , ['MuTTVA']] , 
-                                   ['LepQual'      , ['MuRecoID']] ,
-                                   ['LepIsoLoose'  , ['MuIsoLoose']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauID'        , ['TauID']] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-            sswjtcr[c[0]][c[1]] += [
-                                   ['SS'           , None] ,
-                                   ['LepPt'        , ['MuTTVA']] , 
-                                   ['LepQual'      , ['MuRecoID']] ,
-                                   ['LepIso'       , ['MuIsoGrad']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauLoose'     , None] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-            osaidcr[c[0]][c[1]] += [
-                                   ['OS'           , None] ,
-                                   ['LepPt'        , ['MuTTVA']] , 
-                                   ['LepQual'      , ['MuRecoID']] ,
-                                   ['LepIso'       , ['MuIsoGrad']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauLooseNMed' , None] , 
-                                   ['SCDP'         , None] , 
-                                   ]
+            cutflow[c[0]][c[1]][c[2]] += [['MuonOnly', None] , ['20%sMuonTrig'  % c[1], ['MuTrig20%s' % c[1]]], [c[2], None]]
+            antiiso[c[0]][c[1]][c[2]] += [['MuonOnly', None] , ['20%sMuonTrig'  % c[1], ['MuTrig20%s' % c[1]]], [c[2], None]]
+            sswjtcr[c[0]][c[1]][c[2]] += [['MuonOnly', None] , ['20%sMuonTrig'  % c[1], ['MuTrig20%s' % c[1]]], [c[2], None]]
+            osaidcr[c[0]][c[1]][c[2]] += [['MuonOnly', None] , ['20%sMuonTrig'  % c[1], ['MuTrig20%s' % c[1]]], [c[2], None]]
+            base_cuts = [
+                        ['OS'           , None] ,
+                        ['LepPt'        , ['MuTTVA']] , 
+                        ['LepQual'      , ['MuRecoID']] ,
+                        ['LepIso'       , ['MuIsoGrad']] ,
+                        ['TauPt'        , ['TauReco']] , 
+                        ['TauQual'      , None] , 
+                        ['TauID'        , ['TauID']] , 
+                        ['SCDP'         , None] , 
+                        ]
+            cutflow[c[0]][c[1]][c[2]] += base_cuts
+            antiiso[c[0]][c[1]][c[2]] += base_cuts
+            sswjtcr[c[0]][c[1]][c[2]] += base_cuts
+            osaidcr[c[0]][c[1]][c[2]] += base_cuts
+                                         
         if c[0] == 'el': 
-            if   c[1] == '15':
-                cutflow[c[0]][c[1]] += [['ElecOnly', None] , ['2015ElecTrig' , ['ElTrig2015']]]
-                antiiso[c[0]][c[1]] += [['ElecOnly', None] , ['2015ElecTrig' , ['ElTrig2015']]]
-                sswjtcr[c[0]][c[1]] += [['ElecOnly', None] , ['2015ElecTrig' , ['ElTrig2015']]]
-                osaidcr[c[0]][c[1]] += [['ElecOnly', None] , ['2015ElecTrig' , ['ElTrig2015']]]
-            elif c[1] == '16':
-                cutflow[c[0]][c[1]] += [['ElecOnly', None] , ['2016ElecTrig' , ['ElTrig2016']]]
-                antiiso[c[0]][c[1]] += [['ElecOnly', None] , ['2016ElecTrig' , ['ElTrig2016']]]
-                sswjtcr[c[0]][c[1]] += [['ElecOnly', None] , ['2016ElecTrig' , ['ElTrig2016']]]
-                osaidcr[c[0]][c[1]] += [['ElecOnly', None] , ['2016ElecTrig' , ['ElTrig2016']]]
-            cutflow[c[0]][c[1]] += [
-                                   ['OS'           , None] ,
-                                   ['LepPt'        , ['ElRecoTrk']] , 
-                                   ['LepQual'      , ['ElID']] ,
-                                   ['LepIso'       , ['ElIsoGrad']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauID'        , ['TauID']] , 
-                                   ['TauEVeto'     , ['TauEVeto']] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-            antiiso[c[0]][c[1]] += [
-                                   ['OS'           , None] ,
-                                   ['LepPt'        , ['ElRecoTrk']] , 
-                                   ['LepQual'      , ['ElID']] ,
-                                   ['LepIsoLoose'  , ['ElIsoLoose']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauID'        , ['TauID']] , 
-                                   ['TauEVeto'     , ['TauEVeto']] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-            sswjtcr[c[0]][c[1]] += [
-                                   ['SS'           , None] ,
-                                   ['LepPt'        , ['ElRecoTrk']] , 
-                                   ['LepQual'      , ['ElID']] ,
-                                   ['LepIso'       , ['ElIsoGrad']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauLoose'     , None] , 
-                                   ['TauEVeto'     , ['TauEVeto']] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-            osaidcr[c[0]][c[1]] += [
-                                   ['OS'           , None] ,
-                                   ['LepPt'        , ['ElRecoTrk']] , 
-                                   ['LepQual'      , ['ElID']] ,
-                                   ['LepIso'       , ['ElIsoGrad']] ,
-                                   ['TauPt'        , ['TauReco']] , 
-                                   ['TauQual'      , None] , 
-                                   ['TauLooseNMed' , None] , 
-                                   ['TauEVeto'     , ['TauEVeto']] , 
-                                   ['SCDP'         , None] , 
-                                   ]
-        regname[c[0]][c[1]] = c[0]+c[1]
+            cutflow[c[0]][c[1]][c[2]] += [['ElecOnly', None] , ['20%sElecTrig'  % c[1], ['ElTrig20%s' % c[1]]], [c[2], None]]
+            antiiso[c[0]][c[1]][c[2]] += [['ElecOnly', None] , ['20%sElecTrig'  % c[1], ['ElTrig20%s' % c[1]]], [c[2], None]]
+            sswjtcr[c[0]][c[1]][c[2]] += [['ElecOnly', None] , ['20%sElecTrig'  % c[1], ['ElTrig20%s' % c[1]]], [c[2], None]]
+            osaidcr[c[0]][c[1]][c[2]] += [['ElecOnly', None] , ['20%sElecTrig'  % c[1], ['ElTrig20%s' % c[1]]], [c[2], None]]
+            base_cuts = [
+                        ['OS'           , None] ,
+                        ['LepPt'        , ['ElRecoTrk']] , 
+                        ['LepQual'      , ['ElID']] ,
+                        ['LepIso'       , ['ElIsoGrad']] ,
+                        ['TauPt'        , ['TauReco']] , 
+                        ['TauQual'      , None] , 
+                        ['TauID'        , ['TauID']] , 
+                        ['TauEVeto'     , ['TauEVeto']] , 
+                        ['SCDP'         , None] , 
+                        ]
+            cutflow[c[0]][c[1]][c[2]] += base_cuts
+            antiiso[c[0]][c[1]][c[2]] += base_cuts
+            sswjtcr[c[0]][c[1]][c[2]] += base_cuts
+            osaidcr[c[0]][c[1]][c[2]] += base_cuts
+        regname[c[0]][c[1]][c[2]] = c[0]+c[1]+c[2]
     ## ---------------------------------------
     runSR = True
+    preselOnly = True
     if runSR:
         print "Running over SR"
         for c in comb:
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'presel_'+regname[c[0]][c[1]],
+                    region       = 'presel_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list+hist_presel,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['Presel', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
+            if preselOnly: continue
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'sr1_'+regname[c[0]][c[1]],
+                    region       = 'sr1_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['SR1', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'sr2_'+regname[c[0]][c[1]],
+                    region       = 'sr2_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['SR2', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'sr3_'+regname[c[0]][c[1]],
+                    region       = 'sr3_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['SR3', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
@@ -401,47 +338,47 @@ def analyze(config):
         print "Running over CR"
         for c in comb:
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'tcr_'+regname[c[0]][c[1]],
+                    region       = 'tcr_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['TCR', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'wcr_'+regname[c[0]][c[1]],
+                    region       = 'wcr_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['WCR', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'qcdcr_'+regname[c[0]][c[1]],
+                    region       = 'qcdcr_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['QCDCR', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'qcdcr2_'+regname[c[0]][c[1]],
+                    region       = 'qcdcr2_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['QCDCR2', ['JetEff', 'JetIneff']] , 
                                 ],
                     )
             loop += ztautau.algs.algs.PlotAlg(
-                    region       = 'zcr_'+regname[c[0]][c[1]],
+                    region       = 'zcr_'+regname[c[0]][c[1]][c[2]],
                     do_var_check = True,
                     hist_list    = hist_list,
                     plot_all     = False,
-                    cut_flow  = cutflow[c[0]][c[1]]+[
+                    cut_flow  = cutflow[c[0]][c[1]][c[2]]+[
                                   ['ZCR', ['JetEff', 'JetIneff']] , 
                                   ['TESTFRIEND', None] , 
                                 ],
@@ -456,84 +393,85 @@ def analyze(config):
         if runAntiIso:
             for c in comb:
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'presel_antiiso'+regname[c[0]][c[1]],
+                        region       = 'presel_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list+hist_presel,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['Presel', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
+                if preselOnly: continue
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr1_antiiso'+regname[c[0]][c[1]],
+                        region       = 'sr1_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['SR1', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr2_antiiso'+regname[c[0]][c[1]],
+                        region       = 'sr2_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['SR2', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr3_antiiso'+regname[c[0]][c[1]],
+                        region       = 'sr3_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['SR3', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 if not runCR: continue
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'tcr_antiiso'+regname[c[0]][c[1]],
+                        region       = 'tcr_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['TCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'wcr_antiiso'+regname[c[0]][c[1]],
+                        region       = 'wcr_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['WCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'qcdcr_antiiso'+regname[c[0]][c[1]],
+                        region       = 'qcdcr_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['QCDCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'qcdcr2_antiiso'+regname[c[0]][c[1]],
+                        region       = 'qcdcr2_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['QCDCR2', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'zcr_antiiso'+regname[c[0]][c[1]],
+                        region       = 'zcr_antiiso'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = antiiso[c[0]][c[1]]+[
+                        cut_flow  = antiiso[c[0]][c[1]][c[2]]+[
                                       ['ZCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
@@ -541,84 +479,85 @@ def analyze(config):
             for c in comb:
                 print "Analysing", c
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'presel_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'presel_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list+hist_presel,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['Presel', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
+                if preselOnly: continue
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr1_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'sr1_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['SR1', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr2_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'sr2_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['SR2', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr3_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'sr3_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['SR3', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 if not runCR: continue
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'tcr_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'tcr_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['TCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'wcr_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'wcr_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['WCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'qcdcr_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'qcdcr_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['QCDCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'qcdcr2_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'qcdcr2_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['QCDCR2', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'zcr_osaidcr'+regname[c[0]][c[1]],
+                        region       = 'zcr_osaidcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = osaidcr[c[0]][c[1]]+[
+                        cut_flow  = osaidcr[c[0]][c[1]][c[2]]+[
                                       ['ZCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
@@ -626,84 +565,85 @@ def analyze(config):
             for c in comb:
                 print "Analysing", c
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'presel_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'presel_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list+hist_presel,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['Presel', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
+                if preselOnly: continue
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr1_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'sr1_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['SR1', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr2_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'sr2_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['SR2', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'sr3_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'sr3_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['SR3', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 if not runCR: continue
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'tcr_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'tcr_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['TCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'wcr_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'wcr_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['WCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'qcdcr_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'qcdcr_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['QCDCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'qcdcr2_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'qcdcr2_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['QCDCR2', ['JetEff', 'JetIneff']] , 
                                     ],
                         )
                 loop += ztautau.algs.algs.PlotAlg(
-                        region       = 'zcr_sswjtcr'+regname[c[0]][c[1]],
+                        region       = 'zcr_sswjtcr'+regname[c[0]][c[1]][c[2]],
                         do_var_check = True,
                         hist_list    = hist_list,
                         plot_all     = False,
-                        cut_flow  = sswjtcr[c[0]][c[1]]+[
+                        cut_flow  = sswjtcr[c[0]][c[1]][c[2]]+[
                                       ['ZCR', ['JetEff', 'JetIneff']] , 
                                     ],
                         )

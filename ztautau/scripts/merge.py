@@ -40,7 +40,7 @@ norm_factors_path = "/coepp/cephfs/share/atlas/LFV/ligang"
 #-----------------
 # Configuration
 #-----------------
-lumi = 3212.96 + 32861.2
+lumi = 3212.96 if '15' in options.region else 32861.2 if '16' in options.region else 3212.96+32861.2
 
 # Control regions
 plotsfile = []

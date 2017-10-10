@@ -28,18 +28,18 @@ AUTOBUILD   = True                                        # auto-build tarball u
 NJMAX       = 500
 
 # outputs  
-RUN         = 'NN_mc_missing'
+RUN         = 'NN_allregions_v1_data_qcd'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
 QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
-SCRIPT      = "./ztautau/run/mc.plotter.py"   # pyframe job script
+SCRIPT      = "./ztautau/run/data_qcd.plotter.py"   # pyframe job script
 BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
 DO_NOM      = True                               # submit the nominal job
 DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
 DO_PLOT_SYS = False                              # submit the plot systematics jobs
 TESTMODE    = False                              # submit only 1 sub-job (for testing)
-NCORES      = 2
+NCORES      = 3
 
 def main():
     """
@@ -67,7 +67,7 @@ def main():
     all_mc   = samples.all_mc
     all_data = samples.all_data
     #nominal  = all_data + all_mc 
-    nominal  = all_mc
+    nominal  = all_data
     
     ntup_sys = [
         ['SYS1_UP',                  all_mc],

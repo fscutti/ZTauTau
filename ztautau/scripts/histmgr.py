@@ -371,16 +371,16 @@ class SimpleEstimator(BaseEstimator):
            
            if "inc" in region:
              for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_os_inc = self.data_sample.hist(pathmod="NN_allregions_data_osw",histname=histname,region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               h_os_inc = self.data_sample.hist(pathmod="NN_allregions_v1_data_osw",histname=histname,region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
                h_os_inc.Scale(f)
                h_w_tot_list.append(h_os_inc)
            else: 
              if "1p" in region:
-               h_os_1p = self.data_sample.hist(pathmod="NN_allregions_data_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
+               h_os_1p = self.data_sample.hist(pathmod="NN_allregions_v1_data_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
                h_os_1p.Scale(nf_1p) 
                h_w_tot_list.append(h_os_1p)
              if "3p" in region:
-               h_os_3p = self.data_sample.hist(pathmod="NN_allregions_data_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
+               h_os_3p = self.data_sample.hist(pathmod="NN_allregions_v1_data_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
                h_os_3p.Scale(nf_3p)
                h_w_tot_list.append(h_os_3p)
 
@@ -390,16 +390,16 @@ class SimpleEstimator(BaseEstimator):
            
            if "inc" in region:
              for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_ss_inc = self.data_sample.hist(pathmod="NN_allregions_data_ssw",histname=histname,region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               h_ss_inc = self.data_sample.hist(pathmod="NN_allregions_v1_data_ssw",histname=histname,region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
                h_ss_inc.Scale(f)
                h_w_tot_list.append(h_ss_inc)
            else: 
              if "1p" in region:
-               h_ss_1p = self.data_sample.hist(pathmod="NN_allregions_data_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
+               h_ss_1p = self.data_sample.hist(pathmod="NN_allregions_v1_data_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
                h_ss_1p.Scale(nf_1p) 
                h_w_tot_list.append(h_ss_1p)
              if "3p" in region:
-               h_ss_3p = self.data_sample.hist(pathmod="NN_allregions_data_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
+               h_ss_3p = self.data_sample.hist(pathmod="NN_allregions_v1_data_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
                h_ss_3p.Scale(nf_3p)
                h_w_tot_list.append(h_ss_3p)
            
@@ -445,16 +445,16 @@ class SimpleEstimator(BaseEstimator):
            
            if "inc" in region:
              for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_qcd_inc = self.data_sample.hist(pathmod="NN_allregions_data_qcd",histname=histname,region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               h_qcd_inc = self.data_sample.hist(pathmod="NN_allregions_v1_data_qcd",histname=histname,region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
                h_qcd_inc.Scale(f)
                h_qcd_tot_list.append(h_qcd_inc)
            else: 
              if "1p" in region:
-               h_qcd_1p = self.data_sample.hist(pathmod="NN_allregions_data_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
+               h_qcd_1p = self.data_sample.hist(pathmod="NN_allregions_v1_data_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
                h_qcd_1p.Scale(nf_1p) 
                h_qcd_tot_list.append(h_qcd_1p)
              if "3p" in region:
-               h_qcd_3p = self.data_sample.hist(pathmod="NN_allregions_data_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
+               h_qcd_3p = self.data_sample.hist(pathmod="NN_allregions_v1_data_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
                h_qcd_3p.Scale(nf_3p)
                h_qcd_tot_list.append(h_qcd_3p)
 
