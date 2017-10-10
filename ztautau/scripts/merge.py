@@ -6,7 +6,6 @@ import funcs
 import os
 
 from ztautau.samples import samples
-from ztautau.plots   import vars
 from ztautau.hists   import final_binning_hists
 from systematics     import *
 
@@ -135,7 +134,6 @@ mc_sys = [
 
 
 hdict  = final_binning_hists.hist_dict
-
 
 
 #-----------------
