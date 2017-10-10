@@ -43,6 +43,7 @@ for run in GRL:
 list_runs =[globals()[ds_name%(run)] for run in GRL]
 
 data = Sample(name         = "data",
+              type         = "data",
               tlatex       = "Data 2015",
               fill_color   = ROOT.kWhite,
               fill_style   = 0,
@@ -411,6 +412,25 @@ PoPy_P2012radHi_ttb_down_nonallh                  = Sample(  name="PoPy_P2012rad
 PoPy_P2012radLo_ttb_up_nonallh                    = Sample(  name="PoPy_P2012radLo_ttb_up_nonallh"         , dsid="410002" , xsec=   , kfactor=  )
 PowhegHerwigppEvtGen_UEEE5_ttb_nonallh            = Sample(  name="PowhegHerwigppEvtGen_UEEE5_ttb_nonallh" , dsid="410004" , xsec=   , kfactor=  )
 """
+
+# These are the datadriven samples 
+# which are used for plotting only
+
+Wjets_dd = Sample( name         = 'Wjets_dd',
+                   tlatex       = 'W+Jets',
+                   fill_color   = 1055,
+                   line_color   = 1055,
+                   marker_color = 1055,
+                   type         = "datadriven",
+               )
+
+Multijet_dd = Sample( name         = 'Multijet_dd',
+                      tlatex       = 'Multi-jet',
+                      fill_color   = 920,
+                      line_color   = 921,
+                      marker_color = 921,
+                      type         = "datadriven",
+                    )
 
 all_data = data.daughters
 

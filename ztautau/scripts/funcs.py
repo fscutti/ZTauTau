@@ -42,13 +42,13 @@ def get_hists(
     
     hists = {} 
     for s in samples:
+      #print s.name, s.type, region, icut, histname
       if not s.hist(region=region,icut=icut,histname=histname): continue
       h = s.hist(region=region,icut=icut,histname=histname).Clone()
       if rebin and h: h.Rebin(rebin)
       hists[s] = h
       assert h, 'failed to gen hist for %s'%s.name
       h.SetName('h_%s_%s'%(region,s.name))
-      
       if sys_dict: 
          h.sys_hists = get_sys_hists(region    = region,
                                      icut      = icut,
@@ -469,7 +469,7 @@ def plot_hist(
 #____________________________________________________________
 def write_hist(
         backgrounds = None,
-        signal     = None,
+        signal      = None,
         data        = None,
         region      = None,
         icut        = None,
@@ -495,7 +495,7 @@ def write_hist(
         rebin=rebin,
         sys_dict=sys_dict,
         )
-
+    
     #histnamestr = histname.replace('/','_')
     fname = outname
     fout = ROOT.TFile.Open(fname,'RECREATE')

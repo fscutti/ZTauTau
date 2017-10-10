@@ -78,7 +78,6 @@ class Sample(object):
     #____________________________________________________________
     def hist(self,**kw): 
         assert self.estimator, "ERROR - sample %s missing estimator!" % self.name
-
         h = self.estimator.hist(**kw)
         return h
 

@@ -9,6 +9,7 @@ variables for plotting
 from var import Var
 
 ## Event variables
+"""
 ## ---------------------------------------
 nmuons = Var(name = 'nmuons',
               path  = 'event',
@@ -127,8 +128,21 @@ met_reco_phi = Var(name = 'met_reco_phi',
               rebin   = 2,
               log     = False,
               )
+"""
+
+tau_0_pt = Var(name = 'tau_0_pt',
+              path    = 'tau',
+              xmin    = 0,
+              xmax    = 150,
+              rebin   = 10,
+              log     = False,
+              )
+
+
 
 vars_list = []
+vars_list.append(tau_0_pt)
+
 #vars_list.append(nmuons)
 #vars_list.append(mu_pt)
 #vars_list.append(tau_pt)
@@ -142,7 +156,7 @@ vars_list = []
 #vars_list.append(tau_eta)
 #vars_list.append(mu_eta)
 #vars_list.append(met_reco_phi)
-vars_list.append(tau_n_tracks)
+#vars_list.append(tau_n_tracks)
 
 vars_dict = {}
 for var in vars_list: vars_dict[var.name] = var.__dict__

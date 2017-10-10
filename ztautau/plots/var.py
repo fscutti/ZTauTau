@@ -29,7 +29,8 @@ class Var(object):
         if not title: title = name
         if not hname: 
           if "cutflow" in name: hname = name
-          else: hname = 'h_'+name
+          #else: hname = 'h_'+name
+          else: hname = name
         self.hname = hname
         self.title = title
         self.path  = path

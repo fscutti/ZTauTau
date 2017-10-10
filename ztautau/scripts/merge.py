@@ -32,12 +32,15 @@ parser.add_option('-o', '--output', dest='outdir',
                   help='output directory',metavar='OUTDIR',default=None)
 
 
+norm_factors_path = "/coepp/cephfs/share/atlas/LFV/ligang"
+
+
 (options, args) = parser.parse_args()
 
 #-----------------
 # Configuration
 #-----------------
-lumi =  3158.13
+lumi = 3212.96 + 32861.2
 
 # Control regions
 plotsfile = []
@@ -58,89 +61,62 @@ hm = histmgr.HistMgr(basedir=options.indir,target_lumi=lumi)
 #-----------------
 
 ## data
-data = samples.data
+dataest = samples.data.copy() # sample to be used for dd estimation
+data = samples.data.copy()    # sample for plotting
 
 ## backgrounds 
 mc_backgrounds = []
-mc_backgrounds.append(samples.Wjets)
-mc_backgrounds.append(samples.Zlljets)
-#mc_backgrounds.append(samples.top)
+mc_backgrounds.append(samples.Wtaunu)
+mc_backgrounds.append(samples.Wlepnu)
+mc_backgrounds.append(samples.Zleplep)
+mc_backgrounds.append(samples.Ztautau)
+mc_backgrounds.append(samples.top)
 
 ## signals
 mc_signals = []
-mc_signals.append(samples.Zttjets)
-
-# This is the sum of all addons
-fakes = samples.fakes.copy()
-
-# These are the components
-addon_data    = samples.addon_data.copy()
-addon_Wjets   = samples.addon_Wjets.copy()
-addon_Zlljets = samples.addon_Zlljets.copy()
-addon_Zttjets = samples.addon_Zttjets.copy()
-#addon_top     = samples.addon_top.copy()
-
-addon_backgrounds = []
-addon_backgrounds.append(addon_data)
-addon_backgrounds.append(addon_Wjets)
-addon_backgrounds.append(addon_Zlljets)
-addon_backgrounds.append(addon_Zttjets)
-#addon_backgrounds.append(addon_top)
+mc_signals.append(samples.lfvh)
 
 
+# -----------------------
+# Load estimators
+# -----------------------
 
-#---------------------------
-# Regions for bkg estimation
-#---------------------------
-
-# k-factors
-kf_regions = {}
-kf_regions[samples.Wjets]   = {"OS":"Wjets_OS", "SS":"Wjets_SS", "ncuts":2}
-#kf_regions[samples.top]     = {"OS":"","SS":"","ncuts"}
-#kf_regions[samples.Zlljets] = {"OS":"","SS":"","ncuts"}
-     
-# Rqcd
-rqcd_regions = {}
-rqcd_regions[data]   = {"num":"AntiIsoCR_OS", "den":"AntiIsoCR_SS", "ncuts":3}
-     
-     
-# Add-On
-# always provide the full set of samples here
-addon_regions = {}
-addon_regions[data]            = {"SS":"SR_SS", "ncuts":4} # don't really need OS for data do you?
-addon_regions[samples.Wjets]   = {"OS":"SR", "SS":"SR_SS", "ncuts":4}
-addon_regions[samples.Zlljets] = {"OS":"SR", "SS":"SR_SS", "ncuts":4}
-addon_regions[samples.Zttjets] = {"OS":"SR", "SS":"SR_SS", "ncuts":4}
-#addon_regions[samples.top]     = {"OS":"SR", "SS":"Ztau", "ncuts":4}
+# proxy estimator 
+# for fundamental samples
+# -----------------------
+for s in mc_backgrounds + mc_signals + [data,dataest]: 
+    histmgr.load_proxy_estimator(hm,s)
 
 
+# data driven backgrounds
+# -----------------------
+Wjets_dd = samples.Wjets_dd
+Multijet_dd = samples.Multijet_dd
 
-#--------------
-# Estimators
-#--------------
-for s in mc_backgrounds + mc_signals + [data]: 
-    histmgr.load_base_estimator(hm,s)
+Wjets_dd.estimator    = histmgr.SimpleEstimator(hm=hm,
+                                                sample=Wjets_dd,
+                                                data_sample=dataest,
+                                                ext_hist_path=norm_factors_path
+                                                )
 
-"""
-fakes.estimator = histmgr.DataBkgSubEstimator(
-     hm=hm,
-     sample=fakes,
-     data_sample=data,
-     mc_samples=mc_backgrounds+mc_signals,
-     )
-"""
-for b in addon_backgrounds + [fakes]:
+Multijet_dd.estimator = histmgr.SimpleEstimator(hm=hm,
+                                                sample=Multijet_dd,
+                                                data_sample=dataest,
+                                                ext_hist_path=norm_factors_path
+                                                )
 
-  b.estimator = histmgr.AddOnEstimator(
-       hm            = hm,
-       sample        = b,
-       data_sample   = data,
-       mc_samples    = mc_backgrounds + mc_signals,
-       rqcd_regions  = rqcd_regions,
-       kf_regions    = kf_regions,
-       addon_regions = addon_regions,
-       print_info    = True,
-       )
+data.estimator = histmgr.SimpleEstimator(hm=hm,
+                                             pathmod="NN_allregions_data_main", # force the estimator to read from this path
+                                             sample=data.copy()
+                                             )
+
+# rest of samples
+# -----------------------
+for s in mc_signals + mc_backgrounds:
+  s.estimator = histmgr.SimpleEstimator(hm=hm,
+                                        pathmod="NN_allregions_mc", # force the estimator to read from this path
+                                        sample=s.copy())
+
 
 
 #-----------------
@@ -156,7 +132,6 @@ mc_sys = [
 #for s in mc_backgrounds + mumu_signals:
 #    s.estimator.add_systematics(mc_sys)
 
-#fakes.estimator.add_systematics(RQCD)
 
 vdict  = vars.vars_dict
 
@@ -164,28 +139,19 @@ vdict  = vars.vars_dict
 # Plotting 
 #-----------------
 
-## order backgrounds for plots.
-## different typologies of background
-## can be mixed, e.g. semples.somecrap 
-## with addon_somecrap. However, it does
-## not make sense to plot fakes and addons
-## on the same plot!
-
 ## backgrounds 
 plot_backgrounds = []
-#plot_backgrounds.append(fakes)
-
-plot_backgrounds.append(addon_data)
-plot_backgrounds.append(addon_Wjets)
-plot_backgrounds.append(addon_Zlljets)
-###plot_backgrounds.append(addon_top)
+plot_backgrounds.append(Wjets_dd)
+plot_backgrounds.append(Multijet_dd)
+plot_backgrounds.append(samples.Ztautau)
+plot_backgrounds.append(samples.Zleplep)
+plot_backgrounds.append(samples.top)
 
 ## signals
 plot_signals = []
-#plot_signals.append(addon_Zttjets)
-plot_signals.append(samples.Zttjets)
+plot_signals.append(samples.lfvh)
 
-
+"""
 if options.makeplot == "True":
  funcs.plot_hist(
     backgrounds   = plot_backgrounds,
@@ -203,19 +169,20 @@ if options.makeplot == "True":
     do_ratio_plot = True,
     plotsfile     = plotsfile,
     )
+"""
 
-else:
- funcs.write_hist(
-         backgrounds = mc_backgrounds,
-         signal      = mc_signals, # This can be a list
-         data        = data,
-         region      = options.region,
-         icut        = int(options.icut),
-         histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
-         rebin       = vdict[options.vname]['rebin'],
-         sys_dict    = None,
-         outname     = plotsfile
-         )
+#else:
+funcs.write_hist(
+        backgrounds = plot_backgrounds,
+        signal      = plot_signals,      
+        data        = data,
+        region      = options.region,
+        icut        = int(options.icut),
+        histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
+        rebin       = vdict[options.vname]['rebin'],
+        sys_dict    = None,
+        outname     = plotsfile
+        )
  ## EOF
 
 
