@@ -7,6 +7,7 @@ import os
 
 from ztautau.samples import samples
 from ztautau.plots   import vars
+from ztautau.hists   import final_binning_hists
 from systematics     import *
 
 from optparse import OptionParser
@@ -133,7 +134,9 @@ mc_sys = [
 #    s.estimator.add_systematics(mc_sys)
 
 
-vdict  = vars.vars_dict
+hdict  = final_binning_hists.hist_dict
+
+
 
 #-----------------
 # Plotting 
@@ -151,7 +154,6 @@ plot_backgrounds.append(samples.top)
 plot_signals = []
 plot_signals.append(samples.lfvh)
 
-"""
 if options.makeplot == "True":
  funcs.plot_hist(
     backgrounds   = plot_backgrounds,
@@ -159,30 +161,27 @@ if options.makeplot == "True":
     data          = data,
     region        = options.region,
     label         = options.label,
-    histname      = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
-    xmin          = vdict[options.vname]['xmin'],
-    xmax          = vdict[options.vname]['xmax'],
-    rebin         = vdict[options.vname]['rebin'],
-    log           = vdict[options.vname]['log'],
+    histname      = os.path.join(hdict[options.vname]['dir'],hdict[options.vname]['hname']),
+    rebin         = hdict[options.vname]['rebin_dict']['rebin'],
+    log           = hdict[options.vname]['log'],
     icut          = int(options.icut),
-    sys_dict      = sys_dict,
-    do_ratio_plot = True,
+    sys_dict      = None,
+    do_ratio_plot = False,
     plotsfile     = plotsfile,
     )
-"""
 
-#else:
-funcs.write_hist(
-        backgrounds = plot_backgrounds,
-        signal      = plot_signals,      
-        data        = data,
-        region      = options.region,
-        icut        = int(options.icut),
-        histname    = os.path.join(vdict[options.vname]['path'],vdict[options.vname]['hname']),
-        rebin       = vdict[options.vname]['rebin'],
-        sys_dict    = None,
-        outname     = plotsfile
-        )
+else:
+ funcs.write_hist(
+         backgrounds = plot_backgrounds,
+         signal      = plot_signals,      
+         data        = data,
+         region      = options.region,
+         icut        = int(options.icut),
+         histname    = os.path.join(hdict[options.vname]['dir'],hdict[options.vname]['hname']),
+         rebin       = hdict[options.vname]['rebin_dict']['rebin'],
+         sys_dict    = None,
+         outname     = plotsfile
+         )
  ## EOF
 
 

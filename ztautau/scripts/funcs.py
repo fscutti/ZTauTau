@@ -45,7 +45,7 @@ def get_hists(
       #print s.name, s.type, region, icut, histname
       if not s.hist(region=region,icut=icut,histname=histname): continue
       h = s.hist(region=region,icut=icut,histname=histname).Clone()
-      if rebin and h: h.Rebin(rebin)
+      if rebin and h: h = h.Rebin(len(rebin)-1,h.GetName(),rebin)
       hists[s] = h
       assert h, 'failed to gen hist for %s'%s.name
       h.SetName('h_%s_%s'%(region,s.name))
@@ -88,8 +88,8 @@ def get_sys_hists(
           h_dn.SetName('h_%s_%s_dn_%s'%(region,sys.name,sample.name))
           
           if rebin:
-           if h_up: h_up.Rebin(rebin)
-           if h_dn: h_dn.Rebin(rebin)
+           if h_up: h_up = h_up.Rebin(len(rebin)-1,h.GetName(),rebin)
+           if h_dn: h_dn = h_dn.Rebin(len(rebin)-1,h.GetName(),rebin)
              
         hist_dict[sys] = (h_up,h_dn)
     return hist_dict 
@@ -350,12 +350,11 @@ def plot_hist(
 
     ytitle = "Events" 
     if not rebin: ytitle = yaxistitle
-    elif rebin!=1:
-      if not "BDT" in xtitle:
-        ytitle += " / %s"%rebin
-        if ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
-        else: ytitle += " GeV"
-      else: ytitle += " / %s"%(0.05)
+    else:
+      bw = (max(rebin) - min(rebin)) / (len(rebin) - 1)
+      ytitle += " / %s" % bw
+      if ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
+      else: ytitle += " GeV"
 
     fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle))
     if do_ratio_plot:

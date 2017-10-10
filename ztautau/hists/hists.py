@@ -6,6 +6,10 @@ description: histogram class for plotting algorithm
 
 ## modules
 
+from array import array
+dtype = {type(1.0):'d',type(1):'i'}
+
+
 
 # - - - - - - - - - - - class defs  - - - - - - - - - - - - #
 #------------------------------------------------------------
@@ -50,31 +54,24 @@ class Hist1D(object):
       return self.__class__.__name__
     
     #________________________________________________________
-    def apply_final_binning(self, rebin_dict=False):
+    def apply_final_binning(self, rebin_dict=None):
+
+      if not self.rebin_dict:
+        self.rebin_dict = rebin_dict
+      assert self.rebin_dict, "ERROR: no rebin dictionary provided for %s"%self.hname
+      for k,v in self.rebin_dict.iteritems(): setattr(self,k,v)
+
+      if not 'rebin' in self.rebin_dict.keys():
+        self.rebin_dict['rebin'] = array(dtype[type(self.xmin)])
+        wb = (self.xmax - self.xmin) / self.nbins
+        for ib in xrange(self.nbins):
+          self.rebin_dict['rebin'].append(self.xmin + wb * ib)
+        self.rebin_dict['rebin'].append(self.xmax) 
+      
       # Rebin histograms with a dictionary, reset name to remove 'h_'
-      if 'rebin_dict' in kw.keys():
-          if 'xmin' in self.rebin_dict: 
-              self.xmin  = self.rebin_dict['xmin']
-          if 'xmax' in self.rebin_dict: 
-              self.xmax  = self.rebin_dict['xmax']
-          if 'nbins' in self.rebin_dict: 
-              self.nbins = self.rebin_dict['nbins']
-          if 'log' in self.rebin_dict.keys():
-              self.log = self.rebin_dict['log']
-          self.hname = self.hname[2:]
-      elif rebin_dict:
-          if 'xmin' in rebin_dict: 
-              self.xmin  = rebin_dict['xmin']
-          if 'xmax' in rebin_dict: 
-              self.xmax  = rebin_dict['xmax']
-          if 'nbins' in rebin_dict: 
-              self.nbins = rebin_dict['nbins']
-          if 'log' in rebin_dict.keys():
-              self.log = rebin_dict['log']
-          self.hname = hname[2:]
-      else:
-          print "No dictionary provided!"
-    
+      if self.hname.startswith("h_"):
+         self.hname = self.hname[2:]
+
     #________________________________________________________
     def fill(self,var,weight):
       if self.instance:
