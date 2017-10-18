@@ -106,7 +106,7 @@ Multijet_dd.estimator = histmgr.SimpleEstimator(hm=hm,
                                                 )
 
 data.estimator = histmgr.SimpleEstimator(hm=hm,
-                                             pathmod="NN_allregions_data_main", # force the estimator to read from this path
+                                             pathmod="NN_allregions_v2_data_main", # force the estimator to read from this path
                                              sample=data.copy()
                                              )
 
@@ -114,7 +114,7 @@ data.estimator = histmgr.SimpleEstimator(hm=hm,
 # -----------------------
 for s in mc_signals + mc_backgrounds:
   s.estimator = histmgr.SimpleEstimator(hm=hm,
-                                        pathmod="NN_allregions_mc", # force the estimator to read from this path
+                                        pathmod="NN_allregions_v2_mc", # force the estimator to read from this path
                                         sample=s.copy())
 
 

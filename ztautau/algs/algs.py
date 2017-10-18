@@ -137,10 +137,10 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.tau_0_pt > 25
     #__________________________________________________________________________
     def cut_OS(self):
-        return self.chain.lephad_qxq == 1
+        return self.chain.lephad_qxq == -1
     #__________________________________________________________________________
     def cut_SS(self):
-        return self.chain.lephad_qxq == -1
+        return self.chain.lephad_qxq ==  1
     #__________________________________________________________________________
     def cut_TauEVeto(self):
         return self.chain.n_electrons == 1 and ((self.chain.tau_0_n_tracks == 1 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.15) or (self.chain.tau_0_n_tracks == 3 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.05))

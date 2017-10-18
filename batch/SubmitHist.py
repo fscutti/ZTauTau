@@ -28,7 +28,7 @@ AUTOBUILD   = True                                        # auto-build tarball u
 NJMAX       = 500
 
 # outputs  
-RUN         = 'NN_allregions_v1_data_qcd'
+RUN         = 'NN_allregions_v3_data_qcd'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
