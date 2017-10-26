@@ -59,9 +59,9 @@ Sh221_PDF30_Ztt_MHPT1000_E_CMS                    = Sample(  name="Sh221_PDF30_Z
 
 Ztautau =  Sample( name =   'Ztautau',
                    tlatex = 'Z#rightarrow#tau#tau',
-                   fill_color   =  1042,
-                   line_color   =  1042,
-                   marker_color =  1042,
+                   fill_color   =  ROOT.kYellow-7,
+                   line_color   =  ROOT.kYellow-6,
+                   marker_color =  ROOT.kYellow-6,
                    daughters    = [
                                    Sh221_PDF30_Ztt_MHPT0_70_l13l7,
                                    Sh221_PDF30_Ztt_MHPT0_70_l15h20,       
@@ -123,9 +123,9 @@ Sh221__Zee_Mll10_40_MHPT280_BFilter               = Sample(  name="Sh221__Zee_Ml
 
 Zleplep =  Sample( name =   'Zleplep',
                    tlatex = 'Z#rightarrowll',
-                   fill_color   =  1043,
-                   line_color   =  1043,
-                   marker_color =  1043,
+                   fill_color   =  ROOT.kOrange+1,
+                   line_color   =  ROOT.kOrange+2,
+                   marker_color =  ROOT.kOrange+2,
                    daughters    = [
                                     Sh221_PDF30_Zmumu_MHPT0_70_CVetoBVeto,                                     
                                     Sh221_PDF30_Zmumu_MHPT0_70_CFiltBVet,   
@@ -205,9 +205,9 @@ Sh221_PDF30_Wenu_MHPT1000_E_CMS                   = Sample(  name="Sh221_PDF30_W
 
 Wlepnu =  Sample( name =   'Wlepnu',
                    tlatex = 'W+Jets',
-                   fill_color   =  1055,
-                   line_color   =  1055,
-                   marker_color =  1055,
+                   fill_color   =  ROOT.kPink+2,
+                   line_color   =  ROOT.kPink+3,
+                   marker_color =  ROOT.kPink+3,
                    daughters    = [
                                      Sh221_PDF30_Wmunu_MHPT0_70_CVetoBVeto,                                      
                                      Sh221_PDF30_Wmunu_MHPT0_70_CFiltBVet,      
@@ -260,9 +260,9 @@ Sh221_PDF30_Wtaunu_MHPT1000_E_CMS                 = Sample(  name="Sh221_PDF30_W
 
 Wtaunu =  Sample( name =   'Wtaunu',
                    tlatex = 'W#rightarrow #tau#nu+Jets',
-                   fill_color   =  1052,
-                   line_color   =  1052,
-                   marker_color =  1052,
+                   fill_color   =  ROOT.kRed-4,
+                   line_color   =  ROOT.kRed-3,
+                   marker_color =  ROOT.kRed-3,
                    daughters    = [
                                     Sh221_PDF30_Wtaunu_MHPT0_70_CVetoBVeto,
                                     Sh221_PDF30_Wtaunu_MHPT0_70_CFiltBVet,    
@@ -296,9 +296,9 @@ PoPy_P2012_STSchan_noAllHad_atop                  = Sample(  name="PoPy_P2012_ST
 
 top =  Sample( name =   'top',
                tlatex = 'Top',
-               fill_color   =  1022,
-               line_color   =  1022,
-               marker_color =  1022,
+               fill_color   =  ROOT.kBlue+1,
+               line_color   =  ROOT.kBlue+2,
+               marker_color =  ROOT.kBlue+2,
                daughters    = [
                                 PoPy_P2012_ttb_nonallh,
                                 PoPy_P2012_ttb_allh,             
@@ -322,9 +322,13 @@ PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125
 
 lfvh =  Sample( name =   'lfvh',
                 tlatex = 'H#rightarrow#tau#tau (LFV)',
-                fill_color   =  1020,
-                line_color   =  1020,
-                marker_color =  1020,
+                fill_color   = ROOT.kWhite,
+                fill_style   = 3351,
+                line_color   = ROOT.kRed,
+                line_style   = 1,
+                line_size    = 5,
+                marker_color = ROOT.kRed,
+                marker_size  = 0,
                 daughters    = [
                                  PoPy8_ggH125_taumu, 
                                  PoPy8_VBFH125_taumu,
@@ -333,14 +337,15 @@ lfvh =  Sample( name =   'lfvh',
                                 ]
                 )
 
+
 PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_tautau"    , dsid="341123" , xsec=1.262409959 )
 PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_tautau"   , dsid="341156" , xsec=0.107869976 )
 
 smh  =  Sample( name =   'smh',
                 tlatex = 'H#rightarrow#tau#tau (SM)',
-                fill_color   =  1010,
-                line_color   =  1010,
-                marker_color =  1010,
+                fill_color   =  ROOT.kBlack,
+                line_color   =  ROOT.kBlack,
+                marker_color =  ROOT.kBlack,
                 daughters    = [
                                  PoPy8_ggH125_tautau, 
                                  PoPy8_VBFH125_tautau,
@@ -406,17 +411,17 @@ PowhegHerwigppEvtGen_UEEE5_ttb_nonallh            = Sample(  name="PowhegHerwigp
 
 Wjets_dd = Sample( name         = 'Wjets_dd',
                    tlatex       = 'W+Jets',
-                   fill_color   = 1053,
-                   line_color   = 1053,
-                   marker_color = 1053,
+                   fill_color   = ROOT.kGreen+2,
+                   line_color   = ROOT.kGreen+3,
+                   marker_color = ROOT.kGreen+3,
                    type         = "datadriven",
                )
 
 Multijet_dd = Sample( name         = 'Multijet_dd',
                       tlatex       = 'Multi-jet',
-                      fill_color   = 1002,
-                      line_color   = 1002,
-                      marker_color = 1002,
+                      fill_color   = ROOT.kGray,
+                      line_color   = ROOT.kGray+1,
+                      marker_color = ROOT.kGray+1,
                       type         = "datadriven",
                     )
 

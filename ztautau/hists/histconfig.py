@@ -8,6 +8,13 @@ other config files !!!
 """
 
 
+
+
+h_cutflow_presel_mu161p = Hist1D('cutflow_presel_mu161p',dir="")
+h_cutflow_presel_mu163p = Hist1D('cutflow_presel_mu163p',dir="")
+h_cutflow_presel_mu16inc = Hist1D('cutflow_presel_mu16inc',dir="")
+
+
 ###############
 # TAU RELATED #
 ###############
@@ -412,6 +419,12 @@ h_NN_input_boost   = Hist1D( 'NN_input_boost' ,
                              dir='nn', 
                              vexpr='self.chain.NN_input_boost'
                              )
+
+
+
+
+
+
 
 # --------
 # 2D hists

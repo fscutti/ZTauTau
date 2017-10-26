@@ -217,7 +217,7 @@ def plot_hist(
     '''
     print 'making plot: ', histname, ' in region', region
     
-    assert signal, "ERROR: no signal provided for plot_hist"
+    #assert signal, "ERROR: no signal provided for plot_hist"
     assert backgrounds, "ERROR: no background provided for plot_hist"
     
     samples = backgrounds + signal
@@ -235,7 +235,8 @@ def plot_hist(
         )
     ## sum nominal background
     h_samp_list = []
-    for s in backgrounds+signal:
+    #for s in backgrounds+signal:
+    for s in backgrounds:
       if not s in hists.keys(): continue
       h_samp_list.append(hists[s])
     
@@ -274,10 +275,13 @@ def plot_hist(
 
     ## create stack
     h_stack = ROOT.THStack()
-    for b in reversed(signal+backgrounds):
+    for b in reversed(backgrounds):
       if not b in hists.keys(): continue
       h_stack.Add(hists[b])
-   
+    
+    h_sig = None 
+    if signal: h_sig = hists[signal[0]] 
+
     nLegend = len(signal+backgrounds) + 1
     x_legend = 0.63
     x_leg_shift = -0.055
@@ -380,6 +384,9 @@ def plot_hist(
 
     h_stack.Draw("SAME,HIST")
     
+    if signal:
+      h_sig.Draw("SAME,HIST") 
+
     """
     for s in reversed(signal):
       if not s in hists.keys(): continue
@@ -522,6 +529,61 @@ def write_hist(
     #fout.WriteTObject(h_total,'h_%s_nominal_smtot'%region)
     
     fout.Close()
+
+
+#____________________________________________________________
+def print_cutflows(
+        backgrounds = None,
+        signal      = None,
+        data        = None,
+        region      = None,
+        histname    = None,
+        outname     = None,
+        sys_dict    = None,
+        ):
+    """
+    write hists for backgrounds, signals and data to file.
+    will also write sys hists if sys_dict is passed. 
+    also write smtot hists for summed background.
+    No folder structure is provided
+    """
+    samples = backgrounds + signal
+    if data: samples += [data]
+    ## generate nominal hists
+    hists = get_hists(
+        region=region,
+        icut=0,
+        histname=histname,
+        samples=samples, 
+        rebin=None,
+        sys_dict=None,
+        )
+    
+    #histnamestr = histname.replace('/','_')
+    fname = outname
+    fout = ROOT.TFile.Open(fname,'RECREATE')
+    for s,h in hists.items():
+        hname = 'h_%s_nominal_%s' % (histname,s.name)
+        h.SetNameTitle(hname,hname)
+        fout.WriteTObject(h,hname)
+        ## systematics
+        if hasattr(h,'sys_hists'):
+         if sys_dict:
+            for sys,hsys in h.sys_hists.items():
+                
+                s_name = sys.name
+                
+                hname_sys_up = hname.replace('nominal','%s_%s' % (s_name,'UP'))
+                hname_sys_dn = hname.replace('nominal','%s_%s' % (s_name,'DN'))
+
+                if hsys[0]: hsys[0].SetNameTitle(hname_sys_up,hname_sys_up)
+                if hsys[1]: hsys[1].SetNameTitle(hname_sys_dn,hname_sys_dn)
+                fout.WriteTObject(hsys[0],hname_sys_up)
+                fout.WriteTObject(hsys[1],hname_sys_dn)
+
+    fout.Close()
+
+
 
 
 def list_open_files():

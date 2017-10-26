@@ -46,6 +46,16 @@ h_NN_input_mvis  .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25}
 h_NN_input_mmmc  .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25}); hist_presel.append( h_NN_input_mmmc  )
 h_NN_input_boost .apply_final_binning({'xmin': -100., 'xmax': 100., 'nbins': 25}); hist_presel.append( h_NN_input_boost )
 
+hist_cutflows = []
+hist_presel.append(h_cutflow_presel_mu161p)
+hist_presel.append(h_cutflow_presel_mu163p)
+hist_presel.append(h_cutflow_presel_mu16inc)
+
+
+
+
+
+
 variables_NN      = [
                     h_NN_input_tau_E ,
                     h_NN_input_lep_px,
@@ -80,7 +90,7 @@ for c in comb_2d:
 hist_presel+=combs_2d
 
 hist_dict = {}
-for h in hist_list+hist_presel: 
+for h in hist_list+hist_presel+hist_cutflows: 
   hist_dict[h.hname] = h.__dict__
 
 

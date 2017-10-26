@@ -88,7 +88,7 @@ class HistMgr():
             
             ## get hist path
             path_to_hist = ''
-            if region != None:
+            if region and not "cutflow" in histname:
                path_to_hist = os.path.join('regions',region)
                
                ## check region exists
@@ -108,7 +108,6 @@ class HistMgr():
             
             h = None
             h = f.Get(path_to_hist)
-            
             if not h:
                 f.Close()
                 print 'failed retrieveing hist: %s:%s'%(file,path_to_hist)
@@ -295,41 +294,53 @@ class SimpleEstimator(BaseEstimator):
     #____________________________________________________________
     def __init__(self,
         data_sample=None,
-        pathmod=None,     # force the estimator to read from preconfigured path
+        pathmod_main=None,     # force the estimator to read from preconfigured path
+        pathmod_aux=None,
         ext_hist_path=None,
         **kw
         ):
 
         BaseEstimator.__init__(self,**kw)
         self.data_sample = data_sample
-        self.pathmod = pathmod
+        self.pathmod_main = pathmod_main
+        self.pathmod_aux = pathmod_aux
         self.ext_hist_path = ext_hist_path
 
     #____________________________________________________________
     def __hist__(self,pathmod=None,histname=None,region=None,icut=None,sys=None,mode=None):
         
        if self.sample.type == "data":
-         if self.pathmod: pathmod = self.pathmod
+         if self.pathmod_main: pathmod_main = self.pathmod_main
          h_list = []
          if "inc" in region:
-           for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod,histname=histname,region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
-         else: h_list.append(self.sample.hist(pathmod=pathmod,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone())
+           if "cutflow" in histname:
+              for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",r),region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
+           else:
+              for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
+
+         else: 
+           h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone())
          
          return histutils.add_hists(h_list)
        
       
        if self.sample.type == "mc":
-         if self.pathmod: pathmod = self.pathmod
+         if self.pathmod_main: pathmod_main = self.pathmod_main
          h_list = []
          if "inc" in region:
-           for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod,histname=histname,region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
-         else: h_list.append(self.sample.hist(pathmod=pathmod,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone())
+           if "cutflow" in histname:
+             for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",r),region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
+           else:
+             for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
+         else: 
+           h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone())
          
          return histutils.add_hists(h_list)
 
 
        elif self.sample.type == "datadriven":
          
+         if self.pathmod_aux: pathmod_aux = self.pathmod_aux
          
          assert self.data_sample, "ERROR: should define a data sample for data-driven estimation"
          
@@ -368,19 +379,26 @@ class SimpleEstimator(BaseEstimator):
            region_os = ''
            if "_mu" in region: region_os = region.replace("_mu","_osaidcrmu")
            if "_el" in region: region_os = region.replace("_el","_osaidcrel")
-           
+          
+           if "cutflow" in histname: histname = histname.replace(region, region_os)
+
            if "inc" in region:
              for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_os_inc = self.data_sample.hist(pathmod="NN_allregions_v2_data_osw",histname=histname,region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               h_os_inc = None 
+               if "cutflow" in histname:
+                 h_os_inc = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname.replace("inc",r),region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()       
+               else:
+                 h_os_inc = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname,region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone() 
+
                h_os_inc.Scale(f)
                h_w_tot_list.append(h_os_inc)
            else: 
              if "1p" in region:
-               h_os_1p = self.data_sample.hist(pathmod="NN_allregions_v2_data_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
+               h_os_1p = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
                h_os_1p.Scale(nf_1p) 
                h_w_tot_list.append(h_os_1p)
              if "3p" in region:
-               h_os_3p = self.data_sample.hist(pathmod="NN_allregions_v2_data_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
+               h_os_3p = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
                h_os_3p.Scale(nf_3p)
                h_w_tot_list.append(h_os_3p)
 
@@ -388,18 +406,25 @@ class SimpleEstimator(BaseEstimator):
            if "_mu" in region: region_ss = region.replace("_mu","_sswjtcrmu")
            if "_el" in region: region_ss = region.replace("_el","_sswjtcrel")
            
+           if "cutflow" in histname: histname = histname.replace(region_os, region_ss)
+           
            if "inc" in region:
              for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_ss_inc = self.data_sample.hist(pathmod="NN_allregions_v2_data_ssw",histname=histname,region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               h_ss_inc = None
+               if "cutflow" in histname:
+                 h_ss_inc = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname.replace("inc",r),region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               else:
+                 h_ss_inc = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname,region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+
                h_ss_inc.Scale(f)
                h_w_tot_list.append(h_ss_inc)
            else: 
              if "1p" in region:
-               h_ss_1p = self.data_sample.hist(pathmod="NN_allregions_v2_data_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
+               h_ss_1p = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
                h_ss_1p.Scale(nf_1p) 
                h_w_tot_list.append(h_ss_1p)
              if "3p" in region:
-               h_ss_3p = self.data_sample.hist(pathmod="NN_allregions_v2_data_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
+               h_ss_3p = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
                h_ss_3p.Scale(nf_3p)
                h_w_tot_list.append(h_ss_3p)
            
@@ -443,18 +468,25 @@ class SimpleEstimator(BaseEstimator):
            if "_mu" in region: region_qcd = region.replace("_mu","_antiisomu")
            if "_el" in region: region_qcd = region.replace("_el","_antiisoel")
            
+           if "cutflow" in histname: histname = histname.replace(region, region_qcd)
+           
            if "inc" in region:
              for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_qcd_inc = self.data_sample.hist(pathmod="NN_allregions_v2_data_qcd",histname=histname,region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               h_qcd_inc = None
+               if "cutflow" in histname:
+                 h_qcd_inc = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname.replace("inc",r),region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+               else:
+                 h_qcd_inc = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname,region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+
                h_qcd_inc.Scale(f)
                h_qcd_tot_list.append(h_qcd_inc)
            else: 
              if "1p" in region:
-               h_qcd_1p = self.data_sample.hist(pathmod="NN_allregions_v2_data_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
+               h_qcd_1p = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
                h_qcd_1p.Scale(nf_1p) 
                h_qcd_tot_list.append(h_qcd_1p)
              if "3p" in region:
-               h_qcd_3p = self.data_sample.hist(pathmod="NN_allregions_v2_data_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
+               h_qcd_3p = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
                h_qcd_3p.Scale(nf_3p)
                h_qcd_tot_list.append(h_qcd_3p)
 

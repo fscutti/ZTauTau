@@ -30,7 +30,8 @@ parser.add_option('-i', '--input', dest='indir',
                   help='input directory',metavar='INDIR',default=None)
 parser.add_option('-o', '--output', dest='outdir',
                   help='output directory',metavar='OUTDIR',default=None)
-
+parser.add_option('-u', '--printcutflow', dest='printcutflow',
+                  help='prints cutflows',metavar='PRINTCUTFLOW',default=None)
 
 norm_factors_path = "/coepp/cephfs/share/atlas/LFV/ligang"
 
@@ -43,11 +44,12 @@ norm_factors_path = "/coepp/cephfs/share/atlas/LFV/ligang"
 lumi = 3212.96 if '15' in options.region else 32861.2 if '16' in options.region else 3212.96+32861.2
 
 # Control regions
-plotsfile = []
+plotsfile = ["out"]
 if options.makeplot == "False":
   plotsfile.append("hists")
 plotsfile.append(options.vname)  
-plotsfile.append(options.region)  
+if options.region:
+  plotsfile.append(options.region)  
 
 plotsfile = "_".join(plotsfile)+".root"
 plotsfile = os.path.join(options.outdir,plotsfile)
@@ -95,26 +97,28 @@ Multijet_dd = samples.Multijet_dd
 
 Wjets_dd.estimator    = histmgr.SimpleEstimator(hm=hm,
                                                 sample=Wjets_dd,
+                                                pathmod_aux="NN_allregions_v3_data", # force the estimator to read from this path
                                                 data_sample=dataest,
                                                 ext_hist_path=norm_factors_path
                                                 )
 
 Multijet_dd.estimator = histmgr.SimpleEstimator(hm=hm,
                                                 sample=Multijet_dd,
+                                                pathmod_aux="NN_allregions_v3_data", # force the estimator to read from this path
                                                 data_sample=dataest,
                                                 ext_hist_path=norm_factors_path
                                                 )
 
 data.estimator = histmgr.SimpleEstimator(hm=hm,
-                                             pathmod="NN_allregions_v2_data_main", # force the estimator to read from this path
-                                             sample=data.copy()
-                                             )
+                                         pathmod_main="NN_allregions_v3_data_main", # force the estimator to read from this path
+                                         sample=data.copy()
+                                         )
 
 # rest of samples
 # -----------------------
 for s in mc_signals + mc_backgrounds:
   s.estimator = histmgr.SimpleEstimator(hm=hm,
-                                        pathmod="NN_allregions_v2_mc", # force the estimator to read from this path
+                                        pathmod_main="NN_allregions_v3_mc", # force the estimator to read from this path
                                         sample=s.copy())
 
 
@@ -150,9 +154,9 @@ plot_backgrounds.append(samples.top)
 
 ## signals
 plot_signals = []
-plot_signals.append(samples.lfvh)
+#plot_signals.append(samples.lfvh)
 
-if options.makeplot == "True":
+if options.makeplot == "True" and not options.printcutflow:
  funcs.plot_hist(
     backgrounds   = plot_backgrounds,
     signal        = plot_signals, 
@@ -164,11 +168,11 @@ if options.makeplot == "True":
     log           = hdict[options.vname]['log'],
     icut          = int(options.icut),
     sys_dict      = None,
-    do_ratio_plot = False,
+    do_ratio_plot = True,
     plotsfile     = plotsfile,
     )
 
-else:
+elif options.makeplot == "False" and not options.printcutflow:
  funcs.write_hist(
          backgrounds = plot_backgrounds,
          signal      = plot_signals,      
@@ -180,6 +184,20 @@ else:
          sys_dict    = None,
          outname     = plotsfile
          )
+
+elif options.printcutflow == "True":
+ funcs.print_cutflows(
+         backgrounds = plot_backgrounds,
+         signal      = plot_signals,      
+         data        = data,
+         region      = options.region,
+         histname    = os.path.join(hdict[options.vname+"_"+options.region]['dir'],hdict[options.vname+"_"+options.region]['hname']),
+         sys_dict    = None,
+         outname     = plotsfile
+         )
+
+
+
  ## EOF
 
 
