@@ -19,21 +19,21 @@ def prepare_path(path):
 ## ---------------------
 MAIN        = os.getenv('MAIN')                           # upper folder
 USER        = os.getenv('USER')
-NTUP        = '/coepp/cephfs/share/atlas/LFV/july'        # global config input NTUP path
+NTUP        = '/coepp/cephfs/share/atlas/LFV/july_redown'        # global config input NTUP path
 FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/base_test_july_evtnofix' # path where friend input is located; same "granularity as NTUP"
 JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER        # The Melb cloud is twisted and does not recognize home dirs...
 prepare_path(JOBDIR)
 INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
 AUTOBUILD   = True                                        # auto-build tarball using Makefile.tarball
-NJMAX       = 500
+NJMAX       = 200
 
 # outputs  
-RUN         = 'NN_allregions_v3_data_qcd'
+RUN         = 'NN_allregions_ac_mctest'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
 QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
-SCRIPT      = "./ztautau/run/data_qcd.plotter.py"   # pyframe job script
+SCRIPT      = "./ztautau/run/ac.plotter.py"   # pyframe job script
 BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
 DO_NOM      = True                               # submit the nominal job
 DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
@@ -66,8 +66,8 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    #nominal  = all_data + all_mc 
-    nominal  = all_data
+    nominal  = all_data + all_mc 
+    nominal  = all_mc
     
     ntup_sys = [
         ['SYS1_UP',                  all_mc],

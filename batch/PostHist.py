@@ -14,7 +14,7 @@ import subprocess
 inpath = "/coepp/cephfs/share/atlas/LFV/july"
 
 # basepath common to all output
-outbasepath = "/coepp/cephfs/share/atlas/LFV/FourthTestNN"
+outbasepath = "/coepp/cephfs/share/atlas/LFV/test_v1"
 
 hadd_files = False
 
@@ -43,6 +43,7 @@ def hadd_cmd(outpath,outfile,inpath):
 outdir = {}
 
 outdir["data"] = []
+<<<<<<< HEAD
 outdir["data"].append("NN_allregions_v2_data_main")
 outdir["data"].append("NN_allregions_v2_data_osw")
 outdir["data"].append("NN_allregions_v2_data_ssw")
@@ -50,6 +51,15 @@ outdir["data"].append("NN_allregions_v2_data_qcd")
 
 outdir["mc"] = []
 outdir["mc"].append("NN_allregions_v2_mc")
+=======
+outdir["data"].append("NN_allregions_v3_data_main")
+outdir["data"].append("NN_allregions_v3_data_osw")
+outdir["data"].append("NN_allregions_v3_data_ssw")
+outdir["data"].append("NN_allregions_v3_data_qcd")
+
+outdir["mc"] = []
+outdir["mc"].append("NN_allregions_v3_mc")
+>>>>>>> For AC
 #outdir["mc"].append("NN_mc_missing")
 
 jobtype = ["nominal"]
