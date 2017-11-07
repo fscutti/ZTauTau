@@ -309,17 +309,29 @@ class SimpleEstimator(BaseEstimator):
     #____________________________________________________________
     def __hist__(self,pathmod=None,histname=None,region=None,icut=None,sys=None,mode=None):
         
+       # Initiate combinations for replacing strings
+       from itertools import product
+       years = []
+       if 'all' in region:
+           years = ["15", "16"]
+       else:
+           years = ['15'] if '15' in region else ['16']
+       if 'inc' in region:
+           prong = ["1p", "3p"]
+       else:
+           prong = ['1p'] if '1p' in region else ['3p']
+       replace = list(product(years, prong))
+       print "running over regions", replace
+
        if self.sample.type == "data":
          if self.pathmod_main: pathmod_main = self.pathmod_main
          h_list = []
-         if "inc" in region:
-           if "cutflow" in histname:
-              for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",r),region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
-           else:
-              for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
 
-         else: 
-           h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone())
+         for item in replace:
+             if 'cutflow' in histname:
+                 h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
+             else:
+                 h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
          
          return histutils.add_hists(h_list)
        
@@ -327,13 +339,11 @@ class SimpleEstimator(BaseEstimator):
        if self.sample.type == "mc":
          if self.pathmod_main: pathmod_main = self.pathmod_main
          h_list = []
-         if "inc" in region:
-           if "cutflow" in histname:
-             for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",r),region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
-           else:
-             for r in ["1p","3p"]: h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone())
-         else: 
-           h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone())
+         for item in replace:
+             if 'cutflow' in histname:
+                 h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
+             else:
+                 h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
          
          return histutils.add_hists(h_list)
 
@@ -344,153 +354,131 @@ class SimpleEstimator(BaseEstimator):
          
          assert self.data_sample, "ERROR: should define a data sample for data-driven estimation"
          
-         if self.sample.name == "Wjets_dd":
-         
-           fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel","h_fake_norm_mu.root"))
-           fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel","h_fake_norm_e.root"))
-           
-           h_fwjets_mu = fin_mu.Get("h_fwjets_sr1")
-           h_fwjets_el = fin_el.Get("h_fwjets_sr1")
+         def addWjet(histname):
+             fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_mu.root"))
+             fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_e.root"))
+             
+             h_fwjets_mu = fin_mu.Get("h_fwjets_sr1")
+             h_fwjets_el = fin_el.Get("h_fwjets_sr1")
 
-           nf_mu_1p = h_fwjets_mu.GetBinContent(1)
-           nf_mu_3p = h_fwjets_mu.GetBinContent(2)
+             nf_mu_1p = h_fwjets_mu.GetBinContent(1)
+             nf_mu_3p = h_fwjets_mu.GetBinContent(2)
 
-           nf_el_1p = h_fwjets_el.GetBinContent(1)
-           nf_el_3p = h_fwjets_el.GetBinContent(2)
+             nf_el_1p = h_fwjets_el.GetBinContent(1)
+             nf_el_3p = h_fwjets_el.GetBinContent(2)
 
-           fin_el.Close()
-           fin_mu.Close()
+             fin_el.Close()
+             fin_mu.Close()
 
-           # sum of os and ss contributions
-           # ------------------------------ 
+             # sum of os and ss contributions
+             # ------------------------------ 
           
-           nf_1p = 1.0
-           nf_3p = 1.0
-           
-           if "_mu" in region: 
-             nf_1p = nf_mu_1p
-             nf_3p = nf_mu_3p
-           if "_el" in region: 
-             nf_1p = nf_el_1p
-             nf_3p = nf_el_3p
-           
-           h_w_tot_list = []
+             nf_1p = 1.0
+             nf_3p = 1.0
+             
+             if "_mu" in region: 
+               nf_1p = nf_mu_1p
+               nf_3p = nf_mu_3p
+             if "_el" in region: 
+               nf_1p = nf_el_1p
+               nf_3p = nf_el_3p
+             
+             h_w_tot_list = []
+             factor =  {"1p":nf_1p,"3p":nf_3p}
 
-           region_os = ''
-           if "_mu" in region: region_os = region.replace("_mu","_osaidcrmu")
-           if "_el" in region: region_os = region.replace("_el","_osaidcrel")
+             region_os = ''
+             region_ss = ''
+             if "_mu" in region: region_os = region.replace("_mu","_osaidcrmu")
+             if "_el" in region: region_os = region.replace("_el","_osaidcrel")
+             if "_mu" in region: region_ss = region.replace("_mu","_sswjtcrmu")
+             if "_el" in region: region_ss = region.replace("_el","_sswjtcrel")
           
-           if "cutflow" in histname: histname = histname.replace(region, region_os)
+             if "cutflow" in histname: histname = histname.replace(region, region_os)
+             if "cutflow" in histname: histname = histname.replace(region, region_ss)
 
-           if "inc" in region:
-             for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_os_inc = None 
-               if "cutflow" in histname:
-                 h_os_inc = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname.replace("inc",r),region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()       
-               else:
-                 h_os_inc = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname,region=region_os.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone() 
+             for item in replace:
+                 print "adding to wjet", item
+                 h_os = None
+                 h_ss = None
+                 if 'cutflow' in histname:
+                     h_os = self.data_sample.hist(pathmod=pathmod_aux+'_osw',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_os.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                     h_ss = self.data_sample.hist(pathmod=pathmod_aux+'_ssw',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_ss.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                 else:
+                     h_os = self.data_sample.hist(pathmod=pathmod_aux+'_osw',histname=histname,region=region_os.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                     h_ss = self.data_sample.hist(pathmod=pathmod_aux+'_ssw',histname=histname,region=region_ss.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
 
-               h_os_inc.Scale(f)
-               h_w_tot_list.append(h_os_inc)
-           else: 
-             if "1p" in region:
-               h_os_1p = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
-               h_os_1p.Scale(nf_1p) 
-               h_w_tot_list.append(h_os_1p)
-             if "3p" in region:
-               h_os_3p = self.data_sample.hist(pathmod=pathmod_aux+"_osw",histname=histname,region=region_os,icut=icut,sys=sys,mode=mode).Clone()
-               h_os_3p.Scale(nf_3p)
-               h_w_tot_list.append(h_os_3p)
+                 h_os.Scale(factor[item[1]])
+                 h_ss.Scale(factor[item[1]])
+                 h_w_tot_list.append(h_os)
+                 h_w_tot_list.append(h_ss)
 
-           region_ss = ''
-           if "_mu" in region: region_ss = region.replace("_mu","_sswjtcrmu")
-           if "_el" in region: region_ss = region.replace("_el","_sswjtcrel")
+             #return histutils.add_hists(h_w_tot_list)
+             return h_w_tot_list
            
-           if "cutflow" in histname: histname = histname.replace(region_os, region_ss)
-           
-           if "inc" in region:
-             for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_ss_inc = None
-               if "cutflow" in histname:
-                 h_ss_inc = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname.replace("inc",r),region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
-               else:
-                 h_ss_inc = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname,region=region_ss.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+         def addQCD(histname):
+             fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_mu.root"))
+             fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_e.root"))
 
-               h_ss_inc.Scale(f)
-               h_w_tot_list.append(h_ss_inc)
-           else: 
-             if "1p" in region:
-               h_ss_1p = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
-               h_ss_1p.Scale(nf_1p) 
-               h_w_tot_list.append(h_ss_1p)
-             if "3p" in region:
-               h_ss_3p = self.data_sample.hist(pathmod=pathmod_aux+"_ssw",histname=histname,region=region_ss,icut=icut,sys=sys,mode=mode).Clone()
-               h_ss_3p.Scale(nf_3p)
-               h_w_tot_list.append(h_ss_3p)
-           
-           return histutils.add_hists(h_w_tot_list)
+             h_fqcd_mu = fin_mu.Get("h_fqcd_sr1")
+             h_fqcd_el = fin_el.Get("h_fqcd_sr1")
 
+             nf_mu_1p = h_fqcd_mu.GetBinContent(1)
+             nf_mu_3p = h_fqcd_mu.GetBinContent(2)
 
+             nf_el_1p = h_fqcd_el.GetBinContent(1)
+             nf_el_3p = h_fqcd_el.GetBinContent(2)
 
-         if self.sample.name == "Multijet_dd":
-           
-           fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel","h_fake_norm_mu.root"))
-           fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel","h_fake_norm_e.root"))
+             fin_el.Close()
+             fin_mu.Close()
 
-           h_fqcd_mu = fin_mu.Get("h_fqcd_sr1")
-           h_fqcd_el = fin_el.Get("h_fqcd_sr1")
-
-           nf_mu_1p = h_fqcd_mu.GetBinContent(1)
-           nf_mu_3p = h_fqcd_mu.GetBinContent(2)
-
-           nf_el_1p = h_fqcd_el.GetBinContent(1)
-           nf_el_3p = h_fqcd_el.GetBinContent(2)
-
-           fin_el.Close()
-           fin_mu.Close()
-
-           # sum of os and ss contributions
-           # ------------------------------ 
+             # sum of os and ss contributions
+             # ------------------------------ 
           
-           nf_1p = 1.0
-           nf_3p = 1.0
-           
-           if "_mu" in region: 
-             nf_1p = nf_mu_1p
-             nf_3p = nf_mu_3p
-           if "_el" in region: 
-             nf_1p = nf_el_1p
-             nf_3p = nf_el_3p
-           
-           h_qcd_tot_list = []
+             nf_1p = 1.0
+             nf_3p = 1.0
+             
+             if "_mu" in region: 
+               nf_1p = nf_mu_1p
+               nf_3p = nf_mu_3p
+             if "_el" in region: 
+               nf_1p = nf_el_1p
+               nf_3p = nf_el_3p
+             
+             h_qcd_tot_list = []
+             factor =  {"1p":nf_1p,"3p":nf_3p}
 
-           region_qcd = ''
-           if "_mu" in region: region_qcd = region.replace("_mu","_antiisomu")
-           if "_el" in region: region_qcd = region.replace("_el","_antiisoel")
-           
-           if "cutflow" in histname: histname = histname.replace(region, region_qcd)
-           
-           if "inc" in region:
-             for r,f in {"1p":nf_1p,"3p":nf_3p}.iteritems():
-               h_qcd_inc = None
-               if "cutflow" in histname:
-                 h_qcd_inc = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname.replace("inc",r),region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
-               else:
-                 h_qcd_inc = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname,region=region_qcd.replace("inc",r),icut=icut,sys=sys,mode=mode).Clone()
+             region_qcd = ''
+             
+             if "cutflow" in histname: histname = histname.replace(region, region_qcd)
+             
+             if "_mu" in region: region_qcd = region.replace("_mu","_antiisomu")
+             if "_el" in region: region_qcd = region.replace("_el","_antiisoel")
+          
+             for item in replace:
+                 print "adding to qcd", item
+                 h_qcd = None
+                 if 'cutflow' in histname:
+                     h_qcd = self.data_sample.hist(pathmod=pathmod_aux+'_qcd',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_qcd.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                 else:
+                     h_qcd = self.data_sample.hist(pathmod=pathmod_aux+'_qcd',histname=histname,region=region_qcd.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
 
-               h_qcd_inc.Scale(f)
-               h_qcd_tot_list.append(h_qcd_inc)
-           else: 
-             if "1p" in region:
-               h_qcd_1p = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
-               h_qcd_1p.Scale(nf_1p) 
-               h_qcd_tot_list.append(h_qcd_1p)
-             if "3p" in region:
-               h_qcd_3p = self.data_sample.hist(pathmod=pathmod_aux+"_qcd",histname=histname,region=region_qcd,icut=icut,sys=sys,mode=mode).Clone()
-               h_qcd_3p.Scale(nf_3p)
-               h_qcd_tot_list.append(h_qcd_3p)
+                 h_qcd.Scale(factor[item[1]])
+                 h_qcd_tot_list.append(h_qcd)
 
-           return histutils.add_hists(h_qcd_tot_list)
+             #return histutils.add_hists(h_qcd_tot_list)
+             return h_qcd_tot_list
+
+         if self.sample.name == "Multijet_dd": 
+             qcd = addQCD (histname)
+             return histutils.add_hists(qcd)
+         if self.sample.name == "Wjets_dd":    
+             wjt = addWjet(histname)
+             return histutils.add_hists(wjt)
+         if self.sample.name == "Fake":
+             print "Adding Fake sample"
+             wjt = addWjet(histname)
+             qcd = addQCD (histname)
+             return histutils.add_hists(wjt+qcd)
 
     #__________________________________________________________________________
     def is_affected_by_systematic(self, sys):

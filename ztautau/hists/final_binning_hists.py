@@ -24,6 +24,7 @@ h_met_reco_et      .apply_final_binning({'xmin':    0., 'xmax': 100., 'nbins': 1
 h_NN_W_output      .apply_final_binning({'xmin':    0., 'xmax':   1., 'nbins': 10});   hist_list.append(h_NN_W_output   )
 h_NN_Z_output      .apply_final_binning({'xmin':    0., 'xmax':   1., 'nbins': 10});   hist_list.append(h_NN_Z_output   )
 h_NN_comb_output   .apply_final_binning({'xmin':    0., 'xmax':   1., 'nbins': 10});   hist_list.append(h_NN_comb_output)
+h_BDT_output       .apply_final_binning({'xmin':    0., 'xmax':   1., 'nbins': 10});   hist_list.append(h_BDT_output    )
                                                                                    
 hist_presel = []                                                                   
 h_evt_nvx        .apply_final_binning({'xmin':     0, 'xmax':   50, 'nbins': 50}); hist_presel.append( h_evt_nvx        )
@@ -47,6 +48,15 @@ h_NN_input_mmmc  .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25}
 h_NN_input_boost .apply_final_binning({'xmin': -100., 'xmax': 100., 'nbins': 25}); hist_presel.append( h_NN_input_boost )
 
 hist_cutflows = []
+hist_presel.append(h_cutflow_presel_el151p)
+hist_presel.append(h_cutflow_presel_el153p)
+hist_presel.append(h_cutflow_presel_el15inc)
+hist_presel.append(h_cutflow_presel_el161p)
+hist_presel.append(h_cutflow_presel_el163p)
+hist_presel.append(h_cutflow_presel_el16inc)
+hist_presel.append(h_cutflow_presel_mu151p)
+hist_presel.append(h_cutflow_presel_mu153p)
+hist_presel.append(h_cutflow_presel_mu15inc)
 hist_presel.append(h_cutflow_presel_mu161p)
 hist_presel.append(h_cutflow_presel_mu163p)
 hist_presel.append(h_cutflow_presel_mu16inc)

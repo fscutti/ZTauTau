@@ -11,10 +11,11 @@ import subprocess
 
 
 # input path
-inpath = "/coepp/cephfs/share/atlas/LFV/july"
+inpath = "/coepp/cephfs/share/atlas/LFV/july_redown"
 
 # basepath common to all output
-outbasepath = "/coepp/cephfs/share/atlas/LFV/test_v1"
+#outbasepath = "/coepp/cephfs/share/atlas/LFV/ac_v3"
+outbasepath = "/coepp/cephfs/mel/brianl/ztautau/"
 
 hadd_files = False
 
@@ -43,23 +44,19 @@ def hadd_cmd(outpath,outfile,inpath):
 outdir = {}
 
 outdir["data"] = []
-<<<<<<< HEAD
-outdir["data"].append("NN_allregions_v2_data_main")
-outdir["data"].append("NN_allregions_v2_data_osw")
-outdir["data"].append("NN_allregions_v2_data_ssw")
-outdir["data"].append("NN_allregions_v2_data_qcd")
+#outdir["data"].append("NN_allregions_v3_data_main")
+#outdir["data"].append("NN_allregions_v3_data_osw")
+#outdir["data"].append("NN_allregions_v3_data_ssw")
+#outdir["data"].append("NN_allregions_v3_data_qcd")
+#outdir["data"].append("NN_allregions_ac_datatest")
+#outdir["data"].append("NN_allregions_ac")
+#outdir["data"].append("NN_allregions_ac")
+outdir["data"].append("NN_allregions_ac_ssw")
 
 outdir["mc"] = []
-outdir["mc"].append("NN_allregions_v2_mc")
-=======
-outdir["data"].append("NN_allregions_v3_data_main")
-outdir["data"].append("NN_allregions_v3_data_osw")
-outdir["data"].append("NN_allregions_v3_data_ssw")
-outdir["data"].append("NN_allregions_v3_data_qcd")
-
-outdir["mc"] = []
-outdir["mc"].append("NN_allregions_v3_mc")
->>>>>>> For AC
+#outdir["mc"].append("NN_allregions_v3_mc")
+#outdir["mc"].append("NN_allregions_ac_mctest")
+#outdir["mc"].append("NN_allregions_ac")
 #outdir["mc"].append("NN_mc_missing")
 
 jobtype = ["nominal"]
@@ -74,6 +71,7 @@ print "-------------------------"
 in_file_dict = gen_file_dict( os.path.join(inpath,"data") )
 
 out_file_dict = {}
+files_out = []
 for d in outdir["data"]:
   out_file_dict[d] = {}
   for jt in jobtype:
@@ -92,6 +90,8 @@ for d in outdir["data"]:
             print "the following files are missing:"
             print failed_files
             print
+            for f in failed_files:
+                files_out.append(idir+'/'+f)
           if hadd_files and not failed_files:
             cmd = hadd_cmd( os.path.join(outbasepath,d,jt),  os.path.basename(odir), odir) 
             m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
@@ -123,9 +123,16 @@ for d in outdir["mc"]:
             print "the following files are missing:"
             print failed_files
             print
+            for f in failed_files:
+                files_out.append(idir+'/'+f)
           if hadd_files and not failed_files:
             cmd = hadd_cmd( os.path.join(outbasepath,d,jt),  os.path.basename(odir), odir) 
             m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
             print m.communicate()[0]
 
+# Write missing files to single txt file
+missing_files = open('missing_files.txt', 'w')
+for item in files_out:
+    missing_files.write("%s\n" % item)
+missing_files.close()
 # EOF

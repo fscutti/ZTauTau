@@ -64,10 +64,13 @@ class CutAlg(pyframe.core.Algorithm):
     
     #__________________________________________________________________________
     def cut_MuonOnly(self):
-        return self.chain.n_muons == 1 and self.chain.n_electrons == 0 and self.chain.n_pvx > 0
+        return self.chain.n_muons == 1 and self.chain.n_electrons == 0
     #__________________________________________________________________________
     def cut_ElecOnly(self):
-        return self.chain.n_muons == 0 and self.chain.n_electrons == 1 and self.chain.n_pvx > 0
+        return self.chain.n_muons == 0 and self.chain.n_electrons == 1
+    #__________________________________________________________________________
+    def cut_PVX(self):
+        return self.chain.n_pvx > 0
     #__________________________________________________________________________
     def cut_2015MuonTrig(self):
         if ((self.chain.HLT_mu20_iloose_L1MU15 == 1 and self.chain.muTrigMatch_0_HLT_mu20_iloose_L1MU15 == 1) or (self.chain.HLT_mu40 == 1 and self.chain.muTrigMatch_0_HLT_mu40 == 1)):
@@ -103,8 +106,24 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_RRN2016(self):
         return self.chain.NOMINAL_pileup_random_run_number > 284484
     #__________________________________________________________________________
+    def cut_TrueTau(self):
+        #return abs(self.chain.tau_0_truth_pdgId)==15
+        if self.sampletype == 'mc' and ('VBFH125' in self.samplename or 'ggH125' in self.samplename):
+            return abs(self.chain.tau_0_truth_pdgId)==15
+        else:
+            return True
+    #__________________________________________________________________________
+    def cut_NoJetFake(self):
+        if self.sampletype == 'mc':
+            return not (abs(self.chain.tau_0_truth_pdgId) < 6 or self.chain.tau_0_truth_pdgId == 21)
+        else:
+            return True
+    #__________________________________________________________________________
     def cut_LepQual(self):
-        return self.chain.lep_0_id_medium == 1 and abs(self.chain.lep_0_eta) < 2.5
+        if self.chain.n_electrons == 1:
+            return self.chain.lep_0_id_medium == 1 and abs(self.chain.lep_0_eta) < 2.47 and not(abs(self.chain.lep_0_eta)>1.37 and abs(self.chain.lep_0_eta)<1.52)
+        else:
+            return self.chain.lep_0_id_medium == 1 and abs(self.chain.lep_0_eta) < 2.5
     #__________________________________________________________________________
     def cut_LepIso(self):
         return self.chain.lep_0_iso_Gradient == 1
@@ -116,10 +135,10 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.lep_0_iso_Loose == 0
     #__________________________________________________________________________
     def cut_LepPt(self):
-        return self.chain.lep_0_pt > 27
+        return self.chain.lep_0_pt > 27.3
     #__________________________________________________________________________
     def cut_TauQual(self):
-        return self.chain.n_taus > 0 and abs(self.chain.tau_0_q) == 1 and abs(self.chain.tau_0_eta) < 2.4
+        return self.chain.n_taus > 0 and abs(self.chain.tau_0_q) == 1 and abs(self.chain.tau_0_eta) < 2.4 and not(abs(self.chain.tau_0_eta)>1.37 and abs(self.chain.tau_0_eta)<1.52)
     #__________________________________________________________________________
     def cut_TauID(self):
         return self.chain.n_taus_medium == 1 and self.chain.tau_0_jet_bdt_medium == 1
@@ -142,11 +161,22 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_SS(self):
         return self.chain.lephad_qxq ==  1
     #__________________________________________________________________________
-    def cut_TauEVeto(self):
-        return self.chain.n_electrons == 1 and ((self.chain.tau_0_n_tracks == 1 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.15) or (self.chain.tau_0_n_tracks == 3 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.05))
+    def cut_tauEveto(self):
+        if self.chain.n_electrons == 1:
+            return ((self.chain.tau_0_n_tracks == 1 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.15) or (self.chain.tau_0_n_tracks == 3 and self.chain.tau_0_ele_BDTEleScoreTrans_run2 > 0.05))
+        else:
+            return True
     #__________________________________________________________________________
     def cut_SCDP(self):
         return self.chain.lephad_met_sum_cos_dphi > -0.35
+    #__________________________________________________________________________
+    def cut_dEta(self):
+        return abs(self.chain.lephad_deta) < 2
+    #__________________________________________________________________________
+    def cut_BVeto(self):
+        if not self.chain.event_number == self.chain.eventNumber:
+            print "Problem mismatch between %i and %i" % (self.chain.event_number, self.chain.eventNumber)
+        return self.chain.n_bjets == 0
     #__________________________________________________________________________
     def cut_Presel(self):
         if not self.chain.event_number == self.chain.eventNumber:

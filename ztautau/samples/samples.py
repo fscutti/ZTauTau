@@ -32,7 +32,7 @@ list_runs =[globals()[ds_name%(run)] for run in GRL]
 
 data = Sample(name         = "data",
               type         = "data",
-              tlatex       = "Data 2015",
+              tlatex       = "Data",
               fill_color   = ROOT.kWhite,
               fill_style   = 0,
               line_color   = ROOT.kBlack,
@@ -315,10 +315,10 @@ top =  Sample( name =   'top',
 # -----------------------------------------
 # LFVH
 # -----------------------------------------
-PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"     , dsid="344084" , xsec=30.1089 )
-PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"    , dsid="344085" , xsec=3.8155  )
-PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"      , dsid="344088" , xsec=30.189  )
-PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"     , dsid="344089" , xsec=3.8155  )
+PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"     , dsid="344084" , xsec=30.1089 , kfactor=0.01)
+PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"    , dsid="344085" , xsec=3.8155  , kfactor=0.01)
+PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"      , dsid="344088" , xsec=30.189  , kfactor=0.01)
+PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"     , dsid="344089" , xsec=3.8155  , kfactor=0.01)
 
 lfvh =  Sample( name =   'lfvh',
                 tlatex = 'H#rightarrow#tau#tau (LFV)',
@@ -338,8 +338,8 @@ lfvh =  Sample( name =   'lfvh',
                 )
 
 
-PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_tautau"    , dsid="341123" , xsec=1.262409959 )
-PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_tautau"   , dsid="341156" , xsec=0.107869976 )
+PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_ttlh"    , dsid="341123" , xsec=1.262409959 )
+PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_ttlh"   , dsid="341156" , xsec=0.107869976 )
 
 smh  =  Sample( name =   'smh',
                 tlatex = 'H#rightarrow#tau#tau (SM)',
@@ -351,6 +351,42 @@ smh  =  Sample( name =   'smh',
                                  PoPy8_VBFH125_tautau,
                                 ]
                 )
+
+Sh221_PDF30_ZqqZvv   = Sample( name="Sh221_PDF30_ZqqZvv",   dsid="363355", xsec=15.564, kfactor=0.27976)
+Sh221_PDF30_ZqqZll   = Sample( name="Sh221_PDF30_ZqqZll",   dsid="363356", xsec=15.563, kfactor=0.13961)
+Sh221_PDF30_WqqZvv   = Sample( name="Sh221_PDF30_WqqZvv",   dsid="363357", xsec=6.7973 )
+Sh221_PDF30_WqqZll   = Sample( name="Sh221_PDF30_WqqZll",   dsid="363358", xsec=3.437  )
+Sh221_PDF30_WpqqWmlv = Sample( name="Sh221_PDF30_WpqqWmlv", dsid="363359", xsec=24.717 )
+Sh221_PDF30_WplvWmqq = Sample( name="Sh221_PDF30_WplvWmqq", dsid="363360", xsec=24.734 )
+Sh221_PDF30_WlvZqq   = Sample( name="Sh221_PDF30_WlvZqq",   dsid="363489", xsec=11.413 )
+Sh221_PDF30_llll     = Sample( name="Sh221_PDF30_llll",     dsid="363490", xsec=1.2557 )
+Sh221_PDF30_lllv     = Sample( name="Sh221_PDF30_lllv",     dsid="363491", xsec=4.5877 )
+Sh221_PDF30_llvv     = Sample( name="Sh221_PDF30_llvv",     dsid="363492", xsec=12.465 )
+Sh221_PDF30_lvvv     = Sample( name="Sh221_PDF30_lvvv",     dsid="363493", xsec=3.2274 )
+Sh221_PDF30_vvvv     = Sample( name="Sh221_PDF30_vvvv",     dsid="363494", xsec=0.60154 )
+
+
+diboson = Sample( name = 'diboson',
+                  tlatex = 'Diboson',
+                  fill_color   =  ROOT.kPink+2,
+                  line_color   =  ROOT.kPink+3,
+                  marker_color =  ROOT.kPink+3,
+                  daughters = [
+                                Sh221_PDF30_ZqqZvv,
+                                Sh221_PDF30_ZqqZll,
+                                Sh221_PDF30_WqqZvv,
+                                Sh221_PDF30_WqqZll,
+                                Sh221_PDF30_WpqqWmlv,
+                                Sh221_PDF30_WplvWmqq,
+                                Sh221_PDF30_WlvZqq,
+                                Sh221_PDF30_llll,
+                                Sh221_PDF30_lllv,
+                                Sh221_PDF30_llvv,
+                                Sh221_PDF30_lvvv,
+                                Sh221_PDF30_vvvv,
+                              ]
+                )
+
 
 # the following samples we have locally but they are not included in the xml
 """
@@ -425,6 +461,14 @@ Multijet_dd = Sample( name         = 'Multijet_dd',
                       type         = "datadriven",
                     )
 
+Fake        = Sample( name         = 'Fake',
+                      tlatex       = 'Fakes (Template)',
+                      fill_color   = ROOT.kGreen+2,
+                      line_color   = ROOT.kGreen+3,
+                      marker_color = ROOT.kGreen+3,
+                      type         = "datadriven",
+                    )
+
 all_data = data.daughters
 
 all_mc = []
@@ -432,7 +476,9 @@ all_mc += Wtaunu.daughters
 all_mc += Wlepnu.daughters
 all_mc += Zleplep.daughters
 all_mc += Ztautau.daughters
+all_mc += diboson.daughters
 all_mc += top.daughters
 all_mc += lfvh.daughters
+all_mc += smh.daughters
 
 # EOF

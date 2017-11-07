@@ -10,9 +10,18 @@ other config files !!!
 
 
 
-h_cutflow_presel_mu161p = Hist1D('cutflow_presel_mu161p',dir="")
-h_cutflow_presel_mu163p = Hist1D('cutflow_presel_mu163p',dir="")
-h_cutflow_presel_mu16inc = Hist1D('cutflow_presel_mu16inc',dir="")
+h_cutflow_presel_el151p  = Hist1D('cutflow_weighted_presel_el151p',dir="")
+h_cutflow_presel_el153p  = Hist1D('cutflow_weighted_presel_el153p',dir="")
+h_cutflow_presel_el15inc = Hist1D('cutflow_weighted_presel_el15inc',dir="")
+h_cutflow_presel_el161p  = Hist1D('cutflow_weighted_presel_el161p',dir="")
+h_cutflow_presel_el163p  = Hist1D('cutflow_weighted_presel_el163p',dir="")
+h_cutflow_presel_el16inc = Hist1D('cutflow_weighted_presel_el16inc',dir="")
+h_cutflow_presel_mu151p  = Hist1D('cutflow_weighted_presel_mu151p',dir="")
+h_cutflow_presel_mu153p  = Hist1D('cutflow_weighted_presel_mu153p',dir="")
+h_cutflow_presel_mu15inc = Hist1D('cutflow_weighted_presel_mu15inc',dir="")
+h_cutflow_presel_mu161p  = Hist1D('cutflow_weighted_presel_mu161p',dir="")
+h_cutflow_presel_mu163p  = Hist1D('cutflow_weighted_presel_mu163p',dir="")
+h_cutflow_presel_mu16inc = Hist1D('cutflow_weighted_presel_mu16inc',dir="")
 
 
 ###############
@@ -301,8 +310,17 @@ h_met_reco_phi     = Hist1D( 'met_reco_phi',
                              )
 
 ###############
-# MET RELATED #
+# MVA RELATED #
 ###############
+h_BDT_output       = Hist1D( 'output_BDT',
+                             xtitle = 'BDT score',
+                             nbins = 1000, 
+                             xmin = 0., 
+                             xmax = 1.0, 
+                             dir='nn', 
+                             vexpr = 'self.chain.output_BDT',
+                             )
+
 h_NN_W_output      = Hist1D( 'output_W',
                              xtitle = 'NN (LFV vs W) score',
                              nbins = 1000, 

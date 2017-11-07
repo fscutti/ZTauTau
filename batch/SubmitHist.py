@@ -4,7 +4,7 @@ SubmitHist.py
 '''
 
 ## modules
-import os
+import os, sys
 import re
 import subprocess
 import time
@@ -20,15 +20,17 @@ def prepare_path(path):
 MAIN        = os.getenv('MAIN')                           # upper folder
 USER        = os.getenv('USER')
 NTUP        = '/coepp/cephfs/share/atlas/LFV/july_redown'        # global config input NTUP path
-FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/base_test_july_evtnofix' # path where friend input is located; same "granularity as NTUP"
+#FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/base_test_july_evtnofix' # path where friend input is located; same "granularity as NTUP"
+FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/bdt_ff_v1' # path where friend input is located; same "granularity as NTUP"
 JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER        # The Melb cloud is twisted and does not recognize home dirs...
 prepare_path(JOBDIR)
 INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
 AUTOBUILD   = True                                        # auto-build tarball using Makefile.tarball
 NJMAX       = 200
+DATATYPE    = sys.argv[1]#'ssw'
 
 # outputs  
-RUN         = 'NN_allregions_ac_mctest'
+RUN         = 'NN_allregions_ac_'+sys.argv[1]#ssw'
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
@@ -66,8 +68,11 @@ def main():
     ## get lists of samples
     all_mc   = samples.all_mc
     all_data = samples.all_data
-    nominal  = all_data + all_mc 
-    nominal  = all_mc
+    if DATATYPE == 'main':
+        nominal  = all_data + all_mc 
+        #nominal  = all_mc
+    else:
+        nominal  = all_data
     
     ntup_sys = [
         ['SYS1_UP',                  all_mc],
@@ -122,6 +127,7 @@ def submit(tag,job_sys,samps,config={}):
     global DO_NTUP_SYS
     global DO_PLOT_SYS
     global TESTMODE
+    global DATATYPE
     
     assert (NJMAX<=600), "Error: please, not more than 600 subjobs per array!"
 
@@ -184,7 +190,7 @@ def submit(tag,job_sys,samps,config={}):
               infriend = infile.replace(NTUP,FRIENDPATH)+".friend"
            
            # write many lines here
-           line = ';'.join([s.name,infpath,infriend,soutput,s.type,sconfig_str])
+           line = ';'.join([s.name,infpath,infriend,soutput,s.type,DATATYPE,sconfig_str])
 
            cfg = os.path.join(JOBDIR,'Config%s.%s.run.%s'%(RUN,tag,nrun))
            abslogpath = os.path.abspath(os.path.join(logrootpath,"log_run_%d"%nrun))

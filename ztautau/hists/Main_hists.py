@@ -41,7 +41,6 @@ hist_list.append(h_met_reco_et      )
 hist_list.append(h_NN_W_output      )
 hist_list.append(h_NN_Z_output      )
 hist_list.append(h_NN_comb_output   )
-
 hist_presel = []
 hist_presel.append(h_evt_nvx          )
 hist_presel.append(h_evt_npvx         )
@@ -79,6 +78,20 @@ variables_NN      = [
                     h_NN_Z_output,
                     h_NN_comb_output
                     ]
+variables_BDT     = [
+                    h_tau0_eta  ,
+                    h_tau0_phi  ,
+                    h_tau0_pt   ,
+                    h_lep0_eta  ,
+                    h_lep0_phi  ,
+                    h_lep0_pt   ,
+                    h_BDT_output,
+                    h_met_reco_et ,
+                    h_lh_lep_mt  ,
+                    h_lh_tau_mt  ,
+                    h_lh_dR      ,
+                    h_lh_deta    ,
+                    ]
 comb_2d  = it.combinations(variables_NN, 2 )
 combs_2d = []
 for c in comb_2d:
@@ -96,3 +109,4 @@ for c in comb_2d:
                             ))
 hist_presel+=combs_2d
 #hist_presel.append(h_event_number_comp)
+hist_ac = [h_tau0_pt]+variables_NN+variables_BDT

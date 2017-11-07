@@ -73,6 +73,8 @@ mc_backgrounds.append(samples.Wlepnu)
 mc_backgrounds.append(samples.Zleplep)
 mc_backgrounds.append(samples.Ztautau)
 mc_backgrounds.append(samples.top)
+mc_backgrounds.append(samples.diboson)
+mc_backgrounds.append(samples.smh)
 
 ## signals
 mc_signals = []
@@ -92,33 +94,43 @@ for s in mc_backgrounds + mc_signals + [data,dataest]:
 
 # data driven backgrounds
 # -----------------------
-Wjets_dd = samples.Wjets_dd
-Multijet_dd = samples.Multijet_dd
+#Wjets_dd = samples.Wjets_dd
+#Multijet_dd = samples.Multijet_dd
+#
+#Wjets_dd.estimator    = histmgr.SimpleEstimator(hm=hm,
+#                                                sample=Wjets_dd,
+#                                                pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+#                                                data_sample=dataest,
+#                                                ext_hist_path=norm_factors_path
+#                                                )
+#
+#Multijet_dd.estimator = histmgr.SimpleEstimator(hm=hm,
+#                                                sample=Multijet_dd,
+#                                                pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+#                                                data_sample=dataest,
+#                                                ext_hist_path=norm_factors_path
+#                                                )
 
-Wjets_dd.estimator    = histmgr.SimpleEstimator(hm=hm,
-                                                sample=Wjets_dd,
-                                                pathmod_aux="NN_allregions_v3_data", # force the estimator to read from this path
-                                                data_sample=dataest,
-                                                ext_hist_path=norm_factors_path
-                                                )
-
-Multijet_dd.estimator = histmgr.SimpleEstimator(hm=hm,
-                                                sample=Multijet_dd,
-                                                pathmod_aux="NN_allregions_v3_data", # force the estimator to read from this path
-                                                data_sample=dataest,
-                                                ext_hist_path=norm_factors_path
-                                                )
+Fake = samples.Fake
+Fake.estimator = histmgr.SimpleEstimator(hm=hm,
+                                         sample=Fake,
+                                         pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+                                         data_sample=dataest,
+                                         ext_hist_path=norm_factors_path
+                                         )
 
 data.estimator = histmgr.SimpleEstimator(hm=hm,
-                                         pathmod_main="NN_allregions_v3_data_main", # force the estimator to read from this path
-                                         sample=data.copy()
-                                         )
+                                             #pathmod="NN_allregions_v3_data_main", # force the estimator to read from this path
+                                             pathmod_main="NN_allregions_ac", # force the estimator to read from this path
+                                             sample=data.copy()
+                                             )
 
 # rest of samples
 # -----------------------
 for s in mc_signals + mc_backgrounds:
   s.estimator = histmgr.SimpleEstimator(hm=hm,
-                                        pathmod_main="NN_allregions_v3_mc", # force the estimator to read from this path
+                                        #pathmod="NN_allregions_v3_mc", # force the estimator to read from this path
+                                        pathmod_main="NN_allregions_ac", # force the estimator to read from this path
                                         sample=s.copy())
 
 
@@ -146,15 +158,18 @@ hdict  = final_binning_hists.hist_dict
 
 ## backgrounds 
 plot_backgrounds = []
-plot_backgrounds.append(Wjets_dd)
-plot_backgrounds.append(Multijet_dd)
+#plot_backgrounds.append(Wjets_dd)
+#plot_backgrounds.append(Multijet_dd)
+plot_backgrounds.append(Fake)
 plot_backgrounds.append(samples.Ztautau)
 plot_backgrounds.append(samples.Zleplep)
 plot_backgrounds.append(samples.top)
+plot_backgrounds.append(samples.diboson)
+plot_backgrounds.append(samples.smh)
 
 ## signals
 plot_signals = []
-#plot_signals.append(samples.lfvh)
+plot_signals.append(samples.lfvh)
 
 if options.makeplot == "True" and not options.printcutflow:
  funcs.plot_hist(
