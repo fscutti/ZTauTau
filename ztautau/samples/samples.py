@@ -469,6 +469,14 @@ Fake        = Sample( name         = 'Fake',
                       type         = "datadriven",
                     )
 
+FF_Fake     = Sample( name         = 'FF_Fake',
+                      tlatex       = 'Fakes (Fake Factor)',
+                      fill_color   = ROOT.kGreen+2,
+                      line_color   = ROOT.kGreen+3,
+                      marker_color = ROOT.kGreen+3,
+                      type         = "datadriven",
+                    )
+
 all_data = data.daughters
 
 all_mc = []

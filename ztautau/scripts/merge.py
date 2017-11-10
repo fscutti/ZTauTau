@@ -111,6 +111,14 @@ for s in mc_backgrounds + mc_signals + [data,dataest]:
 #                                                ext_hist_path=norm_factors_path
 #                                                )
 
+FF_Fake = samples.FF_Fake
+FF_Fake.estimator = histmgr.SimpleEstimator(hm=hm,
+                                         sample=FF_Fake,
+                                         pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+                                         data_sample=dataest,
+                                         ext_hist_path=norm_factors_path
+                                         )
+
 Fake = samples.Fake
 Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          sample=Fake,
@@ -121,7 +129,7 @@ Fake.estimator = histmgr.SimpleEstimator(hm=hm,
 
 data.estimator = histmgr.SimpleEstimator(hm=hm,
                                              #pathmod="NN_allregions_v3_data_main", # force the estimator to read from this path
-                                             pathmod_main="NN_allregions_ac", # force the estimator to read from this path
+                                             pathmod_main="NN_allregions_ac_main", # force the estimator to read from this path
                                              sample=data.copy()
                                              )
 
@@ -130,7 +138,7 @@ data.estimator = histmgr.SimpleEstimator(hm=hm,
 for s in mc_signals + mc_backgrounds:
   s.estimator = histmgr.SimpleEstimator(hm=hm,
                                         #pathmod="NN_allregions_v3_mc", # force the estimator to read from this path
-                                        pathmod_main="NN_allregions_ac", # force the estimator to read from this path
+                                        pathmod_main="NN_allregions_ac_main", # force the estimator to read from this path
                                         sample=s.copy())
 
 
@@ -160,7 +168,8 @@ hdict  = final_binning_hists.hist_dict
 plot_backgrounds = []
 #plot_backgrounds.append(Wjets_dd)
 #plot_backgrounds.append(Multijet_dd)
-plot_backgrounds.append(Fake)
+#plot_backgrounds.append(Fake)
+#plot_backgrounds.append(FF_Fake)
 plot_backgrounds.append(samples.Ztautau)
 plot_backgrounds.append(samples.Zleplep)
 plot_backgrounds.append(samples.top)

@@ -84,6 +84,8 @@ def analyze(config):
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
     loop += ztautau.algs.weights.WeightTotal(cutflow='PreselMu2016',key='weight_total')
+    if config['datatype'] == 'ff': 
+        loop += ztautau.algs.weights.FFTotal(cutflow='PreselMu2016',key='ff')
 
 
     ## initialize and/or decorate objects
@@ -287,14 +289,14 @@ def analyze(config):
                                       ['BVeto'                   , None ]
                                       ]
         regname[c[0]][c[1]][c[2]] = c[0]+c[1]+c[2]
-        if config['datatype'] == 'qcd': 
+        if  config['datatype'] == 'qcd': 
             cutflow[c[0]][c[1]][c[2]] = replace_cut(cutflow[c[0]][c[1]][c[2]], ['LepIso', None], ['LepAntiIso',   None])
         elif config['datatype'] == 'osw':
             cutflow[c[0]][c[1]][c[2]] = replace_cut(cutflow[c[0]][c[1]][c[2]], ['TauID',  None], ['TauLooseNMed', None])
         elif config['datatype'] == 'ssw':
             cutflow[c[0]][c[1]][c[2]] = replace_cut(cutflow[c[0]][c[1]][c[2]], ['OS',     None], ['SS',           None])
             cutflow[c[0]][c[1]][c[2]] = replace_cut(cutflow[c[0]][c[1]][c[2]], ['TauID',  None], ['TauLoose',     None])
-        elif config['datatype'] == 'ff':
+        elif config['datatype'] == 'ff' :
             cutflow[c[0]][c[1]][c[2]] = replace_cut(cutflow[c[0]][c[1]][c[2]], ['TauID',  None], ['TauAntiID',    None])
         #print cutflow[c[0]][c[1]][c[2]]
 

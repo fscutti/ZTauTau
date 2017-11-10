@@ -3,7 +3,7 @@
 
 INPATH="/coepp/cephfs/share/atlas/LFV/july_redown"
 #INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/friendsLFVH"
-INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/base_test_july_evtnofix"
+INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/bdt_ff_v1"
 INSCRIPT="../ztautau/run"
 SCRIPT="ac.plotter.py"
 
@@ -26,5 +26,5 @@ python  ${INSCRIPT}/${SCRIPT} \
   --friendinput ${INPATHFRIEND}/data/group.phys-higgs.ClhsH.data16_13TeV.00304128.physics_Main.D2.f716_m1620_p2950.1707nomv3_hist/group.phys-higgs.11697324._000020.hist-output.root.friend \
   --sampletype="data" \
   --samplename="data.hist-output" \
-  --datatype="qcd" \
+  --datatype="ff" \
 #  --events=1000 \

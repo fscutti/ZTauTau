@@ -51,12 +51,12 @@ outdir["data"] = []
 #outdir["data"].append("NN_allregions_ac_datatest")
 #outdir["data"].append("NN_allregions_ac")
 #outdir["data"].append("NN_allregions_ac")
-outdir["data"].append("NN_allregions_ac_ssw")
+outdir["data"].append("NN_allregions_ac_ff")
 
 outdir["mc"] = []
 #outdir["mc"].append("NN_allregions_v3_mc")
 #outdir["mc"].append("NN_allregions_ac_mctest")
-#outdir["mc"].append("NN_allregions_ac")
+#outdir["mc"].append("NN_allregions_ac_main")
 #outdir["mc"].append("NN_mc_missing")
 
 jobtype = ["nominal"]

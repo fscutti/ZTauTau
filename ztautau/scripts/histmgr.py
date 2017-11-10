@@ -468,6 +468,29 @@ class SimpleEstimator(BaseEstimator):
              #return histutils.add_hists(h_qcd_tot_list)
              return h_qcd_tot_list
 
+         def addFF(histname):
+             h_ff_tot_list=[]
+             region_ff = ''
+             
+             if "cutflow" in histname: histname = histname.replace(region, region_ff)
+             
+             if "_mu" in region: region_ff = region.replace("_mu","_mu")
+             if "_el" in region: region_ff = region.replace("_el","_el")
+          
+             for item in replace:
+                 print "adding to ff", item
+                 h_ff = None
+                 if 'cutflow' in histname:
+                     h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                 else:
+                     h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname,region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+
+                 h_ff_tot_list.append(h_ff)
+
+             #return histutils.add_hists(h_ff_tot_list)
+             return h_ff_tot_list
+
+
          if self.sample.name == "Multijet_dd": 
              qcd = addQCD (histname)
              return histutils.add_hists(qcd)
@@ -479,6 +502,9 @@ class SimpleEstimator(BaseEstimator):
              wjt = addWjet(histname)
              qcd = addQCD (histname)
              return histutils.add_hists(wjt+qcd)
+         if self.sample.name == "FF_Fake":
+             ff  = addFF  (histname)
+             return histutils.add_hists(ff)
 
     #__________________________________________________________________________
     def is_affected_by_systematic(self, sys):
