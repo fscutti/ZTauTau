@@ -60,6 +60,8 @@ hist_presel.append(h_cutflow_presel_mu15inc)
 hist_presel.append(h_cutflow_presel_mu161p)
 hist_presel.append(h_cutflow_presel_mu163p)
 hist_presel.append(h_cutflow_presel_mu16inc)
+hist_presel.append(h_cutflow_presel_muallinc)
+hist_presel.append(h_cutflow_presel_elallinc)
 
 
 

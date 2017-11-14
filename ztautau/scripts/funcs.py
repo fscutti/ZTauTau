@@ -42,7 +42,7 @@ def get_hists(
     
     hists = {} 
     for s in samples:
-      #print s.name, s.type, region, icut, histname
+      print s.name, histname
       if not s.hist(region=region,icut=icut,histname=histname): continue
       h = s.hist(region=region,icut=icut,histname=histname).Clone()
       if rebin and h: h = h.Rebin(len(rebin)-1,h.GetName(),rebin)
@@ -550,6 +550,7 @@ def print_cutflows(
     samples = backgrounds + signal
     if data: samples += [data]
     ## generate nominal hists
+    print "Retrieving hists"
     hists = get_hists(
         region=region,
         icut=0,

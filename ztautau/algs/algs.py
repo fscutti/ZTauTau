@@ -150,7 +150,7 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.tau_0_jet_bdt_loose == 1 and self.chain.tau_0_jet_bdt_medium == 0
     #__________________________________________________________________________
     def cut_TauAntiID(self):
-        return self.chain.n_taus_medium == 0 and self.chain.tau_0_jet_bdt_medium == 0 and self.chain.tau_0_jet_bdt_score > 0.25 
+        return self.chain.n_taus_medium == 0 and self.chain.tau_0_jet_bdt_medium == 0 and self.chain.tau_0_jet_bdt_score > 0.5 
     #__________________________________________________________________________
     def cut_TauPt(self):
         return self.chain.tau_0_pt > 25

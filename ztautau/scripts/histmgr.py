@@ -123,6 +123,7 @@ class HistMgr():
                 if mode == 'up': h.Scale(1.+sys.flat_err)
                 else:            h.Scale(1.-sys.flat_err)
             
+            #print file, h.GetBinContent(12)
             h_list.append(h)
         
         return histutils.add_hists(h_list)
@@ -329,6 +330,7 @@ class SimpleEstimator(BaseEstimator):
 
          for item in replace:
              if 'cutflow' in histname:
+                 print "Running over data", pathmod_main, histname.replace("inc",item[1]).replace('all',item[0])
                  h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
              else:
                  h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
@@ -348,7 +350,7 @@ class SimpleEstimator(BaseEstimator):
          return histutils.add_hists(h_list)
 
 
-       elif self.sample.type == "datadriven":
+       if self.sample.type == "datadriven":
          
          if self.pathmod_aux: pathmod_aux = self.pathmod_aux
          
@@ -472,7 +474,7 @@ class SimpleEstimator(BaseEstimator):
              h_ff_tot_list=[]
              region_ff = ''
              
-             if "cutflow" in histname: histname = histname.replace(region, region_ff)
+             #if "cutflow" in histname: histname = histname.replace(region, region_ff)
              
              if "_mu" in region: region_ff = region.replace("_mu","_mu")
              if "_el" in region: region_ff = region.replace("_el","_el")
@@ -481,6 +483,7 @@ class SimpleEstimator(BaseEstimator):
                  print "adding to ff", item
                  h_ff = None
                  if 'cutflow' in histname:
+                     print histname, histname.replace("inc",item[1]).replace('all',item[0])
                      h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
                  else:
                      h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname,region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()

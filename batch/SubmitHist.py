@@ -27,10 +27,10 @@ prepare_path(JOBDIR)
 INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
 AUTOBUILD   = True                                        # auto-build tarball using Makefile.tarball
 NJMAX       = 200
-DATATYPE    = sys.argv[1]#'ssw'
+DATATYPE    = sys.argv[1]
 
 # outputs  
-RUN         = 'NN_allregions_ac_'+sys.argv[1]#ssw'
+RUN         = 'NN_allregions_ac_'+sys.argv[1]
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running

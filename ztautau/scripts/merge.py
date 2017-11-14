@@ -11,6 +11,7 @@ from systematics     import *
 
 from optparse import OptionParser
 
+ROOT.gErrorIgnoreLevel = ROOT.kError
 
 #-----------------
 # input
@@ -115,7 +116,7 @@ FF_Fake = samples.FF_Fake
 FF_Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          sample=FF_Fake,
                                          pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
-                                         data_sample=dataest,
+                                         data_sample=dataest.copy(),
                                          ext_hist_path=norm_factors_path
                                          )
 
@@ -123,7 +124,7 @@ Fake = samples.Fake
 Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          sample=Fake,
                                          pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
-                                         data_sample=dataest,
+                                         data_sample=dataest.copy(),
                                          ext_hist_path=norm_factors_path
                                          )
 
@@ -169,16 +170,16 @@ plot_backgrounds = []
 #plot_backgrounds.append(Wjets_dd)
 #plot_backgrounds.append(Multijet_dd)
 #plot_backgrounds.append(Fake)
-#plot_backgrounds.append(FF_Fake)
-plot_backgrounds.append(samples.Ztautau)
-plot_backgrounds.append(samples.Zleplep)
-plot_backgrounds.append(samples.top)
-plot_backgrounds.append(samples.diboson)
-plot_backgrounds.append(samples.smh)
+plot_backgrounds.append(FF_Fake)
+#plot_backgrounds.append(samples.Ztautau)
+#plot_backgrounds.append(samples.Zleplep)
+#plot_backgrounds.append(samples.top)
+#plot_backgrounds.append(samples.diboson)
+#plot_backgrounds.append(samples.smh)
 
 ## signals
 plot_signals = []
-plot_signals.append(samples.lfvh)
+#plot_signals.append(samples.lfvh)
 
 if options.makeplot == "True" and not options.printcutflow:
  funcs.plot_hist(
