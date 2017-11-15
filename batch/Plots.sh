@@ -49,16 +49,15 @@ MYDIR=Plots_${RANDOM}${RANDOM}
 #-------------------------------- NODE CONFIG ------------------------------
 echo "going to tmp node dir: $TMPDIR"
 cd $TMPDIR
-ls -alh
 
-echo "ls ${TMPDIR} -la"
-ls ${TMPDIR} -la
+#echo "ls ${TMPDIR} -la"
+#ls ${TMPDIR} -la
 
 echo "mkdir ${MYDIR}"
 mkdir ${MYDIR}
 
-echo "ls ${TMPDIR} -la"
-ls ${TMPDIR} -la
+#echo "ls ${TMPDIR} -la"
+#ls ${TMPDIR} -la
 
 echo "cd ${MYDIR}"
 cd ${MYDIR}
@@ -74,11 +73,9 @@ ENDTIME=`date +%s`
 TOTALTIME=$(($ENDTIME-$STARTTIME))
 echo "Total Time: ${TOTALTIME}s"
 
-ls -alh
-
 echo "extracting input tarball..."
 tar xvzf *.tar.gz 
-ls -alh
+#ls -alh
 
 date
 ENDTIME=`date +%s`
@@ -97,21 +94,22 @@ python ${SCRIPT} --var=${VAR} --reg=${REG} --lab=${LAB} --icut=${ICUT}  --makepl
 echo "finished execution"
 
 echo "copying output"
+echo "listing"
 
-echo "cp ${MYDIR}/*.eps ${OUTDIR}"
-cp ${MYDIR}/*.eps ${OUTDIR}
+echo "cp ./*.eps ${OUTDIR}"
+cp ./*.eps ${OUTDIR}
 
 echo "cd ${TMPDIR}"
 cd ${TMPDIR}
 
-echo "ls ${TMPDIR} -la"
-ls ${TMPDIR} -la
+#echo "ls ${TMPDIR} -la"
+#ls ${TMPDIR} -la
 
 echo "rm -rf ${MYDIR}"
 rm -rf ${MYDIR}
 
-echo "ls ${TMPDIR} -la"
-ls ${TMPDIR} -la
+#echo "ls ${TMPDIR} -la"
+#ls ${TMPDIR} -la
 
 echo "finished job"
 

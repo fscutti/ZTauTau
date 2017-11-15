@@ -3,7 +3,7 @@
 import os
 import subprocess
 import time
-from ztautau import plots
+from ztautau.hists import final_binning_hists
 
 def make_tag(cat,var):
   return '_'.join([cat,var])
@@ -15,14 +15,13 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'Hist_allregions'
-outdir   = 'Plots_allregions'
-
+indir    = 'ac_v14'
+outdir   = 'TEST2Plots_ac_v14'
 
 USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
 
-inpath = os.path.join("/imports/rcs5_data",USER,ana)
+inpath = os.path.join("/coepp/cephfs/share/atlas/LFV")
 INDIR   = os.path.join(inpath,indir)  
 OUTDIR  = os.path.join(inpath,outdir)
 
@@ -35,7 +34,8 @@ if not os.path.isdir(OUTDIR+"/"+"log"): os.makedirs(OUTDIR+"/"+"log")
 AUTOBUILD = True
 QUEUE     = 'short'
 BEXEC     = 'Plots.sh'
-JOBDIR    = "/imports/rcs5_data/%s/jobdir" % USER
+##JOBDIR    = "/imports/rcs5_data/%s/jobdir" % USER
+JOBDIR    = "/coepp/cephfs/mel/%s/jobdir" % USER
 
 #---------------------
 # Batch jobs variables
@@ -50,10 +50,14 @@ job_vars['INDIR']     = INDIR
 job_vars['SCRIPT']    = SCRIPT
 
 regions = {}
-# use it as such:
-#regions["FOLDERNAME"]     = [icut, "plot label"]
 
-regions["SR"] = [4,"loose+loose"]
+# -----------------------------------------------
+# use it as such:
+# 
+# regions["FOLDERNAME"]     = [icut, "plot label"]
+# -----------------------------------------------
+
+regions["presel_muallinc"] = [15,"TEST REGION"]
 
 
 #---------------------
@@ -72,12 +76,10 @@ m.communicate()[0]
 
 
 for REG,OPT in regions.iteritems():
-  vars_list = plots.vars.vars_list
-  #vars_list = plots.vars_fakes.vars_list
+  vars_list = final_binning_hists.hist_list+final_binning_hists.hist_presel
 
   for var in vars_list:
-
-    job_vars['VAR']      = var.name
+    job_vars['VAR']      = var.hname
     job_vars['REG']      = REG
     job_vars['ICUT']     = OPT[0]
     job_vars['LAB']      = OPT[1]
@@ -97,7 +99,6 @@ for REG,OPT in regions.iteritems():
     print cmd
     m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
     print m.communicate()[0]
- 
  
 ## EOF
 

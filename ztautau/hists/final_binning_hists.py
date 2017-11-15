@@ -101,6 +101,10 @@ for c in comb_2d:
                             ))
 hist_presel+=combs_2d
 
+# 2d histograms need to be separated from this
+# list and commented out when parallel jobs are run
+
+
 hist_dict = {}
 for h in hist_list+hist_presel+hist_cutflows: 
   hist_dict[h.hname] = h.__dict__
