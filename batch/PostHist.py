@@ -14,8 +14,8 @@ import subprocess
 inpath = "/coepp/cephfs/share/atlas/LFV/july_redown"
 
 # basepath common to all output
-#outbasepath = "/coepp/cephfs/share/atlas/LFV/ac_v3"
-outbasepath = "/coepp/cephfs/mel/brianl/ztautau/"
+outbasepath = "/coepp/cephfs/share/atlas/LFV/ac_v14"
+#outbasepath = "/coepp/cephfs/mel/brianl/ztautau/"
 
 hadd_files = False
 
@@ -50,7 +50,7 @@ outdir["data"] = []
 #outdir["data"].append("NN_allregions_v3_data_qcd")
 #outdir["data"].append("NN_allregions_ac_datatest")
 #outdir["data"].append("NN_allregions_ac")
-#outdir["data"].append("NN_allregions_ac")
+#outdir["data"].append("NN_allregions_ac_main")
 outdir["data"].append("NN_allregions_ac_ff")
 
 outdir["mc"] = []

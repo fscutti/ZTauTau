@@ -64,8 +64,8 @@ hm = histmgr.HistMgr(basedir=options.indir,target_lumi=lumi)
 #-----------------
 
 ## data
-dataest = samples.data.copy() # sample to be used for dd estimation
-data = samples.data.copy()    # sample for plotting
+dataest = samples.data.copy()
+data    = samples.data.copy()
 
 ## backgrounds 
 mc_backgrounds = []
@@ -116,7 +116,7 @@ FF_Fake = samples.FF_Fake
 FF_Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          sample=FF_Fake,
                                          pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
-                                         data_sample=dataest.copy(),
+                                         data_sample=dataest,#.copy(),
                                          ext_hist_path=norm_factors_path
                                          )
 
@@ -129,7 +129,6 @@ Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          )
 
 data.estimator = histmgr.SimpleEstimator(hm=hm,
-                                             #pathmod="NN_allregions_v3_data_main", # force the estimator to read from this path
                                              pathmod_main="NN_allregions_ac_main", # force the estimator to read from this path
                                              sample=data.copy()
                                              )
@@ -171,15 +170,15 @@ plot_backgrounds = []
 #plot_backgrounds.append(Multijet_dd)
 #plot_backgrounds.append(Fake)
 plot_backgrounds.append(FF_Fake)
-#plot_backgrounds.append(samples.Ztautau)
-#plot_backgrounds.append(samples.Zleplep)
-#plot_backgrounds.append(samples.top)
-#plot_backgrounds.append(samples.diboson)
-#plot_backgrounds.append(samples.smh)
+plot_backgrounds.append(samples.Ztautau)
+plot_backgrounds.append(samples.Zleplep)
+plot_backgrounds.append(samples.top)
+plot_backgrounds.append(samples.diboson)
+plot_backgrounds.append(samples.smh)
 
 ## signals
 plot_signals = []
-#plot_signals.append(samples.lfvh)
+plot_signals.append(samples.lfvh)
 
 if options.makeplot == "True" and not options.printcutflow:
  funcs.plot_hist(

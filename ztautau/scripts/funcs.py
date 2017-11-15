@@ -41,10 +41,12 @@ def get_hists(
     '''
     
     hists = {} 
+    #print "funcs get_hists:", region, histname, samples
     for s in samples:
-      print s.name, histname
+      #print s.name, histname
       if not s.hist(region=region,icut=icut,histname=histname): continue
       h = s.hist(region=region,icut=icut,histname=histname).Clone()
+      #print "hist is found", h
       if rebin and h: h = h.Rebin(len(rebin)-1,h.GetName(),rebin)
       hists[s] = h
       assert h, 'failed to gen hist for %s'%s.name
@@ -550,7 +552,7 @@ def print_cutflows(
     samples = backgrounds + signal
     if data: samples += [data]
     ## generate nominal hists
-    print "Retrieving hists"
+    #print "Retrieving hists"
     hists = get_hists(
         region=region,
         icut=0,
@@ -559,6 +561,7 @@ def print_cutflows(
         rebin=None,
         sys_dict=None,
         )
+    #print "got hist", hists
     
     #histnamestr = histname.replace('/','_')
     fname = outname

@@ -14,6 +14,7 @@ import os, fnmatch
 for infile in open(sys.argv[1]).readlines():
     infile=infile.strip()
     if infile.endswith('/'): continue
+    print infile
     file=infile.split('higgs')[1].split('.')[1]
     inDIR = sys.argv[2]#'/coepp/cephfs/mel/brianl/ztautau/NN_allregions_ac'
     pattern = "*%s*" % file

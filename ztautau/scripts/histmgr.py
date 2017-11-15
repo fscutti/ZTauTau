@@ -73,6 +73,7 @@ class HistMgr():
         if sys: 
             assert mode in ['up','dn'], "mode must be either 'up' or 'dn'"
         
+        #print pathmod, histname, samplename, sampletype, region
         path_to_file = self.get_file_path(pathmod,samplename,sampletype,sys,mode)
         f_list = []
 
@@ -175,9 +176,9 @@ class BaseEstimator(object):
         assert self.sample, 'must provide sample to BaseEstimator'
     
     #____________________________________________________________
-    def get_hist_tag(self,histname=None,region=None,icut=None,sys=None,mode=None):
+    def get_hist_tag(self,pathmod=None,histname=None,region=None,icut=None,sys=None,mode=None):
       if isinstance(region,list): region = "_".join(region)
-      htag = "_".join([str(s) for s in [histname,region,icut,sys,mode]])
+      htag = "_".join([str(s) for s in [pathmod,histname,region,icut,sys,mode]])
       return htag
         
     #____________________________________________________________
@@ -185,8 +186,10 @@ class BaseEstimator(object):
         """
         Supports list of regions to be added
         """
+        #print "<ztautau.scripts.histmgr> BaseEst hist", pathmod, histname, self.sample.name, self.sample.type, region
         if not self.is_affected_by_systematic(sys): sys=mode=None
-        htag = self.get_hist_tag(histname,region,icut,sys,mode)
+        htag = self.get_hist_tag(pathmod,histname,region,icut,sys,mode)
+        #print htag
         if not isinstance(region,list): region = [region]
         if not self.hist_store.has_key(htag):
           h_dict = {}
@@ -244,6 +247,7 @@ class ProxyEstimator(BaseEstimator):
         """
         implementation of nominal hist getter
         """
+        #print "<ztautau.scripts.histmgr> ProxyEst hist", pathmod, histname, self.sample.name, self.sample.type, region
         h = self.hm.hist(
                          pathmod=pathmod,
                          histname=histname,
@@ -254,6 +258,7 @@ class ProxyEstimator(BaseEstimator):
                          sys=sys,
                          mode=mode,
                          )
+        #print "<ztautau.scripts.histmgr> ProxyEst hist", h
         if h and self.sample.type == 'mc': 
             lumi_frac = self.get_mc_lumi_frac(sys,mode,pathmod)
             h.Scale(self.hm.target_lumi * lumi_frac)
@@ -322,7 +327,7 @@ class SimpleEstimator(BaseEstimator):
        else:
            prong = ['1p'] if '1p' in region else ['3p']
        replace = list(product(years, prong))
-       print "running over regions", replace
+       #print "running over regions", replace
 
        if self.sample.type == "data":
          if self.pathmod_main: pathmod_main = self.pathmod_main
@@ -330,8 +335,9 @@ class SimpleEstimator(BaseEstimator):
 
          for item in replace:
              if 'cutflow' in histname:
-                 print "Running over data", pathmod_main, histname.replace("inc",item[1]).replace('all',item[0])
+                 #print "Running over data", pathmod_main, histname.replace("inc",item[1]).replace('all',item[0])
                  h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
+                 #print h_list
              else:
                  h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
          
@@ -483,7 +489,7 @@ class SimpleEstimator(BaseEstimator):
                  print "adding to ff", item
                  h_ff = None
                  if 'cutflow' in histname:
-                     print histname, histname.replace("inc",item[1]).replace('all',item[0])
+                     #print histname, histname.replace("inc",item[1]).replace('all',item[0])
                      h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
                  else:
                      h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname,region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
@@ -719,7 +725,9 @@ class MergeEstimator(BaseEstimator):
     #____________________________________________________________
     def __hist__(self,pathmod=None,region=None,icut=None,histname=None,sys=None,mode=None):
         hists = []
+        #print "MergeEst", pathmod, histname, region
         for s in self.samples: 
+            #print type(s)
             h = s.hist(pathmod=pathmod,region=region,icut=icut,histname=histname,sys=sys,mode=mode)
             if h: hists.append(h)
         h = histutils.add_hists(hists)
