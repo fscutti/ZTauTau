@@ -189,6 +189,7 @@ if options.makeplot == "True" and not options.printcutflow:
     label         = options.label,
     histname      = os.path.join(hdict[options.vname]['dir'],hdict[options.vname]['hname']),
     rebin         = hdict[options.vname]['rebin_dict']['rebin'],
+    blind         = hdict[options.vname]['rebin_dict']['blind_range'],
     log           = hdict[options.vname]['log'],
     icut          = int(options.icut),
     sys_dict      = None,

@@ -21,9 +21,11 @@ from decimal import Decimal
 
 # - - - - - - - - - - function defs - - - - - - - - - - - - #
 #____________________________________________________________
-def apply_blind(h,blind_min):
+def apply_blind(h,blind_range):
     for i in range(1,h.GetNbinsX()+1):
-        if h.GetBinLowEdge(i)>=blind_min: 
+        elow  = h.GetBinLowEdge(i)
+        ehigh = h.GetBinLowEdge(i) + h.GetBinWidth(i)
+        if elow>=min(blind_range) and ehigh<max(blind_range): 
             h.SetBinContent(i,0.)
             h.SetBinError(i,0.)
 

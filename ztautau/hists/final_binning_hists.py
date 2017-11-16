@@ -8,7 +8,9 @@ h_tau0_pt          .apply_final_binning({'xmin':   20., 'xmax': 100., 'nbins': 1
 h_lep0_eta         .apply_final_binning({'xmin':  -2.5, 'xmax':  2.5, 'nbins': 20});   hist_list.append(h_lep0_eta      )
 h_lep0_phi         .apply_final_binning({'xmin':  -3.2, 'xmax':  3.2, 'nbins': 20});   hist_list.append(h_lep0_phi      )
 h_lep0_pt          .apply_final_binning({'xmin':   20., 'xmax': 100., 'nbins': 16});   hist_list.append(h_lep0_pt       )
-h_lh_vis_m         .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25});   hist_list.append(h_lh_vis_m      )
+
+h_lh_vis_m         .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25, 'blind_range' : [100,150]});   hist_list.append(h_lh_vis_m )
+
 h_lh_mmc_mlm_m     .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25});   hist_list.append(h_lh_mmc_mlm_m  )
 h_lh_mmc_maxw_m    .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25});   hist_list.append(h_lh_mmc_maxw_m )
 h_lh_mmc_mlnu3p    .apply_final_binning({'xmin':   50., 'xmax': 300., 'nbins': 25});   hist_list.append(h_lh_mmc_mlnu3p )
