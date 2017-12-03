@@ -424,18 +424,18 @@ def plot_hist(
       #for i,line in enumerate(label):
       #  tlatex.DrawLatex(tx,latex_y-i*0.06,"#scale[%lf]{%s}"%(textsize,line))
       tlatex.DrawLatex(tx,latex_y - 0.06,"#scale[%lf]{%s}"%(textsize,label))
-    if blind:
+    #if blind:
         #line = ROOT.TLine()
         #line.SetLineColor(ROOT.kBlack)
         #line.SetLineStyle(2)
         #line.DrawLine(blind,ymin,blind,ymax)
-        bltext = ROOT.TLatex()
-        bltext.SetTextFont(42)
-        bltext.SetTextSize(0.04)
-        bltext.SetTextAngle(90.)
-        bltext.SetTextAlign(31)
-        bltext.DrawLatex(blind,ymax, 'Blind   ')
-
+#        bltext = ROOT.TLatex()
+#        bltext.SetTextFont(42)
+#        bltext.SetTextSize(0.04)
+#        bltext.SetTextAngle(90.)
+#        bltext.SetTextAlign(31)
+#        bltext.DrawLatex(blind,ymax, 'Blind   ')
+#
     if do_ratio_plot:
       pad2.cd()
       fr2 = pad2.DrawFrame(xmin,0.49,xmax,1.51,';%s;Data / Bkg_{SM}'%(xtitle))

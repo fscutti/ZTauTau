@@ -1,15 +1,11 @@
 import os, sys
 import subprocess
-#print file
-#folder = 
-#cmd = ["find", " -name",  "\"*%s*\"" % file, folder]
-#print cmd
-#m=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-##print m.read()
-#stdout, stderr = m.communicate()
-#print stdout
-import os, fnmatch
+import fnmatch
  
+#####################################
+# Usage:
+# python mv_missing <input file> <directory>
+#####################################
 
 for infile in open(sys.argv[1]).readlines():
     infile=infile.strip()
@@ -25,6 +21,9 @@ for infile in open(sys.argv[1]).readlines():
         for fileName in fList:
             if fnmatch.fnmatch(fileName, pattern): # Match search string
                 fileList.append(os.path.join(dName, fileName))
+    if len(fileList) < 1: 
+        print "cannot find folder to place", infile
+        continue
     outpath = '/'.join(fileList[0].split('/')[:-1])
     print 'mv %s %s' % (infile, outpath)
     os.system('cp %s %s' % (infile, outpath))

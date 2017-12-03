@@ -50,24 +50,30 @@ hist_presel.append(h_evt_n_jets       )
 hist_presel.append(h_met_reco_sumet   )
 hist_presel.append(h_met_reco_etx     )
 hist_presel.append(h_met_reco_ety     )
-hist_presel.append(h_met_reco_phi     )
-hist_presel.append(h_NN_input_tau_E   )
-hist_presel.append(h_NN_input_lep_px  )
-hist_presel.append(h_NN_input_lep_pz  )
-hist_presel.append(h_NN_input_lep_E   )
-hist_presel.append(h_NN_input_met_pz  )
-hist_presel.append(h_NN_input_met_E   )
-hist_presel.append(h_NN_input_mcoll   )
-hist_presel.append(h_NN_input_mvis    )
-hist_presel.append(h_NN_input_mmmc    )
-hist_presel.append(h_NN_input_boost   )
+#hist_presel.append(h_met_reco_phi     )
+#hist_presel.append(h_NN_input_tau_E   )
+#hist_presel.append(h_NN_input_tau_pz  )
+#hist_presel.append(h_NN_input_lep_px  )
+#hist_presel.append(h_NN_input_lep_pz  )
+#hist_presel.append(h_NN_input_lep_E   )
+#hist_presel.append(h_NN_input_met_px  )
+#hist_presel.append(h_NN_input_met_py  )
+#hist_presel.append(h_NN_input_met_pz  )
+#hist_presel.append(h_NN_input_met_E   )
+#hist_presel.append(h_NN_input_mcoll   )
+#hist_presel.append(h_NN_input_mvis    )
+#hist_presel.append(h_NN_input_mmmc    )
+#hist_presel.append(h_NN_input_boost   )
 
 import itertools as it
 variables_NN      = [
                     h_NN_input_tau_E ,
+                    h_NN_input_tau_pz,
                     h_NN_input_lep_px,
                     h_NN_input_lep_pz,
                     h_NN_input_lep_E ,
+                    h_NN_input_met_px,
+                    h_NN_input_met_py,
                     h_NN_input_met_pz,
                     h_NN_input_met_E ,
                     h_NN_input_mcoll ,
@@ -78,6 +84,7 @@ variables_NN      = [
                     h_NN_Z_output,
                     h_NN_comb_output
                     ]
+
 variables_BDT     = [
                     h_tau0_eta  ,
                     h_tau0_phi  ,
@@ -85,13 +92,17 @@ variables_BDT     = [
                     h_lep0_eta  ,
                     h_lep0_phi  ,
                     h_lep0_pt   ,
+                    h_NN_input_mcoll ,
+                    h_NN_input_mvis  ,
                     h_BDT_output,
                     h_met_reco_et ,
+                    h_met_reco_phi,
                     h_lh_lep_mt  ,
                     h_lh_tau_mt  ,
                     h_lh_dR      ,
                     h_lh_deta    ,
                     ]
+
 comb_2d  = it.combinations(variables_NN, 2 )
 combs_2d = []
 for c in comb_2d:
@@ -109,4 +120,6 @@ for c in comb_2d:
                             ))
 hist_presel+=combs_2d
 #hist_presel.append(h_event_number_comp)
-hist_ac = [h_tau0_pt]+variables_NN+variables_BDT
+hist_presel = variables_NN+variables_BDT#+hist_presel
+hist_ac = [h_BDT_output]#variables_NN+variables_BDT+hist_presel
+hist_fit = [h_BDT_output,h_NN_W_output,h_NN_Z_output,h_NN_comb_output,h_lh_vis_m]

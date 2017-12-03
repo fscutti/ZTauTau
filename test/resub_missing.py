@@ -2,7 +2,7 @@ head ="""
 #!/bin/bash
 ## Batch
 INPATH="/coepp/cephfs/share/atlas/LFV/july_redown"
-INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/bdt_ff_v1"
+INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/bdt_v3_ff_test"
 INSCRIPT="../ztautau/run"
 SCRIPT="ac.plotter.py"
 """
@@ -17,7 +17,10 @@ python  ${INSCRIPT}/${SCRIPT} \\
 import sys, os
 subfile = open(sys.argv[3], 'w')
 subfile.write(head)
-
+#####################################################
+# Usage:
+# python resub_missing <output of PostHist> <filepath> <out filename> <data or mc> <datatype>
+####################################################
 for file in open(sys.argv[1]):
     print file
     if not sys.argv[2] in file: continue

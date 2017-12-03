@@ -302,15 +302,6 @@ h_met_reco_phi     = Hist1D( 'met_reco_phi',
                              vexpr = 'self.chain.met_reco_phi',            
                              )
 
-h_met_reco_phi     = Hist1D( 'met_reco_phi',
-                             xtitle = 'E_{T}^{miss}(#phi)',
-                             nbins = 1000, 
-                             xmin = -3.2, 
-                             xmax = 3.2, 
-                             dir='met', 
-                             vexpr = 'self.chain.met_reco_phi',            
-                             )
-
 ###############
 # MVA RELATED #
 ###############
@@ -323,13 +314,13 @@ h_BDT_output       = Hist1D( 'output_BDT',
                              vexpr = 'self.chain.output_BDT',
                              )
 
-h_NN_W_output      = Hist1D( 'output_W',
+h_NN_W_output      = Hist1D( 'output_Fake',
                              xtitle = 'NN (LFV vs W) score',
                              nbins = 1000, 
                              xmin = 0., 
                              xmax = 1.0, 
                              dir='nn', 
-                             vexpr = 'self.chain.output_W',
+                             vexpr = 'self.chain.output_Fake',
                              )
 
 h_NN_Z_output      = Hist1D( 'output_Z',
@@ -348,6 +339,15 @@ h_NN_comb_output   = Hist1D( 'output_comb',
                              xmax = 1.0, 
                              dir='nn', 
                              vexpr = 'self.chain.output_comb',
+                             )
+
+h_NN_input_tau_pz  = Hist1D( 'NN_input_tau_pz' , 
+                             xtitle='NN input p_{z}(#tau)',            
+                             nbins=1000, 
+                             xmin=-500., 
+                             xmax=500., 
+                             dir='nn', 
+                             vexpr='self.chain.NN_input_tau_Pz'
                              )
 
 h_NN_input_tau_E   = Hist1D( 'NN_input_tau_E' , 
@@ -384,6 +384,24 @@ h_NN_input_lep_E   = Hist1D( 'NN_input_lep_E' ,
                              xmax=500., 
                              dir='nn', 
                              vexpr='self.chain.NN_input_lep_E'
+                             )
+
+h_NN_input_met_px  = Hist1D( 'NN_input_met_px',
+                             xtitle='NN input p_{x}(E_{T}^{miss})',
+                             nbins=1000, 
+                             xmin=-500., 
+                             xmax=500., 
+                             dir='nn', 
+                             vexpr='self.chain.NN_input_met_px'
+                             )
+
+h_NN_input_met_py  = Hist1D( 'NN_input_met_py', 
+                             xtitle='NN input p_{y}(E_{T}^{miss})',
+                             nbins=1000,
+                             xmin=-500., 
+                             xmax=500., 
+                             dir='nn', 
+                             vexpr='self.chain.NN_input_met_py'
                              )
 
 h_NN_input_met_pz  = Hist1D( 'NN_input_met_pz', 

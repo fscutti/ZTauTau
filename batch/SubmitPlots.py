@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os
+import os, sys
 import subprocess
 import time
 from ztautau.hists import final_binning_hists
@@ -15,8 +15,8 @@ def make_tag(cat,var):
 
 ana      = 'ztautau'
 
-indir    = 'ac_v14'
-outdir   = 'TEST2Plots_ac_v14'
+indir    = sys.argv[1]#'ac_v14'
+outdir   = sys.argv[2]#'plots_v4_ac_v14'
 
 USER    = os.getenv('USER')
 MAIN    = os.getenv('MAIN')
@@ -57,7 +57,18 @@ regions = {}
 # regions["FOLDERNAME"]     = [icut, "plot label"]
 # -----------------------------------------------
 
-regions["presel_muallinc"] = [15,"TEST REGION"]
+regions["presel_muallinc"] = [15,"mu-had Preselection"]
+regions["presel_elallinc"] = [15,"el-had Preselection"]
+regions["sr1_muallinc"]    = [16,"mu-had SR1"]
+regions["sr1_elallinc"]    = [16,"el-had SR1"]
+regions["sr2_muallinc"]    = [16,"mu-had SR2"]
+regions["sr2_elallinc"]    = [16,"el-had SR2"]
+regions["sr3_muallinc"]    = [16,"mu-had SR3"]
+regions["sr3_elallinc"]    = [16,"el-had SR3"]
+regions["highZ_muallinc"]  = [16,"mu-had High NN Z (>0.9)"]
+regions["highZ_elallinc"]  = [16,"el-had High NN Z (>0.9)"]
+regions["lowZ_muallinc"]   = [16,"mu-had Low NN Z (<0.1)"]
+regions["lowZ_elallinc"]   = [16,"el-had Low NN Z (<0.1)"]
 
 
 #---------------------
@@ -76,8 +87,8 @@ m.communicate()[0]
 
 
 for REG,OPT in regions.iteritems():
-  vars_list = final_binning_hists.hist_list+final_binning_hists.hist_presel
-
+  #vars_list = final_binning_hists.hist_list+final_binning_hists.hist_presel
+  vars_list= final_binning_hists.variables_NN+final_binning_hists.variables_BDT
   for var in vars_list:
     job_vars['VAR']      = var.hname
     job_vars['REG']      = REG

@@ -14,8 +14,8 @@ import subprocess
 inpath = "/coepp/cephfs/share/atlas/LFV/july_redown"
 
 # basepath common to all output
-outbasepath = "/coepp/cephfs/share/atlas/LFV/ac_v14"
-#outbasepath = "/coepp/cephfs/mel/brianl/ztautau/"
+#outbasepath = "/coepp/cephfs/share/atlas/LFV/plots_ff_presel_v1_mva_v3"
+outbasepath = "/coepp/cephfs/mel/brianl/ztautau/"
 
 hadd_files = False
 
@@ -51,12 +51,22 @@ outdir["data"] = []
 #outdir["data"].append("NN_allregions_ac_datatest")
 #outdir["data"].append("NN_allregions_ac")
 #outdir["data"].append("NN_allregions_ac_main")
-outdir["data"].append("NN_allregions_ac_ff")
+#outdir["data"].append("NN_allregions_ac_ff")
+#outdir["data"].append("NN_allregions_ac_osw")
+#outdir["data"].append("NN_allregions_ac_ssw")
+#outdir["data"].append("NN_allregions_ac_qcd")
+#outdir["data"].append("NN_allregions_presel_main")
+#outdir["data"].append("NN_allregions_presel_osw")
+#outdir["data"].append("NN_allregions_presel_ssw")
+#outdir["data"].append("NN_allregions_presel_qcd")
+#outdir["data"].append("NN_allregions_presel_ff")
+#outdir["data"].append("NN_allregions_test_ff")
 
 outdir["mc"] = []
 #outdir["mc"].append("NN_allregions_v3_mc")
 #outdir["mc"].append("NN_allregions_ac_mctest")
 #outdir["mc"].append("NN_allregions_ac_main")
+outdir["mc"].append("NN_allregions_presel_main")
 #outdir["mc"].append("NN_mc_missing")
 
 jobtype = ["nominal"]

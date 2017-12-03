@@ -187,7 +187,7 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40
     #__________________________________________________________________________
     def cut_SR2(self):
-        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met < 40
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met < 40 and self.chain.lephad_vis_mass < 100
     #__________________________________________________________________________
     def cut_SR3(self):
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40 and self.chain.lep_0_pt > 45
@@ -218,6 +218,16 @@ class CutAlg(pyframe.core.Algorithm):
       # QCD CR
       # This one I'm sure is orthogonal
       return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40
+    #__________________________________________________________________________
+    def cut_highZNN(self):
+      # QCD CR
+      # This one I'm sure is orthogonal
+      return self.chain.output_Z > 0.9
+    #__________________________________________________________________________
+    def cut_lowZNN(self):
+      # QCD CR
+      # This one I'm sure is orthogonal
+      return self.chain.output_Z < 0.1
     #__________________________________________________________________________
     def cut_TESTFRIEND(self):
       return self.chain.NN_input_tau_E > 50.

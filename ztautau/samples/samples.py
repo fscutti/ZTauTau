@@ -315,10 +315,10 @@ top =  Sample( name =   'top',
 # -----------------------------------------
 # LFVH
 # -----------------------------------------
-PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"     , dsid="344084" , xsec=30.1089 , kfactor=0.01)
-PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"    , dsid="344085" , xsec=3.8155  , kfactor=0.01)
-PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"      , dsid="344088" , xsec=30.189  , kfactor=0.01)
-PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"     , dsid="344089" , xsec=3.8155  , kfactor=0.01)
+PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"     , dsid="344084" , xsec=30.1089 , kfactor=0.01*100)
+PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"    , dsid="344085" , xsec=3.8155  , kfactor=0.01*100)
+PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"      , dsid="344088" , xsec=30.189  , kfactor=0.01*100)
+PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"     , dsid="344089" , xsec=3.8155  , kfactor=0.01*100)
 
 lfvh =  Sample( name =   'lfvh',
                 tlatex = 'H#rightarrow#tau#tau (LFV)',
@@ -338,8 +338,12 @@ lfvh =  Sample( name =   'lfvh',
                 )
 
 
-PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_ttlh"    , dsid="341123" , xsec=1.262409959 )
-PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_ttlh"   , dsid="341156" , xsec=0.107869976 )
+PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_ttlh"             , dsid="341123" , xsec=1.262409959 )
+PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_ttlh"            , dsid="341156" , xsec=0.107869976 )
+PoPy8_ggH125_tautau_lm15hp20                      = Sample(  name="PoPy8EG_ggH125_tautaulm15hp20"  , dsid="345121" , xsec=3.0354  )
+PoPy8_ggH125_tautau_lp15hm20                      = Sample(  name="PoPy8EG_ggH125_tautaulp15hm20"  , dsid="345122" , xsec=3.0354  )
+PoPy8_VBFH125_tautau_lm15hp20                     = Sample(  name="PoPy8EG_NNPDF30_VBFH125_tautaulm15hp20" , dsid="345074" , xsec=0.23641 )
+PoPy8_VBFH125_tautau_lp15hm20                     = Sample(  name="PoPy8EG_NNPDF30_VBFH125_tautaulp15hm20" , dsid="345075" , xsec=0.23641 )
 
 smh  =  Sample( name =   'smh',
                 tlatex = 'H#rightarrow#tau#tau (SM)',
@@ -349,6 +353,10 @@ smh  =  Sample( name =   'smh',
                 daughters    = [
                                  PoPy8_ggH125_tautau, 
                                  PoPy8_VBFH125_tautau,
+                                 #PoPy8_ggH125_tautau_lm15hp20 ,
+                                 #PoPy8_ggH125_tautau_lp15hm20 ,
+                                 #PoPy8_VBFH125_tautau_lm15hp20,
+                                 #PoPy8_VBFH125_tautau_lp15hm20,
                                 ]
                 )
 

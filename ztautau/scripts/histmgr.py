@@ -153,7 +153,14 @@ class HistMgr():
           if f: 
               h = f.Get(self.cutflow_histname)
               assert h, 'get_nevents: failed to retrieve histogram from file'
-              if h: nevents += h.GetBinContent(8)
+              if 'lm15hp20' in file:
+                  print "ggH sample"
+                  if h: nevents += h.GetBinContent(14)/2
+              elif 'lp15hm20' in file:
+                  print "VBFH sample"
+                  if h: nevents += h.GetBinContent(15)/2
+              else:
+                  if h: nevents += h.GetBinContent(8)
               f.Close()
           
         return nevents

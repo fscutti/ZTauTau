@@ -100,14 +100,14 @@ for s in mc_backgrounds + mc_signals + [data,dataest]:
 #
 #Wjets_dd.estimator    = histmgr.SimpleEstimator(hm=hm,
 #                                                sample=Wjets_dd,
-#                                                pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+#                                                pathmod_aux="NN_allregions_presel", # force the estimator to read from this path
 #                                                data_sample=dataest,
 #                                                ext_hist_path=norm_factors_path
 #                                                )
 #
 #Multijet_dd.estimator = histmgr.SimpleEstimator(hm=hm,
 #                                                sample=Multijet_dd,
-#                                                pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+#                                                pathmod_aux="NN_allregions_presel", # force the estimator to read from this path
 #                                                data_sample=dataest,
 #                                                ext_hist_path=norm_factors_path
 #                                                )
@@ -115,7 +115,7 @@ for s in mc_backgrounds + mc_signals + [data,dataest]:
 FF_Fake = samples.FF_Fake
 FF_Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          sample=FF_Fake,
-                                         pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+                                         pathmod_aux="NN_allregions_presel", # force the estimator to read from this path
                                          data_sample=dataest,#.copy(),
                                          ext_hist_path=norm_factors_path
                                          )
@@ -123,13 +123,13 @@ FF_Fake.estimator = histmgr.SimpleEstimator(hm=hm,
 Fake = samples.Fake
 Fake.estimator = histmgr.SimpleEstimator(hm=hm,
                                          sample=Fake,
-                                         pathmod_aux="NN_allregions_ac", # force the estimator to read from this path
+                                         pathmod_aux="NN_allregions_presel", # force the estimator to read from this path
                                          data_sample=dataest.copy(),
                                          ext_hist_path=norm_factors_path
                                          )
 
 data.estimator = histmgr.SimpleEstimator(hm=hm,
-                                             pathmod_main="NN_allregions_ac_main", # force the estimator to read from this path
+                                             pathmod_main="NN_allregions_presel_main", # force the estimator to read from this path
                                              sample=data.copy()
                                              )
 
@@ -138,7 +138,7 @@ data.estimator = histmgr.SimpleEstimator(hm=hm,
 for s in mc_signals + mc_backgrounds:
   s.estimator = histmgr.SimpleEstimator(hm=hm,
                                         #pathmod="NN_allregions_v3_mc", # force the estimator to read from this path
-                                        pathmod_main="NN_allregions_ac_main", # force the estimator to read from this path
+                                        pathmod_main="NN_allregions_presel_main", # force the estimator to read from this path
                                         sample=s.copy())
 
 
@@ -173,7 +173,7 @@ plot_backgrounds.append(FF_Fake)
 plot_backgrounds.append(samples.Ztautau)
 plot_backgrounds.append(samples.Zleplep)
 plot_backgrounds.append(samples.top)
-plot_backgrounds.append(samples.diboson)
+#plot_backgrounds.append(samples.diboson)
 plot_backgrounds.append(samples.smh)
 
 ## signals
@@ -181,6 +181,7 @@ plot_signals = []
 plot_signals.append(samples.lfvh)
 
 if options.makeplot == "True" and not options.printcutflow:
+ blind = hdict[options.vname]['rebin_dict']['blind_range'] if 'blind_range' in hdict[options.vname]['rebin_dict'].keys() else None
  funcs.plot_hist(
     backgrounds   = plot_backgrounds,
     signal        = plot_signals, 
@@ -189,7 +190,7 @@ if options.makeplot == "True" and not options.printcutflow:
     label         = options.label,
     histname      = os.path.join(hdict[options.vname]['dir'],hdict[options.vname]['hname']),
     rebin         = hdict[options.vname]['rebin_dict']['rebin'],
-    blind         = hdict[options.vname]['rebin_dict']['blind_range'],
+    blind         = blind,
     log           = hdict[options.vname]['log'],
     icut          = int(options.icut),
     sys_dict      = None,

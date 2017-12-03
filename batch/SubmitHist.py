@@ -21,27 +21,28 @@ MAIN        = os.getenv('MAIN')                           # upper folder
 USER        = os.getenv('USER')
 NTUP        = '/coepp/cephfs/share/atlas/LFV/july_redown'        # global config input NTUP path
 #FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/base_test_july_evtnofix' # path where friend input is located; same "granularity as NTUP"
-FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/bdt_ff_v1' # path where friend input is located; same "granularity as NTUP"
+#FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/bdt_ff_v1' # path where friend input is located; same "granularity as NTUP"
+FRIENDPATH  = '/coepp/cephfs/share/atlas/LFV/bdt_v3_ff_test' # path where friend input is located; same "granularity as NTUP"
 JOBDIR      = "/coepp/cephfs/mel/%s/jobdir" % USER        # The Melb cloud is twisted and does not recognize home dirs...
 prepare_path(JOBDIR)
 INTARBALL   = os.path.join(JOBDIR,'histtarball_%s.tar.gz' % (time.strftime("d%d_m%m_y%Y_H%H_M%M_S%S")) )
 AUTOBUILD   = True                                        # auto-build tarball using Makefile.tarball
-NJMAX       = 200
+NJMAX       = 100
 DATATYPE    = sys.argv[1]
 
 # outputs  
-RUN         = 'NN_allregions_ac_'+sys.argv[1]
+RUN         = 'NN_allregions_%s_%s' % (sys.argv[2], sys.argv[1])
 OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) # 
 
 # running
 QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
-SCRIPT      = "./ztautau/run/ac.plotter.py"   # pyframe job script
+SCRIPT      = "./ztautau/run/%s.plotter.py" % sys.argv[2]  # pyframe job script
 BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
 DO_NOM      = True                               # submit the nominal job
 DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
 DO_PLOT_SYS = False                              # submit the plot systematics jobs
 TESTMODE    = False                              # submit only 1 sub-job (for testing)
-NCORES      = 3
+NCORES      = 4
 
 def main():
     """
@@ -155,7 +156,9 @@ def submit(tag,job_sys,samps,config={}):
     totsubjob = 0
     # not efficienct. Who cares?
     for s in samps:
+        #print s.name
         sinputs  = input_files(all_subdir,s,job_sys) 
+        #print sinputs
         for infile in sinputs:
           #soutput  = output_file(s,infile,job_sys)
           #if file_exists(os.path.abspath(os.path.join(outrootpath,s.type,s.name)),soutput): continue
