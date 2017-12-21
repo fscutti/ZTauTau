@@ -10,10 +10,17 @@ import subprocess
 import time
 from   ztautau.samples import samples
 
+#_____________________________________________________________________________
 def prepare_path(path):
     if not os.path.exists(path):
         #print 'preparing outpath: %s'%(path)
         os.makedirs(path)
+
+#_____________________________________________________________________________
+def sys_conf(name=None, main_path_mod=None,friend_path_mod=None,samples=None):
+  return {"name":name, "main_path_mod":main_path_mod, "friend_path_mod":friend_path_mod,"samples":samples}
+
+
 
 ## environment variables
 ## ---------------------
@@ -38,9 +45,10 @@ OUTPATH     = "/coepp/cephfs/mel/%s/ztautau/%s"%(USER,RUN) #
 QUEUE       = "long"                             # length of pbs queue (short, long, extralong )
 SCRIPT      = "./ztautau/run/%s.plotter.py" % sys.argv[2]  # pyframe job script
 BEXEC       = "Hist.sh"                          # exec script (probably dont change) 
-DO_NOM      = True                               # submit the nominal job
-DO_NTUP_SYS = False                              # submit the NTUP systematics jobs
-DO_PLOT_SYS = False                              # submit the plot systematics jobs
+
+DO_NOM      = False                               # submit the nominal job
+DO_SYS      = True                              # submit the nominal job
+
 TESTMODE    = False                              # submit only 1 sub-job (for testing)
 NCORES      = 4
 
@@ -62,8 +70,7 @@ def main():
     global SCRIPT
     global BEXEC
     global DO_NOM
-    global DO_NTUP_SYS
-    global DO_PLOT_SYS
+    global DO_SYS
     global TESTMODE
 
     ## get lists of samples
@@ -75,17 +82,15 @@ def main():
     else:
         nominal  = all_data
     
-    ntup_sys = [
-        ['SYS1_UP',                  all_mc],
-        ['SYS1_DN',                  all_mc],
-        ]    
+    # the division b/w standard and tree systematics
+    # is not essential here. Just to organise things
+    # ["output folder name","sys path modifier","samples"]
+    # The "sys path modifier" entry is passed as a different
+    # argument for friend_sys and path_sys
     
-    plot_sys = [
-        ['SYS2_UP',                  all_mc],
-        ['SYS2_DN',                  all_mc],
-        ]    
-    
-    all_sys = ntup_sys + plot_sys
+    sys_list = []
+    sys_list.append(sys_conf('MUON_ID_1down','sys1','sys1',all_mc))
+
 
     ## ensure output path exists
     prepare_path(OUTPATH)
@@ -97,16 +102,16 @@ def main():
         m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
         print m.communicate()[0]
 
-    if DO_NOM: submit('nominal','nominal',nominal)
-    if DO_NTUP_SYS: 
-      for sys,samps in ntup_sys:
-            submit(sys,sys,samps)
-    if DO_PLOT_SYS:  
-      for sys,samps in plot_sys:
-            submit(sys,'nominal',samps,config={'sys':sys})
+    if DO_NOM: 
+      submit('nominal',None,None,nominal)
+    
+    if DO_SYS:
+      for conf in sys_list:
+        submit(conf['name'],conf['main_path_mod'],conf['friend_path_mod'],conf['samples'],config={'sys':conf['name']})
+    
 
 
-def submit(tag,job_sys,samps,config={}):
+def submit(job_name,job_sys_path,friend_sys_path,samps,config={}):
     """
     * construct config file 
     * prepare variable list to pass to job
@@ -125,8 +130,7 @@ def submit(tag,job_sys,samps,config={}):
     global SCRIPT
     global BEXEC
     global DO_NOM
-    global DO_NTUP_SYS
-    global DO_PLOT_SYS
+    global DO_SYS
     global TESTMODE
     global DATATYPE
     
@@ -138,31 +142,35 @@ def submit(tag,job_sys,samps,config={}):
     nrun     = 1
     nlines   = 0
     f_dict   = {} 
+    
+    if job_sys_path: NTUP = "_".join([NTUP,job_sys_path])  
 
-    data_subdir = get_subdir( os.path.join(NTUP,'data') )
-    mc_subdir = get_subdir( os.path.join(NTUP,'mc') )
-
-    all_subdir = data_subdir + mc_subdir
-
-    outrootpath = os.path.abspath(os.path.join(OUTPATH,tag))
-    logrootpath = os.path.abspath(os.path.join(OUTPATH,'log_%s'%tag))
+    outrootpath = os.path.abspath(os.path.join(OUTPATH,job_name))
+    logrootpath = os.path.abspath(os.path.join(OUTPATH,'log_%s'%job_name))
     
     prepare_path(outrootpath)
     prepare_path(logrootpath)
 
     absintar   = os.path.abspath(INTARBALL)
    
-   
+    data_subdir = None
+    mc_subdir = None 
+    
     totsubjob = 0
     # not efficienct. Who cares?
     for s in samps:
-        #print s.name
-        sinputs  = input_files(all_subdir,s,job_sys) 
-        #print sinputs
-        for infile in sinputs:
-          #soutput  = output_file(s,infile,job_sys)
-          #if file_exists(os.path.abspath(os.path.join(outrootpath,s.type,s.name)),soutput): continue
-          totsubjob += 1
+      if s.type == "data":
+        if not data_subdir: data_subdir = get_subdir( os.path.join(NTUP,'data') )
+        in_data  = input_files(data_subdir,s,job_sys_path) 
+        for infile in in_data: totsubjob += 1
+      if s.type == "mc":
+        if not mc_subdir: mc_subdir = get_subdir( os.path.join(NTUP,'mc') )
+        in_mc  = input_files(mc_subdir,s,job_sys_path) 
+        if not in_mc: continue # This is just temporary!!! Skip on non existing files
+        for infile in in_mc: totsubjob += 1
+
+    if FRIENDPATH:
+       if friend_sys_path:  FRIENDPATH = "_".join([FRIENDPATH,friend_sys_path])  
 
 
     for s in samps:
@@ -173,10 +181,20 @@ def submit(tag,job_sys,samps,config={}):
         prepare_path(absoutpath)
 
         ## input & output
-        sinputs  = input_files(all_subdir,s,job_sys) 
-         
+        #sinputs  = input_files(all_subdir,s,job_sys_path) # enable job_sys_path to take corr. input
+
+        sinputs = []
+
+        if s.type == "data":
+          if not data_subdir: data_subdir = get_subdir( os.path.join(NTUP,'data') )
+          sinputs  = input_files(data_subdir,s,job_sys_path) 
+        if s.type == "mc":
+          if not mc_subdir: mc_subdir = get_subdir( os.path.join(NTUP,'mc') )
+          sinputs  = input_files(mc_subdir,s,job_sys_path) 
+          if not sinputs: continue # This is just temporary!!! Skip on non existing files
+
         for infile in sinputs:
-           soutput  = output_file(s,infile,job_sys)
+           soutput  = output_file(s,infile,job_sys_path) # replace job_sys_path with job_name
            
            if file_exists(absoutpath,soutput): continue
            
@@ -189,19 +207,20 @@ def submit(tag,job_sys,samps,config={}):
            # abspath of infile
            infpath = os.path.join(NTUP,s.type,infile)
            infpathfriend = ""
+           
            if FRIENDPATH:
               infriend = infile.replace(NTUP,FRIENDPATH)+".friend"
            
            # write many lines here
            line = ';'.join([s.name,infpath,infriend,soutput,s.type,DATATYPE,sconfig_str])
 
-           cfg = os.path.join(JOBDIR,'Config%s.%s.run.%s'%(RUN,tag,nrun))
+           cfg = os.path.join(JOBDIR,'Config%s.%s.run.%s'%(RUN,job_name,nrun))
            abslogpath = os.path.abspath(os.path.join(logrootpath,"log_run_%d"%nrun))
            
            if not str(nrun) in f_dict.keys():
              """
              WIP
-             if file_exists(JOBDIR,'Config%s.%s.run.%s'%(RUN,tag,nrun)): 
+             if file_exists(JOBDIR,'Config%s.%s.run.%s'%(RUN,job_name,nrun)): 
                
                # resubmission of failed jobs
                cfg = cfg.replace(".run.",".resub.")
@@ -238,14 +257,14 @@ def submit(tag,job_sys,samps,config={}):
              cmd += ' -l nodes=1:ppn=%d'  % NCORES
              cmd += ' -q %s'              % QUEUE
              cmd += ' -v "%s"'            % VARS
-             cmd += ' -N j.hist.%s'       % tag
+             cmd += ' -N j.hist.%s'       % job_name
              cmd += ' -j oe -o %s/log'    % abslogpath
              cmd += ' -t1-%d'             % nlines
              cmd += ' %s'                 % BEXEC 
              print cmd
              
-             m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-             print m.communicate()[0]
+             #m = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
+             #print m.communicate()[0]
 
              nlines = 0
 

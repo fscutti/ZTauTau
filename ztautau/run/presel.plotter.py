@@ -46,13 +46,17 @@ def analyze(config):
     
     if   sys == None: sys_dict = get_sys_dict()
     
-    # this is how you tell the weights 
-    # what is the direction of the variation
-    elif sys == 'SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
-    elif sys == 'SYS_UP':     sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
-    elif sys == 'TREESYS_UP': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "up")
-    elif sys == 'TREESYS_DN': sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName", sys_var = "dn")
-    elif sys == 'MUID_DN':    sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MUONS_ID_1down", sys_var = "dn")
+    # This is how you tell the weights what is the direction of the variation
+    # Within the weight implementation, an alternative branch has to be retrieved for SYS_XX weights,
+    # based on the value of sys_var, while for TREE_SYS_XX no preconfiguartion of sys_var is necessary.
+    elif sys == 'SYS_UP':            sys_dict = get_sys_dict(sys_name = sys, sys_var = "up")
+    elif sys == 'SYS_UP':            sys_dict = get_sys_dict(sys_name = sys, sys_var = "dn")
+    elif sys == 'TREESYS_UP':        sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName",  sys_var = "up")
+    elif sys == 'TREESYS_DN':        sys_dict = get_sys_dict(sys_name = sys, sys_tree = "MySysTreeName",  sys_var = "dn")
+     
+    elif sys == "MUON_ID_1down":  
+      sys_dict = get_sys_dict(sys_tree = sys, sys_friendtree = "NN_"+sys, sys_var = "dn")
+  
     else: 
         assert False, "Invalid sys %s!"%(sys)
     
@@ -110,115 +114,115 @@ def analyze(config):
             obj_name    = "tau_0",
             branch_name = "TauEffSF_reco",
             key         = "TauReco",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "tau_0",
             branch_name = "TauEffSF_JetBDTmedium",
             key         = "TauIDMedium",
-            scale       = None,
+            scale       = sys_dict['variation'],
             )
     #loop += ztautau.algs.weights.ObjWeight(
     #        obj_name    = "tau_0",
     #        branch_name = "TauEffSF_JetBDTloose",
     #        key         = "TauLoose",
-    #        scale       = None,
+    #        scale       = sys_dict["variation"],
     #        )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "tau_0",
             branch_name = "TauEffSF_HadTauEleOLR_tauhad",
             key         = "TauEVeto",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "MuEffSF_TTVA",
             key         = "MuonTTVA",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "MuEffSF_Reco_QualMedium",
             key         = "MuonRecoID",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "MuEffSF_IsoGradient",
             key         = "MuonIsoGrad",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "MuEffSF_IsoLoose",
             key         = "MuonIsoLoose",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "EleEffSF_offline_RecoTrk",
             key         = "ElecRecoTrk",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "EleEffSF_offline_MediumLLH_d0z0_v11",
             key         = "ElecID",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "EleEffSF_Isolation_MediumLLH_d0z0_v11_isolGradient",
             key         = "ElecIsoGrad",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "EleEffSF_Isolation_MediumLLH_d0z0_v11_isolLoose",
             key         = "ElecIsoLoose",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "MuEffSF_HLT_mu20_iloose_L1MU15_OR_HLT_mu40_QualMedium_IsoNone",
             key         = "MuonTrig2015",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "MuEffSF_HLT_mu26_ivarmedium_OR_HLT_mu50_QualMedium_IsoNone",
             key         = "MuonTrig2016",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "EleEffSF_SINGLE_E_2015_e24_lhmedium_L1EM20VH_OR_e60_lhmedium_OR_e120_lhloose_2016_e26_lhtight_nod0_ivarloose_OR_e60_lhmedium_nod0_OR_e140_lhloose_nod0_MediumLLH_d0z0_v11_isolGradient",
             key         = "ElecTrig2015",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "lep_0",
             branch_name = "EleEffSF_SINGLE_E_2015_e24_lhmedium_L1EM20VH_OR_e60_lhmedium_OR_e120_lhloose_2016_e26_lhtight_nod0_ivarloose_OR_e60_lhmedium_nod0_OR_e140_lhloose_nod0_MediumLLH_d0z0_v11_isolGradient",
             key         = "ElecTrig2016",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "jet",
             branch_name = "global_effSF_MVX",
             key         = "JetEff",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "jet",
             branch_name = "global_ineffSF_MVX",
             key         = "JetIneff",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     loop += ztautau.algs.weights.ObjWeight(
             obj_name    = "jet",
             branch_name = "central_jets_global_effSF_JVT",
             key         = "JetJVT",
-            scale       = None,
+            scale       = sys_dict["variation"],
             )
     
 
