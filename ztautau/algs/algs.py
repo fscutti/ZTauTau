@@ -106,9 +106,11 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_RRN2016(self):
         return self.chain.NOMINAL_pileup_random_run_number > 284484
     #__________________________________________________________________________
+    def cut_TrueTauNotSig(self):
+        return True
+    #__________________________________________________________________________
     def cut_TrueTau(self):
-        #return abs(self.chain.tau_0_truth_pdgId)==15
-        if self.sampletype == 'mc' and ('VBFH125' in self.samplename or 'ggH125' in self.samplename):
+        if self.sampletype == 'mc':
             return abs(self.chain.tau_0_truth_pdgId)==15
         else:
             return True
@@ -116,6 +118,12 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_NoJetFake(self):
         if self.sampletype == 'mc':
             return not (abs(self.chain.tau_0_truth_pdgId) < 6 or self.chain.tau_0_truth_pdgId == 21)
+        else:
+            return True
+    #__________________________________________________________________________
+    def cut_IsJetFake(self):
+        if self.sampletype == 'mc':
+            return abs(self.chain.tau_0_truth_pdgId) < 6 or abs(self.chain.tau_0_truth_pdgId)==21
         else:
             return True
     #__________________________________________________________________________
@@ -141,7 +149,13 @@ class CutAlg(pyframe.core.Algorithm):
         return self.chain.n_taus > 0 and abs(self.chain.tau_0_q) == 1 and abs(self.chain.tau_0_eta) < 2.4 and not(abs(self.chain.tau_0_eta)>1.37 and abs(self.chain.tau_0_eta)<1.52)
     #__________________________________________________________________________
     def cut_TauID(self):
-        return self.chain.n_taus_medium == 1 and self.chain.tau_0_jet_bdt_medium == 1
+        #return self.chain.n_taus_medium == 1 and self.chain.tau_0_jet_bdt_medium == 1
+        print "REQUIRING TIGHT"
+        return self.chain.tau_0_jet_bdt_medium == 1
+    #__________________________________________________________________________
+    def cut_TauIDtight(self):
+        return self.chain.tau_0_jet_bdt_tight == 1
+        #return self.chain.n_taus_tight == 1 and self.chain.tau_0_jet_bdt_tight == 1
     #__________________________________________________________________________
     def cut_TauLoose(self):
         return self.chain.tau_0_jet_bdt_loose == 1
@@ -149,8 +163,14 @@ class CutAlg(pyframe.core.Algorithm):
     def cut_TauLooseNMed(self):
         return self.chain.tau_0_jet_bdt_loose == 1 and self.chain.tau_0_jet_bdt_medium == 0
     #__________________________________________________________________________
+    def cut_TauLooseNTight(self):
+        return self.chain.tau_0_jet_bdt_loose == 1 and self.chain.tau_0_jet_bdt_tight == 0
+    #__________________________________________________________________________
     def cut_TauAntiID(self):
         return self.chain.n_taus_medium == 0 and self.chain.tau_0_jet_bdt_medium == 0 and self.chain.tau_0_jet_bdt_score > 0.5 
+    #__________________________________________________________________________
+    def cut_TauAntiIDTight(self):
+        return self.chain.tau_0_jet_bdt_tight == 0 and self.chain.tau_0_jet_bdt_score > 0.5 
     #__________________________________________________________________________
     def cut_TauPt(self):
         return self.chain.tau_0_pt > 25
@@ -174,20 +194,20 @@ class CutAlg(pyframe.core.Algorithm):
         return abs(self.chain.lephad_deta) < 2
     #__________________________________________________________________________
     def cut_BVeto(self):
-        if not self.chain.event_number == self.chain.eventNumber:
-            print "Problem mismatch between %i and %i" % (self.chain.event_number, self.chain.eventNumber)
+        #if not self.chain.event_number == self.chain.eventNumber:
+        #   print "Problem mismatch between %i and %i" % (self.chain.event_number, self.chain.eventNumber)
         return self.chain.n_bjets == 0
     #__________________________________________________________________________
     def cut_Presel(self):
-        if not self.chain.event_number == self.chain.eventNumber:
-            print "Problem mismatch between %i and %i" % (self.chain.event_number, self.chain.eventNumber)
+        #if not self.chain.event_number == self.chain.eventNumber:
+        #    print "Problem mismatch between %i and %i" % (self.chain.event_number, self.chain.eventNumber)
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2
     #__________________________________________________________________________
     def cut_SR1(self):
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40
     #__________________________________________________________________________
     def cut_SR2(self):
-        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met > 60 and self.chain.lephad_mt_lep0_met < 40 and self.chain.lephad_vis_mass < 100
+        return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt > 45 and self.chain.lephad_mt_lep1_met < 60 and self.chain.lephad_mt_lep0_met < 40 and self.chain.lephad_vis_mass > 100
     #__________________________________________________________________________
     def cut_SR3(self):
         return self.chain.n_bjets == 0 and abs(self.chain.lephad_deta) < 2 and self.chain.tau_0_pt < 45 and self.chain.lephad_mt_lep1_met < 30 and self.chain.lephad_mt_lep0_met > 40 and self.chain.lep_0_pt > 45
@@ -295,8 +315,11 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
         list_cuts = []
         for cut, list_weights in self.cut_flow:
             ## apply weights for this cut
+            #print cut, list_weights
             if list_weights:
-              for w in list_weights: weight *= self.store[w]
+              for w in list_weights: 
+                  weight *= self.store[w]
+                  #print self.region, w, self.store[w]
 
             list_cuts.append(cut)
             passed = self.check_region(list_cuts)
@@ -332,6 +355,9 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
             elif h.get_name() == "Hist2D":
               h.instance = self.hist(h.hname, "ROOT.TH2F('$', ';%s;%s', %d, %lf, %lf, %d, %lf, %lf)" % (h.hname,h.hname,h.nbinsx,h.xmin,h.xmax,h.nbinsy,h.ymin,h.ymax), dir=os.path.join(region, '%s'%h.dir))
               h.set_axis_titles()
+            elif h.get_name() == "Profile":
+              h.instance = self.hist(h.hname, "ROOT.TProfile('$', ';%s;%s', %d, %lf, %lf, %lf, %lf)" % (h.hname,h.hname,h.nbinsx,h.xmin,h.xmax,h.ymin,h.ymax), dir=os.path.join(region, '%s'%h.dir))
+              h.set_axis_titles()
 
 
         # ---------------
@@ -358,6 +384,11 @@ class PlotAlg(pyframe.algs.CutFlowAlg,CutAlg):
               exec( "varx,vary = %s" % h.vexpr ) # so dirty !!!
               if h.instance and varx!=-999. and vary!=-999.: h.fill(varx,vary, weight)
 
+            elif h.get_name() == "Profile":
+              varx = -999.
+              vary = -999.
+              exec( "varx,vary = %s" % h.vexpr ) # so dirty !!!
+              if h.instance and varx!=-999. and vary!=-999.: h.fill(varx,vary, weight)
 
     #__________________________________________________________________________
     def check_region(self,cutnames):

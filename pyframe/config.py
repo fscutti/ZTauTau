@@ -12,6 +12,8 @@ parser.add_argument("--channel"     , default=0  , help="Channel number for jugg
 parser.add_argument("--execfiles"   , default="" , help="Comma-separated list of files to be executed by config.")
 parser.add_argument("--input"       , default="" , help="Comma-separated list of input ROOT files.")
 parser.add_argument("--events"      , default=0  , help="Maximum number of events considered by EventLoop.")
+parser.add_argument("--minentry"    , default=0  , help="Minimum entry index considered by EventLoop.")
+parser.add_argument("--maxentry"    , default=-1 , help="Maximum entry index  considered by EventLoop.")
 parser.add_argument("--proc"        , default=0  , help="Number of parallel processes to run.")
 parser.add_argument("--samplename"  , default="" , help="Name of sample (eg Ztautau, Zee).")
 parser.add_argument("--friendinput" , default="" , help="Name of sample with friend tree")
@@ -46,6 +48,8 @@ def main(analyze):
     # config defaults
     config = {}
     config["channel"] = 0
+    config["minentry"] = 0
+    config["maxentry"] = -1
     config["events"]  = -1
     config["input"]   = []
     config["proc"]    = 0
@@ -61,6 +65,8 @@ def main(analyze):
     # get config from the command-line
     if ops.events      : config["events"]      = int(ops.events)
     if ops.channel     : config["channel"]     = int(ops.channel)
+    if ops.minentry    : config["minentry"]    = int(ops.minentry)
+    if ops.maxentry    : config["maxentry"]    = int(ops.maxentry)
     if ops.tree        : config["tree"]        = ops.tree
     if ops.friendtree  : config["friendtree"]  = ops.friendtree
     if ops.friendinput : config["friendinput"] = ops.friendinput

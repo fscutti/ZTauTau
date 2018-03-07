@@ -10,9 +10,11 @@ source setup.sh
 cd /coepp/cephfs/mel/brianl/lfv/fscutti_plotter/test/
 INPATH="/coepp/cephfs/share/atlas/LFV/july_redown"
 INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/bdt_v3_ff_test"
+INPATH="/coepp/cephfs/share/atlas/LFV/july_redown_slim_all"
+INPATHFRIEND="/coepp/cephfs/share/atlas/LFV/mva_july_redown_slim_all"
 OUTPATH="/coepp/cephfs/mel/brianl/lfv/fscutti_plotter/test/"
 INSCRIPT="../ztautau/run"
-SCRIPT="presel.plotter.py"
+SCRIPT="%s.plotter.py"
 """
 template = """
 python  ${INSCRIPT}/${SCRIPT} \\
@@ -25,7 +27,7 @@ python  ${INSCRIPT}/${SCRIPT} \\
 
 #############################################################
 # Usage:
-# python SubmitMissing.py <output of PostHist> <sampletype> <folder output> <datatype>
+# python SubmitMissing.py <output of PostHist> <sampletype> <folder output> <datatype> <script>
 #############################################################
 import sys, os, subprocess
 
@@ -42,7 +44,7 @@ for file in open(sys.argv[1]):
     file = file.split('%s/' % sys.argv[2])[1]
     outfile = file.split('/')[-1].split('.hist')[0]
     subfile = open(sys.argv[3]+'/'+outfile+'.sh', 'w')
-    subfile.write(head)
+    subfile.write(head % sys.argv[5])
     #print template % (sys.argv[2]+'/'+file, sys.argv[2]+'/'+file+'.friend', sys.argv[2], sys.argv[3], outfile, sys.argv[4])
     subfile.write(template % (sys.argv[2]+'/'+file, sys.argv[2]+'/'+file+'.friend', sys.argv[2], sys.argv[3], outfile, sys.argv[4]))
 os.system('chmod -R 777 '+sys.argv[3])

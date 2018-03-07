@@ -80,13 +80,22 @@ class HistCopyAlg(pyframe.core.Algorithm):
     #__________________________________________________________________________
     def finalize(self):
         log.info('Saving histograms from input files.')
+        print "getting file_names"
         file_names = [ x.GetTitle() for x in self.chain.tree.GetListOfFiles() ]
+        print file_names
         hg = metaroot.file.HistGetter(file_names)
+        print hg
         for dirpath, dirnames, objnames in hg.walk():
+            print dirpath, dirnames, objnames
             for name in hg.ls_hists():
+                print name
                 hist_path = os.path.join(dirpath, name)
+                print hist_path
                 log.info('  %s' % hist_path)
+                print hg.get(hist_path)
                 self.hists[hist_path] = hg.get(hist_path)
+        print self.hists
+        print "finalises"
 
 #------------------------------------------------------------------------------
 class TreeWriterAlg(pyframe.core.Algorithm):
@@ -154,9 +163,11 @@ class TreeWriterAlg(pyframe.core.Algorithm):
         self.tree.GetCurrentFile().Write()
         # copy histgrams from memory to file
         for histpath in self.hists:
+            print histpath
             hist = self.hists[histpath]
             if not isinstance(hist, ROOT.TH1): continue
             histdir = os.path.dirname(histpath.lstrip("/"))
+            print "writing", hist, self.out_file, histdir
             metaroot.file.write(hist, self.out_file, histdir)
         # close file, bookkeep
         self.tree.GetCurrentFile().Close()

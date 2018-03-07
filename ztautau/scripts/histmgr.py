@@ -43,9 +43,10 @@ class HistMgr():
         '''
         ## get systematics path
         syspath = 'nominal'
-        if sys and not sys.flat_err:
-            if mode == 'up': syspath = sys.var_up
-            else:            syspath = sys.var_dn
+        #if sys and not sys.flat_err:
+        if sys:
+            if mode == 'up': syspath = sys#.var_up
+            else:            syspath = sys#.var_dn
 
         ## get file path
         path_to_file = ''
@@ -73,17 +74,21 @@ class HistMgr():
         if sys: 
             assert mode in ['up','dn'], "mode must be either 'up' or 'dn'"
         
-        #print pathmod, histname, samplename, sampletype, region
+        #print '#########################################################################'
+        #print 'HistMgr', pathmod, histname, samplename, sampletype, region, sys, mode
         path_to_file = self.get_file_path(pathmod,samplename,sampletype,sys,mode)
         f_list = []
 
+        #print path_to_file
         if os.path.isdir(path_to_file): f_list = [os.path.join(path_to_file,f) for f in os.listdir(path_to_file)] 
         else:                           f_list = [path_to_file]
 
         h_list = []
         
+        total_c, total_h = 0, 0
         for file in f_list:
 
+            #print file
             f = ROOT.TFile.Open(file)
             assert f, 'Failed to open input file!'
             
@@ -94,39 +99,73 @@ class HistMgr():
                
                ## check region exists
                if not f.Get(path_to_hist):
+                   #print "Failed to retrieve", file, path_to_hist
                    f.Close()
-                   return None
+                   continue
+                   #if f.Get('cutflow_'+path_to_hist.split('/')[1]).GetBinContent(16) > 0:
+                   #    print file
+                   #    print "%%%%%%%%%%%%%%%%%", f.Get('cutflow_'+path_to_hist.split('/')[1]).GetBinContent(16)
+                   #f.Close()
+                   #return None
                
                cutflow = get_icut_path(file,      path_to_hist, icut)
                if icut == 0: pass #cutflow = "ALL"
                if not cutflow: 
                    log.debug( '%s no cut: %s'% (samplename,icut) )
                    f.Close()
-                   return None
+                   #return None
+                   continue
                path_to_hist = os.path.join(path_to_hist,cutflow)
               
             path_to_hist = os.path.join(path_to_hist,histname)
             
             h = None
+            #print path_to_hist
             h = f.Get(path_to_hist)
-            if not h:
-                f.Close()
-                print 'failed retrieveing hist: %s:%s'%(file,path_to_hist)
-                return None
-            
+            #if not 'cutflow' in path_to_hist:
+            #    bin_uf    = (h.GetBinContent(0), h.GetBinError(0))
+            #    bin_first = (h.GetBinContent(1), h.GetBinError(1))
+            #    last      = h.GetNbinsX()
+            #    bin_of    = (h.GetBinContent(last  ), h.GetBinError(last  ))
+            #    bin_last  = (h.GetBinContent(last+1), h.GetBinError(last+1))
+            #    # Rebinning shit
+            #    import math
+            #    print "#################"
+            #    h.Print("all")
+            #    h.SetBinContent(1,bin_uf[0]+bin_first[0])
+            #    h.SetBinError  (1,math.sqrt(bin_uf[1]*bin_uf[1]+bin_first[1]*bin_first[1]))
+            #    h.SetBinContent(last,bin_of[0]+bin_last[0])
+            #    h.SetBinError  (last,math.sqrt(bin_of[1]*bin_of[1]+bin_last[1]*bin_last[1]))
+            #    print "#################"
+            #    h.Print("all")
+            #if not 'cutflow' in path_to_hist:
+            #    cutflow = f.Get('cutflow_'+path_to_hist.split('/')[1]).GetBinContent(16)
+            #    total_c += cutflow
+            #    total_h += h.GetEntries()
+            #    if not h.GetEntries() == cutflow:
+            #        print '%s:%s'%(file,path_to_hist)
+            #        print h.GetEntries(), cutflow
+            #    if not h:
+            #        f.Close()
+            #        print 'failed retrieveing hist: %s:%s'%(file,path_to_hist)
+            #        return None
+
             h = h.Clone()
             h.SetDirectory(0)
             
             f.Close()
             
             ## apply flat sys (if specified)
-            if sys and sys.flat_err:
-                if mode == 'up': h.Scale(1.+sys.flat_err)
-                else:            h.Scale(1.-sys.flat_err)
+            #if sys and sys.flat_err:
+            #    if mode == 'up': h.Scale(1.+sys.flat_err)
+            #    else:            h.Scale(1.-sys.flat_err)
             
             #print file, h.GetBinContent(12)
             h_list.append(h)
         
+        #print samplename, total_c, total_h
+        #print '#########################################################################'
+        #print h_list
         return histutils.add_hists(h_list)
           
     #____________________________________________________________
@@ -151,14 +190,22 @@ class HistMgr():
           f = ROOT.TFile.Open(file)
           assert f, 'get_nevents: failed to open input file'
           if f: 
-              h = f.Get(self.cutflow_histname)
+              #print f.ls()
+              #print "cutflow", self.cutflow_histname
+              cutflow_histname = self.cutflow_histname
+              for hist in f.GetListOfKeys():
+                  if 'h_metadata' in hist.GetName():
+                      cutflow_histname = hist.GetName()
+              h = f.Get(cutflow_histname)
               assert h, 'get_nevents: failed to retrieve histogram from file'
-              if 'lm15hp20' in file:
-                  print "ggH sample"
-                  if h: nevents += h.GetBinContent(14)/2
-              elif 'lp15hm20' in file:
-                  print "VBFH sample"
-                  if h: nevents += h.GetBinContent(15)/2
+              if 'lm15hp20' in file or 'lp15hm20' in file or 'MINLO' in file or '_filt' in file:
+                  #print file
+                  if 'ggH' in file:
+                      #print 'ggH'
+                      if h: nevents += h.GetBinContent(14)
+                  elif 'VBF' in file or 'MINLO' in file:#'WmH125J' in file or 'WpH125J' in file or 'ZH125J' in file:
+                      #print 'VBF'
+                      if h: nevents += h.GetBinContent(15)
               else:
                   if h: nevents += h.GetBinContent(8)
               f.Close()
@@ -193,8 +240,10 @@ class BaseEstimator(object):
         """
         Supports list of regions to be added
         """
-        #print "<ztautau.scripts.histmgr> BaseEst hist", pathmod, histname, self.sample.name, self.sample.type, region
+        #print "<ztautau.scripts.histmgr> BaseEst hist", pathmod, histname, self.sample.name, self.sample.type, region, sys
+        if sys: self.add_systematics(sys)
         if not self.is_affected_by_systematic(sys): sys=mode=None
+        #print 'BaseEst', sys
         htag = self.get_hist_tag(pathmod,histname,region,icut,sys,mode)
         #print htag
         if not isinstance(region,list): region = [region]
@@ -266,7 +315,8 @@ class ProxyEstimator(BaseEstimator):
                          mode=mode,
                          )
         #print "<ztautau.scripts.histmgr> ProxyEst hist", h
-        if h and self.sample.type == 'mc': 
+        if h and self.sample.type == 'mc' and ('cutflow_weighted' in histname or not 'cutflow' in histname): 
+            #print 'scaling'
             lumi_frac = self.get_mc_lumi_frac(sys,mode,pathmod)
             h.Scale(self.hm.target_lumi * lumi_frac)
 
@@ -285,8 +335,8 @@ class ProxyEstimator(BaseEstimator):
         
         sysname = 'nominal'
         if sys:
-            if mode == 'up': sysname = '%s_up'%(sys.name)
-            else:            sysname = '%s_dn'%(sys.name)
+            if mode == 'up': sysname = '%s_up'%(sys)
+            else:            sysname = '%s_dn'%(sys)
 
         if not self.mc_lumi_frac.has_key(sysname): 
             xsec    = self.sample.xsec
@@ -307,6 +357,7 @@ class SimpleEstimator(BaseEstimator):
     #____________________________________________________________
     def __init__(self,
         data_sample=None,
+        mc_sample=None,
         pathmod_main=None,     # force the estimator to read from preconfigured path
         pathmod_aux=None,
         ext_hist_path=None,
@@ -315,6 +366,7 @@ class SimpleEstimator(BaseEstimator):
 
         BaseEstimator.__init__(self,**kw)
         self.data_sample = data_sample
+        self.mc_sample = mc_sample
         self.pathmod_main = pathmod_main
         self.pathmod_aux = pathmod_aux
         self.ext_hist_path = ext_hist_path
@@ -339,6 +391,8 @@ class SimpleEstimator(BaseEstimator):
        if self.sample.type == "data":
          if self.pathmod_main: pathmod_main = self.pathmod_main
          h_list = []
+         total = 0
+         cutflow = 0
 
          for item in replace:
              if 'cutflow' in histname:
@@ -347,7 +401,20 @@ class SimpleEstimator(BaseEstimator):
                  #print h_list
              else:
                  h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
-         
+                 #h_list.append(self.sample.hist(pathmod=pathmod_main,histname='cutflow_presel_elallinc'.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
+         ### DEBUG
+         #        c = self.sample.hist(pathmod=pathmod_main,histname='cutflow_presel_elallinc'.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).GetBinContent(16)
+         #        t = self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).GetEntries()
+         #        cutflow += c
+         #        total   += t
+         #        if not cutflow == total:
+         #            print "#######################"
+         #            print c, t
+         #
+         #print cutflow, total
+         #total_everything = histutils.add_hists(h_list)
+         #print 'total', total_everything.GetEntries()
+         #print 'total cutflow', total_everything.GetBinContent(16)
          return histutils.add_hists(h_list)
        
       
@@ -358,7 +425,11 @@ class SimpleEstimator(BaseEstimator):
              if 'cutflow' in histname:
                  h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
              else:
-                 h_list.append(self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone())
+                 hist = self.sample.hist(pathmod=pathmod_main,histname=histname,region=region.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode)
+                 if hist:
+                     h_list.append(hist.Clone())
+                 else:
+                     print "Warning no hist for", self.sample.name, pathmod_main, histname, region.replace("inc",item[1]).replace('all',item[0]), icut, sys, mode
          
          return histutils.add_hists(h_list)
 
@@ -368,13 +439,43 @@ class SimpleEstimator(BaseEstimator):
          if self.pathmod_aux: pathmod_aux = self.pathmod_aux
          
          assert self.data_sample, "ERROR: should define a data sample for data-driven estimation"
+         assert self.mc_sample,   "ERROR: should define a mc sample for data-driven estimation"
+         
+         def getMCsub(pathmod, histname, region, sf=None):
+             h_list = []
+             total = 0
+             for sample in self.mc_sample:
+                 if 'cutflow' in histname:
+                     hist = sample.hist(pathmod=pathmod,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone()
+                     hist.Scale(-1)
+                 else:
+                     hist = sample.hist(pathmod=pathmod,histname=histname,region=region,icut=icut,sys=sys,mode=mode).Clone()
+                     hist.Scale(-1)
+                 total += hist.Integral()
+                 #print sample.name, hist.Integral()
+                 #print sample.name, hist
+                 if hist and sf:
+                     hist.Scale(sf)
+                 if hist:
+                     h_list.append(hist.Clone())
+                 else:
+                     print "Warning no hist for", sample.name, pathmod_aux+'_'+aux_type, histname, region, icut, sys, mode
+             print "mc sub", histname, total
+             return h_list
          
          def addWjet(histname):
-             fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_mu.root"))
-             fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_e.root"))
+             fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path, "h_fake_norm_mu.root"))
+             fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path, "h_fake_norm_e.root"))
              
-             h_fwjets_mu = fin_mu.Get("h_fwjets_sr1")
-             h_fwjets_el = fin_el.Get("h_fwjets_sr1")
+             if 'sr2' in region:
+                 h_fwjets_mu = fin_mu.Get("h_fwjets_sr2")
+                 h_fwjets_el = fin_el.Get("h_fwjets_sr2")
+             elif 'sr3' in region:
+                 h_fwjets_mu = fin_mu.Get("h_fwjets_sr3")
+                 h_fwjets_el = fin_el.Get("h_fwjets_sr3")
+             else:
+                 h_fwjets_mu = fin_mu.Get("h_fwjets_sr1")
+                 h_fwjets_el = fin_el.Get("h_fwjets_sr1")
 
              nf_mu_1p = h_fwjets_mu.GetBinContent(1)
              nf_mu_3p = h_fwjets_mu.GetBinContent(2)
@@ -408,17 +509,22 @@ class SimpleEstimator(BaseEstimator):
              if "_mu" in region: region_ss = region.replace("_mu","_sswjtcrmu")
              if "_el" in region: region_ss = region.replace("_el","_sswjtcrel")
           
-             if "cutflow" in histname: histname = histname.replace(region, region_os)
-             if "cutflow" in histname: histname = histname.replace(region, region_ss)
+             if "cutflow" in histname: histname_os = histname.replace(region, region_os)
+             if "cutflow" in histname: histname_ss = histname.replace(region, region_ss)
 
              for item in replace:
                  print "adding to wjet", item
                  h_os = None
                  h_ss = None
                  if 'cutflow' in histname:
-                     h_os = self.data_sample.hist(pathmod=pathmod_aux+'_osw',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_os.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
-                     h_ss = self.data_sample.hist(pathmod=pathmod_aux+'_ssw',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_ss.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                     h_os_mc = getMCsub          (        pathmod_aux+'_osw',         histname_os.replace("inc",item[1]).replace('all',item[0]),       region_os.replace("inc",item[1]).replace('all',item[0]),sf=factor[item[1]])
+                     h_ss_mc = getMCsub          (        pathmod_aux+'_ssw',         histname_ss.replace("inc",item[1]).replace('all',item[0]),       region_ss.replace("inc",item[1]).replace('all',item[0]),sf=factor[item[1]])
+                     h_os = self.data_sample.hist(pathmod=pathmod_aux+'_osw',histname=histname_os.replace("inc",item[1]).replace('all',item[0]),region=region_os.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                     h_ss = self.data_sample.hist(pathmod=pathmod_aux+'_ssw',histname=histname_ss.replace("inc",item[1]).replace('all',item[0]),region=region_ss.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
                  else:
+                     #print pathmod_aux+'_osw', histname, region_os.replace("inc",item[1]).replace('all',item[0]), icut, sys, mode
+                     h_os_mc = getMCsub          (        pathmod_aux+'_osw',         histname,       region_os.replace("inc",item[1]).replace('all',item[0]),sf=factor[item[1]])
+                     h_ss_mc = getMCsub          (        pathmod_aux+'_ssw',         histname,       region_ss.replace("inc",item[1]).replace('all',item[0]),sf=factor[item[1]])
                      h_os = self.data_sample.hist(pathmod=pathmod_aux+'_osw',histname=histname,region=region_os.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
                      h_ss = self.data_sample.hist(pathmod=pathmod_aux+'_ssw',histname=histname,region=region_ss.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
 
@@ -426,16 +532,29 @@ class SimpleEstimator(BaseEstimator):
                  h_ss.Scale(factor[item[1]])
                  h_w_tot_list.append(h_os)
                  h_w_tot_list.append(h_ss)
+                 # MC LIST ALREADY SCALED
+                 h_w_tot_list+=h_os_mc
+                 h_w_tot_list+=h_ss_mc
+                 
 
              #return histutils.add_hists(h_w_tot_list)
              return h_w_tot_list
            
          def addQCD(histname):
-             fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_mu.root"))
-             fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"presel_july","h_fake_norm_e.root"))
+             fin_mu = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"h_fake_norm_mu.root"))
+             fin_el = ROOT.TFile.Open(os.path.join(self.ext_hist_path,"h_fake_norm_e.root"))
 
-             h_fqcd_mu = fin_mu.Get("h_fqcd_sr1")
-             h_fqcd_el = fin_el.Get("h_fqcd_sr1")
+             #h_fqcd_mu = fin_mu.Get("h_fqcd_sr1")
+             #h_fqcd_el = fin_el.Get("h_fqcd_sr1")
+             if 'sr2' in region:
+                 h_fqcd_mu = fin_mu.Get("h_fqcd_sr2")
+                 h_fqcd_el = fin_el.Get("h_fqcd_sr2")
+             elif 'sr3' in region:
+                 h_fqcd_mu = fin_mu.Get("h_fqcd_sr3")
+                 h_fqcd_el = fin_el.Get("h_fqcd_sr3")
+             else:
+                 h_fqcd_mu = fin_mu.Get("h_fqcd_sr1")
+                 h_fqcd_el = fin_el.Get("h_fqcd_sr1")
 
              nf_mu_1p = h_fqcd_mu.GetBinContent(1)
              nf_mu_3p = h_fqcd_mu.GetBinContent(2)
@@ -464,21 +583,25 @@ class SimpleEstimator(BaseEstimator):
 
              region_qcd = ''
              
-             if "cutflow" in histname: histname = histname.replace(region, region_qcd)
-             
              if "_mu" in region: region_qcd = region.replace("_mu","_antiisomu")
              if "_el" in region: region_qcd = region.replace("_el","_antiisoel")
           
+             if "cutflow" in histname: histname = histname.replace(region, region_qcd)
+             
              for item in replace:
                  print "adding to qcd", item
                  h_qcd = None
                  if 'cutflow' in histname:
+                     h_qcd_mc = getMCsub          (        pathmod_aux+'_qcd',         histname.replace("inc",item[1]).replace('all',item[0]),       region_qcd.replace("inc",item[1]).replace('all',item[0]),sf=factor[item[1]])
                      h_qcd = self.data_sample.hist(pathmod=pathmod_aux+'_qcd',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_qcd.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
                  else:
+                     h_qcd_mc = getMCsub          (        pathmod_aux+'_qcd',         histname,       region_qcd.replace("inc",item[1]).replace('all',item[0]),sf=factor[item[1]])
                      h_qcd = self.data_sample.hist(pathmod=pathmod_aux+'_qcd',histname=histname,region=region_qcd.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
 
                  h_qcd.Scale(factor[item[1]])
                  h_qcd_tot_list.append(h_qcd)
+                 # MC LIST ALREADY SCALED
+                 h_qcd_tot_list+=h_qcd_mc
 
              #return histutils.add_hists(h_qcd_tot_list)
              return h_qcd_tot_list
@@ -498,10 +621,14 @@ class SimpleEstimator(BaseEstimator):
                  if 'cutflow' in histname:
                      #print histname, histname.replace("inc",item[1]).replace('all',item[0])
                      h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname.replace("inc",item[1]).replace('all',item[0]),region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                     h_ff_mc = getMCsub          (        pathmod_aux+'_ff',         histname.replace("inc",item[1]).replace('all',item[0]),       region_ff.replace("inc",item[1]).replace('all',item[0]))
                  else:
                      h_ff = self.data_sample.hist(pathmod=pathmod_aux+'_ff',histname=histname,region=region_ff.replace("inc",item[1]).replace('all',item[0]),icut=icut,sys=sys,mode=mode).Clone()
+                     h_ff_mc = getMCsub          (        pathmod_aux+'_ff',         histname,       region_ff.replace("inc",item[1]).replace('all',item[0]))
 
                  h_ff_tot_list.append(h_ff)
+                 # MC LIST ALREADY SCALED
+                 h_ff_tot_list+=h_ff_mc
 
              #return histutils.add_hists(h_ff_tot_list)
              return h_ff_tot_list
@@ -517,6 +644,7 @@ class SimpleEstimator(BaseEstimator):
              print "Adding Fake sample"
              wjt = addWjet(histname)
              qcd = addQCD (histname)
+             #return histutils.add_hists(wjt)
              return histutils.add_hists(wjt+qcd)
          if self.sample.name == "FF_Fake":
              ff  = addFF  (histname)

@@ -412,6 +412,7 @@ class TreeProxy(object):
             return val
     #_________________________________________________________________________
     def set_all_branches_off(self):
+        print "switching branches off"
         self.tree.SetBranchStatus("*", 0)
         self.branches_on = set()
     #_________________________________________________________________________

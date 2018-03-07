@@ -10,20 +10,36 @@ other config files !!!
 
 
 
-h_cutflow_presel_el151p   = Hist1D('cutflow_weighted_presel_el151p',dir="")
-h_cutflow_presel_el153p   = Hist1D('cutflow_weighted_presel_el153p',dir="")
-h_cutflow_presel_el15inc  = Hist1D('cutflow_weighted_presel_el15inc',dir="")
-h_cutflow_presel_el161p   = Hist1D('cutflow_weighted_presel_el161p',dir="")
-h_cutflow_presel_el163p   = Hist1D('cutflow_weighted_presel_el163p',dir="")
-h_cutflow_presel_el16inc  = Hist1D('cutflow_weighted_presel_el16inc',dir="")
-h_cutflow_presel_mu151p   = Hist1D('cutflow_weighted_presel_mu151p',dir="")
-h_cutflow_presel_mu153p   = Hist1D('cutflow_weighted_presel_mu153p',dir="")
-h_cutflow_presel_mu15inc  = Hist1D('cutflow_weighted_presel_mu15inc',dir="")
-h_cutflow_presel_mu161p   = Hist1D('cutflow_weighted_presel_mu161p',dir="")
-h_cutflow_presel_mu163p   = Hist1D('cutflow_weighted_presel_mu163p',dir="")
-h_cutflow_presel_mu16inc  = Hist1D('cutflow_weighted_presel_mu16inc',dir="")
-h_cutflow_presel_muallinc = Hist1D('cutflow_weighted_presel_muallinc',dir="")
-h_cutflow_presel_elallinc = Hist1D('cutflow_weighted_presel_elallinc',dir="")
+hist_cutflows = []
+for region in ['presel', 'sr1', 'sr2', 'sr3']:
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_el151p' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_el153p' % region,dir = ""))
+    hist_cutflows.append( Hist1D('cutflow_weighted_%s_el15inc' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_el161p' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_el163p' % region,dir = ""))
+    hist_cutflows.append( Hist1D('cutflow_weighted_%s_el16inc' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_mu151p' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_mu153p' % region,dir = ""))
+    hist_cutflows.append( Hist1D('cutflow_weighted_%s_mu15inc' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_mu161p' % region,dir = ""))
+    hist_cutflows.append(  Hist1D('cutflow_weighted_%s_mu163p' % region,dir = ""))
+    hist_cutflows.append( Hist1D('cutflow_weighted_%s_mu16inc' % region,dir = ""))
+    hist_cutflows.append(Hist1D('cutflow_weighted_%s_muallinc' % region,dir = ""))
+    hist_cutflows.append(Hist1D('cutflow_weighted_%s_elallinc' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_el151p' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_el153p' % region,dir = ""))
+    hist_cutflows.append(          Hist1D('cutflow_%s_el15inc' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_el161p' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_el163p' % region,dir = ""))
+    hist_cutflows.append(          Hist1D('cutflow_%s_el16inc' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_mu151p' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_mu153p' % region,dir = ""))
+    hist_cutflows.append(          Hist1D('cutflow_%s_mu15inc' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_mu161p' % region,dir = ""))
+    hist_cutflows.append(           Hist1D('cutflow_%s_mu163p' % region,dir = ""))
+    hist_cutflows.append(          Hist1D('cutflow_%s_mu16inc' % region,dir = ""))
+    hist_cutflows.append(         Hist1D('cutflow_%s_muallinc' % region,dir = ""))
+    hist_cutflows.append(         Hist1D('cutflow_%s_elallinc' % region,dir = ""))
 
 
 ###############
@@ -31,7 +47,7 @@ h_cutflow_presel_elallinc = Hist1D('cutflow_weighted_presel_elallinc',dir="")
 ###############
 h_tau0_eta         = Hist1D( 'tau_0_eta',                
                              xtitle = '#eta(#tau)',                   
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -6.0, 
                              xmax = 6.0, 
                              dir='tau', 
@@ -40,7 +56,7 @@ h_tau0_eta         = Hist1D( 'tau_0_eta',
 
 h_tau0_phi         = Hist1D( 'tau_0_phi',                
                              xtitle = '#phi(#tau)',                   
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -3.2, 
                              xmax = 3.2, 
                              dir='tau', 
@@ -61,7 +77,7 @@ h_tau0_pt          = Hist1D( 'tau_0_pt',
 ###############
 h_lep0_eta         = Hist1D( 'lep_0_eta',                
                              xtitle = '#eta(l)',                      
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -6.0, 
                              xmax = 6.0, 
                              dir='lep', 
@@ -70,7 +86,7 @@ h_lep0_eta         = Hist1D( 'lep_0_eta',
 
 h_lep0_phi         = Hist1D( 'lep_0_phi',                
                              xtitle = '#phi(l)',                      
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -3.2, 
                              xmax = 3.2, 
                              dir='lep', 
@@ -91,7 +107,7 @@ h_lep0_pt          = Hist1D( 'lep_0_pt',
 ##################
 h_lh_vis_m         = Hist1D( 'lephad_vis_m', 
                              xtitle = 'm_{vis}(#tau,l)',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -100,7 +116,7 @@ h_lh_vis_m         = Hist1D( 'lephad_vis_m',
 
 h_lh_mmc_mlm_m     = Hist1D( 'lephad_lfv_mmc_mlm_m',
                              xtitle = 'm^{mlm}_{MMC}(#tau,l)',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -109,7 +125,7 @@ h_lh_mmc_mlm_m     = Hist1D( 'lephad_lfv_mmc_mlm_m',
 
 h_lh_mmc_maxw_m    = Hist1D( 'lephad_lfv_mmc_maxw_m', 
                              xtitle = 'm^{maxw}_{MMC}(#tau,l)',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -118,7 +134,7 @@ h_lh_mmc_maxw_m    = Hist1D( 'lephad_lfv_mmc_maxw_m',
 
 h_lh_mmc_mlnu3p    = Hist1D( 'lephad_mmc_mlnu3p_m',
                              xtitle = 'm^{mlnu3p}_{MMC}(#tau,l)',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -127,7 +143,7 @@ h_lh_mmc_mlnu3p    = Hist1D( 'lephad_mmc_mlnu3p_m',
 
 h_lh_coll_m        = Hist1D( 'coll_approx_lfv_m',
                              xtitle = 'm_{Coll}(#tau,l)',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -136,7 +152,7 @@ h_lh_coll_m        = Hist1D( 'coll_approx_lfv_m',
 
 h_lh_coll_x0       = Hist1D( 'lephad_coll_approx_x0',
                              xtitle = 'x0',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -2.0,
                              xmax = 2.0, 
                              dir='lephad', 
@@ -145,7 +161,7 @@ h_lh_coll_x0       = Hist1D( 'lephad_coll_approx_x0',
 
 h_lh_coll_x1 	   = Hist1D( 'lephad_coll_approx_x1',    
                              xtitle = 'x1',                           
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -2.0,
                              xmax = 2.0, 
                              dir='lephad', 
@@ -154,7 +170,7 @@ h_lh_coll_x1 	   = Hist1D( 'lephad_coll_approx_x1',
 
 h_lh_scdp          = Hist1D( 'lephad_met_sum_cos_dphi',  
                              xtitle = '#Sigma cos(#Delta#phi)',       
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -4.0, 
                              xmax = 4.0, 
                              dir='lephad', 
@@ -163,7 +179,7 @@ h_lh_scdp          = Hist1D( 'lephad_met_sum_cos_dphi',
 
 h_lh_lep_mt        = Hist1D( 'lephad_mt_lep_0_met',      
                              xtitle = 'm_{T}(#l,MET)',                
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -172,7 +188,7 @@ h_lh_lep_mt        = Hist1D( 'lephad_mt_lep_0_met',
 
 h_lh_tau_mt        = Hist1D( 'lephad_mt_tau_0_met',      
                              xtitle = 'm_{T}(#tau,MET)',              
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='lephad', 
@@ -181,7 +197,7 @@ h_lh_tau_mt        = Hist1D( 'lephad_mt_tau_0_met',
 
 h_lh_dR            = Hist1D( 'lephad_dr',                
                              xtitle = '#Delta R(#tau,l)',             
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 6.0, 
                              dir='lephad', 
@@ -190,7 +206,7 @@ h_lh_dR            = Hist1D( 'lephad_dr',
 
 h_lh_deta          = Hist1D( 'lephad_deta',              
                              xtitle = '|#Delta #eta(#tau,l)|',        
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 6.0, 
                              dir='lephad', 
@@ -199,7 +215,7 @@ h_lh_deta          = Hist1D( 'lephad_deta',
 
 h_lh_met_cent      = Hist1D( 'lephad_met_cent',          
                              xtitle = 'E_{T}^{miss} #phi Centrality', 
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = -10.0, 
                              xmax = 10.0, 
                              dir='lephad', 
@@ -259,7 +275,7 @@ h_evt_n_jets       = Hist1D( 'n_jets',
 ###############
 h_met_reco_sumet   = Hist1D( 'met_reco_sumet',
                              xtitle = 'MET #Sigma E_{t}',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='met', 
@@ -268,7 +284,7 @@ h_met_reco_sumet   = Hist1D( 'met_reco_sumet',
 
 h_met_reco_etx     = Hist1D( 'met_reco_etx',
                              xtitle = 'E_{x}^{miss}',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='met', 
@@ -277,7 +293,7 @@ h_met_reco_etx     = Hist1D( 'met_reco_etx',
 
 h_met_reco_ety     = Hist1D( 'met_reco_ety',
                              xtitle = 'E_{y}^{miss}',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1000.0, 
                              dir='met', 
@@ -288,7 +304,7 @@ h_met_reco_et      = Hist1D( 'met_reco_et',
                              xtitle = 'E_{T}^{miss}',
                              nbins = 1000, 
                              xmin = 0., 
-                             xmax = 1000.0, 
+                             xmax = 100.0, 
                              dir='met', 
                              vexpr = 'self.chain.met_reco_et',             
                              )
@@ -307,7 +323,7 @@ h_met_reco_phi     = Hist1D( 'met_reco_phi',
 ###############
 h_BDT_output       = Hist1D( 'output_BDT',
                              xtitle = 'BDT score',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1.0, 
                              dir='nn', 
@@ -315,8 +331,8 @@ h_BDT_output       = Hist1D( 'output_BDT',
                              )
 
 h_NN_W_output      = Hist1D( 'output_Fake',
-                             xtitle = 'NN (LFV vs W) score',
-                             nbins = 1000, 
+                             xtitle = 'NN (LFV vs Fake) score',
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1.0, 
                              dir='nn', 
@@ -325,7 +341,7 @@ h_NN_W_output      = Hist1D( 'output_Fake',
 
 h_NN_Z_output      = Hist1D( 'output_Z',
                              xtitle = 'NN (LFV vs Z) score',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1.0, 
                              dir='nn', 
@@ -334,7 +350,7 @@ h_NN_Z_output      = Hist1D( 'output_Z',
 
 h_NN_comb_output   = Hist1D( 'output_comb',
                              xtitle = 'NN combined score',
-                             nbins = 1000, 
+                             nbins = 100, 
                              xmin = 0., 
                              xmax = 1.0, 
                              dir='nn', 
@@ -343,7 +359,7 @@ h_NN_comb_output   = Hist1D( 'output_comb',
 
 h_NN_input_tau_pz  = Hist1D( 'NN_input_tau_pz' , 
                              xtitle='NN input p_{z}(#tau)',            
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=-500., 
                              xmax=500., 
                              dir='nn', 
@@ -352,7 +368,7 @@ h_NN_input_tau_pz  = Hist1D( 'NN_input_tau_pz' ,
 
 h_NN_input_tau_E   = Hist1D( 'NN_input_tau_E' , 
                              xtitle='NN input E(#tau)',            
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 
@@ -361,7 +377,7 @@ h_NN_input_tau_E   = Hist1D( 'NN_input_tau_E' ,
 
 h_NN_input_lep_px  = Hist1D( 'NN_input_lep_px',
                              xtitle='NN input p_{x}(lep)',
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=-500., 
                              xmax=500., 
                              dir='nn', 
@@ -370,7 +386,7 @@ h_NN_input_lep_px  = Hist1D( 'NN_input_lep_px',
 
 h_NN_input_lep_pz  = Hist1D( 'NN_input_lep_pz', 
                              xtitle='NN input p_{z}(lep)',
-                             nbins=1000,
+                             nbins=100,
                              xmin=-500., 
                              xmax=500., 
                              dir='nn', 
@@ -379,7 +395,7 @@ h_NN_input_lep_pz  = Hist1D( 'NN_input_lep_pz',
 
 h_NN_input_lep_E   = Hist1D( 'NN_input_lep_E' , 
                              xtitle='NN input E(lep)',             
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 
@@ -388,7 +404,7 @@ h_NN_input_lep_E   = Hist1D( 'NN_input_lep_E' ,
 
 h_NN_input_met_px  = Hist1D( 'NN_input_met_px',
                              xtitle='NN input p_{x}(E_{T}^{miss})',
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=-500., 
                              xmax=500., 
                              dir='nn', 
@@ -397,7 +413,7 @@ h_NN_input_met_px  = Hist1D( 'NN_input_met_px',
 
 h_NN_input_met_py  = Hist1D( 'NN_input_met_py', 
                              xtitle='NN input p_{y}(E_{T}^{miss})',
-                             nbins=1000,
+                             nbins=100,
                              xmin=-500., 
                              xmax=500., 
                              dir='nn', 
@@ -406,7 +422,7 @@ h_NN_input_met_py  = Hist1D( 'NN_input_met_py',
 
 h_NN_input_met_pz  = Hist1D( 'NN_input_met_pz', 
                              xtitle='NN input p_{z} (E_{T}^{miss})',
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=-500., 
                              xmax=500., 
                              dir='nn', 
@@ -415,7 +431,7 @@ h_NN_input_met_pz  = Hist1D( 'NN_input_met_pz',
 
 h_NN_input_met_E   = Hist1D( 'NN_input_met_E' , 
                              xtitle='NN input E (E_{T}^{miss})',   
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 
@@ -423,17 +439,17 @@ h_NN_input_met_E   = Hist1D( 'NN_input_met_E' ,
                              )
 
 h_NN_input_mcoll   = Hist1D( 'NN_input_mcoll' , 
-                             xtitle='NN input m_{coll}',           
-                             nbins=1000, 
+                             xtitle='m_{coll} GeV',           
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 
-                             vexpr='self.chain.NN_input_mcoll'
+                             vexpr='self.chain.coll_approx_lfv_m'
                              )
 
 h_NN_input_mvis    = Hist1D( 'NN_input_mvis'  , 
-                             xtitle='NN input m_{vis}',            
-                             nbins=1000, 
+                             xtitle='m_{vis} GeV',            
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 
@@ -441,8 +457,8 @@ h_NN_input_mvis    = Hist1D( 'NN_input_mvis'  ,
                              )
 
 h_NN_input_mmmc    = Hist1D( 'NN_input_mmmc'  , 
-                             xtitle='NN input m_{MMC}',            
-                             nbins=1000, 
+                             xtitle='m_{MMC} GeV',            
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 
@@ -451,7 +467,7 @@ h_NN_input_mmmc    = Hist1D( 'NN_input_mmmc'  ,
 
 h_NN_input_boost   = Hist1D( 'NN_input_boost' , 
                              xtitle='NN input boost',              
-                             nbins=1000, 
+                             nbins=100, 
                              xmin=   0., 
                              xmax=500., 
                              dir='nn', 

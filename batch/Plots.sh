@@ -1,12 +1,12 @@
 # This is a sample PBS script. It will request 1 processor on 1 node
 # for 1 hours.
 #   
-#   Request 1 processors on 1 node 
+#   Request 4 processors on 1 node 
 #   
-#PBS -l nodes=1:ppn=1
+#PBS -l nodes=1:ppn=4
 
 
-#PBS -l walltime=1:00:00
+#PBS -l walltime=8:00:00
 #
 #   Request 4 gigabyte of memory per process
 #
@@ -37,6 +37,7 @@ echo " LAB:       $LAB"
 echo " ICUT:      $ICUT"
 echo " MAKEPLOT:  $MAKEPLOT"
 echo " INDIR:     $INDIR"
+echo " BKGD:      $BKGD"
 echo " OUTDIR:    $OUTDIR"
 echo " SCRIPT:    $SCRIPT"
 echo " INTARBALL: $INTARBALL"
@@ -87,10 +88,15 @@ echo
 echo "setting up workarea..."
 source setup.sh
 
+cgcreate -a ${USER}:people -t ${USER}:people -g cpu,memory:user/${USER}/${PBS_JOBID}
+MEMLIMIT="$((3 * 4))"
+echo "${MEMLIMIT}g" > /cgroup/memory/user/${USER}/${PBS_JOBID}/memory.limit_in_bytes
+echo $$ > /cgroup/memory/user/${USER}/${PBS_JOBID}/tasks
+
 echo ""
 echo "executing job..."
-echo "python ${SCRIPT} --var=${VAR} --reg=${REG} --lab=${LAB} --icut=${ICUT} --makeplot=${MAKEPLOT} --input=${INDIR} --output=${OUTDIR}"
-python ${SCRIPT} --var=${VAR} --reg=${REG} --lab=${LAB} --icut=${ICUT}  --makeplot=${MAKEPLOT} --input=${INDIR} --output=${OUTDIR}
+echo "python ${SCRIPT} --var=${VAR} --reg=${REG} --lab=${LAB} --icut=${ICUT} --makeplot=${MAKEPLOT} --input=${INDIR} --output=${OUTDIR} --background=${BKGD} --regiontype=${REGTYPE} --printcutflow=${PCW}"
+python ${SCRIPT} --var=${VAR} --reg=${REG} --lab=${LAB} --icut=${ICUT}  --makeplot=${MAKEPLOT} --input=${INDIR} --output=${OUTDIR} --background=${BKGD} --regiontype=${REGTYPE} --printcutflow=${PCW}
 echo "finished execution"
 
 echo "copying output"
@@ -98,6 +104,10 @@ echo "listing"
 
 echo "cp ./*.eps ${OUTDIR}"
 cp ./*.eps ${OUTDIR}
+echo "cp ./*.png ${OUTDIR}"
+cp ./*.png ${OUTDIR}
+echo "cp ./*.root ${OUTDIR}"
+cp ./*.root ${OUTDIR}
 
 echo "cd ${TMPDIR}"
 cd ${TMPDIR}

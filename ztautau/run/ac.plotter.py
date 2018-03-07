@@ -59,12 +59,14 @@ def analyze(config):
     ## build chain
     config['tree'] = sys_dict['tree']
     config['friendtree'] = sys_dict['friendtree'] 
+    print config
     
     chain = ROOT.TChain(config['tree'])
     for fn in config['input']: chain.Add(fn)
-    if config['friendinput']: 
-      assert config['friendtree'], 'ERROR: name of friendtree not provided for friendfile %s'%config['friendinput']
-      chain.AddFriend(config['friendtree'],config['friendinput'])
+    if 'friendinput' in config.keys():
+      if config['friendinput']: 
+          assert config['friendtree'], 'ERROR: name of friendtree not provided for friendfile %s'%config['friendinput']
+          chain.AddFriend(config['friendtree'],config['friendinput'])
 
     ##-------------------------------------------------------------------------
     ## event loop
@@ -83,9 +85,16 @@ def analyze(config):
     
     ## weights
     ## +++++++++++++++++++++++++++++++++++++++
-    loop += ztautau.algs.weights.WeightTotal(cutflow='PreselMu2016',key='weight_total')
+    isSig = False
+    for x in [345078,345124,345077,345213,345214,345215,345216,345218,345219,341123,341156,345121,345122,345074,345075,345211,345212,345217]:
+        dsid = config['input'][0].split('/')[-2].split('.')
+        print dsid
+        if str(x) in dsid:
+            print x, dsid
+            isSig=True
+    loop += ztautau.algs.weights.WeightTotal(cutflow='PreselMu2016',key='weight_total', isSig=isSig)
     if config['datatype'] == 'ff': 
-        loop += ztautau.algs.weights.FFTotal(cutflow='PreselMu2016',key='ff')
+        loop += ztautau.algs.weights.FFTotal_New(cutflow='PreselMu2016',key='ff')
 
 
     ## initialize and/or decorate objects
@@ -311,6 +320,27 @@ def analyze(config):
                 cut_flow  =  cutflow[c[0]][c[1]][c[2]],
                 )
     
+        loop += ztautau.algs.algs.PlotAlg(
+                region       = 'sr1'+suffix+regname[c[0]][c[1]][c[2]],
+                do_var_check = True,
+                hist_list    = ztautau.hists.Main_hists.hist_ac,
+                plot_all     = False,
+                cut_flow  =  cutflow[c[0]][c[1]][c[2]]+[['SR1', None]],
+                )
+        loop += ztautau.algs.algs.PlotAlg(
+                region       = 'sr2'+suffix+regname[c[0]][c[1]][c[2]],
+                do_var_check = True,
+                hist_list    = ztautau.hists.Main_hists.hist_ac,
+                plot_all     = False,
+                cut_flow  =  cutflow[c[0]][c[1]][c[2]]+[['SR2', None]],
+                )
+        loop += ztautau.algs.algs.PlotAlg(
+                region       = 'sr3'+suffix+regname[c[0]][c[1]][c[2]],
+                do_var_check = True,
+                hist_list    = ztautau.hists.Main_hists.hist_ac,
+                plot_all     = False,
+                cut_flow  =  cutflow[c[0]][c[1]][c[2]]+[['SR3', None]],
+                )
     #loop += ztautau.algs.algs.PlotAlg(
     #        region       = 'presel_test',
     #        do_var_check = True,

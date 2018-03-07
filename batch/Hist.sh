@@ -1,7 +1,6 @@
+#!/bin/bash
 #PBS -l walltime=40:00:00
 #PBS -l pmem=1gb
-
-#!/bin/bash
 STARTTIME=`date +%s`
 date
 
@@ -80,6 +79,8 @@ arrIN=(${line//;/ });
 
 SAMPLEDIR=${arrIN[0]}
 INPUT=${arrIN[1]}
+
+# With friend trees
 FRIENDINPUT=${arrIN[2]}
 OUTPUT=${arrIN[3]}
 SAMPLENAME=${arrIN[3]%.root*}
@@ -87,6 +88,13 @@ SAMPLETYPE=${arrIN[4]}
 CFG=${arrIN[6]}
 DATATYPE=${arrIN[5]}
 
+# Without friend trees
+#OUTPUT=${arrIN[2]}
+#SAMPLENAME=${arrIN[2]%.root*}
+#SAMPLETYPE=${arrIN[3]}
+#CFG=${arrIN[5]}
+#DATATYPE=${arrIN[4]}
+#
 echo "SAMPLENAME: ${SAMPLENAME}"
 echo "SAMPLETYPE: ${SAMPLETYPE}"
 echo "INPUT:      ${INPUT}"
@@ -101,16 +109,19 @@ echo "copying input locally..."
 # avoid to fuck the cluster up:
 # -----------------------------
 
-cgcreate -a ${USER} -t ${USER} -g cpuset,cpu,memory:${USER}/${PBS_JOBID}
-cp /cgroup/cpuset/${USER}/cpuset.mems /cgroup/cpuset/${USER}/cpuset.cpus /cgroup/cpuset/${USER}/${PBS_JOBID}
-MEMLIMIT="$((4 * ${NCORES}))"
-echo "${MEMLIMIT}000000000" > /cgroup/cpuset/${USER}/${PBS_JOBID}/memory.limit_in_bytes
-echo $$ > /cgroup/cpuset/${USER}/${PBS_JOBID}/tasks
+cgcreate -a ${USER}:people -t ${USER}:people -g cpu,memory:user/${USER}/${PBS_JOBID}
+MEMLIMIT="$((3 * ${NCORES}))"
+echo "${MEMLIMIT}g" > /cgroup/memory/user/${USER}/${PBS_JOBID}/memory.limit_in_bytes
+echo $$ > /cgroup/memory/user/${USER}/${PBS_JOBID}/tasks
 
 echo ""
 echo "executing job..."
+# With friend trees
 echo ${SCRIPT} --input ${INPUT} --friendinput ${FRIENDINPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE}  --datatype=${DATATYPE}  --config "${CFG}"
 ${SCRIPT} --input ${INPUT} --friendinput ${FRIENDINPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE} --datatype=${DATATYPE} --config "${CFG}" 
+# Without friend trees
+#echo ${SCRIPT} --input ${INPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE}  --datatype=${DATATYPE}  --config "${CFG}"
+#${SCRIPT} --input ${INPUT} --samplename ${SAMPLENAME} --sampletype ${SAMPLETYPE} --datatype=${DATATYPE} --config "${CFG}" 
 
 echo "finished execution"
 
@@ -120,8 +131,8 @@ if [ ! -d ${OUTPATH} ]; then mkdir ${OUTPATH}; fi
 
 echo "copying output"
 # hardcoded output ntuple
-echo cp ${OUTPUT} ${OUTPATH}/${SAMPLETYPE}/${SAMPLEDIR}
-cp ${OUTPUT} ${OUTPATH}/${SAMPLETYPE}/${SAMPLEDIR}
+echo cp ${SAMPLENAME}.root ${OUTPATH}/${SAMPLETYPE}/${SAMPLEDIR}
+cp ${SAMPLENAME}.root ${OUTPATH}/${SAMPLETYPE}/${SAMPLEDIR}
 chmod a+r ${OUTPATH}
 
 echo "cd ${TMPDIR}"

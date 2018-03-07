@@ -37,19 +37,61 @@ def get_hists(
         samples   = None,
         rebin     = None,
         sys_dict  = None,
+        uo_flow   = False,
         ):
     '''
     if sys_dict is passed, hists for all systematics will be appended in a dict. 
     '''
     
     hists = {} 
-    #print "funcs get_hists:", region, histname, samples
+    #print "grabbing syst"
     for s in samples:
-      #print s.name, histname
       if not s.hist(region=region,icut=icut,histname=histname): continue
       h = s.hist(region=region,icut=icut,histname=histname).Clone()
-      #print "hist is found", h
-      if rebin and h: h = h.Rebin(len(rebin)-1,h.GetName(),rebin)
+      if rebin and h:
+          print "Rebinning"
+          if isinstance(h, ROOT.TH2):
+              #h = h.RebinX(rebin['nbinsx'])
+              #h = h.RebinY(rebin['nbinsy'])
+              xmin     = h.GetXaxis().GetBinLowEdge(1)
+              ymin     = h.GetYaxis().GetBinLowEdge(1)
+              xmax     = h.GetXaxis().GetBinLowEdge(h.GetNbinsX()+1)
+              ymax     = h.GetYaxis().GetBinLowEdge(h.GetNbinsY()+1)
+              binsizex = (rebin['xmax'] - rebin['xmin']) / rebin['nbinsx']
+              binsizey = (rebin['ymax'] - rebin['ymin']) / rebin['nbinsy']
+              newbinx  = float(binsizex)
+              newbiny  = float(binsizey)
+              oldbinx  = float(h.GetXaxis().GetBinWidth(1))
+              oldbiny  = float(h.GetYaxis().GetBinWidth(1))
+              xratio, yratio = int(newbinx/oldbinx), int(newbiny/oldbiny)
+              if oldbinx > newbinx:
+                  print "Warning xbins: old %s > new %s" % (oldbinx, newbinx)
+                  xratio = 1
+              if oldbiny > newbiny:
+                  print "Warning ybins: old %s > new %s setting ratio to 1" % (oldbiny, newbiny)
+                  yratio = 1
+              h = h.Rebin2D(xratio, yratio)
+          elif isinstance(h, ROOT.TProfile) and not isinstance(h, ROOT.TH2):
+              h = h.Rebin(len(rebin['rebin']['rebinx'])-1,h.GetName(),rebin['rebin']['rebinx'])
+          elif isinstance(h, ROOT.TH1):                                                       
+              h = h.Rebin(len(rebin['rebin'])-1,h.GetName(),rebin['rebin'])
+          print "Rebinning done!"
+      #####################
+      bin_uf    = (h.GetBinContent(0), h.GetBinError(0))
+      bin_first = (h.GetBinContent(1), h.GetBinError(1))
+      last      = h.GetNbinsX()
+      bin_of    = (h.GetBinContent(last  ), h.GetBinError(last  ))
+      bin_last  = (h.GetBinContent(last+1), h.GetBinError(last+1))
+      # Rebinning shit
+      import math
+      print "#################"
+      h.Print("all")
+      h.SetBinContent(1,bin_uf[0]+bin_first[0])
+      h.SetBinError  (1,math.sqrt(bin_uf[1]*bin_uf[1]+bin_first[1]*bin_first[1]))
+      h.SetBinContent(last,bin_of[0]+bin_last[0])
+      h.SetBinError  (last,math.sqrt(bin_of[1]*bin_of[1]+bin_last[1]*bin_last[1]))
+      print "#################"
+      h.Print("all")
       hists[s] = h
       assert h, 'failed to gen hist for %s'%s.name
       h.SetName('h_%s_%s'%(region,s.name))
@@ -80,20 +122,28 @@ def get_sys_hists(
     '''
 
     hist_dict = {}
+    #print "grabbing systs hists"
     for name,sys in sys_dict.items():
+        #print name, sys
         h_up = h_dn = None
         if sample.estimator.is_affected_by_systematic(sys):
+          #print "is allowed", sample
           if not h_up:
+            #print "##############################################################################################"
             h_up = sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='up').Clone() 
           else:  h_up.Add(sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='up').Clone())
           if not h_dn: h_dn = sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='dn').Clone() 
           else:  h_dn.Add(sample.hist(region=region,icut=icut,histname=histname,sys=sys,mode='dn').Clone())
-          h_up.SetName('h_%s_%s_up_%s'%(region,sys.name,sample.name))
-          h_dn.SetName('h_%s_%s_dn_%s'%(region,sys.name,sample.name))
+          h_up.SetName('h_%s_%s_up_%s'%(region,sys,sample.name))
+          h_dn.SetName('h_%s_%s_dn_%s'%(region,sys,sample.name))
           
           if rebin:
-           if h_up: h_up = h_up.Rebin(len(rebin)-1,h.GetName(),rebin)
-           if h_dn: h_dn = h_dn.Rebin(len(rebin)-1,h.GetName(),rebin)
+           if isinstance(h_up, ROOT.TProfile) and not isinstance(h_up, ROOT.TH2):
+               h_up = h_up.Rebin(len(rebin['rebin']['rebinx'])-1,h_up.GetName(),rebin['rebin']['rebinx'])
+               h_dn = h_dn.Rebin(len(rebin['rebin']['rebinx'])-1,h_dn.GetName(),rebin['rebin']['rebinx'])
+           elif isinstance(h_up, ROOT.TH1):                                                       
+               h_up = h_up.Rebin(len(rebin['rebin'])-1,h_up.GetName(),rebin['rebin'])
+               h_dn = h_dn.Rebin(len(rebin['rebin'])-1,h_dn.GetName(),rebin['rebin'])
              
         hist_dict[sys] = (h_up,h_dn)
     return hist_dict 
@@ -209,6 +259,9 @@ def plot_hist(
     rebin         = None,
     sys_dict      = None,
     do_ratio_plot = False,
+    do_profile    = False,
+    do_2d         = False,
+    profile_2d    = False,
     plotsfile     = None,
     sig_rescale   = None,
     ):
@@ -222,9 +275,14 @@ def plot_hist(
     print 'making plot: ', histname, ' in region', region
     
     #assert signal, "ERROR: no signal provided for plot_hist"
-    assert backgrounds, "ERROR: no background provided for plot_hist"
+    #assert backgrounds, "ERROR: no background provided for plot_hist"
+    if not signal and not backgrounds and not data:
+        assert data, "ERROR: No signal, backgrounds or data... What are you doing???"
     
-    samples = backgrounds + signal
+    samples = []
+    if backgrounds: samples += backgrounds
+
+    if signal: samples+= signal
     
     if data: samples += [data] 
 
@@ -236,83 +294,134 @@ def plot_hist(
         samples=samples,
         rebin=rebin,
         sys_dict=sys_dict,
+        uo_flow=True,
         )
     ## sum nominal background
     h_samp_list = []
     #for s in backgrounds+signal:
-    for s in backgrounds:
-      if not s in hists.keys(): continue
-      h_samp_list.append(hists[s])
+    if backgrounds:
+        for s in backgrounds:
+          if not s in hists.keys(): continue
+          h_samp_list.append(hists[s])
     
     h_total = histutils.add_hists(h_samp_list)
+    #if do_profile: h_total = None
 
     ## get stat / sys bands
-    if sys_dict: 
-        total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
-        
-        g_stat = make_band_graph_from_hist(total_hists[0])
-        g_stat.SetFillColor(ROOT.kGray+1)
-        g_tot  = make_band_graph_from_hist(total_hists[3],total_hists[4])
-        g_tot.SetFillColor(ROOT.kRed)
+    #g_tot = None
+    if not do_profile and not do_2d and not profile_2d:
+        if sys_dict: 
+            total_hists = get_total_stat_sys_hists(h_samp_list,sys_dict)
+            
+            g_stat = make_band_graph_from_hist(total_hists[0])
+            g_stat.SetFillColor(ROOT.kGray+1)
+            g_stat.SetFillStyle(3325)
+            g_tot  = make_band_graph_from_hist(total_hists[3],total_hists[4])
+            g_tot.SetFillColor(ROOT.kRed)
 
-    else:
-        h_total_stat = make_stat_hist(h_total)
-        g_stat = make_band_graph_from_hist(h_total_stat)
-        g_stat.SetFillColor(ROOT.kGray+1)
-        g_tot = None
+        else:
+            h_total_stat = make_stat_hist(h_total)
+            g_stat = make_band_graph_from_hist(h_total_stat)
+            g_stat.SetFillColor(ROOT.kGray+1)
+            g_stat.SetFillStyle(3352)
+            g_tot = None
 
     ## blind data and create ratio 
     h_data  = None
     h_ratio = None
-    if data: 
+    if data:
         h_data = hists[data]
-        if blind: apply_blind(h_data,blind)
-        h_ratio = h_data.Clone('%s_ratio'%(h_data.GetName()))
-        h_ratio.Divide(h_total)
+        #if do_profile:
+            #if blind: apply_blind(h_data,blind)
+            #h_data = h_data.ProfileX('data', 0, int(h_data.GetYaxis().GetNbins()), 'g')
+        #else:
+        if blind and not (do_profile or do_2d): apply_blind(h_data,blind)
+        if do_ratio_plot:
+            h_ratio = h_data.Clone('%s_ratio'%(h_data.GetName()))
+            h_ratio.Divide(h_total)
     
     yaxistitle = None
-    for b in reversed(backgrounds):
-      if not b in hists.keys(): continue
-      else : 
-        yaxistitle = hists[b].GetYaxis().GetTitle()
-        break
+    if backgrounds:
+        for b in reversed(backgrounds):
+          if not b in hists.keys(): continue
+          else : 
+            yaxistitle = hists[b].GetYaxis().GetTitle()
+            break
+    elif h_total and data:
+        yaxistitle = hists[data].GetYaxis().GetTitle()
 
     ## create stack
-    h_stack = ROOT.THStack()
-    for b in reversed(backgrounds):
-      if not b in hists.keys(): continue
-      h_stack.Add(hists[b])
+    ytitle = h_data.GetYaxis().GetTitle()
+    if profile_2d:
+        h_data  = h_data .ProfileX().Clone()
+        h_total = h_total.ProfileX().Clone()
+    if profile_2d or do_profile:
+        h_total.SetMarkerStyle(26)
+        h_total.SetLineColor(ROOT.kRed)
+        h_total.SetMarkerColor(ROOT.kRed)
+        h_data.SetMarkerStyle(24)
+        h_data.SetLineColor(ROOT.kBlue)
+        h_data.SetMarkerColor(ROOT.kBlue)
+
+    #if do_profile:
+    #    #print "running over bkgd"
+    #    #for i,b in enumerate(backgrounds):
+    #    #  if not b in hists.keys(): continue
+    #    #  if i == 0: h_bkgd =hists[b]
+    #    #  else: h_bkgd.Add(hists[b])
+    #    #h_bkgd = h_bkgd.ProfileX('expected', 0, int(h_bkgd.GetYaxis().GetNbins()), 'g')
+    #    h_total.SetMarkerStyle(26)
+    #    h_total.SetLineColor(ROOT.kRed)
+    #    h_total.SetMarkerColor(ROOT.kRed)
+    if not profile_2d:
+        h_stack = ROOT.THStack()
+        for b in reversed(backgrounds):
+          if not b in hists.keys(): continue
+          h_stack.Add(hists[b])
     
     h_sig = None 
-    if signal: h_sig = hists[signal[0]] 
+    if signal and not do_profile and not do_2d and not profile_2d:
+        h_sig = []
+        for b in reversed(signal):
+          if not b in hists.keys(): continue
+          h_sig.append(hists[b])
 
-    nLegend = len(signal+backgrounds) + 1
-    x_legend = 0.63
-    x_leg_shift = -0.055
-    y_leg_shift = 0.0 
-    legYCompr = 8.0
-    legYMax = 0.85
-    legYMin = legYMax - (legYMax - (0.55 + y_leg_shift)) / legYCompr * nLegend
-    legXMin = x_legend + x_leg_shift
-    legXMax = legXMin + 0.4
-  
-    ## create legend (could use metaroot functionality?)
-    if not do_ratio_plot:
-      legXMin -= 0.005
-      legXMax -= 0.058
-    leg = ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
-    leg.SetBorderSize(0)
-    leg.SetFillColor(0)
-    leg.SetFillStyle(0)
-    if data: leg.AddEntry(h_data,data.tlatex,'PL')
-    for s in signal:
-      sig_tag = s.tlatex
-      if sig_rescale: sig_tag = "%d #times "%int(sig_rescale) + sig_tag
-      if not s in hists.keys(): continue
-      leg.AddEntry(hists[s],sig_tag,'F')
-    for b in backgrounds: 
-      if not b in hists.keys(): continue
-      leg.AddEntry(hists[b],b.tlatex,'F')
+    leg = None
+    if not (do_2d and not profile_2d):
+        if do_profile or profile_2d: nLegend = 2
+        elif signal: nLegend = len(signal+backgrounds) + 1
+        else: nLegend = len(backgrounds) + 1
+        x_legend = 0.63
+        x_leg_shift = -0.055
+        y_leg_shift = 0.0 
+        legYCompr = 8.0
+        legYMax = 0.85
+        legYMin = legYMax - (legYMax - (0.55 + y_leg_shift)) / legYCompr * nLegend
+        legXMin = x_legend + x_leg_shift
+        legXMax = legXMin + 0.4
+      
+        ## create legend (could use metaroot functionality?)
+        if not do_ratio_plot:
+          legXMin -= 0.005
+          legXMax -= 0.058
+        leg = ROOT.TLegend(legXMin,legYMin,legXMax,legYMax)
+        leg.SetBorderSize(0)
+        leg.SetFillColor(0)
+        leg.SetFillStyle(0)
+        if data:
+            leg.AddEntry(h_data,data.tlatex,'PL')
+        if signal and not do_profile and not profile_2d:
+            for s in signal:
+              sig_tag = s.tlatex
+              if sig_rescale: sig_tag = "%d #times "%int(sig_rescale) + sig_tag
+              if not s in hists.keys(): continue
+              leg.AddEntry(hists[s],sig_tag,'F')
+        if do_profile or profile_2d:
+            leg.AddEntry(h_total, 'Estimate', 'PL')
+        else:
+            for b in backgrounds: 
+              if not b in hists.keys(): continue
+              leg.AddEntry(hists[b],b.tlatex,'F')
 
 
     ## create canvas
@@ -321,22 +430,52 @@ def plot_hist(
     name = '_'.join([reg,histname]).replace('/','_') 
     cname = "c_final_%s"%name
     if do_ratio_plot: c = ROOT.TCanvas(cname,cname,750,800)
+    elif do_2d and not profile_2d: c = ROOT.TCanvas(cname,cname,1600,700)
     else: c = ROOT.TCanvas(cname,cname,800,700)
-    if xmin==None: xmin = h_total.GetBinLowEdge(1)
-    if xmax==None: xmax = h_total.GetBinLowEdge(h_total.GetNbinsX()+1)
+    ## set Min and Max
     ymin = 1.e-3
-    ymax = h_total.GetMaximum()
-    for s in signal:
-      if not s in hists.keys(): continue
-      ymax = max([ymax,hists[s].GetMaximum()])
-    if data: ymax = max([ymax,h_data.GetMaximum()])
-    if log: ymax *= 100000.
-    else:   ymax *= 1.8
-    xtitle = h_total.GetXaxis().GetTitle()
+    ymax = 100
+    h_check = h_data if h_data else h_total
+    if isinstance(h_check, ROOT.TH2):
+        xmin = min(rebin['rebin']['rebinx'])
+        xmax = max(rebin['rebin']['rebinx'])
+        ymax = max(rebin['rebin']['rebiny'])
+    elif isinstance(h_check, ROOT.TProfile):
+        xmin = min(rebin['rebin']['rebinx'])
+        xmax = max(rebin['rebin']['rebinx'])
+        ymax = max(rebin['rebin']['rebiny'])
+        ymin = min(rebin['rebin']['rebiny'])
+    elif isinstance(h_check, ROOT.TH1):
+        xmin = min(rebin['rebin'])
+        xmax = max(rebin['rebin'])
+        profile_2d = False
+    else:
+        if xmin==None: xmin = h_check.GetBinLowEdge(1)
+        if xmax==None: xmax = h_check.GetBinLowEdge(h_total.GetNbinsX()+1)
+    if signal:
+        for s in signal:
+          if not s in hists.keys(): continue
+          ymax = max([ymax,hists[s].GetMaximum()])
+    #if h_data and not do_2d:
+    #    ymax = max([ymax,h_data.GetMaximum()])
+    
+    if h_total and not do_2d:
+        ymax = max([ymax,h_total.GetMaximum()])
+    ymax = float(ymax)
+    if not (do_2d and not profile_2d):
+        if log: ymax *= 100000.
+        else:   ymax *= 1.8
 
+    if h_data:
+        xtitle = h_data.GetXaxis().GetTitle()
+    else:
+        xtitle = h_total.GetXaxis().GetTitle()
+
+    ## Making the pads
     if do_ratio_plot: rsplit = 0.3
     else: rsplit = 0.
-    pad1 = ROOT.TPad("pad1","top pad",0.,rsplit,1.,1.)
+    if do_2d and not profile_2d: pad1 = ROOT.TPad("pad1", "Data", 0., 0., 0.5, 1.)
+    else: pad1 = ROOT.TPad("pad1","top pad",0.,rsplit,1.,1.)
     pad1.SetLeftMargin(0.15)
     pad1.SetTicky()
     pad1.SetTickx()
@@ -352,19 +491,39 @@ def plot_hist(
       pad2.SetTicky()
       pad2.SetTickx()
       pad2.SetGridy()
-    #if do_ratio_plot: pad2.Draw()
       pad2.Draw()
+    if do_2d and not profile_2d:
+        pad2 = ROOT.TPad("pad2", "Background", 0.5, 0., 1., 1. )
+        pad2.SetLeftMargin(0.15)
+        pad2.SetTicky()
+        pad2.SetTickx()
+        pad2.SetBottomMargin(0.15)
+        pad2.Draw()
     pad1.cd()
 
-    ytitle = "Events" 
-    if not rebin: ytitle = yaxistitle
-    else:
-      bw = (max(rebin) - min(rebin)) / (len(rebin) - 1)
-      ytitle += " / %s" % bw
-      if ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
-      else: ytitle += " GeV"
+    ## ytitle
+    skip = False
+    if not ytitle == "Events":
+        skip = True
+    if not skip:
+        ytitle = "Events" 
+        if not rebin: ytitle = yaxistitle
+        if isinstance(h_data, ROOT.TH2) or isinstance(h_data, ROOT.TProfile):
+            ytitle = h_data.GetYaxis().GetTitle()
+        else:
+          if not (do_profile or do_2d or profile_2d):
+              print rebin['rebin']
+              if not isinstance(rebin['rebin'], dict):
+                  bw = (float(max(rebin['rebin'])) - float(min(rebin['rebin']))) / (len(rebin['rebin']) - 1)
+                  ytitle += " / %s" % bw
+          if ("eta" in xtitle) or ("phi" in xtitle) or ("trk" in xtitle): pass
+          elif not do_2d: ytitle += " GeV"
 
-    fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle))
+    #print xmin, ymin, xmax, ymax, ytitle
+    if do_2d and not profile_2d:
+        fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle + ' (Data)'))
+    else:
+        fr1 = pad1.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle))
     if do_ratio_plot:
       fr1.GetXaxis().SetTitleSize(0)
       fr1.GetXaxis().SetLabelSize(0)
@@ -386,56 +545,69 @@ def plot_hist(
     xaxis1.SetNdivisions(510)
     yaxis1.SetNdivisions(510)
 
-    h_stack.Draw("SAME,HIST")
+    if do_2d:
+        ROOT.gStyle.SetOptTitle(1)
+        ROOT.gStyle.SetTitleFontSize(10)
+    ## All the drawing
+    if do_profile or profile_2d:
+        h_total.Draw("SAME")
+    elif not do_2d:
+        h_stack.Draw("SAME,HIST")
     
-    if signal:
-      h_sig.Draw("SAME,HIST") 
+    if signal and not (do_profile or do_2d):
+      for sig in h_sig:
+          if sig_rescale: sig.Scale(sig_rescale)
+          sig.Draw("SAME,HIST") 
 
-    """
-    for s in reversed(signal):
-      if not s in hists.keys(): continue
-      if sig_rescale: hists[s].Scale(sig_rescale)
-      hists[s].Draw("SAME,HIST")
-    """
-    
-    if data: h_data.Draw("SAME")
+    if h_total and not do_2d and not profile_2d:
+        h_stat = h_total.Clone('h_total_stat_upper')
+        h_stat.SetFillColor(ROOT.kGray+1)
+        h_stat.SetFillStyle(3352)
+        h_stat.Draw("SAME,E2")
+    if h_data and (do_2d and not profile_2d):
+        h_data.Draw("SAME,COLZ")
+    elif h_data:
+        h_data.Draw("SAME")
+
     pad1.SetLogy(log)
     pad1.SetLogx(logx)
-    leg.Draw()
+    if leg: leg.Draw()
     pad1.RedrawAxis()
 
-    tlatex = ROOT.TLatex()
-    tlatex.SetNDC()
-    tlatex.SetTextSize(0.05)
-    lx = 0.6 # for ATLAS internal
-    ly = 0.845
-    tlatex.SetTextFont(42)
-    
-    ty = 0.96
-    th = 0.07
-    tx = 0.18
-    lumi = backgrounds[0].estimator.hm.target_lumi/1000.
-    textsize = 0.8
-    if not do_ratio_plot: textsize = 0.8
-    latex_y = ty-2.*th
-    tlatex.DrawLatex(tx,latex_y,'#scale[%lf]{#scale[%lf]{#int}L dt = %2.1f fb^{-1}, #sqrt{s} = 13 TeV}'%(textsize,0.8*textsize,lumi) )
-    if label:
-      latex_y -= 0.06
-      #for i,line in enumerate(label):
-      #  tlatex.DrawLatex(tx,latex_y-i*0.06,"#scale[%lf]{%s}"%(textsize,line))
-      tlatex.DrawLatex(tx,latex_y - 0.06,"#scale[%lf]{%s}"%(textsize,label))
-    #if blind:
-        #line = ROOT.TLine()
-        #line.SetLineColor(ROOT.kBlack)
-        #line.SetLineStyle(2)
-        #line.DrawLine(blind,ymin,blind,ymax)
+    if not (do_2d and not profile_2d):
+        tlatex = ROOT.TLatex()
+        tlatex.SetNDC()
+        tlatex.SetTextSize(0.05)
+        lx = 0.6 # for ATLAS internal
+        ly = 0.845
+        tlatex.SetTextFont(42)
+        
+        ty = 0.96
+        th = 0.07
+        tx = 0.18
+        lumi = backgrounds[0].estimator.hm.target_lumi/1000.
+        textsize = 0.8
+        if not do_ratio_plot: textsize = 0.6
+        latex_y = ty-2.*th
+        ks = h_total.KolmogorovTest(h_data)
+        tlatex.DrawLatex(tx,latex_y,'#scale[%lf]{#scale[%lf]{#int}L dt = %2.1f fb^{-1}, #sqrt{s} = 13 TeV}'%(textsize,0.8*textsize,lumi) )
+        if label:
+          latex_y -= 0.06
+          #for i,line in enumerate(label):
+          #  tlatex.DrawLatex(tx,latex_y-i*0.06,"#scale[%lf]{%s}"%(textsize,line))
+          tlatex.DrawLatex(tx,latex_y - 0.06,"#scale[%lf]{%s, KS = %2.2f}"%(textsize,label,ks))
+        #if blind:
+            #line = ROOT.TLine()
+            #line.SetLineColor(ROOT.kBlack)
+            #line.SetLineStyle(2)
+            #line.DrawLine(blind,ymin,blind,ymax)
 #        bltext = ROOT.TLatex()
 #        bltext.SetTextFont(42)
 #        bltext.SetTextSize(0.04)
 #        bltext.SetTextAngle(90.)
 #        bltext.SetTextAlign(31)
 #        bltext.DrawLatex(blind,ymax, 'Blind   ')
-#
+
     if do_ratio_plot:
       pad2.cd()
       fr2 = pad2.DrawFrame(xmin,0.49,xmax,1.51,';%s;Data / Bkg_{SM}'%(xtitle))
@@ -454,24 +626,49 @@ def plot_hist(
       yaxis2.SetNdivisions(510)
       xaxis2.SetNdivisions(510)
 
+    elif do_2d and not profile_2d:
+        pad2.cd()
+        fr2 = pad2.DrawFrame(xmin,ymin,xmax,ymax,';%s;%s'%(xtitle,ytitle + ' (Background)'))
+        xaxis2 = fr2.GetXaxis()
+        yaxis2 = fr2.GetYaxis()
+        yaxis2.SetTitleSize( yaxis2.GetTitleSize() * scale )
+        yaxis2.SetTitleOffset( 2.1 * yaxis2.GetTitleOffset() / scale )
+        yaxis2.SetLabelSize( 0.8 * yaxis2.GetLabelSize() * scale )
+        yaxis2.SetLabelOffset( 1. * yaxis2.GetLabelOffset() / scale )
+        xaxis2.SetNdivisions(510)
+        yaxis2.SetNdivisions(510)
+        if h_total and do_2d:
+            h_total.Draw("SAME,COLZ")
+        pad2.RedrawAxis()
+
+
+    if do_ratio_plot:
       if logx: 
         pad2.SetLogx(logx) 
         xaxis2.SetMoreLogLabels()
       else: 
         pass
 
-      if g_tot: 
-         g_tot.Draw("E2")
-         g_stat.Draw("SAME,E2")
+      if do_ratio_plot:
+          if g_tot: 
+             g_tot.Draw("E2")
+             g_stat.Draw("SAME,E2")
 
-      else: g_stat.Draw("E2")
+          else: g_stat.Draw("E2")
 
-      if data: h_ratio.Draw("SAME") 
+          if data and do_ratio_plot:
+              h_ratio.Draw("SAME") 
       pad2.RedrawAxis()
 
     print 'saving plot...'
-    if not log: c.SaveAs("%s.eps"%c.GetName())
-    else:   c.SaveAs("%s_LOG.eps"%c.GetName())
+    if not log:
+        c.SaveAs("%s.eps" %c.GetName())
+        c.SaveAs("%s.png" %c.GetName())
+        c.SaveAs("%s.root"%c.GetName())
+    else:
+        c.SaveAs("%s_LOG.eps" %c.GetName())
+        c.SaveAs("%s_LOG.png" %c.GetName())
+        c.SaveAs("%s_LOG.root"%c.GetName())
     fout = ROOT.TFile.Open(plotsfile,'UPDATE')
     fout.WriteTObject(c)
     fout.Close()
@@ -494,9 +691,11 @@ def write_hist(
     also write smtot hists for summed background.
     No folder structure is provided
     """
-    samples = backgrounds + signal
+    if signal: samples = backgrounds + signal
+    else: samples = backgrounds
     if data: samples += [data]
     ## generate nominal hists
+    print 'grabbing hist'
     hists = get_hists(
         region=region,
         icut=icut,
@@ -504,12 +703,16 @@ def write_hist(
         samples=samples, 
         rebin=rebin,
         sys_dict=sys_dict,
+        uo_flow=True,
         )
     
     #histnamestr = histname.replace('/','_')
     fname = outname
     fout = ROOT.TFile.Open(fname,'RECREATE')
     for s,h in hists.items():
+        print s.name
+        if s.name == 'data':
+            print h.GetEntries()
         hname = 'h_%s_nominal_%s' % (region,s.name)
         h.SetNameTitle(hname,hname)
         fout.WriteTObject(h,hname)
@@ -518,7 +721,7 @@ def write_hist(
          if sys_dict:
             for sys,hsys in h.sys_hists.items():
                 
-                s_name = sys.name
+                s_name = sys#.name
                 
                 hname_sys_up = hname.replace('nominal','%s_%s' % (s_name,'UP'))
                 hname_sys_dn = hname.replace('nominal','%s_%s' % (s_name,'DN'))
@@ -551,7 +754,8 @@ def print_cutflows(
     also write smtot hists for summed background.
     No folder structure is provided
     """
-    samples = backgrounds + signal
+    if signal: samples = backgrounds + signal
+    else: samples = backgrounds
     if data: samples += [data]
     ## generate nominal hists
     #print "Retrieving hists"

@@ -16,7 +16,8 @@ import ROOT
 GRL = []
 
 GRL += [ '00276262', '00276329', '00276330', '00276336', '00276416', '00276511', '00276689', '00276731', '00276778', '00276790', '00276952', '00276954', '00278727', '00278748', '00278880', '00278912', '00278968', '00278970', '00279169', '00279259', '00279279', '00279284', '00279345', '00279515', '00279598', '00279685', '00279764', '00279813', '00279867', '00279928', '00279932', '00279984', '00280231', '00280273', '00280319', '00280368', '00280423', '00280464', '00280500', '00280520', '00280614', '00280673', '00280753', '00280853', '00280862', '00280950', '00280977', '00281070', '00281074', '00281075', '00281130', '00281317', '00281381', '00281385', '00281411', '00282625', '00282631', '00282712', '00282784', '00282992', '00283074', '00283155', '00283270', '00283429', '00283608', '00283780', '00284006', '00284154', '00284213', '00284285', '00284420', '00284427', '00284473', '00284484', '00297730', '00298591', '00298595', '00298609', '00298633', '00298687', '00298690', '00298771', '00298773', '00298862', '00298967', '00299055', '00299144', '00299147', '00299184', '00299241', '00299243', '00299288', '00299315', '00299340', '00299343', '00299390', '00299584', '00300279', '00300287', '00300345', '00300415', '00300418', '00300487', '00300540', '00300571', '00300600', '00300655', '00300687', '00300784', '00300800', '00300863', '00300908', '00301912', '00301915', '00301918', '00301932', '00301973', '00302053', '00302137', '00302265', '00302269', '00302300', '00302347', '00302380', '00302391', '00302393', '00302737', '00302829', '00302831', '00302872', '00302919', '00302925', '00302956', '00303007', '00303059', '00303079', '00303201', '00303208', '00303264', '00303266', '00303291', '00303304', '00303338', '00303421', '00303499', '00303560', '00303638', '00303726', '00303811', '00303817', '00303819', '00303832', '00303846', '00303892', '00303943', '00304006', '00304008', '00304128', '00304178', '00304198', '00304211', '00304243', '00304308', '00304337', '00304409', '00304431', '00304494', '00305291', '00305293', '00305380', '00305543', '00305571', '00305618', '00305671', '00305674', '00305723', '00305727', '00305735', '00305777', '00305811', '00305920', '00306247', '00306269', '00306278', '00306310', '00306384', '00306419', '00306442', '00306448', '00306451', '00306556', '00306655', '00306657', '00306714', '00307124', '00307126', '00307195', '00307259', '00307306', '00307354', '00307358', '00307394', '00307454', '00307514', '00307539', '00307569', '00307601', '00307619', '00307656', '00307710', '00307716', '00307732', '00307861', '00307935', '00308047', '00308084', '00309311', '00309375', '00309390', '00309440', '00309516', '00309640', '00309674', '00309759', '00310015', '00310210', '00310247', '00310249', '00310341', '00310370', '00310405', '00310468', '00310473', '00310574', '00310634', '00310691', '00310738', '00310781', '00310809', '00310863', '00310872', '00310969', '00311071', '00311170', '00311244', '00311287', '00311321', '00311365', '00311402','00311473', '00311481']
-#GRL = ['00300418']
+#GRL = ['00311481']
+#GRL = ['00302380', '00302737', '00307710', '00303811']
 GRL.sort()
 
 ds_name = '%s'
@@ -59,9 +60,9 @@ Sh221_PDF30_Ztt_MHPT1000_E_CMS                    = Sample(  name="Sh221_PDF30_Z
 
 Ztautau =  Sample( name =   'Ztautau',
                    tlatex = 'Z#rightarrow#tau#tau',
-                   fill_color   =  ROOT.kYellow-7,
-                   line_color   =  ROOT.kYellow-6,
-                   marker_color =  ROOT.kYellow-6,
+                   fill_color   =  7042,#ROOT.kYellow-7,
+                   line_color   =  ROOT.kGray,#ROOT.kYellow-6,
+                   marker_color =  7042,#ROOT.kYellow-6,
                    daughters    = [
                                    Sh221_PDF30_Ztt_MHPT0_70_l13l7,
                                    Sh221_PDF30_Ztt_MHPT0_70_l15h20,       
@@ -123,9 +124,9 @@ Sh221__Zee_Mll10_40_MHPT280_BFilter               = Sample(  name="Sh221__Zee_Ml
 
 Zleplep =  Sample( name =   'Zleplep',
                    tlatex = 'Z#rightarrowll',
-                   fill_color   =  ROOT.kOrange+1,
-                   line_color   =  ROOT.kOrange+2,
-                   marker_color =  ROOT.kOrange+2,
+                   fill_color   =  7043,#ROOT.kOrange+1,
+                   line_color   =  ROOT.kGray,#ROOT.kOrange+2,
+                   marker_color =  7043,#ROOT.kOrange+2,
                    daughters    = [
                                     Sh221_PDF30_Zmumu_MHPT0_70_CVetoBVeto,                                     
                                     Sh221_PDF30_Zmumu_MHPT0_70_CFiltBVet,   
@@ -281,6 +282,57 @@ Wtaunu =  Sample( name =   'Wtaunu',
                                   ]
                 )
 
+Wjets  =  Sample( name =   'Wjets',
+                  tlatex = 'W+Jets',
+                  fill_color   =  7051,#ROOT.kPink+2,
+                  line_color   =  ROOT.kGray,#ROOT.kPink+3,
+                  marker_color =  7051,#ROOT.kPink+3,
+                  daughters    = [
+                                    Sh221_PDF30_Wmunu_MHPT0_70_CVetoBVeto,                                      
+                                    Sh221_PDF30_Wmunu_MHPT0_70_CFiltBVet,      
+                                    Sh221_PDF30_Wmunu_MHPT0_70_BFilter,        
+                                    Sh221_PDF30_Wmunu_MHPT70_140_CVetoBVeto,   
+                                    Sh221_PDF30_Wmunu_MHPT70_140_CFiltBVet,    
+                                    Sh221_PDF30_Wmunu_MHPT70_140_BFilter,      
+                                    Sh221_PDF30_Wmunu_MHPT140_280_CVetoBVeto,  
+                                    Sh221_PDF30_Wmunu_MHPT140_280_CFiltBVet,   
+                                    Sh221_PDF30_Wmunu_MHPT140_280_BFilter,     
+                                    Sh221_PDF30_Wmunu_MHPT280_500_CVetoBVeto,  
+                                    Sh221_PDF30_Wmunu_MHPT280_500_CFiltBVet,   
+                                    Sh221_PDF30_Wmunu_MHPT280_500_BFilter,     
+                                    Sh221_PDF30_Wmunu_MHPT500_1000,            
+                                    Sh221_PDF30_Wmunu_MHPT1000_E_CMS,          
+                                    Sh221_PDF30_Wenu_MHPT0_70_CVetoBVeto,      
+                                    Sh221_PDF30_Wenu_MHPT0_70_CFiltBVet,       
+                                    Sh221_PDF30_Wenu_MHPT0_70_BFilter,         
+                                    Sh221_PDF30_Wenu_MHPT70_140_CVetoBVeto,    
+                                    Sh221_PDF30_Wenu_MHPT70_140_CFiltBVet,     
+                                    Sh221_PDF30_Wenu_MHPT70_140_BFilter,       
+                                    Sh221_PDF30_Wenu_MHPT140_280_CVetoBVeto,   
+                                    Sh221_PDF30_Wenu_MHPT140_280_CFiltBVet,    
+                                    Sh221_PDF30_Wenu_MHPT140_280_BFilter,      
+                                    Sh221_PDF30_Wenu_MHPT280_500_CVetoBVeto,   
+                                    Sh221_PDF30_Wenu_MHPT280_500_CFiltBVet,    
+                                    Sh221_PDF30_Wenu_MHPT280_500_BFilter,      
+                                    Sh221_PDF30_Wenu_MHPT500_1000,             
+                                    Sh221_PDF30_Wenu_MHPT1000_E_CMS,           
+                                    Sh221_PDF30_Wtaunu_MHPT0_70_CVetoBVeto,
+                                    Sh221_PDF30_Wtaunu_MHPT0_70_CFiltBVet,    
+                                    Sh221_PDF30_Wtaunu_MHPT0_70_BFilter,      
+                                    Sh221_PDF30_Wtaunu_MHPT70_140_CVetoBVeto, 
+                                    Sh221_PDF30_Wtaunu_MHPT70_140_CFiltBVet,  
+                                    Sh221_PDF30_Wtaunu_MHPT70_140_BFilter,    
+                                    Sh221_PDF30_Wtaunu_MHPT140_280_CVetoBVeto,
+                                    Sh221_PDF30_Wtaunu_MHPT140_280_CFiltBVet, 
+                                    Sh221_PDF30_Wtaunu_MHPT140_280_BFilter,   
+                                    Sh221_PDF30_Wtaunu_MHPT280_500_CVetoBVeto,
+                                    Sh221_PDF30_Wtaunu_MHPT280_500_CFiltBVet, 
+                                    Sh221_PDF30_Wtaunu_MHPT280_500_BFilter,   
+                                    Sh221_PDF30_Wtaunu_MHPT500_1000,          
+                                    Sh221_PDF30_Wtaunu_MHPT1000_E_CMS,        
+                                  ]
+                )
+
 # -----------------------------------------
 # Top
 # -----------------------------------------
@@ -296,9 +348,9 @@ PoPy_P2012_STSchan_noAllHad_atop                  = Sample(  name="PoPy_P2012_ST
 
 top =  Sample( name =   'top',
                tlatex = 'Top',
-               fill_color   =  ROOT.kBlue+1,
-               line_color   =  ROOT.kBlue+2,
-               marker_color =  ROOT.kBlue+2,
+               fill_color   =  7022,#ROOT.kBlue+1,
+               line_color   =  ROOT.kGray,#ROOT.kBlue+2,
+               marker_color =  7022,#ROOT.kBlue+2,
                daughters    = [
                                 PoPy_P2012_ttb_nonallh,
                                 PoPy_P2012_ttb_allh,             
@@ -315,13 +367,18 @@ top =  Sample( name =   'top',
 # -----------------------------------------
 # LFVH
 # -----------------------------------------
-PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"     , dsid="344084" , xsec=30.1089 , kfactor=0.01*100)
-PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"    , dsid="344085" , xsec=3.8155  , kfactor=0.01*100)
-PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"      , dsid="344088" , xsec=30.189  , kfactor=0.01*100)
-PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"     , dsid="344089" , xsec=3.8155  , kfactor=0.01*100)
+PoPy8_ggH125_taumu                                = Sample(  name="PoPy8_ggH125_taumu"                , dsid="344084" , xsec=30.189  , kfactor=0.01)
+PoPy8_VBFH125_taumu                               = Sample(  name="PoPy8_VBFH125_taumu"               , dsid="344085" , xsec=3.8162  , kfactor=0.01)
+PoPy8_ggH125_taue                                 = Sample(  name="PoPy8_ggH125_taue"                 , dsid="344088" , xsec=30.189  , kfactor=0.01)
+PoPy8_VBFH125_taue                                = Sample(  name="PoPy8_VBFH125_taue"                , dsid="344089" , xsec=3.8155  , kfactor=0.01)
+
+PoPy8EG_ggH125_etau_filt                          = Sample(  name="PoPy8EG_ggH125_etau_filt"          , dsid="345124" , xsec=31.098  , kfactor=0.01)
+PoPy8EG_ggH125_mutau_filt                         = Sample(  name="PoPy8EG_ggH125_mutau_filt"         , dsid="345125" , xsec=31.008  , kfactor=0.01)
+PoPy8EG_NNPDF30_VBFH125_etau_filt                 = Sample(  name="PoPy8EG_NNPDF30_VBFH125_etau_filt" , dsid="345077" , xsec=2.5414  , kfactor=0.01)
+PoPy8EG_NNPDF30_VBFH125_mutau_filt                = Sample(  name="PoPy8EG_NNPDF30_VBFH125_mutau_filt", dsid="345078" , xsec=2.5471  , kfactor=0.01)
 
 lfvh =  Sample( name =   'lfvh',
-                tlatex = 'H#rightarrow#tau#tau (LFV)',
+                tlatex = 'H#rightarrow l#tau (LFV)',
                 fill_color   = ROOT.kWhite,
                 fill_style   = 3351,
                 line_color   = ROOT.kRed,
@@ -334,31 +391,87 @@ lfvh =  Sample( name =   'lfvh',
                                  PoPy8_VBFH125_taumu,
                                  PoPy8_ggH125_taue,  
                                  PoPy8_VBFH125_taue,
+                                 #PoPy8EG_ggH125_etau_filt,
+                                 #PoPy8EG_ggH125_mutau_filt,
+                                 #PoPy8EG_NNPDF30_VBFH125_etau_filt,
+                                 #PoPy8EG_NNPDF30_VBFH125_mutau_filt,
+                                ]
+                )
+
+lfvh_ggH =  Sample( name =   'lfvh_ggH',
+                tlatex = 'H#rightarrow l#tau (ggH)',
+                fill_color   = ROOT.kWhite,
+                fill_style   = 3351,
+                line_color   = ROOT.kRed,
+                line_style   = 1,
+                line_size    = 5,
+                marker_color = ROOT.kRed,
+                marker_size  = 0,
+                daughters    = [
+                                 PoPy8EG_ggH125_etau_filt,
+                                 PoPy8EG_ggH125_mutau_filt,
+                                ]
+                )
+
+lfvh_VBF =  Sample( name =   'lfvh_VBF',
+                tlatex = 'H#rightarrow l#tau (VBF)',
+                fill_color   = ROOT.kWhite,
+                fill_style   = 3351,
+                line_color   = ROOT.kRed+1,
+                line_style   = 1,
+                line_size    = 5,
+                marker_color = ROOT.kRed+1,
+                marker_size  = 0,
+                daughters    = [
+                                 PoPy8EG_NNPDF30_VBFH125_etau_filt,
+                                 PoPy8EG_NNPDF30_VBFH125_mutau_filt,
                                 ]
                 )
 
 
-PoPy8_ggH125_tautau                               = Sample(  name="PoPy8_ggH125_ttlh"             , dsid="341123" , xsec=1.262409959 )
-PoPy8_VBFH125_tautau                              = Sample(  name="PoPy8_VBFH125_ttlh"            , dsid="341156" , xsec=0.107869976 )
-PoPy8_ggH125_tautau_lm15hp20                      = Sample(  name="PoPy8EG_ggH125_tautaulm15hp20"  , dsid="345121" , xsec=3.0354  )
-PoPy8_ggH125_tautau_lp15hm20                      = Sample(  name="PoPy8EG_ggH125_tautaulp15hm20"  , dsid="345122" , xsec=3.0354  )
-PoPy8_VBFH125_tautau_lm15hp20                     = Sample(  name="PoPy8EG_NNPDF30_VBFH125_tautaulm15hp20" , dsid="345074" , xsec=0.23641 )
-PoPy8_VBFH125_tautau_lp15hm20                     = Sample(  name="PoPy8EG_NNPDF30_VBFH125_tautaulp15hm20" , dsid="345075" , xsec=0.23641 )
+PoPy8_ggH125_tautau               = Sample(  name="PoPy8_ggH125_ttlh"                      , dsid="341123" , xsec=1.9082*1.45464180439*45.48/100)#1.262409959 )
+PoPy8_VBFH125_tautau              = Sample(  name="PoPy8_VBFH125_ttlh"                     , dsid="341156" , xsec=0.242012*0.978768965607*45.539/100)#0.107869976 )
+
+PoPy8_ggH125_tautau_lm15hp20      = Sample(  name="PoPy8EG_ggH125_tautaulm15hp20"          , dsid="345121" , xsec=3.0354*2*3.7749/100)#3.0354  )
+PoPy8_ggH125_tautau_lp15hm20      = Sample(  name="PoPy8EG_ggH125_tautaulp15hm20"          , dsid="345122" , xsec=3.0469*2*3.7826/100)#3.0354  )
+PoPy8_VBFH125_tautau_lm15hp20     = Sample(  name="PoPy8EG_NNPDF30_VBFH125_tautaulm15hp20" , dsid="345074" , xsec=0.23641*2*4.0327/100)#0.23641 )
+PoPy8_VBFH125_tautau_lp15hm20     = Sample(  name="PoPy8EG_NNPDF30_VBFH125_tautaulp15hm20" , dsid="345075" , xsec=0.23641*2*4.0324/100)#0.23641 )
+PoPy8EG_WmH125J_Winc_MINLO_tautau = Sample(  name="PoPy8EG_WmH125J_Winc_MINLO_tautau"      , dsid="345211" , xsec=0.033238*2) 
+PoPy8EG_WpH125J_Winc_MINLO_tautau = Sample(  name="PoPy8EG_WpH125J_Winc_MINLO_tautau"      , dsid="345212" , xsec=0.052425*2) 
+PoPy8EG_ZH125J_Zinc_MINLO_tautau  = Sample(  name="PoPy8EG_ZH125J_Zinc_MINLO_tautau"       , dsid="345217" , xsec=0.055203*2)
 
 smh  =  Sample( name =   'smh',
                 tlatex = 'H#rightarrow#tau#tau (SM)',
-                fill_color   =  ROOT.kBlack,
-                line_color   =  ROOT.kBlack,
-                marker_color =  ROOT.kBlack,
+                fill_color   =  7031,#ROOT.kBlack,
+                line_color   =  ROOT.kGray,#ROOT.kBlack,
+                marker_color =  7031,#ROOT.kBlack,
                 daughters    = [
-                                 PoPy8_ggH125_tautau, 
-                                 PoPy8_VBFH125_tautau,
-                                 #PoPy8_ggH125_tautau_lm15hp20 ,
-                                 #PoPy8_ggH125_tautau_lp15hm20 ,
-                                 #PoPy8_VBFH125_tautau_lm15hp20,
-                                 #PoPy8_VBFH125_tautau_lp15hm20,
+                                 #PoPy8_ggH125_tautau, 
+                                 #PoPy8_VBFH125_tautau,
+                                 PoPy8_ggH125_tautau_lm15hp20 ,
+                                 PoPy8_ggH125_tautau_lp15hm20 ,
+                                 PoPy8_VBFH125_tautau_lm15hp20,
+                                 PoPy8_VBFH125_tautau_lp15hm20,
+                                 PoPy8EG_WmH125J_Winc_MINLO_tautau,
+                                 PoPy8EG_WpH125J_Winc_MINLO_tautau,
+                                 PoPy8EG_ZH125J_Zinc_MINLO_tautau ,
                                 ]
                 )
+
+#filt =  Sample( name =   'smh_filt',
+#                tlatex = 'Filtered',
+#                fill_color   =  ROOT.kSpring,
+#                line_color   =  ROOT.kSpring,
+#                marker_color =  ROOT.kSpring,
+#                daughters    = [
+#                                 #PoPy8_ggH125_tautau, 
+#                                 #PoPy8_VBFH125_tautau,
+#                                 PoPy8_ggH125_tautau_lm15hp20 ,
+#                                 PoPy8_ggH125_tautau_lp15hm20 ,
+#                                 PoPy8_VBFH125_tautau_lm15hp20,
+#                                 PoPy8_VBFH125_tautau_lp15hm20,
+#                                ]
+#                )
 
 Sh221_PDF30_ZqqZvv   = Sample( name="Sh221_PDF30_ZqqZvv",   dsid="363355", xsec=15.564, kfactor=0.27976)
 Sh221_PDF30_ZqqZll   = Sample( name="Sh221_PDF30_ZqqZll",   dsid="363356", xsec=15.563, kfactor=0.13961)
@@ -376,9 +489,9 @@ Sh221_PDF30_vvvv     = Sample( name="Sh221_PDF30_vvvv",     dsid="363494", xsec=
 
 diboson = Sample( name = 'diboson',
                   tlatex = 'Diboson',
-                  fill_color   =  ROOT.kPink+2,
-                  line_color   =  ROOT.kPink+3,
-                  marker_color =  ROOT.kPink+3,
+                  fill_color   =  7010,#ROOT.kPink+2,
+                  line_color   =  ROOT.kGray,#ROOT.kPink+3,
+                  marker_color =  7010,#ROOT.kPink+3,
                   daughters = [
                                 Sh221_PDF30_ZqqZvv,
                                 Sh221_PDF30_ZqqZll,
@@ -479,22 +592,42 @@ Fake        = Sample( name         = 'Fake',
 
 FF_Fake     = Sample( name         = 'FF_Fake',
                       tlatex       = 'Fakes (Fake Factor)',
-                      fill_color   = ROOT.kGreen+2,
-                      line_color   = ROOT.kGreen+3,
-                      marker_color = ROOT.kGreen+3,
+                      fill_color   = 7002,#ROOT.kGreen+2,
+                      line_color   = ROOT.kGray,#ROOT.kGreen+3,
+                      marker_color = 7002,#ROOT.kGreen+3,
                       type         = "datadriven",
                     )
 
 all_data = data.daughters
 
 all_mc = []
-all_mc += Wtaunu.daughters
-all_mc += Wlepnu.daughters
+all_mc += Wjets.daughters
 all_mc += Zleplep.daughters
 all_mc += Ztautau.daughters
 all_mc += diboson.daughters
 all_mc += top.daughters
-all_mc += lfvh.daughters
 all_mc += smh.daughters
+all_mc += lfvh_ggH.daughters
+all_mc += lfvh_VBF.daughters
 
-# EOF
+#all_mc += Wtaunu.daughters
+#all_mc += Wlepnu.daughters
+#all_mc += lfvh.daughters
+## EOF
+#missing = Sample( name = 'diboson',
+#                  tlatex = 'Diboson',
+#                  fill_color   =  7010,#ROOT.kPink+2,
+#                  line_color   =  ROOT.kGray,#ROOT.kPink+3,
+#                  marker_color =  7010,#ROOT.kPink+3,
+#                  daughters = [
+#                              Sh221_PDF30_Ztt_MHPT0_70_l15h20        ,
+#                              Sh221_PDF30_Zmumu_MHPT70_140_BFilter   ,
+#                              Sh221_PDF30_Zmumu_MHPT500_1000         ,
+#                              Sh221_PDF30_Wmunu_MHPT280_500_CFiltBVet,
+#                              Sh221_PDF30_Wenu_MHPT0_70_BFilter      ,
+#                              Sh221_PDF30_Wenu_MHPT140_280_CFiltBVet ,
+#                              Sh221_PDF30_Wenu_MHPT140_280_BFilter   ,
+#                              Sh221_PDF30_Wtaunu_MHPT0_70_CFiltBVet  ,
+#                              ]
+#        )
+#all_mc  = missing.daughters
